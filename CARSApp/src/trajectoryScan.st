@@ -11,6 +11,9 @@ program trajectoryScan("P=13IDC:,R=traj1,M1=M1,M2=M2,M3=M3,M4=M4,M5=M5,M6=M6,M7=
  * Modifications:
  *  August 21, 2000 MLR Added +r option, so that the flag is just for this
  *                      module, rather than requiring it to be in Makefile.Vx
+ *  Dec. 5, 2001 MLR    Fixed bug in computing following error
+ *  Dec. 7, 2001 MLR    Fixed bug in converting from EPICS to MM4000 units when
+ *                      building trajectory.
 */
 
 %% #include <string.h>
@@ -532,6 +535,9 @@ ss trajectoryScan {
                     } else {
                         dpos = motorTrajectory[j][i+1] - motorTrajectory[j][i];
                     }
+                    /* Convert from user units to MM4000 units */
+                    if (epicsMotorDir[j] == 0) dir=1; else dir=-1;
+                    dpos = dpos*dir;
                     sprintf(stringOut, "%dDX%f", j+1, dpos);
                     pvPut(stringOut);
                     WAIT_OUTPUT;
@@ -761,9 +767,11 @@ ss trajectoryScan {
                     posTheory = atof(p+3);
                     p = strtok_r(0, ",", &tok_save);
                     if (epicsMotorDir[j] == 0) dir=1; else dir=-1;
-                    posActual = atof(p+3)*dir + epicsMotorOff[j];
-                    motorReadbacks[j][i] = posActual;
+                    posActual = atof(p+3);
                     motorError[j][i] = posActual-posTheory;
+                    /* Convert from MM4000 units to user units */
+                    posActual = posActual*dir + epicsMotorOff[j];
+                    motorReadbacks[j][i] = posActual;
                 }
             }
             /* Post the readback and error arrays */
