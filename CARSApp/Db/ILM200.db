@@ -2,15 +2,11 @@
 grecord(serial,"$(P)$(R)_read1")
 {
 	field(DESC,"ILM200 $(P)$(R) read 1")
-	field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(INP,"#C$(C) S0 @$(SERVER)")
         field(AOUT,"R1")
         field(ODEL,"13")
         field(IDEL,"13")
         field(TMOT,"1000")
-	field(BAUD,"9600")
-	field(PRTY,"None")
-	field(DBIT,"8")
-	field(SBIT,"1")
         field(SCAN,"10 second")
         field(FLNK,"$(P)$(R)_calc1")
 }
@@ -28,15 +24,11 @@ grecord(scalcout,"$(P)$(R)_calc1")
 grecord(serial,"$(P)$(R)_read2")
 {
 	field(DESC,"ILM200 $(P)$(R) read 2")
-	field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(INP,"#C$(C) S0 @$(SERVER)")
         field(AOUT,"R2")
         field(ODEL,"13")
         field(IDEL,"13")
         field(TMOT,"1000")
-	field(BAUD,"9600")
-	field(PRTY,"None")
-	field(DBIT,"8")
-	field(SBIT,"1")
         field(FLNK,"$(P)$(R)_calc2")
 }
 

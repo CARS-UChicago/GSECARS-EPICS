@@ -1,12 +1,8 @@
 # Database for Omega controller used on the 250 ton press in 13-BM-D
 grecord(serial, "$(P)$(R)Serial") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 
 # Soft reset = RESET1
@@ -29,13 +25,9 @@ grecord(bo, "$(P)$(R)ReadBack") {
 
 # Serial record for the current value
 grecord(serial, "$(P)$(R)ReadValue") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*V01")
         field(FLNK,"$(P)$(R)Value.PROC PP MS")
 }
@@ -50,13 +42,9 @@ grecord(scalcout,"$(P)$(R)Value") {
 
 # Serial record to read the alarm status
 grecord(serial, "$(P)$(R)ReadAlarm") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*U01")
         field(FLNK,"$(P)$(R)Alarm1.PROC PP MS")
 }
@@ -89,13 +77,9 @@ grecord(scalcout,"$(P)$(R)Alarm4") {
 
 # Records to read setpoints 1-4 from RAM
 grecord(serial, "$(P)$(R)ReadSP1") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*G21")
         field(FLNK,"$(P)$(R)SP1_Read.PROC PP MS")
 }
@@ -108,13 +92,9 @@ grecord(scalcout,"$(P)$(R)SP1_Read") {
 }
 
 grecord(serial, "$(P)$(R)ReadSP2") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*G22")
         field(FLNK,"$(P)$(R)SP2_Read.PROC PP MS")
 }
@@ -127,13 +107,9 @@ grecord(scalcout,"$(P)$(R)SP2_Read") {
 }
 
 grecord(serial, "$(P)$(R)ReadSP3") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*G23")
         field(FLNK,"$(P)$(R)SP3_Read.PROC PP MS")
 }
@@ -145,13 +121,9 @@ grecord(scalcout,"$(P)$(R)SP3_Read") {
         field(PREC,"1")
 }
 grecord(serial, "$(P)$(R)ReadSP4") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*G24")
         field(FLNK,"$(P)$(R)SP4_Read.PROC PP MS")
 }
@@ -169,13 +141,9 @@ grecord(scalcout,"$(P)$(R)SP1_Write") {
         field(OUT,"$(P)$(R)WriteSP1.AOUT PP MS")
 }
 grecord(serial, "$(P)$(R)WriteSP1") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 
 grecord(scalcout,"$(P)$(R)SP2_Write") {
@@ -184,13 +152,9 @@ grecord(scalcout,"$(P)$(R)SP2_Write") {
         field(OUT,"$(P)$(R)WriteSP2.AOUT PP MS")
 }
 grecord(serial, "$(P)$(R)WriteSP2") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 
 grecord(scalcout,"$(P)$(R)SP3_Write") {
@@ -199,13 +163,9 @@ grecord(scalcout,"$(P)$(R)SP3_Write") {
         field(OUT,"$(P)$(R)WriteSP3.AOUT PP MS")
 }
 grecord(serial, "$(P)$(R)WriteSP3") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 
 grecord(scalcout,"$(P)$(R)SP4_Write") {
@@ -214,13 +174,9 @@ grecord(scalcout,"$(P)$(R)SP4_Write") {
         field(OUT,"$(P)$(R)WriteSP4.AOUT PP MS")
 }
 grecord(serial, "$(P)$(R)WriteSP4") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 
 # Records to copy setpoints from RAM to EEPROM
@@ -232,13 +188,9 @@ grecord(scalcout,"$(P)$(R)SP1_Put") {
         field(FLNK,"$(P)$(R)SP2_Put.PROC PP MS")
 }
 grecord(serial, "$(P)$(R)PutSP1") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 grecord(scalcout,"$(P)$(R)SP2_Put") {
         field(INPA,"$(P)$(R)SP2_Read.VAL NPP NMS")
@@ -248,13 +200,9 @@ grecord(scalcout,"$(P)$(R)SP2_Put") {
         field(FLNK,"$(P)$(R)SP3_Put.PROC PP MS")
 }
 grecord(serial, "$(P)$(R)PutSP2") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 grecord(scalcout,"$(P)$(R)SP3_Put") {
         field(INPA,"$(P)$(R)SP3_Read.VAL NPP NMS")
@@ -264,13 +212,9 @@ grecord(scalcout,"$(P)$(R)SP3_Put") {
         field(FLNK,"$(P)$(R)SP4_Put.PROC PP MS")
 }
 grecord(serial, "$(P)$(R)PutSP3") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 grecord(scalcout,"$(P)$(R)SP4_Put") {
         field(INPA,"$(P)$(R)SP4_Read.VAL NPP NMS")
@@ -280,13 +224,9 @@ grecord(scalcout,"$(P)$(R)SP4_Put") {
         field(FLNK,"$(P)$(R)HardReset.PROC PP MS")
 }
 grecord(serial, "$(P)$(R)PutSP4") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
 }
 
 # Records to ramp the load using an EPICS SSCAN record.
