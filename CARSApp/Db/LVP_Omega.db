@@ -8,20 +8,26 @@ grecord(serial, "$(P)$(R)Serial") {
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
 }
+
+# Soft reset = RESET1
 grecord(stringout, "$(P)$(R)SoftReset") {
-	field(VAL,"*Z03")
-        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
-}
-grecord(stringout, "$(P)$(R)HardReset") {
-	field(VAL,"*Z04")
+        field(VAL,"*Z03")
         field(OUT,"$(P)$(R)Serial.AOUT PP MS")
 }
 
+# Hard reset = RESET2
+grecord(stringout, "$(P)$(R)HardReset") {
+        field(VAL,"*Z04")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
+
+# This record controls the readback rate
 grecord(bo, "$(P)$(R)ReadBack") {
         field(SCAN,"5 second")
         field(FLNK,"$(P)$(R)ReadValue PP MS")
 }
 
+# Serial record for the current value
 grecord(serial, "$(P)$(R)ReadValue") {
         field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
         field(IDEL,"13")
@@ -30,17 +36,19 @@ grecord(serial, "$(P)$(R)ReadValue") {
         field(PRTY,"$(PRTY)")
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
-	field(AOUT,"*V01")
+        field(AOUT,"*V01")
         field(FLNK,"$(P)$(R)Value.PROC PP MS")
 }
 
+# The current value
 grecord(scalcout,"$(P)$(R)Value") {
-	field(INAA,"$(P)$(R)ReadValue.AINP NPP NMS")
-	field(CALC,"SSCANF(AA, '%*3c%f')")
+        field(INAA,"$(P)$(R)ReadValue.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%*3c%f')")
         field(FLNK,"$(P)$(R)ReadAlarm.PROC PP MS")
-	field(PREC,"1")
+        field(PREC,"1")
 }
 
+# Serial record to read the alarm status
 grecord(serial, "$(P)$(R)ReadAlarm") {
         field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
         field(IDEL,"13")
@@ -49,35 +57,37 @@ grecord(serial, "$(P)$(R)ReadAlarm") {
         field(PRTY,"$(PRTY)")
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
-	field(AOUT,"*U01")
+        field(AOUT,"*U01")
         field(FLNK,"$(P)$(R)Alarm1.PROC PP MS")
 }
 
+# Alarm status 1-4
 grecord(scalcout,"$(P)$(R)Alarm1") {
-	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
-	field(CALC,"(BYTE(AA[3,3])&1)!=0")
+        field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+        field(CALC,"(BYTE(AA[3,3])&1)!=0")
         field(FLNK,"$(P)$(R)Alarm2.PROC PP MS")
-	field(PREC,"0")
+        field(PREC,"0")
 }
 grecord(scalcout,"$(P)$(R)Alarm2") {
-	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
-	field(CALC,"(BYTE(AA[3,3])&2)!=0")
+        field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+        field(CALC,"(BYTE(AA[3,3])&2)!=0")
         field(FLNK,"$(P)$(R)Alarm3.PROC PP MS")
-	field(PREC,"0")
+        field(PREC,"0")
 }
 grecord(scalcout,"$(P)$(R)Alarm3") {
-	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
-	field(CALC,"(BYTE(AA[3,3])&4)!=0")
+        field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+        field(CALC,"(BYTE(AA[3,3])&4)!=0")
         field(FLNK,"$(P)$(R)Alarm4.PROC PP MS")
-	field(PREC,"0")
+        field(PREC,"0")
 }
 grecord(scalcout,"$(P)$(R)Alarm4") {
-	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
-	field(CALC,"(BYTE(AA[3,3])&8)!=0")
+        field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+        field(CALC,"(BYTE(AA[3,3])&8)!=0")
         field(FLNK,"$(P)$(R)ReadSP1.PROC PP MS")
-	field(PREC,"0")
+        field(PREC,"0")
 }
 
+# Records to read setpoints 1-4 from RAM
 grecord(serial, "$(P)$(R)ReadSP1") {
         field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
         field(IDEL,"13")
@@ -86,15 +96,15 @@ grecord(serial, "$(P)$(R)ReadSP1") {
         field(PRTY,"$(PRTY)")
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
-	field(AOUT,"*R21")
-        field(FLNK,"$(P)$(R)SP1_Readback.PROC PP MS")
+        field(AOUT,"*G21")
+        field(FLNK,"$(P)$(R)SP1_Read.PROC PP MS")
 }
 
-grecord(scalcout,"$(P)$(R)SP1_Readback") {
-	field(INAA,"$(P)$(R)ReadSP1.AINP NPP NMS")
-	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+grecord(scalcout,"$(P)$(R)SP1_Read") {
+        field(INAA,"$(P)$(R)ReadSP1.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%*4c%x')/10.")
         field(FLNK,"$(P)$(R)ReadSP2.PROC PP MS")
-	field(PREC,"1")
+        field(PREC,"1")
 }
 
 grecord(serial, "$(P)$(R)ReadSP2") {
@@ -105,15 +115,15 @@ grecord(serial, "$(P)$(R)ReadSP2") {
         field(PRTY,"$(PRTY)")
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
-	field(AOUT,"*R22")
-        field(FLNK,"$(P)$(R)SP2_Readback.PROC PP MS")
+        field(AOUT,"*G22")
+        field(FLNK,"$(P)$(R)SP2_Read.PROC PP MS")
 }
 
-grecord(scalcout,"$(P)$(R)SP2_Readback") {
-	field(INAA,"$(P)$(R)ReadSP2.AINP NPP NMS")
-	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+grecord(scalcout,"$(P)$(R)SP2_Read") {
+        field(INAA,"$(P)$(R)ReadSP2.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%*4c%x')/10.")
         field(FLNK,"$(P)$(R)ReadSP3.PROC PP MS")
-	field(PREC,"1")
+        field(PREC,"1")
 }
 
 grecord(serial, "$(P)$(R)ReadSP3") {
@@ -124,15 +134,15 @@ grecord(serial, "$(P)$(R)ReadSP3") {
         field(PRTY,"$(PRTY)")
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
-	field(AOUT,"*R23")
-        field(FLNK,"$(P)$(R)SP3_Readback.PROC PP MS")
+        field(AOUT,"*G23")
+        field(FLNK,"$(P)$(R)SP3_Read.PROC PP MS")
 }
 
-grecord(scalcout,"$(P)$(R)SP3_Readback") {
-	field(INAA,"$(P)$(R)ReadSP3.AINP NPP NMS")
-	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+grecord(scalcout,"$(P)$(R)SP3_Read") {
+        field(INAA,"$(P)$(R)ReadSP3.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%*4c%x')/10.")
         field(FLNK,"$(P)$(R)ReadSP4.PROC PP MS")
-	field(PREC,"1")
+        field(PREC,"1")
 }
 grecord(serial, "$(P)$(R)ReadSP4") {
         field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
@@ -142,36 +152,211 @@ grecord(serial, "$(P)$(R)ReadSP4") {
         field(PRTY,"$(PRTY)")
         field(DBIT,"$(DBIT)")
         field(SBIT,"$(SBIT)")
-	field(AOUT,"*R24")
-        field(FLNK,"$(P)$(R)SP4_Readback.PROC PP MS")
+        field(AOUT,"*G24")
+        field(FLNK,"$(P)$(R)SP4_Read.PROC PP MS")
 }
 
-grecord(scalcout,"$(P)$(R)SP4_Readback") {
-	field(INAA,"$(P)$(R)ReadSP4.AINP NPP NMS")
-	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
-	field(PREC,"1")
+grecord(scalcout,"$(P)$(R)SP4_Read") {
+        field(INAA,"$(P)$(R)ReadSP4.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+        field(PREC,"1")
 }
 
+# Records to write new values to the setpoints in RAM
 grecord(scalcout,"$(P)$(R)SP1_Write") {
-	field(CALC,"PRINTF('*W212%5.5X', NINT(A*10))")
-	field(PREC,"1")
-        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+        field(CALC,"PRINTF('*P212%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)WriteSP1.AOUT PP MS")
+}
+grecord(serial, "$(P)$(R)WriteSP1") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
 }
 
 grecord(scalcout,"$(P)$(R)SP2_Write") {
-	field(CALC,"PRINTF('*W222%5.5X', NINT(A*10))")
-	field(PREC,"1")
-        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+        field(CALC,"PRINTF('*P222%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)WriteSP2.AOUT PP MS")
+}
+grecord(serial, "$(P)$(R)WriteSP2") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
 }
 
 grecord(scalcout,"$(P)$(R)SP3_Write") {
-	field(CALC,"PRINTF('*W232%5.5X', NINT(A*10))")
-	field(PREC,"1")
-        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+        field(CALC,"PRINTF('*P232%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)WriteSP3.AOUT PP MS")
+}
+grecord(serial, "$(P)$(R)WriteSP3") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
 }
 
 grecord(scalcout,"$(P)$(R)SP4_Write") {
-	field(CALC,"PRINTF('*W242%5.5X', NINT(A*10))")
-	field(PREC,"1")
-        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+        field(CALC,"PRINTF('*P242%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)WriteSP4.AOUT PP MS")
+}
+grecord(serial, "$(P)$(R)WriteSP4") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+}
+
+# Records to copy setpoints from RAM to EEPROM
+grecord(scalcout,"$(P)$(R)SP1_Put") {
+        field(INPA,"$(P)$(R)SP1_Read.VAL NPP NMS")
+        field(CALC,"PRINTF('*W212%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)PutSP1.AOUT PP MS")
+        field(FLNK,"$(P)$(R)SP2_Put.PROC PP MS")
+}
+grecord(serial, "$(P)$(R)PutSP1") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+}
+grecord(scalcout,"$(P)$(R)SP2_Put") {
+        field(INPA,"$(P)$(R)SP2_Read.VAL NPP NMS")
+        field(CALC,"PRINTF('*W222%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)PutSP2.AOUT PP MS")
+        field(FLNK,"$(P)$(R)SP3_Put.PROC PP MS")
+}
+grecord(serial, "$(P)$(R)PutSP2") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+}
+grecord(scalcout,"$(P)$(R)SP3_Put") {
+        field(INPA,"$(P)$(R)SP3_Read.VAL NPP NMS")
+        field(CALC,"PRINTF('*W232%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)PutSP3.AOUT PP MS")
+        field(FLNK,"$(P)$(R)SP4_Put.PROC PP MS")
+}
+grecord(serial, "$(P)$(R)PutSP3") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+}
+grecord(scalcout,"$(P)$(R)SP4_Put") {
+        field(INPA,"$(P)$(R)SP4_Read.VAL NPP NMS")
+        field(CALC,"PRINTF('*W242%5.5X', NINT(A*10))")
+        field(PREC,"1")
+        field(OUT,"$(P)$(R)PutSP4.AOUT PP MS")
+        field(FLNK,"$(P)$(R)HardReset.PROC PP MS")
+}
+grecord(serial, "$(P)$(R)PutSP4") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+}
+
+# Records to ramp the load using an EPICS SSCAN record.
+# This record starts the ramp after computing the delay time and copying the
+# start and end points of the scan to the scan record
+grecord(dfanout,"$(P)$(R)StartRamp") {
+      field(VAL,"1")
+      field(OUTA,"$(P)$(R)RampTime.PROC PP MS")
+      field(OUTB,"$(P)$(R)RampSP.PROC PP MS")
+      field(OUTC,"$(P)$(R)RampEP.PROC PP MS")
+      field(OUTD,"$(P)$(R)RampScan.EXSC PP MS")
+}
+
+# The ramp time in hours is in field A of this record. It computes
+# the delay time per point of the scan.
+grecord(calcout,"$(P)$(R)RampTime") {
+      field(PINI,"YES")
+      field(INPA,"1")
+      field(INPB,"$(P)$(R)RampScan.NPTS NPP NMS")
+      field(CALC,"A*3600./B")
+      field(OUT,"$(P)$(R)RampScan.PDLY NPP NMS")
+      field(PREC,"2")
+}
+
+# This record copies the current value of the load into the
+# starting point of the scan
+grecord(calcout,"$(P)$(R)RampSP") {
+      field(INPA,"$(P)$(R)Value NPP NMS")
+      field(CALC,"A")
+      field(OUT,"$(P)$(R)RampScan.P1SP NPP NMS")
+}
+
+# This record copies the desired final value of the load into the
+# ending point of the scan
+grecord(calcout,"$(P)$(R)RampFinal") {
+      field(CALC,"A")
+      field(OUT,"$(P)$(R)RampScan.P1EP NPP NMS")
+      field(PREC,"1")
+}
+
+# The scan record that ramps the load
+grecord(sscan,"$(P)$(R)RampScan") {
+        field(DESC,"Load ramp")
+        field(PINI,"YES")
+        field(PRIO,"HIGH")
+        field(MPTS,"1000")
+        field(NPTS,"1000")
+        field(FPTS,"FREEZE")
+        field(D01PV,"$(P)$(R)Value")
+        field(P1PV,"$(P)$(R)RampOut.A PP MS")
+        field(R1PV,"$(P)$(R)SP2_Read")
+}
+
+# The scan record writes the new load to this record
+# This record writes to both the target load and the limit load
+# setpoints in RAM
+grecord(transform,"$(P)$(R)RampOut") {
+        field(CMTB,"Load output")
+        field(CLCB,"A")
+        field(OUTB,"$(P)$(R)SP2_Write.A PP MS")
+        field(CMTC,"Limit output")
+        field(CLCC,"A+1")
+        field(OUTC,"$(P)$(R)SP3_Write.A PP MS")
+        field(PREC, "3")
+}
+
+# This record pauses and resumes the ramp.  We should be able to directly write into
+# the .PAUS field of the scan record, but there seems to be a bug and it only resumes
+# 50% of the time if we do that.
+# ending point of the scan
+grecord(bo,"$(P)$(R)RampPause") {
+      field(OUT,"$(P)$(R)RampScan.PAUS PP MS")
 }
