@@ -5,7 +5,7 @@ grecord(stringout,"$(P)$(L)reset") {
         field(PINI,"1")
         field(DTYP,"asyn so stringParm")
         field(VAL,"U 0")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a")
+        field(OUT,"@asyn($(PORT))TERM=0a")
         field(FLNK,"$(P)$(L)reset1 PP MS")
 }
 
@@ -13,14 +13,14 @@ grecord(stringout,"$(P)$(L)reset") {
 grecord(stringout,"$(P)$(L)reset1") {
         field(DTYP,"asyn so stringParm")
         field(VAL,"S 0")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a")
+        field(OUT,"@asyn($(PORT))TERM=0a")
 }
 
 
 # Control the power
 grecord(ao,"$(P)$(L)power_set") {
         field(DTYP,"asyn ao stringParm")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=P %4.3lf W")
+        field(OUT,"@asyn($(PORT))TERM=0a,FMT=P %4.3lf W")
         field(PREC,"3")
         field(DRVL,"0.")
         field(DRVH,"100.")
@@ -51,7 +51,7 @@ grecord(calcout,"$(P)$(L)power_tweak_up") {
 # Control the transmission
 grecord(ao,"$(P)$(L)trans_set") {
         field(DTYP,"asyn ao stringParm")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=T %4.3lf %%")
+        field(OUT,"@asyn($(PORT))TERM=0a,FMT=T %4.3lf %%")
         field(PREC,"3")
         field(DRVL,"0.")
         field(DRVH,"100.")
@@ -82,7 +82,7 @@ grecord(calcout,"$(P)$(L)trans_tweak_up") {
 # Control the wavelength
 grecord(ao,"$(P)$(L)wave_set") {
         field(DTYP,"asyn ao stringParm")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=L %4.3lf nm")
+        field(OUT,"@asyn($(PORT))TERM=0a,FMT=L %4.3lf nm")
         field(PREC,"1")
         field(FLNK,"$(P)$(L)poll")
 }
@@ -98,7 +98,7 @@ grecord(bo,"$(P)$(L)remote_set") {
 
 grecord(longout,"$(P)$(L)remote_out") {
         field(DTYP,"asyn lo stringParm")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=R %d")
+        field(OUT,"@asyn($(PORT))TERM=0a,FMT=R %d")
         field(FLNK,"$(P)$(L)poll")
 }
 
@@ -112,7 +112,7 @@ grecord(bo,"$(P)$(L)mode_set") {
 
 grecord(longout,"$(P)$(L)mode_out") {
         field(DTYP,"asyn lo stringParm")
-        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=M %d")
+        field(OUT,"@asyn($(PORT))TERM=0a,FMT=M %d")
         field(FLNK,"$(P)$(L)poll")
 }
 
