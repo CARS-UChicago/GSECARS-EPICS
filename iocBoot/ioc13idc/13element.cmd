@@ -1,7 +1,0 @@
-# AIMConfig(card, ethernet_address, port, maxChans, maxSignals, maxSequences)
-AIMConfig(2, 0x8d7, 1, 4096, 4, 1)
-AIMConfig(3, 0x8d7, 2, 4096, 4, 1)
-AIMConfig(4, 0x3ec, 1, 4096, 4, 1)
-AIMConfig(5, 0x3ec, 2, 4096, 4, 1)
-dbLoadRecords("mcaApp/Db/13element.db","P=13IDC:med:", mca)
-dbLoadTemplate("13element.template")
