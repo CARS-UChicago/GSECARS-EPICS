@@ -1,8 +1,22 @@
 file CARSApp/Db/mono_pid_control.db, top
 {
 pattern
-{P,      PID,       INP,                   OUT,      LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  SCAN,       SHUT_STATUS,     SHUT_CONTROL}
-{13BMA:,mono_pid1,13BMD:IP330_1.VAL, 13BMA:DAC1_3,    0,      5,    -5,    5,     3,   0.2,  3.,   0., ".1 second", 13BMA:eps_mbbi4, 13BMA:OpenFEShutter}
+{P,      PID,       INP,                   OUT,      LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  SCAN,       SHUT_STATUS}
+{13BMA:,mono_pid1,13BMD:IP330_1.VAL, 13BMA:DAC1_3,    0,      5,    -5,    5,     3,   0.2,  3.,   0., ".1 second", 13BMA:eps_mbbi4}
+}
+
+file CARSApp/Db/mono_pid_control.db, top
+{
+pattern
+{P,      PID,       INP,                   OUT,      LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  SCAN,       SHUT_STATUS}
+{13BMA:,mono_pid2,13BMD:IP330_1.VAL, 13BMA:DAC1_3,    0,      5,    -5,    5,     3,   0.2,  3.,   0., ".1 second", 13BMA:eps_mbbi4}
+}
+
+file CARSApp/Db/auto_shutter.db, top
+{
+pattern
+{P,      SHUT,      SHUT_STATUS,     SHUT_CONTROL}
+{13BMA:, FOE,    13BMA:eps_mbbi4, 13BMA:OpenFEShutter}
 }
 
 #file ipApp/Db/fast_pid_control.db, ip
