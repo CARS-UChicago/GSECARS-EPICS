@@ -1,0 +1,233 @@
+# This file contains the motor definitions for motors in 13BMD.
+# Here is the correspondence of motor numbers, cards and patch panel positions
+# These definitions were changed on Jan. 16, 2001 by Mark Rivers.  This was done for the following reasons:
+#     - Move the motors which are on top of the XAS lift table (tomography, etc.) to patch panel A.  This is the
+#       only panel (of A-C) which has black, fully wired motor cables, required for home and active limits
+#     - Add a seventh OMS so that all 5 patch panels (A-E) and 2 BP8000 units can be used at once.
+# This change was done mostly in hardware, so that the motor numbers for a given motor did not change.  The motor numbers which
+# did change were the ones for the tomography stages (previously 25-28), the K/B mirrors (previously 33-40), 
+# Bruker shutter and crystal X-Y (previously 41-44).
+# Current definitions:
+# Motors   Card    Patch panel  Common use
+#  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
+#  9-16      1        E         LVP detector (9,10,12,13,16), CCD detector (11,14,15)
+#  17-24     2        B         XAS lift table (17-22), monochromator(23)
+#  25-32     3        C         Hutch slits (29-32)
+#  33-40     4        A         Tomography, XAS, DAC sample stages
+#  41-48     5        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
+#  49-56     6        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
+# Previous definitions:
+# Motors   Card    Patch panel  Common use
+#  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
+#  9-16      1        E         LVP detector (9,10,12,13,16), CCD detector (11,14,15)
+#  17-24     2        A         XAS lift table (17-22), monochromator(23), sample Y (24)
+#  25-32     3        C         Tomography, XAS, DAC sample stages (25-28), hutch slits (29-32)
+#  33-40     4        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
+#  41-48     5        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
+file CARSApp/Db/motor.db, top
+{
+pattern
+{P,       M,     DTYP,        C,  S,   DESC,              EGU,   DIR,   VELO,  VBAS,  ACCL,  BDST, BVEL, BACC, SREV,  UREV,  PREC,  DHLM,  DLLM}
+
+{13BMD:,  m1, "OMS VME58",   0,  0, "Upstream Y",        mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}
+{13BMD:,  m2, "OMS VME58",   0,  1, "Inboard Y",         mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}{13BMD:,  m3, "OMS VME58",   0,  2, "Downstream Y",      mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}
+{13BMD:,  m4, "OMS VME58",   0,  3, "Upstream X",        mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
+{13BMD:,  m5, "OMS VME58",   0,  4, "Inboard X",         mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
+{13BMD:,  m6, "OMS VME58",   0,  5, "Z drive",           mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
+{13BMD:,  m7, "OMS VME58",   0,  6, "Vert. slit Y pos.", mm,    Pos,   0.5,   .1,    .05,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
+{13BMD:,  m8, "OMS VME58",   0,  7, "Hori. slit X Pos.", mm,    Neg,   1.0,   .2,    .05,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
+#motor 8 used for photodiode -- GS, 11/13/00 Original config. TU, 12/12/00
+#{13BMD:,  m8, "OMS VME58",   0,  7, "Photodiode X-pos",   mm,    Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,       70,     0}
+
+{13BMD:,  m9, "OMS VME58",   1,  0, "Detect. X",         mm,    Neg,   .4,   .005,   .1,    0.1,  .4,   .1,   400, -5.08,    3,     50,    0}
+{13BMD:,  m10, "OMS VME58",  1,  1, "Detect. Z",         mm,    Pos,   .4,   .005,   .1,    0.1,  .4,   .1,   400, -5.08,    3,     50,    0}
+{13BMD:,  m16, "OMS VME58",  1,  7, "Detect. Y",         mm,    Pos,   .4,   .005,   .1,    0.1,  .4,   .1,   4000,  5.08,    3,     50,    0}
+{13BMD:,  m12, "OMS VME58",  1,  3, "Simple Two Theta",         deg,   Pos,   .1,   .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -3}
+{13BMD:,  m13, "OMS VME58",  1,  4, "Detector Phi",      deg,   Pos,    .1,  .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -10}
+
+#LVP ccd stage m11, m14 and 15
+{13BMD:,  m11, "OMS VME58",  1,  2, "Stage X",           mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
+{13BMD:,  m14, "OMS VME58",  1,  5, "Stage Y",           mm,    Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
+{13BMD:,  m15, "OMS VME58",  1,  6, "Stage Z",           mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
+
+#XAS (upstream) Lift Table
+{13BMD:,  m17, "OMS VME58",   2,  0, "M2Y (downstream)",  mm,    Pos,   .2,  .005,   .2,     0,      1,     .2,     400,    0.023813,   3,      50,     0}
+{13BMD:,  m18, "OMS VME58",   2,  1, "M1Y (inboard)",     mm,    Pos,   .2,  .005,   .2,     0,      1,     .2,     400,    0.023813,   3,      50,     0}
+{13BMD:,  m19, "OMS VME58",   2,  2, "M0Y (outboard)",    mm,    Pos,   .2,  .005,   .2,     0,      1,     .2,     400,    0.023813,   3,      50,     0}
+{13BMD:,  m20, "OMS VME58",   2,  3, "M0X (upstream)",    mm,    Pos,   .5,  .005,   .2,     0,      1,     .2,     400,   -0.035278,   3,      79,   -52}
+{13BMD:,  m21, "OMS VME58",   2,  4, "M2X (downstream)",  mm,    Pos,   .5,  .005,   .2,     0,      1,     .2,     400,    0.035278,   3,      30,   -75}
+{13BMD:,  m22, "OMS VME58",   2,  5, "Base Y",            mm,    Pos,   .5,  .05,    .5,     0.05,   0.05,  .5,     400,   -0.10583,    3,     200,     0}
+
+# In-hutch monochromator
+{13BMD:,  m23, "OMS VME58",   2,  6, "Mono. angle",       deg,   Pos,   .3,   .05,    .2,    0,    1,    .2,   400,  -.05,    4,     30,   -10}
+# m24 is unused for now
+{13BMD:,  m24, "OMS VME58",   2,  7, "M24",               deg,   Pos,   .3,   .05,    .2,    0,    1,    .2,   400,  -.05,    4,     30,   -10}
+
+# m25-28 don't have home or +5V.
+#This is the definition when using the Huber jack for Y on tomography or diffraction
+{13BMD:,  m25, "OMS VME58",   3,  0,  "Sample Y",         mm,    Pos,   0.2,  0.03,  .5,    0,      1,     .2,     400,    -.02,   3,      40,     0}
+# m26, m27 are unused for now
+{13BMD:,  m26, "OMS VME58",   3,  1,  "M26",              deg,   Pos,   .3,   .05,    .2,    0,    1,    .2,   400,  -.05,    4,     30,   -10}
+{13BMD:,  m27, "OMS VME58",   3,  2,  "M27",              deg,   Pos,   .3,   .05,    .2,    0,    1,    .2,   400,  -.05,    4,     30,   -10}
+# This is for the sample twirler for some tomography
+{13BMD:,  m28, "OMS VME58",   3,  3, "Sample Twirl",      rev,   Pos,   .5,   .03,    3.,    0,      1,     .2,     400,     0.02778,  3,     1e9,   -1e9}
+
+#BMD Hutch Slits
+# MLR changed sign of m30 MRES 26-Jul-2000 when a phase wiring problem was found and corrected
+{13BMD:,  m29,  "OMS VME58",   3,  4, "Inboard slit",      mm,    Pos,   1.0,   .1,    .2,    0,    1,    .2,   400,  0.50,    3,     85,   -4.}
+{13BMD:,  m30,  "OMS VME58",   3,  5, "Outboard slit",     mm,    Neg,   1.0,   .1,    .2,    0,    1,    .2,   400,  0.50,    3,     85,   -4.}
+{13BMD:,  m31,  "OMS VME58",   3,  6, "Top slit",          mm,    Neg,   1.0,   .1,    .2,    0,    1,    .2,   400,  0.50,    3,     100,  -4.}
+{13BMD:,  m32,  "OMS VME58",   3,  7, "Bottom slit",       mm,    Neg,   1.0,   .1,    .2,    0,    1,    .2,   400,  0.50,    3,     100,  -4.}
+
+# Motors 33-40, patch panel A.  This should only be used for 0.5A motors to save hassle
+# CCD camera stage
+{13BMD:,  m33, "OMS VME58",   4,  0, "CCD X",             mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
+{13BMD:,  m34, "OMS VME58",   4,  1, "CCD Y",             mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,       70,   0}
+{13BMD:,  m35, "OMS VME58",   4,  2, "CCD Z",             mm,     Pos,   2.0,  .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100,     0}
+
+# Tomography sample stage
+{13BMD:,  m36, "OMS VME58",   4,  3, "Sample X",          mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,     100,     0}
+# This is for a Newport Y stage
+{13BMD:,  m37, "OMS VME58",   4,  4, "Sample Y",          mm,     Neg,   2.0,   .1,    .5,     0,      1,     .2,    200,     -0.10,     3,      70,   0}
+{13BMD:,  m38, "OMS VME58",   4,  5, "Sample Theta",     deg,     Neg,   15.,   0.0,    .5,     0,      1,     .2,    200,     -0.10,     3,     360,   -360}
+{13BMD:,  m39, "OMS VME58",   4,  6, "Sample tilt",      deg,     Pos,    5.,   .1,    .5,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
+{13BMD:,  m40, "OMS VME58",   4,  7, "Sample Z",         mm,      Neg,    20.,   .1,    1,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
+
+#
+# KB mirrors  11-Sept-2000  MN
+{13BMD:,  m41, "OMS VME58",  5,  1, "Vert. mirror Y pos.",     microns,  Pos,  150.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m42, "OMS VME58",  5,  0, "Vert. mirror rotation",   mrad,     Pos,     10,    .1,  .2,  0,   1, .2,  48,  -0.8868, 3,   30,  -30}
+{13BMD:,  m43, "OMS VME58",  5,  2, "Vert. force UpStream.",   microns,  Pos,  100.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m44, "OMS VME58",  5,  3, "Vert. force DownStream.", microns,  Pos,  100.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m45, "OMS VME58",  5,  5, "Hor. mirror X pos",       microns,  Pos,  150.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m46, "OMS VME58",  5,  4, "Hor. mirror rotation",    mrad,     Pos,     10,    .1,  .2,  0,   1, .2,  48,  -0.8868, 3,   30,  -30}
+{13BMD:,  m47, "OMS VME58",  5,  6, "Hor. force UpStream",     microns,  Pos,  100.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m48, "OMS VME58",  5,  7, "Hor. force DownStream",   microns,  Pos,  100.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+
+# 2nd CARS BP8000  20-Sept-2000  PJE
+{13BMD:,  m49, "OMS VME58",  6,  0, "Shutter X",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m50, "OMS VME58",  6,  1, "Shutter Y",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m51, "OMS VME58",  6,  2, "Crystal X",   microns,  Neg,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m52, "OMS VME58",  6,  3, "Crystal Y",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m53, "OMS VME58",  6,  5, "MicroMo m54", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m54, "OMS VME58",  6,  4, "MicroMo m54", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m55, "OMS VME58",  6,  6, "MicroMo m55", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m56, "OMS VME58",  6,  7, "MicroMo m56", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+}
+
+
+file stdApp/Db/2slit.db, std
+{
+pattern
+{P,      SLIT,    mXp,  mXn}
+{13BMD:, BMDV,   m31,   m32}
+{13BMD:, BMDH,   m30,   m29}
+}
+
+file stdApp/Db/scanParms.db, std
+{
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHp,POS=BMDHxp.VAL,RDBK=BMDHt2.A}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHn,POS=BMDHxn.VAL,RDBK=BMDHt2.B}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHsize,POS=BMDHsize.VAL,RDBK=BMDHt2.C}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHcenter,POS=BMDHcenter.VAL,RDBK=BMDHt2.D}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVp,POS=BMDVxp.VAL,RDBK=BMDVt2.A}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVn,POS=BMDVxn.VAL,RDBK=BMDVt2.B}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVsize,POS=BMDVsize.VAL,RDBK=BMDVt2.C}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVcenter,POS=BMDVcenter.VAL,RDBK=BMDVt2.D}
+}
+
+file stdApp/Db/table.db, std
+{
+pattern
+{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13BMD:, LVP:T1,      LVP:t1, m5,   m2,   m3,   m4,   m1,   m6,   GEOCARS}
+}
+#Above: new motor numbers for LVP table, 10/6/98; commented out the following:
+#pattern
+#{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z}
+#{13BMD:, LVP:T1,     LVP:t1, m13,  m10,  m11,  m12,  m9,   m14}
+
+file stdApp/Db/scanParms.db, std
+{
+{P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1X,POS=LVP:t1.X,RDBK=LVP:t1.XRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1Y,POS=LVP:t1.Y,RDBK=LVP:t1.YRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1Z,POS=LVP:t1.Z,RDBK=LVP:t1.ZRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1AX,POS=LVP:t1.AX,RDBK=LVP:t1.AXRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1AY,POS=LVP:t1.AY,RDBK=LVP:t1.AYRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1AZ,POS=LVP:t1.AZ,RDBK=LVP:t1.AZRB}
+}
+
+file stdApp/Db/table.db, std
+{
+pattern
+{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13BMD:,    XAS:T1,   XAS:t1, m20,  m19,  m18,  m21,  m17,  junk, SRI}
+}
+
+file stdApp/Db/scanParms.db, std
+{
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1Z,POS=XAS:t1.Z,RDBK=XAS:t1.ZRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AX,POS=XAS:t1.AX,RDBK=XAS:t1.AXRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AY,POS=XAS:t1.AY,RDBK=XAS:t1.AYRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
+}
+
+file CARSApp/Db/pseudoMotor.db, top
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+
+{13BMD:,  pm1, "13BMD:Tcup:Done NPP NMS", "13BMD:pm1DVAL.VAL PP MS", "13BMD:Tcup:Readback.G NPP NMS", "13BMD:Tcup:Stop PP MS", "T-Cup X'",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13BMD:,  pm2, "13BMD:Tcup:Done NPP NMS", "13BMD:pm2DVAL.VAL PP MS", "13BMD:Tcup:Readback.H NPP NMS", "13BMD:Tcup:Stop PP MS", "T-Cup Y'",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13BMD:,  pm3, "13BMD:pm3Done   NPP NMS", "13BMD:pm3Move     PP MS", "13BMD:pm3Readback     NPP NMS", "13BMD:pm3Stop   PP MS", "Radius",            mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,   1000, -100}
+{13BMD:,  pm4, "13BMD:pm3Done   NPP NMS", "13BMD:pm4Move     PP MS", "13BMD:pm4Readback     NPP NMS", "13BMD:pm3Stop   PP MS", "Compound Two-theta",        deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+}
+
+file CARSApp/Db/coordTrans2D.db, top
+{
+pattern
+{P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
+{13BMD:, Tcup:, pm1, pm2, LVP:t1.X, LVP:t1.EX, LVP:T1:stop, LVP:T1:done, LVP:t1.Y, LVP:t1.EY, LVP:T1:stop, LVP:T1:done, 3}
+}
+
+#<--
+#    KB mirror setup of pseudomotors  11-Sept-2000
+file CARSApp/Db/pseudoMotor.db, top
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+
+{13BMD:,  pm5, "13BMD:KBH:Done NPP NMS", "13BMD:pm5DVAL.VAL PP MS", "13BMD:KBH:Readback.G NPP NMS", "13BMD:KBH:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13BMD:,  pm6, "13BMD:KBH:Done NPP NMS", "13BMD:pm6DVAL.VAL PP MS", "13BMD:KBH:Readback.H NPP NMS", "13BMD:KBH:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13BMD:,  pm7, "13BMD:KBV:Done NPP NMS", "13BMD:pm7DVAL.VAL PP MS", "13BMD:KBV:Readback.G NPP NMS", "13BMD:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13BMD:,  pm8, "13BMD:KBV:Done NPP NMS", "13BMD:pm8DVAL.VAL PP MS", "13BMD:KBV:Readback.H NPP NMS", "13BMD:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+}
+file CARSApp/Db/sumDiff2D.db, top
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, KBH:,  pm5, pm6,    m47.VAL,  m47.RBV,  m48.VAL, m48.RBV, m47.STOP, m47.DMOV, m48.STOP, m48.DMOV, 1}
+{13BMD:, KBV:,  pm7, pm8,    m43.VAL,  m43.RBV,  m44.VAL, m44.RBV, m43.STOP, m43.DMOV, m44.STOP, m44.DMOV, 1}
+}
+#-->
+
+file CARSApp/Db/BMD_LVP_Detector.db, top
+{
+pattern
+{P,      X,   Y,   Z,  TH,    TV,  PMR,  PMT}
+{13BMD:, m9, m16, m10, m13,  m12,  pm3,  pm4}
+}
+
+file stdApp/Db/scanParms.db, std
+{
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm1,POS=pm1.VAL,RDBK=pm1RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm2,POS=pm2.VAL,RDBK=pm2RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm3,POS=pm3.VAL,RDBK=pm3RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm4,POS=pm4.VAL,RDBK=pm4RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm5,POS=pm5.VAL,RDBK=pm5RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm6,POS=pm6.VAL,RDBK=pm6RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm7,POS=pm7.VAL,RDBK=pm7RBV}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=pm8,POS=pm8.VAL,RDBK=pm8RBV}
+}
