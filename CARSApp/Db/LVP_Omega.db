@@ -1,0 +1,177 @@
+# Database for Omega controller used on the 1000 ton press in 13-ID-D
+grecord(serial, "$(P)$(R)Serial") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+}
+grecord(stringout, "$(P)$(R)SoftReset") {
+	field(VAL,"*Z03")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
+grecord(stringout, "$(P)$(R)HardReset") {
+	field(VAL,"*Z04")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
+
+grecord(bo, "$(P)$(R)ReadBack") {
+        field(SCAN,"5 second")
+        field(FLNK,"$(P)$(R)ReadValue PP MS")
+}
+
+grecord(serial, "$(P)$(R)ReadValue") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(AOUT,"*V01")
+        field(FLNK,"$(P)$(R)Value.PROC PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)Value") {
+	field(INAA,"$(P)$(R)ReadValue.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, '%*3c%f')")
+        field(FLNK,"$(P)$(R)ReadAlarm.PROC PP MS")
+	field(PREC,"1")
+}
+
+grecord(serial, "$(P)$(R)ReadAlarm") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(AOUT,"*U01")
+        field(FLNK,"$(P)$(R)Alarm1.PROC PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)Alarm1") {
+	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+	field(CALC,"(BYTE(AA[3,3])&1)!=0")
+        field(FLNK,"$(P)$(R)Alarm2.PROC PP MS")
+	field(PREC,"0")
+}
+grecord(scalcout,"$(P)$(R)Alarm2") {
+	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+	field(CALC,"(BYTE(AA[3,3])&2)!=0")
+        field(FLNK,"$(P)$(R)Alarm3.PROC PP MS")
+	field(PREC,"0")
+}
+grecord(scalcout,"$(P)$(R)Alarm3") {
+	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+	field(CALC,"(BYTE(AA[3,3])&4)!=0")
+        field(FLNK,"$(P)$(R)Alarm4.PROC PP MS")
+	field(PREC,"0")
+}
+grecord(scalcout,"$(P)$(R)Alarm4") {
+	field(INAA,"$(P)$(R)ReadAlarm.AINP NPP NMS")
+	field(CALC,"(BYTE(AA[3,3])&8)!=0")
+        field(FLNK,"$(P)$(R)ReadSP1.PROC PP MS")
+	field(PREC,"0")
+}
+
+grecord(serial, "$(P)$(R)ReadSP1") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(AOUT,"*R21")
+        field(FLNK,"$(P)$(R)SP1_Readback.PROC PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP1_Readback") {
+	field(INAA,"$(P)$(R)ReadSP1.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+        field(FLNK,"$(P)$(R)ReadSP2.PROC PP MS")
+	field(PREC,"1")
+}
+
+grecord(serial, "$(P)$(R)ReadSP2") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(AOUT,"*R22")
+        field(FLNK,"$(P)$(R)SP2_Readback.PROC PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP2_Readback") {
+	field(INAA,"$(P)$(R)ReadSP2.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+        field(FLNK,"$(P)$(R)ReadSP3.PROC PP MS")
+	field(PREC,"1")
+}
+
+grecord(serial, "$(P)$(R)ReadSP3") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(AOUT,"*R23")
+        field(FLNK,"$(P)$(R)SP3_Readback.PROC PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP3_Readback") {
+	field(INAA,"$(P)$(R)ReadSP3.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+        field(FLNK,"$(P)$(R)ReadSP4.PROC PP MS")
+	field(PREC,"1")
+}
+grecord(serial, "$(P)$(R)ReadSP4") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(AOUT,"*R24")
+        field(FLNK,"$(P)$(R)SP4_Readback.PROC PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP4_Readback") {
+	field(INAA,"$(P)$(R)ReadSP4.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, '%*4c%x')/10.")
+	field(PREC,"1")
+}
+
+grecord(scalcout,"$(P)$(R)SP1_Write") {
+	field(CALC,"PRINTF('*W212%5.5X', NINT(A*10))")
+	field(PREC,"1")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP2_Write") {
+	field(CALC,"PRINTF('*W222%5.5X', NINT(A*10))")
+	field(PREC,"1")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP3_Write") {
+	field(CALC,"PRINTF('*W232%5.5X', NINT(A*10))")
+	field(PREC,"1")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
+
+grecord(scalcout,"$(P)$(R)SP4_Write") {
+	field(CALC,"PRINTF('*W242%5.5X', NINT(A*10))")
+	field(PREC,"1")
+        field(OUT,"$(P)$(R)Serial.AOUT PP MS")
+}
