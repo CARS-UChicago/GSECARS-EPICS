@@ -2,22 +2,59 @@ routerInit
 localMessageRouterStart(0)
 
 ipacAddVIPC616_01("0x3000,0xa0000000")
-#ipacAddVIPC616_01("0x3400,0xa2000000")
-      
-tyGSOctalDrv 1
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
+ipacAddVIPC616_01("0x3400,0xa2000000")
 
+ipacReport(2)
+
+# Set up GPIB as an MPF serial server.  
+# This will allow communication, but not control operations.  It is limited to a single address.
+gsIP488Configure("gpib1",1,1,0x69,0,0) 
+initSerialServer("gpib1:2","gpib1",2,1000,10,"") 
+# GPIB addresses: 1=Tektronix scope, 2=Keithley 2000, 3=Fluke meter
+asynConnect("gpib1:1", "gpib1", 1, "", "\n", 1, 80)
+asynConnect("gpib1:2", "gpib1", 2, "", "\n", 1, 80)
+asynConnect("gpib1:3", "gpib1", 3, "\r", "\r", 1, 80)
+     
+tyGSOctalDrv 2
+tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
+tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 1, 2)
 # int tyGSMPFInit(char *server, int uart, int channel, int baud, char parity, int sbits,
 #                 int dbits, char handshake, char *eomstr)
-tyGSMPFInit("serial1",  0, 0, 9600,'N',1,8,'N',"")  /* SMART PC */
-tyGSMPFInit("serial2",  0, 1, 9600,'N',1,8,'N',"")  /* LAE 500 */
-tyGSMPFInit("serial3",  0, 2,19200,'E',1,8,'N',"")  /* MKS */
-#tyGSMPFInit("serial3",  0, 2,19200,'N',1,8,'N',"")  /* RSF715 */
-tyGSMPFInit("serial4",  0, 3,19200,'N',1,8,'N',"")  /* ACS MCB4B */
-tyGSMPFInit("serial5",  0, 4, 9600,'N',1,8,'N',"")  /* Keithley 2000 */
-tyGSMPFInit("serial6",  0, 5, 9600,'N',1,8,'N',"")  /* Keithley 2000 */
-tyGSMPFInit("serial7",  0, 6,19200,'N',1,8,'N',"")  /* MM4000 */
-tyGSMPFInit("serial8",  0, 7, 9600,'N',1,8,'N',"")  /* SRS 570 */
+tyGSMPFInit("serial1",   0, 0, 9600,'N',1,8,'N',"\r")  /* SMART PC */
+tyGSMPFInit("serial2",   0, 1, 9600,'N',1,8,'N',"\r")  /* LAE 500 */
+tyGSMPFInit("serial3",   0, 2,19200,'E',1,8,'N',"\r")  /* MKS */
+#tyGSMPFInit("serial3",   0, 2,19200,'N',1,8,'N',"\r")  /* RSF715 */
+tyGSMPFInit("serial4",   0, 3,19200,'N',1,8,'N',"\r")  /* ACS MCB4B */
+tyGSMPFInit("serial5",   0, 4,19200,'N',1,8,'N',"\n")  /* Keithley 2000 */
+tyGSMPFInit("serial6",   0, 5,19200,'N',1,8,'N',"\n")  /* Keithley 2000 */
+tyGSMPFInit("serial7",   0, 6,38400,'N',1,8,'N',"\r")  /* MM4000 */
+tyGSMPFInit("serial8",   0, 7, 9600,'N',1,8,'N',"\r")  /* SRS 570 */
+tyGSMPFInit("serial9" ,  1, 0, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial10",  1, 1, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial11",  1, 2, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial12",  1, 3, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial13",  1, 4, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial14",  1, 5, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial15",  1, 6, 9600,'N',1,8,'N',"\r")  /* Unused */
+tyGSMPFInit("serial16",  1, 7, 9600,'N',1,8,'N',"\r")  /* Unused */
+
+# Set up first 2 ports on Moxa box
+drvAsynTCPPortConfigure("serial20", "164.54.160.50:4001", 0, 0)
+drvAsynTCPPortConfigure("serial21", "164.54.160.50:4002", 0, 0)
+# Make these ports available from the iocsh command line
+asynConnect("serial20", "serial20", 0, "\r", "\r")
+asynConnect("serial21", "serial21", 0, "\r", "\r")
+# Create MPF servers for these ports
+initSerialServer("serial20","serial20",0,1000,10,"") 
+initSerialServer("serial21","serial21",0,1000,10,"") 
+
+# Debugging
+#asynSetTraceMask("gpib1",3,0xff)
+#asynSetTraceIOMask("gpib1",3,2)
+#asynSetTraceMask("serial3",0,0xff)
+#asynSetTraceIOMask("serial3",0,2)
+#asynSetTraceMask("serial20",0,0xff)
+#asynSetTraceIOMask("serial20",0,2)
 
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *serverName, 
@@ -45,9 +82,6 @@ tyGSMPFInit("serial8",  0, 7, 9600,'N',1,8,'N',"")  /* SRS 570 */
 #               does not refer to the number of EPICS clients.  A value of
 #               10 should certainly be safe.
 initIpUnidig("Unidig1", 0, 1, 20, 2000, 116, 1, 1, 0xffff, 10)
-
-# Initialize GPIB stuff
-#initGpibGsTi9914("GPIB0",carrier0,"IP_c",104)
 
 # Initialize Systran DAC
 # initDAC128V(char *serverName, int carrier, int slot, int queueSize)
