@@ -165,10 +165,33 @@ seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM1, stack=10000"
 seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
 
 ##MATT 08/May/2001
-seq &Energy, "ID=ID13:, E=13IDA:E, MONO=13IDA:m17, EXPTAB_Z=13IDC:m6, XTAL=13IDA:MON:, SHUTTER=13IDA:eps_mbbi4" 
+# seq &Energy, "ID=ID13:, E=13IDA:E, MONO=13IDA:m17, EXPTAB_Z=13IDC:m6, XTAL=13IDA:MON:, SHUTTER=13IDA:eps_mbbi4" 
+
+str=malloc(256)
+strcpy(str,"ID=ID13:,E=13IDA:E,MONO=13IDA:m17,EXPTAB_Z=13IDC:m6,")
+strcat(str,"EXPTAB2=13IDA:pm5,XTAL=13IDA:MON:,SH=13IDA:eps_mbbi4,FB=13IDA:mono_pid1")
+seq &Energy, str
+
 
 # For the bypass valves swap the severity of the open and closed states
 dbpf "13IDA:V5_status.ONSV","MAJOR"
 dbpf "13IDA:V5_status.TWSV","NO_ALARM"
 dbpf "13IDA:V6_status.ONSV","MAJOR"
 dbpf "13IDA:V6_status.TWSV","NO_ALARM"
+
+
+#
+# MN/MR 27/Nov/01
+# set readback delay for McLennan monochromator controller.
+# We found empirically the following maximum error (in encoder pulses)
+# for the following ReadbackDelay values.   In all cases, the maximum
+# errors were rare (say, 2 out of 50)
+#   ReadbackDelay     Max Encoder Errors 
+#     0.0                  4
+#     0.1                  3 
+#     0.2                  2
+#     0.5                  1
+#
+# Note: 1 encoder step ~= 0.05eV at 10keV.
+(double) drvPM304ReadbackDelay = 0.2
+
