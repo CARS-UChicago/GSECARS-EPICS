@@ -1,11 +1,11 @@
 #MN 19-Jun-2001
 # re-implementation of 2d rotation (see sumDiff2D.db)
-# real perpendicular motors $(P)$(M1) and $(P)$(M1) are moved to make 
-# two soft motors $(P)$(SUM) and $(P)$(DIFF) as the weighted 
+# real perpendicular motors (P)(M1) and (P)(M1) are moved to make 
+# two soft motors (P)(SUM) and (P)(DIFF) as the weighted 
 # average and difference of the two real motors.  The weighting factors are 
 # as follows:
-# SUM  = (( $(P)$(M1) * $(P)$(SUM)C1 ) + ( $(P)$(M2) * $(P)$(SUM)C2 )) 
-# DIFF = (( $(P)$(M1) * $(P)$(DIFF)C1) - ( $(P)$(M2) * $(P)$(DIFF)C2)) 
+# SUM  = (( (P)(M1) * (P)(SUM)C1 ) + ( (P)(M2) * (P)(SUM)C2 )) 
+# DIFF = (( (P)(M1) * (P)(DIFF)C1) - ( (P)(M2) * (P)(DIFF)C2)) 
 
 # These two records are where the soft motors write their output.
 # They are needed because writing to a transform record field does not
@@ -55,33 +55,6 @@ grecord(transform,"$(P)$(T)Readback") {
 	field(PREC,"$(PREC)")
 }
 
-# This record calculates the drive positions of the soft motors.  It 
-# processes whenever the real motors stop moving (via $(P)$(T)Done) or whenever
-# one of the geometry constants changes.  It puts the soft motors in "set" 
-# mode before writing the outputs so that it does not cause those motors to 
-# write to their output links.
-grecord(transform,"$(P)$(T)DReadback") {
-	field(INPA,"$(P)$(M1DRV) NPP MS")
-	field(INPB,"$(P)$(M2DRV) NPP MS")
-	field(INPC,"$(P)$(SUM)C1.VAL CP MS")
-	field(INPD,"$(P)$(SUM)C2.VAL CP MS")
-	field(INPE,"$(P)$(DIFF)C1.VAL CP MS")
-	field(INPF,"$(P)$(DIFF)C2.VAL CP MS")
-        field(CLCG,"1")
-        field(OUTG,"$(P)$(SUM).SET NPP MS")
-        field(CLCH,"1")
-        field(OUTH,"$(P)$(DIFF).SET NPP MS")
-	field(CLCI,"(A*C+B*D)")
-        field(OUTI,"$(P)$(SUM).DVAL PP MS")
-	field(CLCJ,"(A*E-B*F)")
-        field(OUTJ,"$(P)$(DIFF).DVAL PP MS")
-        field(CLCK,"0")
-        field(OUTK,"$(P)$(SUM).SET NPP MS")
-        field(CLCL,"0")
-        field(OUTL,"$(P)$(DIFF).SET NPP MS")
-	field(PREC,"$(PREC)")
-}
-
 # This record processes if either of the sof motor STOP fields is set.
 grecord(dfanout,"$(P)$(T)Stop") {
         field(VAL,"1")
@@ -91,15 +64,8 @@ grecord(dfanout,"$(P)$(T)Stop") {
 
 # This record computes whether the compound motor is done moving.  
 # It goes to 1 when both real motors are done moving.
-# On the transition to 1 its causes the DReadback record to process, which 
-# updates the DVAL fields of the soft motors so they reflect the drive 
-# positions of the real motors.
 grecord(calcout,"$(P)$(T)Done") {
         field(INPA,"$(P)$(M1DONE) CP MS")
         field(INPB,"$(P)$(M2DONE) CP MS")
         field(CALC,"A & B")
-        field(OUT,"$(P)$(T)DReadback.PROC PP MS")
-        field(OOPT,"Transition To Non-zero")
 }
-
-
