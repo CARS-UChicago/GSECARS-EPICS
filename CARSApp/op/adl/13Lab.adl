@@ -1,14 +1,14 @@
 
 file {
-	name="C:\Program Files\EPICS\adls\13Lab.adl"
+	name="i:\epics\3.14\CARS\CARSApp\op\adl\13Lab.adl"
 	version=020306
 }
 display {
 	object {
-		x=354
-		y=44
-		width=400
-		height=520
+		x=474
+		y=33
+		width=370
+		height=560
 	}
 	clr=14
 	bclr=4
@@ -87,10 +87,34 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=30
+		y=12
+		width=310
+		height=40
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+text {
+	object {
+		x=47
+		y=20
+		width=276
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="GeoCARS Laboratory"
+	align="horiz. centered"
+}
 "related display" {
 	object {
-		x=14
-		y=490
+		x=11
+		y=529
 		width=74
 		height=24
 	}
@@ -109,8 +133,8 @@ display {
 }
 text {
 	object {
-		x=93
-		y=490
+		x=90
+		y=529
 		width=128
 		height=20
 	}
@@ -122,58 +146,58 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=463
+		x=11
+		y=421
 		width=74
 		height=24
 	}
 	display[0] {
-		label="GPIB 1"
-		name="GPIB_IO.adl"
-		args="REC=13LAB:gpib1"
+		label="Serial 1"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial1"
 	}
 	display[1] {
-		label="Serial 1"
-		name="Serial_IO.adl"
-		args="REC=13LAB:ser1"
+		label="Serial 2"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial2"
 	}
 	display[2] {
-		label="Serial 2"
-		name="Serial_IO.adl"
-		args="REC=13LAB:ser2"
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial3"
 	}
 	display[3] {
-		label="CAMAC"
-		name="CAMAC_IO.adl"
-		args="REC=13LAB:camac1"
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial4"
 	}
 	display[4] {
-		label="LAE500 serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB:LAE500serial"
+		label="Serial 5"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial5"
 	}
 	display[5] {
-		label="CAMAC"
-		name="CAMAC_IO.adl"
-		args="REC=13LAB:camac1"
+		label="Serial 6"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial6"
 	}
 	display[6] {
-		label="SMART serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB:smart1smartIn"
+		label="Serial 7"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial7"
 	}
 	display[7] {
-		label="VME"
-		name="recVme.adl"
-		args="P=13LAB:, Q=vme1"
+		label="Serial 8"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial8"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=93
-		y=463
+		x=90
+		y=421
 		width=128
 		height=20
 	}
@@ -181,12 +205,12 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Generic RS-232, GPIB and CAMAC"
+	textix="Generic serial 1-8"
 }
 "related display" {
 	object {
-		x=14
-		y=139
+		x=11
+		y=97
 		width=74
 		height=24
 	}
@@ -235,8 +259,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=139
+		x=90
+		y=97
 		width=137
 		height=20
 	}
@@ -248,8 +272,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=112
+		x=90
+		y=70
 		width=137
 		height=20
 	}
@@ -261,8 +285,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=112
+		x=11
+		y=70
 		width=74
 		height=24
 	}
@@ -308,21 +332,10 @@ text {
 	clr=14
 	bclr=4
 }
-rectangle {
-	object {
-		x=47
-		y=17
-		width=310
-		height=80
-	}
-	"basic attribute" {
-		clr=50
-	}
-}
 "related display" {
 	object {
-		x=14
-		y=355
+		x=11
+		y=313
 		width=74
 		height=24
 	}
@@ -341,8 +354,8 @@ rectangle {
 }
 text {
 	object {
-		x=93
-		y=355
+		x=90
+		y=313
 		width=137
 		height=20
 	}
@@ -352,23 +365,10 @@ text {
 	}
 	textix="Vacuum"
 }
-text {
-	object {
-		x=64
-		y=29
-		width=276
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="GeoCARS Laboratory"
-	align="horiz. centered"
-}
 "related display" {
 	object {
-		x=14
-		y=247
+		x=11
+		y=205
 		width=74
 		height=24
 	}
@@ -417,8 +417,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=247
+		x=90
+		y=205
 		width=137
 		height=20
 	}
@@ -430,8 +430,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=382
+		x=11
+		y=340
 		width=74
 		height=24
 	}
@@ -450,8 +450,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=382
+		x=90
+		y=340
 		width=128
 		height=20
 	}
@@ -463,8 +463,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=436
+		x=11
+		y=394
 		width=74
 		height=24
 	}
@@ -478,13 +478,23 @@ text {
 		name="RSF715.adl"
 		args="P=13LAB:, R=enc1"
 	}
+	display[2] {
+		label="vxStats"
+		name="IOC_Status.adl"
+		args="P=13LAB:"
+	}
+	display[3] {
+		label="Roper CCD"
+		name="ccd.adl"
+		args="P=13LAB:, C=ccd1"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=93
-		y=436
+		x=90
+		y=394
 		width=128
 		height=20
 	}
@@ -496,8 +506,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=328
+		x=11
+		y=286
 		width=74
 		height=24
 	}
@@ -511,8 +521,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=328
+		x=90
+		y=286
 		width=128
 		height=20
 	}
@@ -524,8 +534,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=274
+		x=11
+		y=232
 		width=74
 		height=24
 	}
@@ -574,8 +584,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=274
+		x=90
+		y=232
 		width=137
 		height=20
 	}
@@ -587,8 +597,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=301
+		x=11
+		y=259
 		width=74
 		height=24
 	}
@@ -617,13 +627,23 @@ text {
 		name="trajectoryScan.adl"
 		args="P=13LAB:, R=traj1, M1=m13,M2=m14,M3=m15,TITLE=Trajectory_Scan"
 	}
+	display[5] {
+		label="XIA filter rack"
+		name="XIA_shutter.adl"
+		args="P=13LAB:, S=filter1"
+	}
+	display[6] {
+		label="Fluke 884x meter"
+		name="Fluke_8842A.adl"
+		args="P=13LAB:, M=Fluke1, N=1"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=93
-		y=301
+		x=90
+		y=259
 		width=137
 		height=20
 	}
@@ -635,8 +655,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=166
+		x=11
+		y=124
 		width=74
 		height=24
 	}
@@ -655,8 +675,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=166
+		x=90
+		y=124
 		width=137
 		height=20
 	}
@@ -668,8 +688,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=193
+		x=11
+		y=151
 		width=74
 		height=24
 	}
@@ -698,8 +718,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=193
+		x=90
+		y=151
 		width=137
 		height=20
 	}
@@ -711,8 +731,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=220
+		x=11
+		y=178
 		width=74
 		height=24
 	}
@@ -726,8 +746,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=220
+		x=90
+		y=178
 		width=137
 		height=20
 	}
@@ -739,8 +759,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=409
+		x=11
+		y=367
 		width=74
 		height=24
 	}
@@ -769,8 +789,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=409
+		x=90
+		y=367
 		width=128
 		height=20
 	}
@@ -779,4 +799,163 @@ text {
 		width=2
 	}
 	textix="EPID control"
+}
+"related display" {
+	object {
+		x=11
+		y=502
+		width=74
+		height=24
+	}
+	display[0] {
+		label="GPIB 1 (asyn)"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=gpib1"
+	}
+	display[1] {
+		label="CAMAC"
+		name="CAMAC_IO.adl"
+		args="REC=13LAB:camac1"
+	}
+	display[2] {
+		label="VME"
+		name="recVme.adl"
+		args="P=13LAB:, Q=vme1"
+	}
+	display[3] {
+		label="GPIB 2 (gpib)"
+		name="GPIB_IO.adl"
+		args="REC=13LAB:gpib2"
+	}
+	display[4] {
+		label="Fluke1_Read"
+		name="asynRecord.adl"
+		args="P=13LAB:,R=Fluke1_Read"
+	}
+	display[5] {
+		label="Fluke1_Init"
+		name="asynRecord.adl"
+		args="P=13LAB:,R=Fluke1_Init"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=502
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic VME, GPIB and CAMAC"
+}
+"related display" {
+	object {
+		x=11
+		y=448
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Serial 9"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial9"
+	}
+	display[1] {
+		label="Serial 10"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial10"
+	}
+	display[2] {
+		label="Serial 11"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial11"
+	}
+	display[3] {
+		label="Serial 12"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial12"
+	}
+	display[4] {
+		label="Serial 13"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial13"
+	}
+	display[5] {
+		label="Serial 14"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial14"
+	}
+	display[6] {
+		label="Serial 15"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial15"
+	}
+	display[7] {
+		label="Serial 16"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial16"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=448
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 9-16"
+}
+"related display" {
+	object {
+		x=11
+		y=475
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Serial 20"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial20"
+	}
+	display[1] {
+		label="Serial 21"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial21"
+	}
+	display[2] {
+		label="Serial 22"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial22"
+	}
+	display[3] {
+		label="Serial 23"
+		name="asynRecord.adl"
+		args="P=13LAB:, R=serial23"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=475
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 20-23"
 }
