@@ -28,9 +28,6 @@ CARS_SRCS += Analyzer.st
 CARS_SRCS += trajectoryScan.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
-CARS_SRCS += xps_c8_driver1.cpp
-CARS_SRCS += Socket.cpp
-
 
 #CARS_SRCS += JHKPseudoMotorSNL.st
 #CARS_SRCS += JSlide.st 
@@ -74,7 +71,6 @@ CARSApp_Common_LIBS += ip
 CARSApp_Common_LIBS += brukerCCD marCCD roperCCD
 #CARSApp_Common_LIBS += Acs Ims Mclennan motor Newport softMotor
 CARSApp_Common_LIBS += Acs Mclennan motor Newport softMotor
-CARSApp_Common_LIBS += mpf
 CARSApp_Common_LIBS += asyn
 CARSApp_Common_LIBS += seq pv
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -82,7 +78,7 @@ CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 CARSApp_vxWorks_LIBS += allenBradley
 CARSApp_vxWorks_LIBS += mcaSIS
 CARSApp_vxWorks_LIBS += mcaCanberra
-CARSApp_vxWorks_LIBS += ip330 devIp330
+CARSApp_vxWorks_LIBS += ip330
 CARSApp_vxWorks_LIBS += ipUnidig
 CARSApp_vxWorks_LIBS += dac128V
 CARSApp_vxWorks_LIBS += quadEM
