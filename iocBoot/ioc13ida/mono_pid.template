@@ -1,5 +1,5 @@
 # This is the pitch feedback
-file CARSApp/Db/mono_pid_control.db, top
+file "$(CARS)/CARSApp/Db/mono_pid_control.db"
 {
 pattern
 {P,      PID,       INP,                   OUT,      LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,   KI,   KD,  SCAN,          SHUT_STATUS}
@@ -7,7 +7,7 @@ pattern
 }
 
 # This is the roll feedback
-file CARSApp/Db/mono_pid_control.db, top
+file "$(CARS)/CARSApp/Db/mono_pid_control.db"
 {
 pattern
 {P,      PID,       INP,                   OUT,      LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,   KI,   KD,  SCAN,          SHUT_STATUS}
@@ -15,16 +15,23 @@ pattern
 }
 
 # This is the FOE auto-shutter open logic
-file CARSApp/Db/auto_shutter.db, top
+file "$(CARS)/CARSApp/Db/auto_shutter.db"
 {
 pattern
 {P,      SHUT,  SHUT_STATUS,  SHUT_CONTROL}
 {13IDA:, FOE,   13IDA:eps_mbbi4, 13IDA:OpenFEShutter }
 }
 
-#file ip330App/Db/fast_pid_control.db, ip330
-#{
-#pattern
-#{P,      PID,   C,  SERVER,     LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  DT, SCAN}
-#{13LAB:, PID2,  1, Ip330PID_1,  0,    65535,  1024,  3072,   3,    .02,  100.,  0., .001, ".1 second"}
-#}
+file "$(IP)/ipApp/Db/fast_pid_control.db"
+{
+pattern
+{P,      PID,             C,  SERVER,        LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  DT, SCAN}
+{13IDA:, fast_pitch_pid,  0,  quadEMPID1,   -32000, 32000,  0,    4095,   3,    .02,  100.,  0., .001, ".1 second"}
+}
+
+file "$(IP)/ipApp/Db/fast_pid_control.db"
+{
+pattern
+{P,      PID,             C,  SERVER,        LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  DT, SCAN}
+{13IDA:, fast_roll_pid,   0,  quadEMPID2,   -32000, 32000, 0,     4095,   3,    .02,  100.,  0., .001, ".1 second"}
+}
