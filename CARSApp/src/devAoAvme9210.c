@@ -29,8 +29,9 @@
 #include	<stdioLib.h>
 #include	<string.h>
 
-#include	"dbDefs.h"
-#include        "recSup.h"	/* this file includes the relevant DB access headers */
+#include	"dbAccess.h"
+#include        "recGbl.h"
+#include        "alarm.h"
 #include	"devSup.h"
 #include	"special.h"
 #include	"module_types.h"
