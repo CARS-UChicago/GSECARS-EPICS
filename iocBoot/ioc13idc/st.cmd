@@ -42,13 +42,22 @@ dbLoadRecords("$(STD)/stdApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0")
 # First Octal UART for microprobe experiments
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,SERVER=serial1")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,SERVER=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,SERVER=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,SERVER=serial8")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,SERVER=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,SERVER=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,SERVER=serial5")
+##dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,SERVER=serial6")
+
+# # Serial port 6 and 7 are IDB bpm amplifiers
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,SERVER=serial14")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A7,C=0,SERVER=serial15")
+
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,SERVER=serial8")
 
 # Second Octal UART for diffractometer experiments
 # Serial ports 1 and 2 are for SR570 current amplifiers
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,SERVER=serial9")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,SERVER=serial10")
+# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,SERVER=serial9")
+# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,SERVER=serial10")
+
 # Serial ports 3 and 4 are for the MM4000.  We have both motor record and generic serial records on them
 dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDC:,R=ser1,C=0,SERVER=serial11")
 dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDC:,R=ser2,C=0,SERVER=serial12")
@@ -57,10 +66,6 @@ str=malloc(256)
 strcpy(str,"P=13IDC:,R=smart1,C=0,SERVER=serial13,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("$(CARS)/CARSApp/Db/smartControl.db",str,top)
-# Serial port 6 and 7 are IDB bpm amplifiers
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,SERVER=serial14")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A7,C=0,SERVER=serial15")
-#----
 
 dbLoadTemplate("motors.template")
 
@@ -88,11 +93,13 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYPE=MPF MCA,INP=
 icbSetup("icb/1", 10, 100)
 icbConfig("icb/1", 0, 0x6e6, 5)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
-icbConfig("icb/1", 1, 0x6e6, 3)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
-icbConfig("icb/1", 2, 0x6e6, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
-
+# Matt 2/24/04  commented out to avoid "Can't communicate" messages (not
+#        using AMP or HVPS anyway)
+# icbConfig("icb/1", 1, 0x6e6, 3)
+# dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
+# icbConfig("icb/1", 2, 0x6e6, 2)
+# dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
+ 
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
 
@@ -209,7 +216,7 @@ create_monitor_set("auto_positions.req",5)
 create_monitor_set("auto_settings.req",30)
 
 #mn 16-sep-1999
-seq(&Keithley2kDMM, "P=13IDC:, Dmm=DMM1, stack=10000")
+## seq(&Keithley2kDMM, "P=13IDC:, Dmm=DMM1, stack=10000")
 
 #{MN 15-Feb-00 : energy sequencer for channel-cut crystal
 seq(&Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1.Y")
