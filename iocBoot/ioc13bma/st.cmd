@@ -143,10 +143,11 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
+< ../requestFileCommands
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5.0)
+create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30.0)
+create_monitor_set("auto_settings.req",30)
 
 seq &Keithley2kDMM, "P=13BMA:, Dmm=DMM1, stack=10000"
 seq &Keithley2kDMM, "P=13BMA:, Dmm=DMM2, stack=10000"
