@@ -1,3 +1,6 @@
+# Allocate 96MB of memory so we load everything else into low memory
+mem = malloc(1024*1024*96)
+
 # vxWorks startup file
 < cdCommands
 
@@ -18,21 +21,8 @@ errlogInit(5000)
 # autorestore, comment out the following line.
 ld < initHooks.o
 
-cd startup
-# Load local MPF server
-< st_mpfserver.cmd
-cd topbin
-# This IOC talks to a local GPIB server
-ld < GpibHideosLocal.o
-cd startup
-
-# Initialize remote MPF stuff
-# tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
-
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
-
 # Set debugging flags
+save_restoreDebug=0
 devMM4000debug = 0
 devMCB4BDebug=1
 drvMCB4BDebug=1
@@ -43,27 +33,41 @@ mcaRecordDebug = 0
 devMcaMpfDebug = 0
 mcaAIMServerDebug = 0
 aimDebug = 0
-devMcaIp330Debug = 0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
 devSiStrParmDebug = 0
 devAiMKSDebug=0
 devAiDigitelDebug=0
 devAoDAC128VDebug=0
-IpUnidigDebug=0
-IpUnidigServerDebug=3
-devLiIpUnidigDebug=10
+devLiIpUnidigDebug=0
 devBiIpUnidigDebug=0
 devBoIpUnidigDebug=0
 devSerialDebug=0
 DevMpfDebug=0
-devEpidIp330Debug=0
+devEpidMpfDebug=0
 scalerRecordDebug=0
 devScalerSTR7201Debug=0
 icbDebug=0
 devIcbMpfDebug=0
 icbDspServerDebug=0
 icbServerDebug=0
+
+cd startup
+# Load local MPF server
+< st_mpfserver.cmd
+cd topbin
+# This IOC talks to a local GPIB server
+ld < GpibHideosLocal.o
+cd startup
+
+# Debug serial port
+#serialPortSniff("UART[6]",1000)
+
+# Initialize remote MPF stuff
+# tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
+
+# override address, interrupt vector, etc. information in module_types.h
+module_types()
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARSApp
@@ -85,12 +89,18 @@ dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=a,CHAN=
 
 # Port 3 Encoder readout unit
 #dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,IPSLOT=a,CHAN=3", top)
+#dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
+
+# Port 3 MCB4B motor controller
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
 
-# Ports 4, 5, 6 Keithley Multimeter
+# Ports 4, 5 Keithley Multimeter
 dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=4", ip)
 dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=5", ip)
-dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,C=0,IPSLOT=a,CHAN=6", ip)
+#dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,C=0,IPSLOT=a,CHAN=6", ip)
+
+# Port 6 for the MM4000.  We have both motor record and generic serial records on them
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=6,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top
 
 # Stanford Research Systems SR570 Current Preamplifier
 dbLoadRecords("ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,IPSLOT=a,CHAN=7", ip)
@@ -113,16 +123,19 @@ dbLoadTemplate "DAC.template"
 dbLoadTemplate "IpUnidig.template"
 
 # Acromag Ip330 ADC
-#dbLoadTemplate "Ip330_ADC.template"
+dbLoadTemplate "Ip330_ADC.template"
 
 #PID slow
 dbLoadTemplate "pid_slow.template"
 
 #PID fast
-#dbLoadTemplate "pid_fast.template"
+dbLoadTemplate "pid_fast.template"
  
 ### Motors
 dbLoadTemplate  "motors.template"
+
+#Quad electrometer
+dbLoadRecords("quadEMApp/Db/quadEM.db","P=13LAB:, EM=EM1, CARD=0, SERVER=quadEM1", quadem)
 
 # Experiment description
 dbLoadRecords("CARSApp/Db/experiment_info.db","P=13LAB:", top)
@@ -139,18 +152,25 @@ dbLoadTemplate "scanParms.template"
 # Multichannel analyzer stuff
 # AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
 #           maxSignals, maxSequences, ethernetDevice, queueSize)
-AIMConfig("AIM1/1", 0x59e, 1, 4000, 1, 1, "dc0", 100)
+AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "dc0", 100)
 AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "dc0", 400)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=4000", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/2,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYPE=MPF MCA,INP=#C0 S2 @AIM1/2,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYPE=MPF MCA,INP=#C0 S4 @AIM1/2,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYPE=MPF MCA,INP=#C0 S6 @AIM1/2,NCHAN=2048", mca)
 
-#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @b-Ip330Sweep", mca)
-#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @b-Ip330Sweep", mca)
-#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @b-Ip330Sweep", mca)
-#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @c-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @c-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @c-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @c-Ip330Sweep", mca)
+
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=quadEM_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @quadEMSweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=quadEM_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @quadEMSweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=quadEM_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @quadEMSweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=quadEM_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @quadEMSweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=quadEM_5,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S8 @quadEMSweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=quadEM_6,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S9 @quadEMSweep", mca)
 
 #icbDspConfig("icbDsp/1", 1, "NI59E:1", 100)
 #dbLoadRecords "mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,CARD=0,SERVER=icbDsp/1,ADDR=0", mca
@@ -203,7 +223,7 @@ dbLoadRecords("stdApp/Db/misc.db","P=13LAB:", std)
 # vxWorks statistics
 dbLoadRecords("stdApp/Db/VXstats.db","P=13LAB:", std)
 
-HiDEOSGpibLinkConfig(10,0,"GPIB0")
+#HiDEOSGpibLinkConfig(10,0,"GPIB0")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -220,6 +240,25 @@ oms58Setup(2, 8, 0x4000, 190, 5, 10)
 #     (3) motor task polling rate (min=1Hz, max=60Hz)
 MCB4BSetup(1, 1, 10)
 
+# MM4000 driver setup parameters: 
+#     (1) maximum # of controllers, 
+#     (2) maximum # axis per controller
+#     (3) motor task polling rate (min=1Hz, max=60Hz)
+MM4000Setup(1, 8, 10)
+
+# MM4000 driver configuration parameters: 
+#     (1) controller
+#     (2) port type: 0=GPIB, 1=RS232, 
+#     (3) GPIB link or Hideos card
+#     (4) GPIB address or Hideos task
+# GPIB example:
+#   MM4000Config(0,0,10,2)  #Link 10, address 2
+# RS-232 example:
+#   MM4000Config(0, 1, 0, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
+MM4000Config(0, 1, 0, "a-Serial[6]")
+# Delay to allow motors to settle
+drvMM4000ReadbackDelay=.5  
+
 # MCB-4B driver configuration parameters:
 #     (1) controller
 #     (2) Hideos/MPF card
@@ -228,7 +267,54 @@ MCB4BSetup(1, 1, 10)
 #   MCB4BConfig(0, 1, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
 MCB4BConfig(0, 0, "a-Serial[3]")
 
+# initQuadEM(baseAddress, fiberChannel, microSecondsPerScan, maxClients,
+#            pIpUnidig, unidigChan)
+#  baseAddress = base address of VME card
+#  channel     = 0-3, fiber channel number
+#  microSecondsPerScan = microseconds to integrate.  When used with ipUnidig
+#                interrupts the unit is also read at this rate.
+#  maxClients  = maximum number of clients that will connect to the
+#                quadEM interrupt.  10 should be fine.
+#  iIpUnidig   = pointer to ipInidig object if it is used for interrupts.
+#                Set to 0 if there is no IP-Unidig being used, in which
+#                case the quadEM will be read at 60Hz.
+#  unidigChan  = IP-Unidig channel connected to quadEM pulse output
+pQuadEM = initQuadEM(0xf000, 0, 1000, 10, pIpUnidig, 2)
 
+# initQuadEMScan(pQuadEM, serverName, queueSize)
+#  pQuadEM    = pointer to quadEM object created with initQuadEM
+#  serverName = name of MPF server (string)
+#  queueSize  = size of MPF queue
+initQuadEMScan(pQuadEM, "quadEM1", 100)
+
+# initQuadEMSweep(pquadEM, serverName, maxPoints, int queueSize)
+#  pQuadEM    = pointer to quadEM object created with initQuadEM
+#  serverName = name of MPF server (string)
+#  maxPoints  = maximum number of channels per spectrum
+#  queueSize  = size of MPF queue
+initQuadEMSweep(pQuadEM, "quadEMSweep", 2048, 100)
+
+# initQuadEMPID(serverName, pQuadEM, quadEMChannel, 
+#               pDAC128V, DACChannel, queueSize)
+#  serverName  = name of MPF server (string)
+#  pQuadEM     = pointer to quadEM object created with initQuadEM
+#  quadEMChannel = quadEM "channel" to be used for feedback (0-9)
+#                  These are defined as:
+#                        0 = current 1
+#                        1 = current 2
+#                        2 = current 3
+#                        3 = current 4
+#                        4 = sum 1 = current1 + current3
+#                        5 = sum 2 = current2 + current4
+#                        6 = difference 1 = current3 - current1
+#                        7 = difference 2 = current4 - current2
+#                        8 = position 1 = difference1/sum1 * 32767
+#                        9 = position 2 = difference2/sum2 * 32767
+#  pDAC128V    = pointer to DAC128V object created with initDAC128V
+#  DACVChannel = DAC channel number used for this PID (0-7)
+#  queueSize   = size of MPF queue
+initQuadEMPID("quadEMPID1", pQuadEM, 8, pDAC128V, 2, 20)
+initQuadEMPID("quadEMPID2", pQuadEM, 9, pDAC128V, 3, 20)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -247,10 +333,13 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
+# Load the list of search directories for request files
+< ../requestFileCommands
+
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5.0)
+create_monitor_set("auto_positions.req", 5)
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30.0)
+create_monitor_set("auto_settings.req", 30)
 
 # Enable user string calcs and user transforms
 dbpf "13LAB:EnableUserTrans.PROC","1"
@@ -258,5 +347,7 @@ dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=20, stack=10000"
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
+#seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
+
+free(mem)
 
