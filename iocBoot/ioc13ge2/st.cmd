@@ -1,3 +1,6 @@
+# Allocate 96MB of memory temporarily so that all code loads in 32MB.
+mem = malloc(1024*1024*96)
+
 # vxWorks startup file
 < cdCommands
 
@@ -40,7 +43,7 @@ devE500Debug=0
 drvE500Debug=0
 aimDebug=0
 icbDebug=0
-dxpRecordDebug=1
+dxpRecordDebug=0
 mcaDXPServerDebug=0
 devDxpMpfDebug=0
 
@@ -156,13 +159,17 @@ iocInit
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
+
+< ../requestFileCommands
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5.0)
+create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30.0)
+create_monitor_set("auto_settings.req",30)
 
 # Enable user string calcs and user transforms
 dbpf "13GE2:EnableUserTrans.PROC","1"
 dbpf "13GE2:EnableUserSCalcs.PROC","1"
 
+# Free the memory we allocated at the beginning of this script
+free(mem)
