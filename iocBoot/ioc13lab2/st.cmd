@@ -71,7 +71,7 @@ devMPCDebug=0
 dbLoadDatabase("../../dbd/CARSApp.dbd")
 
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1", top)
-#dbLoadRecords("ipApp/Db/Digitel.db","P=13LAB2:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0", ip)
+dbLoadRecords("ipApp/Db/Digitel.db","P=13LAB2:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0", ip)
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=19200,PRTY=Even,DBIT=8,SBIT=1", top)
 dbLoadRecords("ipApp/Db/MKS_single.db","P=13LAB2:,C=0,IPSLOT=a,CHAN=1,CC1=cc1,PR1=pr1", ip)
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser3,C=0,IPSLOT=a,CHAN=2,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
@@ -83,7 +83,7 @@ dbLoadRecords("ipApp/Db/TSP.db","P=13LAB2:,TSP=tsp1,C=0,IPSLOT=a,CHAN=3,PA=0", i
 
 
 # generic serial port
-# Port 1 has Newport LAE500 Laser Autocollimator (and generic serial port)
+# Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
 dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser5,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 
