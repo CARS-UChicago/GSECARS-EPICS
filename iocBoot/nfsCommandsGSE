@@ -1,9 +1,5 @@
 # Set the default gateway 
 routeAdd "0","164.54.160.1"
-# Don't use the gateway for machines on this subnet
-# MLR 4-Aug-01 This command is not necessary, and seems to do bad things, on vxWorks 5.4
-# 
-#routeDelete "164.54.160.0","164.54.160.1"
 
 # The following line eliminates "cksum: out of data" messages due to DHCP
 proxyPortFwdOff(67)
@@ -12,14 +8,10 @@ proxyPortFwdOff(67)
 nfsAuthUnixSet("corvette",401,400,0,0)
 
 # Mount drives with NFS
-#nfsMount("corvette","/home","/home")
 nfsMount("corvette","/home","/corvette/home")
 nfsMount("corvette","/home","/home")
-#nfsMount("corvette","/usr/local","/usr/local")
 
 # Define locations for logging and for APS EPICS process variables
 # No longer need 164.54.188.50 since a local PV gateway 
 #  provides APS variables, MLR 5/31/00
 putenv("EPICS_IOC_LOG_INET=164.54.160.82")
-putenv("EPICS_CA_AUTO_ADDR_LIST=NO")
-putenv("EPICS_CA_ADDR_LIST=164.54.160.127")
