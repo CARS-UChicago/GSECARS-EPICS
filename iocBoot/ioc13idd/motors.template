@@ -17,62 +17,62 @@ file "$(CARS)/CARSApp/Db/motor.db"
 pattern
 {P,       M,        DTYP,       C,    S,   DESC,                   EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
 #13IDD DAC Huber 2-theta and theta stages have been removed. (GS-6/11/04)
-#{13IDD:,  m1,    "OMS VME58",   0,    0, "Two theta",             deg,       Pos,   1.0,   0.1,   .2,    0,      1,     .2,     400,    1.0,     3,      270,    250}
+#{13IDD:,  m1,    "OMS VME58",   0,    0, "Two theta",             deg,       Neg,   1.0,   0.1,   .2,    0,      1,     .2,     400,    1.0,     3,      270,    250}
 #{13IDD:,  m2,    "OMS VME58",   0,    1, "Theta",                 deg,       Neg,   1.0,   0.1,   .2,    0,      1,     .2,     400,    1.0,     3,      360,    -360}
 #
 #13IDD DAC sample stages
-{13IDD:,  m1,    "OMS VME58",   0,    0, "X (in-out) stage",       mm,        Pos,   1.0,   0.2,   .1,    -.02,   1,     .1,     200,    -.1,     3,      150,    0}
-{13IDD:,  m2,    "OMS VME58",   0,    1, "Z (along beam) stage",   mm,        Neg,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      150,    0}
-{13IDD:,  m3,    "OMS VME58",   0,    2, "Y (vertical) stage",     mm,        Pos,   0.2,   0.03,  .5,    0,      1,     .2,     400,    -.02,    3,      40,     0}
+{13IDD:,  m1,    "OMS VME58",   0,    0, "X (in-out) stage",       mm,        Neg,   1.0,   0.2,   .1,    -.0,   1,     .1,     200,    -.1,     3,      25.,    0}
+{13IDD:,  m2,    "OMS VME58",   0,    1, "Z (along beam) stage",   mm,        Neg,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      25.,    0}
+{13IDD:,  m3,    "OMS VME58",   0,    2, "Y (vertical) stage",     mm,        Pos,   0.2,   0.03,  .5,    0,      1,     .2,     400,    -.02,    3,      40.,     0}
 {13IDD:,  m4,    "OMS VME58",   0,    3, "Omega",                  deg,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
-{13IDD:,  m5,    "OMS VME58",   0,    4, "Sample-X1",              mm,        Pos,   0.15,  .01,   .2,    0,      1,     .2,     480,    .03546,  3,      24.,    0}
-{13IDD:,  m6,    "OMS VME58",   0,    5, "Sample-X2",              mm,        Pos,   0.15,  .01,   .2,    0,      1,     .2,     480,    .03546,  3,      24.,    0}
+{13IDD:,  m5,    "OMS VME58",   0,    4, "Sample-X1",              mm,        Pos,   0.15,  .01,   .2,    0.02,      1,     .2,     480,    .03546,  3,      24.,    0}
+{13IDD:,  m6,    "OMS VME58",   0,    5, "Sample-X2",              mm,        Pos,   0.15,  .01,   .2,    0.02,      1,     .2,     480,    .03546,  3,      24.,    0}
 #
 #13IDD DAC Detector
 #{13IDD:, m8,    "OMS VME58",   0,    6, "Detector X",             mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25,     0}
 #Motor with 0.1 micron resolution
-{13IDD:,  m7,    "OMS VME58",   0,    6, "X-ray CCD Z pos",        mm,       Pos,   0.5,   .1,    .5,    .1,      1,    .2,     200,     0.010,  3,      25,     0}
+{13IDD:,  m7,    "OMS VME58",   0,    6, "Detector Z pos",        mm,       Pos,   0.5,   .1,    .5,    .0,      1,    .2,     200,     0.010,  3,      25,     0}
 #Motor from ??? company
-{13IDD:,  m8,    "OMS VME58",   0,    7, "X-ray CCD X Pos",        mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
+{13IDD:,  m8,    "OMS VME58",   0,    7, "Detector X Pos",        mm,       Neg,   1.0,   .1,    .5,    0.1,      1,     .2,     100,     1.25,  3,      400.,     0}
 #
 #13IDD DAC Table top slits
-{13IDD:,  m9,    "OMS VME58",   1,    0, "Top Slit",               mm,       Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
-{13IDD:,  m10,    "OMS VME58",  1,    1, "Bottom Slit",            mm,       Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
-{13IDD:,  m11,    "OMS VME58",  1,    2, "Inboard Slit",           mm,       Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
-{13IDD:,  m12,   "OMS VME58",   1,    3, "Outboard slit",          mm,       Pos,   1.0,   .1,    .1,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
+{13IDD:,  m9,    "OMS VME58",   1,    0, "Top Slit",               mm,       Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25.,    0}
+{13IDD:,  m10,    "OMS VME58",  1,    1, "Bottom Slit",            mm,       Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25.,    0}
+{13IDD:,  m11,    "OMS VME58",  1,    2, "Inboard Slit",           mm,       Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25.,    0}
+{13IDD:,  m12,   "OMS VME58",   1,    3, "Outboard slit",          mm,       Pos,   1.0,   .1,    .1,    0,      1,     .2,     200,    -0.10,  3,      25.,    0}
 #
 #13IDD DAC multi-purpose motors
-{13IDD:,  m13,   "OMS VME58",   1,    4, "multi-purpose-M13",        mm,        Pos,   1.0,   0.2,   .1,    -.02,   1,     .1,     200,    -.1,     3,      150,    0}
-{13IDD:,  m14,   "OMS VME58",   1,    5, "multi-purpose-M14",        mm,        Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      150,    0}
+{13IDD:,  m13,   "OMS VME58",   1,    4, "TEM01 Total Power",      deg,      Pos,   10.0,  5.0,   10.0,    0,      1,     5.0,     10,    .1,     3,      360.,    -360.}
+{13IDD:,  m14,   "OMS VME58",   1,    5, "multi-purpose-M14",      mm,        Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      150,    0}
 #
 #13IDD DAC Lift Table
 {13IDD:,  m15,   "OMS VME58",   1,    6, "Inboard Y",              mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
 {13IDD:,  m16,   "OMS VME58",   1,    7, "Outboard Y",             mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
 {13IDD:,  m17,   "OMS VME58",   2,    0, "Downstream Y",           mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
-{13IDD:,  m18,   "OMS VME58",   2,    1, "Downstream X",           mm,       Pos,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
-{13IDD:,  m19,   "OMS VME58",   2,    2, "Inboard X",              mm,       Pos,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
+{13IDD:,  m18,   "OMS VME58",   2,    1, "Downstream X",           mm,       Neg,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
+{13IDD:,  m19,   "OMS VME58",   2,    2, "Inboard X",              mm,       Neg,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
 #
 #13IDD DAC clean-up slits
 #Micro-scale
 #{13IDD:,  m13,   "OMS VME58",   2,    3, "Clean_up Y pos.",        microns,  Pos,  150.0,    10,    .2,    0,      1,     .2,       48,     3.546,  1,      8e3,    0}
 #Milimeter scale
-{13IDD:,  m20,   "OMS VME58",   2,    3, "Clean_up Y pos.",        mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
-{13IDD:,  m21,   "OMS VME58",   2,    4, "Clean_up X pos.",        mm,       Pos,    0.15,  .01,   .2,  0,      1,       .2,   480,    .03546,  3,      24.,    0}
-{13IDD:,  m22,   "OMS VME58",   2,    5, "Clean_up Z pos.",        mm,       Pos,   1.0,   0.2,   .1,    -.02,   1,     .1,     200,    -.1,     3,      150,    0}
+{13IDD:,  m20,   "OMS VME58",   2,    3, "Clean_up X pos.",        mm,       Neg,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
+{13IDD:,  m21,   "OMS VME58",   2,    4, "Clean_up Y pos.",        mm,       Neg,    0.15,  .01,   .2,  0,      1,       .2,   480,    .03546,  3,      24.,    0}
+{13IDD:,  m22,   "OMS VME58",   2,    5, "Clean_up Z pos.",        mm,       Neg,   0.5,   .1,    .5,    .0,      1,    .2,     200,     0.010,  3,      25,     0}
 #
 #13IDD DAC motors for carbon mirors
 {13IDD:,  m23,   "OMS VME58",   2,    6, "UpStream C-mirror",       mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
 {13IDD:,  m24,   "OMS VME58",   2,    7, "DownStream C-mirror",     mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
-{13IDD:,  m65,   "OMS VME58",   8,    0, "Upstream focus",          mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
-{13IDD:,  m66,   "OMS VME58",   8,    1, "Downstream focus",        mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
+{13IDD:,  m65,   "OMS VME58",   8,    0, "Upstream focus",          mm,       Neg,    0.15,  .01,   .2,  0.02,      1,     .2,   480,    .03546,  3,      8.,    0}
+{13IDD:,  m66,   "OMS VME58",   8,    1, "Downstream focus",        mm,       Neg,    0.15,  .01,   .2,  0.02,      1,     .2,   480,    .03546,  3,      8.,    0}
 #
 #13IDD DAC microscope stages
-{13IDD:,  m67,   "OMS VME58",   8,    2, "DAC Microscope X pos",    mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
-{13IDD:,  m68,   "OMS VME58",   8,    3, "DAC Microscope Y pos",    mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
+{13IDD:,  m67,   "OMS VME58",   8,    2, "DAC Microscope X pos",    mm,       Pos,   5.0,   0.2,   .2,    0.02,      1,     .2,     200,    -.1,    3,      100,    0}
+{13IDD:,  m68,   "OMS VME58",   8,    3, "DAC Microscope Y pos",    mm,       Pos,    0.15,  .01,   .2,  0.02,      1,     .2,   480,    .03546,  3,      24.,    0}
 {13IDD:,  m69,   "OMS VME58",   8,    4, "DAC Microscope Z pos",    mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
-{13IDD:,  m70,   "OMS VME58",   8,    5, "TEM00 Waveplate Total",   deg,      Pos,   0.15,  .01,   .2,    0,      1,     .2,     480,    .03546,  3,      24.,    0}
-{13IDD:,  m71,   "OMS VME58",   8,    6, "TEM00 Waveplate Split",   deg,      Pos,   0.15,  .01,   .2,    0,      1,     .2,     480,    .03546,  3,      24.,    0}
-{13IDD:,  m72,   "OMS VME58",   8,    7, "TEM01 Waveplate Split",   deg,      Pos,   0.15,  .01,   .2,    0,      1,     .2,     480,    .03546,  3,      24.,    0}
+{13IDD:,  m70,   "OMS VME58",   8,    5, "TEM00 Total Power",      deg,      Pos,   10.0,  5.0,   10.0,    0,      1,     5.0,     10,    .1,     3,      360.,    -360.}
+{13IDD:,  m71,   "OMS VME58",   8,    6, "TEM00 Split Power",      deg,      Pos,   10.0,  5.0,   10.0,    0,      1,     5.0,     10,    .1,     3,      360.,    -360.}
+{13IDD:,  m72,   "OMS VME58",   8,    7, "TEM01 Split Power",      deg,      Pos,   10.0,  5.0,   10.0,    0,      1,     5.0,     10,    .1,     3,      360.,    -360.}
 
 #******************************************************************************************************************************************************************
 # LVP front slits
@@ -169,6 +169,11 @@ pattern
 {13IDD:,  pm9, "13IDD:pm9Done  NPP NMS",   "13IDD:pm9Move      PP MS", "13IDD:pm9Readback     NPP NMS",   "13IDD:pm9Stop   PP MS",   "Radius",             mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,   1000, -100}
 {13IDD:, pm10, "13IDD:pm9Done  NPP NMS",   "13IDD:pm10Move     PP MS", "13IDD:pm10Readback    NPP NMS",   "13IDD:pm9Stop   PP MS",   "Compound Two-theta", deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
 {13IDD:, pm11, "13IDD:pm9Done  NPP NMS",   "13IDD:pm11Move     PP MS", "13IDD:pm11Readback    NPP NMS",   "13IDD:pm9Stop   PP MS",   "Compound Chi",       deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+
+# DAC laser splitter power
+{13IDD:,  pm12, "13IDD:LaserSplit:Done NPP NMS", "13IDD:pm12DVAL.VAL PP MS", "13IDD:LaserSplit:Readback.G NPP NMS", "13IDD:LaserSplit:Stop PP MS", "Split Sum",   deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .01,  1.0,  3,    10000, -10000}
+{13IDD:,  pm13, "13IDD:LaserSplit:Done NPP NMS", "13IDD:pm13DVAL.VAL PP MS", "13IDD:LaserSplit:Readback.H NPP NMS", "13IDD:LaserSplit:Stop PP MS", "Split Difference",   deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .01,  1.0,  3,    10000, -10000}
+
 }
 
 # 13IDD DAC TableTop Slit
@@ -203,6 +208,14 @@ pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
 {13IDD:, KBH:,  pm5, pm6,    m55.VAL,  m55.RBV,  m56.VAL, m56.RBV, m55.STOP, m55.DMOV, m56.STOP, m56.DMOV, 1}
 {13IDD:, KBV:,  pm7, pm8,    m51.VAL,  m51.RBV,  m52.VAL, m52.RBV, m51.STOP, m51.DMOV, m52.STOP, m52.DMOV, 1}
+}
+
+# Laser splitter power
+file "$(CARS)/CARSApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,           SUM,  DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LaserSplit:,  pm12, pm13,    m71.VAL,  m71.RBV,  m72.VAL, m72.RBV, m71.STOP, m71.DMOV, m72.STOP, m72.DMOV, 3}
 }
 
 file "$(CARS)/CARSApp/Db/IDD_LVP_Detector.db"
