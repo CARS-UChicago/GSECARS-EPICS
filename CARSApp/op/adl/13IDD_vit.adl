@@ -1,13 +1,13 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_vit.adl"
+	name="j:\epics\3.14\CARS\CARSApp\op\adl\13IDD_vit.adl"
 	version=020306
 }
 display {
 	object {
-		x=48
-		y=178
-		width=1237
+		x=239
+		y=157
+		width=1238
 		height=582
 	}
 	clr=52
@@ -86,6 +86,168 @@ display {
 		289315,
 		1a7309,
 	}
+}
+composite {
+	object {
+		x=160
+		y=272
+		width=170
+		height=205
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=162
+				y=396
+				width=28
+				height=81
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(162,396)
+				(162,477)
+				(190,472)
+				(169,466)
+				(169,396)
+				(162,396)
+			}
+		}
+		rectangle {
+			object {
+				x=162
+				y=272
+				width=165
+				height=138
+			}
+			"basic attribute" {
+				clr=14
+			}
+		}
+		text {
+			object {
+				x=174
+				y=332
+				width=147
+				height=22
+			}
+			"basic attribute" {
+				clr=20
+				fill="outline"
+			}
+			textix="Immideatly!"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=167
+				y=313
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=35
+				fill="outline"
+			}
+			textix="Press PAUSE"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=171
+				y=296
+				width=148
+				height=19
+			}
+			"basic attribute" {
+				clr=30
+				fill="outline"
+			}
+			textix="Not sure it is safe"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=160
+				y=276
+				width=170
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+				fill="outline"
+			}
+			textix="Mirror is moving"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:m24.DMOV"
+	}
+}
+rectangle {
+	object {
+		x=585
+		y=510
+		width=210
+		height=62
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+}
+"message button" {
+	object {
+		x=653
+		y=246
+		width=42
+		height=20
+	}
+	control {
+		chan="13IDD:UnidigBo7"
+		clr=0
+		bclr=34
+	}
+	label="Close"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=463
+		y=269
+		width=49
+		height=25
+	}
+	control {
+		chan="13IDD:m4.TWF"
+		clr=14
+		bclr=52
+	}
+	label="+0.5"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=407
+		y=269
+		width=45
+		height=25
+	}
+	control {
+		chan="13IDD:m4.TWR"
+		clr=14
+		bclr=52
+	}
+	label="-0.5"
+	press_msg="1"
 }
 rectangle {
 	object {
@@ -329,7 +491,7 @@ composite {
 		height=24
 	}
 	control {
-		chan="13IDD:m5.VAL"
+		chan="13IDD:m1.VAL"
 		clr=14
 		bclr=50
 	}
@@ -483,7 +645,7 @@ text {
 		height=24
 	}
 	control {
-		chan="13IDD:m5.TWV"
+		chan="13IDD:m1.TWV"
 		clr=14
 		bclr=51
 	}
@@ -498,7 +660,7 @@ text {
 		height=24
 	}
 	control {
-		chan="13IDD:m5.TWR"
+		chan="13IDD:m1.TWR"
 		clr=14
 		bclr=52
 	}
@@ -513,7 +675,7 @@ text {
 		height=24
 	}
 	control {
-		chan="13IDD:m5.TWF"
+		chan="13IDD:m1.TWF"
 		clr=14
 		bclr=52
 	}
@@ -528,7 +690,7 @@ text {
 		height=41
 	}
 	control {
-		chan="13IDD:m5.SPMG"
+		chan="13IDD:m1.SPMG"
 		clr=35
 		bclr=23
 	}
@@ -892,63 +1054,6 @@ text {
 	}
 	textix="Chambers"
 }
-rectangle {
-	object {
-		x=454
-		y=333
-		width=4
-		height=58
-	}
-	"basic attribute" {
-		clr=10
-	}
-}
-polygon {
-	object {
-		x=407
-		y=323
-		width=48
-		height=83
-	}
-	"basic attribute" {
-		clr=34
-	}
-	points {
-		(455,357)
-		(418,323)
-		(414,323)
-		(407,335)
-		(407,393)
-		(416,405)
-		(419,406)
-		(455,365)
-		(455,363)
-		(455,357)
-	}
-}
-polygon {
-	object {
-		x=457
-		y=325
-		width=48
-		height=83
-	}
-	"basic attribute" {
-		clr=34
-	}
-	points {
-		(457,359)
-		(494,325)
-		(498,325)
-		(505,337)
-		(505,395)
-		(496,407)
-		(493,408)
-		(457,367)
-		(457,365)
-		(457,359)
-	}
-}
 polygon {
 	object {
 		x=347
@@ -1045,49 +1150,6 @@ oval {
 	}
 	"basic attribute" {
 		clr=14
-	}
-}
-polygon {
-	object {
-		x=213
-		y=321
-		width=70
-		height=73
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<0"
-		chan="13IDD:m22.RRBV"
-	}
-	points {
-		(213,329)
-		(277,394)
-		(283,385)
-		(220,321)
-		(213,329)
-	}
-}
-polyline {
-	object {
-		x=214
-		y=186
-		width=0
-		height=141
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<0"
-		chan="13IDD:m22.RRBV"
-	}
-	points {
-		(214,327)
-		(214,186)
 	}
 }
 polygon {
@@ -1354,7 +1416,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13IDD:m5.HLS"
+		chan="13IDD:m1.HLS"
 	}
 }
 oval {
@@ -1369,7 +1431,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13IDD:m5.LLS"
+		chan="13IDD:m1.LLS"
 	}
 }
 text {
@@ -1385,7 +1447,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13IDD:m5.LVIO"
+		chan="13IDD:m1.LVIO"
 	}
 	textix="Soft-Limit"
 	align="horiz. centered"
@@ -1516,24 +1578,6 @@ oval {
 		chan="13IDD:m20.LLS"
 	}
 }
-text {
-	object {
-		x=748
-		y=536
-		width=75
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:m20.LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
 "text update" {
 	object {
 		x=1002
@@ -1566,36 +1610,6 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=200
-		y=406
-		width=47
-		height=31
-	}
-	control {
-		chan="13IDD:m22.TWF"
-		clr=0
-		bclr=14
-	}
-	label="In"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=200
-		y=373
-		width=49
-		height=29
-	}
-	control {
-		chan="13IDD:m22.TWR"
-		clr=14
-		bclr=0
-	}
-	label="Out"
-	press_msg="1"
-}
 "choice button" {
 	object {
 		x=200
@@ -1610,54 +1624,6 @@ text {
 	}
 	stacking="row column"
 }
-oval {
-	object {
-		x=195
-		y=487
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:m22.HLS"
-	}
-}
-oval {
-	object {
-		x=283
-		y=488
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:m22.LLS"
-	}
-}
-text {
-	object {
-		x=211
-		y=488
-		width=75
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:m22.LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
 "text update" {
 	object {
 		x=228
@@ -1666,7 +1632,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="13IDD:m22.RBV"
+		chan="13IDD:m24.RBV"
 		clr=50
 		bclr=19
 	}
@@ -1674,40 +1640,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=664
-		y=413
-		width=44
-		height=29
-	}
-	control {
-		chan="13IDD:m21.TWF"
-		clr=0
-		bclr=14
-	}
-	label="In"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=663
-		y=382
-		width=44
-		height=27
-	}
-	control {
-		chan="13IDD:m21.TWR"
-		clr=14
-		bclr=0
-	}
-	label="Out"
-	press_msg="1"
-}
 "choice button" {
 	object {
 		x=614
-		y=444
+		y=445
 		width=96
 		height=41
 	}
@@ -1733,39 +1669,6 @@ oval {
 		chan="13IDD:m21.HLS"
 	}
 }
-oval {
-	object {
-		x=697
-		y=492
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:m21.LLS"
-	}
-}
-text {
-	object {
-		x=625
-		y=492
-		width=75
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:m21.LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
 "text update" {
 	object {
 		x=545
@@ -1774,7 +1677,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="13IDD:m21.RBV"
+		chan="13IDD:m23.RBV"
 		clr=50
 		bclr=19
 	}
@@ -1833,135 +1736,6 @@ polyline {
 	points {
 		(118,256)
 		(118,336)
-	}
-}
-polygon {
-	object {
-		x=214
-		y=264
-		width=70
-		height=73
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>100000"
-		chan="13IDD:m22.RRBV"
-	}
-	points {
-		(214,272)
-		(278,337)
-		(284,328)
-		(221,264)
-		(214,272)
-	}
-}
-polyline {
-	object {
-		x=215
-		y=191
-		width=0
-		height=80
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>100000"
-		chan="13IDD:m22.RRBV"
-	}
-	points {
-		(215,271)
-		(215,191)
-	}
-}
-polygon {
-	object {
-		x=627
-		y=331
-		width=70
-		height=73
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=-106000"
-		chan="13IDD:m21.RRBV"
-	}
-	points {
-		(697,339)
-		(633,404)
-		(627,395)
-		(690,331)
-		(697,339)
-	}
-}
-polyline {
-	object {
-		x=696
-		y=196
-		width=0
-		height=141
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=-106000"
-		chan="13IDD:m21.RRBV"
-	}
-	points {
-		(696,337)
-		(696,196)
-	}
-}
-polygon {
-	object {
-		x=626
-		y=263
-		width=70
-		height=73
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=124000"
-		chan="13IDD:m21.RRBV"
-	}
-	points {
-		(696,271)
-		(632,336)
-		(626,327)
-		(689,263)
-		(696,271)
-	}
-}
-polyline {
-	object {
-		x=695
-		y=190
-		width=0
-		height=80
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=124000"
-		chan="13IDD:m21.RRBV"
-	}
-	points {
-		(695,270)
-		(695,190)
 	}
 }
 polygon {
@@ -2124,10 +1898,10 @@ oval {
 }
 "related display" {
 	object {
-		x=5
-		y=552
+		x=3
+		y=551
 		width=127
-		height=21
+		height=19
 	}
 	display[0] {
 		label="Full control"
@@ -2139,8 +1913,8 @@ oval {
 }
 rectangle {
 	object {
-		x=246
-		y=23
+		x=247
+		y=6
 		width=407
 		height=53
 	}
@@ -2150,8 +1924,8 @@ rectangle {
 }
 text {
 	object {
-		x=246
-		y=31
+		x=247
+		y=14
 		width=396
 		height=40
 	}
@@ -2381,106 +2155,19 @@ text {
 }
 "related display" {
 	object {
-		x=134
-		y=553
-		width=88
-		height=20
-	}
-	display[0] {
-		label="DAC Lift Table (simple)"
-		name="5motors.adl"
-		args="P=13IDD:, TITLE=DAC_Lift_Table,  M1=m15, M2=m16, M3=m17, M4=m18, M5=m19"
-	}
-	display[1] {
-		label="DAC Lift Table (compound)"
-		name="table.adl"
-		args="P=13IDD:, Q=DAC:T1, T=DAC:t1, M0X=m19, M0Y=m15, M1Y=m16, M2X=m18, M2Y=m17, M2Z=junk"
-	}
-	display[2] {
-		label="DAC Tabletop Slits"
-		name="6motors.adl"
-		args="P=13IDD:,TITLE=DAC_Tabletop_Slits, M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m20"
-	}
-	display[3] {
-		label="Vertical K/B mirror"
-		name="6motors.adl"
-		args="P=13IDD:,TITLE=Vertical_K/B_mirror, M1=m49,M2=m50,M3=m51,M4=m52,M5=pm7,M6=pm8"
-	}
-	display[4] {
-		label="Horizontal K/B mirror"
-		name="6motors.adl"
-		args="P=13IDD:,TITLE=Horizontal_K/B_mirror, M1=m53,M2=m54,M3=m55,M4=m56,M5=pm5,M6=pm6"
-	}
-	display[5] {
-		label="DAC Huber"
-		name="6motors.adl"
-		args="P=13IDD:, TITLE=DAC_Huber, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
-	}
-	display[6] {
-		label="Carbon Mirrors"
-		name="2motors.adl"
-		args="P=13IDD:, TITLE=Laser_Carbon_Mirrors, M1=m21, M2=m22"
-	}
-	display[7] {
-		label="DAC TableTopSlit (compound)"
-		name="4slitGraphic.adl"
-		args="P=13IDD:, V=IDD_DACV, H=IDD_DACH, mYp=m9, mYn=m10, mXp=m12, mXn=m11, SLIT=IDD_DAC"
-	}
-	clr=14
-	bclr=55
-	label="- DAC motors"
-}
-"related display" {
-	object {
 		x=458
 		y=551
 		width=123
-		height=20
+		height=21
 	}
 	display[1] {
 		label="Monochromator"
-		name="13IDC_mprobe_mono_all.adl"
+		name="13ID_mono_full.adl"
 		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6, DTH=m12"
 	}
 	clr=14
 	bclr=55
 	label="- Monochromator"
-}
-text {
-	object {
-		x=206
-		y=345
-		width=110
-		height=39
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDD:m22.DMOV"
-	}
-	textix="Moving"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=595
-		y=343
-		width=110
-		height=39
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDD:m21.DMOV"
-	}
-	textix="Moving"
-	align="horiz. centered"
 }
 text {
 	object {
@@ -2587,22 +2274,6 @@ rectangle {
 }
 "related display" {
 	object {
-		x=250
-		y=107
-		width=65
-		height=18
-	}
-	display[6] {
-		label="Carbon Mirrors and CCD"
-		name="3motors.adl"
-		args="P=13IDD:, TITLE=Laser_Carbon_Mirrors and CCD Pos, M1=m21, M2=m22, M3=m7"
-	}
-	clr=54
-	bclr=16
-	label="-more"
-}
-"related display" {
-	object {
 		x=419
 		y=172
 		width=70
@@ -2619,8 +2290,8 @@ rectangle {
 }
 "related display" {
 	object {
-		x=816
-		y=558
+		x=817
+		y=557
 		width=68
 		height=19
 	}
@@ -2635,8 +2306,8 @@ rectangle {
 }
 "related display" {
 	object {
-		x=126
-		y=241
+		x=15
+		y=147
 		width=50
 		height=27
 	}
@@ -2739,7 +2410,7 @@ text {
 	"basic attribute" {
 		clr=25
 	}
-	textix="m5"
+	textix="m1"
 	align="horiz. centered"
 }
 text {
@@ -2755,7 +2426,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13IDD:m5.DMOV"
+		chan="13IDD:m1.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -2889,21 +2560,6 @@ text {
 }
 "message button" {
 	object {
-		x=653
-		y=246
-		width=42
-		height=20
-	}
-	control {
-		chan="13IDD:UnidigBo7"
-		clr=0
-		bclr=34
-	}
-	label="Close"
-	press_msg="0"
-}
-"message button" {
-	object {
 		x=218
 		y=206
 		width=40
@@ -2966,7 +2622,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="13IDD:m6.RBV"
+		chan="13IDD:m4.RBV"
 		clr=50
 		bclr=19
 	}
@@ -3055,40 +2711,10 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13IDD:m6.DMOV"
+		chan="13IDD:m4.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
-}
-"message button" {
-	object {
-		x=463
-		y=269
-		width=49
-		height=25
-	}
-	control {
-		chan="13IDD:m6.TWF"
-		clr=14
-		bclr=52
-	}
-	label="> +1"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=407
-		y=269
-		width=45
-		height=25
-	}
-	control {
-		chan="13IDD:m6.TWR"
-		clr=14
-		bclr=52
-	}
-	label="-1 <"
-	press_msg="1"
 }
 "message button" {
 	object {
@@ -3356,5 +2982,782 @@ text {
 	}
 	align="horiz. centered"
 	limits {
+	}
+}
+text {
+	object {
+		x=266
+		y=238
+		width=110
+		height=39
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:m22.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=511
+		y=234
+		width=110
+		height=39
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:m21.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=303
+		y=415
+		width=7
+		height=75
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+}
+rectangle {
+	object {
+		x=125
+		y=487
+		width=208
+		height=59
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+}
+text {
+	object {
+		x=176
+		y=487
+		width=97
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+	textix="WARNING!"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=126
+		y=507
+		width=200
+		height=14
+	}
+	"basic attribute" {
+		clr=24
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+	textix="To move laser mirror"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=127
+		y=526
+		width=203
+		height=16
+	}
+	"basic attribute" {
+		clr=54
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+	textix="First rotate omega to 180"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=719
+		y=423
+		width=6
+		height=88
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+}
+text {
+	object {
+		x=639
+		y=513
+		width=97
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+	textix="WARNING!"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=589
+		y=533
+		width=200
+		height=14
+	}
+	"basic attribute" {
+		clr=24
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+	textix="To move laser mirror"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=590
+		y=551
+		width=196
+		height=16
+	}
+	"basic attribute" {
+		clr=54
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+	textix="First rotate omega to 180"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=211
+		y=488
+		width=75
+		height=13
+	}
+	"basic attribute" {
+		clr=34
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:m22.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=283
+		y=488
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:m22.LLS"
+	}
+}
+oval {
+	object {
+		x=195
+		y=487
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:m22.HLS"
+	}
+}
+text {
+	object {
+		x=625
+		y=492
+		width=75
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:m21.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=748
+		y=536
+		width=75
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:m20.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=697
+		y=492
+		width=14
+		height=16
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:m21.LLS"
+	}
+}
+image {
+	object {
+		x=403
+		y=315
+		width=108
+		height=91
+	}
+	type="gif"
+	"image name"="DAC1.gif"
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<225&&A>135ORA>-45&&A<45"
+		chan="13IDD:m4.RBV"
+	}
+}
+image {
+	object {
+		x=407
+		y=316
+		width=100
+		height=90
+	}
+	type="gif"
+	"image name"="DAC.gif"
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<135&&A>45"
+		chan="13IDD:m4.RBV"
+	}
+}
+rectangle {
+	object {
+		x=247
+		y=414
+		width=62
+		height=7
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+}
+"related display" {
+	object {
+		x=132
+		y=552
+		width=91
+		height=20
+	}
+	display[0] {
+		label="DAC Lift Table (simple)"
+		name="5motors.adl"
+		args="P=13IDD:, TITLE=DAC_Lift_Table,  M1=m15, M2=m16, M3=m17, M4=m18, M5=m19"
+	}
+	display[1] {
+		label="DAC Lift Table (compound)"
+		name="table.adl"
+		args="P=13IDD:, Q=DAC:T1, T=DAC:t1, M0X=m19, M0Y=m15, M1Y=m16, M2X=m18, M2Y=m17, M2Z=junk"
+	}
+	display[2] {
+		label="DAC Tabletop Slits"
+		name="6motors.adl"
+		args="P=13IDD:,TITLE=DAC_Tabletop_Slits, M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m20"
+	}
+	display[3] {
+		label="Vertical K/B mirror"
+		name="6motors.adl"
+		args="P=13IDD:,TITLE=Vertical_K/B_mirror, M1=m49,M2=m50,M3=m51,M4=m52,M5=pm7,M6=pm8"
+	}
+	display[4] {
+		label="Horizontal K/B mirror"
+		name="6motors.adl"
+		args="P=13IDD:,TITLE=Horizontal_K/B_mirror, M1=m53,M2=m54,M3=m55,M4=m56,M5=pm5,M6=pm6"
+	}
+	display[5] {
+		label="DAC Huber"
+		name="6motors.adl"
+		args="P=13IDD:, TITLE=DAC_Huber, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
+	}
+	display[6] {
+		label="Other Motors"
+		name="6motors.adl"
+		args="P=13IDD:, TITLE=Carbon_Mirrors CCD_Pos CleanUP, M1=m21, M2=m22, M3=m7, M4=m13, M5=m20"
+	}
+	display[7] {
+		label="DAC TableTopSlit (compound)"
+		name="4slitGraphic.adl"
+		args="P=13IDD:, V=DACV, H=DACH, mYp=m9, mYn=m10, mXp=m12, mXn=m11, SLIT=DAC"
+	}
+	clr=14
+	bclr=55
+	label="- DAC motors"
+}
+"message button" {
+	object {
+		x=200
+		y=406
+		width=47
+		height=31
+	}
+	control {
+		chan="13IDD:m24.VAL"
+		clr=0
+		bclr=14
+	}
+	label="In"
+	press_msg="0."
+}
+"message button" {
+	object {
+		x=200
+		y=373
+		width=49
+		height=29
+	}
+	control {
+		chan="13IDD:m24.VAL"
+		clr=14
+		bclr=0
+	}
+	label="Out"
+	press_msg="-115."
+}
+rectangle {
+	object {
+		x=708
+		y=422
+		width=17
+		height=5
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<177ORA>183"
+		chan="13IDD:m6.RBV"
+	}
+}
+"message button" {
+	object {
+		x=664
+		y=413
+		width=44
+		height=29
+	}
+	control {
+		chan="13IDD:m23.VAL"
+		clr=0
+		bclr=14
+	}
+	label="In"
+	press_msg="0."
+}
+"message button" {
+	object {
+		x=663
+		y=382
+		width=44
+		height=27
+	}
+	control {
+		chan="13IDD:m23.VAL"
+		clr=14
+		bclr=0
+	}
+	label="Out"
+	press_msg="-115."
+}
+composite {
+	object {
+		x=582
+		y=266
+		width=170
+		height=215
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=584
+				y=400
+				width=28
+				height=81
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(584,400)
+				(584,481)
+				(612,476)
+				(591,470)
+				(591,400)
+				(584,400)
+			}
+		}
+		rectangle {
+			object {
+				x=584
+				y=266
+				width=165
+				height=138
+			}
+			"basic attribute" {
+				clr=14
+			}
+		}
+		text {
+			object {
+				x=596
+				y=326
+				width=147
+				height=22
+			}
+			"basic attribute" {
+				clr=20
+				fill="outline"
+			}
+			textix="Immideatly!"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=589
+				y=307
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=35
+				fill="outline"
+			}
+			textix="Press PAUSE"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=596
+				y=291
+				width=141
+				height=19
+			}
+			"basic attribute" {
+				clr=30
+				fill="outline"
+			}
+			textix="Not sure it is safe"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=582
+				y=270
+				width=170
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+				fill="outline"
+			}
+			textix="Mirror is moving"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:m23.DMOV"
+	}
+}
+"related display" {
+	object {
+		x=278
+		y=202
+		width=56
+		height=19
+	}
+	display[2] {
+		label="DAC Mirror Positions"
+		name="4motors.adl"
+		args="P=13IDD:,TITLE=DAC_Mirror_Pos, M1=m23,M2=m24,M3=m65,M4=m66"
+	}
+	clr=14
+	bclr=16
+	label="-more"
+}
+composite {
+	object {
+		x=626
+		y=190
+		width=70
+		height=146
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=695
+				y=190
+				width=0
+				height=80
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(695,270)
+				(695,190)
+			}
+		}
+		polygon {
+			object {
+				x=626
+				y=263
+				width=70
+				height=73
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(696,271)
+				(632,336)
+				(626,327)
+				(689,263)
+				(696,271)
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-70"
+		chan="13IDD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=627
+		y=196
+		width=70
+		height=208
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=696
+				y=196
+				width=0
+				height=141
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(696,337)
+				(696,196)
+			}
+		}
+		polygon {
+			object {
+				x=627
+				y=331
+				width=70
+				height=73
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(697,339)
+				(633,404)
+				(627,395)
+				(690,331)
+				(697,339)
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-70"
+		chan="13IDD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=214
+		y=191
+		width=70
+		height=146
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=215
+				y=191
+				width=0
+				height=80
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(215,271)
+				(215,191)
+			}
+		}
+		polygon {
+			object {
+				x=214
+				y=264
+				width=70
+				height=73
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(214,272)
+				(278,337)
+				(284,328)
+				(221,264)
+				(214,272)
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-70"
+		chan="13IDD:m24.RBV"
+	}
+}
+composite {
+	object {
+		x=213
+		y=185
+		width=70
+		height=209
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=216
+				y=185
+				width=0
+				height=141
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(216,326)
+				(216,185)
+			}
+		}
+		polygon {
+			object {
+				x=213
+				y=321
+				width=70
+				height=73
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(213,329)
+				(277,394)
+				(283,385)
+				(220,321)
+				(213,329)
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-70"
+		chan="13IDD:m24.RBV"
 	}
 }
