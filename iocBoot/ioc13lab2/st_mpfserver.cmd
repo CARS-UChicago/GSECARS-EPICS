@@ -7,7 +7,7 @@ routerInit
 localMessageRouterStart(0)
 
 carrier = "ipac"
-ipacAddCarrier(&vipc616_01, "0x6000,0xa0000000")
+ipacAddCarrier(&vipc616_01, "0x3000,0xa0000000")
 initIpacCarrier(carrier, 0)
 
 # Initialize Octal UART stuff
