@@ -13,91 +13,48 @@ errlogInit(20000)
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
-# This IOC loads the MPF server code locally
 cd startup
-< st_mpfserver.cmd
+< industryPack.cmd
+< serial.cmd
 
 # Set debugging flags
 devMM4000debug = 0
 drvMM4000debug = 0
-gpibIODebug = 0
-serialIODebug = 0
 mcaRecordDebug = 0
-devMcaMpfDebug = 0
-Ip330SweepServerDebug = 0
-mcaAIMServerDebug = 0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
-devSiStrParmDebug = 0
-devAoDAC128VDebug = 0
-devLiIpUnidigDebug = 0
-devBiIpUnidigDebug = 0
-devBoIpUnidigDebug = 0
-devSerialDebug = 0
 save_restoreDebug = 0
 
 # Load database
 dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0")
 
-# Load asyn records on all serial ports
-dbLoadTemplate("asynRecord.template")
-
-# First Octal UART for microprobe experiments
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,PORT=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,PORT=serial6")
-
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,PORT=serial8")
-
-# Second Octal UART for diffractometer experiments
-# Serial ports 1 thru 4 are for SR570 current amplifiers
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B1,C=0,PORT=serial9")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B2,C=0,PORT=serial10")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B3,C=0,PORT=serial11")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B4,C=0,PORT=serial12")
-
-# Serial ports 5 and 6 are for the MM4000.
-# Serial port 8 is for the SMART PC
-str=malloc(256)
-strcpy(str,"P=13IDC:,R=smart1,C=0,PORT=serial16,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db",str,top)
-
 dbLoadTemplate("motors.template")
 
-# Digital to analog converter
-dbLoadTemplate("DAC.template")
-
-# Database for trajectory scanning with the MM4005/GPD
-# The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
-str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,PORT=serial13,")
-strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,PORT=serial14,")
-strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-strcat(str, ",M1=Y1,M2=Y2,M3=Y3,M4=Rotation AY,M5=X translation,M6=Sample X,M7=Sample Y,M8=Sample Z")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
-
 # Multichannel analyzer stuff
-### AIMConfig(serverName, ethernet_address, port, maxChans, maxSignals,
-###           maxSequences, ethernetDevice, queueSize)
-AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "dc0", 40)
-AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "dc0", 40)
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @NI6E6/1,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 @NI6E6/2,NCHAN=2048")
-icbSetup("icb/1", 10, 100)
-icbConfig("icb/1", 0, 0x6e6, 5)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
-# Matt 2/24/04  commented out to avoid "Can't communicate" messages (not
-#        using AMP or HVPS anyway)
-# icbConfig("icb/1", 1, 0x6e6, 3)
-# dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
-# icbConfig("icb/1", 2, 0x6e6, 2)
-# dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
+# AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
+#           maxSignals, maxSequences, ethernetDevice)
+# This AIM moved to 13BMC.  No AIM in IDC now.
+AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "dc0")
+AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "dc0")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI6E6/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI6E6/2 0),NCHAN=2048")
+
+#icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
+#   portName to give to this asyn port
+#   ethernetAddress - Ethernet address of module, low order 16 bits
+#   icbAddress - rotary switch setting inside ICB module
+#   moduleType
+#      0 = ADC
+#      1 = Amplifier
+#      2 = HVPS
+#      3 = TCA
+#      4 = DSP
+icbConfig("icbAdc1", 0x6e6, 5, 0)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
+#icbConfig("icbAmp1", 0x6e6, 3, 1)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,PORT=icbAmp1")
+#icbConfig("icbHvps1", 0x6e6, 2, 2)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
  
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
@@ -123,27 +80,23 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13IDC:")
 
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 
-## MN: scanner database for scan communication
+## MN: database for scan communication
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=EDB", top)
+## MN: database for ion chamber calculations
+dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13IDC:,Q=ION", top)
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
 dbLoadTemplate("scanParms.template")
 
-# IP-Unidig binary I/O
-dbLoadTemplate("IpUnidig.template")
-
-# Acromag Ip330 ADC
-dbLoadTemplate("Ip330_ADC.template")
-
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 # added 2-05 for split ion chmaber
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_5,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S4 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_6,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S5 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDC:")
@@ -157,6 +110,9 @@ dbLoadTemplate("vxStats.substitutions")
 # MN scanner db for long string args
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=edb")
 
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13IDC:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDC:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -168,29 +124,10 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=edb")
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(9, 8, 0x4000, 190, 5, 10)
 
-# MM4000 driver setup parameters:
-#     (1) maximum # of controllers,
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-MM4000Setup(2, 8, 10)
-
-# MM4000 driver configuration parameters:
-#     (1) controller
-#     (2) asyn port name (e.g. serial1 or gpib1)
-#     (3) GPIB address (0 for serial)
-MM4000Config(0, "serial13", 0)
-MM4000Config(1, "serial14", 0)
-
-# Set a delay in reading back MM4000 motors when they complete moves. 
-# This is a temporary fix
-# Not doing step scanning, set to 0. Use 0.5 when using step scanning
-drvMM4000ReadbackDelay = 0.5
-
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
 VSCSetup(1, 0xB0000000, 200)
- 
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -203,7 +140,6 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
-< ../requestFileCommands
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
@@ -223,8 +159,8 @@ seq(&Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1
 #  PVSstart
 
 # Trajectory scanning with GPD
-seq(&trajectoryScan, "P=13IDC:, R=traj1, M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,M7=m31,M8=m32")
-seq(&trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m39,M8=m40")
+seq(&trajectoryScan, "P=13IDC:, R=traj1, M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,M7=m31,M8=m32,PORT=serial13")
+seq(&trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m39,M8=m40,PORT=serial14")
 
 # newport table sequencer
 str=malloc(256)
@@ -245,8 +181,5 @@ seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER
 #debug_saveData = 2
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-# COMMENT THIS OUT FOR NOW, IT MAY BE CAUSING THE MEMORY LEAK?
 saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
 #saveData_PrintScanInfo("13IDC:scan1")
-
-
