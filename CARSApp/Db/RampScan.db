@@ -1,0 +1,66 @@
+#
+#
+# Database for Ramp Scanning, taken from LVP_Omega.db
+#
+
+# Records to ramp the load using an EPICS SSCAN record.
+# This record starts the ramp after computing the delay time and copying the
+# start and end points of the scan to the scan record
+grecord(dfanout,"$(P)$(R)StartRamp") {
+      field(VAL,"1")
+      field(OUTA,"$(P)$(R)RampTime.PROC PP MS")
+      field(OUTC,"$(P)$(R)RampEP.PROC PP MS")
+      field(OUTD,"$(P)$(R)RampScan.EXSC PP MS")
+}
+##      field(OUTB,"$(P)$(R)RampSP.PROC PP MS")
+
+
+# The ramp time in hours is in field A of this record. It computes
+# the delay time per point of the scan.
+grecord(calcout,"$(P)$(R)RampTime") {
+      field(PINI,"YES")
+      field(INPA,"1")
+      field(INPB,"$(P)$(R)RampScan.NPTS NPP NMS")
+      field(CALC,"A*3600./B")
+      field(OUT,"$(P)$(R)RampScan.PDLY NPP NMS")
+      field(PREC,"2")
+}
+
+# This record copies the current value of the load into the
+# # starting point of the scan
+# grecord(calcout,"$(P)$(R)RampSP") {
+#       field(INPA,"$(P)$(R)Value NPP NMS")
+#       field(CALC,"A")
+#       field(OUT,"$(P)$(R)RampScan.P1SP NPP NMS")
+# }
+
+# This record copies the desired final value of the load into the
+# ending point of the scan
+grecord(calcout,"$(P)$(R)RampFinal") {
+      field(CALC,"A")
+      field(OUT,"$(P)$(R)RampScan.P1EP NPP NMS")
+      field(PREC,"1")
+}
+
+# The scan record that ramps the load
+grecord(sscan,"$(P)$(R)RampScan") {
+        field(DESC,"Load ramp")
+        field(PINI,"YES")
+        field(PRIO,"HIGH")
+        field(MPTS,"1000")
+        field(NPTS,"1000")
+        field(FPTS,"FREEZE")
+        field(D01PV,"$(P)$(RBV)")
+        field(P1PV,"$(P)$(DRV)")
+        field(R1PV,"$(P)$(RBV)")
+}
+
+
+# This record pauses and resumes the ramp.  We should be able to directly write into
+# the .PAUS field of the scan record, but there seems to be a bug and it only resumes
+# 50% of the time if we do that.
+# ending point of the scan
+grecord(bo,"$(P)$(R)RampPause") {
+      field(OUT,"$(P)$(R)RampScan.PAUS PP MS")
+}
+
