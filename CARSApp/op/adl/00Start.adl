@@ -1,17 +1,17 @@
 
 file {
-	name="j:\epics\current\CARS\CARSApp\op\adl\00Start.adl"
+	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\00Start.adl"
 	version=020306
 }
 display {
 	object {
-		x=143
-		y=685
+		x=450
+		y=337
 		width=500
-		height=275
+		height=210
 	}
-	clr=57
-	bclr=4
+	clr=55
+	bclr=2
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -89,8 +89,8 @@ display {
 }
 text {
 	object {
-		x=85
-		y=59
+		x=70
+		y=55
 		width=140
 		height=20
 	}
@@ -102,9 +102,9 @@ text {
 }
 "related display" {
 	object {
-		x=8
+		x=10
 		y=50
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
@@ -118,71 +118,29 @@ rectangle {
 	object {
 		x=10
 		y=10
-		width=180
-		height=35
+		width=480
+		height=30
 	}
 	"basic attribute" {
-		clr=50
+		clr=55
 	}
 }
 text {
 	object {
 		x=20
-		y=20
-		width=150
+		y=15
+		width=330
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="GSECARS Sector 13 Menu"
+	textix="GSECARS: Sector 13 Main Menu"
 }
 text {
 	object {
-		x=87
-		y=245
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Ring Status/ BPM"
-}
-"related display" {
-	object {
-		x=10
-		y=240
-		width=75
-		height=25
-	}
-	display[0] {
-		label="Storage Ring Status"
-		name="SR_Status.adl"
-	}
-	display[1] {
-		label="13-ID Status and BPM"
-		name="MRD_ID.adl"
-		args="xx=13, ID1=13"
-	}
-	display[2] {
-		label="13-ID BPM Detail"
-		name="MRD_IDbpm.adl"
-		args="xx=13, ID1=13"
-	}
-	display[3] {
-		label="OLD 13-ID Beam Pos"
-		name="IDBPM.adl"
-		args="xx=13"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=215
+		x=70
+		y=175
 		width=100
 		height=20
 	}
@@ -190,13 +148,13 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Undulator Control"
+	textix="Undulator / BPM"
 }
 "related display" {
 	object {
 		x=10
-		y=210
-		width=75
+		y=170
+		width=50
 		height=25
 	}
 	display[0] {
@@ -209,6 +167,25 @@ text {
 		name="UndulatorTprCtl.adl"
 		args="xx=13"
 	}
+	display[2] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
+	display[3] {
+		label="ID Status and BPM"
+		name="MRD_ID.adl"
+		args="xx=13, ID1=13"
+	}
+	display[4] {
+		label="BPM Detail"
+		name="MRD_IDbpm.adl"
+		args="xx=13, ID1=13"
+	}
+	display[5] {
+		label="OLD BPM"
+		name="IDBPM.adl"
+		args="xx=13"
+	}
 	clr=14
 	bclr=4
 }
@@ -216,7 +193,7 @@ text {
 	object {
 		x=260
 		y=50
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
@@ -228,7 +205,7 @@ text {
 }
 text {
 	object {
-		x=337
+		x=320
 		y=55
 		width=100
 		height=20
@@ -243,7 +220,7 @@ text {
 	object {
 		x=260
 		y=80
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
@@ -255,7 +232,7 @@ text {
 }
 text {
 	object {
-		x=337
+		x=320
 		y=85
 		width=100
 		height=20
@@ -268,9 +245,9 @@ text {
 }
 "related display" {
 	object {
-		x=8
+		x=10
 		y=80
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
@@ -282,13 +259,17 @@ text {
 }
 "related display" {
 	object {
-		x=8
+		x=10
 		y=110
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
-		label="13 IDC XAS"
+		label="IDC Microprobe"
+		name="13IDC_xas_mprobe.adl"
+	}
+	display[1] {
+		label="IDC Main Control"
 		name="13IDC_xas.adl"
 	}
 	clr=14
@@ -296,9 +277,9 @@ text {
 }
 "related display" {
 	object {
-		x=8
+		x=10
 		y=140
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
@@ -312,7 +293,7 @@ text {
 	object {
 		x=260
 		y=110
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
@@ -324,7 +305,7 @@ text {
 }
 text {
 	object {
-		x=337
+		x=320
 		y=115
 		width=100
 		height=20
@@ -337,7 +318,7 @@ text {
 }
 text {
 	object {
-		x=85
+		x=70
 		y=85
 		width=100
 		height=20
@@ -350,7 +331,7 @@ text {
 }
 text {
 	object {
-		x=85
+		x=70
 		y=115
 		width=100
 		height=20
@@ -363,7 +344,7 @@ text {
 }
 text {
 	object {
-		x=85
+		x=70
 		y=145
 		width=100
 		height=20
@@ -376,49 +357,31 @@ text {
 }
 "related display" {
 	object {
-		x=262
-		y=210
-		width=75
+		x=260
+		y=170
+		width=50
 		height=25
 	}
 	display[0] {
 		label="13 Lab"
 		name="13Lab.adl"
 	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=339
-		y=215
-		width=80
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Lab"
-}
-"related display" {
-	object {
-		x=262
-		y=240
-		width=75
-		height=25
-	}
-	display[0] {
-		label="13 Lab2"
+	display[1] {
+		label="13 Lab 2"
 		name="13Lab2.adl"
 	}
+	display[2] {
+		label="13 GE 1"
+		name="16element.adl"
+		args="P=13GE1:med:"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=339
-		y=245
+		x=320
+		y=175
 		width=80
 		height=20
 	}
@@ -426,25 +389,26 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Lab 2"
+	textix="Lab/Other IOCs"
 }
 "related display" {
 	object {
 		x=260
 		y=140
-		width=75
+		width=50
 		height=25
 	}
 	display[0] {
 		label="13 BM Mono"
 		name="13BM_monochromator.adl"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17,Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12,TABLE=MON:"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=337
+		x=320
 		y=145
 		width=100
 		height=20
@@ -454,74 +418,4 @@ text {
 		width=2
 	}
 	textix="BM Mono"
-}
-"related display" {
-	object {
-		x=260
-		y=170
-		width=75
-		height=25
-	}
-	display[0] {
-		label="13 BMD LVP Detector"
-		name="13BMD_LVP_DetectorSetup.adl"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=337
-		y=175
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="BM LVP Detector"
-}
-"related display" {
-	object {
-		x=8
-		y=170
-		width=75
-		height=25
-	}
-	display[0] {
-		label="13 IDD LVP Detector"
-		name="13IDD_LVP_DetectorSetup.adl"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=85
-		y=175
-		width=140
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="ID LVP Detector"
-}
-polyline {
-	object {
-		x=10
-		y=200
-		width=471
-		height=2
-	}
-	"basic attribute" {
-		clr=59
-		width=2
-	}
-	points {
-		(11,201)
-		(480,201)
-	}
 }

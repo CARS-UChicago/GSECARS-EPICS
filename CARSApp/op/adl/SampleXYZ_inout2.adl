@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/R3.13.3/CARS/iocBoot/ioc13idc/CARSApp/op/adl/SampleXYZ_inout2.adl"
+	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\SampleXYZ_inout2.adl"
 	version=020306
 }
 display {
 	object {
-		x=605
-		y=347
+		x=1352
+		y=372
 		width=630
 		height=400
 	}
@@ -545,34 +545,6 @@ text {
 	limits {
 	}
 }
-"related display" {
-	object {
-		x=335
-		y=10
-		width=25
-		height=25
-	}
-	display[0] {
-		label="Motor Details"
-		name="4motors.adl"
-		args="P=$(P), TITLE=Sample_Stage, M1=$(X), M2=$(Y), M3=$(Z), M4=$(TH)"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=365
-		y=15
-		width=130
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="More Details"
-}
 "message button" {
 	object {
 		x=478
@@ -1054,4 +1026,32 @@ oval {
 		bclr=20
 	}
 	stacking="row column"
+}
+"related display" {
+	object {
+		x=332
+		y=16
+		width=25
+		height=25
+	}
+	display[0] {
+		label="Motor Details"
+		name="4motors.adl"
+		args="P=$(P), TITLE=Sample_Stage, M1=$(IN), M2=$(UP), M3=$(Y), M4=$(TH)"
+	}
+	clr=14
+	bclr=5
+}
+text {
+	object {
+		x=364
+		y=18
+		width=151
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="More Details"
 }

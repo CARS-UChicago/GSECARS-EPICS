@@ -1,14 +1,14 @@
 
 file {
-	name="G:\epics\R3.13.1\CARS\CARSApp\op\adl\Energy.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/src/../op/adl/Energy.adl"
+	version=030000
 }
 display {
 	object {
-		x=179
-		y=203
+		x=529
+		y=25
 		width=650
-		height=450
+		height=470
 	}
 	clr=24
 	bclr=45
@@ -167,7 +167,7 @@ text {
 polyline {
 	object {
 		x=-5
-		y=445
+		y=465
 		width=651
 		height=3
 	}
@@ -176,8 +176,8 @@ polyline {
 		width=3
 	}
 	points {
-		(-4,446)
-		(644,446)
+		(-4,466)
+		(644,466)
 	}
 }
 rectangle {
@@ -936,7 +936,7 @@ polyline {
 		x=340
 		y=290
 		width=3
-		height=159
+		height=179
 	}
 	"basic attribute" {
 		clr=58
@@ -944,7 +944,7 @@ polyline {
 	}
 	points {
 		(341,291)
-		(341,447)
+		(341,467)
 	}
 }
 text {
@@ -1012,7 +1012,7 @@ text {
 "choice button" {
 	object {
 		x=510
-		y=415
+		y=435
 		width=100
 		height=25
 	}
@@ -1025,8 +1025,8 @@ text {
 }
 text {
 	object {
-		x=375
-		y=420
+		x=370
+		y=440
 		width=120
 		height=15
 	}
@@ -1132,7 +1132,7 @@ text {
 	"basic attribute" {
 		clr=24
 	}
-	textix="XAS Table Height"
+	textix="Table Height"
 }
 "text entry" {
 	object {
@@ -1353,7 +1353,45 @@ text {
 "choice button" {
 	object {
 		x=510
+		y=405
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):xt2_track"
+		clr=54
+		bclr=33
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=375
+		y=410
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Mirror Height"
+}
+text {
+	object {
+		x=375
 		y=380
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Fixed Offset"
+}
+"choice button" {
+	object {
+		x=510
+		y=375
 		width=100
 		height=25
 	}
@@ -1364,15 +1402,29 @@ text {
 	}
 	stacking="column"
 }
+"choice button" {
+	object {
+		x=195
+		y=425
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):use_feedback"
+		clr=54
+		bclr=33
+	}
+	stacking="column"
+}
 text {
 	object {
-		x=375
-		y=385
+		x=20
+		y=430
 		width=100
 		height=15
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="Beam Height"
+	textix="Wait for Feedback"
 }

@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\current\CARS\CARSApp\op\adl\13IDC_xas.adl"
+	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\13IDC_xas.adl"
 	version=020306
 }
 display {
 	object {
-		x=379
-		y=319
+		x=253
+		y=85
 		width=590
 		height=400
 	}
@@ -108,12 +108,12 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="13IDC X-Ray Microprobe"
+	textix="13IDC Experiments"
 }
 text {
 	object {
-		x=79
-		y=194
+		x=71
+		y=251
 		width=100
 		height=19
 	}
@@ -139,8 +139,8 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=163
+		x=15
+		y=193
 		width=51
 		height=24
 	}
@@ -174,35 +174,25 @@ text {
 		name="Keithley2kDMM_mf.adl"
 		args="P=13IDA:,  Dmm=DMM1"
 	}
-	display[6] {
-		label="SRS Preamp #4"
-		name="SR570.adl"
-		args="P=13IDC:, A=A4"
-	}
-	display[7] {
-		label="IP-Unidig binary I/O"
-		name="ipUnidig.adl"
-		args="P=13IDC:, R=Unidig"
-	}
 	clr=14
 	bclr=5
 }
 text {
 	object {
-		x=79
-		y=167
+		x=71
+		y=197
 		width=111
 		height=19
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Electronics"
+	textix="Microprobe electronics"
 }
 "related display" {
 	object {
-		x=18
-		y=190
+		x=15
+		y=247
 		width=51
 		height=24
 	}
@@ -226,8 +216,8 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=54
+		x=15
+		y=85
 		width=51
 		height=24
 	}
@@ -258,8 +248,8 @@ text {
 	}
 	display[5] {
 		label="Sample Stage"
-		name="SampleXYZ_inout2.adl"
-		args="P=13IDC:, X=pm5, Y=m45, Z=pm6, IN=m15, UP=m44, TH=m13"
+		name="SampleXYZ.adl"
+		args="P=13IDC:, X=m15, Y=m16, Z=m13"
 	}
 	display[6] {
 		label="Microscope Z"
@@ -277,8 +267,8 @@ text {
 }
 text {
 	object {
-		x=79
-		y=59
+		x=71
+		y=89
 		width=60
 		height=19
 	}
@@ -286,12 +276,12 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Motors"
+	textix="Microprobe motors"
 }
 "related display" {
 	object {
-		x=18
-		y=136
+		x=15
+		y=166
 		width=51
 		height=24
 	}
@@ -306,14 +296,13 @@ text {
 		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m38,  M2=m39, M3=m40"
 	}
 	display[2] {
-		label="Base (simple)"
-		name="5motors.adl"
-		args="P=13IDC:, TITLE=Newport_Base, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37"
+		label="Attenuator"
+		name="13IDC_Unidig_atten.adl"
+		args="P=13IDC:, R=Unidig"
 	}
 	display[3] {
-		label="Base (compound)"
-		name="table.adl"
-		args="P=13IDC:, Q=DIF:T1, T=DIF:t1, M0X=m36, M0Y=m33, M1Y=m35, M2X=junk, M2Y=m34, M2Z=m37"
+		label="More"
+		name="newport_kappa_more.adl"
 	}
 	display[4] {
 		label="Shutter"
@@ -340,8 +329,8 @@ text {
 }
 text {
 	object {
-		x=79
-		y=140
+		x=71
+		y=170
 		width=151
 		height=19
 	}
@@ -353,15 +342,15 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=109
+		x=15
+		y=139
 		width=51
 		height=24
 	}
 	display[0] {
 		label="Energy"
 		name="Energy.adl"
-		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6"
+		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=pm11"
 	}
 	display[1] {
 		label="Crystal cage"
@@ -582,13 +571,13 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=81
+		x=15
+		y=112
 		width=51
 		height=24
 	}
 	display[0] {
-		label="Scalers"
+		label="Joerger Scaler"
 		name="scaler_full_calc.adl"
 		args="P=13IDC:, S=scaler1"
 	}
@@ -598,21 +587,16 @@ text {
 		args="P=13GE1:med:"
 	}
 	display[2] {
-		label="SiLi detector (AIM ADC)"
+		label="Si detector (AIM ADC)"
 		name="aim_adc.adl"
-	}
-	display[3] {
-		label="MicroMax Stage"
-		name="3motors.adl"
-		args="P=13IDC:, TITLE=MicroMax_Stage, M1=m46,M2=m47,M3=m48"
 	}
 	clr=14
 	bclr=5
 }
 text {
 	object {
-		x=79
-		y=113
+		x=71
+		y=143
 		width=80
 		height=19
 	}
@@ -624,8 +608,8 @@ text {
 }
 text {
 	object {
-		x=79
-		y=86
+		x=71
+		y=116
 		width=111
 		height=19
 	}
@@ -859,22 +843,22 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=217
+		x=15
+		y=60
 		width=51
 		height=24
 	}
 	display[0] {
-		label="More"
-		name="13IDC_xas_more.adl"
+		label="Microprobe"
+		name="13IDC_xas_mprobe.adl"
 	}
 	clr=14
 	bclr=5
 }
 text {
 	object {
-		x=79
-		y=222
+		x=71
+		y=65
 		width=166
 		height=19
 	}
@@ -882,7 +866,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Additional Displays"
+	textix="Microprobe Display"
 }
 text {
 	object {
@@ -957,7 +941,7 @@ text {
 "text update" {
 	object {
 		x=5
-		y=322
+		y=357
 		width=100
 		height=15
 	}
@@ -973,7 +957,7 @@ text {
 text {
 	object {
 		x=5
-		y=300
+		y=335
 		width=150
 		height=15
 	}
@@ -985,7 +969,7 @@ text {
 "text entry" {
 	object {
 		x=110
-		y=320
+		y=355
 		width=85
 		height=20
 	}
@@ -1000,7 +984,7 @@ text {
 "text entry" {
 	object {
 		x=225
-		y=320
+		y=355
 		width=60
 		height=20
 	}
@@ -1015,7 +999,7 @@ text {
 "message button" {
 	object {
 		x=210
-		y=320
+		y=355
 		width=15
 		height=20
 	}
@@ -1030,7 +1014,7 @@ text {
 "message button" {
 	object {
 		x=285
-		y=320
+		y=355
 		width=15
 		height=20
 	}
@@ -1045,7 +1029,7 @@ text {
 "text update" {
 	object {
 		x=10
-		y=272
+		y=307
 		width=65
 		height=15
 	}
@@ -1061,7 +1045,7 @@ text {
 text {
 	object {
 		x=5
-		y=245
+		y=280
 		width=150
 		height=15
 	}
@@ -1073,7 +1057,7 @@ text {
 "text entry" {
 	object {
 		x=85
-		y=270
+		y=305
 		width=60
 		height=20
 	}
@@ -1088,7 +1072,7 @@ text {
 "text entry" {
 	object {
 		x=260
-		y=270
+		y=305
 		width=30
 		height=20
 	}
@@ -1103,7 +1087,7 @@ text {
 "text update" {
 	object {
 		x=225
-		y=272
+		y=307
 		width=30
 		height=16
 	}
@@ -1119,7 +1103,7 @@ text {
 text {
 	object {
 		x=225
-		y=245
+		y=280
 		width=80
 		height=15
 	}
@@ -1131,7 +1115,7 @@ text {
 text {
 	object {
 		x=230
-		y=300
+		y=335
 		width=65
 		height=15
 	}
@@ -1169,7 +1153,7 @@ menu {
 text {
 	object {
 		x=5
-		y=358
+		y=381
 		width=50
 		height=15
 	}
@@ -1181,7 +1165,7 @@ text {
 oval {
 	object {
 		x=149
-		y=358
+		y=381
 		width=15
 		height=15
 	}
@@ -1192,4 +1176,56 @@ oval {
 		clr="alarm"
 		chan="13IDA:mono_pid1Locked"
 	}
+}
+"related display" {
+	object {
+		x=15
+		y=220
+		width=51
+		height=24
+	}
+	display[0] {
+		label="SRS Preamp #4"
+		name="SR570.adl"
+		args="P=13IDC:, A=A4"
+	}
+	display[1] {
+		label="SRS Preamp #5"
+		name="SR570.adl"
+		args="P=13IDC:, A=A5"
+	}
+	display[2] {
+		label="IP-Unidig binary I/O"
+		name="ipUnidig.adl"
+		args="P=13IDC:, R=Unidig"
+	}
+	display[3] {
+		label="Struck scaler"
+		name="scaler_full_calc.adl"
+		args="P=13IDC:, S=scaler2"
+	}
+	display[4] {
+		label="SRS Preamp #6"
+		name="SR570.adl"
+		args="P=13IDC:, A=A6"
+	}
+	display[5] {
+		label="SRS Preamp #7"
+		name="SR570.adl"
+		args="P=13IDC:, A=A7"
+	}
+	clr=14
+	bclr=5
+}
+text {
+	object {
+		x=71
+		y=224
+		width=111
+		height=19
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Diffractometer electronics"
 }

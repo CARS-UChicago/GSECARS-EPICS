@@ -1,12 +1,12 @@
 
 file {
-	name="G:\epics\R3.13.1\CARS\CARSApp\op\adl\monoParms.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/op/adl/monoParms.adl"
+	version=030000
 }
 display {
 	object {
-		x=154
-		y=178
+		x=644
+		y=551
 		width=358
 		height=400
 	}
@@ -229,58 +229,6 @@ text {
 	}
 	textix="Angle"
 }
-"choice button" {
-	object {
-		x=220
-		y=290
-		width=85
-		height=25
-	}
-	control {
-		chan="$(P1)$(EN):id_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=30
-		y=300
-		width=130
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Undulator "
-}
-"choice button" {
-	object {
-		x=220
-		y=320
-		width=85
-		height=25
-	}
-	control {
-		chan="$(P1)$(EN):xt_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=30
-		y=325
-		width=130
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Spectroscopy Table"
-}
 "text entry" {
 	object {
 		x=220
@@ -367,7 +315,7 @@ text {
 polyline {
 	object {
 		x=0
-		y=255
+		y=335
 		width=350
 		height=3
 	}
@@ -376,26 +324,14 @@ polyline {
 		width=3
 	}
 	points {
-		(1,256)
-		(348,256)
+		(1,336)
+		(348,336)
 	}
-}
-text {
-	object {
-		x=25
-		y=280
-		width=100
-		height=15
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="Auto-Tracking"
 }
 "text entry" {
 	object {
 		x=220
-		y=215
+		y=210
 		width=70
 		height=20
 	}
@@ -406,18 +342,6 @@ text {
 	}
 	limits {
 	}
-}
-text {
-	object {
-		x=25
-		y=220
-		width=130
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Min Table Motion"
 }
 "text entry" {
 	object {
@@ -443,6 +367,51 @@ text {
 	}
 	monitor {
 		chan="$(P1)$(EN):height.DESC"
+		clr=14
+		bclr=45
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=220
+		y=235
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P1)$(EN):y2_mvmin"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=21
+		y=240
+		width=160
+		height=15
+	}
+	monitor {
+		chan="$(P1)$(EN):y2_mvmin.DESC"
+		clr=14
+		bclr=45
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=20
+		y=210
+		width=160
+		height=15
+	}
+	monitor {
+		chan="$(P1)$(EN):xt_mvmin.DESC"
 		clr=14
 		bclr=45
 	}

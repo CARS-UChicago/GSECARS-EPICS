@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\current\CARS\CARSApp\op\adl\13BMD.adl"
+	name="J:\epics\support\cars\carsapp\op\adl\13BMD.adl"
 	version=020306
 }
 display {
 	object {
-		x=1096
-		y=211
+		x=656
+		y=41
 		width=300
 		height=447
 	}
@@ -508,9 +508,9 @@ text {
 		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m33, M2=m34, M3=m35"
 	}
 	display[4] {
-		label="Detector (photodiode)"
-		name="1motors.adl"
-		args="P=13BMD:, TITLE=Photodiode, M1=m8"
+		label="X-ray CCD/Photodiode"
+		name="2motors.adl"
+		args="P=13BMD:, TITLE=CCD and Photodiode, M1=m24, M2=m23"
 	}
 	display[5] {
 		label="Lift Table (Simple)"
@@ -521,6 +521,11 @@ text {
 		label="Lift Table (Compound)"
 		name="table.adl"
 		args="P=13BMD:, Q=XAS:Table1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m21, M2Y=m17, M2Z=junk"
+	}
+	display[7] {
+		label="Clean_up slits"
+		name="2motors.adl"
+		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m23, M2=m24"
 	}
 	clr=14
 	bclr=4
@@ -647,6 +652,11 @@ text {
 		label="LVP furnace control"
 		name="LVP_furnace.adl"
 		args="P=13BMD:, PID=PID1"
+	}
+	display[6] {
+		label="LVP pressure control"
+		name="BM_LVP_Omega.adl"
+		args="P=13BMD:, R=Omega1_,D=1,C=8"
 	}
 	clr=14
 	bclr=4

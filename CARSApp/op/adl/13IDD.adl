@@ -1,12 +1,12 @@
 
 file {
-	name="C:\Program Files\EPICS\op\adl\CARSApp\13IDD.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD.adl"
 	version=020306
 }
 display {
 	object {
-		x=268
-		y=33
+		x=448
+		y=28
 		width=320
 		height=472
 	}
@@ -208,9 +208,9 @@ text {
 		args="P=13IDD:, TITLE=DAC_Huber, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
 	}
 	display[6] {
-		label="DAC Detector"
-		name="3motors.adl"
-		args="P=13IDD:, TITLE=DAC_Detector, M1=m7,M2=m24, M3=m20"
+		label="DAC Misc. Motors"
+		name="4motors.adl"
+		args="P=13IDD:, TITLE=DAC_Misc. Motors, M1=m7,M2=m31, M3=m24, M4=m20"
 	}
 	display[7] {
 		label="Carbon Mirrors"
@@ -418,14 +418,9 @@ text {
 		args="P=13IDD:, PID=LVP:PID1, OUT=DAC1_5, VOLT=DAC1_6, RESET=DAC1_7"
 	}
 	display[6] {
-		label="DAC chan. #5"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=5"
-	}
-	display[7] {
-		label="DAC chan. #6"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=6"
+		label="Pressure control"
+		name="LVP_Omega.adl"
+		args="P=13IDD:,R=Omega1_,D=1,C=8"
 	}
 	clr=14
 	bclr=4
@@ -571,11 +566,6 @@ text {
 		label="Omega controller"
 		name="Serial_IO.adl"
 		args="REC=13IDD:Omega1_Serial"
-	}
-	display[4] {
-		label="Omega controller"
-		name="LVP_Omega.adl"
-		args="P=13IDD:,R=Omega1_"
 	}
 	clr=14
 	bclr=4

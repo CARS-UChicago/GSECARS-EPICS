@@ -1,14 +1,14 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13IDC_xas.adl"
+	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\13IDC_xas_mprobe.adl"
 	version=020306
 }
 display {
 	object {
-		x=132
-		y=97
-		width=590
-		height=400
+		x=369
+		y=159
+		width=605
+		height=370
 	}
 	clr=46
 	bclr=3
@@ -91,7 +91,7 @@ rectangle {
 	object {
 		x=10
 		y=10
-		width=291
+		width=270
 		height=40
 	}
 	"basic attribute" {
@@ -108,12 +108,12 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="13IDC X-Ray Microprobe"
+	textix="13IDC Microprobe"
 }
 text {
 	object {
-		x=74
-		y=220
+		x=75
+		y=160
 		width=100
 		height=19
 	}
@@ -125,10 +125,10 @@ text {
 }
 "related display" {
 	object {
-		x=316
-		y=229
-		width=51
-		height=24
+		x=310
+		y=170
+		width=50
+		height=25
 	}
 	display[0] {
 		label="Beamline EPS"
@@ -139,8 +139,8 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=162
+		x=20
+		y=130
 		width=51
 		height=24
 	}
@@ -179,20 +179,20 @@ text {
 }
 text {
 	object {
-		x=74
-		y=166
+		x=75
+		y=135
 		width=111
 		height=19
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Microprobe electronics"
+	textix="Electronics"
 }
 "related display" {
 	object {
-		x=18
-		y=216
+		x=20
+		y=155
 		width=51
 		height=24
 	}
@@ -216,8 +216,8 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=54
+		x=20
+		y=55
 		width=51
 		height=24
 	}
@@ -248,18 +248,13 @@ text {
 	}
 	display[5] {
 		label="Sample Stage"
-		name="SampleXYZ_inout2.adl"
-		args="P=13IDC:, X=pm5, Y=m45, Z=pm6, IN=m15, UP=m44, TH=m13"
+		name="SampleXYZ.adl"
+		args="P=13IDC:, X=m15, Y=m16, Z=m13, IN=m13, UP=m15, TH=m14"
 	}
 	display[6] {
 		label="Microscope Z"
 		name="1motors.adl"
-		args="P=13IDC:, TITLE=Microscope, M1=m16"
-	}
-	display[7] {
-		label="Sample Raw"
-		name="4motors.adl"
-		args="P=13IDC:, TITLE=Sample_Raw, M1=m13,M2=m15,M3=m44,M4=m45"
+		args="P=13IDC:, TITLE=Microscope, M1=m44"
 	}
 	clr=14
 	bclr=5
@@ -267,8 +262,8 @@ text {
 }
 text {
 	object {
-		x=74
-		y=58
+		x=75
+		y=60
 		width=60
 		height=19
 	}
@@ -276,74 +271,12 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Microprobe motors"
+	textix="Motors"
 }
 "related display" {
 	object {
-		x=18
-		y=135
-		width=51
-		height=24
-	}
-	display[0] {
-		label="Goniometer"
-		name="6motors.adl"
-		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25,  M2=m26, M3=m27, M4=m28, M5=m29, M6=m30"
-	}
-	display[1] {
-		label="Sample Stage"
-		name="3motors.adl"
-		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m38,  M2=m39, M3=m40"
-	}
-	display[2] {
-		label="Attenuator"
-		name="13IDC_Unidig_atten.adl"
-		args="P=13IDC:, R=Unidig"
-	}
-	display[3] {
-		label="More"
-		name="newport_kappa_more.adl"
-	}
-	display[4] {
-		label="Shutter"
-		name="2motors.adl"
-		args="P=13IDC:, TITLE=Bruker_Shutter, M1=m46, M2=m47"
-	}
-	display[5] {
-		label="Detector Slits"
-		name="8motors.adl"
-		args="P=13IDC:, TITLE=Detector_Slits, M1=m49, M2=m50, M3=m51, M4=m52, M5=m53, M6=m54, M7=m55,M8=m56"
-	}
-	display[6] {
-		label="Goniometer readbacks"
-		name="diff_motors.adl"
-		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m40"
-	}
-	display[7] {
-		label="Entrance Slits"
-		name="8motors.adl"
-		args="P=13IDC:, TITLE=Entrance_Slits, M1=m57, M2=m58, M3=m59, M4=m60, M5=m61, M6=m62, M7=m63,M8=m64"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=74
-		y=139
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Diffractometer"
-}
-"related display" {
-	object {
-		x=18
-		y=108
+		x=20
+		y=105
 		width=51
 		height=24
 	}
@@ -362,36 +295,18 @@ text {
 		name="table_full.adl"
 		args="P=13IDA:,  Q=MON:T1, T=MON:t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
 	}
-	display[3] {
-		label="LN2 and Vacuum Status"
-		name="13ID_MONO.adl"
-	}
 	display[4] {
-		label="Piezos"
+		label="Mono Piezos"
 		name="piezos3.adl"
 		args="P=13IDA:, D=1, PID=13IDA:mono_pid1"
 	}
 	clr=14
 	bclr=5
 }
-text {
-	object {
-		x=417
-		y=257
-		width=1
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		chan="$(P1)$(EN):SET"
-	}
-}
 "message button" {
 	object {
-		x=524
-		y=163
+		x=527
+		y=90
 		width=51
 		height=19
 	}
@@ -406,8 +321,8 @@ text {
 }
 "message button" {
 	object {
-		x=524
-		y=183
+		x=527
+		y=110
 		width=51
 		height=19
 	}
@@ -433,23 +348,23 @@ composite {
 }
 text {
 	object {
-		x=317
-		y=173
+		x=310
+		y=95
 		width=80
-		height=19
+		height=20
 	}
 	"basic attribute" {
-		clr=14
+		clr=54
 		width=2
 	}
 	textix="Shutter:"
 }
 rectangle {
 	object {
-		x=310
-		y=118
-		width=271
-		height=145
+		x=300
+		y=60
+		width=300
+		height=165
 	}
 	"basic attribute" {
 		clr=59
@@ -459,8 +374,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=386
-		y=174
+		x=390
+		y=95
 		width=54
 		height=15
 	}
@@ -475,8 +390,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=371
-		y=208
+		x=370
+		y=143
 		width=54
 		height=14
 	}
@@ -491,8 +406,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=516
-		y=208
+		x=515
+		y=143
 		width=54
 		height=14
 	}
@@ -507,8 +422,8 @@ rectangle {
 }
 text {
 	object {
-		x=316
-		y=205
+		x=315
+		y=140
 		width=60
 		height=19
 	}
@@ -520,8 +435,8 @@ text {
 }
 text {
 	object {
-		x=441
-		y=205
+		x=440
+		y=140
 		width=60
 		height=19
 	}
@@ -533,8 +448,8 @@ text {
 }
 "related display" {
 	object {
-		x=316
-		y=302
+		x=20
+		y=180
 		width=51
 		height=24
 	}
@@ -542,11 +457,6 @@ text {
 		label="Slits"
 		name="4motors.adl"
 		args="P=13IDA:, TITLE=FOE_slits, M1=m1, M2=m2, M3=m3, M4=m4"
-	}
-	display[1] {
-		label="Pinhole"
-		name="5motors.adl"
-		args="P=13IDA:, TITLE=Pinhole, M1=m5, M2=m6, M3=m7, M4=m8, M5=m9"
 	}
 	display[2] {
 		label="Diagnostic Flag"
@@ -556,28 +466,15 @@ text {
 	clr=14
 	bclr=5
 }
-text {
-	object {
-		x=316
-		y=278
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=54
-		width=2
-	}
-	textix="Front End"
-}
 "related display" {
 	object {
-		x=18
-		y=81
+		x=20
+		y=80
 		width=51
 		height=24
 	}
 	display[0] {
-		label="Joerger Scaler"
+		label="Scaler"
 		name="scaler_full_calc.adl"
 		args="P=13IDC:, S=scaler1"
 	}
@@ -595,8 +492,8 @@ text {
 }
 text {
 	object {
-		x=74
-		y=112
+		x=75
+		y=110
 		width=80
 		height=19
 	}
@@ -608,7 +505,7 @@ text {
 }
 text {
 	object {
-		x=74
+		x=75
 		y=85
 		width=111
 		height=19
@@ -619,70 +516,10 @@ text {
 	}
 	textix="Detectors"
 }
-"related display" {
-	object {
-		x=316
-		y=80
-		width=46
-		height=23
-	}
-	display[0] {
-		label="Storage Ring Status"
-		name="SR_Status.adl"
-	}
-	display[1] {
-		label="Beam Position Monitor"
-		name="MRD_ID.adl"
-		args="xx=13, ID1=13"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=376
-		y=85
-		width=211
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Storage Ring Details"
-}
-"related display" {
-	object {
-		x=316
-		y=330
-		width=51
-		height=24
-	}
-	display[0] {
-		label="Undulator Gap"
-		name="UndulatorCtl.adl"
-		args="xx=13"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=376
-		y=335
-		width=140
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Undulator Gap"
-}
 "text update" {
 	object {
-		x=451
-		y=33
+		x=470
+		y=10
 		width=80
 		height=19
 	}
@@ -697,20 +534,8 @@ text {
 }
 text {
 	object {
-		x=316
-		y=33
-		width=130
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Current:"
-}
-text {
-	object {
-		x=477
-		y=57
+		x=440
+		y=35
 		width=91
 		height=19
 	}
@@ -725,8 +550,8 @@ text {
 }
 text {
 	object {
-		x=477
-		y=57
+		x=440
+		y=35
 		width=91
 		height=19
 	}
@@ -741,10 +566,10 @@ text {
 }
 text {
 	object {
-		x=316
-		y=57
+		x=305
+		y=35
 		width=151
-		height=19
+		height=15
 	}
 	"basic attribute" {
 		clr=14
@@ -753,8 +578,8 @@ text {
 }
 text {
 	object {
-		x=546
-		y=33
+		x=560
+		y=10
 		width=30
 		height=19
 	}
@@ -765,8 +590,8 @@ text {
 }
 text {
 	object {
-		x=376
-		y=231
+		x=370
+		y=175
 		width=151
 		height=19
 	}
@@ -774,14 +599,14 @@ text {
 		clr=14
 		width=2
 	}
-	textix="EPS Details"
+	textix="Beamline EPS"
 }
 rectangle {
 	object {
-		x=310
-		y=269
-		width=271
-		height=123
+		x=300
+		y=230
+		width=300
+		height=135
 	}
 	"basic attribute" {
 		clr=59
@@ -791,8 +616,8 @@ rectangle {
 }
 text {
 	object {
-		x=376
-		y=307
+		x=75
+		y=185
 		width=151
 		height=19
 	}
@@ -804,10 +629,10 @@ text {
 }
 rectangle {
 	object {
-		x=310
-		y=10
-		width=271
-		height=103
+		x=300
+		y=5
+		width=300
+		height=50
 	}
 	"basic attribute" {
 		clr=59
@@ -818,7 +643,7 @@ rectangle {
 text {
 	object {
 		x=316
-		y=123
+		y=65
 		width=151
 		height=19
 	}
@@ -830,8 +655,8 @@ text {
 }
 text {
 	object {
-		x=316
-		y=14
+		x=305
+		y=10
 		width=151
 		height=19
 	}
@@ -843,22 +668,22 @@ text {
 }
 "related display" {
 	object {
-		x=18
-		y=243
+		x=310
+		y=195
 		width=51
 		height=24
 	}
 	display[0] {
-		label="More"
-		name="13IDC_xas_more.adl"
+		label="Microprobe"
+		name="13IDC_xas.adl"
 	}
 	clr=14
 	bclr=5
 }
 text {
 	object {
-		x=74
-		y=247
+		x=365
+		y=200
 		width=166
 		height=19
 	}
@@ -866,25 +691,25 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Additional Displays"
+	textix="Full IDC Control "
 }
 text {
 	object {
-		x=316
-		y=141
-		width=160
+		x=455
+		y=65
+		width=120
 		height=19
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="IDC Station Searched:"
+	textix="IDC Searched:"
 }
 oval {
 	object {
-		x=490
-		y=142
+		x=565
+		y=65
 		width=15
 		height=14
 	}
@@ -898,8 +723,8 @@ oval {
 }
 oval {
 	object {
-		x=490
-		y=142
+		x=565
+		y=65
 		width=15
 		height=14
 	}
@@ -911,37 +736,10 @@ oval {
 		chan="PA:13ID:Q01:02.VAL"
 	}
 }
-"related display" {
-	object {
-		x=316
-		y=359
-		width=51
-		height=24
-	}
-	display[0] {
-		label="Beamline EPS"
-		name="13ID.adl"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=376
-		y=363
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Front End Details"
-}
 "text update" {
 	object {
-		x=5
-		y=357
+		x=305
+		y=260
 		width=100
 		height=15
 	}
@@ -956,8 +754,8 @@ text {
 }
 text {
 	object {
-		x=5
-		y=335
+		x=305
+		y=235
 		width=150
 		height=15
 	}
@@ -968,9 +766,9 @@ text {
 }
 "text entry" {
 	object {
-		x=110
-		y=355
-		width=85
+		x=415
+		y=255
+		width=80
 		height=20
 	}
 	control {
@@ -983,9 +781,9 @@ text {
 }
 "text entry" {
 	object {
-		x=225
-		y=355
-		width=60
+		x=515
+		y=255
+		width=55
 		height=20
 	}
 	control {
@@ -998,8 +796,8 @@ text {
 }
 "message button" {
 	object {
-		x=210
-		y=355
+		x=500
+		y=255
 		width=15
 		height=20
 	}
@@ -1013,8 +811,8 @@ text {
 }
 "message button" {
 	object {
-		x=285
-		y=355
+		x=570
+		y=255
 		width=15
 		height=20
 	}
@@ -1028,8 +826,8 @@ text {
 }
 "text update" {
 	object {
-		x=10
-		y=307
+		x=320
+		y=310
 		width=65
 		height=15
 	}
@@ -1044,8 +842,8 @@ text {
 }
 text {
 	object {
-		x=5
-		y=280
+		x=305
+		y=285
 		width=150
 		height=15
 	}
@@ -1056,7 +854,7 @@ text {
 }
 "text entry" {
 	object {
-		x=85
+		x=405
 		y=305
 		width=60
 		height=20
@@ -1071,7 +869,7 @@ text {
 }
 "text entry" {
 	object {
-		x=260
+		x=525
 		y=305
 		width=30
 		height=20
@@ -1086,10 +884,10 @@ text {
 }
 "text update" {
 	object {
-		x=225
-		y=307
+		x=485
+		y=310
 		width=30
-		height=16
+		height=15
 	}
 	monitor {
 		chan="ID13:HarmonicValue"
@@ -1102,8 +900,8 @@ text {
 }
 text {
 	object {
-		x=225
-		y=280
+		x=490
+		y=285
 		width=80
 		height=15
 	}
@@ -1114,8 +912,8 @@ text {
 }
 text {
 	object {
-		x=230
-		y=335
+		x=505
+		y=235
 		width=65
 		height=15
 	}
@@ -1126,8 +924,8 @@ text {
 }
 text {
 	object {
-		x=451
-		y=165
+		x=450
+		y=90
 		width=60
 		height=13
 	}
@@ -1139,10 +937,10 @@ text {
 }
 menu {
 	object {
-		x=447
-		y=182
+		x=445
+		y=110
 		width=70
-		height=18
+		height=20
 	}
 	control {
 		chan="13IDA:mono_pid1EnableShutter"
@@ -1152,21 +950,21 @@ menu {
 }
 text {
 	object {
-		x=5
-		y=381
-		width=50
+		x=25
+		y=240
+		width=59
 		height=15
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="Feedback Locked"
+	textix="Mono"
 }
 oval {
 	object {
-		x=149
-		y=381
-		width=15
+		x=75
+		y=240
+		width=18
 		height=15
 	}
 	"basic attribute" {
@@ -1177,55 +975,271 @@ oval {
 		chan="13IDA:mono_pid1Locked"
 	}
 }
+"text entry" {
+	object {
+		x=115
+		y=280
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDA:mono_pid1.VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=200
+		y=280
+		width=70
+		height=20
+	}
+	monitor {
+		chan="13IDA:mono_pid1.CVAL"
+		clr=54
+		bclr=55
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+menu {
+	object {
+		x=25
+		y=280
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDA:mono_pid1.FBON"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=120
+		y=260
+		width=70
+		height=19
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="set point"
+}
+text {
+	object {
+		x=200
+		y=260
+		width=60
+		height=19
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="value"
+}
+"text entry" {
+	object {
+		x=85
+		y=333
+		width=60
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_3.VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=162
+		y=330
+		width=100
+		height=25
+	}
+	control {
+		chan="13IDA:DAC1_3.VAL"
+		clr=14
+		bclr=52
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=150
+		y=330
+		width=20
+		height=25
+	}
+	control {
+		chan="13IDA:DAC1_3_tweak.A"
+		clr=14
+		bclr=52
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=260
+		y=330
+		width=20
+		height=25
+	}
+	control {
+		chan="13IDA:DAC1_3_tweak.B"
+		clr=14
+		bclr=52
+	}
+	label=">"
+	press_msg="1"
+}
+rectangle {
+	object {
+		x=10
+		y=230
+		width=285
+		height=135
+	}
+	"basic attribute" {
+		clr=59
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=20
+		y=315
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Piezo"
+}
+menu {
+	object {
+		x=210
+		y=237
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDA:mono_pid1EnableReset"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=115
+		y=240
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Auto-Reset"
+}
+text {
+	object {
+		x=20
+		y=335
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Voltage"
+}
+text {
+	object {
+		x=25
+		y=260
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Feedback"
+}
 "related display" {
 	object {
-		x=18
-		y=189
-		width=51
-		height=24
+		x=175
+		y=305
+		width=20
+		height=20
 	}
 	display[0] {
-		label="SRS Preamp #4"
-		name="SR570.adl"
-		args="P=13IDC:, A=A4"
+		label="Plot Feedback"
+		name="pid_plot_readback.adl"
+		args="P=13IDA:,PID=mono_pid1"
 	}
 	display[1] {
-		label="SRS Preamp #5"
-		name="SR570.adl"
-		args="P=13IDC:, A=A5"
+		label="Set Parameters"
+		name="pid_parameters.adl"
+		args="P=13IDA:, PID=mono_pid1"
 	}
 	display[2] {
-		label="IP-Unidig binary I/O"
-		name="ipUnidig.adl"
-		args="P=13IDC:, R=Unidig"
-	}
-	display[3] {
-		label="Struck scaler"
-		name="scaler_full_calc.adl"
-		args="P=13IDC:, S=scaler2"
-	}
-	display[4] {
-		label="SRS Preamp #6"
-		name="SR570.adl"
-		args="P=13IDC:, A=A6"
-	}
-	display[5] {
-		label="SRS Preamp #7"
-		name="SR570.adl"
-		args="P=13IDC:, A=A7"
+		label="Full PID Control"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=mono_pid1"
 	}
 	clr=14
 	bclr=5
 }
 text {
 	object {
-		x=74
-		y=193
-		width=111
-		height=19
+		x=200
+		y=308
+		width=59
+		height=15
 	}
 	"basic attribute" {
-		clr=14
+		clr=54
 	}
-	textix="Diffractometer electronics"
+	textix="More"
+}
+"choice button" {
+	object {
+		x=500
+		y=335
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDA:E:id_track"
+		clr=54
+		bclr=56
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=330
+		y=340
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Undulator Tracking"
 }
