@@ -18,62 +18,22 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 # Set debugging flags
 devMM4000debug = 0
 drvMM4000debug = 0
-gpibIODebug = 0
-serialIODebug = 0
 mcaRecordDebug = 0
-devMcaMpfDebug = 0
-mcaAIMServerDebug = 0
 aimDebug = 0
-devMcaIp330Debug = 0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
-devSiStrParmDebug = 0
-devAiMKSDebug=0
-devAiDigitelDebug=0
-devAoDAC128VDebug=0
-devLiIpUnidigDebug=0
-devBiIpUnidigDebug=0
-devBoIpUnidigDebug=0
-devSerialDebug=0
-DevMpfDebug=0
-devEpidIp330Debug=0
 scalerRecordDebug=0
 devScalerSTR7201Debug=0
 devScalerCamacDebug=0
 devE500Debug=0
 drvE500Debug=0
 icbDebug=0
-devIcbMpfDebug=1
-icbDspServerDebug=1
-icbServerDebug=1
-mpcDebug=0
-devMPCDebug=0
 
-# This IOC loads the MPF server code locally
-< st_mpfserver.cmd
-
-# Load asyn records on all serial ports
-dbLoadTemplate("asynRecord.template")
-
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMC:,Dmm=DMM1,C=0,PORT=serial1")
-
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A1,C=0,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A2,C=0,PORT=serial3")
-
-# Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13BMC:,R=LAE500,C=0,PORT=serial4")
-
-# Acromag Ip330 ADC
-dbLoadTemplate "Ip330_ADC.template"
+< industryPack.cmd
+< serial.cmd
 
 ### Motors
 dbLoadTemplate  "motors.template"
-
-# IpUnidig
-dbLoadTemplate("IpUnidig.template")
-
-# DAC
-dbLoadTemplate("DAC.template")
 
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
@@ -85,13 +45,23 @@ dbLoadTemplate("DAC.template")
 dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13BMC:,S=scaler1,C=0")
 
 # Multichannel analyzer stuff
-### AIMConfig(serverName, ethernet_address, port, maxChans, maxSignals,
-###           maxSequences, ethernetDevice, queueSize)
-AIMConfig("AIM1/1", 0x6E6, 1, 2048, 1, 1, "dc0", 40)
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048")
-icbSetup("icb/1", 10, 100)
-icbConfig("icb/1", 0, 0x6e6, 5)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMC:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
+# Multichannel analyzer stuff
+# AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
+#           maxSignals, maxSequences, ethernetDevice)
+#AIMConfig("AIM1/1", 0x6E6, 1, 2048, 1, 1, "dc0")
+#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
+#icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
+#   portName to give to this asyn port
+#   ethernetAddress - Ethernet address of module, low order 16 bits
+#   icbAddress - rotary switch setting inside ICB module
+#   moduleType
+#      0 = ADC
+#      1 = Amplifier
+#      2 = HVPS
+#      3 = TCA
+#      4 = DSP
+#icbConfig("icbAdc1", 0x6e6, 5, 0)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -126,6 +96,9 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13BMC:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -135,6 +108,27 @@ dbLoadTemplate("vxStats.substitutions")
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(4, 8, 0x4000, 190, 5, 10)
+
+# Newport XPS configuration
+# XPSC8Setup(cards, scan rate)
+#XPSC8Setup(1, 60)
+
+# XPSC8Config(card, IP, PORT, number of axes)
+#XPSC8Config(0,"164.54.160.124",5001,6)
+#XPSC8Config(1,"164.54.160.131",5001,6)
+
+# XPSC8NameConfig(card,  axis, group, positioner)
+#XPSC8NameConfig(0,0,"GROUP1","GROUP1.PHI")
+#XPSC8NameConfig(0,1,"GROUP2","GROUP2.KAPPA")
+#XPSC8NameConfig(0,2,"GROUP3","GROUP3.OMEGA")
+#XPSC8NameConfig(0,3,"GROUP4","GROUP4.PSI")
+#XPSC8NameConfig(0,4,"GROUP5","GROUP5.2THETA")
+#XPSC8NameConfig(0,5,"GROUP6","GROUP6.NU")
+
+# Set the debug variables which are now available to the shell
+#motorRecordDebug = 0
+#devXPSC8Debug = 0
+#drvXPSC8Debug = 0
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -147,7 +141,6 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
-< ../requestFileCommands
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
