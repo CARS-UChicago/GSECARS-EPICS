@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\current\CARS\CARSApp\op\adl\13BM_monochromator.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BM_monochromator_B.adl"
 	version=020306
 }
 display {
 	object {
-		x=138
-		y=45
+		x=175
+		y=284
 		width=1101
 		height=560
 	}
@@ -1114,65 +1114,26 @@ composite {
 		}
 	}
 }
-composite {
+"related display" {
 	object {
-		x=4
-		y=375
-		width=610
-		height=45
+		x=554
+		y=400
+		width=60
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=4
-				y=375
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Tilt (compound)"
-		}
-		"text update" {
-			object {
-				x=16
-				y=400
-				width=150
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(TABLE)t1.EAX"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=554
-				y=400
-				width=60
-				height=20
-			}
-			display[0] {
-				label="All"
-				name="table.adl"
-				args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
-			}
-			display[1] {
-				label="Scan parameters"
-				name="scanParms.adl"
-				args="P=$(P1), Q=$(PITCH), PV=$(PITCH)"
-			}
-			clr=54
-			bclr=33
-			label="More"
-		}
+	display[0] {
+		label="All"
+		name="table.adl"
+		args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
 	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(PITCH), PV=$(PITCH)"
+	}
+	clr=54
+	bclr=33
+	label="More"
 }
 composite {
 	object {
@@ -1499,255 +1460,41 @@ composite {
 		}
 	}
 }
-composite {
+"related display" {
 	object {
-		x=4
-		y=265
-		width=610
-		height=45
+		x=554
+		y=289
+		width=60
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=4
-				y=267
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Tilt (single motor)"
-		}
-		"choice button" {
-			object {
-				x=441
-				y=269
-				width=50
-				height=40
-			}
-			control {
-				chan="$(P1)$(TILT).SET"
-				clr=54
-				bclr=33
-			}
-		}
-		"text update" {
-			object {
-				x=16
-				y=289
-				width=150
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(TILT).RBV"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=554
-				y=289
-				width=60
-				height=20
-			}
-			display[0] {
-				label="All"
-				name="motorx_all.adl"
-				args="P=$(P1), M=$(TILT)"
-			}
-			display[1] {
-				label="Scan parameters"
-				name="scanParms.adl"
-				args="P=$(P1), Q=$(TILT), PV=$(TILT)"
-			}
-			clr=54
-			bclr=33
-			label="More"
-		}
-		"message button" {
-			object {
-				x=312
-				y=284
-				width=25
-				height=25
-			}
-			control {
-				chan="$(P1)$(TILT).TWR"
-				clr=54
-				bclr=33
-			}
-			label="<"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=412
-				y=284
-				width=25
-				height=25
-			}
-			control {
-				chan="$(P1)$(TILT).TWF"
-				clr=54
-				bclr=33
-			}
-			label=">"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=334
-				y=284
-				width=80
-				height=25
-			}
-			control {
-				chan="$(P1)$(TILT).TWV"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=493
-				y=289
-				width=60
-				height=21
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C):scanParms.GO"
-				clr=54
-				bclr=51
-			}
-			label="Scan"
-			press_msg="1"
-		}
-		composite {
-			object {
-				x=193
-				y=265
-				width=110
-				height=45
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=198
-						y=284
-						width=100
-						height=25
-					}
-					control {
-						chan="$(P1)$(TILT).VAL"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=193
-						y=265
-						width=110
-						height=45
-					}
-					"basic attribute" {
-						clr=31
-						width=9
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(TILT).SET"
-					}
-				}
-				text {
-					object {
-						x=193
-						y=265
-						width=110
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(TILT).SET"
-					}
-					textix="SET"
-					align="horiz. centered"
-				}
-			}
-		}
-		composite {
-			object {
-				x=327
-				y=265
-				width=95
-				height=13
-			}
-			"composite name"=""
-			children {
-				oval {
-					object {
-						x=327
-						y=265
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=21
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(TILT).HLS"
-					}
-				}
-				text {
-					object {
-						x=342
-						y=265
-						width=70
-						height=13
-					}
-					"basic attribute" {
-						clr=30
-						fill="outline"
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(TILT).LVIO"
-					}
-					textix="Soft-Limit"
-				}
-				oval {
-					object {
-						x=412
-						y=265
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=21
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(TILT).LLS"
-					}
-				}
-			}
-		}
+	display[0] {
+		label="All"
+		name="motorx_all.adl"
+		args="P=$(P1), M=$(TILT)"
 	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(TILT), PV=$(TILT)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+"message button" {
+	object {
+		x=493
+		y=289
+		width=60
+		height=21
+	}
+	control {
+		chan="$(P1)DAC$(D)_$(C):scanParms.GO"
+		clr=54
+		bclr=51
+	}
+	label="Scan"
+	press_msg="1"
 }
 text {
 	object {
@@ -2004,5 +1751,149 @@ oval {
 	"dynamic attribute" {
 		clr="alarm"
 		chan="$(P1)$(PID)Locked"
+	}
+}
+text {
+	object {
+		x=4
+		y=267
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Tilt (compond)"
+}
+"text update" {
+	object {
+		x=16
+		y=289
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(TABLE)t1.EAX"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=312
+		y=284
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)T1:ax_tweak.B"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=412
+		y=284
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)T1:ax_tweak.A"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=334
+		y=284
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)T1:ax_tweakVal.VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=198
+		y=284
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)t1.AX"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=4
+		y=377
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Crystal Gap"
+}
+"text update" {
+	object {
+		x=173
+		y=400
+		width=75
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(TABLE)t1.EAZ"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=147
+		y=377
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Crystal Roll"
+}
+"text update" {
+	object {
+		x=21
+		y=400
+		width=75
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(TABLE)t1.EY"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
 	}
 }
