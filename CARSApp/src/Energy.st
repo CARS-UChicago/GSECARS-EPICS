@@ -17,8 +17,7 @@ program Energy("PRE=XXIDA:, ID=IDXX:, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, SH=ep
  *                     for 2nd crystal motions.
  */
 %%#include <math.h>
-%%#include <sysLib.h>
-%%#include <taskLib.h>
+%%#include <epicsThread.h>
 
 /* 2nd crystal table PVs  */
 double z2;        assign z2        to "{PRE}m14.VAL";         monitor z2;
@@ -310,7 +309,7 @@ ss Energy {
 	d_time = 0.1; 
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
-          taskDelay(d_time*sysClkRateGet());
+          epicsThreadSleep(d_time);
           still_busy = ((y2_track||z2_track) && (z2_done == 0)) ||
                         (xt_track  && (xt_done == 0)) ||
                         (xt2_track && (xt2_done == 0)) ||
@@ -439,7 +438,7 @@ ss Energy {
 	d_time = 0.1; 
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
-          taskDelay(d_time*sysClkRateGet());
+          epicsThreadSleep(d_time);
 	  still_busy = ((xt_track  && (xt_done == 0)) || 
 			(xt2_track && (xt2_done == 0)) ||
 			(th_done == 0) || id_busy);
