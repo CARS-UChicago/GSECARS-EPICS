@@ -2,13 +2,18 @@ file "$(IP330)/ip330App/Db/ip330Scan.template"
 {
 pattern
 {P,      R,        C, SERVER,   S,  GAIN,  SCAN,   EGUL, LOPR, EGUF, HOPR, PREC}
+# Channel 1 is photomultiplier for laser heating
 {13IDD:, IP330_1,  0, Ip330Scan1,  0,   0,      9,   -5.0, -5.0,  5.0,  5.0,   4}
+# Channel 2 is unused
 {13IDD:, IP330_2,  0, Ip330Scan1,  1,   0,      6,   -5.0, -5.0,  5.0,  5.0,   4}
-#Channel 3 is used for monitoring the beam intensity after the DAC table top slit
-#and the signal used for feeding back to the monochromator.
+# Channel 3 is ion chamber signal, used for monitoring the beam intensity after the DAC table top slit
+# and is used for feeding back to the monochromator.
 {13IDD:, IP330_3,  0, Ip330Scan1,  2,   0,      6,   -5.0, -5.0,  5.0,  5.0,   4}
+# Channel 4 is unused
 {13IDD:, IP330_4,  0, Ip330Scan1,  3,   0,      6,   -5.0, -5.0,  5.0,  5.0,   4}
+# Channel 5 is LVP heater?
 {13IDD:, IP330_5,  0, Ip330Scan1,  4,   0,      6,   -5.0, -5.0,  5.0,  5.0,   4}
+# Channel 6 is unused
 {13IDD:, IP330_6,  0, Ip330Scan1,  5,   0,      6,   -5.0, -5.0,  5.0,  5.0,   4}
 # 7 is used for MAR CCD shutter input
 {13IDD:, IP330_7,  0, Ip330Scan1,  6,   0,      9,   -5.0, -5.0,  5.0,  5.0,   4}
