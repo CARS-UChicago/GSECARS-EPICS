@@ -1,0 +1,81 @@
+# This database implements a 3 leg table.  It only does height. In the future
+# it could also do pitch and roll.
+# It used 3 real motors $(P)$(M1) and $(P)$(M2), $(P)$(M3) which move parallel to 
+# each other. It will move one soft motor $(P)$(SUM), moving all 3 together.
+
+# This record is where the soft motor writes its output.
+# It is needed because writing to a transform record field does not
+# cause the record to process?
+# We use forward links to the transform record (rather than making the INPA 
+# field of the transform record CP) so that the scan record waits 
+# for the motors to move.
+grecord(ao,"$(P)$(SUM)DVAL") {
+	field(FLNK, "$(P)$(T)Drive")
+}
+
+# This record is processed whenever the soft motor record SUM writes
+# new values to the DVAL record above.
+# Note: the INPA field gets its value directly from the .DVAL
+# field of the soft motor record, rather than from the DVAL record above.
+# This is because the .DVAL field is always correct, while the DVAL record
+# does not get updated when the soft motor .DVAL field is modified in SET mode.
+grecord(transform,"$(P)$(T)Drive") {
+	field(INPA,"$(P)$(SUM).DVAL NPP NMS")
+	field(CLCC,"A")
+      field(OUTC,"$(P)$(M1DRV) PP MS")
+	field(CLCD,"A")
+      field(OUTD,"$(P)$(M2DRV) PP MS")
+	field(CLCE,"A")
+      field(OUTE,"$(P)$(M3DRV) PP MS")
+	field(PREC,"$(PREC)")
+}
+
+# This record calculates the readback positions of the soft motor.  It 
+# processes whenever the readbacks of the real motors change.
+grecord(transform,"$(P)$(T)Readback") {
+	field(INPA,"$(P)$(M1RBV) CP MS")
+	field(INPB,"$(P)$(M2RBV) CP MS")
+	field(INPC,"$(P)$(M3RBV) CP MS")
+      field(CLCD,"(A+B+C)/3.")
+	field(PREC,"$(PREC)")
+}
+
+# This record calculates the drive positions of the soft motors.  It 
+# processes whenever the real motors stop moving (via $(P)$(T)Done) or whenever
+# one of the geometry constants changes.  It puts the soft motors in "set" 
+# mode before writing the outputs so that it does not cause those motors to 
+# write to their output links.
+grecord(transform,"$(P)$(T)DReadback") {
+	field(INPA,"$(P)$(M1DRV) NPP MS")
+	field(INPB,"$(P)$(M2DRV) NPP MS")
+	field(INPC,"$(P)$(M3DRV) NPP MS")
+      field(CLCG,"1")
+      field(OUTG,"$(P)$(SUM).SET NPP MS")
+	field(CLCI,"(A+B+C)/3.")
+      field(OUTI,"$(P)$(SUM).DVAL PP MS")
+      field(CLCK,"0")
+      field(OUTK,"$(P)$(SUM).SET NPP MS")
+	field(PREC,"$(PREC)")
+}
+
+# This record processes if the soft motor STOP field is set.
+grecord(dfanout,"$(P)$(T)Stop") {
+        field(VAL,"1")
+        field(OUTA,"$(P)$(M1STOP) PP MS")
+        field(OUTB,"$(P)$(M2STOP) PP MS")
+        field(OUTC,"$(P)$(M3STOP) PP MS")
+}
+
+# This record computes whether the compound motor is done moving.  
+# It goes to 1 when all real motors are done moving.
+# On the transition to 1 its causes the DReadback record to process, which 
+# updates the DVAL fields of the soft motors so they reflect the drive 
+# positions of the real motors.
+grecord(calcout,"$(P)$(T)Done") {
+        field(INPA,"$(P)$(M1DONE) CP MS")
+        field(INPB,"$(P)$(M2DONE) CP MS")
+        field(INPC,"$(P)$(M3DONE) CP MS")
+        field(CALC,"A & B & C")
+        field(OUT,"$(P)$(T)DReadback.PROC PP MS")
+        field(OOPT,"Transition To Non-zero")
+}
