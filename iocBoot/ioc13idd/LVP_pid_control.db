@@ -1,0 +1,160 @@
+grecord(epid,"$(P)$(PID)") {
+        field(INP,"$(P)$(INP)")
+        field(OUTL,"$(P)$(OUT) PP NMS")
+        field(SCAN,"$(SCAN)")
+        field(KP,"$(KP)")
+        field(KI,"$(KI)")
+        field(KD,"$(KD)")
+        field(LOPR,"$(LOPR)")
+        field(HOPR,"$(HOPR)")
+        field(DRVL,"$(DRVL)")
+        field(DRVH,"$(DRVH)")
+        field(PREC,"$(PREC)")
+        field(FLNK,"$(P)$(PID)_limits.VAL PP NMS")
+}
+grecord(transform,"$(P)$(PID)_limits") {
+        field(DESC,"PID limits")
+        field(CMTA,"Volts")
+        field(INPA,"$(P)$(INPV)  NPP NMS")
+        field(CMTB,"Amps")
+        field(INPB,"$(P)$(INPI)")
+        field(CMTC,"Resistance")
+        field(CLCC,"min(abs(a)/(max(b,.001)),10)")
+        field(CMTD,"Power")
+        field(CLCD,"b*b*c")
+        field(CMTE,"Control V/V")
+        field(CLCE,"1.")
+        field(CMTF,"Max. volts")
+        field(CLCF,"1.")
+        field(CMTG,"Max. amps")
+        field(CLCG,"10.")
+        field(CMTH,"Max. power")
+        field(CLCH,"10.")
+        field(CMTI,"Volt limit")
+        field(CLCI,"f")
+        field(CMTJ,"Current limit")
+        field(CLCJ,"g*c")
+        field(CMTK,"Power limit")
+        field(CLCK,"sqrt(h*c)")
+        field(CMTP,"Limit output")
+        field(CLCP,"min(i,min(j,k))/e")
+        field(OUTP,"$(P)$(PID).DRVH NPP NMS")
+        field(PREC,"$(PREC)")
+}
+# This record is used to compute the furnace resistance and power so we don't 
+# waste Keithley inputs for these calculcations, which slows things down
+grecord(transform,"$(P)LVP_furnace_calcs") {
+        field(DESC,"LVP furnace calcs")
+        field(CMTA,"Heater V")
+        field(INPA,"$(P)DMM2Ch1_calc.VAL  NPP NMS")
+        field(CMTB,"Heater A")
+        field(INPB,"$(P)DMM2Ch2_calc.VAL CPP NMS")
+        field(CMTC,"Resistance")
+        field(CLCC,"A/B")
+        field(CMTD,"Power")
+        field(CLCD,"A*B")
+        field(INPE,"$(P)DMM1Ch10_calc.VAL CPP NMS")
+        field(CMTE,"Temperature")
+        field(PREC,"3")
+}
+
+# These records are for tweaking the LVP furnace current
+grecord(ao,"$(P)LVP_AMP_tweak") {
+        field(PREC,"2")
+        field(VAL,"1")
+}
+
+grecord(calcout,"$(P)LVP_AMP_tweak_down") {
+        field(INPA,"$(P)LVP_AMP_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(OUT) NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(OUT) PP NMS")
+}
+
+grecord(calcout,"$(P)LVP_AMP_tweak_up") {
+        field(INPA,"$(P)LVP_AMP_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(OUT) NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(OUT) PP NMS")
+}
+
+# These records are for tweaking the LVP voltage limit
+grecord(ao,"$(P)LVP_VOLT_tweak") {
+        field(PREC,"2")
+        field(VAL,"1")
+}
+
+grecord(calcout,"$(P)LVP_VOLT_tweak_down") {
+        field(INPA,"$(P)LVP_VOLT_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(VOLT) NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(VOLT) PP NMS")
+}
+
+grecord(calcout,"$(P)LVP_VOLT_tweak_up") {
+        field(INPA,"$(P)LVP_VOLT_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(VOLT) NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(VOLT) PP NMS")
+}
+
+# These records are for tweaking the temperature setpoint
+grecord(ao,"$(P)LVP_SP_tweak") {
+        field(PREC,"3")
+}
+
+grecord(calcout,"$(P)SP_tweak_down") {
+        field(INPA,"$(P)LVP_SP_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(PID).VAL NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(PID).VAL PP NMS")
+}
+
+grecord(calcout,"$(P)SP_tweak_up") {
+        field(INPA,"$(P)LVP_SP_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(PID).VAL NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(PID).VAL PP NMS")
+}
+
+# Quench logic
+# This record turns off feedback
+grecord(ao,"$(P)LVP_quench") {
+        field(VAL,"0")
+        field(OUT, "$(P)$(PID).FBON PP NMS")
+        field(FLNK,"$(P)LVP_quench2")
+}
+
+# This record turns off the heater
+grecord(ao,"$(P)LVP_quench2") {
+        field(VAL,"0.0")
+        field(OUT, "$(P)$(OUT) PP NMS")
+}
+
+# These records pulse the current/voltage mode reset line from 0V to 10V for 1 second
+grecord(seq,"$(P)LVP_mode_reset") {
+        field(DOL1,"0.")
+        field(LNK1, "$(P)$(RESET) PP NMS")
+        field(DLY1,"0.1")
+        field(DOL2,"10.")
+        field(LNK2, "$(P)$(RESET) PP NMS")
+        field(DLY2,"0.1")
+        field(DOL3,"0.")
+        field(LNK3, "$(P)$(RESET) PP NMS")
+        field(DLY3,"1.0")
+}
+
+# These records display the current mode (current control or voltage control)
+grecord(calcout,"$(P)VoltModeCalc") {
+        field(PINI,"YES")
+        field(INPA,"$(P)IP330_5.VAL CP MS")
+        field(CALC,"A > 3.0")
+        field(OUT, "$(P)VoltageMode PP MS")
+}
+grecord(bo,"$(P)VoltageMode") {
+        field(ZNAM,"Current control")
+        field(ONAM,"Voltage Control")
+        field(ZSV,"NO_ALARM")
+        field(OSV,"MAJOR")
+}
+

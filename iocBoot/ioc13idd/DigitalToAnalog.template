@@ -1,0 +1,15 @@
+file CARSApp/Db/singleDAC.db, top
+{
+pattern
+{P,      D, N, C, IPSLOT, S,  EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC, LINR,  VAL}
+# Channel 1 is used for resistance heater - set range to 0V to 5V
+{13IDD:, 1, 1, 1,   d,    0, -10.0,   0.,  0.,  10.,  5.,   5.,    3,  LINEAR, 0.0}
+# Channel 2 is used for laser feedback - set range -5V to 0V
+{13IDD:, 1, 2, 1,   d,    1, -10.0, -5.,  -5.,  10.,  0.,   0.,    3,  LINEAR, 0.0}
+# Channel 5 is used for LVP furnace voltage control - set range 0V to +10V = 0 to 100%
+{13IDD:, 1, 5, 1,   d,    4, -100.0,  0.,   0.,  100., 100.,  100.,    2,  LINEAR, 0.0}
+# Channel 6 is used for LVP furnace current limit - set range  0V to +10V
+{13IDD:, 1, 6, 1,   d,    5, -100.0,  0.,   0.,  100., 100.,  100.,    2,  LINEAR, 0.0}
+# Channel 7 is used for LVP voltage to current mode reset - set range  0V to +10V
+{13IDD:, 1, 7, 1,   d,    6, -10.0,  0.,   0.,  10., 10.,   0.,    3,  LINEAR, 0.0}
+}
