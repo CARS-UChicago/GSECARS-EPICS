@@ -3,8 +3,8 @@ ipacAddVIPC616_01("0x3400,0xa2000000")
 
 # Initialize Octal UART stuff
 tyGSOctalDrv 2
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 0, 1)
+tyGSOctalModuleInit("UART0", "232", 0x80, 0, 0)
+tyGSOctalModuleInit("UART1", "232", 0x81, 0, 1)
 
 # Initialize Systran DAC
 # initDAC128V(char *portName, int carrier, int slot)
@@ -84,4 +84,4 @@ dbLoadTemplate("Ip330_ADC.template")
 # risingMask  = mask of bits to generate interrupts on low to high (24 bits)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 2, 100, 116, 0xffffff, 0xffffff)
-dbLoadTemplate("IpUnidig.template")
+dbLoadTemplate("ipUnidig.substitutions")
