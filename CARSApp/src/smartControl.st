@@ -66,6 +66,14 @@ program smartControl("P=13IDC:,R=smart1,PHI=PHI,KAPPA=KAPPA,OMEGA=OMEGA,TH=TTH, 
  *                          requests greater than .VMAX, and the motor could
  *                          take hours to slew a long distance, moving at the
  *                          previous (oscillation) speed.
+ *  Feb. 8, 2002     MLR    Changed _SIGN PVs from mbbo to bi.  Fixed logic
+ *                          of sign, since it was not working right, -1 was
+ *                          coming out as 2^32 because .RVAL field is ULONG.
+ *                          Fixed problem with reporting stage position=0 because
+ *                          kappa=0 when running Kappa_SMART with ADMODEL=P4.
+ *                          Fixed problem that smartVelocity was not initialized
+ *                          and SMART does not send velocity until motor is moved,
+ *                          so EPICS motor speeds were being set to 0 for unused axes.
  *
 */
 
@@ -240,10 +248,10 @@ double  axisOffset[MAX_AXES];
 
 double  axisSign[MAX_AXES];
                               assign  axisSign  to
-                                                   {"{P}{R}TTH_SIGN.RVAL",
-                                                    "{P}{R}OMEGA_SIGN.RVAL",
-                                                    "{P}{R}PHI_SIGN.RVAL",
-                                                    "{P}{R}KAPPA_SIGN.RVAL"};
+                                                   {"{P}{R}TTH_SIGN.VAL",
+                                                    "{P}{R}OMEGA_SIGN.VAL",
+                                                    "{P}{R}PHI_SIGN.VAL",
+                                                    "{P}{R}KAPPA_SIGN.VAL"};
                               monitor axisSign;
 
 double  axisLowCut[MAX_AXES];
@@ -308,10 +316,13 @@ ss smartControl {
             smartInTOIndex = pvIndex(smartInTO);
             smartInProcIndex = pvIndex(smartInProc);
             for (j=0; j<MAX_AXES; j++) {
-                if (motorExists[j]) {
-                    epicsMotorDoneIndex[j] = pvIndex(epicsMotorDone[j]);
-                    epicsMotorMaxAccel[j] = epicsMotorAccel[j];
-                }
+                epicsMotorDoneIndex[j] = pvIndex(epicsMotorDone[j]);
+                /* Save maximum acceleration time */
+                epicsMotorMaxAccel[j] = epicsMotorAccel[j];
+                /* Initialize smartVelocity to the current EPICS motor velocity,
+                 * converting from degrees/second to degrees/minute. We do this
+                 * because SMART does not send velocity until motor is moved */
+                smartVelocity[j] = epicsMotorVel[j]*60.;
             }
             /* Clear all event flags */
             efClear(smartInMon);
@@ -514,15 +525,19 @@ ss smartControl {
                     Debug(3, "Response to SMART: %s\n", smartOut);
                     pvPut(smartOut);
                 } else {
-                    motor = atoi(&token[1]) - 1;
-                    if (motor >= MAX_AXES) motor = MAX_AXES-1;
                     if (commandLen > 2) {
                         /* This is a command to update the position of 
                          * motor.  Ignore. */
                         token = NEXT_TOKEN;
                     } 
                     /* Report the position of the motor */
-                    sprintf(smartOut, "%f\r", smartPosition[motor]);
+                    motor = atoi(&token[1]) - 1;
+                    if (motor >= MAX_AXES) {
+                        /* If this is non-existent motor (stage) report position=10. */
+                        sprintf(smartOut, "%f\r", 10.);
+                    } else {
+                        sprintf(smartOut, "%f\r", smartPosition[motor]);
+                    }
                     Debug(3, "Response to SMART: %s\n", smartOut);
                     pvPut(smartOut);
                 }
@@ -614,16 +629,16 @@ ss smartControl {
 static void transformEpicsToSmart(SS_ID ssId, struct UserVar *pVar)
 {
     int i;
+    double sign;
 
     for (i=0; i<MAX_AXES; i++)
     {
+        if (pVar->axisSign[i] == 0) sign=1.; else sign=-1.;
         if (pVar->motorExists[i]) {
             pVar->smartPosition[i] = (pVar->epicsMotorPos[i] - 
-                                      pVar->axisOffset[i]) * 
-                                      pVar->axisSign[i];
+                                      pVar->axisOffset[i]) * sign;
         } else {
-            pVar->smartPosition[i] =  pVar->axisOffset[i] * 
-                                      pVar->axisSign[i];
+            pVar->smartPosition[i] =  pVar->axisOffset[i] *  sign;
         }
     }
 }
@@ -632,13 +647,14 @@ static void transformEpicsToSmart(SS_ID ssId, struct UserVar *pVar)
 static void transformSmartToEpics(SS_ID ssId, struct UserVar *pVar)
 {
     int i;
+    double sign;
 
     for (i=0; i<MAX_AXES; i++)
     {
+        if (pVar->axisSign[i] == 0) sign=1.; else sign=-1.;
         if (pVar->motorExists[i]) {
             pVar->epicsMotorPos[i] = pVar->axisOffset[i] + 
-                                     (pVar->axisSign[i] *
-                                      pVar->smartPosition[i]);
+                                     (sign * pVar->smartPosition[i]);
             CDebug(3, "epicsMotorPos[%d] =%f\n", i, pVar->epicsMotorPos[i]);
             CDebug(3, "axisLowCut[%d] =%f\n", i, pVar->axisLowCut[i]);
             CDebug(3, "axisHighCut[%d] =%f\n", i, pVar->axisHighCut[i]);
