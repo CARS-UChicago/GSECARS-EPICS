@@ -1,37 +1,37 @@
 # vxWorks startup file for 13BMA ioc
-
-cd "/home/epics/R3.13.3/CARS/iocBoot/ioc13bma"
+< cdCommands
 < ../nfsCommandsGSE
-cd "/home/epics/R3.13.3/CARS/iocBoot/ioc13bma"
-
 loginUserAdd "epics", "9cebSebcd"
 
-ld < bin/iocCore
-ld < bin/seq
-ld < bin/CARSLib
-# This IOC talks to a remote GPIB server
-#ld < bin/GpibHideosRemote.o
+cd topbin
+ld < iocCore
+ld < seq
+ld < CARSLib
 
-# Initialize MPF stuff
-routerInit
-tcpMessageRouterClientStart(1,9900,"164.54.160.121",10000,100)
+# This IOC loads the MPF server code locally
+cd startup
+< st_mpfserver.cmd
 
-#HiDEOSGpibLinkConfig(10,1,"GPIB0")
+cd topbin
+# This IOC talks to a local GPIB server
+ld < GpibHideosLocal.o
+
+# Currently, the only thing we do in initHooks is call reboot_restore(), which
+# restores positions and settings saved ~continuously while EPICS is alive.
+# See calls to "create_monitor_set()" at the end of this file.  To disable
+# autorestore, comment out the following line.
+ld < initHooks.o
+
+cd startup
+# override address, interrupt vector, etc. information in module_types.h
+module_types()
 
 devPM304Debug = 0
 drvPM304Debug = 0
 serialIODebug = 0
 devSerialDebug = 0
 serialRecordDebug = 0
-
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < bin/initHooks.o
-
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
+devSiStrParmDebug=0
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build.
@@ -43,34 +43,33 @@ abConfigVme 0,0xc00000,0x60,5
 abConfigAuto
 
 # Load database
-dbLoadRecords("CARSApp/Db/eps_valid.db", "P=13BMA:")
+dbLoadRecords("CARSApp/Db/eps_valid.db", "P=13BMA:",top)
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13BMA:,R=ser1,C=1,IPSLOT=a,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1")
-dbLoadRecords("share/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=1,IPSLOT=a,CHAN=0")
-dbLoadRecords("share/ipApp/Db/MKS.db","P=13BMA:,C=1,IPSLOT=a,CHAN=1,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3")
-dbLoadRecords("share/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=1,IPSLOT=a,CHAN=2")
-dbLoadRecords("share/ipApp/Db/MKS.db","P=13BMA:,C=1,IPSLOT=a,CHAN=3,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry")
-dbLoadRecords("share/ipApp/Db/MKS.db","P=13BMA:,C=1,IPSLOT=a,CHAN=4,CC1=cc9,CC2=ccyy,PR1=pr9,PR2=pryy")
-dbLoadRecords("share/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=1,IPSLOT=a,CHAN=5")
-dbLoadRecords("share/ipApp/Db/MKS.db","P=13BMA:,C=1,IPSLOT=a,CHAN=6,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy")
-dbLoadRecords("share/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=1,IPSLOT=a,CHAN=7")
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13BMA:,R=ser1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1",top)
+dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0",ip)
+dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=1,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3",ip)
+dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,IPSLOT=a,CHAN=2",ip)
+dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=3,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry",ip)
+dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=4,CC1=cc9,CC2=ccyy,PR1=pr9,PR2=pryy",ip)
+dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,IPSLOT=a,CHAN=5",ip)
+dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=6,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy",ip)
+dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,IPSLOT=a,CHAN=7",ip)
 
-#MN Oct 21
-dbLoadRecords "CARSApp/Db/generic_serial.db","P=13BMA:,R=ser2,C=1,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1"
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13BMA:,R=ser2,C=0,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1",top)
 
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=1,IPSLOT=b,CHAN=1")
-dbLoadRecords("share/mpcApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=1,IPSLOT=b,CHAN=2,PA=0,PN=1")
-dbLoadRecords("share/mpcApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=1,IPSLOT=b,CHAN=2,PA=0,PN=2")
-dbLoadRecords("share/mpcApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=1,IPSLOT=b,CHAN=2,PA=0")
-dbLoadRecords("share/ipApp/Db/MKS.db","P=13BMA:,C=1,IPSLOT=b,CHAN=3,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy")
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=1,IPSLOT=b,CHAN=4")
+dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,IPSLOT=b,CHAN=1",top)
+dbLoadRecords("ipApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=0,IPSLOT=b,CHAN=2,PA=0,PN=1",ip)
+dbLoadRecords("ipApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=0,IPSLOT=b,CHAN=2,PA=0,PN=2",ip)
+dbLoadRecords("ipApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=0,IPSLOT=b,CHAN=2,PA=0",ip)
+dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=b,CHAN=3,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy",ip)
+dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,IPSLOT=b,CHAN=4",top)
 
 dbLoadTemplate("motors.template")
 
 # BMD filter rack
-dbLoadRecords("CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
+dbLoadRecords("CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5",top)
 
 # Digital to analog converter, used for Queensgate piezo drivers
 dbLoadTemplate "DAC.template"
@@ -80,9 +79,9 @@ dbLoadTemplate "mono_pid.template"
  
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in share/stdApp/Db
+# Several versions (e.g., all_com_32.db) are in stdApp/Db
 # NOTE: this must exist for slit databases to work
-dbLoadRecords("share/stdApp/Db/all_com_24.db","P=13BMA:")
+dbLoadRecords("stdApp/Db/all_com_24.db","P=13BMA:",std)
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -90,7 +89,7 @@ dbLoadRecords("share/stdApp/Db/all_com_24.db","P=13BMA:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("share/stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10",std)
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -98,16 +97,16 @@ dbLoadRecords("share/stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPT
 dbLoadTemplate("scanParms.template")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("share/stdApp/Db/userStringCalcs10.db","P=13BMA:")
+dbLoadRecords("stdApp/Db/userStringCalcs10.db","P=13BMA:",std)
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("share/stdApp/Db/userTransforms10.db","P=13BMA:")
+dbLoadRecords("stdApp/Db/userTransforms10.db","P=13BMA:",std)
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("share/stdApp/Db/misc.db","P=13BMA:")
+dbLoadRecords("stdApp/Db/misc.db","P=13BMA:",std)
 
 # vxWorks statistics
-dbLoadRecords("share/stdApp/Db/VXstats.db","P=13BMA:")
+dbLoadRecords("stdApp/Db/VXstats.db","P=13BMA:",std)
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -126,18 +125,16 @@ PM304Setup(1, 1, 10)
 
 # PM304 driver configuration parameters: 
 #     (1) controller
-#     (2) Hideos card
+#     (2) Hideos/MPF card
 #     (3) Hideos task
 # Example:
 #   PM304Config(0, 1, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
-PM304Config(0, 1, "b-Serial[0]")
+PM304Config(0, 0, "b-Serial[0]")
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
-# This is a temporary delay to make sure 13bmaaux is running before iocInit
-taskDelay(1800)
 iocInit
 
 ### Start up the autosave task and tell it what to do.

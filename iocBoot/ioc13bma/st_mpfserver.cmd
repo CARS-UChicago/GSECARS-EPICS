@@ -1,16 +1,13 @@
-cd "/home/epics/R3.13.3/CARS/iocBoot/ioc13bma"
-< ../nfsServerCommandsGSE
-cd "/home/epics/R3.13.3/CARS/iocBoot/ioc13bma"
-
-ld < serverBin/mpfLib 
-ld < serverBin/mpfServLib 
-
-carrier = "ipac"
-ipacAddCarrier(&ipmv162, "A:l=3,3 m=0xe0000000,64;B:l=3,3 m=0xe0010000,64;C:l=3,3 m=0xe0020000,64;D:l=3,3 m=0xe0030000,64")
-initIpacCarrier(carrier, 0)
+cd topbin
+# This loads the MPF server stuff
+ld < mpfServLib 
 
 routerInit
-tcpMessageRouterServerStart(1,9900,"164.54.160.121",10000,100)
+localMessageRouterStart(0)
+
+carrier = "ipac"
+ipacAddCarrier(&vipc616_01, "0x3000,0xa0000000")
+initIpacCarrier(carrier, 0)
 
 # Initialize GPIB stuff
 #initGpibGsTi9914("GS-IP488-0",carrier,"IP_c",104)
@@ -60,7 +57,4 @@ initSerialServer("b-Serial[4]","UART[12]",1000,20,"\r",1)
 initDAC128V("d-DAC",carrier,"IP_d",20)
 
 # DEBUGGING
-#serialPortSniff("UART[3]",1000)
-
-
-
+#serialPortSniff("UART[12]",1000)

@@ -1,4 +1,4 @@
-file CARSApp/Db/motor.db
+file CARSApp/Db/motor.db, top
 {
 pattern
 {P,       M,    DTYP,          C,    S,   DESC,         EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
@@ -29,7 +29,7 @@ pattern
 {13BMA:,  m25,  "OMS VME58",   2,    7, "BMB bottom slit", mm,    Neg,    2.,    .1,     0,    0.2,      0.05,     1.5,     400,    0.50,   3,     50,       0}
 }
 
-file share/stdApp/Db/2slit.db
+file stdApp/Db/2slit.db, std
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
@@ -37,14 +37,14 @@ pattern
 {13BMA:, Slit1H,   m4,   m3}
 }
 
-file share/stdApp/Db/2slit.db
+file stdApp/Db/2slit.db, std
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit2V,   m24,  m25}
 }
 
-file share/stdApp/Db/table.db
+file stdApp/Db/table.db, std
 {
 pattern
 {P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
@@ -52,7 +52,7 @@ pattern
 }
 
 
-#file share/stdApp/Db/table.db
+#file stdApp/Db/table.db, std
 #{
 #pattern
 #{P,            Q,      T,   M0X,   M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
@@ -60,7 +60,7 @@ pattern
 #}
 
 
-file share/stdApp/Db/scanParms.db
+file stdApp/Db/scanParms.db, std
 {
 {P=13BMA:,SCANREC=13BMD:scan1,Q=Slit1Hp,POS=Slit1Hxp.VAL,RDBK=Slit1Ht2.A}
 {P=13BMA:,SCANREC=13BMD:scan1,Q=Slit1Hn,POS=Slit1Hxn.VAL,RDBK=Slit1Ht2.B}
@@ -72,13 +72,14 @@ file share/stdApp/Db/scanParms.db
 {P=13BMA:,SCANREC=13BMD:scan1,Q=Slit1Vcenter,POS=Slit1Vcenter.VAL,RDBK=Slit1Vt2.D}
 }
 
-file CARSApp/Db/Energy.db {
+file CARSApp/Db/Energy.db, top
+{
 pattern
 {P,      EN,   DESC,     EGU,  PREC,  SCANREC,       USEID,  TWEAK}
 {13BMA:,  E,  "Energy",   eV,    4,   13BMA:scan1,       0,   1.00}
 }
 
-file CARSApp/Db/pseudoMotor.db
+file CARSApp/Db/pseudoMotor.db, top
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,              EGU,  DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC, MRES, RRES, PREC, DHLM,   DLLM}
@@ -91,7 +92,7 @@ pattern
 
 }
 
-file CARSApp/Db/sumDiff2D.db
+file CARSApp/Db/sumDiff2D.db, top
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
