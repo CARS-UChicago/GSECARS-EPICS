@@ -174,7 +174,7 @@ display {
 	display[0] {
 		label="Sample Stage"
 		name="SampleXYZ.adl"
-		args="P=13BMD:, X=m35, Y=m34, Z=m33"
+		args="P=13BMD:, X=m33, Y=m34, Z=m35"
 	}
 	display[1] {
 		label="BM D Slits"
@@ -220,12 +220,12 @@ display {
 	display[0] {
 		label="Monochromator"
 		name="13BM_mono_small.adl"
-		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12, TABLE=MON:"
+		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
 	}
 	display[1] {
 		label="Monochromator (Full)"
 		name="13BM_monochromator.adl"
-		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12, TABLE=MON:"
+		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
 	}
 	display[2] {
 		label="Crystal Cage Table"
@@ -561,7 +561,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="13BMA:mono_pid1EnableShutter"
+		chan="13BMA:FOEEnableShutter"
 		clr=54
 		bclr=1
 	}
@@ -597,6 +597,10 @@ menu {
 		label="Status and Beam Positions"
 		name="MRD_BM.adl"
 		args="xx=13"
+	}
+	display[4] {
+		label="BMD XAS Status"
+		name="13BMD_xasstat.adl"
 	}
 	display[7] {
 		label="GSE Main Menu"

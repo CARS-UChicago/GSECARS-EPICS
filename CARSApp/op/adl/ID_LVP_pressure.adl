@@ -1,0 +1,1308 @@
+
+file {
+	name="g:\epics\support\CARS\CARSApp\op\adl\ID_LVP_pressure.adl"
+	version=020306
+}
+display {
+	object {
+		x=642
+		y=255
+		width=479
+		height=580
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=75
+		y=11
+		width=324
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1000 Ton Press Load Control"
+}
+text {
+	object {
+		x=157
+		y=51
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Load (tons)"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=391
+		y=74
+		width=70
+		height=20
+	}
+	display[0] {
+		label="PID control"
+		name="pid_control.adl"
+		args="P=$(P), PID=$(R)PID, TITLE=LVP_Pressure"
+	}
+	display[1] {
+		label="Generic serial"
+		name="Serial_IO.adl"
+		args="REC=$(P)$(R)Serial"
+	}
+	display[2] {
+		label="Scan"
+		name="scan_more.adl"
+		args="P=$(P), S=$(R)RampScan, N="
+	}
+	clr=14
+	bclr=51
+	label="More"
+}
+menu {
+	object {
+		x=78
+		y=74
+		width=87
+		height=20
+	}
+	control {
+		chan="$(P)$(R)ReadValue.SCAN"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=10
+		y=77
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Update:"
+}
+rectangle {
+	object {
+		x=2
+		y=48
+		width=471
+		height=200
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"text update" {
+	object {
+		x=193
+		y=74
+		width=93
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Value"
+		clr=54
+		bclr=3
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=195
+		y=103
+		width=91
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PID.VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=170
+		y=103
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PID_tweak_down.PROC"
+		clr=14
+		bclr=51
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=291
+		y=103
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PID_tweak_up.PROC"
+		clr=14
+		bclr=51
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=325
+		y=103
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PID_tweak"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=378
+		y=106
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+text {
+	object {
+		x=203
+		y=131
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Feedback"
+}
+menu {
+	object {
+		x=133
+		y=173
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PID.FBON"
+		clr=14
+		bclr=51
+	}
+}
+"text entry" {
+	object {
+		x=259
+		y=173
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PID.KP"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=267
+		y=153
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Gain"
+}
+text {
+	object {
+		x=156
+		y=153
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="On/Off"
+}
+text {
+	object {
+		x=311
+		y=178
+		width=45
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="(% output/ton error)"
+}
+"related display" {
+	object {
+		x=24
+		y=173
+		width=70
+		height=20
+	}
+	display[0] {
+		label="Plot setpoint and readback"
+		name="pid_plot_readback.adl"
+		args="P=$(P), PID=$(R)PID, TITLE=LVP_Pressure"
+	}
+	clr=14
+	bclr=51
+	label="Plot"
+}
+text {
+	object {
+		x=40
+		y=154
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Plot"
+}
+composite {
+	object {
+		x=2
+		y=435
+		width=471
+		height=140
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=192
+				y=440
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ramp Load"
+		}
+		composite {
+			object {
+				x=99
+				y=469
+				width=70
+				height=54
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=116
+						y=469
+						width=36
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Time"
+					align="horiz. centered"
+				}
+				"text entry" {
+					object {
+						x=99
+						y=503
+						width=70
+						height=20
+					}
+					control {
+						chan="$(P)$(R)RampTime.A"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=103
+						y=485
+						width=63
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="(hours)"
+					align="horiz. centered"
+				}
+			}
+		}
+		composite {
+			object {
+				x=174
+				y=469
+				width=65
+				height=54
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=184
+						y=469
+						width=45
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Start"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=188
+						y=485
+						width=36
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Ramp"
+					align="horiz. centered"
+				}
+				"message button" {
+					object {
+						x=174
+						y=504
+						width=65
+						height=19
+					}
+					control {
+						chan="$(P)$(R)StartRamp.PROC"
+						clr=14
+						bclr=61
+					}
+					label="Start"
+					press_msg="1"
+				}
+			}
+		}
+		text {
+			object {
+				x=35
+				y=552
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=64
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P)$(R)RampScan.EXSC"
+			}
+			textix="Done"
+		}
+		text {
+			object {
+				x=22
+				y=552
+				width=63
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P)$(R)RampScan.EXSC"
+			}
+			textix="Ramping"
+		}
+		text {
+			object {
+				x=26
+				y=532
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Status"
+		}
+		rectangle {
+			object {
+				x=2
+				y=435
+				width=471
+				height=140
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		composite {
+			object {
+				x=4
+				y=469
+				width=90
+				height=54
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=4
+						y=469
+						width=90
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Final Load"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=22
+						y=485
+						width=54
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="(tons)"
+					align="horiz. centered"
+				}
+				"text entry" {
+					object {
+						x=14
+						y=503
+						width=70
+						height=20
+					}
+					control {
+						chan="$(P)$(R)RampScan.P1EP"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=113
+				y=532
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Point"
+		}
+		text {
+			object {
+				x=258
+				y=469
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Stop"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=258
+				y=485
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ramp"
+			align="horiz. centered"
+		}
+		"message button" {
+			object {
+				x=244
+				y=504
+				width=65
+				height=19
+			}
+			control {
+				chan="$(P)$(R)RampScan.EXSC"
+				clr=14
+				bclr=20
+			}
+			label="Stop"
+			press_msg="0"
+		}
+		text {
+			object {
+				x=408
+				y=469
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Resume"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=408
+				y=485
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ramp"
+			align="horiz. centered"
+		}
+		"message button" {
+			object {
+				x=394
+				y=504
+				width=65
+				height=19
+			}
+			control {
+				chan="$(P)$(R)RampScan.PAUS"
+				clr=14
+				bclr=30
+			}
+			label="Resume"
+			press_msg="0"
+		}
+		text {
+			object {
+				x=332
+				y=469
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pause"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=332
+				y=485
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ramp"
+			align="horiz. centered"
+		}
+		"message button" {
+			object {
+				x=318
+				y=504
+				width=65
+				height=19
+			}
+			control {
+				chan="$(P)$(R)RampScan.PAUS"
+				clr=14
+				bclr=30
+			}
+			label="Pause"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=277
+				y=532
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Message"
+		}
+		"text update" {
+			object {
+				x=194
+				y=551
+				width=270
+				height=15
+			}
+			monitor {
+				chan="$(P)$(R)RampScan.SMSG"
+				clr=54
+				bclr=2
+			}
+			limits {
+			}
+		}
+		composite {
+			object {
+				x=91
+				y=552
+				width=89
+				height=15
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=140
+						y=552
+						width=40
+						height=15
+					}
+					monitor {
+						chan="$(P)$(R)RampScan.NPTS"
+						clr=14
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=91
+						y=552
+						width=40
+						height=15
+					}
+					monitor {
+						chan="$(P)$(R)RampScan.CPT"
+						clr=14
+						bclr=3
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=132
+						y=552
+						width=7
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="/"
+					align="horiz. centered"
+				}
+			}
+		}
+	}
+}
+"text entry" {
+	object {
+		x=195
+		y=201
+		width=91
+		height=20
+	}
+	control {
+		chan="$(P)$(R)Switch.B"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=49
+		y=204
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Switchover Load"
+}
+text {
+	object {
+		x=295
+		y=204
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Radial to Syringe"
+}
+"text entry" {
+	object {
+		x=26
+		y=283
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC).VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=160
+		y=283
+		width=152
+		height=20
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC).VAL"
+		clr=14
+		bclr=51
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=136
+		y=284
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC)_tweak.A"
+		clr=14
+		bclr=51
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=316
+		y=284
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC)_tweak.B"
+		clr=14
+		bclr=51
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=355
+		y=283
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC)_tweakVal"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=408
+		y=286
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+"message button" {
+	object {
+		x=36
+		y=260
+		width=80
+		height=19
+	}
+	control {
+		chan="$(P)$(R)StopRadial.PROC"
+		clr=14
+		bclr=20
+	}
+	label="Stop motor"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=115
+		y=311
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC).DRVL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=270
+		y=311
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(RADIAL_DAC).DRVH"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=314
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Upper limit"
+}
+text {
+	object {
+		x=11
+		y=314
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Lower limit"
+}
+text {
+	object {
+		x=162
+		y=257
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Radial Speed(%)"
+}
+rectangle {
+	object {
+		x=2
+		y=254
+		width=471
+		height=85
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=75
+		y=227
+		width=108
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Blowout Drop"
+}
+"text entry" {
+	object {
+		x=195
+		y=224
+		width=91
+		height=20
+	}
+	control {
+		chan="$(P)$(R)Blowout.C"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=2
+		y=345
+		width=475
+		height=85
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=2
+				y=345
+				width=475
+				height=85
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=157
+				y=348
+				width=160
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Syringe Speed(%)"
+		}
+		"text entry" {
+			object {
+				x=26
+				y=374
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC).VAL"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		valuator {
+			object {
+				x=160
+				y=374
+				width=152
+				height=20
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC).VAL"
+				clr=14
+				bclr=51
+			}
+			dPrecision=1.000000
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=136
+				y=375
+				width=20
+				height=19
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC)_tweak.A"
+				clr=14
+				bclr=51
+			}
+			label="<"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=316
+				y=375
+				width=20
+				height=19
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC)_tweak.B"
+				clr=14
+				bclr=51
+			}
+			label=">"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=355
+				y=374
+				width=50
+				height=20
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC)_tweakVal"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=408
+				y=377
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Tweak"
+		}
+		"message button" {
+			object {
+				x=36
+				y=351
+				width=80
+				height=19
+			}
+			control {
+				chan="$(P)$(R)StopSyringe.PROC"
+				clr=14
+				bclr=20
+			}
+			label="Stop motor"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=115
+				y=402
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC).DRVL"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=270
+				y=402
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)$(SYRINGE_DAC).DRVH"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=359
+				y=405
+				width=99
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Upper limit"
+		}
+		text {
+			object {
+				x=11
+				y=405
+				width=99
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Lower limit"
+		}
+	}
+}
+"message button" {
+	object {
+		x=36
+		y=103
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P)$(R)StopBoth.PROC"
+		clr=14
+		bclr=20
+	}
+	label="Stop all"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=293
+		y=225
+		width=93
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)BlowoutLatch"
+		clr=54
+		bclr=2
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=394
+		y=225
+		width=70
+		height=19
+	}
+	control {
+		chan="$(P)$(R)BlowoutLatch"
+		clr=14
+		bclr=15
+	}
+	label="Reset"
+	press_msg="0"
+}
