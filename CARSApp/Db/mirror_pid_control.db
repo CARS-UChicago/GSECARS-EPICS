@@ -1,0 +1,71 @@
+grecord(epid,"$(P)$(PID)") {
+        field(INP,"$(P)$(PID)_incalc.D PP MS")
+        field(OUTL,"$(OUT) PP NMS")
+        field(SCAN,"$(SCAN)")
+        field(KP,"$(KP)")
+        field(KI,"$(KI)")
+        field(KD,"$(KD)")
+        field(LOPR,"$(LOPR)")
+        field(HOPR,"$(HOPR)")
+        field(DRVL,"$(DRVL)")
+        field(DRVH,"$(DRVH)")
+        field(PREC,"$(PREC)")
+        field(FLNK,"$(P)$(PID)_limits.VAL PP NMS")
+}
+grecord(transform,"$(P)$(PID)_limits") {
+        field(DESC,"PID limits")
+        field(CMTA,"Low input")
+        field(INPA,"$(DRVL)")
+        field(CMTB,"High limit")
+        field(INPB,"$(DRVH)")
+        field(CMTO,"Low output")
+        field(CLCO,"a")
+        field(OUTO,"$(P)$(PID).DRVL NPP NMS")
+        field(CMTP,"High output")
+        field(CLCP,"b")
+        field(OUTP,"$(P)$(PID).DRVH NPP NMS")
+        field(PREC,"$(PREC)")
+}
+grecord(transform,"$(P)$(PID)_incalc") {
+        field(DESC,"PID input calculation")
+        field(CMTA,"A/D converter")
+        field(INPA,"$(INP)")
+        field(CMTB,"Ring current")
+        field(INPB,"S:SRcurrentAI")
+        field(CMTC,"Normalization constant")
+        field(INPC,"2000")
+        field(CMTD,"Normalized input")
+        field(CLCD,"A*C/B")
+        field(PREC,"$(PREC)")
+}
+
+# These records control auto-resetting the feedback
+grecord(bo,"$(P)$(PID)EnableReset") {
+        field(ZNAM,"Disable")
+        field(ONAM,"Enable")
+}
+
+grecord(calcout,"$(P)$(PID)ResetFB") {
+        field(DISV,"0")
+        field(SDIS,"$(P)$(PID)EnableReset NPP NMS")
+        field(INPA,"$(P)$(PID).OVAL CP MS")
+        field(INPB,"$(P)$(PID).DRVL CP MS")
+        field(INPC,"$(P)$(PID).DRVH CP MS")
+        field(CALC, "(A=B) || (A=C)")
+        field(OOPT, "When Non-zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "(A=B) ? C:B")
+        field(OUT, "$(P)$(PID).I NPP NMS")
+}
+
+# This record computes whether the feedback is locked-in.  This is defined to
+# be that the shutter is open and abs(error/setpoint) < 5%
+grecord(calcout,"$(P)$(PID)Locked") {
+        field(INPA,"$(SHUT_STATUS) CP MS")
+        field(INPB,"$(P)$(PID).ERR CP MS")
+        field(INPC,"$(P)$(PID).VAL CP MS")
+        field(INPD,".05")
+        field(CALC, "A && (ABS(B/C) < D)")
+        field(LOW, "0")
+        field(LSV, "MAJOR")
+}
