@@ -10,12 +10,12 @@ icb_adcs        = ['adc1']
 icb_hvps        = ['hvps1']
 icb_tcas        = ['tca1']
 dmms            = ['DMM1']
-;mcas            = ['aim_adc1', 'aim_adc2']
-tables          = ['MON:t1','DIF:t1']
+mcas            = ['aim_adc1', 'aim_adc2']
+;tables          = ['MON:t1','DIF:t1']
 ;smart           = ['smart1']
 
 create_autosavefiles, prefix          = prefix,          $
-                      nmotors         = 12,               $
+                      nmotors         = 8,               $
 ;                     npseudomotors   = 4,               $
                       nscans          = 4,               $
                       scalers         = scalers,         $

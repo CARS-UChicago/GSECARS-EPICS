@@ -40,7 +40,7 @@ devE500Debug=0
 drvE500Debug=0
 aimDebug=0
 icbDebug=0
-dxpRecordDebug=0
+dxpRecordDebug=1
 mcaDXPServerDebug=0
 devDxpMpfDebug=0
 

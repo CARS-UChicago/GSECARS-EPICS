@@ -50,7 +50,9 @@ devSiStrParmDebug = 0
 devAiMKSDebug=0
 devAiDigitelDebug=0
 devAoDAC128VDebug=0
-devLiIpUnidigDebug=0
+IpUnidigDebug=0
+IpUnidigServerDebug=3
+devLiIpUnidigDebug=10
 devBiIpUnidigDebug=0
 devBoIpUnidigDebug=0
 devSerialDebug=0
@@ -70,30 +72,39 @@ dbLoadDatabase("../../dbd/CARSApp.dbd")
 # Generic GPIB record
 dbLoadRecords ("CARSApp/Db/generic_gpib.db","P=13LAB:,R=gpib1,SIZE=4096", top)
 
-# generic serial port
-# Port 1 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB:,R=LAE500,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-
-# Encoder readout unit
-#dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,IPSLOT=a,CHAN=3", top)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
-
-# Keithley Multimeter
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=5", top)
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", top)
-
-# Stanford Research Systems SR570 Current Preamplifier
-dbLoadRecords("ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,IPSLOT=a,CHAN=7", ip)
-
-# Performance tester - don't load routinely
-#dbLoadRecords("CARSApp/Db/perform.db", top)
-
+# Channel 0 is for SMART
 # SMART detector database
 #str=malloc(256)
 #strcpy(str,"P=13LAB:,R=smart1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,")
 #strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 #dbLoadRecords("CARSApp/Db/smartControl.db",str, top)
+
+# Port 1 has Newport LAE500 Laser Autocollimator (and generic serial port)
+dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB:,R=LAE500,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+
+# Port 3 Encoder readout unit
+#dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,IPSLOT=a,CHAN=3", top)
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
+
+# Ports 4, 5, 6 Keithley Multimeter
+dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=4", ip)
+dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=5", ip)
+dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,C=0,IPSLOT=a,CHAN=6", ip)
+
+# Stanford Research Systems SR570 Current Preamplifier
+dbLoadRecords("ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,IPSLOT=a,CHAN=7", ip)
+
+# Performance tester - don't load routinely
+
+# Test initialization of ipUnidig
+#dbLoadRecords("testUnidig.db", "P=13LAB:")
+
+# Heidenhain IK320 VME encoder interpolator
+#dbLoadRecords("stdApp/Db/IK320card.db","P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3", std)
+#dbLoadRecords("stdApp/Db/IK320card.db","P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3", std)
+#dbLoadRecords("stdApp/Db/IK320group.db","P=13LAB:,group=5", std)
+#drvIK320RegErrStr()
 
 # DAC
 dbLoadTemplate "DAC.template"
@@ -246,5 +257,6 @@ dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
+seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=20, stack=10000"
+seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
 
