@@ -21,20 +21,21 @@ pattern
 {13IDD:,  m3,    "OMS VME58",   0,    2, "Y (vertical) stage",     mm,       Pos,   0.2,   0.03,  .5,    0,      1,     .2,     400,    -.02,   3,      40,     0}
 {13IDD:,  m4,    "OMS VME58",   0,    3, "Z (along beam) stage",   mm,       Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
 #Exchanged with m23, GS, 10/9/01
-{13IDD:,  m23,    "OMS VME58",   0,    4, "X (in-out) stage",      mm,       Neg,   1.0,   0.2,   .1,    0,      1,     .1,     200,    -.1,    3,      150,    0}
+{13IDD:,  m23,    "OMS VME58",   0,    4, "X (in-out) stage",      mm,       Neg,   1.0,   0.2,   .1,    -.02,      1,     .1,     200,    -.1,    3,      150,    0}
 {13IDD:,  m6,    "OMS VME58",   0,    5, "Omega",                  deg,      Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      360,    -360}
 
 #13IDD DAC Detector
-{13IDD:,  m7,    "OMS VME58",   0,    6, "Det. X pos.",            mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25,     0}
-{13IDD:,  m8,    "OMS VME58",   0,    7, "Det. Y pos.",            mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
+#{13IDD:,  m7,    "OMS VME58",   0,    6, "Detector X",            mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25,     0}
+{13IDD:,  m7,    "OMS VME58",   0,    6, "Clean_up X pos.",        mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
+{13IDD:,  m8,    "OMS VME58",   0,    7, "to be checked",          mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
 
 #13IDD DAC Table top slits
 {13IDD:,  m9,    "OMS VME58",   1,    0, "Vert. slit Y pos.",      mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
 {13IDD:,  m10,   "OMS VME58",   1,    1, "Vert. slit rotation",    deg,      Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
-{13IDD:,  m11,   "OMS VME58",   1,    2, "Vert. slit width",       mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
+{13IDD:,  m11,   "OMS VME58",   1,    2, "Vert. slit width",       mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
 {13IDD:,  m12,   "OMS VME58",   1,    3, "Hor. slit X pos.",       mm,       Neg,   1.0,   .1,    .1,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
 {13IDD:,  m13,   "OMS VME58",   1,    4, "Hor. slit rotation",     deg,      Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
-{13IDD:,  m14,   "OMS VME58",   1,    5, "Hor. slit width",        mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
+{13IDD:,  m14,   "OMS VME58",   1,    5, "Hor. slit width",        mm,       Pos,   0.5,   .1,    .5,    0.1,      1,     .2,     100,     0.10,  3,      25,     0}
 
 #13IDD DAC Lift Table
 {13IDD:,  m15,   "OMS VME58",   1,    6, "Inboard Y",              mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
@@ -43,28 +44,31 @@ pattern
 {13IDD:,  m18,   "OMS VME58",   2,    1, "Downstream X",           mm,       Pos,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
 {13IDD:,  m19,   "OMS VME58",   2,    2, "Inboard X",              mm,       Pos,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
 
-#motor 20 is used for analyzer motor OR for chi stage
+#motor 20 is used for analyzer motor OR for chi stage OR for clean up slit
 #{13IDD:,  m20,   "OMS VME58",   2,    3, "Chi rotation",           deg,      Neg,    5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
-{13IDD:,  m20,   "OMS VME58",   2,    3, "Analyzer angle",          deg,      Neg,    0.5,   .05,    .2,    0,     1,     .2,     400,    -0.05,  6,      270,     250}
+#{13IDD:,  m20,   "OMS VME58",   2,    3, "Analyzer angle",        deg,      Neg,    0.5,   .05,    .2,    0,     1,     .2,     400,    -0.05,  6,      270,     250}
+{13IDD:,  m20,    "OMS VME58",   2,    3, "Clean_up Y pos.",        mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
+
 
 #motors for the carbon miror
 {13IDD:,  m21,   "OMS VME58",   2,    4, "UpStream C-mirror",       mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
 {13IDD:,  m22,   "OMS VME58",   2,    5, "DownStream C-mirror",     mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
-{13IDD:,  m5,    "OMS VME58",   2,    6, "X (in-out) stage",       mm,       Neg,   1.0,   0.2,   .1,    -0.0,    1,     .1,     200,    -.1,    3,      150,    0}
-{13IDD:,  m24,   "OMS VME58",   2,    7, "Det. Y pos.",            mm,       Neg,   5.0,   .1,    .5,      0,      1,     .2,     200,    -0.10,  3,      100,    0}
+{13IDD:,  m5,    "OMS VME58",   2,    6, "X (in-out) stage",        mm,       Neg,   1.0,   0.2,   .1,    -0.0,    1,     .1,     200,    -.1,    3,      150,    0}
+{13IDD:,  m24,   "OMS VME58",   2,    7, "Photodiode pos.",         mm,       Neg,   5.0,   .1,    .5,      0,      1,     .2,     200,    -0.10,  3,      100,    0}
 
 # LVP front slits
-{13IDD:,  m25,   "OMS VME58",   3,    0, "Vert. slit pos. (Y)",       mm,     Pos,   0.5,   .1,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
+{13IDD:,  m25,   "OMS VME58",   3,    0, "Vert. slit pos. (Y)",     mm,     Pos,   0.5,   .1,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
 {13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
 
 # LVP CCD camera stage
 {13IDD:,  m27,   "OMS VME58",   3,    2, "Phosphor X",                mm,     Pos,   0.5,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
-{13IDD:,  m28,   "OMS VME58",   3,    3, "Stage X",                   mm,     Pos,   0.5,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
+{13IDD:,  m28,   "OMS VME58",   3,    3, "Stage X",                   mm,     Neg,   0.5,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
 {13IDD:,  m29,   "OMS VME58",   3,    4, "Stage Y",                   mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     70,     0}
 {13IDD:,  m30,   "OMS VME58",   3,    5, "Stage Z",                   mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     70,     0}
 
 # Unused
-{13IDD:,  m31,   "OMS VME58",   3,    6, "M31",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
+#m31 used for ceanup slits in the DAC setup, GS 10/30/2001
+{13IDD:,  m31,   "OMS VME58",   3,    6, "Clean_up Y pos."            mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
 {13IDD:,  m32,   "OMS VME58",   3,    7, "M32",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
 
 # Detector X: 100:1 gear reducer, 5 threads/inch leadscrew, UREV = 25.4/(100*5) = .0508
