@@ -11,7 +11,7 @@
 #  57-63     7      None        LVP Detector Slits (57-60)
 
 
-file CARSApp/Db/motor.db, top
+file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,        DTYP,       C,    S,   DESC,                   EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
@@ -26,7 +26,8 @@ pattern
 
 #13IDD DAC Detector
 #{13IDD:,  m7,    "OMS VME58",   0,    6, "Detector X",            mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25,     0}
-{13IDD:,  m7,    "OMS VME58",   0,    6, "Clean_up X pos.",        mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
+#Motor with 0.1 micron resolution
+{13IDD:,  m7,    "OMS VME58",   0,    6, "X-ray CCD X Pos",        mm,       Pos,   0.5,   .1,    .5,    .1,      1,    .2,     200,     0.010,  3,      25,     0}
 {13IDD:,  m8,    "OMS VME58",   0,    7, "to be checked",          mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
 
 #13IDD DAC Table top slits
@@ -36,7 +37,11 @@ pattern
 {13IDD:,  m11,    "OMS VME58",  1,    2, "Inboard Slit",           mm,       Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
 #{13IDD:,  m11,   "OMS VME58",  1,    2, "V slit width",           mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
 {13IDD:,  m12,   "OMS VME58",   1,    3, "Outboard slit",          mm,       Pos,   1.0,   .1,    .1,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
-{13IDD:,  m13,   "OMS VME58",   1,    4, "Clean_up Y pos.",        microns,  Pos,  150.0,    10,    .2,    0,      1,     .2,       48,     3.546,  1,      8e3,    0}
+#Micro-scale
+#{13IDD:,  m13,   "OMS VME58",   1,    4, "Clean_up Y pos.",        microns,  Pos,  150.0,    10,    .2,    0,      1,     .2,       48,     3.546,  1,      8e3,    0}
+#Milimeter scale
+{13IDD:,  m13,   "OMS VME58",   1,    4, "Clean_up Y pos.",        mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
+#motor14 needs to be checked GS 9/26/03
 {13IDD:,  m14,   "OMS VME58",   1,    5, "Clean_up X pos.",        microns,  Pos,  150.0,    10,    .2,    0,      1,     .2,       48,     3.546,  1,      8e3,    0}
 
 #13IDD DAC Lift Table
@@ -46,10 +51,13 @@ pattern
 {13IDD:,  m18,   "OMS VME58",   2,    1, "Downstream X",           mm,       Pos,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
 {13IDD:,  m19,   "OMS VME58",   2,    2, "Inboard X",              mm,       Pos,    .2,  .005,   .2,    0.1,    1,     .2,     400,   -0.035278,   3,      50,     0}
 
-#motor 20 is used for analyzer motor OR for chi stage OR for clean up slit
-#{13IDD:,  m20,   "OMS VME58",   2,    3, "Chi rotation",           deg,      Neg,    5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
-#{13IDD:,  m20,   "OMS VME58",   2,    3, "Analyzer angle",        deg,      Neg,    0.5,   .05,    .2,    0,     1,     .2,     400,    -0.05,  6,      270,     250}
-{13IDD:,  m20,   "OMS VME58",   2,    3, "Clean_up X pos.",        microns,  Pos,  150.0,    10,    .2,    0,      1,     .2,       48,     3.546,  1,      8e3,    0}
+#motor 20 is used for clean up slit, 
+# micro-scale has been changed to milimeters. GS 9/2/03
+#{13IDD:,  m20,   "OMS VME58",   2,    3, "Chi rotation",          deg,      Neg,    5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
+#{13IDD:,  m20,   "OMS VME58",   2,    3, "Analyzer angle",        deg,      Neg,    0.5,   .05,   .2,    0,      1,     .2,     400,    -0.05,  6,      270,     250}
+#{13IDD:,  m20,   "OMS VME58",   2,    3, "Clean_up X pos.",       microns,  Pos,  150.0,    10,   .2,    0,      1,     .2,     48,     3.546,  1,      8e3,    0}
+{13IDD:,  m20,   "OMS VME58",   2,    3, "Clean_up X pos.",        mm,       Pos,    0.15,  .01,   .2,  0,      1,       .2,   480,    .03546,  3,      24.,    0}
+
 
 
 #motors for the carbon miror
@@ -90,7 +98,7 @@ pattern
 {13IDD:,  m38,   "OMS VME58",   4,    5, "Gimbal AY/AX",           degrees,     Pos,    2.,   .01,   .5,    0,     2.,     .5,     400,     .20,   3,      360,    -360}
 # Detector tilt: 2000:1 total gear reducer, UREV=360/2000. = .18
 {13IDD:,  m39,   "OMS VME58",   4,    6, "Gimbal AZ",              degrees,     Pos,    2.,   .01,   .5,    0,     2.,     .5,     400,     .18,   3,      92,   -2}
-{13IDD:,  m40,   "OMS VME58",   4,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
+#{13IDD:,  m40,   "OMS VME58",   4,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
 
 # Unused
 {13IDD:,  m41,   "OMS VME58",   5,    0, "M41",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
@@ -121,7 +129,7 @@ pattern
 # LVP Detector slits
 {13IDD:,  m57,   "OMS VME58",   7,    0,  "Horizontal position",     mm,       Pos,    .200,   .100,    .2,    0,      1,     .2,   2571,   -.350,    3,    5.100, -.100}
 {13IDD:,  m58,   "OMS VME58",   7,    1,  "Horizontal width",        mm,       Pos,    .400,   .100,    .2,    0,      1,     .2,   2571,   -.700,    3,   10.100, -.100}
-{13IDD:,  m59,   "OMS VME58",   7,    2,  "Vertical position",       mm,       Pos,    .200,   .100,    .2,    0,      1,     .2,   2571,   -.350,    3,    5.100, -.100}
+{13IDD:,  m59,   "OMS VME58",   7,    2,  "Vertical position",       mm,       Neg,    .200,   .100,    .2,    0,      1,     .2,   2571,   -.350,    3,    5.100, -.100}
 {13IDD:,  m60,   "OMS VME58",   7,    3,  "Vertical width",          mm,       Pos,    .400,   .100,    .2,    0,      1,     .2,   2571,   -.700,    3,   10.100, -.100}
 {13IDD:,  m61,   "OMS VME58",   7,    4,  "Horizontal position",     mm,       Pos,    .200,   .100,    .2,    0,      1,     .2,   2571,   -.350,    3,    5.100, -.100}
 {13IDD:,  m62,   "OMS VME58",   7,    5,  "Horizontal width",        mm,       Pos,    .400,   .100,    .2,    0,      1,     .2,   2571,   -.700,    3,   10.100, -.100}
@@ -131,7 +139,7 @@ pattern
 
 
 # Pseudomotors for LVP T-cup mode and rotation
-file CARSApp/Db/pseudoMotor.db, top
+file "$(CARS)/CARSApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,                  EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -156,7 +164,7 @@ pattern
 }
 
 #DAC TableTop Slit
-file stdApp/Db/2slit.db, std
+file "$(STD)/stdApp/Db/2slit.db"
 {
 pattern
 {P,      SLIT,   mXp,   mXn}
@@ -165,7 +173,7 @@ pattern
 }
 
 # LVP T-cup mode
-file CARSApp/Db/coordTrans2D.db, top
+file "$(CARS)/CARSApp/Db/coordTrans2D.db"
 {
 pattern
 {P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
@@ -173,7 +181,7 @@ pattern
 }
 
 # LVP rotation 
-file CARSApp/Db/sumDiff2D.db, top
+file "$(CARS)/CARSApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,        SUM, DIFF,    M1DRV,    M1RBV,    M1STOP,   M1DONE,   M2DRV,  M2RBV,   M2STOP,   M2DONE,  PREC}
@@ -181,7 +189,7 @@ pattern
 }
 
 # K/B mirrors
-file CARSApp/Db/sumDiff2D.db, top
+file "$(CARS)/CARSApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -189,21 +197,21 @@ pattern
 {13IDD:, KBV:,  pm7, pm8,    m51.VAL,  m51.RBV,  m52.VAL, m52.RBV, m51.STOP, m51.DMOV, m52.STOP, m52.DMOV, 1}
 }
 
-file CARSApp/Db/IDD_LVP_Detector.db, top
+file "$(CARS)/CARSApp/Db/IDD_LVP_Detector.db"
 {
 pattern
 {P,      X,    Y,   Z,  TX,    TZ,  PMR,  PMT,  PMC}
 {13IDD:, m33, m34, m35, m38,  m39,  pm9,  pm10, pm11}
 }
 
-file stdApp/Db/table.db, std
+file "$(STD)/stdApp/Db/table.db"
 {
 pattern
 {P,          Q,      T,  M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
 {13IDD:, DAC:T1, DAC:t1, m19,  m15,  m16,  m18,  m17,  junk, SRI}
 }
 
-file stdApp/Db/scanParms.db, std
+file "$(STD)/stdApp/Db/scanParms.db"
 {
 {P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1X,POS=DAC:t1.X,RDBK=DAC:t1.XRB}
 {P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1Y,POS=DAC:t1.Y,RDBK=DAC:t1.YRB}

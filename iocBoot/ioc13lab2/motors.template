@@ -1,33 +1,40 @@
-file CARSApp/Db/motor.db, top
+file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,       DTYP,      C,     S,          DESC,    EGU,   DIR,  VELO,   VBAS,     ACCL,  BDST,   BVEL,  BACC,  SREV,     UREV,  PREC,  DHLM, DLLM}
-{13LAB2:,  m1,  "OMS VME58",   0,     0,     "Mirror-Fu",  mm,   Pos,  1,      .0,       1,     0,       .0,    .0,  2000,   -.34737,  4,    40,     0}
-{13LAB2:,  m2,  "OMS VME58",   0,     1,     "Mirror-Fd",  mm,   Pos,  1,      .0,       1,     0,       .0,    .0,  2000,   -.34737,  4,    40,     0}
-{13LAB2:,  m3,  "OMS VME58",   0,     2,     "Mirror-Yu",  mm,   Pos, .5,      .0,       2.,    0,       .0,    .0,  400,     .016071, 4,    100,    0}
-{13LAB2:,  m4,  "OMS VME58",   0,     3,     "Mirror-Yd",  mm,   Pos, .5,      .0,       2.,    0,       .0,    .0,  400,     .016071, 4,    100,    0}
+#{13LAB2:,  m1,  "OMS VME58",  0,  0, "Klinger Stage",      mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+#{13LAB2:,  m2,  "OMS VME58",  0,  1, "Analyzer theta",    deg,      Neg,    0.5,   .05,    .2,    0,     1,     .2,     400,    -0.05,  6,      270,     250}
+#{13LAB2:,  m3,  "OMS VME58",  0,  2, "Analyzer chi",   deg,      Neg,    5.0,   .1,    .5,    0,      1,     .2,     200,    -0.025,  3,      10,     -10}
+
+
+{13LAB2:,  m1,  "OMS VME58",   0,     0,   "Rotation Stage",    deg, Pos,  10,   1.0,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+#{13LAB2:,  m2,  "OMS VME58",   0,     1,   "MFN 1",   microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+#{13LAB2:,  m3,  "OMS VME58",   0,     2,   "MFN 2",   microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13LAB2:,  m2,  "OMS VME58",   0,     1,  "Huntington",    mm, Pos,  1.0,   0.1,        .2,    0,      1,    .2,    51200,      1.27,   3,    8e3,   -10000}
+{13LAB2:,  m3,  "OMS VME58",   0,     2,  "Washer Wheel", deg, Pos,  50.0,   10,        .2,    0,      1,    .2,    400,      360,   3,    8e3,   -10000}
+{13LAB2:,  m4,  "OMS VME58",   0,     3,    "Mirror-Yd",  mm,   Pos, .5,      .0,       2.,    0,       .0,    .0,  400,     .016071, 4,    100,    0}
 {13LAB2:,  m5,  "OMS VME58",   0,     4,     "Upstream-X",  mm,    Pos,  1,      .0,     .5,     0,       .0,    .0,  400,      .02,   2,    101,  -1}
 {13LAB2:,  m6,  "OMS VME58",   0,     5,     "Downstream-X",mm,    Pos,  1,      .0,     .5,     0,       .0,    .0,  400,      .02,   2,   101,   -1}
 {13LAB2:,  m7,  "OMS VME58",   0,     6,     "Slit-1",      mm,   Neg,  1,     .0,      .5,     0,       .0,    .0,  400,     .5,      3,  100,   -10}
 {13LAB2:,  m8,  "OMS VME58",   0,     7,     "Slit-2",      mm,   Neg,  1,     .0,      .5,     0,       .0,    .0,  400,     .5,      3,  100,   -10}
 }
 
-file stdApp/Db/table.db, std
-{
-pattern
-{P,            Q,      T,  M0X,  M1X,    M2X,  M0Y,   M1Y,    M2Y,    M2Z,  GEOM}
-{13LAB2:, MON:T1, MON:t1, junk, junk,   junk,   m6,    m7,     m5,   junk,   SRI}
-}
+#file "$(STD)/stdApp/Db/table.db"
+#{
+#pattern
+#{P,            Q,      T,  M0X,  M1X,    M2X,  M0Y,   M1Y,    M2Y,    M2Z,  GEOM}
+#{13LAB2:, MON:T1, MON:t1, junk, junk,   junk,   m6,    m7,     m5,   junk,   SRI}
+#}
 
-file stdApp/Db/table.db, std
-{
-pattern
-{P,            Q,      T,  M0X,  M1X,    M2X,  M0Y,   M1Y,    M2Y,    M2Z,  GEOM}
-{13LAB2:, MIR:T1, MIR:t1, junk, junk,   junk,   m4,  junk,     m3,   junk,   SRI}
-}
+#file "$(STD)/stdApp/Db/table.db"
+#{
+#pattern
+#{P,            Q,      T,  M0X,  M1X,    M2X,  M0Y,   M1Y,    M2Y,    M2Z,  GEOM}
+#{13LAB2:, MIR:T1, MIR:t1, junk, junk,   junk,   m4,  junk,     m3,   junk,   SRI}
+#}
 
 
-file CARSApp/Db/pseudoMotor.db, top
+file "$(CARS)/CARSApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -37,7 +44,7 @@ pattern
 "Pitch (Diff)",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
 }
 
-file CARSApp/Db/sumDiff2D.db, top
+file "$(CARS)/CARSApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}

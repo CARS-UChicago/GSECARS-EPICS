@@ -4,33 +4,13 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < iocCore
-ld < seq
-ld < CARSLib
-
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < initHooks.o
-
-# This IOC loads the MPF server code locally
+ld < CARSApp.munch
 cd startup
-< st_mpfserver.cmd
 
-cd topbin
-# This IOC talks to a local GPIB server
-ld < GpibHideosLocal.o
-
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < initHooks.o
-
-cd startup
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARSApp
+dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
+CARSVX_registerRecordDeviceDriver(pdbbase)
 
 # Set debugging flags
 devMM4000debug = 0
@@ -66,26 +46,29 @@ icbServerDebug=1
 mpcDebug=0
 devMPCDebug=0
 
-# Tell EPICS all about the record types, device-support modules, drivers,
-# etc. in this build from CARSApp
-dbLoadDatabase("../../dbd/CARSApp.dbd")
+# This IOC loads the MPF server code locally
+< st_mpfserver.cmd
 
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1", top)
-dbLoadRecords("ipApp/Db/Digitel.db","P=13LAB2:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0", ip)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=19200,PRTY=Even,DBIT=8,SBIT=1", top)
-dbLoadRecords("ipApp/Db/MKS_single.db","P=13LAB2:,C=0,IPSLOT=a,CHAN=1,CC1=cc1,PR1=pr1", ip)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser3,C=0,IPSLOT=a,CHAN=2,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
-dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=2", ip)
-#dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser4,C=0,IPSLOT=a,CHAN=3,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-#dbLoadRecords("ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip1,C=0,IPSLOT=a,CHAN=3,PA=0,PN=1", ip)
-#dbLoadRecords("ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip2,C=0,IPSLOT=a,CHAN=3,PA=0,PN=2", ip)
-#dbLoadRecords("ipApp/Db/TSP.db","P=13LAB2:,TSP=tsp1,C=0,IPSLOT=a,CHAN=3,PA=0", ip)
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser1,C=0,SERVER=serial1")
+#dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13LAB2:,PUMP=ip1,C=0,SERVER=serial1")
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser2,C=0,SERVER=serial2")
+#dbLoadRecords("$(IP)/ipApp/Db/MKS_single.db","P=13LAB2:,C=0,SERVER=serial2,CC1=cc1,PR1=pr1")
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser3,C=0,SERVER=serial3")
+#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,SERVER=serial3")
+#dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser4,C=0,SERVER=serial4")
+#dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip1,C=0,SERVER=serial4,PA=0,PN=1")
+#dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip2,C=0,SERVER=serial4,PA=0,PN=2")
+#dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13LAB2:,TSP=tsp1,C=0,SERVER=serial4,PA=0")
 
+#MN Aug-22-2003: Config SR570s
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,SERVER=serial7")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,SERVER=serial8")
+#
 
 # generic serial port
-# Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser5,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+# Port 5 has Newport LAE500 Laser Autocollimator (and generic serial port)
+dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,SERVER=serial5")
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser5,C=0,SERVER=serial5")
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -98,7 +81,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in std/stdApp/Db
-dbLoadRecords("stdApp/Db/all_com_8.db","P=13LAB2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db","P=13LAB2:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -106,22 +89,22 @@ dbLoadRecords("stdApp/Db/all_com_8.db","P=13LAB2:", std)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("stdApp/Db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10", std)
+dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("stdApp/Db/userStringCalcs10.db","P=13LAB2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db","P=13LAB2:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("stdApp/Db/userTransforms10.db","P=13LAB2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db","P=13LAB2:")
 
 # vme test record
-dbLoadRecords("stdApp/Db/vme.db", "P=13LAB2:,Q=vme1", std)
+dbLoadRecords("$(STD)/stdApp/Db/vme.db", "P=13LAB2:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("stdApp/Db/misc.db","P=13LAB2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13LAB2:")
 
 # vxWorks statistics
-dbLoadRecords("stdApp/Db/VXstats.db","P=13LAB2:", std)
+#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13LAB2:")
 
 
 ################################################################################
@@ -144,9 +127,10 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
+< ../requestFileCommands
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5.0)
+#create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30.0)
+#create_monitor_set("auto_settings.req",30)
 
-seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
+#seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"

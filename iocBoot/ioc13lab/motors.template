@@ -1,10 +1,10 @@
-file CARSApp/Db/motor.db,top
+file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,       DTYP,      C,     S,          DESC,    EGU,   DIR,  VELO,   VBAS,     ACCL,  BDST,   BVEL,  BACC,  SREV,     UREV,  PREC,  DHLM, DLLM}
 # Diffractometer bench slits		       		  	      	     	   	       
 #{13LAB:, m1, "OMS VME58",    0, 0, "Hw UpStream",      microns, Pos,    200,     0,        1,     0,     1,     .2,   10240,    -1000,   0,   5100, -100}
-{13LAB:,  m1,  "OMS VME58",  0,   0,  "Microscope X",  microns, Pos,  100.0,   10,        .2,    0,      1,    .2,    48,      3.546,   1,    8e3,   0}
+{13LAB:,  m1,  "OMS VME58",  0,   0,  "Huntington",       mm,     Pos,  100.0,   10,        .2,    0,      1,    .2,    200,      1.27,   1,    8e3,   -10000}
 #{13LAB:, m2, "OMS VME58",    0,  1, "Hp UpStream",      microns, Pos,    100,     0,        1,     0,     1,     .2,   10240,    -500,    0,  10100, -100}
 {13LAB:, m2,  "OMS VME58",   0,  1,      "Microscope Y",    microns, Pos,  50,     0,        1,     0,     1,     .2,   10240,    -1000,   0,   5100, -100}
 {13LAB:, m3, "OMS VME58",    0, 2, "Vw UpStream",      microns, Pos,    200,     0,        1,     0,     1,     .2,   10240,    -1000,   0,   5100, -100}
@@ -21,9 +21,10 @@ pattern
 {13LAB:, m13, "MM4000",    0, 0, "Omega",    degrees,  Pos,  10.0,  .1,   1., 0,  1,  .2,  1,  .001,    4,   180, -180}
 {13LAB:, m14, "MM4000",    0, 1, "Kappa",    degrees,  Pos,  60.0,  .1,   1.5, 0,  1,  .2,  1,  .001,    4,   180, -180}
 {13LAB:, m15, "MM4000",    0, 2, "Phi",      degrees,  Pos,  60.0,  .1,   1., 0,  1,  .2,  1,  .001,    3,   180, -180}
+{13LAB:, m16, "MM4000",    0, 3, "Unused",   degrees,  Pos,  60.0,  .1,   1., 0,  1,  .2,  1,  .001,    3,   180, -180}
 }
 
-#file stdApp/Db/table.db std
+#file "$(STD)/stdApp/Db/table.db"
 #{
 #pattern
 #{P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
@@ -31,7 +32,7 @@ pattern
 #}
 
 # Pseudo-motors
-file CARSApp/Db/pseudoMotor.db, top
+file "$(CARS)/CARSApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
@@ -39,7 +40,7 @@ pattern
 {13LAB:,  pm2, "13LAB:KBV:Done NPP NMS", "13LAB:pm2DVAL.VAL PP MS", "13LAB:KBV:Readback.H NPP NMS", "13LAB:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
 }
 #
-file CARSApp/Db/sumDiff2D.db, top
+file "$(CARS)/CARSApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -47,7 +48,7 @@ pattern
 }
 
 
-file stdApp/Db/scanParms.db std
+file "$(STD)/stdApp/Db/scanParms.db"
 {
 {P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1X,POS=MON:t1.X,RDBK=MON:t1.XRB}
 {P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1Y,POS=MON:t1.Y,RDBK=MON:t1.YRB}
