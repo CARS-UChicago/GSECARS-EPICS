@@ -5,13 +5,9 @@
 
 # Serial record for the current value
 grecord(serial, "$(P)$(R)ReadValue") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"$(PRTY)")
-        field(DBIT,"$(DBIT)")
-        field(SBIT,"$(SBIT)")
         field(AOUT,"*V01")
         field(SCAN,"1 second")
         field(FLNK,"$(P)$(R)Value.PROC PP MS")

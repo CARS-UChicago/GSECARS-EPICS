@@ -19,11 +19,7 @@
 #   $(DOFFV)    - Value to write to PV to turn detector off
 #   $(C)        - Card # (0,1,2...) of the board with the IP slot for the 
 #                 generic serial records
-#   $(IPSLOT)   - IP slot (A-D) for the  serial I/O module
-#   $(CHAN)     - Channel (0-7) for the serial port
-#   $(BAUD)     - Baud rate for the serial port
-#                 Note: the MM4005 is assumed to be configured with 8 data bits,
-#                 1 stop bit, no parity.
+#   $(SERVER)   - MPF server name for the serial port
 #
 #  Modifications:
 #  5-Jun-2002    Mark Rivers  Increased TMOT field of StringOutIn record from 5000 to
@@ -35,7 +31,7 @@
 # pulses
 #
 grecord(longout,"$(P)$(R)NumAxes") {
-    field(VAL, "$(NAXES")
+    field(VAL, "$(NAXES)")
     field(DESC,"# of axes being used")
 }
 grecord(longout,"$(P)$(R)Nelements") {
@@ -741,26 +737,18 @@ grecord(ao,"$(P)$(R)DetOff") {
 # any modification.
 #
 grecord(serial, "$(P)$(R)StringOut") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
         field(TMOD,"Write")
         field(OFMT,"ASCII")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"None")
-        field(DBIT,"8")
-        field(SBIT,"1")
 }
 grecord(serial, "$(P)$(R)StringOutIn") {
-        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(INP,"#C$(C) S0 @$(SERVER)")
         field(IDEL,"13")
         field(ODEL,"13")
         field(TMOD,"Write/Read")
         field(OFMT,"ASCII")
         field(IFMT,"Binary")
-        field(BAUD,"$(BAUD)")
-        field(PRTY,"None")
-        field(DBIT,"8")
-        field(SBIT,"1")
         field(TMOT,"20000")
 }
