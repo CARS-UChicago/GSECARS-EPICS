@@ -29,13 +29,7 @@ CARS_SRCS += trajectoryScan.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 
-#CARS_SRCS += JHKPseudoMotorSNL.st
-#CARS_SRCS += JSlide.st 
-
-CARS_SRCS += JFuncSlides.st
-CARS_SRCS += JScanLog.st
-
-CARS_LIBS += seq pv
+CARS_LIBS += asyn seq pv
 CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
