@@ -150,7 +150,3 @@ initIp330Sweep("Ip330_1","Ip330Sweep1",0,3,2048,100)
 #               does not refer to the number of EPICS clients.  A value of
 #               10 should certainly be safe.
 initIpUnidig("Unidig1", 0, 2, 20, 100, 116, 0xffffff, 0xffffff, 0xffffff, 10)
-
-
-# DEBUGGING
-#serialPortPeak("serial3",1000)

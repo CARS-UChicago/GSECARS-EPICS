@@ -144,15 +144,16 @@ pattern
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
 {13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio
-{13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.06047619,  3,  150,    0}
-{13BMD:,  m61, "OMS VME58",  7,  4, "DIFF RAM Top",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.06047619,  3,  150,    0}
+# Added planetary gear heads, gear ratio 10:1, UREV(new) = UREV(old)/10, 08-June-2004 YBW
+{13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
+{13BMD:,  m61, "OMS VME58",  7,  4, "DIFF RAM Top",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
 {13BMD:,  m62, "OMS VME58",  7,  5, "Motor 62",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
 {13BMD:,  m63, "OMS VME58",  7,  6, "Motor 63",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
 {13BMD:,  m64, "OMS VME58",  7,  7, "Motor 64",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
 }
 
 
-file "$(STD)/stdApp/Db/2slit.db"
+file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
@@ -160,7 +161,7 @@ pattern
 {13BMD:, BMDH,   m30,   m29}
 }
 
-file "$(STD)/stdApp/Db/scanParms.db"
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHp,POS=BMDHxp.VAL,RDBK=BMDHt2.A}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHn,POS=BMDHxn.VAL,RDBK=BMDHt2.B}
@@ -172,7 +173,7 @@ file "$(STD)/stdApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVcenter,POS=BMDVcenter.VAL,RDBK=BMDVt2.D}
 }
 
-file "$(STD)/stdApp/Db/table.db"
+file "$(OPTICS)/opticsApp/Db/table.db"
 {
 pattern
 {P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
@@ -183,7 +184,7 @@ pattern
 #{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z}
 #{13BMD:, LVP:T1,     LVP:t1, m13,  m10,  m11,  m12,  m9,   m14}
 
-file "$(STD)/stdApp/Db/scanParms.db"
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1X,POS=LVP:t1.X,RDBK=LVP:t1.XRB}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1Y,POS=LVP:t1.Y,RDBK=LVP:t1.YRB}
@@ -193,14 +194,14 @@ file "$(STD)/stdApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1AZ,POS=LVP:t1.AZ,RDBK=LVP:t1.AZRB}
 }
 
-file "$(STD)/stdApp/Db/table.db"
+file "$(OPTICS)/opticsApp/Db/table.db"
 {
 pattern
 {P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
 {13BMD:,    XAS:T1,   XAS:t1, m20,  m19,  m18,  m21,  m17,  junk, SRI}
 }
 
-file "$(STD)/stdApp/Db/scanParms.db"
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
@@ -256,7 +257,7 @@ pattern
 {13BMD:, m9, m16, m10, m13,  m12,  pm3,  pm4}
 }
 
-file "$(STD)/stdApp/Db/scanParms.db"
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=pm1,POS=pm1.VAL,RDBK=pm1RBV}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=pm2,POS=pm2.VAL,RDBK=pm2RBV}

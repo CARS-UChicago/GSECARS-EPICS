@@ -18,18 +18,18 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 icbDebug=10
 
 # Load database
-dbLoadRecords("$(STD)/stdApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,SERVER=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,C=0,SERVER=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,SERVER=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,SERVER=serial4")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=0,SERVER=serial6")
-#dbLoadRecords("$(CARS)/CARSApp/Db/generic_gpib.db", "P=13BMD:,R=gpib1,SIZE=2048")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,SERVER=serial7")
+dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0")
+# Load asyn records on all ports
+dbLoadTemplate("asynRecord.template")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,PORT=serial1")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,C=0,PORT=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,PORT=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,PORT=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,PORT=serial7")
 dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,SERVER=serial8")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,C=0,SERVER=serial9")
-dbLoadRecords("$(STD)/stdApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,C=0,SERVER=serial10")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,PORT=serial8")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,C=0,PORT=serial9")
+dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,C=0,PORT=serial10")
 dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
 dbLoadTemplate "DAC.template"
 dbLoadTemplate "heater_control.template"
@@ -45,9 +45,9 @@ dbLoadTemplate "IpUnidig.template"
 
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13BMD:,R=smart1,C=0,SERVER=serial6,")
+strcpy(str,"P=13BMD:,R=smart1,C=0,PORT=serial6,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CARS)/CARSApp/Db/smartControl.db",str)
+dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db",str)
 
 # CCD synchronization record
 dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
@@ -64,6 +64,9 @@ icbConfig("icb/1", 0, 0x9ce, 5)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
 icbConfig("icb/1", 1, 0x9ce, 3)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
+icbConfig("icb/1", 2, 0x9ce, 2)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
+
 
 # Set up Struck multichannel scaler
 #STR7201Setup(1,0xA0000000,220,6)
@@ -87,7 +90,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13BMD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -96,15 +99,18 @@ dbLoadTemplate "scanParms.template"
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
-dbLoadRecords("$(STD)/stdApp/Db/userTransform.db", "P=13BMD:, N=1")
-dbLoadRecords("$(STD)/stdApp/Db/userTransform.db", "P=13BMD:, N=2")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransform.db", "P=13BMD:, N=1")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransform.db", "P=13BMD:, N=2")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
 
 # vxWorks statistics
-# FIX THIS!!!
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13BMD:")
+dbLoadTemplate("vxStats.substitutions")
+
+set_pass0_restoreFile("auto_positions.sav")
+set_pass0_restoreFile("auto_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -164,5 +170,5 @@ seq &smartControl, "P=13BMD:,R=smart1,TTH=m38,OMEGA=m38,PHI=m38,KAPPA=m38,SCALER
 #debug_saveData = 2
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-#saveData_Init("saveDataExtraPVs.req", "P=13BMD:")
+saveData_Init("saveDataExtraPVs.req", "P=13BMD:")
 #saveData_PrintScanInfo("13BMD:scan1")

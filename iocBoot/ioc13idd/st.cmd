@@ -10,8 +10,6 @@ ld < CARSApp.munch
 # Increase size of errlog buffer
 errlogInit(20000)
 
-#drvOms58debug=4
-
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build.
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
@@ -22,18 +20,21 @@ cd startup
 < st_mpfserver.cmd
 
 # Load database
-dbLoadRecords("$(STD)/stdApp/Db/Jscaler.db","P=13IDD:,S=scaler1,C=0")
+dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13IDD:,S=scaler1,C=0")
 
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A1,C=0,SERVER=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A2,C=0,SERVER=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,C=0,SERVER=serial3")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDD:,R=ser1,C=0,SERVER=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,C=0,SERVER=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,C=0,SERVER=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,C=0,SERVER=serial7")
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,C=0,SERVER=serial8")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDD:,R=ser2,C=0,SERVER=serial8")
-dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,C=0,SERVER=serial10")
+# asyn record on each serial port
+dbLoadTemplate("asynRecord.template")
+
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A1,C=0,PORT=serial1")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A2,C=0,PORT=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,C=0,PORT=serial3")
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDD:,R=ser1,C=0,PORT=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,C=0,PORT=serial5")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,C=0,PORT=serial6")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,C=0,PORT=serial7")
+dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,C=0,PORT=serial8")
+dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,C=0,PORT=serial10")
+dbLoadTemplate("picoMotors.template")
 
 # Acromag Ip330 ADC
 dbLoadTemplate("Ip330_ADC.template")
@@ -43,14 +44,13 @@ dbLoadTemplate("IpUnidig.template")
 
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13IDD:,R=smart1,C=0,SERVER=serial8,")
+strcpy(str,"P=13IDD:,R=smart1,C=0,PORT=serial8,")
 # Use Bo0 for Bruker shutter, Bo11 for XIA
 strcat(str,"FSHUT=UnidigBo11,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CARS)/CARSApp/Db/smartControl.db", str)
+dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
 
 dbLoadTemplate("motors.template")
 
-#dbLoadRecords ("$(CARS)/CARSApp/Db/generic_gpib.db", "P=13IDD:,R=gpib1,SIZE=4098", top
 
 # Multichannel analyzer stuff
 # AIMConfig(mpfServer, ethernet_address, port, maxChans, 
@@ -92,7 +92,7 @@ dbLoadTemplate("laser_pid.template")
 dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
 
 # Laser power controller
-dbLoadRecords("$(CARS)/CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,C=0,SERVER=serial4")
+dbLoadRecords("$(CARS)/CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,C=0,PORT=serial4")
 
 # LVP furnace controls
 dbLoadTemplate("LVP_furnace_control.template")
@@ -113,7 +113,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -122,10 +122,10 @@ dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDD:", std)
-dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db", "P=13IDD:", std)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDD:", std)
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13IDD:", std)
+dbLoadTemplate("vxStats.substitutions")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
