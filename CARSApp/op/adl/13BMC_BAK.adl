@@ -1,0 +1,606 @@
+
+file {
+	name="j:\epics\3.14\CARS\CARSApp\op\adl\13BMC.adl"
+	version=020306
+}
+display {
+	object {
+		x=246
+		y=185
+		width=400
+		height=446
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"related display" {
+	object {
+		x=8
+		y=306
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=13BMC:, S=scan1, N=1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=13BMC:, S=scan2, N=2"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=312
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Scan"
+}
+text {
+	object {
+		x=87
+		y=109
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Motors"
+}
+"related display" {
+	object {
+		x=8
+		y=105
+		width=74
+		height=23
+	}
+	display[0] {
+		label="Test motors"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=Test Motors, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m7, M8=m8"
+	}
+	display[1] {
+		label="Detector Slits"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=Detector Slits, M1=m9, M2=m10, M3=m11, M4=m12, M5=m13, M6=m14, M7=m15, M8=m16"
+	}
+	display[2] {
+		label="Entrance Slits"
+		name="4motors.adl"
+		args="P=13BMC:, TITLE=Entrance Slits, M1=m17, M2=m18, M3=m19, M4=m20"
+	}
+	display[3] {
+		label="Diffractometer rotation"
+		name="6motors.adl"
+		args="P=13BMC:, TITLE=Newport_Rotation, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38"
+	}
+	display[4] {
+		label="Diffractometer Base"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=Newport_Base, M1=m39, M2=m40, M3=m41, M4=m42, M5=m43, M6=m44, M7=m45, M8=m46"
+	}
+	display[5] {
+		label="Table Record"
+		name="table.adl"
+		args="P=13BMC:, Q=DIF:T1, T=DIF:t1, M0X=m43, M0Y=m39, M1Y=m41, M2X=junk, M2Y=m40, M2Z=m42"
+	}
+	display[6] {
+		label="Monochromator"
+		name="2motors.adl"
+		args="P=13BMC:, TITLE=13BMB_Mono, M1=m25, M2=m26"
+	}
+	clr=14
+	bclr=4
+}
+rectangle {
+	object {
+		x=47
+		y=17
+		width=310
+		height=80
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+text {
+	object {
+		x=87
+		y=165
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Electronics #1"
+}
+text {
+	object {
+		x=64
+		y=29
+		width=276
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="GeoCARS 13-BM-C"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=8
+		y=277
+		width=74
+		height=24
+	}
+	display[0] {
+		label="User transforms"
+		name="userTrans10.adl"
+		args="P=13BMC:"
+	}
+	display[1] {
+		label="User sCalcOut1"
+		name="yysCalcoutRecord.adl"
+		args="P=13BMC:, C=userStringCalc1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=284
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="User calcs, transforms"
+}
+"related display" {
+	object {
+		x=8
+		y=133
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Experiment Information"
+		name="experiment_info.adl"
+		args="P=13BMC:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=140
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Experiment Information"
+}
+"related display" {
+	object {
+		x=8
+		y=364
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Digitel ion pump"
+		name="ionPump.adl"
+		args="P=13BMC:, TITLE=Mirror_Tank, PUMP=ip1"
+	}
+	display[1] {
+		label="MKS vacuum gauge #1"
+		name="DualVacuumGauge.adl"
+		args="P=13BMC:, TITLE=Mirror_Tank, PR=pr1, CC=cc1"
+	}
+	display[2] {
+		label="MKS vacuum gauge #2"
+		name="DualVacuumGauge.adl"
+		args="P=13BMC:, TITLE=Mirror_Tank_2, PR=pr2, CC=cc2"
+	}
+	display[3] {
+		label="Keithey thermocouples"
+		name="Keithley2kdmm_full_mf.adl"
+		args="P=13BMC:, Dmm=DMM1"
+	}
+	display[4] {
+		label="MPC ion pump #1"
+		name="MPC.adl"
+		args="P=13BMC:, PUMP=ip1"
+	}
+	display[5] {
+		label="MPC ion pump #2"
+		name="MPC.adl"
+		args="P=13BMC:, PUMP=ip2"
+	}
+	display[6] {
+		label="MPC TSP"
+		name="MPC_TSP.adl"
+		args="P=13BMC:, TSP=tsp1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=369
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Vacuum"
+}
+"related display" {
+	object {
+		x=8
+		y=393
+		width=74
+		height=24
+	}
+	display[0] {
+		label="vxWorks statistics"
+		name="IOC_Status.adl"
+		args="P=13BMC:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=397
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="vxWorks statistics"
+}
+"related display" {
+	object {
+		x=8
+		y=162
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Scaler"
+		name="scaler_full.adl"
+		args="P=13BMC:, S=scaler1"
+	}
+	display[1] {
+		label="SRS Current Preamplifier"
+		name="SR570.adl"
+		args="P=13BMC:, A=A1"
+	}
+	display[2] {
+		label="Keithley 2000 DMM #1"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13BMC:, Dmm=DMM1"
+	}
+	display[3] {
+		label="Keithley 2000 DMM #2"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13BMC:, Dmm=DMM2"
+	}
+	display[4] {
+		label="IP-Unidig"
+		name="IpUnidig.adl"
+		args="P=13BMC:, R=Unidig1"
+	}
+	display[5] {
+		label="LAE500"
+		name="LAE500.adl"
+		args="P=13BMC:, R=LAE500"
+	}
+	display[6] {
+		label="Acromag IP330 ADC"
+		name="Ip330Scan.adl"
+		args="P=13BMC:, R=IP330_"
+	}
+	display[7] {
+		label="Vortex"
+		name="1element_dxp.adl"
+		args="P=dxpLinux:med:"
+	}
+	clr=14
+	bclr=4
+}
+"related display" {
+	object {
+		x=8
+		y=335
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Serial 1"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial1"
+	}
+	display[1] {
+		label="Serial 2"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial2"
+	}
+	display[2] {
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial4"
+	}
+	display[4] {
+		label="Serial 5"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial5"
+	}
+	display[5] {
+		label="Serial 6"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial6"
+	}
+	display[6] {
+		label="Serial 7"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial7"
+	}
+	display[7] {
+		label="Serial 8"
+		name="asynRecord.adl"
+		args="P=13BMC:, R=serial8"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=340
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 1-8"
+}
+"related display" {
+	object {
+		x=8
+		y=191
+		width=74
+		height=24
+	}
+	display[0] {
+		label="AIM MCA #1"
+		name="mca.adl"
+		args="P=13BMC:, M=aim_adc1"
+	}
+	display[1] {
+		label="Canberrra ADC"
+		name="xxIcbAdc.adl"
+		args="P=13BMC:, ADC=adc1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=194
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Electronics #2"
+}
+"related display" {
+	object {
+		x=8
+		y=248
+		width=74
+		height=24
+	}
+	display[0] {
+		label="DAC #1"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=1"
+	}
+	display[1] {
+		label="DAC #2"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=2"
+	}
+	display[2] {
+		label="DAC #3"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=3"
+	}
+	display[3] {
+		label="DAC #4"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=4"
+	}
+	display[4] {
+		label="DAC #5"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=5"
+	}
+	display[5] {
+		label="DAC #6"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=6"
+	}
+	display[6] {
+		label="DAC #7"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=7"
+	}
+	display[7] {
+		label="DAC #8"
+		name="singleDac.adl"
+		args="P=13BMC:, D=1, C=8"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=256
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="DACs"
+}
+"related display" {
+	object {
+		x=8
+		y=220
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Bench Attenuators"
+		name="13BMC_Unidig_atten_bench.adl"
+		args="P=13BMC:, R=Unidig1"
+	}
+	display[1] {
+		label="Arm Attenuators"
+		name="13BMC_Unidig_atten_arm.adl"
+		args="P=13BMC:, R=Unidig1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=228
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Attenuators"
+}
