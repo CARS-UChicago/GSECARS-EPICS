@@ -35,12 +35,16 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,C=0,PORT=serial7")
 dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,C=0,PORT=serial8")
 dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,C=0,PORT=serial10")
 dbLoadTemplate("picoMotors.template")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM5,C=0,PORT=serial12")
 
 # Acromag Ip330 ADC
 dbLoadTemplate("Ip330_ADC.template")
 
 # IP-Unidig binary I/O
 dbLoadTemplate("IpUnidig.template")
+
+# MAR345 shutter
+dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:UnidigBi14,OUT=13IDD:UnidigBo11")
 
 # SMART detector database
 str=malloc(256)
@@ -76,7 +80,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_4,DTYPE=MPF MCA,NCHA
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in share/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13IDD:")
+dbLoadRecords("$(STD)/stdApp/Db/all_com_72.db","P=13IDD:")
 
 # Digital to analog converter
 dbLoadTemplate("DigitalToAnalog.template")
@@ -134,7 +138,7 @@ dbLoadTemplate("vxStats.substitutions")
 #     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(8, 8, 0x4000, 190, 5, 10)
+oms58Setup(9, 8, 0x4000, 190, 5, 10)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -157,7 +161,7 @@ create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30)
 
-seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, stack=10000"
+seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, channels=20, model=2700, stack=10000"
 seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM3, stack=10000"
 seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM4, stack=10000"
 
