@@ -8,22 +8,23 @@ CARS_registerRecordDeviceDriver(pdbbase)
 routerInit
 localMessageRouterStart(0)
 
-# Set up 2 serial ports
-#initTtyPort("serial1", "/dev/ttyS0", 9600, "N", 1, 8, "N", 1000)
-#initTtyPort("serial1", "/dev/ttyS0", 115200, "N", 1, 8, "N", 1000)
-initTtyPort("serial2", "/dev/ttyS1", 19200, "N", 1, 8, "N", 1000)
-#initSerialServer("serial1", "serial1", 1000, 20, "")
-#initSerialServer("serial2", "serial2", 1000, 20, "")
+# Set up 2 local serial ports
+drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
+drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
+# Set up last 2 ports on Moxa box
+drvAsynTCPPortConfigure("serial3", "164.54.160.50:4003", 0, 0, 0)
+drvAsynTCPPortConfigure("serial4", "164.54.160.50:4004", 0, 0, 0)
 
-initInetPort("moxa1","164.54.160.50",4001,1000) 
-initSerialServer("serial3","moxa1",1000,20,"") 
-  
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13Linux:,R=ser3,C=0,SERVER=serial3") 
+# Make these ports available from the iocsh command line
+asynConnect("serial1", "serial1", 0, "\r", "\r")
+asynConnect("serial2", "serial2", 0, "\r", "\r")
+asynConnect("serial3", "serial3", 0, "\r", "\r\n")
+asynConnect("serial4", "serial4", 0, "\r", "\r")
 
-dbLoadRecords("$(CARS)/CARSApp/Db/spherosyn.db", "P=13Linux:, E=E1, C=0, SERVER=serial3")
+# Load asyn records on each of these ports
+dbLoadTemplate("asynRecord.template") 
 
 set_pass0_restoreFile("serial_settings.sav")
-set_pass0_restoreFile("serial_positons.sav")
 set_pass1_restoreFile("serial_settings.sav")
 iocInit
 
@@ -35,7 +36,5 @@ iocInit
 # Load the list of search directories for request files
 < ../requestFileCommands
 
-# save positions every five seconds
-create_monitor_set("serial_positions.req", 5)
 # save other things every thirty seconds
 create_monitor_set("serial_settings.req", 30)

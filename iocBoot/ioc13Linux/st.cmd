@@ -2,35 +2,47 @@ errlogInit(5000)
 < envPaths
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARS.dbd")
-CARS_registerRecordDeviceDriver(pdbbase)
-
-routerInit
-localMessageRouterStart(0)
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 var aimDebug,0
-var icbDebug,10
+var icbDebug,0
 var dxpRecordDebug,0
 var mcaDXPServerDebug,0
 var devDxpMpfDebug,0
 var
 
-# Set up 2 serial ports
-#initTtyPort("serial1", "/dev/ttyS0", 9600, "N", 1, 8, "N", 1000)
-#initTtyPort("serial1", "/dev/ttyS0", 115200, "N", 1, 8, "N", 1000)
-initTtyPort("serial2", "/dev/ttyS1", 19200, "N", 1, 8, "N", 1000)
+routerInit
+localMessageRouterStart(0)
+
+# Set up 2 local serial ports
+drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
+asynSetOption(serial1,0,baud,19200)
+drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
+asynSetOption(serial2,0,baud,38400)
+# Set up last 2 ports on Moxa box
+drvAsynTCPPortConfigure("serial3", "164.54.160.50:4003", 0, 0, 0)
+drvAsynTCPPortConfigure("serial4", "164.54.160.50:4004", 0, 0, 0)
+# Creat MPF servers on all of these
 initSerialServer("serial1", "serial1", 1000, 20, "")
 initSerialServer("serial2", "serial2", 1000, 20, "")
+initSerialServer("serial3", "serial3", 1000, 20, "")
+initSerialServer("serial4", "serial4", 1000, 20, "")
+# Make these ports available from the iocsh command line
+asynConnect("serial1", "serial1", 0, "\r", "\r")
+asynConnect("serial2", "serial2", 0, "\r", "\r")
+asynConnect("serial3", "serial3", 0, "\r", "\r\n")
+asynConnect("serial4", "serial4", 0, "\r", "\r")
 
-# Load test database
-dbLoadDatabase("test.db","", "P1=mytest")
+# Load asyn records on each of these ports
+dbLoadTemplate("asynRecord.template")
+
+# Load asyn record with no port or addr
+dbLoadRecords("asynTest.db","P=13Linux:, R=asynTest")
+
 
 # Serial 1 Keithley Multimeter
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13Linux:,Dmm=DMM1,C=0,SERVER=serial1")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13Linux:,R=ser1,C=0,SERVER=serial1")
-
-# Serial 2 for the MM4000.  We have both motor record and generic serial record
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13Linux:,R=ser2,C=0,SERVER=serial2")
+#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13Linux:,Dmm=DMM1,C=0,SERVER=serial1")
 
 #PID slow
 dbLoadTemplate "pid_slow.template"
@@ -52,8 +64,8 @@ dbLoadTemplate "scanParms.template"
 # Multichannel analyzer stuff
 # AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
 #           maxSignals, maxSequences, ethernetDevice, queueSize)
-AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "eth0", 100)
-AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "eth0", 400)
+AIMConfig("AIM1/1", 0x3ed, 1, 2048, 1, 1, "eth0", 100)
+AIMConfig("AIM1/2", 0x3ed, 2, 2048, 8, 1, "eth0", 400)
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc2,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/2,NCHAN=2048")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc3,DTYPE=MPF MCA,INP=#C0 S2 @AIM1/2,NCHAN=2048")
@@ -63,21 +75,27 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc5,DTYPE=MPF MCA,IN
 #icbDspConfig("icbDsp/1", 1, "NI59E:1", 100)
 #dbLoadRecords("mcaApp/Db/icbDsp.db", "P=13Linux:,DSP=dsp1,CARD=0,SERVER=icbDsp/1,ADDR=0")
 icbSetup("icb/1", 10, 100)
-#icbConfig("icb/1", 0, 0x59e, 5)
+#icbConfig("icb/1", 0, 0x3ed, 5)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13Linux:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
-icbConfig("icb/1", 1, 0x59e, 3)
+icbConfig("icb/1", 1, 0x3ed, 3)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13Linux:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
-icbConfig("icb/1", 2, 0x59e, 2)
+icbConfig("icb/1", 2, 0x3ed, 2)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13Linux:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
 
 #icbTcaSetup(serverName, maxModules, queueSize)
 icbTcaSetup("icbTca/1", 10, 100)
 #icbTcaConfig(serverName, module, ethernetAddress, icbAddress)
-icbTcaConfig("icbTca/1", 0, 0x59e, 8)
+icbTcaConfig("icbTca/1", 0, 0x3ed, 8)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13Linux:,TCA=tca1,MCA=aim_adc2,CARD=0,SERVER=icbTca/1,ADDR=0")
 
+# Roper CCD detector database
+dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd1")
+
+# MAR CCD detector database
+#dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd2")
+
 # DXP and mca records for the Vortex detector
-< vortex.cmd
+#< vortex.cmd
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
@@ -90,13 +108,13 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Linux:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db", "P=13Linux:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Linux:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db", "P=13Linux:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Linux:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db", "P=13Linux:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Linux:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Linux:")
@@ -109,23 +127,30 @@ MM4000Setup(1, 8, 10)
 
 # MM4000 driver configuration parameters: 
 #     (1) controller
-#     (2) port type: 0=GPIB, 1=RS232, 
-#     (3) GPIB link or Hideos card
-#     (4) GPIB address or Hideos task
+#     (2) Port name
+#     (3) Address (GPIB)
 # GPIB example:
 #   MM4000Config(0,0,10,2)  #Link 10, address 2
 # RS-232 example:
 #   MM4000Config(0, 1, 0, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
-MM4000Config(0, 1, 0, "serial2")
-# Delay to allow motors to settle
-drvMM4000ReadbackDelay=.5  
+MM4000Config(0, "serial2", 0)
 
-initInetPort("moxa1","164.54.160.50",4001,1000) 
-initSerialServer("serial3","moxa1",1000,20,"") 
-  
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13Linux:,R=ser3,C=0,SERVER=serial3") 
+# MCB-4B driver setup parameters:
+#     (1) maximum # of controllers,
+#     (2) maximum # axis per controller
+#     (3) motor task polling rate (min=1Hz, max=60Hz)
+MCB4BSetup(1, 4, 10)
+
+# MCB-4B driver configuration parameters:
+#     (1) controller
+#     (2) asyn port name (e.g. serial1)
+MCB4BConfig(0, "serial1")
+
 
 iocInit
+
+dbpr "13Linux:ccd1ServerName"
+dbpr "13Linux:ccd1ServerPort"
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
@@ -144,4 +169,7 @@ create_monitor_set("auto_settings.req", 30)
 dbpf "13Linux:EnableUserTrans.PROC","1"
 dbpf "13Linux:EnableUserSCalcs.PROC","1"
 
-seq &Keithley2kDMM, "P=13Linux:, Dmm=DMM1, stack=10000"
+seq &roperCCD, "P=13Linux:,C=ccd1"
+#seq &marCCD, "P=13Linux:,C=ccd2"
+#seq &Keithley2kDMM, "P=13Linux:, Dmm=DMM1, stack=10000"
+
