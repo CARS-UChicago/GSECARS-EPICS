@@ -39,24 +39,6 @@ grecord(transform,"$(P)$(PID)_incalc") {
         field(PREC,"$(PREC)")
 }
 
-# These record control auto-opening the shutter
-grecord(bo,"$(P)$(PID)EnableShutter") {
-        field(ZNAM,"Disable")
-        field(ONAM,"Enable")
-}
-
-grecord(calcout,"$(P)$(PID)OpenShutter") {
-        field(SCAN, "1 second")
-        field(DISV,"0")
-        field(SDIS,"$(P)$(PID)EnableShutter NPP NMS")
-        field(INPA,"$(SHUT_STATUS)")
-        field(CALC, "A")
-        field(OOPT, "When Zero")
-        field(DOPT, "Use OCAL")
-        field(OCAL, "1")
-        field(OUT, "$(SHUT_CONTROL).PROC PP MS")
-}
-
 # These records control auto-resetting the feedback
 grecord(bo,"$(P)$(PID)EnableReset") {
         field(ZNAM,"Disable")
@@ -82,7 +64,8 @@ grecord(calcout,"$(P)$(PID)Locked") {
         field(INPA,"$(SHUT_STATUS) CP MS")
         field(INPB,"$(P)$(PID).ERR CP MS")
         field(INPC,"$(P)$(PID).VAL CP MS")
-        field(CALC, "A && (ABS(B/C) < 0.05)")
+        field(INPD,".05")
+        field(CALC, "A && (ABS(B/C) < D)")
         field(LOW, "0")
         field(LSV, "MAJOR")
 }
