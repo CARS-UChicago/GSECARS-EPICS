@@ -1,0 +1,23 @@
+# This file reads the shutter control output of the MAR345 controller via an IP Unidig  
+# input and opens and closes the shutter on transitions from 1 to 0 and 0 to 1
+# Macro parameters:
+# P=prefix (e.g. 13IDD:)
+# R=name for this database (e.g. MAR1)
+# IN=ipUnidig input record
+# OUT=ipUnidig output record
+grecord(calcout,"$(P)$(R)open") {
+    field(INPA,"$(IN) CP NMS")
+    field(CALC,"A")
+    field(OUT, "$(OUT) PP MS")
+    field(OOPT, "Transition To Zero")
+    field(OCAL, "0")
+    field(DOPT, "Use OCAL")
+}
+grecord(calcout,"$(P)$(R)close") {
+    field(INPA,"$(IN) CP NMS")
+    field(CALC,"A")
+    field(OUT, "$(OUT) PP MS")
+    field(OOPT, "Transition To Non-zero")
+    field(OCAL, "1")
+    field(DOPT, "Use OCAL")
+}
