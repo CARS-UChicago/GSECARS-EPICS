@@ -1,4 +1,4 @@
-file CARSApp/Db/eps_outputs.db, top
+file "$(CARS)/CARSApp/Db/eps_outputs.db"
 {
 pattern
 {P,        N,   DESC,                       A,  C,  S, ZNAM,             ZSV,         ONAM,               OSV}
@@ -6,12 +6,22 @@ pattern
 {13BMA:,   2,   "EPS reset",                0,  3,  1, "Reset_off",      "NO_ALARM",  "Reset_on",         "NO_ALARM"}
 {13BMA:,   3,   "FE shutter open",          0,  3,  2, "Close",          "NO_ALARM",  "Open"              "NO_ALARM"}
 {13BMA:,   4,   "FE shutter close",         0,  3,  3, "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
+{13BMA:,   5,   "BMD shutter open",         0,  3,  4, "Close",          "NO_ALARM",  "Open"              "NO_ALARM"}
+{13BMA:,   6,   "BMD shutter close",        0,  3,  5, "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
+{13BMA:,   7,   "BMC shutter open",         0,  3,  6, "Close",          "NO_ALARM",  "Open"              "NO_ALARM"}
+{13BMA:,   8,   "BMC shutter close",        0,  3,  7, "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
+{13BMA:,   9,   "BMD shutter disable",      0,  3,  8, "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
+{13BMA:,  10,   "BMC shutter disable",      0,  3,  9, "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
 }
 
-file CARSApp/Db/eps_pulse.db, top
+file "$(CARS)/CARSApp/Db/eps_pulse.db"
 {
 pattern
 {P,        R,               N,   DESC,             }
 {13BMA:,   OpenFEShutter,   3,  "Open FE shutter"  }
 {13BMA:,   CloseFEShutter,  4,  "Close FE shutter" }
+{13BMA:,   OpenBMDShutter,  5,  "Open BMD shutter"  }
+{13BMA:,   CloseBMDShutter, 6,  "Close BMD shutter" }
+{13BMA:,   OpenBMCShutter,  7,  "Open BMC shutter"  }
+{13BMA:,   CloseBMCShutter, 8,  "Close BMC shutter" }
 }
