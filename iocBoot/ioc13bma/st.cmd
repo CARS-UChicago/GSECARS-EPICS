@@ -90,6 +90,8 @@ oms58Setup(4, 8, 0x4000, 190, 5, 10)
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
+iocInit
+
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
