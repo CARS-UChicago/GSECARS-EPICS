@@ -1,0 +1,31 @@
+#
+# Database for RSF Electronik 715 encoder readout
+#
+
+# Send string to unit to read out
+# The empty VAL field is needed to start the serial read operation automatically
+grecord(stringout,"$(P)$(ENCODER)_ReadPos")
+{
+	field(SCAN,".5 second")
+	field(VAL,"")
+	field(DTYP,"Hideos so stringParm")
+	field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=31")
+	field(FLNK,"$(P)$(ENCODER)_Pos PP MS")
+}
+          
+# Read from Encoder
+grecord(stringin,"$(P)$(ENCODER)_Pos")
+{
+	field(DTYP,"Hideos si stringParm")
+	field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)], TERM=0d")
+	field(FLNK, "$(P)$(ENCODER)Channel1 PP MS")
+}
+
+# Parce string
+grecord(scalcout,"$(P)$(ENCODER)Channel1") 
+{
+	field(INAA,"$(P)$(ENCODER)_Pos NPP NMS")
+	field(CALC,"SSCANF(AA, '%*2c   %f')")
+	field(PREC,"4")
+	field(EGU,"mm")
+}

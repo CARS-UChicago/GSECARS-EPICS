@@ -1,0 +1,287 @@
+# Database for CRI laser power controller
+
+# Reset controller - fixed units
+grecord(stringout,"$(P)$(L)reset") {
+        field(PINI,"1")
+        field(DTYP,"Hideos so stringParm")
+        field(VAL,"U 0")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a")
+        field(FLNK,"$(P)$(L)reset1 PP MS")
+}
+
+# No logging
+grecord(stringout,"$(P)$(L)reset1") {
+        field(DTYP,"Hideos so stringParm")
+        field(VAL,"S 0")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a")
+}
+
+
+# Control the power
+grecord(ao,"$(P)$(L)power_set") {
+        field(DTYP,"Hideos ao stringParm")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a,FMT=P %4.3lf W")
+        field(PREC,"3")
+        field(DRVL,"0.")
+        field(DRVH,"100.")
+        field(FLNK,"$(P)$(L)poll PP MS")
+}
+
+# These records are for tweaking the power
+grecord(ao,"$(P)$(L)power_tweak") {
+        field(VAL,"0.1")
+        field(PREC,"3")
+}
+
+grecord(calcout,"$(P)$(L)power_tweak_down") {
+        field(INPA,"$(P)$(L)power_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(L)power_set NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(L)power_set PP NMS")
+}
+
+grecord(calcout,"$(P)$(L)power_tweak_up") {
+        field(INPA,"$(P)$(L)power_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(L)power_set NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(L)power_set PP NMS")
+}
+
+
+# Control the transmission
+grecord(ao,"$(P)$(L)trans_set") {
+        field(DTYP,"Hideos ao stringParm")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a,FMT=T %4.3lf %%")
+        field(PREC,"3")
+        field(DRVL,"0.")
+        field(DRVH,"100.")
+        field(FLNK,"$(P)$(L)poll")
+}
+
+# These records are for tweaking the transmission
+grecord(ao,"$(P)$(L)trans_tweak") {
+        field(VAL,"0.5")
+        field(PREC,"3")
+}
+
+grecord(calcout,"$(P)$(L)trans_tweak_down") {
+        field(INPA,"$(P)$(L)trans_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(L)trans_set NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(L)trans_set PP NMS")
+}
+
+grecord(calcout,"$(P)$(L)trans_tweak_up") {
+        field(INPA,"$(P)$(L)trans_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(L)trans_set NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(L)trans_set PP NMS")
+}
+
+
+# Control the wavelength
+grecord(ao,"$(P)$(L)wave_set") {
+        field(DTYP,"Hideos ao stringParm")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a,FMT=L %4.3lf nm")
+        field(PREC,"1")
+        field(FLNK,"$(P)$(L)poll")
+}
+
+
+# Set the remote control state
+grecord(bo,"$(P)$(L)remote_set") {
+        field(VAL,"0")
+        field(OUT,"$(P)$(L)remote_out.VAL PP MS")
+        field(ZNAM,"Enable")
+        field(ONAM,"Disable")
+}
+
+grecord(longout,"$(P)$(L)remote_out") {
+        field(DTYP,"Hideos lo stringParm")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a,FMT=R %d")
+        field(FLNK,"$(P)$(L)poll")
+}
+
+# Set the mode
+grecord(bo,"$(P)$(L)mode_set") {
+        field(VAL,"0")
+        field(OUT,"$(P)$(L)mode_out.VAL PP MS")
+        field(ZNAM,"Constant power")
+        field(ONAM,"Constant transmiss.")
+}
+
+grecord(longout,"$(P)$(L)mode_out") {
+        field(DTYP,"Hideos lo stringParm")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],TERM=0a,FMT=M %d")
+        field(FLNK,"$(P)$(L)poll")
+}
+
+# Poll all of the read parameters
+grecord(bo,"$(P)$(L)scan") {
+        field(SCAN,"2 second")
+        field(FLNK,"$(P)$(L)poll.PROC  PP MS")
+}
+
+grecord(bo,"$(P)$(L)poll") {
+        field(FLNK,"$(P)$(L)power_read.PROC  PP MS")
+}
+
+# Read the power
+grecord(serial, "$(P)$(L)power_read") {
+	field(AOUT,"P ?")
+        field(IDEL,"10")
+        field(ODEL,"10")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(L)power_decode  PP MS")
+}
+grecord(scalcout,"$(P)$(L)power_decode") {
+	field(INAA,"$(P)$(L)power_read.AINP NPP NMS")
+	field(INPB,"1.0")
+# There seems to be a bug, can't escape "" characters. We want this calc
+#	field(CALC,"AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)")
+	field(CALC,"AA")
+	field(PREC,"3")
+	field(FLNK,"$(P)$(L)power_scale  PP MS")
+}
+grecord(scalcout,"$(P)$(L)power_scale") {
+	field(INPA,"$(P)$(L)power_decode NPP NMS")
+	field(INPB,"1.0")
+	field(CALC,"A*B")
+	field(PREC,"3")
+	field(FLNK,"$(P)$(L)trans_read  PP MS")
+}
+
+# Read the transmission
+grecord(serial, "$(P)$(L)trans_read") {
+	field(AOUT,"T ?")
+        field(IDEL,"10")
+        field(ODEL,"10")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(L)trans_decode  PP MS")
+}
+grecord(scalcout,"$(P)$(L)trans_decode") {
+	field(INAA,"$(P)$(L)trans_read.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, 'T%f')")
+	field(PREC,"3")
+	field(FLNK,"$(P)$(L)wave_read  PP MS")
+}
+
+# Read the wavelength
+grecord(serial, "$(P)$(L)wave_read") {
+	field(AOUT,"L ?")
+        field(IDEL,"10")
+        field(ODEL,"10")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(L)wave_decode  PP MS")
+}
+grecord(scalcout,"$(P)$(L)wave_decode") {
+	field(INAA,"$(P)$(L)wave_read.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, 'L%f')")
+	field(PREC,"1")
+	field(FLNK,"$(P)$(L)remote_read  PP MS")
+}
+
+# Read the remote control state
+grecord(serial, "$(P)$(L)remote_read") {
+	field(AOUT,"R ?")
+        field(IDEL,"10")
+        field(ODEL,"10")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(L)remote_parse  PP MS")
+}
+grecord(scalcout,"$(P)$(L)remote_parse") {
+	field(INAA,"$(P)$(L)remote_read.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, 'R%d')")
+	field(PREC,"1")
+	field(FLNK,"$(P)$(L)remote_decode  PP MS")
+}
+
+grecord(bo,"$(P)$(L)remote_decode") {
+        field(DOL,"$(P)$(L)remote_parse  NPP NMS")
+        field(OMSL,"closed_loop")
+        field(ZNAM,"Enable")
+        field(ONAM,"Disable")
+	field(FLNK,"$(P)$(L)mode_read  PP MS")
+}
+
+# Read the mode
+grecord(serial, "$(P)$(L)mode_read") {
+	field(AOUT,"M ?")
+        field(IDEL,"10")
+        field(ODEL,"10")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(L)mode_parse  PP MS")
+}
+grecord(scalcout,"$(P)$(L)mode_parse") {
+	field(INAA,"$(P)$(L)mode_read.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, 'M%d')")
+	field(PREC,"1")
+	field(FLNK,"$(P)$(L)mode_decode  PP MS")
+}
+
+grecord(bo,"$(P)$(L)mode_decode") {
+        field(DOL,"$(P)$(L)mode_parse  NPP NMS")
+        field(OMSL,"closed_loop")
+        field(ZNAM,"Constant power")
+        field(ONAM,"Constant transmiss.")
+}
+
+
+# These records are for tweaking the modulator via the DAC.  These records
+# are used to provide a tweak and to convert the units from DAC volts (-5 =
+# full power, 0 = no power) to percent (0-100) of full power
+
+grecord(ao,"$(P)$(L)mod_set") {
+        field(VAL, "0")
+        field(DRVL,"0.")
+        field(LOPR,"0.")
+        field(DRVH,"100.")
+        field(HOPR,"100.")
+        field(PREC,"3")
+        field(FLNK,"$(P)$(L)mod_write PP MS")
+}
+
+grecord(calcout,"$(P)$(L)mod_write") {
+        field(INPA,"$(P)$(L)mod_set NPP NMS")
+        field(CALC,"-.05*A")
+        field(OUT, "$(P)$(DAC) PP NMS")
+}
+
+grecord(ao,"$(P)$(L)mod_tweak") {
+        field(VAL,"0.1")
+        field(PREC,"3")
+}
+
+grecord(calcout,"$(P)$(L)mod_tweak_down") {
+        field(INPA,"$(P)$(L)mod_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(L)mod_set NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(L)mod_set PP NMS")
+}
+
+grecord(calcout,"$(P)$(L)mod_tweak_up") {
+        field(INPA,"$(P)$(L)mod_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(L)mod_set NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(L)mod_set PP NMS")
+}

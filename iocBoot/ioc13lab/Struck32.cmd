@@ -1,0 +1,5 @@
+STR7201Setup(1,0xA0000000,220,6)
+# STR7201Config(card, maxSignals, maxChans, ch1RefEnable)
+STR7201Config(0, 32, 2048, 1)
+dbLoadRecords("mcaApp/Db/Struck32.db","P=13LAB:str:", mca)
+dbLoadTemplate("Struck32.template")

@@ -1,0 +1,35 @@
+grecord(ao,"$(P)$(EN)") {
+        field(DESC, "Energy")
+	field(PREC, "$(PREC)")
+	field(EGU, "$(EGU)")
+}
+grecord(ao,"$(P)$(EN)RBV") {
+	field(DESC, "Energy Readback")
+	field(PREC, "$(PREC)")
+	field(EGU, "$(EGU)")
+}
+grecord(ao,"$(P)$(EN)P1") {
+	field(DESC, "channel width")
+	field(VAL,  "9.10101")
+	field(PREC, "$(PREC)")
+	field(EGU,  "$(EGU)")
+}
+grecord(ao,"$(P)$(EN)P2") {
+	field(DESC, "lattice spacing")
+	field(VAL,  "1.920127")
+	field(PREC, "$(PREC)")
+	field(EGU,  "$(EGU)")
+}
+grecord(bo,"$(P)$(EN).SET") {
+	field(DESC, "SET")
+}
+grecord(transform,"$(P)$(EN)_tweak") {
+	field(DESC, "Pseudomotor tweak")
+	field(CLCD,"a?c-e:b?c+e:c")
+	field(INPC,"$(P)$(EN).VAL  NPP NMS")
+	field(INPE,"$(TWEAK)")
+	field(OUTD,"$(P)$(EN).VAL  PP MS")
+	field(OUTF,"$(P)$(EN).TWR  NPP NMS")
+	field(OUTG,"$(P)$(EN).TWF  NPP NMS")
+	field(PREC,"$(PREC)")
+}

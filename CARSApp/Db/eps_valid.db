@@ -1,0 +1,17 @@
+grecord(seq,"$(P)eps_invalid_seq")
+{
+	field(DESC,"Sequencer for EPS valid")
+	field(PINI,"YES")
+	field(DLY1,"5")
+	field(DOL1,"1")
+	field(LNK1,"$(P)eps_invalid.PROC")
+}
+grecord(calcout,"$(P)eps_invalid")
+{
+	field(DESC,"EPS invalid calculation")
+	field(INPA,"$(P)eps_bi1.SEVR CP NMS")
+	field(INPB,"$(P)eps_bi1.VAL CP NMS")
+	field(INPC,"$(P)eps_bi2.VAL CP NMS")
+	field(INPD,"$(P)eps_bi11.VAL CP NMS")
+	field(CALC,"(A#0)||(B=0)||(C#0)||(D#0)")
+}

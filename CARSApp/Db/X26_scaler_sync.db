@@ -1,0 +1,27 @@
+# This database is for use with the CAMAC scaler at X-26, where it is gated by the
+# MCA.  Whenever the MCA starts the scaler will be loaded with a preset time of
+# 1000 seconds (the longest count time with good time resolution) and the scaler
+# will automatically be started.  When the MCA acquisition completes the scaler will
+# be automatically stopped.
+
+grecord(calcout, "$(P)$(M)WhenAcqStops") {
+        field(INPA,"$(P)$(M).ACQG CP MS")
+        field(CALC,"A")
+        field(OOPT,"Transition To Zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "0")
+        field(OUT,"$(P)$(S).CNT PP MS")
+}
+grecord(calcout,"$(P)$(M)WhenAcqStarts") {
+        field(INPA,"$(P)$(M).ACQG CP MS")
+        field(CALC,"A")
+        field(OOPT,"Transition To Non-zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "1000")
+        field(OUT,"$(P)$(S).TP PP MS")
+        field(FLNK,"$(P)$(M)StartScaler.PROC PP MS")
+}
+grecord(bo,"$(P)$(M)StartScaler") {
+        field(VAL,"1")
+        field(OUT,"$(P)$(S).CNT PP MS")
+}

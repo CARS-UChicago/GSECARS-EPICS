@@ -1,0 +1,87 @@
+# Database to move the lift table in 15IDC
+# Jeff Gebhardt June 20, 2001
+#
+
+
+#
+# These records convert the pseudo motor VAL field (vertical position)
+# to the real motor VAL field (horizontal length).
+#
+
+grecord(ao, "$(P)$(TABLE)TMove") {
+	field(OUT, "$(P)$(TABLE)TTrns1 PP NMS")
+}
+grecord(transform,"$(P)$(TABLE)TTrns1") {
+	field(PREC,"6")
+	field(INPA,"$(P)$(TABLE)T.VAL NPP NMS")
+	field(CLCA,"SQRT(350^2-((A^2)/4))")
+	field(OUTA,"$(P)$(T1).VAL PP NMS")
+}
+
+
+#
+# This record sets the pseudo motor readback to the encoder readout (vertical position).
+#
+
+grecord(ai,"$(P)$(TABLE)TRdbk") {
+	field(PROC,"1")
+	field(PREC,"4")
+	field(INP,"$(P)$(ENCODER).VAL CP NMS")
+	field(FLNK,"$(P)$(TABLE)TTrns3 PP NMS")  
+}
+
+#
+# The transform record will update the pseudo motor DVAL field when the 
+# the real motor changes.  Note: It gets its value from "$(P)$(ENCODER).VAL" 
+# in order to avoid a loop.
+# This Step is needed due to a bug in the pseudomotor
+# record.
+#
+
+grecord(transform,"$(P)$(TABLE)TTrns3") {
+	field(PREC,"6")
+      	field(CLCA,"1")
+      	field(OUTA,"$(P)$(TABLE)T.SET NPP MS")
+	field(INPB,"$(P)$(TABLE)T.VAL NPP MS")
+	field(OUTB,"$(P)$(TABLE)T.DVAL PP MS")
+    	field(CLCC,"0")
+      	field(OUTC,"$(P)$(TABLE)T.SET NPP MS")
+}
+
+#
+# This record processes if the soft motor STOP field is set.
+#
+
+grecord(dfanout,"$(P)$(TABLE)TStop") {
+        field(VAL,"1")
+        field(OUTA,"$(P)$(T1).STOP PP MS")
+}
+
+#
+# This record computes whether the motor is done moving.  
+# It goes to 1 when the real motor is done moving.
+# On the transition to 1 it causes the $(P)$(TABLE)TRdbk record to process, which 
+# updates the DVAL fields of the soft motor so it reflects the drive 
+# position of the real motor.
+#
+
+grecord(calcout,"$(P)$(TABLE)TDone") {
+       field(INPA,"$(P)$(T1).DMOV CP MS")
+       field(CALC,"A")
+       field(OUT,"$(P)$(TABLE)TRdbk.PROC PP MS")
+       field(OOPT,"Transition To Non-zero")
+}
+
+grecord(transform,"$(P)$(TABLE)TTrns4") {
+	field(PINI,"1")
+	field(DESC,"Initalizes VAL field")
+     	field(CLCA,"1")
+      	field(OUTA,"$(P)$(TABLE)T.SET NPP NMS")
+ 	field(INPB,"$(P)$(ENCODER).VAL  NPP NMS")
+	field(CLCC,"B")
+	field(OUTC,"$(P)$(TABLE)T.VAL NPP NMS")
+      	field(CLCD,"0")
+      	field(OUTD,"$(P)$(TABLE)T.SET NPP NMS")
+      	field(FLNK,"$(P)$(TABLE)TTrns3 PP NMS")
+	field(PREC,"4")
+} 

@@ -1,0 +1,63 @@
+# Makefile.Vx
+TOP = ../../..
+include $(TOP)/config/CONFIG_APP
+#----------------------------------------
+#  ADD MACRO DEFINITIONS AFTER THIS LINE
+
+SRCS.c += ../devPM304.c
+SRCS.c += ../drvPM304.c
+SRCS.c += ../devAoAvme9210.c
+SRCS.c += ../drvAvme9210.c
+
+include ../baseLIBOBJS
+
+include ../carsLIBOBJS
+
+include $(STD)/stdApp/src/stdLIBOBJS
+LIBOBJS += $(STDLIBOBJS)
+#LIBOBJS += $(STD_BIN)/stdLib
+
+include $(MCA)/mcaApp/src/mcaLIBOBJS
+LIBOBJS += $(MCALIBOBJS)
+#LIBOBJS += $(MCA_BIN)/mcaLib
+include $(MCA)/mcaApp/src/mcaMpfServerLIBOBJS
+LIBOBJS += $(MCAMPFSERVERLIBOBJS)
+
+include $(IP)/ipApp/src/ipLIBOBJS
+LIBOBJS += $(IPLIBOBJS)
+#LIBOBJS += $(IP_BIN)/ipLib
+
+include ../allenBradleyLIBOBJS
+
+# motor record and device support
+LIBOBJS += $(MOTOR_BIN)/motorLib
+LIBOBJS += $(MOTOR_BIN)/motorCOM_mpf
+LIBOBJS += $(MOTOR_BIN)/omsLib 
+LIBOBJS += $(MOTOR_BIN)/softMotorLib 
+#LIBOBJS += $(MOTOR_BIN)/V544Lib
+LIBOBJS += $(MOTOR_BIN)/newportLib
+#LIBOBJS += $(MOTOR_BIN)/pm500Lib
+
+# CAMAC librariew
+LIBOBJS += $(CAMAC_BIN)/camacLib
+LIBOBJS += $(CAMAC_BIN)/devCamacLib
+LIBOBJS += $(CAMAC_BIN)/dxpCamacLib
+LIBNAME = CARSLib
+
+BIN_INSTALLS += $(EPICS_BASE_BIN)/iocCore $(EPICS_BASE_BIN)/seq
+
+BIN_INSTALLS += $(STD_BIN)/xiahsc.o
+BIN_INSTALLS += $(STD_BIN)/xia_slit.o
+BIN_INSTALLS += $(STD_BIN)/getFilledBuckets.o
+BIN_INSTALLS += $(MPF_GPIB_BIN)/GpibHideosRemote.o
+BIN_INSTALLS += $(MPF_GPIB_BIN)/GpibHideosLocal.o
+BIN_INSTALLS += $(MPF_BIN)/mpfLib
+BIN_INSTALLS += $(IP_BIN)/mpfServLib
+BIN_INSTALLS += $(STD_BIN)/initHooks.o
+
+#Note that the command line that builds the
+#library $(LIBNAME) may be HUGE (>3kB)
+#
+include $(TOP)/config/RULES.Vx
+#----------------------------------------
+#  ADD RULES AFTER THIS LINE

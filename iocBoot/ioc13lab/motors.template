@@ -1,0 +1,45 @@
+file CARSApp/Db/motor.db,top
+{
+pattern
+{P,       M,       DTYP,      C,     S,          DESC,    EGU,   DIR,  VELO,   VBAS,     ACCL,  BDST,   BVEL,  BACC,  SREV,     UREV,  PREC,  DHLM, DLLM}
+#{13LAB:,  m1,  "OMS VME58",   0,     0,       "Motor-1",     mm,   Neg,    .5,     .0,      1.5,   0.2,    .05,   1.5,  2000,  .347368,     4,    10,    0}
+#{13LAB:,  m2,  "OMS VME58",   0,     1,        "Motor-2",     mm,   Neg,    .5,     .0,      1.5,   0.2,    .05,   1.5,  2000,  .347368,     4,    10,    0}
+{13LAB:,  m1,  "OMS VME58",   0,     0,       "Mirror-Fu",  mm,   Pos,     1,     .0,      5,     0,       .0,    .0,  5000,  .34737,     4,    40,    0}
+{13LAB:,  m2,  "OMS VME58",   0,     1,       "Mirror-Yu",  mm,   Pos,    .5,     .0,      2.,     0,       .0,    .0,   400,  .016071,     4,   100,    0}
+{13LAB:,  m3,  "OMS VME58",   0,     2,        "Motor-4",     mm,   Neg,    .5,     .0,      1.5,   0.2,    .05,   1.5,  2000,  .882353,     4,    10,    0}
+{13LAB:,  m4,  "OMS VME58",   0,     3,      "Motor-5",     mm,   Neg,    .5,     .0,      1.5,     0,     .1,   1.5,  5000,       1.,     3,    25,    0}
+{13LAB:,  m5,  "OMS VME58",   0,    4,         "Y-Up",       mm,   Neg,    .5,     .0,      1.5,   0.2,    .05,   1.5,  2000,  .882353,     4,    10,    0}
+{13LAB:,  m6,  "OMS VME58",   0,    5,         "Y-In",       mm,   Neg,    .5,     .0,      1.5,   0.2,    .05,   1.5,  2000,  .347368,     4,    10,    0}
+{13LAB:,  m7,  "OMS VME58",   0,    6,       "Y-Out",        mm,   Neg,    .5,     .0,      1.5,   0.2,    .05,   1.5,  2000,  .347368,     4,    10,    0}
+{13LAB:,  m8,  "OMS VME58",   0,    7,       "Cage Y",       mm,   Neg,    .5,     .0,      1.5,     0,     .1,   1.5,  5000,       1.,     3,    25,    0}
+#{13LAB:  m6, "Newport PM500",   0,    0,  "X",    microns,  Pos,  10000.,   10.,   .2,    0,      1,     .2,      1,   0.01,     2,   15000,   -15000}
+#{13LAB:  m7, "Newport PM500",   0,    1,  "Y",    microns,  Pos,  10000.,   10.,   .2,    0,      1,     .2,      1,   0.01,     2,   15000,   -15000}
+#{13LAB:  m8, "Newport PM500",   0,    2,  "Z",    microns,  Pos,  10000.,   10.,   .2,    0,      1,     .2,      1,   0.01,     2,   15000,   -15000}
+#{13LAB:,  m9     "OMS VME58",   1,    1, "Vert. mirror Y pos.",      microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+#{13LAB:,  m10    "OMS VME58",   1,    0, "Vert. mirror rotation",    mrad,     Pos,     10,    .1,    .2,    0,      1,     .2,     48,     0.7981, 3,       30,  -30}
+#{13LAB:,  m11    "OMS VME58",   1,    2, "Vert. force UpStream.",    microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+#{13LAB:,  m12,   "OMS VME58",   1,    3, "Vert. force DownStream.",  microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+#{13LAB:,  m13,   "OMS VME58",   1,    5, "Hor. mirror X pos",        microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+#{13LAB:,  m14,   "OMS VME58",   1,    4, "Hor. mirror rotation",     mrad,     Pos,     10,    .1,    .2,    0,      1,     .2,     48,     0.5159, 3,       30,  -30}
+#{13LAB:,  m15,   "OMS VME58",   1,    6, "Hor. force UpStream",      microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+#{13LAB:,  m16,   "OMS VME58",   1,    7, "Hor. force DownStream",    microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+}
+
+file stdApp/Db/table.db std
+{
+pattern
+
+{P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
+{13LAB:, MON:T1, MON:t1, junk, junk,   junk,   m2,    m1,     m3,    junk,    SRI}
+}
+
+file stdApp/Db/scanParms.db std
+{
+{P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1X,POS=MON:t1.X,RDBK=MON:t1.XRB}
+{P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1Y,POS=MON:t1.Y,RDBK=MON:t1.YRB}
+{P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1Z,POS=MON:t1.Z,RDBK=MON:t1.ZRB}
+{P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1AX,POS=MON:t1.AX,RDBK=MON:t1.AXRB}
+{P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1AY,POS=MON:t1.AY,RDBK=MON:t1.AYRB}
+{P=13LAB:,SCANREC=13LAB:scan1,Q=MON:T1AZ,POS=MON:t1.AZ,RDBK=MON:t1.AZRB}
+}
+

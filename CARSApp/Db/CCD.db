@@ -1,0 +1,56 @@
+# Database for CCD synchronization with EPICS
+# Used with Visual Basic program ORNL_CCD
+#	Mark Rivers
+#     February 12, 1999
+#
+grecord(bo,"$(P)CCD_synch") {
+	field(ZNAM,"Done")
+	field(ONAM,"Collect")
+}
+grecord(bo,"$(P)CCD_save_file") {
+	field(ZNAM,"No")
+	field(ONAM,"Yes")
+      field(VAL, "1")
+}
+grecord(stringout,"$(P)CCD_base_file") {
+      field(VAL, "test_data")
+}
+grecord(longout, "$(P)CCD_file_number") {
+      field(VAL, "1")
+}
+grecord(bo, "$(P)CCD_file_increment") {
+	field(ZNAM,"No")
+	field(ONAM,"Yes")
+      field(VAL, "1")
+}
+grecord(ao,"$(P)CCD_exposure_time") {
+      field(VAL, "1.0")
+      field(PREC, "3")
+}
+grecord(longout,"$(P)CCD_left") {
+      field(VAL, "1")
+}
+grecord(longout,"$(P)CCD_right") {
+      field(VAL, "100")
+}
+grecord(longout,"$(P)CCD_top") {
+      field(VAL, "1")
+}
+grecord(longout,"$(P)CCD_bottom") {
+      field(VAL, "100")
+}
+grecord(bo,"$(P)CCD_ROI_define") {
+	field(ZNAM,"Done")
+	field(ONAM,"Define")
+}
+grecord(bo,"$(P)CCD_compute_counts") {
+	field(ZNAM,"No")
+	field(ONAM,"Yes")
+      field(VAL, "1")
+}
+grecord(longout,"$(P)CCD_net_counts") {}
+grecord(longout,"$(P)CCD_total_counts") {}
+grecord(bo,"$(P)CCD_open_shutter") {
+	field(ZNAM,"Close")
+	field(ONAM,"Open")
+}

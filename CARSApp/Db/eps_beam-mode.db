@@ -1,0 +1,50 @@
+grecord(bi,"$(P)$(DEVICE)_in-beam_status")
+{
+	field(DESC,"$(DESC)")
+	field(SCAN,"I/O Intr")
+	field(DTYP,"AB-16 bit BI")
+	field(INP,"#L0 A$(A_IS) C$(C_IS) S$(S_IS) F0 @")
+	field(ZNAM,"")
+	field(ONAM,"In-beam")
+}
+grecord(bi,"$(P)$(DEVICE)_off-beam_status")
+{
+	field(DESC,"$(DESC)")
+	field(SCAN,"I/O Intr")
+	field(DTYP,"AB-16 bit BI")
+	field(INP,"#L0 A$(A_OS) C$(C_OS) S$(S_OS) F0 @")
+	field(ZNAM,"")
+	field(ONAM,"Off-beam")
+}
+grecord(calcout,"$(P)$(DEVICE)_status_wait")
+{
+	field(DESC,"Valve state calc")
+	field(INPA,"$(P)$(DEVICE)_in-beam_status.VAL CP NMS")
+	field(INPB,"$(P)$(DEVICE)_off-beam_status.VAL CP NMS")
+	field(INPC,"$(P)eps_invalid.VAL CP NMS")
+	field(OUT,"$(P)$(DEVICE)_status.VAL PP NMS")
+	field(CALC,"MAX((A+(2*B)),4*C)")
+}
+grecord(mbbi,"$(P)$(DEVICE)_status")
+{
+	field(DESC,"$(DESC)")
+	field(ZRST,"Moving")
+	field(ONST,"MONO")
+	field(TWST,"WHITE/PINK")
+	field(THST,"Miswired")
+	field(FRST,"Invalid")
+	field(ZRSV,"MAJOR")
+	field(ONSV,"NO_ALARM")
+	field(TWSV,"NO_ALARM")
+	field(THSV,"MAJOR")
+	field(FRSV,"MAJOR")
+	field(UNSV,"MAJOR")
+}
+grecord(seq,"$(P)$(DEVICE)_seq")
+{
+	field(DESC,"Sequencer for beam-mode-selection records")
+	field(PINI,"YES")
+	field(DLY1,"9")
+	field(DOL1,"1")
+	field(LNK1,"$(P)$(DEVICE)_status_wait.PROC")
+}

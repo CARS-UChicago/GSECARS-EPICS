@@ -1,0 +1,23 @@
+# Database for  Newport LAE500 autocollimator
+grecord(serial, "$(P)$(R)serial") {
+	field(AOUT,"P")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+	field(FLNK,"$(P)$(R)_X.VAL  PP MS")
+}
+grecord(scalcout,"$(P)$(R)_X") {
+	field(INAA,"$(P)$(R)serial.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, 'P%f')")
+	field(PREC,"1")
+	field(FLNK,"$(P)$(R)_Z.VAL  PP MS")
+}
+grecord(scalcout,"$(P)$(R)_Z") {
+	field(INAA,"$(P)$(R)serial.AINP NPP NMS")
+	field(CALC,"SSCANF(AA, 'P%*f,%f')")
+	field(PREC,"1")
+}

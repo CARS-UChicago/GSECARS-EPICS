@@ -1,0 +1,67 @@
+# Database for Physical Electronics MPC ion pump controller
+# This database assumes the address of the controller is 00.
+
+# Records to read voltage
+grecord(stringout,"$(P)$(PUMP)_ReadVolts")
+{
+        field(SCAN,"1 second")
+        field(DTYP,"Hideos so stringParm")
+        field(VAL,"~ 00 0C 33")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(PUMP)_Volts PP MS")
+}        
+
+grecord(ai,"$(P)$(PUMP)_Volts")
+{
+        field(DTYP,"Hideos ai stringParm")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],IX=9,TERM=0d,FMT=%lf")
+        field(EGU,"V")
+        field(PREC,"0")
+	field(LOW,"3000")
+	field(LOLO,"500")
+	field(FLNK,"$(P)$(PUMP)_ReadCurrent PP MS")
+}
+
+# Records to read current
+grecord(stringout,"$(P)$(PUMP)_ReadCurrent")
+{
+        field(DTYP,"Hideos so stringParm")
+        field(VAL,"~ 00 0A 31")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(PUMP)_Current PP MS")
+}        
+
+grecord(ai,"$(P)$(PUMP)_Current")
+{
+        field(DTYP,"Hideos ai stringParm")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],IX=9,TERM=0d,FMT=%lf")
+        field(EGU,"Amps")
+        field(PREC,"1")
+	field(LOW,"1.e-9")
+	field(LOLO,"1.e-9")
+	field(HIGH,"1.e-3")
+	field(HIHI,"1.e-2")
+	field(FLNK,"$(P)$(PUMP)_ReadPressure PP MS")
+}
+
+# Records to read pressure
+grecord(stringout,"$(P)$(PUMP)_ReadPressure")
+{
+        field(DTYP,"Hideos so stringParm")
+        field(VAL,"~ 00 0B 32")
+        field(OUT,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+	field(FLNK,"$(P)$(PUMP)_Pressure PP MS")
+}        
+
+grecord(ai,"$(P)$(PUMP)_Pressure")
+{
+	field(DESC,"Ion pump pressure")
+        field(DTYP,"Hideos ai stringParm")
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)],IX=9,TERM=0d,FMT=%lf")
+        field(EGU,"Torr")
+        field(PREC,"1")
+	field(LOW,"1.e-9")
+	field(LOLO,"1.e-10")
+	field(HIGH,"1.e-6")
+	field(HIHI,"1.e-5")
+}

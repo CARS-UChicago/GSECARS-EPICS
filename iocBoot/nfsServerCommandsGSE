@@ -1,0 +1,12 @@
+# We don't define default route here, since it differs for each board
+
+# Set the UNIX uid/gid to the EPICS account
+nfsAuthUnixSet("corvette",401,400,0,0)
+
+# Mount drives with NFS
+nfsMount("corvette","/home","/home")
+nfsMount("corvette","/people","/people")
+nfsMount("corvette","/usr/local","/usr/local")
+
+# Define location for logging
+putenv("EPICS_IOC_LOG_INET=164.54.160.82")

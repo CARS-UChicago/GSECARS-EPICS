@@ -1,0 +1,37 @@
+# This database contains records for the LVP detector in 13-IDD.  This database
+# does not actually implement the logic of the coordinate transformation, since
+# that is quite complex and is done in a SNL program (IDD_LVP_Detector.st).
+
+# These two records are where the soft motors write their output.
+grecord(ao,"$(P)$(PMR)Move") {}
+grecord(ao,"$(P)$(PMC)Move") {}
+grecord(ao,"$(P)$(PMT)Move") {}
+
+# This record is processed to set Z0 
+grecord(ao,"$(P)$(PMR)synch") {}
+
+# These records hold the readback positions of the soft motors
+grecord(ao,"$(P)$(PMR)Readback") {}
+grecord(ao,"$(P)$(PMT)Readback") {}
+grecord(ao,"$(P)$(PMC)Readback") {}
+
+# This record processes if either of the soft motor STOP fields is set.
+grecord(dfanout,"$(P)$(PMR)Stop") {
+        field(VAL,"1")
+        field(OUTA,"$(P)$(X).STOP PP MS")
+        field(OUTB,"$(P)$(Y).STOP PP MS")
+        field(OUTC,"$(P)$(Z).STOP PP MS")
+        field(OUTD,"$(P)$(TX).STOP PP MS")
+        field(OUTE,"$(P)$(TZ).STOP PP MS")
+}
+
+# This record computes whether the compound motors are done moving.  
+# It goes to 1 when all of the real motors are done moving.
+grecord(calcout,"$(P)$(PMR)Done") {
+        field(INPA,"$(P)$(X).DMOV CP MS")
+        field(INPB,"$(P)$(Y).DMOV CP MS")
+        field(INPC,"$(P)$(Z).DMOV CP MS")
+        field(INPD,"$(P)$(TX).DMOV CP MS")
+        field(INPE,"$(P)$(TZ).DMOV CP MS")
+        field(CALC,"A&B&C&D&E")
+}

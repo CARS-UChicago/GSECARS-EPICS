@@ -1,0 +1,184 @@
+grecord(ao,"$(P)$(EN).VAL") {
+        field(DESC, "Energy (VG Mono)")
+	field(PREC, "$(PREC)")
+	field(EGU, "eV")
+}
+
+grecord(ao,"$(P)$(EN).RBV") {
+        field(DESC, "Energy Readback")
+	field(PREC, "$(PREC)")
+	field(EGU, "eV")
+}
+
+grecord(ao,"$(P)$(EN).TOL") {
+        field(DESC, "Energy Tolerance (eV)")
+        field(VAL,  "0.01000")
+	field(PREC, "$(PREC)")
+	field(EGU,  "eV")
+}
+
+grecord(ao,"$(P)$(EN):UND_offset") {
+	field(DESC, "(Und - Mono) Energy")
+	field(VAL,  "0.000")
+	field(PREC, "$(PREC)")
+	field(EGU,  "eV")
+}
+
+grecord(bo,"$(P)$(EN):UND_track") {
+	field(DESC, "Undulator Tracking")
+	field(VAL,  "1")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}
+
+grecord(bo,"$(P)$(EN):UND_abort") {
+	field(DESC, "Undulator Abort Move")
+	field(VAL,  "0")
+	field(ONAM, "Abort")
+	field(ZNAM, "Resume")
+}
+grecord(bo,"$(P)$(EN).BUSY") {
+	field(DESC, "Energy in Motion")
+	field(VAL,  "0")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}
+
+grecord(bo,"$(P)$(EN):verbose") {
+	field(DESC, "Print Mono Debugging Info")
+	field(VAL,  "1")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}
+
+grecord(bo,"$(P)$(EN):set") {
+	field(DESC, "Set Energy")
+	field(ONAM, "Set")
+	field(ZNAM, "Use")
+}
+
+grecord(ao,"$(P)$(EN):offset.VAL") {
+	field(DESC, "channel width")
+	field(VAL,  "50.0")
+	field(PREC, "4")
+	field(EGU,  "mm")
+}
+
+grecord(ao,"$(P)$(EN):dspace.VAL") {
+	field(DESC, "lattice spacing")
+	field(VAL,  "1.92011")
+	field(PREC, "8")
+	field(EGU,  "Ang")
+}
+
+grecord(ao,"$(P)$(EN):offset.VAL") {
+	field(DESC, "channel width")
+	field(VAL,  "50.0")
+	field(PREC, "4")
+	field(EGU,  "mm")
+}
+
+grecord(bo,"$(P)$(EN):Xtal2:FixedHeight") {
+	field(DESC, "Fix 2nd Xtal Offset")
+	field(VAL,  "0")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}
+
+grecord(bo,"$(P)$(EN):Xtal2:Z_Track") {
+	field(DESC, "Track 2nd Xtal Z")
+	field(VAL,  "0")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}
+
+grecord(ao,"$(P)$(EN):Xtal2:Y_min_move") {
+	field(DESC, "Minimum Table Y Move")
+	field(VAL,  "0.0030")
+	field(PREC, "5")
+	field(EGU,  "mm")
+}
+
+
+grecord(ao,"$(P)$(EN):Xtal2:Z_min_move") {
+	field(DESC, "Minimum Table Z Move")
+	field(VAL,  "0.0050")
+	field(PREC, "5")
+	field(EGU,  "mm")}
+
+
+grecord(ao,"$(P)$(EN)_tweakval") {
+	field(DESC, "energy tweak value")
+	field(VAL,  "1.0000")
+	field(PREC, "$(PREC)")
+	field(EGU,  "$(EGU)")
+}
+
+# Mark Rivers removed APP and BPP from the transform record, fields deleted
+# in R3.13.1.1 version of record
+grecord(transform,"$(P)$(EN)_tweak") {
+	field(DESC, "Tweak Energy")
+	field(CLCD,"a?c-e:b?c+e:c")
+	field(INPC,"$(P)$(EN).VAL  NPP NMS")
+	field(INPE,"$(P)$(EN)_tweakval")
+	field(OUTD,"$(P)$(EN).VAL  PP MS")
+	field(OUTF,"$(P)$(EN)_tweak.A  NPP NMS")
+	field(OUTG,"$(P)$(EN)_tweak.B  NPP NMS")
+	field(PREC,"$(PREC)")
+}
+grecord(scanparm,"$(P)$(EN):scanParms") {
+	field(PREC,"6")
+	field(PRE,"4")
+	field(OPRE,"$(SCANREC).CMND PP MS")
+	field(OSM,"$(SCANREC).P1SM PP MS")
+	field(OAR,"$(SCANREC).P1AR PP MS")
+	field(OAFT,"$(SCANREC).PASM PP MS")
+	field(PPV,"$(P)$(EN)")
+	field(RPV,"$(P)$(EN).VAL")
+	field(OPPV,"$(SCANREC).P1PV PP MS")
+	field(ORPV,"$(SCANREC).R1PV PP MS")
+	field(OSP,"$(SCANREC).P1SP PP MS")
+	field(OEP,"$(SCANREC).P1EP PP MS")
+	field(ONP,"$(SCANREC).NPTS PP MS")
+	field(SC,"1")
+	field(AR,"1")
+        field(AFT,"2")
+	field(NP,"10")
+	field(OSC,"$(P)$(EN):scanpSEQ.DO1 PP MS")
+	field(IMP,"$(SCANREC).MPTS NPP NMS")
+	field(IACT,"$(SCANREC).EXSC NPP NMS")
+}
+grecord(seq,"$(P)$(EN):scanpSEQ")
+{
+	field(DLY1,"0.2")
+	field(LNK1,"$(SCANREC).EXSC NPP NMS")
+}
+
+
+grecord(ao,"$(P)$(EN):DummyUND:EnSet") {
+	field(DESC, "Dummy UND Energy")
+	field(VAL,  "10.0000")
+	field(PREC, "$(PREC)")
+	field(EGU,  "$(EGU)")
+}
+
+grecord(ao,"$(P)$(EN):DummyUND:Energy") {
+	field(DESC, "Dummy UND Energy")
+	field(VAL,  "10.0000")
+	field(PREC, "$(PREC)")
+	field(EGU,  "$(EGU)")
+}
+
+grecord(bo,"$(P)$(EN):DummyUND:Start") {
+	field(DESC, "Dummy UND Start")
+	field(VAL,  "0")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}
+
+grecord(bo,"$(P)$(EN):DummyUND:Busy") {
+	field(DESC, "Dummy UND Busy")
+	field(VAL,  "0")
+	field(ONAM, "Yes")
+	field(ZNAM, "No")
+}

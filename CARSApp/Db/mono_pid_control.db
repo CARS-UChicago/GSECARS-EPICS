@@ -1,0 +1,90 @@
+grecord(epid,"$(P)$(PID)") {
+        field(INP,"$(P)$(PID)_incalc.D PP MS")
+        field(OUTL,"$(OUT) PP NMS")
+        field(SCAN,"$(SCAN)")
+        field(KP,"$(KP)")
+        field(KI,"$(KI)")
+        field(KD,"$(KD)")
+        field(LOPR,"$(LOPR)")
+        field(HOPR,"$(HOPR)")
+        field(DRVL,"$(DRVL)")
+        field(DRVH,"$(DRVH)")
+        field(PREC,"$(PREC)")
+        field(FLNK,"$(P)$(PID)_limits.VAL PP NMS")
+}
+grecord(transform,"$(P)$(PID)_limits") {
+        field(DESC,"PID limits")
+        field(CMTA,"Low input")
+        field(INPA,"$(DRVL)")
+        field(CMTB,"High limit")
+        field(INPB,"$(DRVH)")
+        field(CMTO,"Low output")
+        field(CLCO,"a")
+        field(OUTO,"$(P)$(PID).DRVL NPP NMS")
+        field(CMTP,"High output")
+        field(CLCP,"b")
+        field(OUTP,"$(P)$(PID).DRVH NPP NMS")
+        field(PREC,"$(PREC)")
+}
+grecord(transform,"$(P)$(PID)_incalc") {
+        field(DESC,"PID input calculation")
+        field(CMTA,"A/D converter")
+        field(INPA,"$(INP)")
+        field(CMTB,"Ring current")
+        field(INPB,"S:SRcurrentAI")
+        field(CMTC,"Normalization constant")
+        field(INPC,"2000")
+        field(CMTD,"Normalized input")
+        field(CLCD,"A*C/B")
+        field(PREC,"$(PREC)")
+}
+
+# These record control auto-opening the shutter
+grecord(bo,"$(P)$(PID)EnableShutter") {
+        field(ZNAM,"Disable")
+        field(ONAM,"Enable")
+}
+
+grecord(calcout,"$(P)$(PID)OpenShutter") {
+        field(SCAN, "1 second")
+        field(DISV,"0")
+        field(SDIS,"$(P)$(PID)EnableShutter NPP NMS")
+        field(INPA,"$(SHUT_STATUS)")
+        field(CALC, "A")
+        field(OOPT, "When Zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "1")
+        field(OUT, "$(SHUT_CONTROL).PROC PP MS")
+}
+
+# These records control auto-resetting the feedback
+grecord(bo,"$(P)$(PID)EnableReset") {
+        field(ZNAM,"Disable")
+        field(ONAM,"Enable")
+}
+
+grecord(calcout,"$(P)$(PID)ResetFB") {
+        field(SCAN, "1 second")
+        field(DISV,"0")
+        field(SDIS,"$(P)$(PID)EnableReset NPP NMS")
+        field(INPA,"$(P)$(PID).OVAL")
+        field(INPB,"$(P)$(PID).DRVL")
+        field(INPC,"$(P)$(PID).DRVH")
+        field(CALC, "(A=B) || (A=C)")
+        field(OOPT, "When Non-zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "(A=B) ? C:B")
+        field(OUT, "$(P)$(PID).I NPP NMS")
+}
+
+# This record computes whether the feedback is locked-in.  This is defined to
+# be that the shutter is open and abs(error/setpoint) < 5%
+grecord(calcout,"$(P)$(PID)Locked") {
+        field(SCAN, "1 second")
+        field(INPA,"$(SHUT_STATUS)")
+        field(INPB,"$(P)$(PID).ERR")
+        field(INPC,"$(P)$(PID).VAL")
+        field(CALC, "A && (ABS(B/C) < 0.05)")
+        field(LOW, "0")
+        field(LSV, "MAJOR")
+}

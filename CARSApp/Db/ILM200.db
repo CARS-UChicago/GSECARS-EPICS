@@ -1,0 +1,51 @@
+# Database for Oxford Instruments ILM-200 cryogen level meter
+grecord(serial,"$(P)$(R)_read1")
+{
+	field(DESC,"ILM200 $(P)$(R) read 1")
+	field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(AOUT,"R1")
+        field(ODEL,"13")
+        field(IDEL,"13")
+        field(TMOT,"1000")
+	field(BAUD,"9600")
+	field(PRTY,"None")
+	field(DBIT,"8")
+	field(SBIT,"1")
+        field(SCAN,"10 second")
+        field(FLNK,"$(P)$(R)_calc1")
+}
+
+grecord(scalcout,"$(P)$(R)_calc1")
+{
+	field(INAA,"$(P)$(R)_read1.AINP NPP MS")
+        field(CALC,"SSCANF(AA,'R+%d') / 10.")
+	field(FLNK,"$(P)$(R)_read2")
+	field(LOW,"40")
+	field(LOLO,"30")
+        field(PREC,"1")
+}
+
+grecord(serial,"$(P)$(R)_read2")
+{
+	field(DESC,"ILM200 $(P)$(R) read 2")
+	field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(AOUT,"R2")
+        field(ODEL,"13")
+        field(IDEL,"13")
+        field(TMOT,"1000")
+	field(BAUD,"9600")
+	field(PRTY,"None")
+	field(DBIT,"8")
+	field(SBIT,"1")
+        field(FLNK,"$(P)$(R)_calc2")
+}
+
+grecord(scalcout,"$(P)$(R)_calc2")
+{
+	field(INAA,"$(P)$(R)_read2.AINP NPP MS")
+        field(CALC,"SSCANF(AA,'R+%d') / 10.")
+	field(FLNK,"$(P)$(R)_read2")
+	field(LOW,"60")
+	field(LOLO,"50")
+        field(PREC,"1")
+}
