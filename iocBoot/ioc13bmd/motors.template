@@ -47,7 +47,7 @@ pattern
 
 #LVP ccd stage m11, m14 and 15
 {13BMD:,  m11, "OMS VME58",  1,  2, "Stage X",           mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
-{13BMD:,  m14, "OMS VME58",  1,  5, "Stage Y",           mm,    Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
+{13BMD:,  m14, "OMS VME58",  1,  5, "Stage Y",           mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
 {13BMD:,  m15, "OMS VME58",  1,  6, "Stage Z",           mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
 
 #XAS (upstream) Lift Table
@@ -58,10 +58,13 @@ pattern
 {13BMD:,  m21, "OMS VME58",   2,  4, "M2X (downstream)",  mm,    Pos,   .5,  .005,   .2,     0,      1,     .2,     400,    0.035278,   3,      30,   -75}
 {13BMD:,  m22, "OMS VME58",   2,  5, "Base Y",            mm,    Pos,   .5,  .05,    .5,     0.05,   0.05,  .5,     400,   -0.10583,    3,     200,     0}
 
-# In-hutch monochromator
-{13BMD:,  m23, "OMS VME58",   2,  6, "Mono. angle",       deg,   Pos,   .3,   .05,    .2,    0,    1,    .2,   400,  -.05,    4,     30,   -10}
-# m24 is unused for now
-{13BMD:,  m24, "OMS VME58",   2,  7, "M24",               deg,   Pos,   .3,   .05,    .2,    0,    1,    .2,   400,  -.05,    4,     30,   -10}
+# DAC clean_up slits
+# m23 is used for photodiode
+#{13BMD:,  m23, "OMS VME58",   2,  6, "clean_up x pos.",   mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
+{13BMD:,  m23, "OMS VME58",   2,  6, "photodiode",   mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
+# m24 is used for x-ray CCD position
+{13BMD:,  m24, "OMS VME58",   2,  7, "X-ray CCD pos.",   mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
+# {13BMD:,  m24, "OMS VME58",   2,  7, "clean_up Y pos.",   mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
 
 # m25-28 don't have home or +5V.
 #This is the definition when using the Huber jack for Y on tomography or diffraction
@@ -83,7 +86,7 @@ pattern
 # CCD camera stage
 {13BMD:,  m33, "OMS VME58",   4,  0, "CCD X",             mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
 {13BMD:,  m34, "OMS VME58",   4,  1, "CCD Y",             mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,       70,   0}
-{13BMD:,  m35, "OMS VME58",   4,  2, "CCD Z",             mm,     Pos,   2.0,  .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100,     0}
+{13BMD:,  m35, "OMS VME58",   4,  2, "CCD Z",             mm,     Neg,   2.0,  .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100,     0}
 
 # Tomography sample stage
 {13BMD:,  m36, "OMS VME58",   4,  3, "Sample X",          mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,     100,     0}

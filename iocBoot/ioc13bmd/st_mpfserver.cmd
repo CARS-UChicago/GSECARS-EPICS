@@ -28,7 +28,8 @@ initOctalUARTPort("UART[0]","octalUart0",0, 9600,"N",2,8,"N") /* SRS 570 */
 initOctalUARTPort("UART[1]","octalUart0",1,19200,"N",1,8,"N") /* Keithley 2000 */
 initOctalUARTPort("UART[2]","octalUart0",2, 9600,"N",2,8,"N") /* SRS 570 */
 initOctalUARTPort("UART[3]","octalUart0",3, 9600,"N",2,8,"N") /* SRS 570 */
-initOctalUARTPort("UART[4]","octalUart0",4,19200,"N",1,8,"N") /* MM4000 */
+#initOctalUARTPort("UART[4]","octalUart0",4,19200,"N",1,8,"N") /* MM4000 */
+initOctalUARTPort("UART[4]","octalUart0",4, 9600,"N",2,7,"N") /* Omega meter */
 initOctalUARTPort("UART[5]","octalUart0",5, 9600,"N",1,8,"N") /* SMART PC */
 initOctalUARTPort("UART[6]","octalUart0",6, 9600,"N",1,8,"N") /* Keithley 2000 */
 initOctalUARTPort("UART[7]","octalUart0",7, 9600,"N",1,8,"N") /* Keithley 2000 */
