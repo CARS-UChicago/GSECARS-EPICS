@@ -1,18 +1,13 @@
-<cdCommands
-
-< ../nfsServerCommandsGSE
-
 cd topbin
-# topbin is for the primary CPU arch, need to move to AUX CPU arch
-ld < ../mv162/mpfLib 
-ld < ../mv162/mpfServLib 
-
-carrier = "ipac"
-ipacAddCarrier(&ipmv162, "A:l=3,3 m=0xe0000000,64;B:l=3,3 m=0xe0010000,64;C:l=3,3 m=0xe0020000,64;D:l=3,3 m=0xe0030000,64")
-initIpacCarrier(carrier, 0)
+# This loads the MPF server stuff
+ld < mpfServLib 
 
 routerInit
-tcpMessageRouterServerStart(1,9900,"164.54.160.126",10000,100)
+localMessageRouterStart(0)
+
+carrier = "ipac"
+ipacAddCarrier(&vipc616_01, "0x3000,0xa0000000")
+initIpacCarrier(carrier, 0)
 
 # Initialize GPIB stuff
 # REMOVED 9/17/00 to make room for Unidig Binary I/O

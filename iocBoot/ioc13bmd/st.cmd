@@ -9,8 +9,13 @@ ld < iocCore
 ld < seq
 ld < CARSLib
 
-# This IOC talks to a remote GPIB server
-ld < GpibHideosRemote.o
+# This IOC loads the MPF server code locally
+cd startup
+< st_mpfserver.cmd
+
+cd topbin
+# This IOC talks to a local GPIB server
+ld < GpibHideosLocal.o
 
 # Currently, the only thing we do in initHooks is call reboot_restore(), which
 # restores positions and settings saved ~continuously while EPICS is alive.
@@ -20,9 +25,8 @@ ld < initHooks.o
 
 cd startup
 
-# Initialize remote MPF connection
+# Initialize MPF 
 routerInit
-tcpMessageRouterClientStart(1,9900,"164.54.160.126",10000,40)
 
 # Initialize local MPF connection
 localMessageRouterStart(0)
@@ -46,14 +50,14 @@ dbLoadDatabase("../../dbd/CARSApp.dbd")
 
 # Load database
 dbLoadRecords  "stdApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0", std
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=1,IPSLOT=a,CHAN=0", ip
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=1,IPSLOT=a,CHAN=2", ip
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=1,IPSLOT=a,CHAN=3", ip
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=1,IPSLOT=a,CHAN=5,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,IPSLOT=a,CHAN=0", ip
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,IPSLOT=a,CHAN=2", ip
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,IPSLOT=a,CHAN=3", ip
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=0,IPSLOT=a,CHAN=5,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
 #dbLoadRecords  "CARSApp/Db/generic_gpib.db", "P=13BMD:,R=gpib1,SIZE=2048", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=1,IPSLOT=a,CHAN=6", top
+dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", top
 dbLoadRecords  "CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=1,IPSLOT=a,CHAN=7", top
+dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=7", top
 dbLoadRecords  "CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1", top
 dbLoadTemplate "DAC.template"
 dbLoadTemplate "LVP_furnace_control.template"
@@ -67,7 +71,7 @@ dbLoadTemplate "IpUnidig.template"
 
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13BMD:,R=smart1,C=1,IPSLOT=a,CHAN=5,BAUD=9600,")
+strcpy(str,"P=13BMD:,R=smart1,C=0,IPSLOT=a,CHAN=5,BAUD=9600,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("CARSApp/Db/smartControl.db",str,top)
 
@@ -93,10 +97,10 @@ dbLoadRecords "mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,CARD=0,SERVER=icb/1,ADD
 #dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mca_str1,DTYPE=Struck STR7201 MCS,NCHAN=1024,INP=#C0 S0", mca)
 
 # IP-330 ADC with MCA record as transient recorder
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S0 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S1 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S2 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S3 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @b-Ip330Sweep", mca)
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
@@ -148,10 +152,6 @@ sr_restore_incomplete_sets_ok = 1
 # Link to GPIB server.  Do this just before iocInit, since it waits for MPF
 # server to connect
 #HiDEOSGpibLinkConfig(10,1,"GPIB0")
-
-# Wait 40 seconds so the MPF server can come up.  Problems with serial stuff
-# if we don't do this.
-taskDelay(2400)
 
 iocInit
 
