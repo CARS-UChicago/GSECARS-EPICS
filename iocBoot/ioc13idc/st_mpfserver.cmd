@@ -18,6 +18,8 @@ initIpacCarrier(carrier, 0)
 
 # Initialize Octal UART stuff
 initOctalUART("octalUart0",carrier,"IP_a",8,100)
+initOctalUART("octalUart1",carrier,"IP_b",8,101)
+
 # initOctalUARTPort(char* portName,char* moduleName,int port,int baud,
 #                   char* parity,int stop_bits,int bits_char,char* flow_control)
 # 'baud' is the baud rate. 1200, 2400, 4800, 9600, 19200, 38400
@@ -28,11 +30,11 @@ initOctalUART("octalUart0",carrier,"IP_a",8,100)
 # Port 0 is Generic Serial Record
 initOctalUARTPort("UART[0]","octalUart0",0, 9600,"N",2,8,"N") /* SRS570 */
 initOctalUARTPort("UART[1]","octalUart0",1, 9600,"N",2,8,"N") /* SRS570 */
-initOctalUARTPort("UART[2]","octalUart0",2,38400,"N",1,8,"N") /* MM4000 */
-initOctalUARTPort("UART[3]","octalUart0",3,38400,"N",1,8,"N") /* MM4000 */
+initOctalUARTPort("UART[2]","octalUart0",2,38400,"N",1,8,"N") /* Unused */
+initOctalUARTPort("UART[3]","octalUart0",3,38400,"N",1,8,"N") /* Unused */
 initOctalUARTPort("UART[4]","octalUart0",4, 9600,"N",2,8,"N") /* SRS570 */
 initOctalUARTPort("UART[5]","octalUart0",5,19200,"N",1,8,"N") /* Keithley 2000 */
-initOctalUARTPort("UART[6]","octalUart0",6, 9600,"N",1,8,"N") /* SMART PC */
+initOctalUARTPort("UART[6]","octalUart0",6, 9600,"N",1,8,"N") /* Unused */
 initOctalUARTPort("UART[7]","octalUart0",7, 9600,"N",2,8,"N") /* SR570 */
 initSerialServer("a-Serial[0]","UART[0]",1000,20,"\r",1)
 initSerialServer("a-Serial[1]","UART[1]",1000,20,"\r",1)
@@ -42,12 +44,22 @@ initSerialServer("a-Serial[4]","UART[4]",1000,20,"\r",1)
 initSerialServer("a-Serial[5]","UART[5]",1000,20,"\r",1)
 initSerialServer("a-Serial[6]","UART[6]",1000,20,"\r",1)
 initSerialServer("a-Serial[7]","UART[7]",1000,20,"\r",1)
-
-# Initialize Systran DAC
-#initDAC128V("d-DAC",carrier,"IP_d",20)
-
-# Initialize Greenspring IP-Unidig
-#initIpUnidig("b-Unidig", carrier, "IP_b", 20)
+initOctalUARTPort("UART[8]", "octalUart1",0, 9600,"N",2,8,"N") /* SRS570 */
+initOctalUARTPort("UART[9]", "octalUart1",1, 9600,"N",2,8,"N") /* SRS570 */
+initOctalUARTPort("UART[10]","octalUart1",2,38400,"N",1,8,"N") /* MM4000 */
+initOctalUARTPort("UART[11]","octalUart1",3,38400,"N",1,8,"N") /* MM4000 */
+initOctalUARTPort("UART[12]","octalUart1",4, 9600,"N",1,8,"N") /* SMART PC */
+initOctalUARTPort("UART[13]","octalUart1",5, 9600,"N",2,8,"N") /* SRS570 */
+initOctalUARTPort("UART[14]","octalUart1",6, 9600,"N",2,8,"N") /* SRS570 */
+initOctalUARTPort("UART[15]","octalUart1",7, 9600,"N",1,8,"N") /* Unused */
+initSerialServer("b-Serial[0]","UART[8]",1000,20,"\r",1)
+initSerialServer("b-Serial[1]","UART[9]",1000,20,"\r",1)
+initSerialServer("b-Serial[2]","UART[10]",1000,20,"\r",1)
+initSerialServer("b-Serial[3]","UART[11]",1000,20,"\r",1)
+initSerialServer("b-Serial[4]","UART[12]",1000,20,"\r",1)
+initSerialServer("b-Serial[5]","UART[13]",1000,20,"\r",1)
+initSerialServer("b-Serial[6]","UART[14]",1000,20,"\r",1)
+initSerialServer("b-Serial[7]","UART[15]",1000,20,"\r",1)
 
 # Initialize Acromag IP-330 ADC
 # Ip330 *initIp330(
@@ -73,6 +85,7 @@ initSerialServer("a-Serial[7]","UART[7]",1000,20,"\r",1)
 #               10 should certainly be safe.
 # intVec        Interrupt vector
 pIp330 = initIp330("c-Ip330", carrier,"IP_c","D","-5to5",0,3,10,120)
+
 
 # int configIp330(
 #   Ip330 *pIp330,
