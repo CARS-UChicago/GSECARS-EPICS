@@ -53,6 +53,8 @@ dbLoadRecords  "stdApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0", std
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,IPSLOT=a,CHAN=0", ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,IPSLOT=a,CHAN=2", ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,IPSLOT=a,CHAN=3", ip
+# LVP Omega controller
+dbLoadRecords "CARSApp/Db/BM_LVP_Omega.db","P=13BMD:,R=Omega1_,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=7,SBIT=2", top
 dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=0,IPSLOT=a,CHAN=5,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
 #dbLoadRecords  "CARSApp/Db/generic_gpib.db", "P=13BMD:,R=gpib1,SIZE=2048", top
 dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", top
