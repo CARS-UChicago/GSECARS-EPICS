@@ -1,74 +1,36 @@
 # vxWorks startup file
+mem = malloc(1024*1024*96)
+
 < cdCommands
 
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARS167.munch
+# ld < CARS167.munch
+ld < CARSApp.munch
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARSApp
-dbLoadDatabase("$(CARS)/dbd/CARS167.dbd")
-CARS167_registerRecordDeviceDriver(pdbbase)
-
-# Set debugging flags
-devMM4000debug = 0
-drvMM4000debug = 0
-gpibIODebug = 0
-serialIODebug = 0
-mcaRecordDebug = 0
-devMcaMpfDebug = 0
-mcaAIMServerDebug = 0
-aimDebug = 0
-devMcaIp330Debug = 0
-drvSTR7201Debug = 0
-devSTR7201Debug = 0
-devSiStrParmDebug = 0
-devAiMKSDebug=0
-devAiDigitelDebug=0
-devAoDAC128VDebug=0
-devLiIpUnidigDebug=0
-devBiIpUnidigDebug=0
-devBoIpUnidigDebug=0
-devSerialDebug=0
-DevMpfDebug=0
-devEpidIp330Debug=0
-scalerRecordDebug=0
-devScalerSTR7201Debug=0
-devScalerCamacDebug=0
-devE500Debug=0
-drvE500Debug=0
-icbDebug=0
-devIcbMpfDebug=1
-icbDspServerDebug=1
-icbServerDebug=1
-mpcDebug=0
-devMPCDebug=0
+dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
+CARSVX_registerRecordDeviceDriver(pdbbase)
 
 # This IOC loads the MPF server code locally
 < st_mpfserver.cmd
 
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser1,C=0,SERVER=serial1")
-#dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13LAB2:,PUMP=ip1,C=0,SERVER=serial1")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser2,C=0,SERVER=serial2")
-#dbLoadRecords("$(IP)/ipApp/Db/MKS_single.db","P=13LAB2:,C=0,SERVER=serial2,CC1=cc1,PR1=pr1")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser3,C=0,SERVER=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,SERVER=serial3")
-#dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser4,C=0,SERVER=serial4")
-#dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip1,C=0,SERVER=serial4,PA=0,PN=1")
-#dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip2,C=0,SERVER=serial4,PA=0,PN=2")
-#dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13LAB2:,TSP=tsp1,C=0,SERVER=serial4,PA=0")
+# Load asyn records on all serial ports
+dbLoadTemplate("asynRecord.template")
 
-#MN Aug-22-2003: Config SR570s
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,SERVER=serial7")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,SERVER=serial8")
-#
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
 
-# generic serial port
-# Port 5 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,SERVER=serial5")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser5,C=0,SERVER=serial5")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
+
+# Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
+dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,PORT=serial4")
+
+# Acromag Ip330 ADC
+dbLoadTemplate "Ip330_ADC.template"
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -134,3 +96,5 @@ create_monitor_set("auto_positions.req",5)
 create_monitor_set("auto_settings.req",30)
 
 seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
+
+free(mem)
