@@ -1,0 +1,26 @@
+# This file reads the shutter control output of the MAR165 controller via an A/D 
+# converter and opens and closes the shutter on transitions from 0 to 5 and 5 to 0
+# Note that we cannot plug this output directly into the IP-Unidig because it cannot
+# sink any current when it is low.
+# Macro parameters:
+# P=prefix (e.g. 13IDD:)
+# R=name for this database (e.g. MAR1)
+# IN=ip330 input record
+# OUT=ipUnidig output record
+# Threshold is set at 1.5 volts. GS 8/6/2003
+grecord(calcout,"$(P)$(R)open") {
+    field(INPA,"$(IN) CP NMS")
+    field(CALC,"A>1.5")
+    field(OUT, "$(OUT) PP MS")
+    field(OOPT, "5")
+    field(OCAL, "0")
+    field(DOPT, "Use OCAL")
+}
+grecord(calcout,"$(P)$(R)close") {
+    field(INPA,"$(IN) CP NMS")
+    field(CALC,"A>1.5")
+    field(OUT, "$(OUT) PP MS")
+    field(OOPT, "4")
+    field(OCAL, "1")
+    field(DOPT, "Use OCAL")
+}
