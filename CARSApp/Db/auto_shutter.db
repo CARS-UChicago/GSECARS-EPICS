@@ -1,0 +1,18 @@
+# These record control auto-opening the shutter
+grecord(bo,"$(P)$(SHUT)EnableShutter") {
+        field(ZNAM,"Disable")
+        field(ONAM,"Enable")
+}
+
+grecord(calcout,"$(P)$(SHUT)OpenShutter") {
+        field(SCAN, "1 second")
+        field(DISV,"0")
+        field(SDIS,"$(P)$(SHUT)EnableShutter NPP NMS")
+        field(INPA,"$(SHUT_STATUS)")
+        field(CALC, "A")
+        field(OOPT, "When Zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "1")
+        field(OUT, "$(SHUT_CONTROL).PROC PP MS")
+}
+
