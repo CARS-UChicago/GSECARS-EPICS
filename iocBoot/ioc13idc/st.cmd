@@ -55,8 +55,8 @@ dbLoadRecords  "stdApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0",std
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,IPSLOT=a,CHAN=0",ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,IPSLOT=a,CHAN=1",ip
 # Serial ports 2 and 3 are for the MM4000.  We have both motor record and generic serial records on them
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser1,C=0,IPSLOT=a,CHAN=2,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser2,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser1,C=0,IPSLOT=a,CHAN=2,BAUD=38400,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser2,C=0,IPSLOT=a,CHAN=3,BAUD=38400,PRTY=None,DBIT=8,SBIT=1", top
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,IPSLOT=a,CHAN=4", ip
 dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=5", top
 # Serial port 6 is for the SMART PC
@@ -69,10 +69,10 @@ dbLoadTemplate "motors.template"
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,IPSLOT=a,CHAN=2,BAUD=19200")
+strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,IPSLOT=a,CHAN=2,BAUD=38400")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 dbLoadRecords("CARSApp/Db/trajectoryScan.db", str, top)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,IPSLOT=a,CHAN=3,BAUD=19200")
+strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,IPSLOT=a,CHAN=3,BAUD=38400")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 strcat(str, ",M1=Y1,M2=Y2,M3=Y3,M4=Rotation AY,M5=X translation,M6=Sample X,M7=Sample Y,M8=Sample Z")
 dbLoadRecords("CARSApp/Db/trajectoryScan.db", str, top)

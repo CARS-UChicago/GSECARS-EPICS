@@ -28,8 +28,8 @@ initOctalUART("octalUart0",carrier,"IP_a",8,100)
 # Port 0 is Generic Serial Record
 initOctalUARTPort("UART[0]","octalUart0",0, 9600,"N",2,8,"N") /* SRS570 */
 initOctalUARTPort("UART[1]","octalUart0",1, 9600,"N",2,8,"N") /* SRS570 */
-initOctalUARTPort("UART[2]","octalUart0",2,19200,"N",1,8,"N") /* MM4000 */
-initOctalUARTPort("UART[3]","octalUart0",3,19200,"N",1,8,"N") /* MM4000 */
+initOctalUARTPort("UART[2]","octalUart0",2,38400,"N",1,8,"N") /* MM4000 */
+initOctalUARTPort("UART[3]","octalUart0",3,38400,"N",1,8,"N") /* MM4000 */
 initOctalUARTPort("UART[4]","octalUart0",4, 9600,"N",2,8,"N") /* SRS570 */
 initOctalUARTPort("UART[5]","octalUart0",5,19200,"N",1,8,"N") /* Keithley 2000 */
 initOctalUARTPort("UART[6]","octalUart0",6, 9600,"N",1,8,"N") /* SMART PC */
