@@ -17,14 +17,13 @@
 #   $(DONV)     - Value to write to PV to turn detector on
 #   $(DOFFPV)   - Name of PV to turn detector off
 #   $(DOFFV)    - Value to write to PV to turn detector off
-#   $(C)        - Card # (0,1,2...) of the board with the IP slot for the 
-#                 generic serial records
-#   $(SERVER)   - MPF server name for the serial port
+#   $(PORT)     - asyn port name for the serial port
 #
 #  Modifications:
 #  5-Jun-2002    Mark Rivers  Increased TMOT field of StringOutIn record from 5000 to
 #                             20000, it was timing out when # trajectory elements exceeded
 #                             about 64. Should make it to about 250 now.
+#  28-Mar-2004 Mark Rivers  Converted from serial to asyn records.
 
 #
 # PVs controlling the number of trajectory elements and the number of output
@@ -727,28 +726,26 @@ grecord(ao,"$(P)$(R)DetOff") {
 }
 
 #
-# PVs for communication, generic serial records. We use 2 records, one for
+# PVs for communication, asyn records. We use 2 records, one for
 # output only, and one for output/input in order to eliminate frequent mode
 # switching of TMOD = "Write" or "Write/Read" in the SNL program.  Note that
-# the output/input record has the input format set to "Binary" in order to
+# the output/input record has the input format set to "Hybrid" in order to
 # allow lines longer than 40 characters to be received from the MM4005.
-# This database can be easily modified to use Generic GPIB by replacing
-# these two records with Generic GPIB records.  The SNL program should not need
-# any modification.
+# This database will work with serial or GPIB connection to the MM4004.
 #
-grecord(serial, "$(P)$(R)StringOut") {
-        field(INP,"#C$(C) S0 @$(SERVER)")
-        field(IDEL,"13")
-        field(ODEL,"13")
+grecord(asyn, "$(P)$(R)StringOut") {
+        field(PORT,"$(PORT)")
+        field(IEOS,"\r")
+        field(OEOS,"\r")
         field(TMOD,"Write")
         field(OFMT,"ASCII")
 }
-grecord(serial, "$(P)$(R)StringOutIn") {
-        field(INP,"#C$(C) S0 @$(SERVER)")
-        field(IDEL,"13")
-        field(ODEL,"13")
+grecord(asyn, "$(P)$(R)StringOutIn") {
+        field(PORT,"$(PORT)")
+        field(IEOS,"\r")
+        field(OEOS,"\r")
         field(TMOD,"Write/Read")
         field(OFMT,"ASCII")
-        field(IFMT,"Binary")
-        field(TMOT,"20000")
+        field(IFMT,"Hybrid")
+        field(TMOT,"20.")
 }

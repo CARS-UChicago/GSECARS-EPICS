@@ -3,24 +3,24 @@
 # Reset controller - fixed units
 grecord(stringout,"$(P)$(L)reset") {
         field(PINI,"1")
-        field(DTYP,"MPF so stringParm")
+        field(DTYP,"asyn so stringParm")
         field(VAL,"U 0")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a")
         field(FLNK,"$(P)$(L)reset1 PP MS")
 }
 
 # No logging
 grecord(stringout,"$(P)$(L)reset1") {
-        field(DTYP,"MPF so stringParm")
+        field(DTYP,"asyn so stringParm")
         field(VAL,"S 0")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a")
 }
 
 
 # Control the power
 grecord(ao,"$(P)$(L)power_set") {
-        field(DTYP,"MPF ao stringParm")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a,FMT=P %4.3lf W")
+        field(DTYP,"asyn ao stringParm")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=P %4.3lf W")
         field(PREC,"3")
         field(DRVL,"0.")
         field(DRVH,"100.")
@@ -50,8 +50,8 @@ grecord(calcout,"$(P)$(L)power_tweak_up") {
 
 # Control the transmission
 grecord(ao,"$(P)$(L)trans_set") {
-        field(DTYP,"MPF ao stringParm")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a,FMT=T %4.3lf %%")
+        field(DTYP,"asyn ao stringParm")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=T %4.3lf %%")
         field(PREC,"3")
         field(DRVL,"0.")
         field(DRVH,"100.")
@@ -81,8 +81,8 @@ grecord(calcout,"$(P)$(L)trans_tweak_up") {
 
 # Control the wavelength
 grecord(ao,"$(P)$(L)wave_set") {
-        field(DTYP,"MPF ao stringParm")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a,FMT=L %4.3lf nm")
+        field(DTYP,"asyn ao stringParm")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=L %4.3lf nm")
         field(PREC,"1")
         field(FLNK,"$(P)$(L)poll")
 }
@@ -97,8 +97,8 @@ grecord(bo,"$(P)$(L)remote_set") {
 }
 
 grecord(longout,"$(P)$(L)remote_out") {
-        field(DTYP,"MPF lo stringParm")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a,FMT=R %d")
+        field(DTYP,"asyn lo stringParm")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=R %d")
         field(FLNK,"$(P)$(L)poll")
 }
 
@@ -111,8 +111,8 @@ grecord(bo,"$(P)$(L)mode_set") {
 }
 
 grecord(longout,"$(P)$(L)mode_out") {
-        field(DTYP,"MPF lo stringParm")
-        field(OUT,"#C$(C) S0 @$(SERVER),TERM=0a,FMT=M %d")
+        field(DTYP,"asyn lo stringParm")
+        field(OUT,"#C$(C) S0 @$(PORT),TERM=0a,FMT=M %d")
         field(FLNK,"$(P)$(L)poll")
 }
 
@@ -127,11 +127,11 @@ grecord(bo,"$(P)$(L)poll") {
 }
 
 # Read the power
-grecord(serial, "$(P)$(L)power_read") {
+grecord(asyn, "$(P)$(L)power_read") {
 	field(AOUT,"P ?")
-        field(IDEL,"10")
-        field(ODEL,"10")
-        field(INP,"#C$(C) S0 @$(SERVER)")
+        field(IEOS,"\n")
+        field(OEOS,"\n")
+        field(PORT,"$(PORT)")
 	field(FLNK,"$(P)$(L)power_decode  PP MS")
 }
 grecord(scalcout,"$(P)$(L)power_decode") {
@@ -152,11 +152,11 @@ grecord(scalcout,"$(P)$(L)power_scale") {
 }
 
 # Read the transmission
-grecord(serial, "$(P)$(L)trans_read") {
+grecord(asyn, "$(P)$(L)trans_read") {
 	field(AOUT,"T ?")
-        field(IDEL,"10")
-        field(ODEL,"10")
-        field(INP,"#C$(C) S0 @$(SERVER)")
+        field(IEOS,"\n")
+        field(OEOS,"\n")
+        field(PORT,"$(PORT)")
 	field(FLNK,"$(P)$(L)trans_decode  PP MS")
 }
 grecord(scalcout,"$(P)$(L)trans_decode") {
@@ -167,11 +167,11 @@ grecord(scalcout,"$(P)$(L)trans_decode") {
 }
 
 # Read the wavelength
-grecord(serial, "$(P)$(L)wave_read") {
+grecord(asyn, "$(P)$(L)wave_read") {
 	field(AOUT,"L ?")
-        field(IDEL,"10")
-        field(ODEL,"10")
-        field(INP,"#C$(C) S0 @$(SERVER)")
+        field(IEOS,"\n")
+        field(OEOS,"\n")
+        field(PORT,"$(PORT)")
 	field(FLNK,"$(P)$(L)wave_decode  PP MS")
 }
 grecord(scalcout,"$(P)$(L)wave_decode") {
@@ -182,11 +182,11 @@ grecord(scalcout,"$(P)$(L)wave_decode") {
 }
 
 # Read the remote control state
-grecord(serial, "$(P)$(L)remote_read") {
+grecord(asyn, "$(P)$(L)remote_read") {
 	field(AOUT,"R ?")
-        field(IDEL,"10")
-        field(ODEL,"10")
-        field(INP,"#C$(C) S0 @$(SERVER)")
+        field(IEOS,"\n")
+        field(OEOS,"\n")
+        field(PORT,"$(PORT)")
 	field(FLNK,"$(P)$(L)remote_parse  PP MS")
 }
 grecord(scalcout,"$(P)$(L)remote_parse") {
@@ -205,11 +205,11 @@ grecord(bo,"$(P)$(L)remote_decode") {
 }
 
 # Read the mode
-grecord(serial, "$(P)$(L)mode_read") {
+grecord(asyn, "$(P)$(L)mode_read") {
 	field(AOUT,"M ?")
-        field(IDEL,"10")
-        field(ODEL,"10")
-        field(INP,"#C$(C) S0 @$(SERVER)")
+        field(IEOS,"\n")
+        field(OEOS,"\n")
+        field(PORT,"$(PORT)")
 	field(FLNK,"$(P)$(L)mode_parse  PP MS")
 }
 grecord(scalcout,"$(P)$(L)mode_parse") {

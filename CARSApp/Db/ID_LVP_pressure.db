@@ -4,10 +4,8 @@
 # It still uses the Omega, but only to read the pressure.
 
 # Serial record for the current value
-grecord(serial, "$(P)$(R)ReadValue") {
-        field(INP,"#C$(C) S0 @$(SERVER)")
-        field(IDEL,"13")
-        field(ODEL,"13")
+grecord(asyn, "$(P)$(R)ReadValue") {
+        field(PORT,"$(PORT)")
         field(AOUT,"*V01")
         field(SCAN,"1 second")
         field(FLNK,"$(P)$(R)Value.PROC PP MS")
@@ -169,7 +167,6 @@ grecord(ao,"$(P)$(R)StopRadial") {
 }
 
 # This record stops the motor by writing 0 to the DAC
-# Note we use a CA link because the DAC is asynchronous, and we could be
 # writing to it from the PID record too.  The CA output will be buffered.
 grecord(ao,"$(P)$(R)StopRadial1") {
         field(VAL,"0.0")

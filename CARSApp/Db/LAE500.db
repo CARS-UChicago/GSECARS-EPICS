@@ -4,11 +4,9 @@
 # by sending the command "C-".  This is not done by this database, it must be
 # done manually via the generic serial port
  
-grecord(serial, "$(P)$(R)serial") {
+grecord(asyn, "$(P)$(R)serial") {
 	field(AOUT,"P")
-        field(INP,"#C$(C) S0 @$(SERVER)")
-        field(IDEL,"13")
-        field(ODEL,"13")
+        field(PORT,"$(PORT)")
 	field(FLNK,"$(P)$(R)_X.VAL  PP MS")
 }
 grecord(scalcout,"$(P)$(R)_X") {

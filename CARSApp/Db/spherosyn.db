@@ -1,30 +1,30 @@
 # Database for Spherosyn encoder
 
-record(serial, $(P)$(E)U) {
+record(asyn, $(P)$(E)U) {
    field(TMOD,"Write")
-   field(ODEL,"-1")
+   field(OEOS,"")
    field(AOUT,"U")
-   field(INP,"#C$(C) S0 @$(SERVER)")
+   field(PORT,"$(PORT)")
 }
-record(serial, $(P)$(E)R) {
+record(asyn, $(P)$(E)R) {
    field(TMOD,"Write")
-   field(ODEL,"-1")
+   field(OEOS,"")
    field(AOUT,"R")
-   field(INP,"#C$(C) S0 @$(SERVER)")
+   field(PORT,"$(PORT)")
 }
-record(serial, $(P)$(E)P) {
+record(asyn, $(P)$(E)P) {
    field(TMOD,"Write")
-   field(ODEL,"-1")
+   field(OEOS,"")
    field(AOUT,"P")
-   field(INP,"#C$(C) S0 @$(SERVER)")
+   field(PORT,"$(PORT)")
 }
-record(serial, $(P)$(E)Read) {
+record(asyn, $(P)$(E)Read) {
    field(TMOD,"Write/Read")
-   field(ODEL,"13")
-   field(IDEL,"-1")
+   field(OEOS,"\r")
+   field(IEOS,"")
    field(NRRD,"11")
    field(AOUT,"")
-   field(INP,"#C$(C) S0 @$(SERVER)")
+   field(PORT,"$(PORT)")
 }
 record(seq, $(P)$(E)Seq) {
    field(LNK1, "$(P)$(E)U PP MS")

@@ -10,16 +10,16 @@ grecord(stringout,"$(P)$(ENCODER)_ReadPos")
 {
 	field(SCAN,".5 second")
 	field(VAL,"")
-	field(DTYP,"MPF so stringParm")
-	field(OUT,"#C$(C) S0 @$(SERVER),TERM=31")
+	field(DTYP,"asyn so stringParm")
+	field(OUT,"#C$(C) S0 @$(PORT),TERM=31")
 	field(FLNK,"$(P)$(ENCODER)_Pos PP MS")
 }
           
 # Read from Encoder
 grecord(stringin,"$(P)$(ENCODER)_Pos")
 {
-	field(DTYP,"MPF si stringParm")
-	field(INP,"#C$(C) S0 @$(SERVER), TERM=0d")
+	field(DTYP,"asyn si stringParm")
+	field(INP,"#C$(C) S0 @$(PORT), TERM=0d")
 	field(FLNK, "$(P)$(ENCODER)Channel1 PP MS")
 }
 
