@@ -1,4 +1,4 @@
-# vxWorks startup file for 13IDA ioc
+# VXWorks startup file for 13IDA ioc
 
 < cdCommands
 < ../nfsCommandsGSE
@@ -58,7 +58,7 @@ dbLoadRecords "ipApp/Db/MKS.db","P=13IDA:,C=0,IPSLOT=a,CHAN=4,CC1=cc5,CC2=cc6,PR
 dbLoadRecords "ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip5,C=0,IPSLOT=a,CHAN=5", ip
 #dbLoadRecords "CARSApp/Db/MPC.db","P=13IDA:,PUMP=ip2,C=0,IPSLOT=a,CHAN=6", top
 dbLoadRecords("ipApp/Db/MPC.db","P=13IDA:,PUMP=ip2,C=0,IPSLOT=a,CHAN=6,PA=0,PN=1", ip)
-dbLoadRecords "CARSApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,C=0,IPSLOT=b,CHAN=0", top
+dbLoadRecords "ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,C=0,IPSLOT=b,CHAN=0", ip
 # a-Serial[7] is McClennan PM-304 motor controller
 dbLoadRecords "CARSApp/Db/generic_serial.db","P=13IDA:,R=ser1,C=0,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1", top
 dbLoadRecords "CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200,C=0,IPSLOT=b,CHAN=1", top
@@ -68,7 +68,7 @@ dbLoadRecords("ipApp/Db/MPC.db","P=13IDA:,PUMP=ip6,C=0,IPSLOT=b,CHAN=3,PA=0,PN=1
 dbLoadRecords("ipApp/Db/MPC.db","P=13IDA:,PUMP=ip7,C=0,IPSLOT=b,CHAN=3,PA=0,PN=2", ip)
 dbLoadRecords("ipApp/Db/TSP.db","P=13IDA:,TSP=tsp1,C=0,IPSLOT=b,CHAN=3,PA=0", ip)
 
-dbLoadRecords "CARSApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,C=0,IPSLOT=b,CHAN=4", top
+dbLoadRecords "ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,C=0,IPSLOT=b,CHAN=4", ip
 
 #dbLoadRecords "CARSApp/Db/generic_gpib.db","P=13IDA:,R=gpib1,SIZE=2048", top
 

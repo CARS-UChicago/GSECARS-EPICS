@@ -57,9 +57,9 @@ dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,IPSLOT=a,CHAN=3", ip
 #dbLoadRecords "CARSApp/Db/BM_LVP_Omega.db","P=13BMD:,R=Omega1_,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=7,SBIT=2", top
 dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=0,IPSLOT=a,CHAN=5,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
 #dbLoadRecords  "CARSApp/Db/generic_gpib.db", "P=13BMD:,R=gpib1,SIZE=2048", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", top
+dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", ip
 dbLoadRecords  "CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=7", top
+dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=7", ip
 dbLoadRecords  "CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1", top
 dbLoadTemplate "DAC.template"
 dbLoadTemplate "LVP_furnace_control.template"

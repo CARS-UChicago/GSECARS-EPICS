@@ -57,7 +57,7 @@ dbLoadRecords  "stdApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0",std
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,IPSLOT=a,CHAN=0",ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,IPSLOT=a,CHAN=1",ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,IPSLOT=a,CHAN=7",ip
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=5", top
+dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=5", ip
 
 # Second Octal UART for diffractometer experiments
 # Serial ports 0 and 1 are for SR570 current amplifiers
@@ -161,6 +161,10 @@ dbLoadRecords("CARSApp/Db/experiment_info.db","P=13IDC:", top)
 
 # vxWorks statistics
 dbLoadRecords("stdApp/Db/VXstats.db","P=13IDC:", std)
+
+# MN scanner db for long string args
+dbLoadRecords("CARSApp/Db/scanner.db","P=13IDC:,Q=edb", top)
+
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
