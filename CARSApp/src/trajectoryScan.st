@@ -70,7 +70,7 @@ option +r;
  * bytes in this SNL program (up to 128KB). Similar memory will be required 
  * for the records in the database. Restrict to 1000 for now.
  */
-#define MAX_ELEMENTS 1000
+#define MAX_ELEMENTS 2000
 
 /* Maximum # of output pulses.  The MM4005 allows 2000, and this is also
  * the channel access limit with a double data type.  However this uses 
@@ -78,7 +78,7 @@ option +r;
  * MAX_AXES*MAX_PULSES*8 bytes (up to 256KB total). Similar memory will be 
  * required for the records in the database. Restrict to 1000 for now.
  */
-#define MAX_PULSES 1000
+#define MAX_PULSES 2000
 
 /* Maximum size of string to/from MM4005, typically for TQ command. */
 #define MAX_MM4000_STRING 256
@@ -536,6 +536,10 @@ ss trajectoryScan {
                     sprintf(stringOut, "%dDX%f", j+1, dpos);
                     %%writeOnly(ssId, pVar, pVar->stringOut);
                 }
+                /* The following command is intended to prevent buffer overflow in
+                 * the MM4005 by reading introducing a delay (reading status) when downloading
+                 * many-element trajectories */
+                if (((i+1) % 20) == 0) %%writeRead(ssId, pVar, "TB");
             }
             /* Define pulse output for trajectory */
             if (npulses > 0) {
