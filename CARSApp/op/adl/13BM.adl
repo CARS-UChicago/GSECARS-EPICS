@@ -1,14 +1,14 @@
 
 file {
-	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\13BM.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BM.adl"
 	version=020306
 }
 display {
 	object {
-		x=523
-		y=23
+		x=390
+		y=38
 		width=360
-		height=460
+		height=500
 	}
 	clr=14
 	bclr=4
@@ -202,12 +202,12 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Beamline Slits"
+	textix="BM-D Beamline Slits"
 }
 text {
 	object {
 		x=92
-		y=303
+		y=335
 		width=128
 		height=20
 	}
@@ -292,7 +292,7 @@ text {
 "related display" {
 	object {
 		x=7
-		y=367
+		y=399
 		width=75
 		height=25
 	}
@@ -312,7 +312,7 @@ text {
 text {
 	object {
 		x=92
-		y=367
+		y=399
 		width=128
 		height=20
 	}
@@ -325,7 +325,7 @@ text {
 text {
 	object {
 		x=92
-		y=335
+		y=367
 		width=128
 		height=20
 	}
@@ -338,7 +338,7 @@ text {
 "related display" {
 	object {
 		x=7
-		y=335
+		y=367
 		width=75
 		height=24
 	}
@@ -358,7 +358,7 @@ text {
 "related display" {
 	object {
 		x=7
-		y=303
+		y=335
 		width=75
 		height=25
 	}
@@ -397,7 +397,7 @@ text {
 "related display" {
 	object {
 		x=7
-		y=271
+		y=303
 		width=75
 		height=25
 	}
@@ -437,7 +437,7 @@ text {
 text {
 	object {
 		x=92
-		y=271
+		y=303
 		width=150
 		height=20
 	}
@@ -450,7 +450,7 @@ text {
 "related display" {
 	object {
 		x=7
-		y=399
+		y=431
 		width=75
 		height=25
 	}
@@ -480,7 +480,7 @@ text {
 text {
 	object {
 		x=92
-		y=399
+		y=431
 		width=40
 		height=20
 	}
@@ -492,7 +492,7 @@ text {
 "related display" {
 	object {
 		x=7
-		y=239
+		y=271
 		width=75
 		height=25
 	}
@@ -508,8 +508,13 @@ text {
 	}
 	display[2] {
 		label="BM-D filter rack"
-		name="13BMD_Filters.adl"
+		name="13BM_Filters.adl"
 		args="P=13BMA:, TITLE=BM-D_filters, R=BMD_Filters, M1=m5"
+	}
+	display[3] {
+		label="BM-C filter rack"
+		name="13BM_Filters.adl"
+		args="P=13BMA:, TITLE=BM-C_filters, R=BMC_Filters, M1=m6"
 	}
 	clr=14
 	bclr=4
@@ -517,7 +522,7 @@ text {
 text {
 	object {
 		x=92
-		y=239
+		y=271
 		width=137
 		height=20
 	}
@@ -529,8 +534,8 @@ text {
 }
 "related display" {
 	object {
-		x=8
-		y=431
+		x=7
+		y=463
 		width=75
 		height=25
 	}
@@ -569,8 +574,8 @@ text {
 }
 text {
 	object {
-		x=94
-		y=432
+		x=92
+		y=463
 		width=150
 		height=20
 	}
@@ -579,4 +584,47 @@ text {
 		width=2
 	}
 	textix="Vertical Mirror"
+}
+"related display" {
+	object {
+		x=7
+		y=239
+		width=75
+		height=25
+	}
+	display[0] {
+		label="FOE Slits (individual)"
+		name="3motors.adl"
+		args="P=13BMA:, TITLE=BM-C_Slits, M1=m7, M2=m15, M3=m16"
+	}
+	display[1] {
+		label="Vertical FOE Slits (compound)"
+		name="2slit.adl"
+		args="P=13BMA:, SLIT=Slit3V"
+	}
+	display[2] {
+		label="BMB Slits (compound)"
+		name="2slit.adl"
+		args="P=13BMA:, SLIT=Slit4H"
+	}
+	display[3] {
+		label="BMB Slits (individual)"
+		name="2motors.adl"
+		args="P=13BMA:, TITLE=13BMB_Slits, M1=m26, M2=m27"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=239
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="BM-C Beamline Slits"
 }

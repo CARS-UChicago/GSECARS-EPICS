@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=39
-		y=326
+		x=-63
+		y=103
 		width=1101
 		height=560
 	}
@@ -89,7 +89,7 @@ display {
 }
 text {
 	object {
-		x=323
+		x=402
 		y=15
 		width=360
 		height=40
@@ -1491,86 +1491,22 @@ polyline {
 		(1076,0)
 	}
 }
-"text update" {
-	object {
-		x=136
-		y=44
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13BMA:eps_mbbi4"
-		clr=14
-		bclr=0
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=86
-		y=41
-		width=45
-		height=20
-	}
-	control {
-		chan="13BMA:eps_bo4"
-		clr=14
-		bclr=0
-	}
-	label="Close"
-	press_msg="1"
-	release_msg="0"
-	clrmod="alarm"
-}
-"message button" {
-	object {
-		x=36
-		y=41
-		width=45
-		height=20
-	}
-	control {
-		chan="13BMA:eps_bo3"
-		clr=14
-		bclr=0
-	}
-	label="Open"
-	press_msg="1"
-	release_msg="0"
-	clrmod="alarm"
-}
 text {
 	object {
-		x=77
+		x=87
 		y=15
 		width=96
-		height=25
+		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Shutter"
-}
-menu {
-	object {
-		x=207
-		y=41
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P1)$(SHUT)EnableShutter"
-		clr=14
-		bclr=51
-	}
+	textix="Shutters"
 }
 text {
 	object {
-		x=203
-		y=19
+		x=213
+		y=15
 		width=80
 		height=20
 	}
@@ -1581,10 +1517,10 @@ text {
 }
 rectangle {
 	object {
-		x=17
+		x=5
 		y=10
-		width=285
-		height=58
+		width=300
+		height=75
 	}
 	"basic attribute" {
 		clr=14
@@ -1859,4 +1795,152 @@ text {
 		chan="$(P1)$(TABLE)t1.LVIO"
 	}
 	textix="Soft-Limit"
+}
+"text update" {
+	object {
+		x=146
+		y=39
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi4"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=96
+		y=36
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:CloseFEShutter.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Close"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=46
+		y=36
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:OpenFEShutter.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Open"
+	press_msg="1"
+	release_msg="0"
+}
+menu {
+	object {
+		x=217
+		y=36
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P1)FOEEnableShutter"
+		clr=14
+		bclr=51
+	}
+}
+"message button" {
+	object {
+		x=46
+		y=59
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:OpenBMDShutter.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Open"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=96
+		y=59
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:CloseBMDShutter.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Close"
+	press_msg="1"
+	release_msg="0"
+}
+"text update" {
+	object {
+		x=146
+		y=62
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi99"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+menu {
+	object {
+		x=217
+		y=59
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P1)BMDEnableShutter"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=13
+		y=39
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FOE"
+}
+text {
+	object {
+		x=13
+		y=62
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMD"
 }

@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13ID_EPS.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13ID_EPS.adl"
 	version=020306
 }
 display {
 	object {
-		x=-716
-		y=77
+		x=129
+		y=231
 		width=1190
 		height=760
 	}
@@ -103,47 +103,6 @@ display {
 	press_msg="Close_on"
 	release_msg="Close_off"
 	clrmod="alarm"
-}
-rectangle {
-	object {
-		x=45
-		y=455
-		width=174
-		height=26
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-oval {
-	object {
-		x=198
-		y=460
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13ID:Q01:03.VAL"
-	}
-}
-oval {
-	object {
-		x=198
-		y=460
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="PA:13ID:Q01:03.VAL"
-	}
 }
 rectangle {
 	object {
@@ -258,7 +217,7 @@ rectangle {
 }
 text {
 	object {
-		x=90
+		x=88
 		y=427
 		width=84
 		height=25
@@ -3679,101 +3638,6 @@ oval {
 		chan="PA:13ID:Q01:01.VAL"
 	}
 }
-rectangle {
-	object {
-		x=82
-		y=487
-		width=100
-		height=60
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-text {
-	object {
-		x=97
-		y=494
-		width=70
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Water Flow"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=82
-		y=512
-		width=100
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(82,512)
-		(182,512)
-	}
-}
-oval {
-	object {
-		x=163
-		y=522
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi62"
-	}
-}
-oval {
-	object {
-		x=166
-		y=525
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi61"
-	}
-}
-text {
-	object {
-		x=103
-		y=523
-		width=56
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="Backstop"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=77
-		y=460
-		width=84
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Station Searched"
-	align="horiz. centered"
-}
 composite {
 	object {
 		x=242
@@ -5743,5 +5607,283 @@ menu {
 		chan="13IDA:FOEEnableShutter"
 		clr=14
 		bclr=51
+	}
+}
+composite {
+	object {
+		x=43
+		y=455
+		width=174
+		height=26
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=43
+				y=455
+				width=174
+				height=26
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		oval {
+			object {
+				x=196
+				y=460
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="PA:13ID:Q01:03.VAL"
+			}
+		}
+		oval {
+			object {
+				x=196
+				y=460
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="PA:13ID:Q01:03.VAL"
+			}
+		}
+		text {
+			object {
+				x=75
+				y=460
+				width=84
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Station Searched"
+			align="horiz. centered"
+		}
+	}
+}
+composite {
+	object {
+		x=80
+		y=487
+		width=100
+		height=60
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=80
+				y=487
+				width=100
+				height=60
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		text {
+			object {
+				x=95
+				y=494
+				width=70
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Water Flow"
+			align="horiz. centered"
+		}
+		polyline {
+			object {
+				x=80
+				y=512
+				width=100
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(80,512)
+				(180,512)
+			}
+		}
+		oval {
+			object {
+				x=161
+				y=522
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi62"
+			}
+		}
+		oval {
+			object {
+				x=164
+				y=525
+				width=9
+				height=9
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi61"
+			}
+		}
+		text {
+			object {
+				x=101
+				y=523
+				width=56
+				height=13
+			}
+			"basic attribute" {
+				clr=13
+			}
+			textix="Backstop"
+			align="horiz. centered"
+		}
+	}
+}
+rectangle {
+	object {
+		x=350
+		y=461
+		width=165
+		height=26
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=360
+		y=466
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=453
+		y=467
+		width=59
+		height=15
+	}
+	monitor {
+		chan="G:AHU:FP5087Ai"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=48
+		y=557
+		width=165
+		height=26
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=59
+		y=562
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=152
+		y=563
+		width=59
+		height=15
+	}
+	monitor {
+		chan="G:AHU:FP5088Ai"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=900
+		y=426
+		width=190
+		height=20
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=928
+		y=429
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BPM battery (V)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1038
+		y=429
+		width=50
+		height=15
+	}
+	monitor {
+		chan="13IDA:DMM2Ch9_raw.VAL"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
 	}
 }

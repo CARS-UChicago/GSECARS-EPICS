@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13ID.adl"
-	version=030000
+	name="j:\epics\support\CARS\CARSApp\op\adl\13ID.adl"
+	version=020306
 }
 display {
 	object {
-		x=413
-		y=57
+		x=463
+		y=227
 		width=411
-		height=494
+		height=525
 	}
 	clr=14
 	bclr=4
@@ -90,7 +90,7 @@ display {
 text {
 	object {
 		x=140
-		y=215
+		y=206
 		width=140
 		height=20
 	}
@@ -103,7 +103,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=215
+		y=206
 		width=120
 		height=25
 	}
@@ -154,7 +154,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=250
+		y=238
 		width=120
 		height=25
 	}
@@ -189,7 +189,7 @@ text {
 text {
 	object {
 		x=140
-		y=250
+		y=238
 		width=150
 		height=20
 	}
@@ -249,7 +249,7 @@ text {
 text {
 	object {
 		x=138
-		y=180
+		y=174
 		width=90
 		height=20
 	}
@@ -262,7 +262,7 @@ text {
 "shell command" {
 	object {
 		x=10
-		y=180
+		y=174
 		width=118
 		height=25
 	}
@@ -284,7 +284,7 @@ text {
 text {
 	object {
 		x=138
-		y=145
+		y=142
 		width=210
 		height=20
 	}
@@ -297,7 +297,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=145
+		y=142
 		width=118
 		height=25
 	}
@@ -317,7 +317,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=320
+		y=302
 		width=120
 		height=25
 	}
@@ -350,13 +350,23 @@ text {
 		name="Keithley2kDMM_mf.adl"
 		args="P=13IDA:, Dmm=DMM2"
 	}
+	display[6] {
+		label="ipUnidig"
+		name="ipUnidig.adl"
+		args="P=13IDA:, R=Unidig"
+	}
+	display[7] {
+		label="quadEM"
+		name="quadEM.adl"
+		args="P=13IDA:, EM=EM1"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
 		x=140
-		y=320
+		y=302
 		width=150
 		height=20
 	}
@@ -369,7 +379,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=355
+		y=334
 		width=120
 		height=25
 	}
@@ -389,7 +399,7 @@ text {
 text {
 	object {
 		x=140
-		y=355
+		y=334
 		width=150
 		height=20
 	}
@@ -402,7 +412,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=285
+		y=270
 		width=120
 		height=25
 	}
@@ -431,13 +441,23 @@ text {
 		name="1motors.adl"
 		args="P=13IDA:, TITLE=VG_mono, M1=m17"
 	}
+	display[5] {
+		label="Fast pitch feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=fast_pitch_pid, TITLE=Mono_Pitch_feedback"
+	}
+	display[6] {
+		label="Fast roll feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=fast_roll_pid, TITLE=Mono_Roll_feedback"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
 		x=140
-		y=285
+		y=270
 		width=150
 		height=20
 	}
@@ -450,7 +470,7 @@ text {
 text {
 	object {
 		x=140
-		y=427
+		y=398
 		width=150
 		height=20
 	}
@@ -463,7 +483,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=427
+		y=398
 		width=120
 		height=23
 	}
@@ -503,7 +523,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=390
+		y=366
 		width=120
 		height=25
 	}
@@ -537,13 +557,18 @@ text {
 		name="MirrorTemps.adl"
 		args="P=13IDA:,TITLE=Vert_Temperature,CH1=DMM2Ch7, CH2=DMM2Ch6, CH3=DMM2Ch8"
 	}
+	display[6] {
+		label="Vertical PZT"
+		name="singleDAC.adl"
+		args="P=13IDA:,D=1,C=5"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
 		x=140
-		y=392
+		y=366
 		width=150
 		height=20
 	}
@@ -556,7 +581,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=460
+		y=494
 		width=120
 		height=23
 	}
@@ -571,7 +596,7 @@ text {
 text {
 	object {
 		x=140
-		y=460
+		y=494
 		width=150
 		height=20
 	}
@@ -580,4 +605,68 @@ text {
 		width=2
 	}
 	textix="scans"
+}
+"related display" {
+	object {
+		x=10
+		y=430
+		width=120
+		height=23
+	}
+	display[0] {
+		label="BPM Motors"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=BPM Motors, M1=m33, M2=m15"
+	}
+	display[1] {
+		label="13ID BPM Control"
+		name="BPM_Foil.adl"
+		args="P=13IDA:, TITLE=BPM_Foil_Control, M1=m33, M2=m15, EN=E"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=140
+		y=430
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="BPM"
+}
+"related display" {
+	object {
+		x=10
+		y=462
+		width=120
+		height=23
+	}
+	display[0] {
+		label="quadEM MCAs"
+		name="quadEM_med.adl"
+		args="P=13IDA:quadEM:, P_FFT=13IDA:quadEM_FFT:, T13=Vertical_BPM, T24=Horizontal_BPM"
+	}
+	display[4] {
+		name="l"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=140
+		y=462
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="quadEM MCAs"
 }

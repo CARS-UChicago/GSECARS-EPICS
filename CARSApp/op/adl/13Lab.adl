@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\devel\CARS\CARSApp\op\adl\13Lab.adl"
+	name="C:\Program Files\EPICS\adls\13Lab.adl"
 	version=020306
 }
 display {
 	object {
-		x=414
-		y=20
+		x=354
+		y=44
 		width=400
 		height=520
 	}
@@ -607,6 +607,16 @@ text {
 		name="quadEM.adl"
 		args="P=13LAB:, EM=EM1"
 	}
+	display[3] {
+		label="8 DACs"
+		name="8_DACs.adl"
+		args="P=13LAB:, D=1"
+	}
+	display[4] {
+		label="Lab Traj Scan"
+		name="trajectoryScan.adl"
+		args="P=13LAB:, R=traj1, M1=m13,M2=m14,M3=m15,TITLE=Trajectory_Scan"
+	}
 	clr=14
 	bclr=4
 }
@@ -707,34 +717,9 @@ text {
 		height=24
 	}
 	display[0] {
-		label="quadEM current #1"
-		name="mca.adl"
-		args="P=13LAB:, M=quadEM_1"
-	}
-	display[1] {
-		label="quadEM current #2"
-		name="mca.adl"
-		args="P=13LAB:, M=quadEM_2"
-	}
-	display[2] {
-		label="quadEM current #3"
-		name="mca.adl"
-		args="P=13LAB:, M=quadEM_3"
-	}
-	display[3] {
-		label="quadEM current #4"
-		name="mca.adl"
-		args="P=13LAB:, M=quadEM_4"
-	}
-	display[4] {
-		label="quadEM position #1"
-		name="mca.adl"
-		args="P=13LAB:, M=quadEM_5"
-	}
-	display[5] {
-		label="quadEM position #2"
-		name="mca.adl"
-		args="P=13LAB:, M=quadEM_6"
+		label="quadEM Multi-element display"
+		name="quadEM_med.adl"
+		args="P=13LAB:quadEM:, P_FFT=13LAB:quadEM_FFT:, T13=BPM_Vertical, T24=BPM_Horizontal"
 	}
 	clr=14
 	bclr=4

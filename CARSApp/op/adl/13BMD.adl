@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=580
-		y=32
+		x=778
+		y=49
 		width=300
 		height=447
 	}
@@ -117,12 +117,12 @@ display {
 	display[4] {
 		label="LVP Front Slits"
 		name="2motors.adl"
-		args="P=13BMD:,TITLE=LVP_Front_Slits, M1=m7,M2=m8"
+		args="P=13BMD:,TITLE=LVP_Front_Slits, M1=m26,M2=m27"
 	}
 	display[5] {
 		label="CCD Camera Stage"
-		name="3motors.adl"
-		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m11, M2=m14, M3=m15"
+		name="4motors.adl"
+		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m57, M2=m58, M3=m59, M4=m14"
 	}
 	display[6] {
 		label="Monochromator"
@@ -130,9 +130,9 @@ display {
 		args="P=13BMD:, TITLE=Monochromator, M1=m8"
 	}
 	display[7] {
-		label="New 8 LVP motors"
-		name="8motors.adl"
-		args="P=13BMD:, TITLE=New_8_LVP_Motors, M1=m57, M2=m58, M3=m59, M4=m60, M5=m61, M6=m62, M7=m63, M8=m64"
+		label="D-DIA motors"
+		name="2motors.adl"
+		args="P=13BMD:, TITLE=D-DIA_Motors, M1=m60, M2=m61"
 	}
 	clr=14
 	bclr=4
@@ -379,6 +379,21 @@ text {
 		label="Unidig Binary I/O"
 		name="IpUnidig.adl"
 		args="P=13BMD:, R=Unidig"
+	}
+	display[5] {
+		label="Keithley multimeter"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13BMD:, Dmm=DMM3"
+	}
+	display[6] {
+		label="Heater control"
+		name="heater_control.adl"
+		args="P=13BMD:, PID=PID2, OUT=13BMD:DAC1_2, D=1, C=2, INP=13BMD:DMM3Ch4_calc, TITLE=Heater_Control"
+	}
+	display[7] {
+		label="8 DACs"
+		name="8_DACs.adl"
+		args="P=13BMD:, D=1"
 	}
 	clr=14
 	bclr=4
@@ -667,6 +682,11 @@ text {
 		label="LVP pressure control"
 		name="BM_LVP_pressure.adl"
 		args="P=13BMD:, R=Press_,D=1,C=8"
+	}
+	display[7] {
+		label="D-DIA Keithley"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13BMD:, Dmm=DMM4"
 	}
 	clr=14
 	bclr=4

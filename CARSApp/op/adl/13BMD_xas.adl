@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=794
-		y=79
+		x=452
+		y=135
 		width=460
 		height=125
 	}
@@ -110,9 +110,9 @@ display {
 		height=24
 	}
 	display[0] {
-		label="SRS Preamp #1 (unused)"
+		label="SRS Preamp #1 (I_0)"
 		name="SR570.adl"
-		args="P=13BMD:, A=A1"
+		args="P=13BMD:, A=A3"
 	}
 	display[1] {
 		label="SRS Preamp #2 (I_1)"
@@ -120,9 +120,9 @@ display {
 		args="P=13BMD:, A=A2"
 	}
 	display[2] {
-		label="SRS Preamp #3 (I_0)"
+		label="SRS Preamp #3 (I_2)"
 		name="SR570.adl"
-		args="P=13BMD:, A=A3"
+		args="P=13BMD:, A=A1"
 	}
 	display[3] {
 		label="Acromag IP300 ADC"
@@ -187,9 +187,9 @@ display {
 		args="P=13BMA:, SLIT=Slit2V"
 	}
 	display[3] {
-		label="Lift Table (compound)"
-		name="table_full.adl"
-		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m21, M0Y=m18, M1Y=m19, M2X=m20, M2Y=m17, M2Z=junk"
+		label="Table Top Slits"
+		name="4motors.adl"
+		args="P=13IDC:, TITLE=Table_Top_Slit, M1=m9, M2=m10, M3=m11, M4=m12"
 	}
 	display[4] {
 		label="Lift Table (simple)"
@@ -197,14 +197,9 @@ display {
 		args="P=13BMD:, TITLE=Lift_Table, M1=m17,  M2=m18, M3=m19, M4=m20, M5=m21, M6=m22"
 	}
 	display[6] {
-		label="Vertical KB Mirror"
-		name="6motors.adl"
-		args="P=13BMD:, TITLE=Vertical_Focusing_Mirror, M1=m33, M2=m34, M3=m35, M4=m36, M5=pm7, M6=pm8"
-	}
-	display[7] {
-		label="Horizontal KB Mirror"
-		name="6motors.adl"
-		args="P=13BMD:, TITLE=Horizontal_Focusing_Mirror, M1=m37, M2=m38, M3=m39, M4=m40, M5=pm5, M6=pm6"
+		label="Lift Table (compound)"
+		name="table_full.adl"
+		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m21, M0Y=m18, M1Y=m19, M2X=m20, M2Y=m17, M2Z=junk"
 	}
 	clr=14
 	bclr=2
@@ -219,20 +214,20 @@ display {
 	}
 	display[0] {
 		label="Monochromator"
-		name="13BM_mono_small.adl"
-		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
-	}
-	display[1] {
-		label="Monochromator (Full)"
 		name="13BM_monochromator.adl"
 		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
 	}
 	display[2] {
+		label="Monochromator(Small)"
+		name="13BM_mono_small.adl"
+		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
+	}
+	display[3] {
 		label="Crystal Cage Table"
 		name="table_full.adl"
 		args="P=13BMA:,  Q=MON:T1, T=MON:t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
 	}
-	display[3] {
+	display[4] {
 		label="2nd Crystal Feedback"
 		name="pid_control.adl"
 		args="P=13BMA:, PID=mono_pid1, TITLE=ID_Mono_feedback"
@@ -273,7 +268,7 @@ text {
 		height=19
 	}
 	control {
-		chan="13BMA:eps_bo3"
+		chan="13BMA:OpenBMDShutter.PROC"
 		clr=14
 		bclr=62
 	}
@@ -289,7 +284,7 @@ text {
 		height=19
 	}
 	control {
-		chan="13BMA:eps_bo4"
+		chan="13BMA:CloseBMDShutter.PROC"
 		clr=14
 		bclr=20
 	}
@@ -342,7 +337,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13BMA:eps_mbbi4"
+		chan="13BMA:eps_mbbi99"
 		clr=14
 		bclr=0
 	}
@@ -407,15 +402,15 @@ rectangle {
 		name="scaler_calcs4.adl"
 		args="P=13BMD:, S=scaler1"
 	}
-	display[1] {
-		label="16 element (GE1)"
-		name="16element.adl"
-		args="P=13GE1:med:"
-	}
 	display[2] {
-		label="16 element (GE2)"
+		label="16 element "
 		name="16element_dxp.adl"
 		args="P=13GE2:med:"
+	}
+	display[5] {
+		label="16 element (old: GE1)"
+		name="16element.adl"
+		args="P=13GE1:med:"
 	}
 	clr=14
 	bclr=2
@@ -561,7 +556,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="13BMA:FOEEnableShutter"
+		chan="13BMA:BMDEnableShutter"
 		clr=54
 		bclr=1
 	}
