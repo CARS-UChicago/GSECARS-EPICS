@@ -1,0 +1,43 @@
+# Database for Spherosyn encoder
+
+record(serial, $(P)$(E)U) {
+   field(TMOD,"Write")
+   field(ODEL,"-1")
+   field(AOUT,"U")
+   field(INP,"#C$(C) S0 @$(SERVER)")
+}
+record(serial, $(P)$(E)R) {
+   field(TMOD,"Write")
+   field(ODEL,"-1")
+   field(AOUT,"R")
+   field(INP,"#C$(C) S0 @$(SERVER)")
+}
+record(serial, $(P)$(E)P) {
+   field(TMOD,"Write")
+   field(ODEL,"-1")
+   field(AOUT,"P")
+   field(INP,"#C$(C) S0 @$(SERVER)")
+}
+record(serial, $(P)$(E)Read) {
+   field(TMOD,"Write/Read")
+   field(ODEL,"13")
+   field(IDEL,"-1")
+   field(NRRD,"11")
+   field(AOUT,"")
+   field(INP,"#C$(C) S0 @$(SERVER)")
+}
+record(seq, $(P)$(E)Seq) {
+   field(LNK1, "$(P)$(E)U PP MS")
+   field(DLY2, ".01")
+   field(LNK2, "$(P)$(E)R PP MS")
+   field(DLY3, ".01")
+   field(LNK3, "$(P)$(E)P PP MS")
+   field(DLY4, ".01")
+   field(LNK4, "$(P)$(E)Read PP MS")
+   field(FLNK, "$(P)$(E)Val")
+}
+record(scalcout, "$(P)$(E)Val") {
+   field(INAA, "$(P)$(E)Read.AINP NPP NMS")
+   field(CALC, "SSCANF(AA, 'U%f')")
+   field(PREC, "0")
+}
