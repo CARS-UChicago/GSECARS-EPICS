@@ -1,4 +1,9 @@
 # Database for  Newport LAE500 autocollimator
+#
+# When first turning on the LAE500 it is necessary to enable the remote port
+# by sending the command "C-".  This is not done by this database, it must be
+# done manually via the generic serial port
+ 
 grecord(serial, "$(P)$(R)serial") {
 	field(AOUT,"P")
         field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
