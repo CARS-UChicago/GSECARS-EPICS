@@ -52,16 +52,28 @@ dbLoadDatabase("../../dbd/CARSApp.dbd")
 
 # Load database
 dbLoadRecords  "stdApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0",std
+
+# First Octal UART for microprobe experiments
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,IPSLOT=a,CHAN=0",ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,IPSLOT=a,CHAN=1",ip
-# Serial ports 2 and 3 are for the MM4000.  We have both motor record and generic serial records on them
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser1,C=0,IPSLOT=a,CHAN=2,BAUD=38400,PRTY=None,DBIT=8,SBIT=1", top
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser2,C=0,IPSLOT=a,CHAN=3,BAUD=38400,PRTY=None,DBIT=8,SBIT=1", top
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,IPSLOT=a,CHAN=4", ip
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,IPSLOT=a,CHAN=7",ip
 dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=5", top
-# Serial port 6 is for the SMART PC
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,IPSLOT=a,CHAN=7", ip
-#dbLoadRecords  "CARSApp/Db/generic_gpib.db", "P=13IDC:,R=gpib1,SIZE=2048", top
+
+# Second Octal UART for diffractometer experiments
+# Serial ports 0 and 1 are for SR570 current amplifiers
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,IPSLOT=b,CHAN=0",ip
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,IPSLOT=b,CHAN=1",ip
+# Serial ports 2 and 3 are for the MM4000.  We have both motor record and generic serial records on them
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser1,C=0,IPSLOT=b,CHAN=2,BAUD=38400,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDC:,R=ser2,C=0,IPSLOT=b,CHAN=3,BAUD=38400,PRTY=None,DBIT=8,SBIT=1", top
+# Serial port 4 is for the SMART PC
+str=malloc(256)
+strcpy(str,"P=13IDC:,R=smart1,C=0,IPSLOT=b,CHAN=4,BAUD=9600,")
+strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
+dbLoadRecords("CARSApp/Db/smartControl.db",str,top)
+# Serial port 5 and 6 are IDB bpm amplifiers
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,IPSLOT=b,CHAN=5",ip
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A7,C=0,IPSLOT=b,CHAN=6",ip
 #----
 
 dbLoadTemplate "motors.template"
@@ -69,10 +81,10 @@ dbLoadTemplate "motors.template"
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,IPSLOT=a,CHAN=2,BAUD=38400")
+strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,IPSLOT=b,CHAN=2,BAUD=38400")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 dbLoadRecords("CARSApp/Db/trajectoryScan.db", str, top)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,IPSLOT=a,CHAN=3,BAUD=38400")
+strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,IPSLOT=b,CHAN=3,BAUD=38400")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 strcat(str, ",M1=Y1,M2=Y2,M3=Y3,M4=Rotation AY,M5=X translation,M6=Sample X,M7=Sample Y,M8=Sample Z")
 dbLoadRecords("CARSApp/Db/trajectoryScan.db", str, top)
@@ -88,8 +100,19 @@ dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 
 # dbLoadRecords "mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,ICB=NI6E6:5", mca
 # dbLoadRecords "mcaApp/Db/icb_hvps.db","P=13IDC:,HVPS=hvps1,ICB=NI6E6:2", mca
 
+# T^2 added below 11-01 to config the ADC
+picbServer = icbConfig("icb/1", 10, "NI6E6:5", 100)
+dbLoadRecords "mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0", mca
+
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
+
+### Scalers: Struck/SIS as simple scaler 
+# Don't execute the next 2 lines if Struck8.cmd is loaded above
+#STR7201Setup(1,0xA0000000,220,6)
+#STR7201Config(0, 16, 100)
+dbLoadRecords("mcaApp/Db/STR7201scaler.db","P=13IDC:,S=scaler2,C=0", mca)
+
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
@@ -103,18 +126,12 @@ dbLoadRecords("stdApp/Db/all_com_56.db","P=13IDC:", std)
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
 
-dbLoadRecords("stdApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=1000,MAXPTS3=50,MAXPTS4=5,MAXPTSH=10", std)
+dbLoadRecords("stdApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10", std)
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
 dbLoadTemplate "scanParms.template"
-
-# SMART detector database
-str=malloc(256)
-strcpy(str,"P=13IDC:,R=smart1,C=0,IPSLOT=a,CHAN=6,BAUD=9600,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("CARSApp/Db/smartControl.db",str,top)
 
 # IP-Unidig binary I/O
 dbLoadTemplate "IpUnidig.template"
@@ -126,6 +143,9 @@ dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,
 dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @c-Ip330Sweep", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @c-Ip330Sweep", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @c-Ip330Sweep", mca)
+# added 2-05 for split ion chmaber
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=mip330_5,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S4 @c-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=mip330_6,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S5 @c-Ip330Sweep", mca)
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("stdApp/Db/misc.db","P=13IDC:", std)
@@ -144,7 +164,7 @@ dbLoadRecords("stdApp/Db/VXstats.db","P=13IDC:", std)
 #     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(6, 8, 0x4000, 190, 5, 10)
+oms58Setup(7, 8, 0x4000, 190, 5, 10)
 
 # MM4000 driver setup parameters: 
 #     (1) maximum # of controllers, 
@@ -161,13 +181,13 @@ MM4000Setup(2, 8, 10)
 #   MM4000Config(0,0,10,2)  #Link 10, address 2
 # RS-232 example:
 #   MM4000Config(0, 1, 0, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
-MM4000Config(0, 1, 0, "a-Serial[2]")
-MM4000Config(1, 1, 0, "a-Serial[3]")
+MM4000Config(0, 1, 0, "b-Serial[2]")
+MM4000Config(1, 1, 0, "b-Serial[3]")
 
 # Set a delay in reading back MM4000 motors when they complete moves. 
 # This is a temporary fix
 # Not doing step scanning, set to 0. Use 0.5 when using step scanning
-drvMM4000ReadbackDelay = 0.0
+drvMM4000ReadbackDelay = 0.5
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -217,7 +237,7 @@ seq &Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1
 seq &trajectoryScan, "P=13IDC:, R=traj1, M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,M7=m31,M8=m32"
 seq &trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m39,M8=m40"
 
-seq &smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER=scaler1,I0=2,stack=10000"
+seq &smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER=scaler2,I0=2,stack=10000"
 
 # newport table sequencer
 str=malloc(256)
