@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13BM_monochromator_B.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BM_monochromator.adl"
 	version=020306
 }
 display {
 	object {
-		x=175
-		y=284
+		x=39
+		y=326
 		width=1101
 		height=560
 	}
@@ -731,251 +731,229 @@ composite {
 		}
 	}
 }
-composite {
+text {
 	object {
 		x=4
+		y=212
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="2nd Crystal Z"
+}
+"choice button" {
+	object {
+		x=441
+		y=213
+		width=50
+		height=41
+	}
+	control {
+		chan="$(P1)$(Z).SET"
+		clr=54
+		bclr=33
+	}
+}
+"text update" {
+	object {
+		x=16
+		y=233
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(Z).RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=554
+		y=233
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="motorx_all.adl"
+		args="P=$(P1), M=$(Z)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(Z), PV=$(Z)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+"message button" {
+	object {
+		x=312
+		y=228
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(Z).TWR"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=412
+		y=228
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(Z).TWF"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=334
+		y=228
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P1)$(Z).TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=498
+		y=213
+		width=50
+		height=41
+	}
+	control {
+		chan="$(P1)$(EN):z2_track"
+		clr=54
+		bclr=33
+	}
+}
+oval {
+	object {
+		x=327
 		y=210
-		width=610
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(Z).HLS"
+	}
+}
+text {
+	object {
+		x=342
+		y=210
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(Z).LVIO"
+	}
+	textix="Soft-Limit"
+}
+oval {
+	object {
+		x=412
+		y=210
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(Z).LLS"
+	}
+}
+composite {
+	object {
+		x=193
+		y=210
+		width=110
 		height=45
 	}
 	"composite name"=""
 	children {
-		text {
-			object {
-				x=4
-				y=212
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="2nd Crystal Z"
-		}
-		"choice button" {
-			object {
-				x=441
-				y=213
-				width=50
-				height=41
-			}
-			control {
-				chan="$(P1)$(Z).SET"
-				clr=54
-				bclr=33
-			}
-		}
-		"text update" {
-			object {
-				x=16
-				y=233
-				width=150
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(Z).RBV"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=554
-				y=233
-				width=60
-				height=20
-			}
-			display[0] {
-				label="All"
-				name="motorx_all.adl"
-				args="P=$(P1), M=$(Z)"
-			}
-			display[1] {
-				label="Scan parameters"
-				name="scanParms.adl"
-				args="P=$(P1), Q=$(Z), PV=$(Z)"
-			}
-			clr=54
-			bclr=33
-			label="More"
-		}
-		"message button" {
-			object {
-				x=312
-				y=228
-				width=25
-				height=25
-			}
-			control {
-				chan="$(P1)$(Z).TWR"
-				clr=54
-				bclr=33
-			}
-			label="<"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=412
-				y=228
-				width=25
-				height=25
-			}
-			control {
-				chan="$(P1)$(Z).TWF"
-				clr=54
-				bclr=33
-			}
-			label=">"
-			press_msg="1"
-		}
 		"text entry" {
 			object {
-				x=334
+				x=198
 				y=228
-				width=80
+				width=100
 				height=25
 			}
 			control {
-				chan="$(P1)$(Z).TWV"
+				chan="$(P1)$(Z).VAL"
 				clr=14
 				bclr=51
 			}
 			limits {
 			}
 		}
-		"choice button" {
-			object {
-				x=498
-				y=213
-				width=50
-				height=41
-			}
-			control {
-				chan="$(P1)$(EN):z2_track"
-				clr=54
-				bclr=33
-			}
-		}
-		composite {
-			object {
-				x=327
-				y=210
-				width=95
-				height=13
-			}
-			"composite name"=""
-			children {
-				oval {
-					object {
-						x=327
-						y=210
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=21
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).HLS"
-					}
-				}
-				text {
-					object {
-						x=342
-						y=210
-						width=70
-						height=13
-					}
-					"basic attribute" {
-						clr=30
-						fill="outline"
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).LVIO"
-					}
-					textix="Soft-Limit"
-				}
-				oval {
-					object {
-						x=412
-						y=210
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=21
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).LLS"
-					}
-				}
-			}
-		}
-		composite {
+		rectangle {
 			object {
 				x=193
 				y=210
 				width=110
 				height=45
 			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=198
-						y=228
-						width=100
-						height=25
-					}
-					control {
-						chan="$(P1)$(Z).VAL"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=193
-						y=210
-						width=110
-						height=45
-					}
-					"basic attribute" {
-						clr=31
-						width=9
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).SET"
-					}
-				}
-				text {
-					object {
-						x=193
-						y=210
-						width=110
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).SET"
-					}
-					textix="SET"
-					align="horiz. centered"
-				}
+			"basic attribute" {
+				clr=31
+				width=9
 			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P1)$(Z).SET"
+			}
+		}
+		text {
+			object {
+				x=193
+				y=210
+				width=110
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P1)$(Z).SET"
+			}
+			textix="SET"
+			align="horiz. centered"
 		}
 	}
 }
@@ -1134,94 +1112,6 @@ composite {
 	clr=54
 	bclr=33
 	label="More"
-}
-composite {
-	object {
-		x=4
-		y=430
-		width=610
-		height=45
-	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=554
-				y=455
-				width=60
-				height=20
-			}
-			display[0] {
-				label="All"
-				name="motorx_all.adl"
-				args="P=$(P2), M=$(EXPTAB)"
-			}
-			display[1] {
-				label="Scan parameters"
-				name="scanParms.adl"
-				args="P=$(P2), Q=$(EXPTAB), PV=$(EXPTAB)"
-			}
-			clr=54
-			bclr=33
-			label="More"
-		}
-		"choice button" {
-			object {
-				x=498
-				y=435
-				width=50
-				height=40
-			}
-			control {
-				chan="$(P1)$(EN):y2_track"
-				clr=54
-				bclr=33
-			}
-		}
-		text {
-			object {
-				x=4
-				y=430
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Beam Offset"
-		}
-		"text update" {
-			object {
-				x=16
-				y=455
-				width=150
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(EN):height.VAL"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=198
-				y=450
-				width=100
-				height=25
-			}
-			control {
-				chan="$(P1)$(EN):height.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-	}
 }
 composite {
 	object {
@@ -1469,8 +1359,8 @@ composite {
 	}
 	display[0] {
 		label="All"
-		name="motorx_all.adl"
-		args="P=$(P1), M=$(TILT)"
+		name="table.adl"
+		args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m14"
 	}
 	display[1] {
 		label="Scan parameters"
@@ -1763,7 +1653,7 @@ text {
 	"basic attribute" {
 		clr=24
 	}
-	textix="Tilt (compond)"
+	textix="Tilt (compound motors)"
 }
 "text update" {
 	object {
@@ -1896,4 +1786,77 @@ text {
 	align="horiz. right"
 	limits {
 	}
+}
+"choice button" {
+	object {
+		x=498
+		y=435
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P1)$(EN):y2_track"
+		clr=54
+		bclr=33
+	}
+}
+text {
+	object {
+		x=4
+		y=430
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Beam Offset"
+}
+"text update" {
+	object {
+		x=16
+		y=455
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(EN):height.VAL"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=198
+		y=450
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):height.VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=342
+		y=267
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(TABLE)t1.LVIO"
+	}
+	textix="Soft-Limit"
 }
