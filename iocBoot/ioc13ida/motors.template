@@ -1,0 +1,114 @@
+file CARSApp/Db/motor.db, top
+{
+pattern
+{P,       M,   DTYP,          C,  S,   DESC,            EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
+{13IDA:,  m1,  "OMS VME58",   0,  0, "Hor. slit pos.",   mm,       Pos,   .1,   .1,    .2,    0,     1,     .2,     400,     .22222,   3,    10,    -10}
+{13IDA:,  m2,  "OMS VME58",   0,  1, "Hor. slit width",  mm,       Pos,   .1,   .1,    .2,    0,     1,     .2,     400,    -1.0,      3,    10,    -.1}
+{13IDA:,  m3,  "OMS VME58",   0   2, "Vert. slit pos.",  mm,       Pos,   .1,   .1,    .2,    0,     1,     .2,     400,     .22222,   3,    10,    -10}
+{13IDA:,  m4,  "OMS VME58",   0,  3, "Vert. slit width", mm,       Pos,   .1,   .1,    .2,    0,     1,     .2,     400,    -1.0,      3,    10,    -.1}
+
+# The Y motors have belts with 2:1 gear reduction (15 teeth on motor, 30 teeth on drive shaft)
+#     Drive shaft thread is 0.5mm (NOTE it might be 48 threads/inch, rather than 0.5 threads/mm, must check), 
+#     so one rev of motor = .250 mm of travel
+# The X motors have 10:1 gear boxes and 24 thread per inch leadscrews, so one rev of motor is 25.4/24/10 = .1058333 mmm
+# The diagnostic flag has 40 thread per inch lead screw
+{13IDA:,   m5,  "OMS VME58",   0,  4, "Pinhole upstream Y",   mm,   Pos,   .5,   .1,    .2,    0,     1,     .2,    400,    -.250,  3,   109,  104}
+{13IDA:,   m6,  "OMS VME58",   0,  5, "Pinhole inboard Y",    mm,   Pos,   .5,   .1,    .2,    0,     1,     .2,    400,    -.250,  3,   106,  102}
+{13IDA:,   m7,  "OMS VME58",   0,  6, "Pinhole outboard Y",   mm,   Pos,   .5,   .1,    .2,    0,     1,     .2,    400,    -.250,  3,   109,  105}
+{13IDA:,   m8,  "OMS VME58",   0,  7, "Pinhole upstream X",   mm,   Neg,   .1,  .05,    .2,    0,     1,     .2,    400, .1058333,  3,     1,   -1}
+{13IDA:,   m9,  "OMS VME58",   1,  0, "Pinhole downstream X", mm,   Neg,   .1,  .05,    .2,    0,     1,     .2,    400, .1058333,  3,    73,   69}
+{13IDA:,  m10,  "OMS VME58",   1,  1, "Y-Out",                mm,   Neg,    .5,  .0,   1.5,  0.2,   .05,    1.5,   2000,  .347368,  4,    10,    0}
+{13IDA:,  m11,  "OMS VME58",   1,  2, "Y-In",                 mm,   Neg,    .5,  .0,   1.5,  0.2,   .05,    1.5,   2000,  .347368,  4,    10,    0}
+{13IDA:,  m12,  "OMS VME58",   1,  3, "Y-Up",                 mm,   Neg,    .5,  .0,   1.5,  0.2,   .05,    1.5,   2000,  .882353,  4,    10,    0}
+{13IDA:,  m13,  "OMS VME58",   1,  4, "Cage Y",               mm,   Neg,    .5,  .0,   1.5,    0,    .1,    1.5,   5000,       2.,  3,    25,    0}
+{13IDA:,  m14,  "OMS VME58",   1,  5, "Xtal Z",               mm,   Pos,     2,  .1,   1.5,    0,    .5,     .2,   2000,       .5,  3,   150,    0}
+{13IDA:,  m15,  "OMS VME58",   1,  6, "Motor 15",          steps,   Pos,  100.,   1,    .2,    0      1,     .2,    400,    .0025,  1,   1e6, -1e6}
+{13IDA:,  m16,  "OMS VME58",   1,  7, "Diagnostic Flag",      mm,   Neg,   0.5,  0.5,   .2,    0,   0.5,     .2,    400,    0.635,  3,   1e6, -1e6}
+{13IDA:,  m17, "Mclennan PM304", 0, 0,  "Monochromator", degrees,   Pos,    1.,  0.,    .2,    0,     1,     .2,   2000,      0.1,  4,    50,  -50}
+
+# Vertical mirror in 13-ID-B
+{13IDA:,  m18,  "OMS VME58",   2,  0, "Upstream moment",       mm,   Pos,   1.0,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
+{13IDA:,  m19,  "OMS VME58",   2,  1, "Downstream moment",     mm,   Pos,   1.0,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
+{13IDA:,  m20,  "OMS VME58",   2,  2, "Upstream Pitch",       mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,   400,   .016071,  4,   100,    0}
+{13IDA:,  m21,  "OMS VME58",   2,  3, "Downstream Pitch",     mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,   400,   .016071,  4,   100,    0}
+{13IDA:,  m22,  "OMS VME58",   2,  4, "Upstream Translation", mm,   Pos,     1,    0,   .5,    0,     0,      0,    400,    0.02,   3,   1e6, -1e6}
+{13IDA:,  m23,  "OMS VME58",   2,  5, "Downstream Trans.",    mm,   Pos,     1,    0,   .5,    0,     0,      0,    400,    0.02,   3,   1e6, -1e6}
+{13IDA:,  m24,  "OMS VME58",   2,  6, "Top slit",             mm,   Neg,     1,    0,   .5,    0,     0,      0,    400,     .5,    3,   100,  -10}
+{13IDA:,  m25,  "OMS VME58",   2,  7, "Bottom slit",          mm,   Neg,     1,    0,   .5,    0,     0,      0,    400,     .5,    3,   100,  -10}
+
+# Horizontal mirror in 13-ID-B
+{13IDA:,  m26,  "OMS VME58",   3,  0, "Upstream moment",       mm,   Pos,   1.0,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
+{13IDA:,  m27,  "OMS VME58",   3,  1, "Downstream moment",     mm,   Pos,   1.0,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
+{13IDA:,  m28,  "OMS VME58",   3,  2, "Upstream Pitch",       mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,    400,  .016071,  4,   100,    0}
+{13IDA:,  m29,  "OMS VME58",   3,  3, "Downstream Pitch",     mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,    400,  .016071,  4,   100,    0}
+{13IDA:,  m30,  "OMS VME58",   3,  4, "Upstream jack",        mm,   Pos,   1.0,  .05,   .5,    0,    .0,     .0,    400,     .254,  3,   101,   -1}
+{13IDA:,  m31,  "OMS VME58",   3,  5, "Inboard jack",         mm,   Pos,   1.0,  .05,   .5,    0,    .0,     .0,    400,     .254,  3,   101,   -1}
+{13IDA:,  m32,  "OMS VME58",   3,  6, "Outbord jack",         mm,   Pos,   1.0,  .05,   .5,    0,    .0,     .0,    400,     .254,  3,   101,   -1}
+{13IDA:,  m33,  "OMS VME58",   3,  7, "Unused",               mm,   Neg,   0.5,  0.5,   .2,    0,   0.5,     .2,    400,    0.635,  3,   1e6, -1e6}
+
+}
+
+# {P, M, DTYP, C, S, DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC,  SREV, UREV, PREC, DHLM, DLLM}
+
+file stdApp/Db/2slit.db, std
+{
+pattern
+{P,      SLIT,    mXp,  mXn}
+{13IDA:, Slit2V,   m24,  m25}
+}
+
+file stdApp/Db/table.db, std
+{
+pattern
+{P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
+{13IDA:, MON:T1, MON:t1, junk, junk,   junk,   m11,   m10,    m12,   m14,   SRI}
+}
+
+#file stdApp/Db/table.db, std
+#{
+#pattern
+#{P,            Q,      T,   M0X,   M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
+#{13IDA:, VMIR:T1,VMIR:t1,   m23,  junk,   junk,    m22,  junk,  junk,    SRI}
+#}
+
+file stdApp/Db/table.db, std
+{
+pattern
+{P,            Q,      T,   M0X,  M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
+{13IDA:, HMIR:T1,HMIR:t1,  junk,  m30,    m31,   junk,   m32,  junk, GEOCARS}
+}
+
+
+file CARSApp/Db/Energy.db, top
+{
+pattern
+{P,      EN,   DESC,     EGU,  PREC,  SCANREC,     USEID,   TWEAK}
+{13IDA:,  E,  "Energy",   eV,    4,   13IDA:scan1,     1,    1.00}
+}
+
+file CARSApp/Db/pseudoMotor.db, top
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,              EGU,  DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC,  MRES,    RRES, PREC,     DHLM,   DLLM}
+{13IDA:,  pm1, "13IDA:KBVB:Done NPP NMS", "13IDA:pm1DVAL.VAL PP MS", "13IDA:KBVB:Readback.G NPP NMS", "13IDA:KBVB:Stop PP MS",    "Curvature",          mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm2, "13IDA:KBVB:Done NPP NMS", "13IDA:pm2DVAL.VAL PP MS", "13IDA:KBVB:Readback.H NPP NMS", "13IDA:KBVB:Stop PP MS",    "Ellipticity",        mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm3, "13IDA:KBHB:Done NPP NMS", "13IDA:pm3DVAL.VAL PP MS", "13IDA:KBHB:Readback.G NPP NMS", "13IDA:KBHB:Stop PP MS",    "Curvature",          mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm4, "13IDA:KBHB:Done NPP NMS", "13IDA:pm4DVAL.VAL PP MS", "13IDA:KBHB:Readback.H NPP NMS", "13IDA:KBHB:Stop PP MS",    "Ellipticity",        mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm5, "13IDA:KBVP:Done NPP NMS", "13IDA:pm5DVAL.VAL PP MS", "13IDA:KBVP:Readback.G NPP NMS", "13IDA:KBVP:Stop PP MS",    "Height (Sum)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm6, "13IDA:KBVP:Done NPP NMS", "13IDA:pm6DVAL.VAL PP MS", "13IDA:KBVP:Readback.H NPP NMS", "13IDA:KBVP:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
+{13IDA:,  pm7, "13IDA:KBHP:Done NPP NMS", "13IDA:pm7DVAL.VAL PP MS", "13IDA:KBHP:Readback.G NPP NMS", "13IDA:KBHP:Stop PP MS",    "Height (Sum)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm8, "13IDA:KBHP:Done NPP NMS", "13IDA:pm8DVAL.VAL PP MS", "13IDA:KBHP:Readback.H NPP NMS", "13IDA:KBHP:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
+{13IDA:,  pm9, "13IDA:KBVT:Done NPP NMS", "13IDA:pm9DVAL.VAL PP MS", "13IDA:KBVT:Readback.G NPP NMS", "13IDA:KBVT:Stop PP MS",    "Translation (Sum)",  mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm10,"13IDA:KBVT:Done NPP NMS", "13IDA:pm10DVAL.VAL PP MS","13IDA:KBVT:Readback.H NPP NMS", "13IDA:KBVT:Stop PP MS",    "Rotation (Diff)",    mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+}
+
+file CARSApp/Db/sumDiff2D.db, top
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDA:, KBVB:,  pm1, pm2,    m18.VAL,  m18.RBV,  m19.VAL, m19.RBV, m18.STOP, m18.DMOV, m19.STOP, m19.DMOV, 3}
+{13IDA:, KBHB:,  pm3, pm4,    m26.VAL,  m26.RBV,  m27.VAL, m27.RBV, m26.STOP, m26.DMOV, m27.STOP, m27.DMOV, 3}
+{13IDA:, KBVP:,  pm5, pm6,    m20.VAL,  m20.RBV,  m21.VAL, m21.RBV, m20.STOP, m20.DMOV, m21.STOP, m21.DMOV, 3}
+{13IDA:, KBHP:,  pm7, pm8,    m28.VAL,  m28.RBV,  m29.VAL, m29.RBV, m28.STOP, m28.DMOV, m29.STOP, m29.DMOV, 3}
+{13IDA:, KBVT:,  pm9, pm10,   m23.VAL,  m23.RBV,  m22.VAL, m22.RBV, m23.STOP, m23.DMOV, m22.STOP, m22.DMOV, 3}
+}
