@@ -12,12 +12,12 @@ tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 0, 1)
 
 tyGSMPFInit("serial1",  0, 0,  9600,'N',2,8,'N',"") /* SRS570 */
 tyGSMPFInit("serial2",  0, 1,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSMPFInit("serial3",  0, 2, 38400,'N',1,8,'N',"") /* Unused */
-tyGSMPFInit("serial4",  0, 3, 38400,'N',1,8,'N',"") /* Unused */
+tyGSMPFInit("serial3",  0, 2,  9600,'N',2,8,'N',"") /* Unused */
+tyGSMPFInit("serial4",  0, 3,  9600,'N',2,8,'N',"") /* Unused */
 tyGSMPFInit("serial5",  0, 4,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSMPFInit("serial6",  0, 5, 19200,'N',1,8,'N',"") /* Keithley 2000 */
-tyGSMPFInit("serial7",  0, 6,  9600,'N',1,8,'N',"") /* Unused */
-tyGSMPFInit("serial8",  0, 7,  9600,'N',2,8,'N',"") /* SR570 */
+tyGSMPFInit("serial6",  0, 5,  9600,'N',2,8,'N',"") /* Unused */
+tyGSMPFInit("serial7",  0, 6,  9600,'N',2,8,'N',"") /* SR570 */
+tyGSMPFInit("serial8",  0, 7, 19200,'N',1,8,'N',"") /* Keithley 2000 */
 tyGSMPFInit("serial9",  1, 0,  9600,'N',2,8,'N',"") /* SRS570 */
 tyGSMPFInit("serial10", 1, 1,  9600,'N',2,8,'N',"") /* SRS570 */
 tyGSMPFInit("serial11", 1, 2, 38400,'N',1,8,'N',"") /* MM4000 */
