@@ -9,8 +9,13 @@ ld < iocCore
 ld < seq
 ld < CARSLib
 
-# This IOC talks to a remote GPIB server
-ld < GpibHideosRemote.o
+# This IOC loads the MPF server code locally
+cd startup
+< st_mpfserver.cmd
+
+cd topbin
+# This IOC talks to a local GPIB server
+ld < GpibHideosLocal.o
 
 # Currently, the only thing we do in initHooks is call reboot_restore(), which
 # restores positions and settings saved ~continuously while EPICS is alive.
@@ -22,7 +27,6 @@ cd startup
 
 # Initialize MPF stuff
 routerInit
-tcpMessageRouterClientStart(1,9900,"164.54.160.125",10000,40)
 
 # Initialize local MPF connection
 localMessageRouterStart(0)
@@ -45,22 +49,22 @@ dbLoadDatabase("../../dbd/CARSApp.dbd")
 # Load database
 dbLoadRecords  "stdApp/Db/Jscaler.db","P=13IDD:,S=scaler1,C=0", std
 
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A1,C=1,IPSLOT=a,CHAN=0", ip
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A2,C=1,IPSLOT=a,CHAN=1", ip
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,C=1,IPSLOT=a,CHAN=2", top
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDD:,R=ser1,C=1,IPSLOT=a,CHAN=3,BAUD=4800,PRTY=None,DBIT=8,SBIT=1", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,C=1,IPSLOT=a,CHAN=4", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,C=1,IPSLOT=a,CHAN=5", top
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A3,C=1,IPSLOT=a,CHAN=6", ip
-dbLoadRecords  "CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,C=1,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDD:,R=ser2,C=1,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A1,C=0,IPSLOT=a,CHAN=0", ip
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A2,C=0,IPSLOT=a,CHAN=1", ip
+dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=2", top
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDD:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=4800,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,C=0,IPSLOT=a,CHAN=4", top
+dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,C=0,IPSLOT=a,CHAN=5", top
+dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A3,C=0,IPSLOT=a,CHAN=6", ip
+dbLoadRecords  "CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,C=0,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDD:,R=ser2,C=0,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
 
 # IP-Unidig binary I/O
 dbLoadTemplate "IpUnidig.template"
 
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13IDD:,R=smart1,C=1,IPSLOT=a,CHAN=7,BAUD=9600,")
+strcpy(str,"P=13IDD:,R=smart1,C=0,IPSLOT=a,CHAN=7,BAUD=9600,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("CARSApp/Db/smartControl.db", str, top)
 
@@ -69,12 +73,12 @@ dbLoadTemplate  "motors.template"
 #dbLoadRecords  "CARSApp/Db/generic_gpib.db", "P=13IDD:,R=gpib1,SIZE=4098", top
 
 # Multichannel analyzer stuff
-# AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
+# AIMConfig(mpfServer, ethernet_address, port, maxChans, 
 #           maxSignals, maxSequences, ethernetDevice, queueSize)
 AIMConfig("NI3ED/1", 0x3ED, 1, 4000, 1, 1,"dc0", 40)
 AIMConfig("NI3ED/2", 0x3ED, 2, 4000, 1, 1,"dc0", 40)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @NI3ED/1,NCHAN=4000", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C1 S0 @NI3ED/2,NCHAN=4000", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 @NI3ED/2,NCHAN=4000", mca)
 picbServer = icbConfig("icb/1", 10, "NI3ED:5", 100)
 dbLoadRecords "mcaApp/Db/icb_adc.db", "P=13IDD:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0", mca
 icbAddModule(picbServer, 1, "NI3ED:3")
@@ -82,10 +86,10 @@ dbLoadRecords "mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,CARD=0,SERVER=icb/1,ADD
 icbAddModule(picbServer, 2, "NI3ED:2")
 dbLoadRecords "mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2,LIMIT=1000", mca
 
-dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S0 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S1 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S2 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S3 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @b-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13IDD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @b-Ip330Sweep", mca)
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
@@ -105,11 +109,14 @@ dbLoadTemplate("laser_pid.template")
 dbLoadRecords "CARSApp/Db/laser_heating.db", "P=13IDD:", top
 
 # Laser power controller
-dbLoadRecords "CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,C=1,IPSLOT=a,CHAN=3,BAUD=4800,PRTY=None,DBIT=8,SBIT=1", top
+dbLoadRecords "CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,C=0,IPSLOT=a,CHAN=3,BAUD=4800,PRTY=None,DBIT=8,SBIT=1", top
 
 
 # LVP furnace controls
 dbLoadTemplate "LVP_furnace_control.template"
+
+# LVP Omega controller
+dbLoadRecords "CARSApp/Db/LVP_Omega.db","P=13IDD:,R=Omega1_,C=0,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=None,DBIT=7,SBIT=2", top
 
 # Experiment description
 dbLoadRecords("CARSApp/Db/experiment_info.db","P=13IDD:", top)
@@ -153,8 +160,6 @@ VSCSetup(1, 0xB0000000, 200)
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 
-# Wait for 45 seconds for MPF serial to get initialized
-taskDelay(2700)
 iocInit
 
 ### Start up the autosave task and tell it what to do.

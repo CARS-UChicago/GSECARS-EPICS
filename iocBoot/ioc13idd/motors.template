@@ -15,17 +15,20 @@ file CARSApp/Db/motor.db, top
 {
 pattern
 {P,       M,        DTYP,       C,    S,   DESC,                   EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
+#13IDD DAC Huber stages
 {13IDD:,  m1,    "OMS VME58",   0,    0, "Two theta",              deg,      Pos,   1.0,   0.1,   .2,    0,      1,     .2,     400,    1.0,    3,      270,    250}
 {13IDD:,  m2,    "OMS VME58",   0,    1, "Theta",                  deg,      Neg,   1.0,   0.1,   .2,    0,      1,     .2,     400,    1.0,    3,      360,    -360}
 {13IDD:,  m3,    "OMS VME58",   0,    2, "Y (vertical) stage",     mm,       Pos,   0.2,   0.03,  .5,    0,      1,     .2,     400,    -.02,   3,      40,     0}
 {13IDD:,  m4,    "OMS VME58",   0,    3, "Z (along beam) stage",   mm,       Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
-#temporily exchange with m23 for testing, GS
-{13IDD:,  m23,    "OMS VME58",   0,    4, "X (in-out) stage",       mm,       Neg,   1.0,   0.2,   .1,    0,      1,     .1,     200,    -.1,    3,      150,    0}
+#Exchanged with m23, GS, 10/9/01
+{13IDD:,  m23,    "OMS VME58",   0,    4, "X (in-out) stage",      mm,       Neg,   1.0,   0.2,   .1,    0,      1,     .1,     200,    -.1,    3,      150,    0}
 {13IDD:,  m6,    "OMS VME58",   0,    5, "Omega",                  deg,      Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      360,    -360}
 
+#13IDD DAC Detector
 {13IDD:,  m7,    "OMS VME58",   0,    6, "Det. X pos.",            mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25,     0}
 {13IDD:,  m8,    "OMS VME58",   0,    7, "Det. Y pos.",            mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
 
+#13IDD DAC Table top slits
 {13IDD:,  m9,    "OMS VME58",   1,    0, "Vert. slit Y pos.",      mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      100,    0}
 {13IDD:,  m10,   "OMS VME58",   1,    1, "Vert. slit rotation",    deg,      Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
 {13IDD:,  m11,   "OMS VME58",   1,    2, "Vert. slit width",       mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
@@ -33,6 +36,7 @@ pattern
 {13IDD:,  m13,   "OMS VME58",   1,    4, "Hor. slit rotation",     deg,      Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
 {13IDD:,  m14,   "OMS VME58",   1,    5, "Hor. slit width",        mm,       Pos,   0.5,   .1,    .5,    0,      1,     .2,     100,     0.10,  3,      25,     0}
 
+#13IDD DAC Lift Table
 {13IDD:,  m15,   "OMS VME58",   1,    6, "Inboard Y",              mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
 {13IDD:,  m16,   "OMS VME58",   1,    7, "Outboard Y",             mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
 {13IDD:,  m17,   "OMS VME58",   2,    0, "Downstream Y",           mm,       Pos,    .5,  .05,    .2,    0.1,   .5,     .2,     400,   -0.10583,   3,      50,     0}
@@ -43,8 +47,9 @@ pattern
 #{13IDD:,  m20,   "OMS VME58",   2,    3, "Chi rotation",           deg,      Neg,    5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      10,     -10}
 {13IDD:,  m20,   "OMS VME58",   2,    3, "Analyzer angle",          deg,      Neg,    0.5,   .05,    .2,    0,     1,     .2,     400,    -0.05,  6,      270,     250}
 
-{13IDD:,  m21,   "OMS VME58",   2,    4, "Motor 21",                steps,    Pos,   100.,   1.,    .2,    0,      1,     .2,     400,  0.0025,   1,     1e6,   -1e6}
-{13IDD:,  m22,   "OMS VME58",   2,    5, "Motor 22",                steps,    Pos,   100.,   1.,    .2,    0,      1,     .2,     400,  0.0025,   1,     1e6,   -1e6}
+#motors for the carbon miror
+{13IDD:,  m21,   "OMS VME58",   2,    4, "UpStream C-mirror",       mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
+{13IDD:,  m22,   "OMS VME58",   2,    5, "DownStream C-mirror",     mm,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,    3,      150,    0}
 {13IDD:,  m5,    "OMS VME58",   2,    6, "X (in-out) stage",       mm,       Neg,   1.0,   0.2,   .1,    -0.0,    1,     .1,     200,    -.1,    3,      150,    0}
 {13IDD:,  m24,   "OMS VME58",   2,    7, "Det. Y pos.",            mm,       Neg,   5.0,   .1,    .5,      0,      1,     .2,     200,    -0.10,  3,      100,    0}
 
@@ -66,7 +71,8 @@ pattern
 {13IDD:,  m33,   "OMS VME58",   4,    0, "Detector X",             mm,        Pos,    1.,   .01,   .5,   .2,     1.,     .5,     400,     .0508, 3,      100,    0}
 # Detector Y: 10:1 and 36:1 gear reducers, 5 thread/inch pitch leadscrew, UREV = 25.4/(10*36*5) = .01411111
 # Det Y changed to 6:1 and 36:1 gear reducers, UREV - 25.4/(6*36*5) = 0.0235185 - YBW, 5/20/2000.
-{13IDD:,  m34,   "OMS VME58",   4,    1, "Detector Y",             mm,        Pos,    .2,   .01,   .1,   .2,     .2,     .1,     400,  .0235185, 3,      100,    0}
+# Det Y changed to 1:2 and 36:1 gear reducers, UREV - 25.4/(.5*36*5) = 0.2822222 - MLR, 10/26/2001.
+{13IDD:,  m34,   "OMS VME58",   4,    1, "Detector Y",             mm,        Neg,    2.4,   .1,   .2,   .2,     2.4,     .1,     400,  .28222222, 3,      100,    0}
 # Detector Z: 100:1 gear reducer, 5 thread/inch leadscrew, UREV = 25.4/(100*5) = .0508
 {13IDD:,  m35,   "OMS VME58",   4,    2, "Detector Z",             mm,        Pos,    1.,   .01,   .5,   .2,     1.,     .5,     400,    -.0508, 3,      100,    0}
 # Detector AY: 500:1 gear reducer, 80 mm lever arm, full rotation of shaft = 2*PI*80mm motion at end of arm, UREV = 502.655/(500) = 1.00531
