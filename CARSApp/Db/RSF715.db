@@ -1,5 +1,7 @@
 #
 # Database for RSF Electronik 715 encoder readout
+# Modified MLR 10/25/01 to fix bug due to blank in strings from
+# device between 0 and -1, e.g. "- .23"
 #
 
 # Send string to unit to read out
@@ -21,11 +23,12 @@ grecord(stringin,"$(P)$(ENCODER)_Pos")
 	field(FLNK, "$(P)$(ENCODER)Channel1 PP MS")
 }
 
-# Parce string
+# Parse string. Replace "- " with "-"
 grecord(scalcout,"$(P)$(ENCODER)Channel1") 
 {
 	field(INAA,"$(P)$(ENCODER)_Pos NPP NMS")
-	field(CALC,"SSCANF(AA, '%*2c   %f')")
+	field(CALC,"SSCANF(AA{'- ','-'}, '%*2c   %f')")
 	field(PREC,"4")
 	field(EGU,"mm")
 }
+
