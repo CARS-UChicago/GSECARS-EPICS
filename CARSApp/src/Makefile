@@ -18,7 +18,6 @@ CARS_SRCS_vxWorks  += drvAvme9210.c
 #CARS_SRCS += iVecShow.c
 #CARS_SRCS += ppcveclist.c
 #CARS_SRCS += seq_test.st
-CARS_SRCS += sncTest.stt
 CARS_SRCS += coordTrans2D.st
 CARS_SRCS += BMD_LVP_Detector.st
 CARS_SRCS += IDD_LVP_Detector.st
@@ -29,9 +28,15 @@ CARS_SRCS += Analyzer.st
 CARS_SRCS += trajectoryScan.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
-CARS_SRCS += CARSRegister.c
-CARS_SRCS += xps_c8_driver.cpp
+CARS_SRCS += xps_c8_driver1.cpp
 CARS_SRCS += Socket.cpp
+
+
+#CARS_SRCS += JHKPseudoMotorSNL.st
+#CARS_SRCS += JSlide.st 
+
+CARS_SRCS += JFuncSlides.st
+CARS_SRCS += JScanLog.st
 
 CARS_LIBS += seq pv
 CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -41,6 +46,7 @@ CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 # <name>.dbd will be created from <name>Include.dbd
 DBD += CARS.dbd
 DBD += CARSVX.dbd
+DBD += CARSLinux.dbd
 
 #=============================
 # build an ioc application
@@ -50,35 +56,52 @@ PROD_IOC = CARSApp
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 CARSApp_SRCS_DEFAULT += CARS_registerRecordDeviceDriver.cpp
 CARSApp_SRCS_vxWorks += CARSVX_registerRecordDeviceDriver.cpp
+CARSApp_SRCS_Linux   += CARSLinux_registerRecordDeviceDriver.cpp
 CARSApp_SRCS_DEFAULT += CARSMain.cpp
+CARSApp_SRCS_Linux += CARSMain.cpp
 CARSApp_SRCS_vxWorks += -nil-
+
+CARSApp_Common_LIBS += CARS
+CARSApp_Common_LIBS += mca 
+CARSApp_Common_LIBS += calc
+CARSApp_Common_LIBS += sscan
+CARSApp_Common_LIBS += autosave
+CARSApp_Common_LIBS += optics
+CARSApp_Common_LIBS += vme
+CARSApp_Common_LIBS += std
+CARSApp_Common_LIBS += ip
+#CARSApp_Common_LIBS += gpib
+CARSApp_Common_LIBS += brukerCCD marCCD roperCCD
+#CARSApp_Common_LIBS += Acs Ims Mclennan motor Newport softMotor
+CARSApp_Common_LIBS += Acs Mclennan motor Newport softMotor
+CARSApp_Common_LIBS += mpf
+CARSApp_Common_LIBS += asyn
+CARSApp_Common_LIBS += seq pv
+CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+CARSApp_vxWorks_LIBS += allenBradley
+CARSApp_vxWorks_LIBS += mcaSIS
+CARSApp_vxWorks_LIBS += mcaCanberra
+CARSApp_vxWorks_LIBS += ip330 devIp330
+CARSApp_vxWorks_LIBS += ipUnidig
+CARSApp_vxWorks_LIBS += dac128V
+CARSApp_vxWorks_LIBS += quadEM
+CARSApp_vxWorks_LIBS += camac devCamac
+CARSApp_vxWorks_LIBS += dxp xerxes
+CARSApp_vxWorks_LIBS += oms
+CARSApp_vxWorks_LIBS += TyGSOctal Ipac
+CARSApp_vxWorks_LIBS += vxStats
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARSApp_LIBS += CARS
-CARSApp_LIBS += mca 
-CARSApp_LIBS += mcaCanberra
-CARSApp_LIBS_vxWorks += mcaSIS
-CARSApp_LIBS += std
-CARSApp_LIBS_vxWorks += ip330 devIp330
-CARSApp_LIBS_vxWorks  += ipUnidig
-CARSApp_LIBS_vxWorks  += dac128V
-CARSApp_LIBS_vxWorks  += quadEM
-CARSApp_LIBS += ip
-CARSApp_LIBS += bruker
-CARSApp_LIBS_vxWorks  += camac devCamac
-CARSApp_LIBS_vxWorks += dxp xerxes
-CARSApp_LIBS_Linux += dxp xerxes
-CARSApp_LIBS += Acs Ims Mclennan motor motorCOM_mpf Newport softMotor
-CARSApp_LIBS_vxWorks += oms
-CARSApp_LIBS += mpf mpfEpics mpfSerial
-CARSApp_LIBS_vxWorks += TyGSOctal Ipac
-CARSApp_LIBS_vxWorks += allenBradley
-CARSApp_LIBS += seq pv
-CARSApp_LIBS += $(EPICS_BASE_IOC_LIBS)
+CARSApp_Linux_LIBS += dxp xerxes
+CARSApp_Linux_LIBS += mcaCanberra
 
-CARSApp_SYS_LIBS_DEFAULT += net pcap
-CARSApp_SYS_LIBS_vxWorks += -nil-
+CARSApp_LIBS_DEFAULT = $(CARSApp_Common_LIBS)
+CARSApp_LIBS_vxWorks = $(CARSApp_vxWorks_LIBS) $(CARSApp_Common_LIBS)
+CARSApp_LIBS_Linux   = $(CARSApp_Linux_LIBS)   $(CARSApp_Common_LIBS)
+
+CARSApp_SYS_LIBS_Linux += net pcap
 
 include $(TOP)/configure/RULES
 #----------------------------------------
