@@ -1,0 +1,93 @@
+# Note on address conversion:  A/B Output O:1.N/A is EPICS address C=2*N, S=A
+file CARSApp/Db/eps_inputs.db
+{
+pattern
+{P,        N,   DESC,                           A,  C,  S, ZNAM,                  ZSV,        ONAM,                    OSV}
+{13BMA:,   1,   "DCM user status",              0,  0, 11, "Reboot needed",       "MAJOR",    "Ok",                    "NO_ALARM"}
+{13BMA:,   2,   "DCM status",                   0,  0,  8, "Ok",                  "NO_ALARM", "PLC not RUNning",       "MAJOR"}
+{13BMA:,   4,   "13-BM shutter",                0,  2,  1, "Closed",              "MAJOR",    "Open",                  "NO_ALARM"}
+{13BMA:,   5,   "EPS status",                   0,  2,  2, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,   6,   "PLC run mode",                 0,  2,  3, "Ok",                  "NO_ALARM", "PLC not running",       "MAJOR"}
+{13BMA:,   7,   "PLC keyswitch",                0,  2,  4, "Remote",              "NO_ALARM", "Local",                 "NO_ALARM"}
+{13BMA:,   8,   "PLC overrides",                0,  2,  5, "Ok",                  "NO_ALARM", "Overrides on",          "MAJOR"}
+{13BMA:,   9,   "PLC forces present",           0,  2,  6, "Ok",                  "NO_ALARM", "Forces exist",          "NO_ALARM"}
+{13BMA:,  10,   "PLC battery low",              0,  2,  7, "Ok",                  "NO_ALARM", "Battery low",           "MAJOR"}
+{13BMA:,  11,   "Remote inputs",                0,  2,  8, "Ok",                  "NO_ALARM", "Comm fault",            "MAJOR"}
+{13BMA:,  12,   "Aperture plate (BM-A) water",  0,  4,  0, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  13,   "Aperture plate water (latch)", 0,  4,  1, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  14,   "Beamstops (BM-A) water",       0,  4,  2, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  15,   "Beamstops water (latched)",    0,  4,  3, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  16,   "Filters (BM-A) water",         0,  4,  4, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  17,   "Filters water (latched)",      0,  4,  5, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  18,   "BMD vert slits (BM-A) water",  0,  4,  6, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  19,   "BMD vertical slits water lat", 0,  4,  7, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  20,   "BMD horiz slits (BM-A) water", 0,  4,  8, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  21,   "BMD horizontal slits water l", 0,  4,  9, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  22,   "BMC vert slits (BM-A) water",  0,  4, 10, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  23,   "BMC vertical slits water lat", 0,  4, 11, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  24,   "BMC horiz vee (BM-A) water",   0,  4, 12, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  25,   "BMC horizontal vee water lat", 0,  4, 13, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  26,   "Slit tank (BM-A) vacuum (CC)", 0,  8,  0, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  27,   "Slit tank vacuum (CC) (lat)",  0,  8,  1, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  28,   "Slit tank (BM-A) vacuum (PG)", 0,  8,  2, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  29,   "Slit tank vacuum (PG) (lat)",  0,  8,  3, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  30,   "BMC beamstop (BM-A) position", 0, 12,  0, "Closed",              "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  31,   "BMC beamstop position (lat)",  0, 12,  1, "Closed",              "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  32,   "BMD beamstop (BM-A) position", 0, 12,  2, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  33,   "BMD beamstop position (lat)",  0, 12,  3, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  42,   "Front end valve (APS)",        0, 12,  4, "Open",                "NO_ALARM", "Closed",                "MAJOR"}
+{13BMA:,  43,   "Front end valve (latched)",    0, 12,  5, "Open",                "NO_ALARM", "Closed",                "MAJOR"}
+{13BMA:,  44,   "BMD slits SL3 (BM-B) water",   1,  4,  0, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  45,   "BMD slits SL3  (latched)",     1,  4,  1, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  46,   "BMD slits SL4 (BM-D) water",   0,  6,  0, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  47,   "BMD slits SL4  (latched)",     0,  6,  1, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  48,   "BMD slits SL5 (BM-D) water",   0,  6,  2, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  49,   "BMD slits SL5  (latched)",     0,  6,  3, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  50,   "Station (BM-D) water 1",       0,  6,  4, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  51,   "Station (BM-D) water 1 (lat)", 0,  6,  5, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  52,   "Station (BM-D) water 2",       0,  6,  6, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  53,   "Station (BM-D) water 2 (lat)", 0,  6,  7, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  54,   "Diagnostic tank vacuum (CC)",  0,  8,  4, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  55,   "Diagnostic tank (CC) (lat)",   0,  8,  5, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  56,   "Diagnostic tank vacuum (PG)",  0,  8,  6, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  57,   "Diagnostic tank (PG) (lat)",   0,  8,  7, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  58,   "Transport pipe vacuum (CC)",   0,  8,  8, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  59,   "Transport pipe (CC) (lat)",    0,  8,  9, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  60,   "Transport pipe vacuum (PG)",   0,  8, 10, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  61,   "Transport pipe (PG) (lat)",    0,  8, 11, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  62,   "Station BM-D vacuum (CC)",     0,  8, 12, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  63,   "Station BM-D (CC) (latch)",    0,  8, 13, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  64,   "Station BM-D vacuum (PG)",     0,  8, 14, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  65,   "Station BM-D (PG) (latch))",   0,  8, 15, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  66,   "Valve V1 (BM-A) position",     0, 12,  6, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  67,   "Valve V1 position (latched)",  0, 12,  7, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  68,   "Valve V3 (BM-A) position",     0, 12,  8, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  69,   "Valve V3 position (latched)",  0, 12,  9, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  70,   "Valve V4D (BM-B) position",    0, 12, 10, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  71,   "Valve V4D position (latch)",   0, 12, 11, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  72,   "BMD water resistivity",        0,  2,  9, "Ok",                  "NO_ALARM", "Low resistivity",       "MAJOR"}
+{13BMA:,  73,   "Be window (BM-D) helium",      0, 10,  0, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  74,   "Be window (BM-D) he (latch)",  0, 10,  1, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  75,   "Mono tank vacuum (CC)",        0, 10, 12, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  76,   "Mono tank (CC) (latch)",       0, 10, 13, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  77,   "Mono tank vacuum (PG)",        0, 10, 14, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  78,   "Mono tank (PG) (latch)",       0, 10, 15, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  79,   "Valve V2 (BM-A) position",     0, 12, 12, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  80,   "Valve V2 position (latched)",  0, 12, 13, "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  81,   "Fixed mask 2 (BM-A) water",    0,  6, 10, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  82,   "Fixed mask 2 water latched",   0,  6, 11, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  83,   "Monochromator (BM-A) water",   0,  6, 12, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  84,   "Monochromator water latched",  0,  6, 13, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  85,   "Be window (BM-D) water",       0,  6,  8, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  86,   "Be wind. (BM-D) water (lat)",  0,  6,  9, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  87,   "Station (BM-D) water 3",       0,  6, 14, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  88,   "Station (BM-D) water 3 (lat)", 0,  6, 15, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  89,   "BM-D mirror vacuum (CC)",      0, 10,  8, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  90,   "BM-D mirror (CC) (latch)",     0, 10,  9, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  91,   "BM-D mirror vacuum (PG)",      0, 10, 10, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  92,   "BM-D mirror (PG) (latch))",    0, 10, 11, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  93,   "BMD mirror mask water",        1,  4,  2, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  94,   "BMD mirror mask (latched)",    1,  4,  3, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  95,   "BMD mirror water",             1,  4,  4, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  96,   "BMD mirr. water(latched)",     1,  4,  5, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+} 
