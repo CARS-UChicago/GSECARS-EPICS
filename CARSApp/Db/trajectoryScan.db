@@ -295,12 +295,6 @@ grecord(bo,"$(P)$(R)Abort") {
     field(ONAM,"Abort")
 }
 
-# We need this record because we have to read the MM4000 in binary mode
-# but we want an MEDM display in ASCII mode of the first 40 characters
-grecord(stringout,"$(P)$(R)MMResponse") {
-    field(DESC,"MM4005 response")
-}
-
 #
 # PVs for readback of actual positions and errors
 #
@@ -723,29 +717,4 @@ grecord(ao,"$(P)$(R)DetOff") {
     field(DESC,"Turn detector off")
     field(VAL,"$(DOFFV)")
     field(OUT,"$(DOFFPV) PP MS")
-}
-
-#
-# PVs for communication, asyn records. We use 2 records, one for
-# output only, and one for output/input in order to eliminate frequent mode
-# switching of TMOD = "Write" or "Write/Read" in the SNL program.  Note that
-# the output/input record has the input format set to "Hybrid" in order to
-# allow lines longer than 40 characters to be received from the MM4005.
-# This database will work with serial or GPIB connection to the MM4004.
-#
-grecord(asyn, "$(P)$(R)StringOut") {
-        field(PORT,"$(PORT)")
-        field(IEOS,"\r")
-        field(OEOS,"\r")
-        field(TMOD,"Write")
-        field(OFMT,"ASCII")
-}
-grecord(asyn, "$(P)$(R)StringOutIn") {
-        field(PORT,"$(PORT)")
-        field(IEOS,"\r")
-        field(OEOS,"\r")
-        field(TMOD,"Write/Read")
-        field(OFMT,"ASCII")
-        field(IFMT,"Hybrid")
-        field(TMOT,"20.")
 }
