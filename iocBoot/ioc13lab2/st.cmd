@@ -75,7 +75,7 @@ dbLoadRecords("ipApp/Db/Digitel.db","P=13LAB2:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0", ip
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=19200,PRTY=Even,DBIT=8,SBIT=1", top)
 dbLoadRecords("ipApp/Db/MKS_single.db","P=13LAB2:,C=0,IPSLOT=a,CHAN=1,CC1=cc1,PR1=pr1", ip)
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser3,C=0,IPSLOT=a,CHAN=2,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=2", top)
+dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=2", ip)
 #dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser4,C=0,IPSLOT=a,CHAN=3,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 #dbLoadRecords("ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip1,C=0,IPSLOT=a,CHAN=3,PA=0,PN=1", ip)
 #dbLoadRecords("ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip2,C=0,IPSLOT=a,CHAN=3,PA=0,PN=2", ip)
