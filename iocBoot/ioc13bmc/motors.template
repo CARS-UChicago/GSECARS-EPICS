@@ -1,15 +1,15 @@
 file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
-{P,        M,          DTYP,  C,  S, DESC,                  EGU,  DIR,  VELO,   VBAS,  ACCL,  BDST,   BVEL,  BACC,  SREV,   UREV,  PREC,  DHLM, DLLM}
-{13BMC:,  m1,   "OMS VME58",   0,  0, "Klinger Stage",        mm,  Pos,   1.0,   0.1,    .5,     0,      1,    .2,   200,   0.10,     4,    95,    5}
-{13BMC:,  m2,   "OMS VME58",   0,  1, "Huber Rotary"     degrees,  Pos,    .3,   .05,    .2,     0,      1,    .2,   400,  -0.05,     4,   180, -180}
-{13BMC:,  m3,   "OMS VME58",   0,  2, "Washer Wheel",        deg,  Pos,  50.0,    10,        .2,    0,      1,    .2,    400,      360,   3,    8e3,   -10000}
-{13BMC:,  m4,   "OMS VME58",   0,  3, "Mirror-Yd",            mm,  Pos,    .5,    .0,       2.,    0,       .0,    .0,  400,     .016071, 4,    100,    0}
-{13BMC:,  m5,   "OMS VME58",   0,  4, "Upstream-X",           mm,  Pos,     1,    .0,     .5,     0,       .0,    .0,  400,      .02,   2,    101,  -1}
-{13BMC:,  m6,   "OMS VME58",   0,  5, "Downstream-X",         mm,  Pos,     1,    .0,     .5,     0,       .0,    .0,  400,      .02,   2,   101,   -1}
-{13BMC:,  m7,   "OMS VME58",   0,  6, "Slit-1",               mm,  Neg,     1,    .0,      .5,     0,       .0,    .0,  400,     .5,      3,  100,   -10}
-{13BMC:,  m8,   "OMS VME58",   0,  7, "Slit-2",               mm,  Neg,     1,    .0,      .5,     0,       .0,    .0,  400,     .5,      3,  100,   -10}
+{P,        M,          DTYP,  C,  S, DESC,                  EGU,  DIR,  VELO,   VBAS,ACCL,BDST,BVEL,BACC,SREV,UREV,  PREC,  DHLM, DLLM}
+{13BMC:,  m1,   "OMS VME58",   0,  0, "Klinger Stage",        mm,  Pos,   1.0,  0.1,  .5,  0,  1, .2, 200,    0.10,   4,    95,    5}
+{13BMC:,  m2,   "OMS VME58",   0,  1, "Huber Rotary"     degrees,  Pos,    .3,  .05,  .2,  0,  1, .2, 400,   -0.05,   4,   180, -180}
+{13BMC:,  m3,   "OMS VME58",   0,  2, "Washer Wheel",        deg,  Pos,  50.0,   10,  .2,  0,  1, .2, 400,     360,   3,    8e3,-10000}
+{13BMC:,  m4,   "OMS VME58",   0,  3, "Mirror-Yd",            mm,  Pos,    .5,   .0,  2.,  0, .0, .0, 400, .016071,   4,    100,   0}
+{13BMC:,  m5,   "OMS VME58",   0,  4, "Upstream-X",           mm,  Pos,     1,   .0,  .5,  0, .0, .0, 400,     .02,   2,    101,  -1}
+{13BMC:,  m6,   "OMS VME58",   0,  5, "Downstream-X",         mm,  Pos,     1,   .0,  .5,  0, .0, .0, 400,     .02,   2,    101,  -1}
+{13BMC:,  m7,   "OMS VME58",   0,  6, "Slit-1",               mm,  Neg,     1,   .0,  .5,  0, .0, .0, 400,      .5,   3,    100,  -10}
+{13BMC:,  m8,   "OMS VME58",   0,  7, "Slit-2",               mm,  Neg,     1,   .0,  .5,  0, .0, .0, 400,      .5,   3,    100,  -10}
 
 # Diffractometer detector slits
 {13BMC:,  m9,   "OMS VME58",   1, 0, "Hp UpStream",      microns, Pos,    100,   100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
@@ -22,19 +22,24 @@ pattern
 {13BMC:, m16,   "OMS VME58",   1, 7, "Vw DownStream",    microns, Pos,    200,   100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
  	     		      	
 # Diffractometer bench slits		       		  	      	     	   	       
-{13BMC:, m17,   "OMS VME58",   2, 0, "Hw UpStream",      microns, Neg,    200,     0,  1, 0,  1,  .2,  10240,  -1000,   0,   5100, -100}
-{13BMC:, m18,   "OMS VME58",   2, 1, "Hp UpStream",      microns, Pos,    100,     0,  1, 0,  1,  .2,  10240,   -500,   0,  10100, -100}
-{13BMC:, m19,   "OMS VME58",   2, 2, "Vw UpStream",      microns, Neg,    200,     0,  1, 0,  1,  .2,  10240,  -1000,   0,   5100, -100}
-{13BMC:, m20,   "OMS VME58",   2, 3, "Vp UpStream",      microns, Pos,    100,     0,  1, 0,  1,  .2,  10240,   -500,   0,  10100, -100}
-{13BMC:, m21,   "OMS VME58",   2, 4, "Hw DownStream",    microns, Neg,    200,     0,  1, 0,  1,  .2,  10240,  -1000,   0,   5100, -100}
-{13BMC:, m22,   "OMS VME58",   2, 5, "Hp DownStream",    microns, Pos,    100,     0,  1, 0,  1,  .2,  10240,   -500,   0,  10100, -100}
-{13BMC:, m23,   "OMS VME58",   2, 6, "Vw DownStream",    microns, Neg,    200,     0,  1, 0,  1,  .2,  10240,  -1000,   0,   5100, -100}
-{13BMC:, m24,   "OMS VME58",   2, 7, "Vp DownStream",    microns, Pos,    100,     0,  1, 0,  1,  .2,  10240,   -500,   0,  10100, -100}
+{13BMC:, m17,   "OMS VME58",   2, 0, "Hp UpStream",      microns, Pos,    100,   100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13BMC:, m18,   "OMS VME58",   2, 1, "Hw UpStream",      microns, Pos,    200,   100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13BMC:, m19,   "OMS VME58",   2, 2, "Vp UpStream",      microns, Pos,    100,   100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13BMC:, m20,   "OMS VME58",   2, 3, "Vw UpStream",      microns, Pos,    200,   100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13BMC:, m21,   "OMS VME58",   2, 4, "Hp DownStream",    microns, Pos,    100,   100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13BMC:, m22,   "OMS VME58",   2, 5, "Hw DownStream",    microns, Pos,    200,   100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13BMC:, m23,   "OMS VME58",   2, 6, "Vp DownStream",    microns, Pos,    100,   100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13BMC:, m24,   "OMS VME58",   2, 7, "Vw DownStream",    microns, Pos,    200,   100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
 
 #13BMB Motors
 {13BMC:, m25,   "OMS VME58",   3, 0, "BMC Mono X",            mm, Pos,    1.0,   0.1, .5, 0,  1,  .2,    200,  0.010,   4,   1000,  -1000}
 {13BMC:, m26,   "OMS VME58",   3, 1, "BMC Mono Theta",       deg, Neg,    5.0,   1.0, .5, 0,  1,  .2,    200,   0.10,   4,    361,   -361}
-
+{13BMC:, m27,   "OMS VME58",   3, 2, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
+{13BMC:, m28,   "OMS VME58",   3, 3, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
+{13BMC:, m29,   "OMS VME58",   3, 4, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
+{13BMC:, m30,   "OMS VME58",   3, 5, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
+{13BMC:, m31,   "OMS VME58",   3, 6, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
+{13BMC:, m32,   "OMS VME58",   3, 7, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
 }
 
 #file "$(STD)/stdApp/Db/table.db"
