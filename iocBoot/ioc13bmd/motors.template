@@ -11,7 +11,7 @@
 # Motors   Card    Patch panel  Common use
 #  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
 #  9-16      1        E         LVP detector (9,10,12,13,16), CCD detector (11,14,15)
-#  17-24     2        B         XAS lift table (17-22), monochromator(23)
+#  17-24     2        B         XAS lift table (17-22), CCD Detector(23), Photodiode(24)
 #  25-32     3        C         Hutch slits (29-32)
 #  33-40     4        A         Tomography, XAS, DAC sample stages
 #  41-48     5        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
@@ -30,7 +30,8 @@ pattern
 {P,       M,     DTYP,        C,  S,   DESC,              EGU,   DIR,   VELO,  VBAS,  ACCL,  BDST, BVEL, BACC, SREV,  UREV,  PREC,  DHLM,  DLLM}
 
 {13BMD:,  m1, "OMS VME58",   0,  0, "Upstream Y",        mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}
-{13BMD:,  m2, "OMS VME58",   0,  1, "Inboard Y",         mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}{13BMD:,  m3, "OMS VME58",   0,  2, "Downstream Y",      mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}
+{13BMD:,  m2, "OMS VME58",   0,  1, "Inboard Y",         mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}
+{13BMD:,  m3, "OMS VME58",   0,  2, "Downstream Y",      mm,    Pos,   .2,   .005,   .2,    0.1,  .2,   .2,   400, -0.010583,3,     50,   -50}
 {13BMD:,  m4, "OMS VME58",   0,  3, "Upstream X",        mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
 {13BMD:,  m5, "OMS VME58",   0,  4, "Inboard X",         mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
 {13BMD:,  m6, "OMS VME58",   0,  5, "Z drive",           mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
@@ -64,6 +65,7 @@ pattern
 {13BMD:,  m23, "OMS VME58",   2,  6, "photodiode",   mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
 # m24 is used for x-ray CCD position
 {13BMD:,  m24, "OMS VME58",   2,  7, "X-ray CCD pos.",   mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
+#Oriel motor used for clean_up slit
 # {13BMD:,  m24, "OMS VME58",   2,  7, "clean_up Y pos.",   mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
 
 # m25-28 don't have home or +5V.
@@ -83,17 +85,29 @@ pattern
 {13BMD:,  m32,  "OMS VME58",   3,  7, "Bottom slit",       mm,    Neg,   1.0,   .1,    .2,    0,    1,    .2,   400,  0.50,    3,     100,  -4.}
 
 # Motors 33-40, patch panel A.  This should only be used for 0.5A motors to save hassle
-# CCD camera stage
-{13BMD:,  m33, "OMS VME58",   4,  0, "CCD X",             mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
-{13BMD:,  m34, "OMS VME58",   4,  1, "CCD Y",             mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,       70,   0}
-{13BMD:,  m35, "OMS VME58",   4,  2, "CCD Z",             mm,     Neg,   2.0,  .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100,     0}
+# CCD camera stage  
+#<<MN 13-Mar-2002  using for sample stage
+{13BMD:,  m33, "OMS VME58",   4,  0, "Sample Z",   mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m34, "OMS VME58",   4,  1, "Sample Y",   mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   2000,  -.10,  3,   70,  0}
+{13BMD:,  m35, "OMS VME58",   4,  2, "Sample X",   mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+									    		      	   
+#{13BMD:,  m33, "OMS VME58",   4,  0, "CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+#{13BMD:,  m34, "OMS VME58",   4,  1, "CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,   70,  0}
+#{13BMD:,  m35, "OMS VME58",   4,  2, "CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+
+#MN>>
 
 # Tomography sample stage
-{13BMD:,  m36, "OMS VME58",   4,  3, "Sample X",          mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,     100,     0}
+{13BMD:,  m36, "OMS VME58",   4,  3, "Sample X",           mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,     3,     100,     0}
 # This is for a Newport Y stage
-{13BMD:,  m37, "OMS VME58",   4,  4, "Sample Y",          mm,     Neg,   2.0,   .1,    .5,     0,      1,     .2,    200,     -0.10,     3,      70,   0}
-{13BMD:,  m38, "OMS VME58",   4,  5, "Sample Theta",     deg,     Neg,   15.,   0.0,    .5,     0,      1,     .2,    200,     -0.10,     3,     360,   -360}
-{13BMD:,  m39, "OMS VME58",   4,  6, "Sample tilt",      deg,     Pos,    5.,   .1,    .5,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
+#{13BMD:,  m37, "OMS VME58",   4,  4, "Sample Y",          mm,     Neg,   2.0,   .1,    .5,     0,      1,     .2,    200,     -0.10,     3,      70,   0}
+
+#m37 for CCD detector, DAC, V.P., 25-June-2002
+{13BMD:,  m37, "OMS VME58",   4,  4, "CCD detector",        mm,     Pos,   2.0,    .1,    .5,     0,      1,     .2,    200,   0.010,    3,     100,    0}
+{13BMD:,  m38, "OMS VME58",   4,  5, "Sample Theta",       deg,     Neg,   15.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,    3,     360, -360}
+#temproray used for DAC clean-up slit V.P. June 25 2002
+{13BMD:,  m39, "OMS VME58",   4,  6, "clean_up Y pos.",   mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
+#{13BMD:,  m39, "OMS VME58",   4,  6, "Sample tilt",      deg,     Pos,    5.,   .1,    .5,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
 {13BMD:,  m40, "OMS VME58",   4,  7, "Sample Z",         mm,      Neg,    20.,   .1,    1,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
 
 #

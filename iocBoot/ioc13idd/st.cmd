@@ -1,7 +1,7 @@
 # vxWorks startup file for 13BMD IOC
 < cdCommands
-
 < ../nfsCommandsGSE
+###MATT May-28-2002 
 loginUserAdd "epics","SzeSebbzRR"
 
 cd topbin
@@ -65,7 +65,9 @@ dbLoadTemplate "IpUnidig.template"
 # SMART detector database
 str=malloc(256)
 strcpy(str,"P=13IDD:,R=smart1,C=0,IPSLOT=a,CHAN=7,BAUD=9600,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
+# Use Bo0 for Bruker shutter, Bo11 for XIA
+#strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
+strcat(str,"FSHUT=UnidigBo11,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("CARSApp/Db/smartControl.db", str, top)
 
 dbLoadTemplate  "motors.template"
@@ -117,6 +119,10 @@ dbLoadTemplate "LVP_furnace_control.template"
 
 # LVP Omega controller
 dbLoadRecords "CARSApp/Db/LVP_Omega.db","P=13IDD:,R=Omega1_,C=0,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=None,DBIT=7,SBIT=2", top
+
+#MN May-29-2002
+# LVP Theta (temperature ramping) controller
+dbLoadRecords("CARSApp/Db/RampScan.db","P=13IDD:,R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E", top)
 
 # Experiment description
 dbLoadRecords("CARSApp/Db/experiment_info.db","P=13IDD:", top)
