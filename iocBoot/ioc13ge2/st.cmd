@@ -17,11 +17,6 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 
 putenv("EPICS_TS_MIN_WEST=300")
 
-# Initialize MPF stuff
-routerInit
-
-# Initialize local MPF connection
-localMessageRouterStart(0)
 
 # Set debugging flags
 mcaRecordDebug = 0
@@ -31,8 +26,7 @@ drvE500Debug=0
 aimDebug=0
 icbDebug=0
 dxpRecordDebug=0
-mcaDXPServerDebug=0
-devDxpMpfDebug=0
+
 
 # Setup the ksc2917 hardware definitions
 # These are all actually the defaults, so this is not really necessary
@@ -67,14 +61,7 @@ E500Setup(2, 8, 10)
 E500Config(0, 0, 0, 13)
 E500Config(1, 0, 0, 14)
 
-dbLoadTemplate  "motors.template"
-
-# Multichannel analyzer stuff
-# AIMConfig(mpfServer, card, ethernet_address, port, maxChans,
-#           maxSignals, maxSequences, ethernetDevice, queueSize)
-#AIMConfig("AIM1/1", 0x59e, 1, 4000, 1, 1, "ei0", 100)
-#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13GE2:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048")
-#
+#dbLoadTemplate  "motors.template"
 
 ### Scalers: CAMAC scaler
 # CAMACScalerSetup(int max_cards)   /* maximum number of logical cards */
@@ -121,9 +108,9 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE2:")
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
-set_pass0_restoreFile("auto_positions.sav")
-set_pass0_restoreFile("auto_settings.sav")
-set_pass1_restoreFile("auto_settings.sav")
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13LAB:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -131,6 +118,8 @@ set_pass1_restoreFile("auto_settings.sav")
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
+
+#asynSetTraceMask "DXP1",0,255
 
 iocInit
 
