@@ -1,4 +1,5 @@
-program trajectoryScan("P=13IDC:,R=traj1,M1=M1,M2=M2,M3=M3,M4=M4,M5=M5,M6=M6,M7=M7,M8=M8")
+program trajectoryScan(
+    "P=13IDC:,R=traj1,M1=M1,M2=M2,M3=M3,M4=M4,M5=M5,M6=M6,M7=M7,M8=M8,PORT=serial1")
 
 /*  This sequencer program works with trajectoryScan.db.  It implements
  *  coordinated trajectory motion with the Newport MM4005 motor controller.
@@ -27,6 +28,7 @@ program trajectoryScan("P=13IDC:,R=traj1,M1=M1,M2=M2,M3=M3,M4=M4,M5=M5,M6=M6,M7=
 */
 
 %% #include <string.h>
+%% #include <asynOctetSyncIO.h>
 
 /* This program must be compiled with the recursive option */
 option +r;
@@ -78,8 +80,8 @@ option +r;
  */
 #define MAX_PULSES 1000
 
-/* Maximum size of string sent by MM4005, typically for TQ command. */
-#define MAX_INSTRING 256
+/* Maximum size of string to/from MM4005, typically for TQ command. */
+#define MAX_MM4000_STRING 256
 
 /* Maximum size of string in EPICS string PVs.  This is defined in 
  * epicsTypes.h, but in order to include that file it must be escaped, and then
@@ -92,13 +94,6 @@ option +r;
 
 /* Polling interval for waiting for motors to reach their targets */
 #define POLL_INTERVAL 0.1
-
-/* Macro to wait for output to complete.  This is very ugly, and assumes
- * 38400 baud, i.e. 4000 characters/second.
- * It will go away when the sequencer supports ca_array_put_callback */
-#define WAIT_OUTPUT delay=strlen(stringOut)/4000.; \
-                    if (delay < .02) delay = .02; \
-                    epicsThreadSleep(delay)
 
 /* Define PVs */
 int    numAxes;     assign numAxes      to "{P}{R}NumAxes.VAL"; 
@@ -148,17 +143,6 @@ int    readback;    assign readback     to "{P}{R}Readback.VAL";
 int    readState;   assign readState    to "{P}{R}ReadState.VAL";   
 int    readStatus;  assign readStatus   to "{P}{R}ReadStatus.VAL";   
 string readMessage; assign readMessage  to "{P}{R}ReadMessage.VAL";
-
-string MMresponse;  assign MMresponse   to "{P}{R}MMResponse.VAL";
-string stringOut;   assign stringOut    to "{P}{R}StringOut.AOUT";
-string stringOutIn; assign stringOutIn  to "{P}{R}StringOutIn.AOUT";
-char   stringIn[MAX_INSTRING];  
-                    assign stringIn     to "{P}{R}StringOutIn.BINP";
-                                                        monitor stringIn;
-int   stringInSevr; assign stringInSevr to "{P}{R}StringOutIn.SEVR";
-                                                        monitor stringInSevr;
-int   stringInTO;   assign stringInTO   to "{P}{R}StringOutIn.TMOT";
-                                                        monitor stringInTO;
 
 double timeTrajectory[MAX_ELEMENTS];
                     assign timeTrajectory to  "{P}{R}TimeTraj.VAL"; 
@@ -349,10 +333,14 @@ evflag buildMon;        sync build      buildMon;
 evflag executeMon;      sync execute    executeMon;
 evflag abortMon;        sync abort      abortMon;
 evflag readbackMon;     sync readback   readbackMon;
-evflag stringInMon;     sync stringIn   stringInMon;
 evflag nelementsMon;    sync nelements  nelementsMon;
 evflag motorMDVSMon;    sync motorMDVS  motorMDVSMon;
 
+char stringOut[MAX_MM4000_STRING];
+char stringIn[MAX_MM4000_STRING];
+char *asynPort;
+char *pasynUser;   /* This is really asynUser* */
+int status;
 int i;
 int j;
 int k;
@@ -373,8 +361,6 @@ char *tok_save;
 
 /* All PVs which will be accessed in local C functions need to have their index
  * extracted with pvIndex() */
-int stringOutInIndex;
-int MMresponseIndex;
 int motorCurrentIndex[MAX_AXES];
 int epicsMotorDoneIndex[MAX_AXES];
 
@@ -383,6 +369,7 @@ int epicsMotorDoneIndex[MAX_AXES];
 unsigned long startTime;  
 
 /* Define escaped C functions at end of file */
+%% static int writeOnly(SS_ID ssId, struct UserVar *pVar, char *command);
 %% static int writeRead(SS_ID ssId, struct UserVar *pVar, char *command);
 %% static int getMotorPositions(SS_ID ssId, struct UserVar *pVar, double *pos);
 %% static int getMotorMoving(SS_ID ssId, struct UserVar *pVar);
@@ -397,17 +384,21 @@ ss trajectoryScan {
         when() {
             /* Force numAxes to be <= MAX_AXES */
             if (numAxes > MAX_AXES) numAxes = MAX_AXES;
-            /* Get PV indices of PVs used in C functions at the end */
-            stringOutInIndex = pvIndex(stringOutIn);
-            MMresponseIndex = pvIndex(MMresponse);
+            asynPort = macValueGet("PORT");
+            %%pVar->status = pasynOctetSyncIO->connect(pVar->asynPort, 0,
+            %%                                   (asynUser **)&pVar->pasynUser);
+            if (status != 0) {
+               printf("trajectoryScan error in pasynOctetSyncIO->connect\n");
+               printf("   status=%d, port=%s\n", status, asynPort);
+            }
             for (j=0; j<numAxes; j++) {
                 motorCurrentIndex[j]   =  pvIndex(motorCurrent[j]);
                 epicsMotorDoneIndex[j] =  pvIndex(epicsMotorDone[j]);
             }
             /* Read the maximum allowable speed error between blocks */
             for (j=0; j<numAxes; j++) {
-                sprintf(stringOutIn, "%dGC?", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dGC?", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 /* Parse the return string which is of the form 1GCxxx */
                 motorMDVS[j] = atof(stringIn+3);
                 pvPut(motorMDVS[j]);
@@ -417,7 +408,6 @@ ss trajectoryScan {
             efClear(executeMon);
             efClear(abortMon);
             efClear(readbackMon);
-            efClear(stringInMon);
             efClear(nelementsMon);
             efClear(motorMDVSMon);
         } state monitor_inputs
@@ -448,8 +438,7 @@ ss trajectoryScan {
              * the values to the MM4005. */
             for (j=0; j<numAxes; j++) {
                 sprintf(stringOut, "%dGC%f", j+1, motorMDVS[j]);
-                pvPut(stringOut);
-                WAIT_OUTPUT;
+                %%writeOnly(ssId, pVar, pVar->stringOut);
             }
         } state monitor_inputs
     }
@@ -465,18 +454,15 @@ ss trajectoryScan {
             pvPut(buildStatus);
             /* Initialize new trajectory */
             strcpy(stringOut, "NC");
-            pvPut(stringOut);
-            WAIT_OUTPUT;
+            %%writeOnly(ssId, pVar, pVar->stringOut);
             /* Define which motors are to be moved */
             for (i=0; i<numAxes; i++) {
                 sprintf(stringOut, "%dDC%d", i+1, moveAxis[i]);
-                pvPut(stringOut);
-                WAIT_OUTPUT;
+                %%writeOnly(ssId, pVar, pVar->stringOut);
             }
             /* Set acceleration time */
             sprintf(stringOut, "UC%f", accel);
-            pvPut(stringOut);
-            WAIT_OUTPUT;
+            %%writeOnly(ssId, pVar, pVar->stringOut);
             /* If time mode is TIME_MODE_TOTAL then construct timeTrajectory 
              * and post it */
             if (timeMode == TIME_MODE_TOTAL) {
@@ -535,8 +521,7 @@ ss trajectoryScan {
                 sprintf(buildMessage, "Building element %d/%d", i+1, nelements);
                 pvPut(buildMessage);
                 sprintf(stringOut, "%dDT%f", i+1, timeTrajectory[i]);
-                pvPut(stringOut);
-                WAIT_OUTPUT;
+                %%writeOnly(ssId, pVar, pVar->stringOut);
                 for (j=0; j<numAxes; j++) {
                     if (!moveAxis[j]) continue;
                     if (moveMode == MOVE_MODE_RELATIVE) {
@@ -548,8 +533,7 @@ ss trajectoryScan {
                     if (epicsMotorDir[j] == 0) dir=1; else dir=-1;
                     dpos = dpos*dir;
                     sprintf(stringOut, "%dDX%f", j+1, dpos);
-                    pvPut(stringOut);
-                    WAIT_OUTPUT;
+                    %%writeOnly(ssId, pVar, pVar->stringOut);
                 }
             }
             /* Define pulse output for trajectory */
@@ -565,15 +549,13 @@ ss trajectoryScan {
                  * pulse than requested.  Add one */
                 sprintf(stringOut, "MB%d,ME%d,MN%d", 
                                 startPulses, endPulses, npulses+1);
-                pvPut(stringOut);
-                WAIT_OUTPUT;
+                %%writeOnly(ssId, pVar, pVar->stringOut);
             }
             /* Verify trajectory */
             strcpy(buildMessage, "Verifying trajectory");
             pvPut(buildMessage);
             strcpy(stringOut, "VC");
-            pvPut(stringOut);
-            WAIT_OUTPUT;
+            %%writeOnly(ssId, pVar, pVar->stringOut);
             /* Read error code back from MM4000 */
             %%writeRead(ssId, pVar, "TB");
             /* Set status and message string */
@@ -593,30 +575,30 @@ ss trajectoryScan {
                 /* We could query all parameters with one nRc, but the parsing
                  * is a pain, much simpler to query one at a time */
                 /* Maximum speed change element and value */
-                sprintf(stringOutIn, "%dRC1", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dRC1", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 motorMDVE[j] = atoi(p+3);
                 pvPut(motorMDVE[j]);
-                sprintf(stringOutIn, "%dRC2", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dRC2", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 motorMDVA[j] = atof(p+3);
                 pvPut(motorMDVA[j]);
                 /* Maximum velocity element and value */
-                sprintf(stringOutIn, "%dRC3", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dRC3", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 motorMVE[j] = atoi(p+3);
                 pvPut(motorMVE[j]);
-                sprintf(stringOutIn, "%dRC4", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dRC4", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 motorMVA[j] = atof(p+3);
                 pvPut(motorMVA[j]);
                 /* Maximum acceleration element and value */
-                sprintf(stringOutIn, "%dRC5", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dRC5", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 motorMAE[j] = atoi(p+3);
                 pvPut(motorMAE[j]);
-                sprintf(stringOutIn, "%dRC6", j+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dRC6", j+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 motorMAA[j] = atof(p+3);
                 pvPut(motorMAA[j]);
             }       
@@ -658,8 +640,7 @@ ss trajectoryScan {
             /* Send the execute command, along with simulation mode and time
              * scaling factor */
             sprintf(stringOut, "LS,%dEC%f",simMode,timeScale);
-            pvPut(stringOut);
-            WAIT_OUTPUT;
+            %%writeOnly(ssId, pVar, pVar->stringOut);
             /* Get start time of execute */
             startTime = time(0);
             execState = EXECUTE_STATE_EXECUTING;
@@ -768,8 +749,8 @@ ss trajectoryScan {
             for (i=0; i<nactual; i++) {
                 sprintf(readMessage, "Reading point %d/%d", i+1, nactual);
                 pvPut(readMessage);
-                sprintf(stringOutIn, "%dTQ", i+1);
-                %%writeRead(ssId, pVar, pVar->stringOutIn);
+                sprintf(stringOut, "%dTQ", i+1);
+                %%writeRead(ssId, pVar, pVar->stringOut);
                 /* Parse the return string which is of the form 
                  * 15TQ,1TH2.7,1TP2.65,2TH3.1,2TP3.1 ... */
                 tok_save = 0;
@@ -818,8 +799,7 @@ ss trajectoryAbort {
         when (efTestAndClear(abortMon) && (abort==1)) {
             /* Send AB command */
             strcpy(stringOut,"AB");
-            pvPut(stringOut);
-            WAIT_OUTPUT;
+            %%writeOnly(ssId, pVar, pVar->stringOut);
             execStatus = STATUS_ABORT;
             pvPut(execStatus);
             strcpy(execMessage, "Motion aborted");
@@ -834,35 +814,42 @@ ss trajectoryAbort {
 
 %{
 
+/* writeOnly sends a command to the MM4005 */
+static int writeOnly(SS_ID ssId, struct UserVar *pVar, char *command)
+{
+    asynStatus status;
+    int nwrite;
+    char buffer[MAX_MM4000_STRING];
+
+    /* Copy command so we can add terminator */
+    strncpy(buffer, command, MAX_MM4000_STRING-3);
+    strcat(buffer, "\r");
+    status = pasynOctetSyncIO->write((asynUser *)pVar->pasynUser, buffer,
+                               strlen(buffer), 1.0, &nwrite);
+    return(status);
+}
+
 /* writeRead sends a command to the MM4005 and reads the response
- * This version waits for an event flag on stringIn, but once we have an SNL
- * version which does putCallback then this won't be necessary. It also writes
- * the response string to another PV so it can be displayed. */
+ * It also writes the response string to another PV so it can be displayed. */
 static int writeRead(SS_ID ssId, struct UserVar *pVar, char *command)
 {
-    int i, nloops;
+    asynStatus status;
+    int nwrite, nread;
+    int eomReason;
+    char buffer[MAX_MM4000_STRING];
 
-    seq_efClear(ssId, stringInMon);
-    strcpy(pVar->stringOutIn, command);
-    seq_pvPut(ssId, pVar->stringOutInIndex, 0);
-    /* Compute number of loops (clock ticks) to wait for a response.
-     * Use the timeout field of the record, which can be changed via the
-     * database or channel access, rather than anything hardcoded. 
-     * The TMOT field is in msec. */
-    nloops = pVar->stringInTO/1000./epicsThreadSleepQuantum();
-    for (i=0; i<nloops; i++) {
-        if (seq_efTestAndClear(ssId, stringInMon)) break;
-        epicsThreadSleep(epicsThreadSleepQuantum());
+    /* Copy command so we can add terminator */
+    strncpy(buffer, command, MAX_MM4000_STRING-3);
+    strcat(buffer, "\r");
+    /* Use 10 second timeout */
+    status = pasynOctetSyncIO->writeRead((asynUser *)pVar->pasynUser, buffer,
+                               strlen(buffer), pVar->stringIn, MAX_MM4000_STRING, 
+                               "\r", 1, 10.0, &nwrite, &nread, &eomReason);
+    if (status == asynSuccess) {
+        /* Delete terminator */
+        if (nread > 0) pVar->stringIn[nread-1]=0;
     }
-    if (pVar->stringInSevr == 0) {
-        /* Copy the response to MMresponse.  May be able to do this in the
-         * database so it won't be needed */
-        strncpy(pVar->MMresponse, pVar->stringIn, MAX_STRING_SIZE-1);
-        seq_pvPut(ssId, pVar->MMresponseIndex, 0);
-        return(0);
-    } else {
-        return(-1);
-    }
+    return(status);
 }
 
 
