@@ -1,5 +1,5 @@
 # Allocate 96MB of memory so we load everything else into low memory
-mem = malloc(1024*1024*96)
+#mem = malloc(1024*1024*96)
 
 # vxWorks startup file
 < cdCommands
@@ -20,7 +20,7 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 # Use the new shell
 #iocsh
 
-errlogInit(5000)
+errlogInit(50000)
 
 # Currently, the only thing we do in initHooks is call reboot_restore(), which
 # restores positions and settings saved ~continuously while EPICS is alive.
@@ -34,87 +34,24 @@ devMM4000debug = 0
 devMCB4BDebug=0
 drvMCB4BDebug=0
 drvMM4000debug = 0
-gpibIODebug = 0
-serialIODebug = 0
 mcaRecordDebug = 0
-devMcaMpfDebug = 0
-mcaAIMServerDebug = 0
 aimDebug = 0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
-devSiStrParmDebug = 0
-devAiMKSDebug=0
-devAiDigitelDebug=0
-devAoDAC128VDebug=0
-devLiIpUnidigDebug=0
-devBiIpUnidigDebug=0
-devBoIpUnidigDebug=0
-devSerialDebug=0
-DevMpfDebug=0
-devEpidMpfDebug=0
 scalerRecordDebug=0
 devScalerSTR7201Debug=0
 icbDebug=0
-devIcbMpfDebug=0
-icbDspServerDebug=0
-icbServerDebug=0
-quadEMDebug=0
-fastSweepDebug=0
 sscanRecordDebug=0
 devMCA_softDebug = 0 
 
-# Load local MPF server
-< st_mpfserver.cmd
-
-# Debug serial port
-#serialPortSniff("UART[6]",1000)
-
-# Initialize remote MPF stuff
-# tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
+< industryPack.cmd
+< serial.cmd
 
 # override address, interrupt vector, etc. information in module_types.h
 #module_types()
 
-# Generic GPIB record
-dbLoadRecords("$(IP)/ipApp/Db/generic_gpib.db", "P=13LAB:,R=gpib2,SIZE=4096,ADDR=3,PORT=gpib1")
-
-# Load asynRecord records on all ports
-dbLoadTemplate("asynRecord.template")
-
-# Serial 1 is for SMART
-# SMART detector database
-str=malloc(256)
-strcpy(str,"P=13LAB:,R=smart1,PORT=serial1,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
-
 # Roper CCD detector database
 dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13LAB:, C=ccd1")
-
-# Serial 2 has Newport LAE500 Laser Autocollimator
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db", "P=13LAB:,R=LAE500,C=0,PORT=serial2")
-
-# Port 3 Encoder readout unit
-#dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,PORT=serial4")
-
-# Serial 4 MCB4B motor controller
-
-# Serial 5, 6 Keithley Multimeter
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,PORT=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,PORT=gpib1:2")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,PORT=serial6")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,C=0,PORT=serial7")
-
-# Serial 7 for the MM4000.
-
-# Serial 8 Stanford Research Systems SR570 Current Preamplifier
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,PORT=serial8")
-
-# Serial 8 XIA filter rack
-dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13LAB:,S=filter1,C=0,ADDRESS=1,PORT=serial8")
-
-# GPIB 3 is Fluke multimeter
-dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
 
 # Test initialization of ipUnidig
 #dbLoadRecords("testUnidig.db", "P=13LAB:")
@@ -125,17 +62,8 @@ dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1
 #dbLoadRecords("$(VME)/vmeApp/Db/IK320group.db", "P=13LAB:,group=5")
 #drvIK320RegErrStr()
 
-# DAC
-dbLoadTemplate "DAC.template"
-
 # Heater control
 dbLoadTemplate "heater_control.template"
-
-# IP-Unidig binary I/O
-dbLoadTemplate "IpUnidig.template"
-
-# Acromag Ip330 ADC
-dbLoadTemplate "Ip330_ADC.template"
 
 #PID slow
 dbLoadTemplate "pid_slow.template"
@@ -147,39 +75,15 @@ dbLoadTemplate "pid_fast.template"
 dbLoadTemplate  "motors.template"
 # -----------------------------------------------------
 
-dbLoadTemplate  "Jadd.template"
-
-dbLoadTemplate  "JDataStore.template"
-
-dbLoadTemplate  "JAngleMinimize.template" 
-
-# Database for trajectory scanning with the MM4005/GPD
-# The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
-str = malloc(300)
-strcpy(str, "P=13LAB:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,PORT=serial7,")
-strcat(str, "DONPV=13LAB:str:EraseStart,DONV=1,DOFFPV=13LAB:str:StopAll,DOFFV=1")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
-
-
 #Quad electrometer
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.db", "P=13LAB:, EM=EM1, CARD=0, SERVER=quadEM1")
+dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.db", "P=13LAB:, EM=EM1, CARD=0, PORT=quadEM1")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db", "P=13LAB:")
 
 
-
 #MN----------------------------------------------------------------------
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13LAB:,Q=EDB")
-
-#------------------Jons -------------------------------------
-#dbLoadRecords("$(CARS)/CARSApp/Db/JHKPMotor_Database.db","P=13LAB:,JM=JM")
-#dbLoadRecords("$(CARS)/CARSApp/Db/J2Slides.db","P=13LAB:,JS=JS")
-dbLoadRecords("$(CARS)/CARSApp/Db/JFuncSlides.db","P=13LAB:,JF=JF")
-dbLoadRecords("$(CARS)/CARSApp/Db/Jresetcounter.db")
-
-##
-
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -187,39 +91,46 @@ dbLoadRecords("$(CARS)/CARSApp/Db/Jresetcounter.db")
 dbLoadTemplate "scanParms.template"
 
 # Multichannel analyzer stuff
-# AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
-#           maxSignals, maxSequences, ethernetDevice, queueSize)
-AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "dc0", 100)
-AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "dc0", 400)
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/2,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYPE=MPF MCA,INP=#C0 S2 @AIM1/2,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYPE=MPF MCA,INP=#C0 S4 @AIM1/2,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYPE=MPF MCA,INP=#C0 S6 @AIM1/2,NCHAN=2048")
+# AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans, 
+#           maxSignals, maxSequences, ethernetDevice)
+AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "dc0")
+AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "dc0")
+AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "dc0")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYP=asynMCA,INP=@asyn(AIM1/2 2),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYP=asynMCA,INP=@asyn(AIM1/2 4),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYP=asynMCA,INP=@asyn(AIM1/2 6),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=dsa2000_1,DTYP=asynMCA,INP=@asyn(DSA2000 0),NCHAN=2048")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med.db", "P=13LAB:quadEM:,NCHAN=2048,C=0,SERVER=quadEMSweep")
+dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med.db", "P=13LAB:quadEM:,NCHAN=2048,PORT=quadEMSweep")
 dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med_FFT.db", "P=13LAB:quadEM_FFT:,NCHAN=1024")
 
-#icbDspConfig("icbDsp/1", 1, "NI59E:1", 100)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,CARD=0,SERVER=icbDsp/1,ADDR=0")
-icbSetup("icb/1", 10, 100)
-icbConfig("icb/1", 0, 0x59e, 5)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
-icbConfig("icb/1", 1, 0x59e, 3)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
-icbConfig("icb/1", 2, 0x59e, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
-
-#icbTcaSetup(serverName, maxModules, queueSize)
-icbTcaSetup("icbTca/1", 10, 100)
-#icbTcaConfig(serverName, module, ethernetAddress, icbAddress)
-icbTcaConfig("icbTca/1", 0, 0x59e, 8)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc2,CARD=0,SERVER=icbTca/1,ADDR=0")
+#icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
+#   portName to give to this asyn port
+#   ethernetAddress - Ethernet address of module, low order 16 bits
+#   icbAddress - rotary switch setting inside ICB module
+#   moduleType
+#      0 = ADC
+#      1 = Amplifier
+#      2 = HVPS
+#      3 = TCA
+#      4 = DSP
+icbConfig("icbAdc1", 0x59e, 5, 0)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
+icbConfig("icbAmp1", 0x59e, 3, 1)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
+icbConfig("icbHvps1", 0x59e, 2, 2)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+icbConfig("icbTca1", 0x59e, 8, 3)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc2,PORT=icbTca1")
+#icbConfig("icbDsp1", 0x8058, 0, 4)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
 
 # Struck MCS as 32-channel multi-element detector
 <Struck32.cmd
@@ -261,41 +172,18 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13LAB:")
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
-#HiDEOSGpibLinkConfig(10,0,"GPIB0")
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13LAB:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
 
 # OMS VME58 driver setup parameters: 
-#     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
-#     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
-#     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(2, 8, 0x4000, 190, 5, 10)
-
-# MCB-4B driver setup parameters:
-#     (1) maximum # of controllers,
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-MCB4BSetup(1, 1, 10)
-
-# MM4000 driver setup parameters: 
-#     (1) maximum # of controllers, 
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-MM4000Setup(1, 8, 10)
-
-# MM4000 driver configuration parameters: 
-#     (1) controller
-#     (2) asyn port name (e.g. serial1 or gpib1)
-#     (3) GPIB address (0 for serial)
-MM4000Config(0, "serial7", 0)
-# Delay to allow motors to settle
-#drvMM4000ReadbackDelay=.5  
-
-# MCB-4B driver configuration parameters:
-#     (1) controller
-#     (2) asyn port name (e.g. serial1)
-MCB4BConfig(0, "serial4")
+#     (1)cards, (2)base address(short, 4k boundary), 
+#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
+#     (5)motor task polling rate (min=1Hz,max=60Hz)
+oms58Setup(2, 0x4000, 190, 5, 10)
 
 # initQuadEM(quadEMName, baseAddress, fiberChannel, microSecondsPerScan, 
 #            maxClients, unidigName, unidigChan)
@@ -304,48 +192,18 @@ MCB4BConfig(0, "serial4")
 #  channel     = 0-3, fiber channel number
 #  microSecondsPerScan = microseconds to integrate.  When used with ipUnidig
 #                interrupts the unit is also read at this rate.
-#  maxClients  = maximum number of clients that will connect to the
-#                quadEM interrupt.  10 should be fine.
 #  unidigName  = name of ipInidig server if it is used for interrupts.
 #                Set to 0 if there is no IP-Unidig being used, in which
 #                case the quadEM will be read at 60Hz.
 #  unidigChan  = IP-Unidig channel connected to quadEM pulse output
-initQuadEM("quadEM1", 0xf000, 0, 1000, 10, "Unidig1", 2)
+initQuadEM("quadEM1", 0xf000, 0, 1000, "Unidig1", 2)
 
-# initQuadEMScan(quadEMName, serverName, queueSize)
-#  quadEMName = name of quadEM object created with initQuadEM
-#  serverName = name of MPF server (string)
-#  queueSize  = size of MPF queue
-initQuadEMScan("quadEM1", "quadEM1", 100)
-
-# initQuadEMSweep(quadEMName, serverName, maxPoints, int queueSize)
-#  quadEMName = name of quadEM object created with initQuadEM
-#  serverName = name of MPF server (string)
+# initFastSweep(portName, inputName, maxSignals, maxPoints)
+#  portName = asyn port name for this new port (string)
+#  inputName = name of asynPort providing data
+#  maxSignals  = maximum number of signals (spectra)
 #  maxPoints  = maximum number of channels per spectrum
-#  queueSize  = size of MPF queue
-initQuadEMSweep("quadEM1", "quadEMSweep", 2048, 400)
-
-# initQuadEMPID(serverName, quadEMName, quadEMChannel, 
-#               DACName, DACChannel, queueSize)
-#  serverName  = name of MPF server (string)
-#  quadEMName = name of quadEM object created with initQuadEM
-#  quadEMChannel = quadEM "channel" to be used for feedback (0-9)
-#                  These are defined as:
-#                        0 = current 1
-#                        1 = current 2
-#                        2 = current 3
-#                        3 = current 4
-#                        4 = sum 1 = current1 + current3
-#                        5 = sum 2 = current2 + current4
-#                        6 = difference 1 = current3 - current1
-#                        7 = difference 2 = current4 - current2
-#                        8 = position 1 = difference1/sum1 * 32767
-#                        9 = position 2 = difference2/sum2 * 32767
-#  DACName     = name of DAC128V server created with initDAC128V
-#  DACVChannel = DAC channel number used for this PID (0-7)
-#  queueSize   = size of MPF queue
-#initQuadEMPID("quadEMPID1", "quadEM1", 8, "DAC1", 2, 20)
-#initQuadEMPID("quadEMPID2", "quadEM1", 9, "DAC1", 3, 20)
+initFastSweep("quadEMSweep", "quadEM1", 10, 2048)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -353,20 +211,21 @@ initQuadEMSweep("quadEM1", "quadEMSweep", 2048, 400)
 # Can't use D000000 on PowerPC, change to B0000000
 VSCSetup(1, 0xB0000000, 200)
 
-# dbrestore setup
-sr_restore_incomplete_sets_ok = 1
-#reboot_restoreDebug=5
+#asynSetTraceMask "AIM1/1",0,0xff
+#asynSetTraceMask "icbTca1",0,0xff
+#asynSetTraceMask "icbHvps1",0,0xff
+#asynSetTraceMask "Unidig1",0,0x19
+#asynSetTraceMask "DAC1",0,0xff
+#asynSetTraceMask("quadEM1",0,0x11)
+#asynSetTraceMask("Ip330_1",0,0xff)
 
 iocInit
-epicsThreadSleep 10.0
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
-# Load the list of search directories for request files
-< ../requestFileCommands
 
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5)
@@ -377,15 +236,10 @@ create_monitor_set("auto_settings.req", 30)
 dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=10, stack=10000"
+#seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
+#seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=22, model=2700, stack=10000"
 #seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
 #seq &seq_test, "pv1=13LAB:m1, pv2=13LAB:m2"
-
-#-----------------------------------------------------------------------------------#
-#seq &JHKPMotor, "P=13LAB:,Mot1=m1,Mot2=m3,JM=JM"
-seq &JFuncSlides, "P=13LAB:,m1 = m1,JF = JF:,m2 = m3"
-seq &JScanLog, "P=13LAB:"
 
 ### Start the saveData task.
 # saveData_MessagePolicy
@@ -398,12 +252,11 @@ seq &JScanLog, "P=13LAB:"
 #debug_saveData = 2
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=13LAB:")
+#saveData_Init("saveDataExtraPVs.req", "P=13LAB:")
 #saveData_PrintScanInfo("13LAB:scan1")
 
-free(mem)
+#free(mem)
 
-taskDelay(600)
-seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=6,stack=10000"
-seq &roperCCD, "P=13LAB:,C=ccd1"
+#seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=6,stack=10000"
+#seq &roperCCD, "P=13LAB:,C=ccd1"
 
