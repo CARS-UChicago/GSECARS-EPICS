@@ -30,6 +30,7 @@ module_types()
 # Debugging flags
 devPM304Debug=0
 drvPM304Debug=0
+devA32VmeDebug=0
 
 # need more entries in Wait-record channel-access queue (?)
 recDynLinkQsize = 1024
