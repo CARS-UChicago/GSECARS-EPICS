@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program Energy("PRE=XXIDA:, ID=IDXX:, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, SH=eps_mbbi4, FB=mono_pid1")
+program Energy("E=XXIDA:E, ID=IDXX:, MONO=XXIDA:m17, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, XTAL=XXIDA:MON:, SH=XXIDA:eps_mbbi4, FB=13IDA:mono_pid1")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -12,25 +12,10 @@ program Energy("PRE=XXIDA:, ID=IDXX:, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, SH=ep
  *  May 10, 2000   MN
  *  Jul  5, 2000   MN: add shutter_pv to check shutter status 
  *                     before undulator move
- *  Oct  7, 2002   MN: altered arg list to use PRE for main prefix,
- *                     converted from XTAL table to true motors
- *                     for 2nd crystal motions.
  */
 %%#include <math.h>
 %%#include <sysLib.h>
 %%#include <taskLib.h>
-
-/* 2nd crystal table PVs  */
-double z2;        assign z2        to "{PRE}m14.VAL";         monitor z2;
-double y2;        assign y2        to "{PRE}m10.VAL";         monitor y2;
-double y2_mvmin;  assign y2_mvmin  to "{PRE}E:y2_mvmin.VAL";  monitor y2_mvmin;
-int    z2_done;   assign z2_done   to "{PRE}m14.DMOV";        monitor z2_done;
-
-/* Mono Angle PV */		
-double th;        assign th        to "{PRE}m17";            monitor th;
-double th_rbv;    assign th_rbv    to "{PRE}m17.RBV";        monitor th_rbv;
-int    th_set;    assign th_set    to "{PRE}m17.SET";
-int    th_done;   assign th_done   to "{PRE}m17.DMOV";       monitor th_done;
 
 /* undulator PVs  (from {ID}) */
 double id_val;    assign id_val    to "{ID}ScanEnergy.VAL"; monitor id_val;
@@ -38,56 +23,66 @@ double id_rbv;    assign id_rbv    to "{ID}Energy.VAL";
 double id_harm;   assign id_harm   to "{ID}HarmonicValue.VAL";   
 int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
 
-int    shutter_pv;  assign shutter_pv to "{PRE}{SH}";
+int    shutter_pv;  assign shutter_pv to "{SH}";
 
 /* Energy PVs (from {EN} and Energy.db) */
-int    use_id;    assign use_id    to "{PRE}E:use_id.VAL";    monitor use_id;
-double en;        assign en        to "{PRE}E:Energy.VAL";    monitor en;
-double en_rbv;    assign en_rbv    to "{PRE}E:E_RBV";     
-double dspace;    assign dspace    to "{PRE}E:dspace.VAL";    monitor dspace;
-double height;    assign height    to "{PRE}E:height.VAL";    monitor height;
-double width;     assign width     to "{PRE}E:width.VAL";     monitor width;
-int    verbose;   assign verbose   to "{PRE}E:verbose.VAL";   monitor verbose;
-int    id_abort;  assign id_abort  to "{PRE}E:id_abort.VAL";  
-/* int    id_factor; assign id_factor to "{PRE}E:id_factor.VAL";  */
+int    use_id;    assign use_id    to "{E}:use_id.VAL";    monitor use_id;
+double en;        assign en        to "{E}:Energy.VAL";    monitor en;
+double en_rbv;    assign en_rbv    to "{E}:E_RBV";     
+double dspace;    assign dspace    to "{E}:dspace.VAL";    monitor dspace;
+double height;    assign height    to "{E}:height.VAL";    monitor height;
+double width;     assign width     to "{E}:width.VAL";     monitor width;
+int    verbose;   assign verbose   to "{E}:verbose.VAL";   monitor verbose;
+int    id_abort;  assign id_abort  to "{E}:id_abort.VAL";  
+/* int    id_factor; assign id_factor to "{E}:id_factor.VAL";  */
 int    id_factor; 
-int    en_busy;   assign en_busy   to "{PRE}E:Moving.VAL";    monitor en_busy;
-int    en_set;    assign en_set    to "{PRE}E:SET.VAL";       monitor en_set;
+int    en_busy;   assign en_busy   to "{E}:Moving.VAL";    monitor en_busy;
+int    en_set;    assign en_set    to "{E}:SET.VAL";       monitor en_set;
 
 /* feedback wait */
-int    fb_use;      assign fb_use    to "{PRE}E:use_feedback.VAL";  monitor fb_use; 
-int    fb_is_on;    assign fb_is_on  to "{PRE}{FB}.FBON";     monitor fb_is_on;
-int    fb_locked;   assign fb_locked to "{PRE}{FB}Locked";    monitor fb_locked;
+int    fb_use;      assign fb_use    to "{E}:use_feedback.VAL";  monitor fb_use; 
+int    fb_is_on;    assign fb_is_on  to "{FB}.FBON";     monitor fb_is_on;
+int    fb_locked;   assign fb_locked to "{FB}Locked";    monitor fb_locked;
 
 /* undulator tracking and offset */
-int    id_track;   assign id_track  to "{PRE}E:id_track.VAL"; monitor id_track;
-double id_offset;  assign id_offset to "{PRE}E:id_off.VAL";monitor id_offset;
+int    id_track;   assign id_track  to "{E}:id_track.VAL"; monitor id_track;
+double id_offset;  assign id_offset to "{E}:id_off.VAL";monitor id_offset;
 
 /* tracking and offsets for y2, z2, and xt:
      y2 : 2nd crystal y (height above 1st crystal)
      z2 : 2nd crystal z (translation along rail)
      xt : experimental table used for non-fixed offset mode
 */
-int    y2_track;  assign y2_track  to "{PRE}E:y2_track.VAL";  monitor y2_track;
-int    z2_track;  assign z2_track  to "{PRE}E:z2_track.VAL";  monitor z2_track;
-int    xt_track;  assign xt_track  to "{PRE}E:xt_track.VAL";  monitor xt_track;
-int    xt2_track; assign xt2_track to "{PRE}E:xt2_track.VAL"; monitor xt2_track;
-double y2_off;    assign y2_off    to "{PRE}E:y2_off.VAL";    monitor y2_off;
+int    y2_track;  assign y2_track  to "{E}:y2_track.VAL";  monitor y2_track;
+int    z2_track;  assign z2_track  to "{E}:z2_track.VAL";  monitor z2_track;
+int    xt_track;  assign xt_track  to "{E}:xt_track.VAL";  monitor xt_track;
+int    xt2_track; assign xt2_track to "{E}:xt2_track.VAL"; monitor xt2_track;
+double y2_off;    assign y2_off    to "{E}:y2_off.VAL";    monitor y2_off;
 
-double xt_off;    assign xt_off    to "{PRE}E:xt_off.VAL";    monitor xt_off;
-double xt_sign;   assign xt_sign   to "{PRE}E:xt_sign.VAL";   monitor xt_sign;
-double xt_mvmin;  assign xt_mvmin  to "{PRE}E:xt_mvmin.VAL";  monitor xt_mvmin;
+double xt_off;    assign xt_off    to "{E}:xt_off.VAL";    monitor xt_off;
+double xt_sign;   assign xt_sign   to "{E}:xt_sign.VAL";   monitor xt_sign;
+double xt_mvmin;  assign xt_mvmin  to "{E}:xt_mvmin.VAL";  monitor xt_mvmin;
 double xt_ht;     assign xt_ht     to "{EXPTAB_Z}";        monitor xt_ht;
 int    xt_done;   assign xt_done   to "{EXPTAB_Z}.DMOV";   monitor xt_done;
 
 /* second table for large kb mirror */
-double xt2_off;    assign xt2_off    to "{PRE}E:xt2_off.VAL";    monitor xt2_off;
-double xt2_sign;   assign xt2_sign   to "{PRE}E:xt2_sign.VAL";   monitor xt2_sign;
-double xt2_mvmin;  assign xt2_mvmin  to "{PRE}E:xt2_mvmin.VAL";  monitor xt2_mvmin;
+double xt2_off;    assign xt2_off    to "{E}:xt2_off.VAL";    monitor xt2_off;
+double xt2_sign;   assign xt2_sign   to "{E}:xt2_sign.VAL";   monitor xt2_sign;
+double xt2_mvmin;  assign xt2_mvmin  to "{E}:xt2_mvmin.VAL";  monitor xt2_mvmin;
 double xt2_ht;     assign xt2_ht     to "{EXPTAB2}";          monitor xt2_ht;
 int    xt2_done;   assign xt2_done   to "{EXPTAB2}.DMOV";     monitor xt2_done;
 
+/* 2nd crystal table PVs  (from {TAB} variable for Table) */
+double z2;        assign z2        to "{XTAL}t1.Z";        monitor z2;
+double y2;        assign y2        to "{XTAL}t1.Y";        monitor y2;
+double y2_mvmin;  assign y2_mvmin  to "{E}:y2_mvmin.VAL";  monitor y2_mvmin;
+int    x2_done;   assign x2_done   to "{XTAL}T1:done.VAL"; monitor x2_done;
 
+/* Mono Angle PV */		
+double th;        assign th        to "{MONO}";            monitor th;
+double th_rbv;    assign th_rbv    to "{MONO}.RBV";        monitor th_rbv;
+int    th_set;    assign th_set    to "{MONO}.SET";
+int    th_done;   assign th_done   to "{MONO}.DMOV";       monitor th_done;
 
 /* Event Flags */
 evflag ef_en;        sync en         ef_en;
@@ -120,10 +115,10 @@ float  d_time;
 double tiny;
 double z2_sign;
 double y2_diff; double y2_old; 
+int i;
 int still_busy;
 int wait_count;
 /*   State Set Energy is the only State in this Sequencer */
-
 ss Energy {
   state init {  /* init */
     when() {
@@ -140,7 +135,7 @@ ss Energy {
       en_max  = 100 * omega ;             /* maximum energy  */
       th_min  = r2d * asin(omega/en_max); /* minimum mono angle in degrees */
       th_max  = r2d * asin(omega/en_min); /* maximum mono angle in degrees */
-      z2_sign =   1;  /* note: xtal2 table record is at 180 degrees */      
+      z2_sign = -1;  /* note: xtal2 table record is at 180 degrees */      
       tiny    = 1.e-5;
 
       /* set up undulator info (if using undulator, that is!)*/
@@ -311,7 +306,7 @@ ss Energy {
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
           taskDelay(d_time*sysClkRateGet());
-          still_busy = ((y2_track||z2_track) && (z2_done == 0)) ||
+          still_busy = ((y2_track||z2_track) && (x2_done == 0)) ||
                         (xt_track  && (xt_done == 0)) ||
                         (xt2_track && (xt2_done == 0)) ||
                         (th_done == 0) || id_busy;
@@ -319,7 +314,7 @@ ss Energy {
 	  if (fb_is_on && fb_use) {   still_busy = still_busy || (fb_locked == 0);
 	  }
           if (verbose) {
-            printf("[%i%i%i%i]", id_busy, th_done, z2_done, xt_done);
+            printf("[%i%i%i%i]", id_busy, th_done, x2_done, xt_done);
             if (!(wait_count % 8)) printf("\n");
           }
         }
@@ -330,13 +325,6 @@ ss Energy {
       efClear(ef_th);
       efClear(ef_width);
       pvGet(id_rbv);
-      pvGet(th_rbv);
-
-      /* add force rbv update based on th_rbv */
-      en_rbv =  omega / sin(th_rbv * d2r) ;
-      pvPut(en_rbv);
-      efClear(ef_th_rbv);
-
       if (use_id){ efClear(ef_id_track);}
       if (verbose) {printf("  E(move)> done ID = %12.6f, mono theta = %12.6f, E = %12.6f\n",
 			   id_rbv, th_rbv,en_rbv); }
