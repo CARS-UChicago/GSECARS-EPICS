@@ -344,6 +344,9 @@ ss Energy {
 	th = th_min;
       }
       en  = omega / sin(th * d2r) ;
+
+      en_busy = 1;  pvPut(en_busy);
+
       pvPut(en);
       if (verbose) {printf("  E(mono)> Energy being set to %12.6f %12.6f\n", en, th);}
       /* get current mono angle, update energy readback */
@@ -388,6 +391,27 @@ ss Energy {
       } 
 
 
+	/*move 2nd xtal Z to keep beam on the same place on xtal */
+      if (z2_track) {
+	z2  = z2_sign * height * en / (2 * omega);
+	pvPut(z2);
+	if (verbose) { printf("  E(move)> 2nd Xtal Z -> %12.6f\n",z2);}
+      }
+	/*move 2nd xtal Y to keep beam offset fixed */
+      if (y2_track) {
+	width  =  height / (2 * cos(th * d2r));
+	pvPut(width);
+	pvGet(y2); y2_old = y2;
+	y2  = y2_off + width;
+	y2_diff = fabs(y2 - y2_old);
+	if (verbose) { printf("  E(y2track: old, width, new, diff  %12.6f  %12.6f  %12.6f %12.6f\n",
+			      y2_old, width, y2, y2_diff);}
+	
+	if (y2_diff > y2_mvmin) {  pvPut(y2);  }
+	if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
+			      y2, width, height);}
+      } 
+
       /* track undulator    */
       if (use_id && id_track) {
 	pvGet(shutter_pv);
@@ -416,7 +440,13 @@ ss Energy {
         if ((verbose) && (wait_count % 8)) {printf("\n");}
       }
 
+      efClear(ef_th_rbv); 
+      en_busy = 0;
+      pvPut(en_busy);
+      if (use_id){ efClear(ef_id_track);}
+
     } state monitor_changes
+
     /* mono angle readback changed: update energy appropriately */
     when( efTestAndClear(ef_th_rbv) ) { 
       if (th_rbv < th_min )  th_rbv = th_min;
