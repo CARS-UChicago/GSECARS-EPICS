@@ -27,11 +27,13 @@ pattern
 {13BMA:,  m23,  "OMS VME58",   2,    5, "Downstream Translation", mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,   2,    101,     -1}
 {13BMA:,  m24,  "OMS VME58",   2,    6, "BMB top slit",           mm,   Neg,    2.,   .1,     0,  0.2,    0.05,   1.5,     400,     0.50,   3,     50,      0}
 {13BMA:,  m25,  "OMS VME58",   2,    7, "BMB bottom slit",        mm,   Neg,    2.,   .1,     0,  0.2,    0.05,   1.5,     400,     0.50,   3,     50,      0}
-{13BMA:,  m26,  "OMS VME58",   3,    0, "BMC inboard slit",       mm,   Pos,    1.,   .1,     0,    0,    0.05,   1.5,     400,    -0.50,   3,     50,      0}
-{13BMA:,  m27,  "OMS VME58",   3,    1, "BMC outboard slit",      mm,   Pos,    1.,   .1,     0,    0,    0.05,   1.5,     400,    -0.50,   3,     50,      0}
+#{13BMA:,  m26,  "OMS VME58",   3,    0, "BMC inboard slit",       mm,   Pos,    1.,   .1,     0,    0,    0.05,   1.5,     400,    -0.50,   3,     50,      0}
+{13BMA:,  m26,  "OMS VME58",   3,    0, "BMC Mono X",             mm,   Pos,   1.0,  0.1,    .5,    0,       1,    .2,     200,    0.010,   4,     95,      5}
+#{13BMA:,  m27,  "OMS VME58",   3,    1, "BMC outboard slit",      mm,   Pos,    1.,   .1,     0,    0,    0.05,   1.5,     400,    -0.50,   3,     50,      0}
+{13BMA:,  m27,  "OMS VME58",   3,    1, "BMC Mono Theta",        deg,   Neg,   5.0,  1.0,    .5,    0,       1,    .2,     200,     0.10,   4,    361,   -361}
 }
 
-file "$(STD)/stdApp/Db/2slit.db"
+file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
@@ -39,28 +41,28 @@ pattern
 {13BMA:, Slit1H,   m4,   m3}
 }
 
-file "$(STD)/stdApp/Db/2slit.db"
+file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit2V,   m24,  m25}
 }
 
-file "$(STD)/stdApp/Db/2slit.db"
+file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit3V,  m15,  m16}
 }
 
-file "$(STD)/stdApp/Db/2slit.db"
+file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit4H,  m26,  m27}
 }
 
-file "$(STD)/stdApp/Db/table.db"
+file "$(OPTICS)/opticsApp/Db/table.db"
 {
 pattern
 {P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
@@ -76,7 +78,7 @@ pattern
 #}
 
 
-file "$(STD)/stdApp/Db/scanParms.db"
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
 {P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hp,POS=Slit1Hxp.VAL,RDBK=Slit1Ht2.A}
 {P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hn,POS=Slit1Hxn.VAL,RDBK=Slit1Ht2.B}

@@ -23,7 +23,7 @@ devPM304Debug=0
 drvPM304Debug=0
 devA32VmeDebug=0
 devMPCDebug=0
-quadEMDebug=10
+quadEMDebug=0
 
 # Set up the Allen-Bradley 6008 scanner
 abConfigNlinks 1
@@ -35,22 +35,25 @@ dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13IDA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
+
+# Load asyn records on all serial ports
+dbLoadTemplate("asynRecord.template")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,C=0,SERVER=serial1,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,C=0,SERVER=serial2,CC1=cc2,CC2=ccA,PR1=pr2,PR2=prA")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip1,C=0,SERVER=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip3,C=0,SERVER=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip1,C=0,PORT=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip3,C=0,PORT=serial4")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,C=0,SERVER=serial5,CC1=cc5,CC2=cc6,PR1=pr5,PR2=pr6")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip5,C=0,SERVER=serial6")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip5,C=0,PORT=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip2,C=0,SERVER=serial7,PA=0,PN=1", ip)
 # serial8 is McClennan PM-304 motor controller
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,C=0,SERVER=serial9")
-dbLoadRecords("$(CARS)/CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200,C=0,SERVER=serial10")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,C=0,PORT=serial9")
+dbLoadRecords("$(CARS)/CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200,C=0,PORT=serial10")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,C=0,SERVER=serial11,CC1=cc7,CC2=ccB,PR1=pr7,PR2=prB")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip6,C=0,SERVER=serial12,PA=0,PN=1")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip7,C=0,SERVER=serial12,PA=0,PN=2")
 dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13IDA:,TSP=tsp1,C=0,SERVER=serial12,PA=0")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,C=0,SERVER=serial13")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,C=0,PORT=serial13")
 
 dbLoadTemplate("motors.template")
 

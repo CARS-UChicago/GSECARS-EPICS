@@ -37,25 +37,25 @@ dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13BMA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13BMA:,R=ser1,C=0,SERVER=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,SERVER=serial1")
+
+# Load asynRecords on all ports
+dbLoadTemplate("asynRecord.template")
+
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,PORT=serial1")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial2,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,SERVER=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,PORT=serial3")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial4,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial5,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,SERVER=serial6")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,PORT=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial7,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,SERVER=serial8")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,PORT=serial8")
 
-# This is the McClennan controller
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13BMA:,R=ser2,C=0,SERVER=serial9")
-
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,SERVER=serial10")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,PORT=serial10")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=0,SERVER=serial11,PA=0,PN=1")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=0,SERVER=serial11,PA=0,PN=2")
 dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=0,SERVER=serial11,PA=0")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial12,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,SERVER=serial13")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,PORT=serial13")
 
 dbLoadTemplate("motors.template")
 
@@ -81,7 +81,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_24.db","P=13BMA:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -89,16 +89,20 @@ dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXP
 dbLoadTemplate("scanParms.template")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db","P=13BMA:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13BMA:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db","P=13BMA:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13BMA:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
 
-# vxWorks statistics FIX THIS!!!
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13BMA:")
+# vxWorks statistics
+dbLoadTemplate("vxStats.substitutions")
+
+set_pass0_restoreFile("auto_positions.sav")
+set_pass0_restoreFile("auto_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -117,11 +121,11 @@ PM304Setup(1, 1, 10)
 
 # PM304 driver configuration parameters: 
 #     (1) controller
-#     (2) MPF ID
-#     (3) MPF server
+#     (2) asyn port
+#     (3) MAX axes
 # Example:
-#   PM304Config(0, 1, "serial1")  MPF server "serial1"
-PM304Config(0, 0, "serial9")
+#   PM304Config(0, "serial1", 1)
+PM304Config(0, "serial9", 1)
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1

@@ -27,8 +27,9 @@ tyGSMPFInit("serial14", 1, 5,  9600,'N',1,8,'N',"")  /* Unused */
 tyGSMPFInit("serial15", 1, 6,  9600,'N',1,8,'N',"")  /* Unused */
 tyGSMPFInit("serial16", 1, 7,  9600,'N',1,8,'N',"")  /* Unused */
 
+# Debug McClennan
+#asynSetTraceMask("serial9",0,9)
+#asynSetTraceIOMask("serial9",0,2)
+
 # Initialize Systran DAC
 initDAC128V("DAC1",0,3,20)
-
-# DEBUGGING
-#serialPortSniff("UART[12]",1000)

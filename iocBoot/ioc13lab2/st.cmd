@@ -4,13 +4,13 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+ld < CARS167.munch
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARSApp
-dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
-CARSVX_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("$(CARS)/dbd/CARS167.dbd")
+CARS167_registerRecordDeviceDriver(pdbbase)
 
 # Set debugging flags
 devMM4000debug = 0
@@ -54,7 +54,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser1,C=0,SERVE
 dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser2,C=0,SERVER=serial2")
 #dbLoadRecords("$(IP)/ipApp/Db/MKS_single.db","P=13LAB2:,C=0,SERVER=serial2,CC1=cc1,PR1=pr1")
 dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser3,C=0,SERVER=serial3")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,SERVER=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,SERVER=serial3")
 #dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB2:,R=ser4,C=0,SERVER=serial4")
 #dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip1,C=0,SERVER=serial4,PA=0,PN=1")
 #dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13LAB2:,PUMP=ip2,C=0,SERVER=serial4,PA=0,PN=2")
@@ -89,22 +89,22 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db","P=13LAB2:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db","P=13LAB2:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13LAB2:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db","P=13LAB2:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13LAB2:")
 
 # vme test record
-dbLoadRecords("$(STD)/stdApp/Db/vme.db", "P=13LAB2:,Q=vme1")
+dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB2:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13LAB2:")
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13LAB2:")
+dbLoadTemplate("vxStats.substitutions")
 
 
 ################################################################################
@@ -129,8 +129,8 @@ iocInit
 #
 < ../requestFileCommands
 # save positions every five seconds
-#create_monitor_set("auto_positions.req",5)
+create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
-#create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30)
 
-#seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
+seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"

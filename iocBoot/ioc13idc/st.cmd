@@ -37,35 +37,34 @@ devSerialDebug = 0
 save_restoreDebug = 0
 
 # Load database
-dbLoadRecords("$(STD)/stdApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0")
+dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0")
+
+# Load asyn records on all serial ports
+dbLoadTemplate("asynRecord.template")
 
 # First Octal UART for microprobe experiments
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,SERVER=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,SERVER=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,SERVER=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,SERVER=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,SERVER=serial5")
-##dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,SERVER=serial6")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A1,C=0,PORT=serial1")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A2,C=0,PORT=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,C=0,PORT=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,PORT=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,PORT=serial5")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,PORT=serial6")
 
-# # Serial port 6 and 7 are IDB bpm amplifiers
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,C=0,SERVER=serial14")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A7,C=0,SERVER=serial15")
-
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,SERVER=serial8")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,C=0,PORT=serial8")
 
 # Second Octal UART for diffractometer experiments
-# Serial ports 1 and 2 are for SR570 current amplifiers
-# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,C=0,SERVER=serial9")
-# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,C=0,SERVER=serial10")
+# Serial ports 1 thru 4 are for SR570 current amplifiers
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B1,C=0,PORT=serial9")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B2,C=0,PORT=serial10")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B3,C=0,PORT=serial11")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B4,C=0,PORT=serial12")
 
-# Serial ports 3 and 4 are for the MM4000.  We have both motor record and generic serial records on them
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDC:,R=ser1,C=0,SERVER=serial11")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDC:,R=ser2,C=0,SERVER=serial12")
-# Serial port 5 is for the SMART PC
+# Serial ports 5 and 6 are for the MM4000.
+# Serial port 8 is for the SMART PC
 str=malloc(256)
-strcpy(str,"P=13IDC:,R=smart1,C=0,SERVER=serial13,")
+strcpy(str,"P=13IDC:,R=smart1,C=0,PORT=serial16,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CARS)/CARSApp/Db/smartControl.db",str,top)
+dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db",str,top)
 
 dbLoadTemplate("motors.template")
 
@@ -75,10 +74,10 @@ dbLoadTemplate("DAC.template")
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,SERVER=serial11,")
+strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,PORT=serial13,")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,SERVER=serial12,")
+strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,C=0,PORT=serial14,")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 strcat(str, ",M1=Y1,M2=Y2,M3=Y3,M4=Rotation AY,M5=X translation,M6=Sample X,M7=Sample Y,M8=Sample Z")
 dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
@@ -122,7 +121,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13IDC:")
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
 
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 
 ## MN: scanner database for scan communication
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=EDB", top)
@@ -153,7 +152,7 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDC:")
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDC:")
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13IDC:")
+dbLoadTemplate("vxStats.substitutions")
 
 # MN scanner db for long string args
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=edb")
@@ -169,23 +168,18 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=edb")
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(9, 8, 0x4000, 190, 5, 10)
 
-# MM4000 driver setup parameters: 
-#     (1) maximum # of controllers, 
+# MM4000 driver setup parameters:
+#     (1) maximum # of controllers,
 #     (2) maximum # axis per controller
 #     (3) motor task polling rate (min=1Hz, max=60Hz)
 MM4000Setup(2, 8, 10)
 
-# MM4000 driver configuration parameters: 
+# MM4000 driver configuration parameters:
 #     (1) controller
-#     (2) port type: 0=GPIB, 1=RS232, 
-#     (3) GPIB link or MPF ID
-#     (4) MPF server
-# GPIB example:
-#   MM4000Config(0,0,10,2)  #Link 10, address 2
-# RS-232 example:
-#   MM4000Config(0, 1, 0, "serial1")  MPF card 1, serial 1
-MM4000Config(0, 1, 0, "serial11")
-MM4000Config(1, 1, 0, "serial12")
+#     (2) asyn port name (e.g. serial1 or gpib1)
+#     (3) GPIB address (0 for serial)
+MM4000Config(0, "serial13", 0)
+MM4000Config(1, "serial14", 0)
 
 # Set a delay in reading back MM4000 motors when they complete moves. 
 # This is a temporary fix

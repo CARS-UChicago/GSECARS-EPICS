@@ -141,17 +141,17 @@ pattern
 {13IDC:, m82, "OMS VME58",  8, 1,  "Element 5 Yaw"  ,  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
 {13IDC:, m83, "OMS VME58",  8, 2,  "Element 6 Pitch",  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
 {13IDC:, m84, "OMS VME58",  8, 3,  "Element 6 Yaw"  ,  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m85, "OMS VME58",  8, 4,  "IXS Slit Y"     ,  microns, Neg,  200.0,  10, .2,  0,  1,  .2,     48,  -3.546, 1,      8e3,     0}
-{13IDC:, m86, "OMS VME58",  8, 5,  "IXS Slit Z"     ,  microns, Pos,  200.0,  10, .2,  0,  1,  .2,     48,  -3.546, 1,      8e3,     0}
-{13IDC:, m87, "OMS VME58",  8, 6,  "Motor 87"       ,  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m88, "OMS VME58",  8, 7,  "Motor 88"       ,  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m85, "OMS VME58",  8, 4,  "IXS Slit Y"     ,  microns, Neg,  200.0,  10, .2,  0,  1,  .2,     48, -3.546, 1,      8e3,     0} 
+{13IDC:, m86, "OMS VME58",  8, 5,  "IXS Slit Z"     ,  microns, Pos,  200.0,  10, .2,  0,  1,  .2,     48, -3.546, 1,      8e3,     0}
+{13IDC:, m87, "OMS VME58",  8, 6,  "Microscope Z"   ,  microns, Neg,  200.0,  10, .2,  0, 10,  .2,     48, -3.546, 1,    10000,-10000}
+{13IDC:, m88, "OMS VME58",  8, 7,  "YAG Focus"      ,  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
 
 
 }
 
 
 # XAS table using generic table-record
-file "$(STD)/stdApp/Db/table.db"
+file "$(OPTICS)/opticsApp/Db/table.db"
 {
 pattern
 {P,         Q,     T, M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
@@ -159,7 +159,7 @@ pattern
 }
 
 # Newport table using generic table-record
-file "$(STD)/stdApp/Db/table.db"
+file "$(OPTICS)/opticsApp/Db/table.db"
 {
 pattern
 {P,          Q,      T,  M0X,   M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
@@ -239,7 +239,7 @@ pattern
 }
 
 #
-file "$(STD)/stdApp/Db/scanParms.db"
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
 {P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}

@@ -1,5 +1,5 @@
 # Allocate 32MB of memory temporarily so that all code loads in 32MB.
-mem = malloc(1024*1024*32)
+mem = malloc(1024*1024*96)
 
 # vxWorks startup file
 < cdCommands
@@ -58,7 +58,7 @@ dbLoadRecords("$(CAMAC)/camacApp/Db/generic_camac.db","P=13GE3:,R=camac1,SIZE=20
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13GE3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13GE3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -66,13 +66,13 @@ dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13GE3:,MAXPTS1=2000,MAXPTS2=200,MAXP
 dbLoadTemplate "scanParms.template"
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db","P=13GE3:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13GE3:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db","P=13GE3:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13GE3:")
 
 # vme test record
-dbLoadRecords("$(STD)/stdApp/Db/vme.db", "P=13GE3:,Q=vme1")
+dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13GE3:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE3:")
