@@ -1,0 +1,1932 @@
+
+file {
+	name="/home/phoebus/DECKER/medm/ID/IDxbpm.adl"
+	version=030000
+}
+display {
+	object {
+		x=46
+		y=99
+		width=800
+		height=400
+	}
+	clr=14
+	bclr=1
+	cmap=""
+	gridSpacing=5
+	gridOn=1
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+image {
+	object {
+		x=15
+		y=142
+		width=775
+		height=145
+	}
+	type="gif"
+	"image name"="IDxbpm.gif"
+}
+rectangle {
+	object {
+		x=488
+		y=257
+		width=70
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector):ID:SrcPt:yPositionM.VAL"
+	}
+}
+rectangle {
+	object {
+		x=486
+		y=157
+		width=75
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector):ID:SrcPt:xPositionM.VAL"
+	}
+}
+rectangle {
+	object {
+		x=668
+		y=60
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)B:P1:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=670
+		y=292
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)B:P1:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=578
+		y=60
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)B:P0:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=580
+		y=292
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)B:P0:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=487
+		y=60
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sectorPlusOne)A:P0:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=489
+		y=292
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sectorPlusOne)A:P0:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=399
+		y=60
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sectorPlusOne)A:P1:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=401
+		y=292
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sectorPlusOne)A:P1:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=230
+		y=289
+		width=86
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)ID:P1:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=228
+		y=60
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)ID:P1:ms:x:BadBO"
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=116
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P1:mswAve:x:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=297
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P1:mswAve:y:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=494
+		y=116
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:mswAve:x:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=494
+		y=297
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:mswAve:y:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=328
+		y=84
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HORZ."
+	align="horiz. right"
+}
+text {
+	object {
+		x=327
+		y=305
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VERT."
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=585
+		y=116
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:mswAve:x:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=675
+		y=116
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P1:mswAve:x:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=585
+		y=297
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:mswAve:y:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=675
+		y=297
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P1:mswAve:y:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=546
+		y=21
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RFBPMs"
+	align="horiz. right"
+}
+text {
+	object {
+		x=151
+		y=26
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IDXBPMs"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=235
+		y=116
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:mswAve:x:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=235
+		y=297
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:mswAve:y:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=574
+		y=189
+		width=40
+		height=11
+	}
+	monitor {
+		chan="ID$(sector0):Gap.VAL"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=551
+		y=189
+		width=18
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Gap"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=68
+		y=36
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ID:P2:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=317
+		y=163
+		width=11
+		height=9
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+}
+text {
+	object {
+		x=338
+		y=162
+		width=36
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="In Use"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=317
+		y=183
+		width=11
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+}
+text {
+	object {
+		x=338
+		y=182
+		width=60
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not In Use"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=262
+		y=36
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ID:P1:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=68
+		y=376
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ID:P2:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=262
+		y=376
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ID:P1:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=702
+		y=36
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)B:P1:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=702
+		y=376
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)B:P1:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=612
+		y=36
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)B:P0:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=612
+		y=376
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)B:P0:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=521
+		y=376
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sectorPlusOne)A:P0:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=521
+		y=36
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sectorPlusOne)A:P0:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=433
+		y=36
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sectorPlusOne)A:P1:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=433
+		y=376
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sectorPlusOne)A:P1:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=34
+		y=60
+		width=90
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)ID:P2:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=36
+		y=289
+		width=86
+		height=80
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)ID:P2:ms:y:BadBO"
+	}
+}
+"text update" {
+	object {
+		x=41
+		y=116
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P2:mswAve:x:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=41
+		y=297
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P2:mswAve:y:ErrorCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=305
+		y=14
+		width=192
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Sector $(sector)"
+}
+"text update" {
+	object {
+		x=41
+		y=90
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P2:ms:x:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=235
+		y=90
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:ms:x:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=90
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P1:ms:x:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=585
+		y=90
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:ms:x:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=494
+		y=90
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:ms:x:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=675
+		y=90
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P1:ms:x:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=41
+		y=66
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P2:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=235
+		y=66
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=66
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P1:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=585
+		y=66
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=494
+		y=66
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=675
+		y=66
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P1:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=41
+		y=321
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P2:ms:y:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=235
+		y=321
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:ms:y:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=321
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P1:ms:y:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=494
+		y=321
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:ms:y:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=585
+		y=321
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:ms:y:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=675
+		y=321
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P1:ms:y:SetpointAO"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=41
+		y=345
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P2:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=235
+		y=345
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=345
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P1:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=494
+		y=345
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=585
+		y=345
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=675
+		y=345
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P1:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=563
+		y=204
+		width=6
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="E"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=574
+		y=204
+		width=40
+		height=11
+	}
+	monitor {
+		chan="ID$(sector0):Energy.VAL"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=136
+		y=67
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Adj. Rdbk"
+	align="horiz. right"
+}
+text {
+	object {
+		x=146
+		y=90
+		width=80
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Setpoint"
+	align="horiz. right"
+}
+text {
+	object {
+		x=153
+		y=115
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Error"
+	align="horiz. right"
+}
+text {
+	object {
+		x=129
+		y=345
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Adj. Rdbk"
+	align="horiz. right"
+}
+text {
+	object {
+		x=139
+		y=322
+		width=80
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Setpoint"
+	align="horiz. right"
+}
+text {
+	object {
+		x=151
+		y=296
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Error"
+	align="horiz. right"
+}
+text {
+	object {
+		x=762
+		y=66
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=762
+		y=91
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=762
+		y=115
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+"text update" {
+	object {
+		x=151
+		y=165
+		width=80
+		height=15
+	}
+	monitor {
+		chan="EPS:$(sector0):ID:PS1:POS:OP"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+image {
+	object {
+		x=140
+		y=185
+		width=100
+		height=40
+	}
+	type="gif"
+	"image name"="shutter.gif"
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="EPS:$(sector0):ID:PS1:POS:OP"
+	}
+}
+image {
+	object {
+		x=140
+		y=200
+		width=100
+		height=40
+	}
+	type="gif"
+	"image name"="shutter.gif"
+	"dynamic attribute" {
+		vis="if zero"
+		chan="EPS:$(sector0):ID:PS1:POS:OP"
+	}
+}
+text {
+	object {
+		x=171
+		y=144
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PS 1"
+}
+text {
+	object {
+		x=762
+		y=297
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=762
+		y=323
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=762
+		y=347
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=329
+		y=366
+		width=42
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Error ="
+}
+text {
+	object {
+		x=294
+		y=382
+		width=120
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="(Adj. Rdbk - Setpoint)"
+}
+polyline {
+	object {
+		x=304
+		y=156
+		width=107
+		height=41
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="S$(sector)ID:P2:mswAve:x:ErrorCC"
+	}
+	points {
+		(305,157)
+		(305,195)
+		(409,195)
+		(409,157)
+		(305,157)
+		(305,157)
+	}
+}
+text {
+	object {
+		x=106
+		y=384
+		width=102
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="G. Decker 9/20/02"
+}
+"text update" {
+	object {
+		x=493
+		y=260
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector):ID:SrcPt:yAngleM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=505
+		y=245
+		width=36
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VAngle"
+	align="horiz. right"
+}
+text {
+	object {
+		x=496
+		y=278
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="microrad."
+	align="horiz. right"
+}
+text {
+	object {
+		x=618
+		y=189
+		width=12
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=618
+		y=204
+		width=18
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="keV"
+}
+"text update" {
+	object {
+		x=493
+		y=160
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector):ID:SrcPt:xAngleM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=505
+		y=148
+		width=36
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HAngle"
+	align="horiz. right"
+}
+text {
+	object {
+		x=496
+		y=179
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="microrad."
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=629
+		y=157
+		width=75
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector):ID:SrcPt:xPositionM.VAL"
+	}
+}
+"text update" {
+	object {
+		x=636
+		y=160
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector):ID:SrcPt:xPositionM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=639
+		y=148
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HPosition"
+	align="horiz. right"
+}
+text {
+	object {
+		x=660
+		y=179
+		width=12
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=631
+		y=257
+		width=70
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector):ID:SrcPt:yPositionM.VAL"
+	}
+}
+"text update" {
+	object {
+		x=636
+		y=260
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector):ID:SrcPt:yPositionM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=639
+		y=245
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VPosition"
+	align="horiz. right"
+}
+text {
+	object {
+		x=660
+		y=278
+		width=12
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+	align="horiz. right"
+}
+text {
+	object {
+		x=331
+		y=110
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="( = X)"
+	align="horiz. right"
+}
+text {
+	object {
+		x=330
+		y=329
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="( = Y)"
+	align="horiz. right"
+}
+composite {
+	object {
+		x=741
+		y=374
+		width=40
+		height=20
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=767
+				y=379
+				width=7
+				height=13
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=771
+						y=389
+						width=4
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(775,389)
+						(771,392)
+					}
+				}
+				polyline {
+					object {
+						x=767
+						y=389
+						width=4
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(767,389)
+						(771,392)
+					}
+				}
+				polyline {
+					object {
+						x=771
+						y=379
+						width=0
+						height=13
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(771,379)
+						(771,392)
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=751
+				y=376
+				width=20
+				height=5
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=751
+						y=379
+						width=5
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(756,382)
+						(751,379)
+					}
+				}
+				polyline {
+					object {
+						x=751
+						y=376
+						width=5
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(756,376)
+						(751,379)
+					}
+				}
+				polyline {
+					object {
+						x=751
+						y=379
+						width=20
+						height=0
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(771,379)
+						(751,379)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=741
+				y=374
+				width=4
+				height=7
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="S"
+		}
+		text {
+			object {
+				x=777
+				y=387
+				width=4
+				height=7
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="X"
+		}
+	}
+}
