@@ -39,50 +39,42 @@ evflag   mBZ_rbv_mon;      sync mBZ_rbv      mBZ_rbv_mon;
 /*********************** Pseudomotors ****************************************/
 /******* Table Angles **************/
 /* Pseudomotor AX*/
-double pmAX_drive; assign pmAX_drive  to "{P}{PM1}.VAL";     monitor pmAX_drive;
-double pmAX_move;  assign pmAX_move   to "{P}{PM1}:Move";    monitor pmAX_move;
+double pmAX_drive; assign pmAX_drive  to "{P}{PM1}:Move";     monitor pmAX_drive;
 double pmAX_rbv;   assign pmAX_rbv    to "{P}{PM1}:Readback";
 /* Pseudomotor AY*/
-double pmAY_drive; assign pmAY_drive  to "{P}{PM2}.VAL";     monitor pmAY_drive;
-double pmAY_move;  assign pmAY_move   to "{P}{PM2}:Move";    monitor pmAY_move;
+double pmAY_drive; assign pmAY_drive  to "{P}{PM2}:Move";     monitor pmAY_drive;
 double pmAY_rbv;   assign pmAY_rbv    to "{P}{PM2}:Readback";
 /* Pseudomotor AZ*/
-double pmAZ_drive; assign pmAZ_drive  to "{P}{PM3}.VAL";     monitor pmAZ_drive;
-double pmAZ_move;  assign pmAZ_move   to "{P}{PM3}:Move";    monitor pmAZ_move;
+double pmAZ_drive; assign pmAZ_drive  to "{P}{PM3}:Move";     monitor pmAZ_drive;
 double pmAZ_rbv;   assign pmAZ_rbv    to "{P}{PM3}:Readback";
 
 /******* Rotation Point Translation and Angles *****/
 /* Pseudomotor RX*/
-double pmRX_drive; assign pmRX_drive  to "{P}{PM4}.VAL";     monitor pmRX_drive;
-double pmRX_move;  assign pmRX_move   to "{P}{PM4}:Move";    monitor pmRX_move;
+double pmRX_drive; assign pmRX_drive  to "{P}{PM4}:Move";     monitor pmRX_drive;
 double pmRX_rbv;   assign pmRX_rbv    to "{P}{PM4}:Readback";
 /* Pseudomotor RY*/
-double pmRY_drive; assign pmRY_drive  to "{P}{PM5}.VAL";     monitor pmRY_drive;
-double pmRY_move;  assign pmRY_move   to "{P}{PM5}:Move";    monitor pmRY_move;
+double pmRY_drive; assign pmRY_drive  to "{P}{PM5}:Move";     monitor pmRY_drive;
 double pmRY_rbv;   assign pmRY_rbv    to "{P}{PM5}:Readback";
 /* Pseudomotor RZ*/
-double pmRZ_drive; assign pmRZ_drive  to "{P}{PM6}.VAL";     monitor pmRZ_drive;
-double pmRZ_move;  assign pmRZ_move   to "{P}{PM6}:Move";    monitor pmRZ_move;
+double pmRZ_drive; assign pmRZ_drive  to "{P}{PM6}:Move";     monitor pmRZ_drive;
 double pmRZ_rbv;   assign pmRZ_rbv    to "{P}{PM6}:Readback";
 /* Pseudomotor T_AX*/
-double pmT_AX_drive; assign pmT_AX_drive  to "{P}{PM7}.VAL";     monitor pmT_AX_drive;
-double pmT_AX_move;  assign pmT_AX_move   to "{P}{PM7}:Move";    monitor pmT_AX_move;
+double pmT_AX_drive; assign pmT_AX_drive  to "{P}{PM7}:Move";     monitor pmT_AX_drive;
 double pmT_AX_rbv;   assign pmT_AX_rbv    to "{P}{PM7}:Readback";
 /* Pseudomotor T_AY*/
-double pmT_AY_drive; assign pmT_AY_drive  to "{P}{PM8}.VAL";     monitor pmT_AY_drive;
-double pmT_AY_move;  assign pmT_AY_move   to "{P}{PM8}:Move";    monitor pmT_AY_move;
+double pmT_AY_drive; assign pmT_AY_drive  to "{P}{PM8}:Move";    monitor pmT_AY_drive;
 double pmT_AY_rbv;   assign pmT_AY_rbv    to "{P}{PM8}:Readback";
 
 
 /* monitors and event flags */
-evflag pmAX_move_mon;    sync pmAX_move     pmAX_move_mon;
-evflag pmAY_move_mon;    sync pmAY_move     pmAY_move_mon;
-evflag pmAZ_move_mon;    sync pmAZ_move     pmAZ_move_mon;
-evflag pmRX_move_mon;    sync pmRX_move     pmRX_move_mon;
-evflag pmRY_move_mon;    sync pmRY_move     pmRY_move_mon;
-evflag pmRZ_move_mon;    sync pmRZ_move     pmRZ_move_mon;
-evflag pmT_AX_move_mon;  sync pmT_AX_move   pmT_AX_move_mon;
-evflag pmT_AY_move_mon;  sync pmT_AY_move   pmT_AY_move_mon;
+evflag pmAX_drive_mon;    sync pmAX_drive     pmAX_drive_mon;
+evflag pmAY_drive_mon;    sync pmAY_drive     pmAY_drive_mon;
+evflag pmAZ_drive_mon;    sync pmAZ_drive     pmAZ_drive_mon;
+evflag pmRX_drive_mon;    sync pmRX_drive     pmRX_drive_mon;
+evflag pmRY_drive_mon;    sync pmRY_drive     pmRY_drive_mon;
+evflag pmRZ_drive_mon;    sync pmRZ_drive     pmRZ_drive_mon;
+evflag pmT_AX_drive_mon;  sync pmT_AX_drive   pmT_AX_drive_mon;
+evflag pmT_AY_drive_mon;  sync pmT_AY_drive   pmT_AY_drive_mon;
 
 
 /************ flag for update translation *******************************************/
@@ -153,18 +145,17 @@ double mBZ;
 ss NewportTable {
 /*** 1.  initialize ***/
   state init {
-        /* The delay(.01) in the following when() is necessary because of a bug in seq 2.0.4 */
         when() {
             dtor = 4. * atan(1.) / 180.;
             efSet(mAY_rbv_mon);         /* Force calculation first time through  */
-            efClear(pmAX_move_mon);     /* ie force #2.3 to be evaluated         */
-            efClear(pmAY_move_mon);     /* + Don't move motors on initialization */
-            efClear(pmAZ_move_mon);
-            efClear(pmRX_move_mon);
-            efClear(pmRY_move_mon);
-            efClear(pmRZ_move_mon);
-            efClear(pmT_AX_move_mon);
-            efClear(pmT_AY_move_mon);
+            efClear(pmAX_drive_mon);     /* ie force #2.3 to be evaluated         */
+            efClear(pmAY_drive_mon);     /* + Don't move motors on initialization */
+            efClear(pmAZ_drive_mon);
+            efClear(pmRX_drive_mon);
+            efClear(pmRY_drive_mon);
+            efClear(pmRZ_drive_mon);
+            efClear(pmT_AX_drive_mon);
+            efClear(pmT_AY_drive_mon);
 if (newport_tableDebug) printf("state 1, mAY_rbv==%f\n", mAY_rbv);
         } state monitor_changes
   }
@@ -172,14 +163,14 @@ if (newport_tableDebug) printf("state 1, mAY_rbv==%f\n", mAY_rbv);
 /*** 2. monitor changes ***/
   state monitor_changes {
         /*** 2.1. drive a pseudo motor ***/
-        when(efTestAndClear(pmAX_move_mon) || 
-             efTestAndClear(pmAY_move_mon) ||
-             efTestAndClear(pmAZ_move_mon) ||
-             efTestAndClear(pmRX_move_mon) ||
-             efTestAndClear(pmRY_move_mon) ||
-             efTestAndClear(pmRZ_move_mon) ||
-             efTestAndClear(pmT_AX_move_mon) ||
-             efTestAndClear(pmT_AY_move_mon) ) {
+        when(efTestAndClear(pmAX_drive_mon) || 
+             efTestAndClear(pmAY_drive_mon) ||
+             efTestAndClear(pmAZ_drive_mon) ||
+             efTestAndClear(pmRX_drive_mon) ||
+             efTestAndClear(pmRY_drive_mon) ||
+             efTestAndClear(pmRZ_drive_mon) ||
+             efTestAndClear(pmT_AX_drive_mon) ||
+             efTestAndClear(pmT_AY_drive_mon) ) {
             /* do the foreward calc and drive real motors  */
 if (newport_tableDebug) printf("state 2.1\n");
             
@@ -221,46 +212,14 @@ if (newport_tableDebug) printf("state 2.1\n");
         } state monitor_changes
 
 
-        /*** 2.2. A real motor has been driven or a geom parameter has changed ***/
+        /*** 2.2. Real motors have all stopped moving or a geom parameter has changed ***/
         when((efTestAndClear(motors_stopped_mon) && motors_stopped == 1) || 
              efTestAndClear(lx_mon)      ||
              efTestAndClear(lz_mon)      ||
              efTestAndClear(vD0_mon)     ||
              efTestAndClear(d1_mon)      ||  
              efTestAndClear(d2_mon)) {
-            /* Update the pseudo-motor drive fields */
 if (newport_tableDebug) printf("state 2.2\n");
-
-            /* recalc the target point */
-            T_AX =  pmT_AX_drive*dtor;
-            T_AY =  pmT_AY_drive*dtor;  
-            vR[0] = pmRX_drive;
-             vR[1] = pmRY_drive;
-            vR[2] = pmRZ_drive; 
-            calc_target_point(vR, vD0, T_AX, T_AY, d1, d2, &vT[0]);
-            
-            /* recalc the pseudo motor positions */
-            mAY = mAY_drive;
-            mBY = mBY_drive;
-            mCY = mCY_drive;
-            mAX = mAX_drive;
-            mBZ = mBZ_drive;
-            pseudo_from_motor(lx, lz, vD0, vT,&AX, &AY, &AZ, T_AX, T_AY,d1, d2,
-                              mAY, mBY, mCY, mAX, mBZ, &vD[0], &vDel[0],
-                              &del_r,&del_angle);
-
-            /* also update these diagnostic pvs' 
-               note when calc here these are based on the 
-               drive values, not the rbvs !!!! */
-            DELTA_R = del_r;          pvPut(DELTA_R);
-            DELTA_ANGLE = del_angle/dtor;  pvPut(DELTA_ANGLE);
-            DX = vD[0]; pvPut(DX);
-            DY = vD[1]; pvPut(DY);
-            DZ = vD[2]; pvPut(DZ);
-            TX = vT[0]; pvPut(TX);
-            TY = vT[1]; pvPut(TY);
-            TZ = vT[2]; pvPut(TZ);
-
         } state update_readbacks  /* call #3 to get pseudo-motor rbv's correct */
 
         /*** 2.3. A real motor readback val has changed ***/
@@ -344,7 +303,7 @@ if (newport_tableDebug) printf("state 3\n");
 
             /* update rbvs of table angles */
             pmAX_rbv = AX/dtor;  pvPut(pmAX_rbv);
-             pmAY_rbv = AY/dtor;  pvPut(pmAY_rbv);
+            pmAY_rbv = AY/dtor;  pvPut(pmAY_rbv);
             pmAZ_rbv = AZ/dtor;  pvPut(pmAZ_rbv);
 
             /* update rbvs of the ray */
