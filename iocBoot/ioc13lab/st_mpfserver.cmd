@@ -112,7 +112,7 @@ pDAC128V = initDAC128V("d-DAC",carrier0,"IP_d",20)
 #               does not refer to the number of EPICS clients.  A value of
 #               10 should certainly be safe.
 # intVec        Interrupt vector
-#Ip330 = initIp330("b-Ip330", carrier1,"IP_b","D","-5to5",0,15,10,120)
+#pIp330 = initIp330("b-Ip330", carrier1,"IP_b","D","-5to5",0,15,10,120)
 
 # int configIp330(
 #   Ip330 *pIp330,
@@ -150,7 +150,7 @@ pDAC128V = initDAC128V("d-DAC",carrier0,"IP_d",20)
 # milliSecondsToAverage = number of milliseconds to average readings
 # queueSize  = size of output queue for MPF. Make this the maximum number 
 #              of ai records attached to this server.
-#initIp330Scan(pIp330,"a-Ip330Scan",0,15,100,20)
+#initIp330Scan(pIp330,"b-Ip330Scan",0,15,100,20)
 
 # int initIp330Sweep(Ip330 *pIp330, char *serverName, int firstChan, 
 #     int lastChan, int maxPoints, int queueSize)
@@ -163,7 +163,7 @@ pDAC128V = initDAC128V("d-DAC",carrier0,"IP_d",20)
 # maxPoints  = maximum number of points in a sweep.  The amount of memory
 #              allocated will be maxPoints*(lastChan-firstChan+1)*4 bytes
 # queueSize  = size of output queue for EPICS
-#initIp330Sweep(pIp330,"a-Ip330Sweep",0,3,2048,100)
+#initIp330Sweep(pIp330,"b-Ip330Sweep",0,3,2048,100)
 
 # Ip330PID *initIp330PID(const char *serverName,
 #        Ip330 *pIp330, int ADCChannel, DAC128V *pDAC128V, int DACChannel,

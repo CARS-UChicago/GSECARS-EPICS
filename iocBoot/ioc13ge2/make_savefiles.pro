@@ -2,7 +2,13 @@
 
 prefix = '13GE2:'
 scalers = ['scaler1']
-;dxps = ['dxp1']
+dxps = ['med:dxp1']
+nelems = 16
+for i=2,nelems do dxps = [dxps, 'med:dxp'+strtrim(i,2)]
+for i=2,nelems do dxps = [dxps, 'med:dxp'+strtrim(i,2)]
+;simple_mcas = ['med:mca1']
+;for i=2,16 do simple_mcas = [simple_mcas, 'med:mca'+strtrim(i,2)]
+;mcas = ['aim_adc1']
 
 create_autosavefiles, prefix          = prefix,          $
                       nscans          = 4,               $
@@ -14,6 +20,7 @@ create_autosavefiles, prefix          = prefix,          $
                       icb_adcs        = icb_adcs,        $
                       icb_hvps        = icb_hvps,        $
                       mcas            = mcas,            $
+                      simple_mcas     = simple_mcas,     $
                       dxps            = dxps,            $
                       tables          = tables
 

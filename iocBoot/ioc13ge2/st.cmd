@@ -7,6 +7,9 @@ cd appbin
 ld < iocCore
 ld < seq
 ld < CARSLib
+
+putenv("EPICS_TS_MIN_WEST=300")
+
 # This IOC talks to a local GPIB server
 #ld < gpibHideosLocal.o
 # Currently, the only thing we do in initHooks is call reboot_restore(), which
@@ -36,7 +39,7 @@ devScalerCamacDebug=0
 devE500Debug=0
 drvE500Debug=0
 aimDebug=0
-icbDebug=10
+icbDebug=0
 dxpRecordDebug=0
 mcaDXPServerDebug=0
 devDxpMpfDebug=0
@@ -57,7 +60,8 @@ camacLibInit
 
 # Load the DXP stuff
 < 16element.cmd
-
+# <  4element.cmd
+# < 8element.cmd
 
 # Generic CAMAC record
 dbLoadRecords("camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048", camac)
@@ -74,18 +78,35 @@ E500Setup(2, 8, 10)
 #     (2) branch 
 #     (3) crate
 #     (4) slot
-E500Config(0, 0, 0, 22)
-E500Config(1, 0, 0, 23)
+E500Config(0, 0, 0, 13)
+E500Config(1, 0, 0, 14)
 
 dbLoadTemplate  "motors.template"
 
+# Multichannel analyzer stuff
+# AIMConfig(mpfServer, card, ethernet_address, port, maxChans,
+#           maxSignals, maxSequences, ethernetDevice, queueSize)
+#AIMConfig("AIM1/1", 0x59e, 1, 4000, 1, 1, "ei0", 100)
+#dbLoadRecords("mcaApp/Db/mca.db", "P=13GE2:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048", mca)
+#
+
 ### Scalers: CAMAC scaler
+### Scalers: CAMAC scaler
+# CAMACScalerSetup(int max_cards)   /* maximum number of logical cards */
 CAMACScalerSetup(1)
+
+# CAMACScalerConfig(int card,       /* logical card */
+#  int branch,                         /* CAMAC branch */
+#  int crate,                          /* CAMAC crate */
+#  int timer_type,                     /* 0=RTC-018 */
+#  int timer_slot,                     /* Timer N */
+#  int counter_type,                   /* 0=QS-450 */
+#  int counter_slot)                   /* Counter N */
 CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
 dbLoadRecords("camacApp/Db/CamacScaler.db","P=13GE2:,S=scaler1,C=0", camac)
 
 # Test record for scaler synchronization at X-26
-dbLoadRecords("CARSApp/Db/X26_scaler_sync.db","P=13GE2:,M=med:mca1,S=scaler1", top)
+#dbLoadRecords("CARSApp/Db/X26_scaler_sync.db","P=13GE2:,M=med:mca1,S=scaler1", top)
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -126,9 +147,9 @@ sr_restore_incomplete_sets_ok = 1
 iocInit
 
 #Reset the CAMAC crate - may not want to do this after things are all working
-ext = 0
-cdreg &ext, 0, 0, 1, 0
-cccz ext
+#ext = 0
+#cdreg &ext, 0, 0, 1, 0
+#cccz ext
 
 
 ### Start up the autosave task and tell it what to do.
@@ -144,3 +165,4 @@ create_monitor_set("auto_settings.req",30.0)
 # Enable user string calcs and user transforms
 dbpf "13GE2:EnableUserTrans.PROC","1"
 dbpf "13GE2:EnableUserSCalcs.PROC","1"
+

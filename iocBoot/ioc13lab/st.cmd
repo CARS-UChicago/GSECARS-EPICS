@@ -9,6 +9,9 @@ ld < iocCore
 ld < seq
 ld < CARSLib
 
+# Increase size of buffer for error logging from default 1256 
+errlogInit(5000)
+
 # Currently, the only thing we do in initHooks is call reboot_restore(), which
 # restores positions and settings saved ~continuously while EPICS is alive.
 # See calls to "create_monitor_set()" at the end of this file.  To disable
@@ -31,6 +34,8 @@ module_types()
 
 # Set debugging flags
 devMM4000debug = 0
+devMCB4BDebug=1
+drvMCB4BDebug=1
 drvMM4000debug = 0
 gpibIODebug = 0
 serialIODebug = 0
@@ -68,10 +73,10 @@ dbLoadRecords ("CARSApp/Db/generic_gpib.db","P=13LAB:,R=gpib1,SIZE=4096", top)
 # generic serial port
 # Port 1 has Newport LAE500 Laser Autocollimator (and generic serial port)
 dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB:,R=LAE500,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-#dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 
 # Encoder readout unit
-dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,IPSLOT=a,CHAN=3", top)
+#dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,IPSLOT=a,CHAN=3", top)
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
 
 # Keithley Multimeter
@@ -81,16 +86,14 @@ dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,IPSLOT=a,
 # Stanford Research Systems SR570 Current Preamplifier
 dbLoadRecords("ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,IPSLOT=a,CHAN=7", ip)
 
-#dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=e,CHAN=0,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-
 # Performance tester - don't load routinely
 #dbLoadRecords("CARSApp/Db/perform.db", top)
 
 # SMART detector database
-str=malloc(256)
-strcpy(str,"P=13LAB:,R=smart1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("CARSApp/Db/smartControl.db",str, top)
+#str=malloc(256)
+#strcpy(str,"P=13LAB:,R=smart1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,")
+#strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
+#dbLoadRecords("CARSApp/Db/smartControl.db",str, top)
 
 # DAC
 dbLoadTemplate "DAC.template"
@@ -113,6 +116,10 @@ dbLoadTemplate  "motors.template"
 # Experiment description
 dbLoadRecords("CARSApp/Db/experiment_info.db","P=13LAB:", top)
 
+
+#MN
+dbLoadRecords("CARSApp/Db/scanner.db","P=13LAB:,Q=EDB", top)
+
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
@@ -129,10 +136,10 @@ dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYPE=MPF MCA,INP=#C0 S2 
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYPE=MPF MCA,INP=#C0 S4 @AIM1/2,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYPE=MPF MCA,INP=#C0 S6 @AIM1/2,NCHAN=2048", mca)
 
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @a-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @a-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @a-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @a-Ip330Sweep", mca)
+#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @b-Ip330Sweep", mca)
+#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @b-Ip330Sweep", mca)
+#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @b-Ip330Sweep", mca)
+#dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @b-Ip330Sweep", mca)
 
 #icbDspConfig("icbDsp/1", 1, "NI59E:1", 100)
 #dbLoadRecords "mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,CARD=0,SERVER=icbDsp/1,ADDR=0", mca
@@ -182,7 +189,6 @@ dbLoadRecords("stdApp/Db/vme.db", "P=13LAB:,Q=vme1", std)
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("stdApp/Db/misc.db","P=13LAB:", std)
 
-
 # vxWorks statistics
 dbLoadRecords("stdApp/Db/VXstats.db","P=13LAB:", std)
 
@@ -196,6 +202,22 @@ HiDEOSGpibLinkConfig(10,0,"GPIB0")
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(2, 8, 0x4000, 190, 5, 10)
+
+# MCB-4B driver setup parameters:
+#     (1) maximum # of controllers,
+#     (2) maximum # axis per controller
+#     (3) motor task polling rate (min=1Hz, max=60Hz)
+MCB4BSetup(1, 1, 10)
+
+# MCB-4B driver configuration parameters:
+#     (1) controller
+#     (2) Hideos/MPF card
+#     (3) Hideos task/MPF server
+# Example:
+#   MCB4BConfig(0, 1, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
+MCB4BConfig(0, 0, "a-Serial[3]")
+
+
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -223,18 +245,6 @@ create_monitor_set("auto_settings.req",30.0)
 dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
-# seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
-# seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
-
-# Need to wait 15 seconds before starting this task - TRACK DOWN WHY !!!
-#taskDelay(900)
-#seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=2,stack=10000"
-
-
-# newport table sequencer
-# str=malloc(256)
-# strcpy(str,"P=13LAB:,T=NewTab1:, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,")
-# strcat(str,"PM1=pm1,PM2=pm2,PM3=pm3,PM4=pm4,PM5=pm5,PM6=pm6,PM7=pm7,PM8=pm8")
-# seq &newport_table, str
-
+seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
+seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
 
