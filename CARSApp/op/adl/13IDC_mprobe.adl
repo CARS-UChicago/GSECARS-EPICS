@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/3.14/CARS/CARSApp/op/adl/13IDC_mprobe.adl"
+	name="/home/epics/synApps5-1/CARS/CARSApp/op/adl/13IDC_mprobe.adl"
 	version=030000
 }
 display {
 	object {
-		x=354
-		y=30
+		x=324
+		y=192
 		width=600
 		height=125
 	}
@@ -233,7 +233,7 @@ rectangle {
 	display[6] {
 		label="Microscope motors"
 		name="2motors.adl"
-		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m43 "
+		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m82 "
 	}
 	display[7] {
 		label="Sample Stage"
@@ -421,21 +421,27 @@ rectangle {
 		name="scaler_calcs4.adl"
 		args="P=13IDC:, S=scaler1"
 	}
-	display[2] {
+	display[1] {
 		label="16 element detector"
 		name="16element_dxp.adl"
 		args="P=13GE2:med:"
 	}
+	display[2] {
+		label="Vortex"
+		name="1element_dxp.adl"
+		args="P=dxpLinux:med:"
+	}
 	display[3] {
-		name="16element.adl"
-		args="P=13GE1:med:"
+		label="Ion Chamber"
+		name="IonChamber.adl"
+		args="P=13IDC:, Q=ION"
 	}
 	display[6] {
 		name="aim_adc.adl"
 	}
 	display[7] {
-		name="3motors.adl"
-		args="P=13IDC:, TITLE=RIXS_Detector, M1=m14, M2=m42, M3=m44"
+		name="16element.adl"
+		args="P=13GE1:med:"
 	}
 	clr=14
 	bclr=1

@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\3.14\CARS\CARSApp\op\adl\13IDD_dac_expert.adl"
+	name="J:\epics\synApps5-1\CARS\CARSApp\op\adl\13IDD_dac_expert.adl"
 	version=020306
 }
 display {
 	object {
-		x=110
-		y=255
+		x=93
+		y=219
 		width=1432
 		height=788
 	}
@@ -995,7 +995,7 @@ polygon {
 		height=31
 	}
 	control {
-		chan="13IDD:m7.TWR"
+		chan="13IDD:m8.TWR"
 		clr=14
 		bclr=35
 	}
@@ -1010,7 +1010,7 @@ polygon {
 		height=29
 	}
 	control {
-		chan="13IDD:m7.TWF"
+		chan="13IDD:m8.TWF"
 		clr=14
 		bclr=55
 	}
@@ -1132,7 +1132,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="13IDD:m7.RBV"
+		chan="13IDD:m8.RBV"
 		clr=50
 		bclr=19
 	}
@@ -4885,53 +4885,22 @@ text {
 }
 composite {
 	object {
-		x=355
+		x=775
 		y=30
-		width=464
-		height=34
+		width=44
+		height=29
 	}
 	"composite name"=""
 	children {
-		composite {
+		"message button" {
 			object {
 				x=775
 				y=30
 				width=44
 				height=29
 			}
-			"composite name"=""
-			children {
-				"message button" {
-					object {
-						x=775
-						y=30
-						width=44
-						height=29
-					}
-					control {
-						chan="13IDD:m23.VAL"
-						clr=0
-						bclr=14
-					}
-					label="In"
-					press_msg="0."
-				}
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A>-.1"
-				chan="13IDD:m22.RBV"
-			}
-		}
-		"message button" {
-			object {
-				x=355
-				y=35
-				width=44
-				height=29
-			}
 			control {
-				chan="13IDD:m24.VAL"
+				chan="13IDD:m23.VAL"
 				clr=0
 				bclr=14
 			}
@@ -4941,9 +4910,24 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A<-87&&A>-93ORA>87&&A<93"
-		chan="13IDD:m4.RBV"
+		calc="A<-.1"
+		chan="13IDD:m22.RBV"
 	}
+}
+"message button" {
+	object {
+		x=355
+		y=35
+		width=44
+		height=29
+	}
+	control {
+		chan="13IDD:m24.VAL"
+		clr=0
+		bclr=14
+	}
+	label="In"
+	press_msg="0."
 }
 composite {
 	object {
@@ -5508,42 +5492,6 @@ text {
 "related display" {
 	object {
 		x=1185
-		y=755
-		width=80
-		height=19
-	}
-	display[0] {
-		label="DAC Microscope Stages"
-		name="3motors.adl"
-		args="P=13IDD:, TITLE=DAC_Microscope,  M1=m67, M2=m68, M3=m69"
-	}
-	display[1] {
-		label="DAC X-ray Detectors"
-		name="2motors.adl"
-		args="P=13IDD:, TITLE=DAC_XrayDetector, M1=m7, M2=m8"
-	}
-	display[2] {
-		label="DAC Mirror Positions"
-		name="4motors.adl"
-		args="P=13IDD:,TITLE=DAC_Mirror_Pos, M1=m23,M2=m24,M3=m65,M4=m66"
-	}
-	display[3] {
-		label="DAC WavePlate Motors"
-		name="6motors.adl"
-		args="P=13IDD:,TITLE=DAC_Waveplate_Motors,M1=m70,M2=m71,M3=m13,M4=m72,M5=pm12,M6=pm13"
-	}
-	display[4] {
-		label="DAC PicoMotors"
-		name="picoMotor_9.adl"
-		args="P=13IDD:, S=pico, D=1_"
-	}
-	clr=14
-	bclr=55
-	label="-motors #2"
-}
-"related display" {
-	object {
-		x=1185
 		y=730
 		width=80
 		height=19
@@ -5739,4 +5687,100 @@ text {
 	clr=0
 	bclr=34
 	label="-User"
+}
+composite {
+	object {
+		x=285
+		y=550
+		width=118
+		height=53
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=285
+				y=550
+				width=118
+				height=53
+			}
+			control {
+				chan="13IDD:picoStopAll.PROC"
+				clr=30
+				bclr=24
+			}
+			label="STOP"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:picoMoving"
+	}
+}
+composite {
+	object {
+		x=720
+		y=550
+		width=118
+		height=53
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=720
+				y=550
+				width=118
+				height=53
+			}
+			control {
+				chan="13IDD:picoStopAll.PROC"
+				clr=30
+				bclr=24
+			}
+			label="STOP"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:picoMoving"
+	}
+}
+"related display" {
+	object {
+		x=1185
+		y=755
+		width=80
+		height=19
+	}
+	display[0] {
+		label="DAC Microscope Stages"
+		name="4motors.adl"
+		args="P=13IDD:, TITLE=DAC_Microscope,  M1=m67, M2=m68, M3=m69, M4=m14"
+	}
+	display[1] {
+		label="DAC X-ray Detectors"
+		name="2motors.adl"
+		args="P=13IDD:, TITLE=DAC_XrayDetector, M1=m7, M2=m8"
+	}
+	display[2] {
+		label="DAC Mirror Positions"
+		name="4motors.adl"
+		args="P=13IDD:,TITLE=DAC_Mirror_Pos, M1=m23,M2=m24,M3=m65,M4=m66"
+	}
+	display[3] {
+		label="DAC WavePlate Motors"
+		name="6motors.adl"
+		args="P=13IDD:,TITLE=DAC_Waveplate_Motors,M1=m70,M2=m71,M3=m13,M4=m72,M5=pm12,M6=pm13"
+	}
+	display[4] {
+		label="DAC PicoMotors"
+		name="picoMotor_9.adl"
+		args="P=13IDD:, S=pico, D=1_"
+	}
+	clr=14
+	bclr=55
+	label="-motors #2"
 }
