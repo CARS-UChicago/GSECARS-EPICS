@@ -1,0 +1,117 @@
+# This database contains records for the newport table.  
+# The logic is done in a SNL program (newport_table.st).
+#
+#Call this db from motors.template as:
+#file CARSApp/Db/newport_tabel.db, top
+#{
+#pattern
+#{P,         T,     M1,  M2,   M3,   M4,   M5,  PM1, PM2, PM3, PM4, PM5, PM6, PM7, PM8 }
+#{13IDC:, NewTab1:, m33, m34,  m35,  m36,  m37, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8 }
+#}
+
+# These records are where the psuedo motors write their output.
+grecord(ao,"$(P)$(PM1):Move") {}
+grecord(ao,"$(P)$(PM2):Move") {}
+grecord(ao,"$(P)$(PM3):Move") {}
+grecord(ao,"$(P)$(PM4):Move") {}
+grecord(ao,"$(P)$(PM5):Move") {}
+grecord(ao,"$(P)$(PM6):Move") {}
+grecord(ao,"$(P)$(PM7):Move") {}
+grecord(ao,"$(P)$(PM8):Move") {}
+
+# These records hold the readback positions of the psuedo motors
+grecord(ao,"$(P)$(PM1):Readback") {}
+grecord(ao,"$(P)$(PM2):Readback") {}
+grecord(ao,"$(P)$(PM3):Readback") {}
+grecord(ao,"$(P)$(PM4):Readback") {}
+grecord(ao,"$(P)$(PM5):Readback") {}
+grecord(ao,"$(P)$(PM6):Readback") {}
+grecord(ao,"$(P)$(PM7):Readback") {}
+grecord(ao,"$(P)$(PM8):Readback") {}
+
+# This record processes if any of the real motor STOP fields is set.
+grecord(dfanout,"$(P)$(T)M_Stop") {
+        field(VAL,"1")
+        field(OUTA,"$(P)$(M1).STOP PP MS")
+        field(OUTB,"$(P)$(M2).STOP PP MS")
+        field(OUTC,"$(P)$(M3).STOP PP MS")
+        field(OUTD,"$(P)$(M4).STOP PP MS")
+        field(OUTE,"$(P)$(M5).STOP PP MS")
+}
+
+# This record computes whether the real motors are done moving.  
+# It goes to 1 when all of the real motors are done moving.
+grecord(calcout,"$(P)$(T)M_Done") {
+        field(INPA,"$(P)$(M1).DMOV CP MS")
+        field(INPB,"$(P)$(M2).DMOV CP MS")
+        field(INPC,"$(P)$(M3).DMOV CP MS")
+        field(INPD,"$(P)$(M4).DMOV CP MS")
+        field(INPE,"$(P)$(M5).DMOV CP MS")
+        field(CALC,"A&B&C&D&E")
+}
+
+
+# This record is processed to translate the
+# table so its aligned with the ray 
+grecord(ao,"$(P)$(T)F1") {}
+
+# Define a bunch of extra PV's used in the calcs
+
+grecord(ao,"$(P)$(T)lx") {
+      field(DESC, "dist btwn jack A and B")
+      field(VAL,  "-1000.0")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)lz") {
+      field(DESC, "dist btwn jack C line AB")
+      field(VAL,  "1000.0")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)Dx") {
+      field(DESC, "X-val of table target")
+      field(VAL,  "-500")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)Dy") {
+      field(DESC, "Y-val of table target")
+      field(VAL,  "1000")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)Dz") {
+      field(DESC, "Z-val of table target")
+      field(VAL,  "500")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)d1") {
+      field(DESC, "Distance to rot point")
+      field(VAL,  "10000")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)d2") {
+      field(DESC, "Distance btwn rot pnts")
+      field(VAL,  "0")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)DELTA_R") {
+      field(DESC, "distance btwn table and target")
+      field(VAL,  "0")
+	field(PREC, "3")
+}
+
+grecord(ao,"$(P)$(T)DELTA_ANGLE") {
+      field(DESC, "angle btwn table and target")
+      field(VAL,  "0")
+	field(PREC, "3")
+}
+
+
+
+
+
