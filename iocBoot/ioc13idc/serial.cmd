@@ -2,8 +2,8 @@ tyGSAsynInit("serial1",  0, 0,  9600,'N',2,8,'N',"") /* SRS570 */
 tyGSAsynInit("serial2",  0, 1,  9600,'N',2,8,'N',"") /* SRS570 */
 tyGSAsynInit("serial3",  0, 2,  9600,'N',2,8,'N',"") /* SRS570 */
 tyGSAsynInit("serial4",  0, 3,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial5",  0, 4,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial6",  0, 5,  9600,'N',2,8,'N',"") /* SRS570 */
+tyGSAsynInit("serial5",  0, 4, 19200,'N',1,8,'N',"") /* SRS570 */
+tyGSAsynInit("serial6",  0, 5, 19200,'N',1,8,'N',"") /* Keithley 2000 */
 tyGSAsynInit("serial7",  0, 6,  9600,'N',2,8,'N',"") /* Unused */
 tyGSAsynInit("serial8",  0, 7, 19200,'N',1,8,'N',"") /* Keithley 2000 */
 tyGSAsynInit("serial9",  1, 0,  9600,'N',2,8,'N',"") /* SRS570 */
@@ -23,10 +23,11 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A1,PORT=serial1")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A2,PORT=serial2")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,PORT=serial3")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,PORT=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,PORT=serial6")
+# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,PORT=serial5")
+# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,PORT=serial6")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDC:,Dmm=DMM1,PORT=serial8")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDC:,Dmm=DMM1,PORT=serial5")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDC:,Dmm=DMM2,PORT=serial8")
 
 # Second Octal UART for diffractometer experiments
 # Serial ports 1 thru 4 are for SR570 current amplifiers
@@ -52,10 +53,10 @@ MM4000Config(1, "serial14", 0)
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,PORT=serial13,")
+strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=serial13,")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=1000,NPULSE=1000,PORT=serial14,")
+strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=2000,NPULSE=2000,PORT=serial14,")
 strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
 strcat(str, ",M1=Y1,M2=Y2,M3=Y3,M4=Rotation AY,M5=X translation,M6=Sample X,M7=Sample Y,M8=Sample Z")
 dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
