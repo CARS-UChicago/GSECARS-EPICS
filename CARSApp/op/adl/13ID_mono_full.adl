@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/3.14/CARS/CARSApp/op/adl/13ID_mono_full.adl"
-	version=030000
+	name="j:\epics\synApps5-1\CARS\CARSApp\op\adl\13ID_mono_full.adl"
+	version=020306
 }
 display {
 	object {
-		x=65
-		y=186
+		x=395
+		y=91
 		width=726
 		height=354
 	}
@@ -134,6 +134,11 @@ rectangle {
 	display[6] {
 		label="Vacuum & Cryo Status"
 		name="13ID_mono_cryovac.adl"
+	}
+	display[7] {
+		label="McLennan Serial Port "
+		name="13ID_mono_serial.adl"
+		args="P=13IDA:, R=serial8"
 	}
 	clr=14
 	bclr=55
@@ -1258,9 +1263,9 @@ text {
 }
 "related display" {
 	object {
-		x=435
+		x=440
 		y=10
-		width=150
+		width=120
 		height=25
 	}
 	display[1] {
@@ -1559,4 +1564,20 @@ text {
 	}
 	textix="Shutter"
 	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=590
+		y=10
+		width=120
+		height=25
+	}
+	display[1] {
+		label="Feedback "
+		name="13ID_mono_mirror_feedback.adl"
+		args="P=13IDA:, M1=m12, M2=m11, PID1=fast_pitch_pid, PID2=fast_roll_pid"
+	}
+	clr=24
+	bclr=55
+	label="-Mir Mono FB"
 }
