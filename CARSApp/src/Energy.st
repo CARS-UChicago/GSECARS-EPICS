@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program Energy("E=XXIDA:E, ID=IDXX:, MONO=XXIDA:m17, EXPTAB_Z=XXIDC:m6, XTAL=XXIDA:MON:, SHUTTER=XXIDA:eps_mbbi4")
+program Energy("E=XXIDA:E, ID=IDXX:, MONO=XXIDA:m17, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, XTAL=XXIDA:MON:, SHUTTER=XXIDA:eps_mbbi4")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -51,6 +51,7 @@ double id_offset;  assign id_offset to "{E}:id_off.VAL";monitor id_offset;
 int    y2_track;  assign y2_track  to "{E}:y2_track.VAL";  monitor y2_track;
 int    z2_track;  assign z2_track  to "{E}:z2_track.VAL";  monitor z2_track;
 int    xt_track;  assign xt_track  to "{E}:xt_track.VAL";  monitor xt_track;
+int    xt2_track; assign xt2_track to "{E}:xt2_track.VAL"; monitor xt2_track;
 double y2_off;    assign y2_off    to "{E}:y2_off.VAL";    monitor y2_off;
 
 double xt_off;    assign xt_off    to "{E}:xt_off.VAL";    monitor xt_off;
@@ -58,6 +59,13 @@ double xt_sign;   assign xt_sign   to "{E}:xt_sign.VAL";   monitor xt_sign;
 double xt_mvmin;  assign xt_mvmin  to "{E}:xt_mvmin.VAL";  monitor xt_mvmin;
 double xt_ht;     assign xt_ht     to "{EXPTAB_Z}";        monitor xt_ht;
 int    xt_done;   assign xt_done   to "{EXPTAB_Z}.DMOV";   monitor xt_done;
+
+/* second table for large kb mirror */
+double xt2_off;    assign xt2_off    to "{E}:xt2_off.VAL";    monitor xt2_off;
+double xt2_sign;   assign xt2_sign   to "{E}:xt2_sign.VAL";   monitor xt2_sign;
+double xt2_mvmin;  assign xt2_mvmin  to "{E}:xt2_mvmin.VAL";  monitor xt2_mvmin;
+double xt2_ht;     assign xt2_ht     to "{EXPTAB2}";          monitor xt2_ht;
+int    xt2_done;   assign xt2_done   to "{EXPTAB2}.DMOV";     monitor xt2_done;
 
 /* 2nd crystal table PVs  (from {TAB} variable for Table) */
 double z2;        assign z2        to "{XTAL}t1.Z";        monitor z2;
@@ -75,6 +83,7 @@ evflag ef_en;        sync en         ef_en;
 evflag ef_id_track;  sync id_track   ef_id_track;
 evflag ef_y2_track;  sync y2_track   ef_y2_track;
 evflag ef_xt_track;  sync xt_track   ef_xt_track;
+evflag ef_xt2_track; sync xt2_track  ef_xt2_track;
 evflag ef_width;     sync width      ef_width;
 evflag ef_dspace;    sync dspace     ef_dspace;
 evflag ef_th;        sync th         ef_th;
@@ -93,6 +102,9 @@ double th_max;
 double xt_diff;
 double xt_old;
 double xt_new;
+double xt2_diff;
+double xt2_old;
+double xt2_new;
 float  d_time;
 double tiny;
 double z2_sign;
@@ -141,6 +153,9 @@ ss Energy {
       /* initialize Experimental Table offset */
       xt_off    = xt_ht -  xt_sign * 2 * width * cos(th * d2r);
       pvPut(xt_off);
+
+      xt2_off    = xt2_ht -  xt2_sign * 2 * width * cos(th * d2r);
+      pvPut(xt2_off);
 
       /* initialize undulator offset */
       if (use_id) {
@@ -255,6 +270,23 @@ ss Energy {
 	    if (verbose) { printf("  E(move)> XAS Table Z -> %12.6f\n",xt_ht);}
 	  }
 	} 
+	if (xt2_track) {
+	  xt2_old  = xt2_ht; 
+	  pvGet(width);
+	  xt2_new  = xt2_off + 2 * xt2_sign * width * cos(th * d2r);;
+	  xt2_diff = (xt2_old *10000.0  - xt2_new * 10000.0 ) / 10000.0 ;
+	  if (xt2_diff < 0.0) xt2_diff = - xt2_diff;
+	  if (verbose) {
+	    printf("  E(move)> exptab2: from %12.6f to %12.6f \n", xt2_old, xt2_new);
+	  }
+ 	  if (xt2_diff > xt2_mvmin) { 
+	    xt2_ht = xt2_new;
+	    pvPut (xt2_ht);  
+	    if (verbose) { printf("  E(move)> EXP Table2 -> %12.6f\n",xt2_ht);}
+	  }
+	} 
+
+
 	/*
 	  wait for undulator, mono, 2nd xtal to finish 
 	  this gets tricky as we're waiting for things that 
@@ -265,7 +297,8 @@ ss Energy {
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
           taskDelay(d_time*sysClkRateGet());
           still_busy = ((y2_track||z2_track) && (x2_done == 0)) ||
-                        (xt_track && (xt_done == 0)) ||
+                        (xt_track  && (xt_done == 0)) ||
+                        (xt2_track && (xt2_done == 0)) ||
                         (th_done == 0) || id_busy;
           if (verbose) {
             printf("[%i%i%i%i]", id_busy, th_done, x2_done, xt_done);
@@ -324,6 +357,23 @@ ss Energy {
 	  if (verbose) { printf("  E(move)> XAS Table Z -> %12.6f\n",xt_ht);}
 	}
       } 
+      
+      if (xt2_track) {
+	xt2_old  = xt2_ht; 
+	pvGet(width);
+	xt2_new  = xt2_off + 2 * xt2_sign * width * cos(th * d2r);;
+	xt2_diff = (xt2_old *10000.0  - xt2_new * 10000.0 ) / 10000.0 ;
+	if (xt2_diff < 0.0) xt2_diff = - xt2_diff;
+	if (verbose) {
+	  printf("  E(move)> exptab2: from %12.6f to %12.6f \n", xt2_old, xt2_new);
+	}
+	if (xt2_diff > xt2_mvmin) { 
+	  xt2_ht = xt2_new;
+	  pvPut (xt2_ht);  
+	  if (verbose) { printf("  E(move)> EXP Table2 -> %12.6f\n",xt2_ht);}
+	  }
+      } 
+
 
       /* track undulator    */
       if (use_id && id_track) {
@@ -341,7 +391,9 @@ ss Energy {
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
           taskDelay(d_time*sysClkRateGet());
-	  still_busy = (xt_track && (xt_done == 0)) || (th_done == 0) || id_busy;
+	  still_busy = ((xt_track  && (xt_done == 0)) || 
+			(xt2_track && (xt2_done == 0)) ||
+			(th_done == 0) || id_busy);
           if (verbose) {
             printf("[%i%i%i]", id_busy, th_done, xt_done);
             if (!(wait_count % 8)) printf("\n");
