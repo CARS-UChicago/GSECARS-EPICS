@@ -18,7 +18,7 @@ program Energy("E=XXIDA:E, ID=IDXX:, MONO=XXIDA:m17, EXPTAB_Z=XXIDC:m6, XTAL=XXI
 %%#include <taskLib.h>
 
 /* undulator PVs  (from {ID}) */
-double id_set;    assign id_set    to "{ID}ScanEnergy.VAL"; monitor id_set;
+double id_val;    assign id_val    to "{ID}ScanEnergy.VAL"; monitor id_val;
 double id_rbv;    assign id_rbv    to "{ID}Energy.VAL";   
 double id_harm;   assign id_harm   to "{ID}HarmonicValue.VAL";   
 int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
@@ -26,7 +26,7 @@ int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
 int    shutter_pv;  assign shutter_pv to "{SHUTTER}";
 
 /* Energy PVs (from {EN} and Energy.db) */
-int    use_id;    assign use_id    to "{E}:use_id.VAL";   monitor use_id;
+int    use_id;    assign use_id    to "{E}:use_id.VAL";    monitor use_id;
 double en;        assign en        to "{E}:Energy.VAL";    monitor en;
 double en_rbv;    assign en_rbv    to "{E}:E_RBV";     
 double dspace;    assign dspace    to "{E}:dspace.VAL";    monitor dspace;
@@ -120,7 +120,7 @@ ss Energy {
       tiny    = 1.e-5;
 
       /* set up undulator info (if using undulator, that is!)*/
-      id_busy = 0; id_set = 0. ; id_rbv=0.;
+      id_busy = 0; id_val = 0. ; id_rbv=0.;
       id_track = 0;     id_offset = 0;
       id_factor = 1;
       if (use_id) {
@@ -201,11 +201,11 @@ ss Energy {
 	  /*pvGet(id_factor);*/
 	  pvGet(shutter_pv);
 	  if (shutter_pv == 1) { /* only move undulator if shutter is open */
-	    /*id_set  = (id_offset + en * mil * id_factor)*id_harm; */
-	    id_set  = (id_offset + en * mil * id_factor) ;  
-	    if ((id_set < 0.)||(id_set > 5000.)) id_set = id_rbv;
-	    pvPut(id_set);
-	    if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_set);}
+	    /*id_val  = (id_offset + en * mil * id_factor)*id_harm; */
+	    id_val  = (id_offset + en * mil * id_factor) ;  
+	    if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+	    pvPut(id_val);
+	    if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_val);}
 	  } else {
 	    if (verbose) { printf("  E(move) cancelled: shutter closed\n");}
 	  }
@@ -307,6 +307,32 @@ ss Energy {
       pvPut(en_rbv);
       efClear(ef_en); 
       efClear(ef_th);
+
+      /* track undulator    */
+      if (use_id && id_track) {
+	pvGet(shutter_pv);
+	if (shutter_pv == 1) { /* only move undulator if shutter is open */
+	  id_val  = (id_offset + en * mil * id_factor) ;  
+	  if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+	  pvPut(id_val);
+	  if (verbose) { printf("  E(mono)> ID energy -> %12.6f\n",id_val);}
+	} else {
+	  if (verbose) { printf("  E(mono) cancelled: shutter closed\n");}
+	}
+	/* wait for undulator */
+	d_time = 0.1; 
+	/* tweak mono theta and wait */
+        for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
+          taskDelay(d_time*sysClkRateGet());
+          still_busy = id_busy; 
+          if (verbose) {
+            printf("[%i%i%i%i]", id_busy, th_done, x2_done, xt_done);
+            if (!(wait_count % 8)) printf("\n");
+          }
+        }
+        if ((verbose) && (wait_count % 8)) {printf("\n");}
+      }
+
     } state monitor_changes
     /* mono angle readback changed: update energy appropriately */
     when( efTestAndClear(ef_th_rbv) ) { 
