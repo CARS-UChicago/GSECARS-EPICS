@@ -1,0 +1,195 @@
+# Database for pressure controls of the 1000 ton press in 13-ID-D
+# This version uses a EPID record to control the pressure, rather than
+# the Omega controller and Rockland's PLC.
+# It still uses the Omega, but only to read the pressure.
+
+# Serial record for the current value
+grecord(serial, "$(P)$(R)ReadValue") {
+        field(INP,"#C$(C) S0 @$(IPSLOT)-Serial[$(CHAN)]")
+        field(IDEL,"13")
+        field(ODEL,"13")
+        field(BAUD,"$(BAUD)")
+        field(PRTY,"$(PRTY)")
+        field(DBIT,"$(DBIT)")
+        field(SBIT,"$(SBIT)")
+        field(AOUT,"*V01")
+        field(SCAN,"1 second")
+        field(FLNK,"$(P)$(R)Value.PROC PP MS")
+}
+
+# The current value
+grecord(scalcout,"$(P)$(R)Value") {
+        field(INAA,"$(P)$(R)ReadValue.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%*3c%f')")
+        field(PREC,"1")
+        field(FLNK,"$(P)$(R)PID.PROC PP MS")
+}
+
+# EPID record for feedback to control the pressure
+grecord(epid,"$(P)$(R)PID") {
+        field(INP,"$(P)$(R)Value")
+        field(OUTL,"$(P)$(R)Switch.A PP NMS")
+        field(KP,"$(KP)")
+        field(KI,"$(KI)")
+        field(KD,"$(KD)")
+        field(LOPR,"0")
+        field(HOPR,"300")
+        field(DRVL,"-100")
+        field(DRVH,"100")
+        field(PREC,"3")
+        field(FLNK,"$(P)$(R)Blowout.PROC PP MS")
+}
+
+# If the pressure drops by more than a certain amount then turn off both motors
+grecord(calcout,"$(P)$(R)Blowout") {
+        field(INPA, "$(P)$(R)Blowout.B NPP NMS")
+        field(INPB, "$(P)$(R)Value NPP NMS")
+        field(INPC, "10.")
+        field(CALC, "(A-B)>C")
+        field(OOPT, "5")
+        field(OUT, "$(P)$(R)BlowoutLatch.VAL PP MS")
+}
+
+grecord(bo,"$(P)$(R)BlowoutLatch") {
+        field(ZNAM, "OK")
+        field(ZSV, "NO_ALARM")
+        field(ONAM, "Blowout!")
+        field(OSV, "MAJOR")
+        field(FLNK, "$(P)$(R)StopBoth.PROC PP MS")
+}
+
+# Transform record to control switching between radial piston pump and
+# syringe pump
+grecord(transform,"$(P)$(R)Switch") {
+        field(INPA,"0")
+        field(CMTA,"PID output")
+        field(INPB,"100")
+        field(CMTB,"Radial/syringe switchover")
+        field(INPC,"$(P)$(R)Value NPP NMS")
+        field(CMTC,"Current load")
+        field(CLCD,"(A>0)&(C<B)?A:0")
+        field(OUTD,"$(P)$(RADIAL_DAC) PP MS")
+        field(CMTD,"dP>0 and L<switchover, write radial")
+        field(CLCE,"(A<0)|(C>=B)?A:0")
+        field(OUTE,"$(P)$(SYRINGE_DAC) PP MS")
+        field(CMTE,"dP<0 or L>switchover, write syringe")
+}
+
+# These records are for tweaking the pressure setpoint
+grecord(ao,"$(P)$(R)PID_tweak") {
+        field(VAL, "1")
+        field(PREC,"1")
+}
+
+grecord(calcout,"$(P)$(R)PID_tweak_down") {
+        field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)PID.VAL NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(R)PID.VAL PP NMS")
+}
+
+grecord(calcout,"$(P)$(R)PID_tweak_up") {
+        field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)PID.VAL NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(R)PID.VAL PP NMS")
+}
+
+
+# Records to ramp the load using an EPICS SSCAN record.
+# This record starts the ramp after computing the delay time and copying the
+# start and end points of the scan to the scan record
+grecord(dfanout,"$(P)$(R)StartRamp") {
+      field(VAL,"1")
+      field(OUTA,"$(P)$(R)RampTime.PROC PP MS")
+      field(OUTB,"$(P)$(R)RampSP.PROC PP MS")
+      field(OUTC,"$(P)$(R)RampEP.PROC PP MS")
+      field(OUTD,"$(P)$(R)RampScan.EXSC PP MS")
+}
+
+# The ramp time in hours is in field A of this record. It computes
+# the delay time per point of the scan.
+grecord(calcout,"$(P)$(R)RampTime") {
+      field(PINI,"YES")
+      field(INPA,"1")
+      field(INPB,"$(P)$(R)RampScan.NPTS NPP NMS")
+      field(CALC,"A*3600./B")
+      field(OUT,"$(P)$(R)RampScan.PDLY NPP NMS")
+      field(PREC,"2")
+}
+
+# This record copies the current value of the load into the
+# starting point of the scan
+grecord(calcout,"$(P)$(R)RampSP") {
+      field(INPA,"$(P)$(R)Value NPP NMS")
+      field(CALC,"A")
+      field(OUT,"$(P)$(R)RampScan.P1SP NPP NMS")
+}
+
+# This record copies the desired final value of the load into the
+# ending point of the scan
+grecord(calcout,"$(P)$(R)RampFinal") {
+      field(CALC,"A")
+      field(OUT,"$(P)$(R)RampScan.P1EP NPP NMS")
+      field(PREC,"1")
+}
+
+# The scan record that ramps the load
+grecord(sscan,"$(P)$(R)RampScan") {
+        field(DESC,"Load ramp")
+        field(PINI,"YES")
+        field(PRIO,"HIGH")
+        field(MPTS,"1000")
+        field(NPTS,"1000")
+        field(FPTS,"FREEZE")
+        field(D01PV,"$(P)$(R)Value")
+        field(P1PV,"$(P)$(R)PID.VAL PP MS")
+}
+
+# This record pauses and resumes the ramp.  We should be able to directly write into
+# the .PAUS field of the scan record, but there seems to be a bug and it only resumes
+# 50% of the time if we do that.
+# ending point of the scan
+grecord(bo,"$(P)$(R)RampPause") {
+      field(OUT,"$(P)$(R)RampScan.PAUS PP MS")
+}
+
+# Turn off both motors
+# Note we use a transform, rather than seq record so that it processes
+# synchronously, turning off feedback immediately.
+grecord(transform,"$(P)$(R)StopBoth") {
+        field(INPA, "1")
+        field(OUTA,"$(P)$(R)StopRadial.PROC PP MS")
+        field(INPB, "1")
+        field(OUTB,"$(P)$(R)StopSyringe.PROC PP MS")
+}
+
+# Turn off radial motor
+# This record turns off feedback
+grecord(ao,"$(P)$(R)StopRadial") {
+        field(VAL,"0")
+        field(OUT, "$(P)$(R)PID.FBON PP NMS")
+        field(FLNK,"$(P)$(R)StopRadial1")
+}
+
+# This record stops the motor by writing 0 to the DAC
+# Note we use a CA link because the DAC is asynchronous, and we could be
+# writing to it from the PID record too.  The CA output will be buffered.
+grecord(ao,"$(P)$(R)StopRadial1") {
+        field(VAL,"0.0")
+        field(OUT, "$(P)$(RADIAL_DAC) CA NMS")
+}
+
+# Turn off syringe motor
+# This record turns off feedback
+grecord(ao,"$(P)$(R)StopSyringe") {
+        field(VAL,"0")
+        field(OUT, "$(P)$(R)PID.FBON PP NMS")
+        field(FLNK,"$(P)$(R)StopSyringe1")
+}
+
+# This record stops the motor by writing 0 to the DAC
+grecord(ao,"$(P)$(R)StopSyringe1") {
+        field(VAL,"0.0")
+        field(OUT, "$(P)$(SYRINGE_DAC) CA NMS")
+}
