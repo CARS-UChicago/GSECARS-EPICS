@@ -6,6 +6,7 @@ putenv("XIA_CONFIG=xiasystem.cfg")
 # FIPPI0,FIPPI1,FIPPI2,FIPPI3 should point to the files for 
 # decimation=0,2,4,6 respectively. FIPPI_DEFAULT should point to the
 # file that will be loaded initially at boot time.
+#
 putenv("FIPPI0=f01x2p0g.fip")
 putenv("FIPPI1=f01x2p2g.fip")
 putenv("FIPPI2=f01x2p4g.fip")
