@@ -85,19 +85,6 @@ initIp330Sweep(pIp330,"b-Ip330Sweep",0,3,2048,100)
 # queueSize  = size of output queue for EPICS
 pIp330PID = initIp330PID("Ip330PID_1", pIp330, 0, pDAC128V, 1, 20)
 
-# int configIp330PID(Ip330PID *pIp330PID,
-#        double KP, double KI, double KD,
-#        int interval, int feedbackOn, int lowLimit, int highLimit)
-# pIp330PID  = pointer returned by initIp330PID above
-# KP         = proportional gain
-# KI         = integral gain
-# KD         = derivative gain
-# interval   = microseconds per feedback loop
-# feedbackOn = 0 for feedback off, 1 for feedback on
-# lowLimit   = low limit on DAC output
-# highLimit  = high limit on DAC output
-configIp330PID(pIp330PID, .1, 10., 0., 1000, 0, 500, 1500)
-
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *serverName, char *carrierName, char *siteName,
 #              int queueSize)
