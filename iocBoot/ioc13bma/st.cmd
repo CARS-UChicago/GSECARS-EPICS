@@ -53,19 +53,19 @@ dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0",ip)
 dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=1,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3",ip)
 dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,IPSLOT=a,CHAN=2",ip)
 dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=3,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry",ip)
-dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=4,CC1=cc9,CC2=ccyy,PR1=pr9,PR2=pryy",ip)
+dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=4,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10",ip)
 dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,IPSLOT=a,CHAN=5",ip)
 dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=6,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy",ip)
 dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,IPSLOT=a,CHAN=7",ip)
 
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13BMA:,R=ser2,C=0,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1",top)
 
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,IPSLOT=b,CHAN=1",top)
+dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,IPSLOT=b,CHAN=1",ip)
 dbLoadRecords("ipApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=0,IPSLOT=b,CHAN=2,PA=0,PN=1",ip)
 dbLoadRecords("ipApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=0,IPSLOT=b,CHAN=2,PA=0,PN=2",ip)
 dbLoadRecords("ipApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=0,IPSLOT=b,CHAN=2,PA=0",ip)
 dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=b,CHAN=3,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy",ip)
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,IPSLOT=b,CHAN=4",top)
+dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,IPSLOT=b,CHAN=4",ip)
 
 dbLoadTemplate("motors.template")
 
