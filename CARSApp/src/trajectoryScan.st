@@ -386,7 +386,8 @@ ss trajectoryScan {
             if (numAxes > MAX_AXES) numAxes = MAX_AXES;
             asynPort = macValueGet("PORT");
             %%pVar->status = pasynOctetSyncIO->connect(pVar->asynPort, 0,
-            %%                                   (asynUser **)&pVar->pasynUser);
+            %%                                     (asynUser **)&pVar->pasynUser,
+            %%                                     NULL);
             if (status != 0) {
                printf("trajectoryScan error in pasynOctetSyncIO->connect\n");
                printf("   status=%d, port=%s\n", status, asynPort);
@@ -844,11 +845,7 @@ static int writeRead(SS_ID ssId, struct UserVar *pVar, char *command)
     /* Use 10 second timeout */
     status = pasynOctetSyncIO->writeRead((asynUser *)pVar->pasynUser, buffer,
                                strlen(buffer), pVar->stringIn, MAX_MM4000_STRING, 
-                               "\r", 1, 10.0, &nwrite, &nread, &eomReason);
-    if (status == asynSuccess) {
-        /* Delete terminator */
-        if (nread > 0) pVar->stringIn[nread-1]=0;
-    }
+                               10.0, &nwrite, &nread, &eomReason);
     return(status);
 }
 
