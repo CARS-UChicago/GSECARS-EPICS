@@ -4,27 +4,19 @@
 loginUserAdd "epics", "9cebSebcd"
 
 cd topbin
-ld < iocCore
-ld < seq
-ld < CARSLib
+ld < CARSApp.munch
+
+# Increase size of errlog buffer
+errlogInit(20000)
+
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build.i
+dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
+CARSVX_registerRecordDeviceDriver(pdbbase)
 
 # This IOC loads the MPF server code locally
 cd startup
 < st_mpfserver.cmd
-
-cd topbin
-# This IOC talks to a local GPIB server
-ld < GpibHideosLocal.o
-
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < initHooks.o
-
-cd startup
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
 
 devPM304Debug = 0
 drvPM304Debug = 0
@@ -33,10 +25,7 @@ devSerialDebug = 0
 serialRecordDebug = 0
 devSiStrParmDebug=0
 devAiMKSDebug = 0
-
-# Tell EPICS all about the record types, device-support modules, drivers,
-# etc. in this build.
-dbLoadDatabase("../../dbd/CARSApp.dbd")
+devMPCDebug = 0
 
 # Set up the Allen-Bradley 6008 scanner
 abConfigNlinks 1
@@ -44,33 +33,35 @@ abConfigVme 0,0xc00000,0x60,5
 abConfigAuto
 
 # Load database
-dbLoadRecords("CARSApp/Db/eps_valid.db", "P=13BMA:",top)
+dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13BMA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13BMA:,R=ser1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1",top)
-dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,IPSLOT=a,CHAN=0",ip)
-dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=1,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3",ip)
-dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,IPSLOT=a,CHAN=2",ip)
-dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=3,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry",ip)
-dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=4,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10",ip)
-dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,IPSLOT=a,CHAN=5",ip)
-dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=a,CHAN=6,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy",ip)
-dbLoadRecords("ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,IPSLOT=a,CHAN=7",ip)
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13BMA:,R=ser1,C=0,SERVER=serial1")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,SERVER=serial1")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial2,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,SERVER=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial4,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial5,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,SERVER=serial6")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial7,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy")
+dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,SERVER=serial8")
 
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13BMA:,R=ser2,C=0,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=Even,DBIT=7,SBIT=1",top)
+# This is the McClennan controller
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13BMA:,R=ser2,C=0,SERVER=serial9")
 
-dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,IPSLOT=b,CHAN=1",ip)
-dbLoadRecords("ipApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=0,IPSLOT=b,CHAN=2,PA=0,PN=1",ip)
-dbLoadRecords("ipApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=0,IPSLOT=b,CHAN=2,PA=0,PN=2",ip)
-dbLoadRecords("ipApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=0,IPSLOT=b,CHAN=2,PA=0",ip)
-dbLoadRecords("ipApp/Db/MKS.db","P=13BMA:,C=0,IPSLOT=b,CHAN=3,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy",ip)
-dbLoadRecords("ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,IPSLOT=b,CHAN=4",ip)
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,SERVER=serial10")
+dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=0,SERVER=serial11,PA=0,PN=1")
+dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=0,SERVER=serial11,PA=0,PN=2")
+dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=0,SERVER=serial11,PA=0")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial12,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,SERVER=serial13")
 
 dbLoadTemplate("motors.template")
 
-# BMD filter rack
-dbLoadRecords("CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5",top)
+# BMD and BMC filter racks
+dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_Filters.db","P=13BMA:,R=BMC_Filters,MOTOR=m6")
+dbLoadRecords("$(CARS)/CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
 
 # Digital to analog converter, used for Queensgate piezo drivers
 dbLoadTemplate "DAC.template"
@@ -80,9 +71,9 @@ dbLoadTemplate "mono_pid.template"
  
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in stdApp/Db
+# Several versions (e.g., all_com_32.db) are in "$(STD)/stdApp/Db
 # NOTE: this must exist for slit databases to work
-dbLoadRecords("stdApp/Db/all_com_24.db","P=13BMA:",std)
+dbLoadRecords("$(STD)/stdApp/Db/all_com_24.db","P=13BMA:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -90,7 +81,7 @@ dbLoadRecords("stdApp/Db/all_com_24.db","P=13BMA:",std)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10",std)
+dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -98,16 +89,16 @@ dbLoadRecords("stdApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,
 dbLoadTemplate("scanParms.template")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("stdApp/Db/userStringCalcs10.db","P=13BMA:",std)
+dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db","P=13BMA:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("stdApp/Db/userTransforms10.db","P=13BMA:",std)
+dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db","P=13BMA:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("stdApp/Db/misc.db","P=13BMA:",std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
 
-# vxWorks statistics
-dbLoadRecords("stdApp/Db/VXstats.db","P=13BMA:",std)
+# vxWorks statistics FIX THIS!!!
+#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13BMA:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -116,7 +107,7 @@ dbLoadRecords("stdApp/Db/VXstats.db","P=13BMA:",std)
 #     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(3, 8, 0x4000, 190, 5, 10)
+oms58Setup(4, 8, 0x4000, 190, 5, 10)
 
 # PM304 driver setup parameters: 
 #     (1) maximum # of controllers, 
@@ -126,11 +117,11 @@ PM304Setup(1, 1, 10)
 
 # PM304 driver configuration parameters: 
 #     (1) controller
-#     (2) Hideos/MPF card
-#     (3) Hideos task
+#     (2) MPF ID
+#     (3) MPF server
 # Example:
-#   PM304Config(0, 1, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
-PM304Config(0, 0, "b-Serial[0]")
+#   PM304Config(0, 1, "serial1")  MPF server "serial1"
+PM304Config(0, 0, "serial9")
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -160,5 +151,4 @@ seq &BM13_Energy, "E=13BMA:E, MONO=13BMA:m17, EXPTAB_Z=13BMD:m22, YXTAL=13BMA:MO
 
 # Mn 20/Mar/02  see note in ioc13ida st.cmd
 #  this reduces the readback following error for the McLennan mono controller.
-(double) drvPM304ReadbackDelay = 0.2
-
+(double) drvPM304ReadbackDelay = 0.25
