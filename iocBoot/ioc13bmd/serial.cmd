@@ -12,7 +12,7 @@ tyGSAsynInit("serial8",  0, 7,19200,'N',1,8,'N',"")  /* Keithley 2000 */
 # Second IP-Octal
 tyGSAsynInit("serial9",  1, 0,19200,'N',1,8,'N',"")  /* Keithley 2000 */
 tyGSAsynInit("serial10", 1, 1, 9600,'N',1,8,'N',"")  /* XIA shutter */
-tyGSAsynInit("serial11", 1, 2, 9600,'N',1,8,'N',"")  /* Unused */
+tyGSAsynInit("serial11", 1, 2,19200,'N',1,8,'N',"\r\n","\r\n")  /* Verdi Laser */
 tyGSAsynInit("serial12", 1, 3, 9600,'N',1,8,'N',"")  /* Unused */
 tyGSAsynInit("serial13", 1, 4, 9600,'N',1,8,'N',"")  /* Unused */
 tyGSAsynInit("serial14", 1, 5, 9600,'N',1,8,'N',"")  /* Unused */
@@ -37,4 +37,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,PORT=serial8")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,PORT=serial9")
 dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,PORT=serial10")
+# Serial 11 is Verdi Laser for testing
+dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13BMD:,R=Verdi1:,PORT=serial11")
+
 
