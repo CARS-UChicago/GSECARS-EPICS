@@ -1,0 +1,297 @@
+# Database for Verdi Laser
+# Serial record to initialize
+record(asyn, "$(P)$(R)Init1") {
+        field(PORT,"$(PORT)")
+        field(PINI,"1")
+        field(AOUT,"ECHO=0")
+        field(FLNK,"$(P)$(R)Init2.PROC PP MS")
+}
+record(asyn, "$(P)$(R)Init2") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"PROMPT=0")
+}
+
+# This record controls the readback rate
+record(bo, "$(P)$(R)ReadBack") {
+        field(SCAN,"passive")
+        field(FLNK,"$(P)$(R)ReadLaserS PP MS")
+}
+
+# records to read info
+# Serial record for the laser status
+record(asyn, "$(P)$(R)ReadLaserS") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?L")
+        field(FLNK,"$(P)$(R)LaserS.PROC PP MS")
+}
+
+# Parse laser
+record(scalcout,"$(P)$(R)LaserS") {
+        field(INAA,"$(P)$(R)ReadLaserS.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%d')")
+        field(PREC,"0")
+        field(FLNK,"$(P)$(R)ReadKey.PROC PP MS")
+        
+}
+
+# Serial record for the key status
+record(asyn, "$(P)$(R)ReadKey") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?K")
+        field(FLNK,"$(P)$(R)Key.PROC PP MS")
+}
+
+# Parse key
+record(scalcout,"$(P)$(R)Key") {
+        field(INAA,"$(P)$(R)ReadKey.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%d')")
+        field(PREC,"0")
+        field(FLNK,"$(P)$(R)ReadDiode1Current.PROC PP MS")
+        
+}
+
+# Serial record for the current value
+record(asyn, "$(P)$(R)ReadDiode1Current") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?D1C")
+        field(FLNK,"$(P)$(R)Diode1Current.PROC PP MS")
+}
+
+# Parse diode 1 current
+record(scalcout,"$(P)$(R)Diode1Current") {
+        field(INAA,"$(P)$(R)ReadDiode1Current.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadDiode1Temp.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the temperature value
+record(asyn, "$(P)$(R)ReadDiode1Temp") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?D1T")
+        field(FLNK,"$(P)$(R)Diode1Temp.PROC PP MS")
+}
+
+# Parse diode 1 temperature
+record(scalcout,"$(P)$(R)Diode1Temp") {
+        field(INAA,"$(P)$(R)ReadDiode1Temp.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadDiode1Power.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the power
+record(asyn, "$(P)$(R)ReadDiode1Power") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?P")
+        field(FLNK,"$(P)$(R)Diode1Power.PROC PP MS")
+}
+
+# Parse diode 1 power
+record(scalcout,"$(P)$(R)Diode1Power") {
+        field(INAA,"$(P)$(R)ReadDiode1Power.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadShutter.PROC PP MS")
+        field(PREC,"3")
+}
+
+# Serial record for the shutter
+record(asyn, "$(P)$(R)ReadShutter") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?S")
+        field(FLNK,"$(P)$(R)Shutter.PROC PP MS")
+}
+
+# Parse shutter
+record(scalcout,"$(P)$(R)Shutter") {
+        field(INAA,"$(P)$(R)ReadShutter.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%d')")
+        field(FLNK,"$(P)$(R)ReadAvrCurrent.PROC PP MS")
+        field(PREC,"0")
+}
+
+# Serial record for the average diode current
+record(asyn, "$(P)$(R)ReadAvrCurrent") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?C")
+        field(FLNK,"$(P)$(R)AvrCurrent.PROC PP MS")
+}
+
+# Parse average diode current
+record(scalcout,"$(P)$(R)AvrCurrent") {
+        field(INAA,"$(P)$(R)ReadAvrCurrent.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadBaseTemp.PROC PP MS")
+        field(PREC,"1")
+}
+
+# Serial record for the baseplate temperature
+record(asyn, "$(P)$(R)ReadBaseTemp") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?BT")
+        field(FLNK,"$(P)$(R)BaseTemp.PROC PP MS")
+}
+
+# Parse the baseplate temperature
+record(scalcout,"$(P)$(R)BaseTemp") {
+        field(INAA,"$(P)$(R)ReadBaseTemp.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadVanadate.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the vanadate temperature
+record(asyn, "$(P)$(R)ReadVanadate") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?VT")
+        field(FLNK,"$(P)$(R)Vanadate.PROC PP MS")
+}
+
+# Parse the Vanadate temperature
+record(scalcout,"$(P)$(R)Vanadate") {
+        field(INAA,"$(P)$(R)ReadVanadate.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadLBOt.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the LBO temperature
+record(asyn, "$(P)$(R)ReadLBOt") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?LBOT")
+        field(FLNK,"$(P)$(R)LBOt.PROC PP MS")
+}
+
+# Parse the LBO temperature
+record(scalcout,"$(P)$(R)LBOt") {
+        field(INAA,"$(P)$(R)ReadLBOt.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadEtalon.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the Etalon temperature
+record(asyn, "$(P)$(R)ReadEtalon") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?ET")
+        field(FLNK,"$(P)$(R)Etalon.PROC PP MS")
+}
+
+# Parse the Etalon temperature
+record(scalcout,"$(P)$(R)Etalon") {
+        field(INAA,"$(P)$(R)ReadEtalon.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadDiode1Heatsink.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the Diode1 Heatsink temperature
+record(asyn, "$(P)$(R)ReadDiode1Heatsink") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?D1HST")
+        field(FLNK,"$(P)$(R)Diode1Heatsink.PROC PP MS")
+}
+
+# Parse the Diode1 Heatsink temperature
+record(scalcout,"$(P)$(R)Diode1Heatsink") {
+        field(INAA,"$(P)$(R)ReadDiode1Heatsink.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%f')")
+        field(FLNK,"$(P)$(R)ReadLBOH.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the LBO heater status
+record(asyn, "$(P)$(R)ReadLBOH") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?LBOH")
+        field(FLNK,"$(P)$(R)LBOH.PROC PP MS")
+}
+
+# Parse the LBO heater status
+record(scalcout,"$(P)$(R)LBOH") {
+        field(INAA,"$(P)$(R)ReadLBOH.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, '%d')")
+        field(FLNK,"$(P)$(R)ReadFault.PROC PP MS")
+        field(PREC,"0")
+}
+
+# Serial record for the faults
+record(asyn, "$(P)$(R)ReadFault") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"?F")
+#        field(FLNK,"$(P)$(R)Fault.PROC PP MS")
+}
+
+
+
+
+# ################################################################
+# Set diode 1 power
+record(scalcout,"$(P)$(R)SetDiode1Power") {
+        field(CALC,"PRINTF('POWER=%f', A)")
+        field(PREC,"3")
+        field(OUT,"$(P)$(R)WriteDiode1Power.AOUT PP MS")
+}
+
+# Serial record for setting the diode 1 power
+record(asyn, "$(P)$(R)WriteDiode1Power") {
+        field(PORT,"$(PORT)")
+}
+
+# These records are for tweaking the power
+record(ao,"$(P)$(R)PowerTweak") {
+        field(VAL, ".01")
+        field(PREC,"3")
+}
+
+record(calcout,"$(P)$(R)PowerTweakDown") {
+        field(INPA,"$(P)$(R)PowerTweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)SetDiode1Power.A NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(R)SetDiode1Power.A PP NMS")
+}
+
+record(calcout,"$(P)$(R)PowerTweakUp") {
+        field(INPA,"$(P)$(R)PowerTweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)SetDiode1Power.A NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(R)SetDiode1Power.A PP NMS")
+}
+
+# Open and close shutter
+record(scalcout,"$(P)$(R)SetShutter") {
+        field(CALC,"PRINTF('SHUTTER=%d', A)")
+        field(PREC,"0")
+        field(OUT,"$(P)$(R)WriteShutter.AOUT PP MS")
+}
+
+# Serial record for shutter
+record(asyn, "$(P)$(R)WriteShutter") {
+        field(PORT,"$(PORT)")
+}
+
+# Turn ON/OFF LBO heater
+record(scalcout,"$(P)$(R)SetLBO") {
+        field(CALC,"PRINTF('LBOH=%d', A)")
+        field(PREC,"0")
+        field(OUT,"$(P)$(R)WriteLBO.AOUT PP MS")
+}
+
+# Serial record for LBO heater
+record(asyn, "$(P)$(R)WriteLBO") {
+        field(PORT,"$(PORT)")
+}
+
+# Turn ON/OFF laser
+record(scalcout,"$(P)$(R)SetLaser") {
+        field(CALC,"PRINTF('LASER=%d', A)")
+        field(PREC,"0")
+        field(OUT,"$(P)$(R)WriteLaser.AOUT PP MS")
+}
+
+# Serial record for Laser
+record(asyn, "$(P)$(R)WriteLaser") {
+        field(PORT,"$(PORT)")
+}
+
+
