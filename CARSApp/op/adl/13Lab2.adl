@@ -1,14 +1,14 @@
 
 file {
-	name="J:\epics\R3.13.3\CARS\CARSApp\op\adl\13Lab2.adl"
-	version=020306
+	name="/home/epics/3.14/CARS/CARSApp/op/adl/13Lab2.adl"
+	version=030000
 }
 display {
 	object {
-		x=760
-		y=297
+		x=697
+		y=47
 		width=400
-		height=335
+		height=355
 	}
 	clr=14
 	bclr=4
@@ -174,26 +174,6 @@ rectangle {
 		clr=50
 	}
 }
-"related display" {
-	object {
-		x=12
-		y=166
-		width=74
-		height=24
-	}
-	display[0] {
-		label="Vacuum Gauges"
-		name="DualVacuumGauge.adl"
-		args="P=13LAB2:, TITLE=Slit Tank, PR=pr1, CC=cc1"
-	}
-	display[1] {
-		label="Ion Pumps"
-		name="ionPump.adl"
-		args="P=13LAB2:, TITLE=Slit Tank, PUMP=ip1"
-	}
-	clr=14
-	bclr=4
-}
 text {
 	object {
 		x=91
@@ -205,7 +185,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Vacuum"
+	textix="Electronics"
 }
 text {
 	object {
@@ -284,64 +264,6 @@ text {
 "related display" {
 	object {
 		x=12
-		y=247
-		width=74
-		height=24
-	}
-	display[0] {
-		label="CAMAC"
-		name="CAMAC_IO.adl"
-		args="REC=13LAB2:camac1"
-	}
-	display[1] {
-		label="Ion pump serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB2:ser1"
-	}
-	display[2] {
-		label="MKS gauage serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB2:ser2"
-	}
-	display[3] {
-		label="Keithley serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB2:ser3"
-	}
-	display[4] {
-		label="MPC serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB2:ser4"
-	}
-	display[5] {
-		label="LAE500"
-		name="LAE500.adl"
-		args="P=13LAB2:, R=LAE500"
-	}
-	display[6] {
-		label="LAE500 serial"
-		name="Serial_IO.adl"
-		args="REC=13LAB2:LAE500serial"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=91
-		y=247
-		width=128
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Generic Serial and CAMAC"
-}
-"related display" {
-	object {
-		x=12
 		y=274
 		width=74
 		height=24
@@ -406,7 +328,7 @@ text {
 	}
 	display[0] {
 		label="vxWorks statistics"
-		name="VXstats.adl"
+		name="IOC_Status.adl"
 		args="P=13LAB2:"
 	}
 	clr=14
@@ -424,4 +346,117 @@ text {
 		width=2
 	}
 	textix="vxWorks statistics"
+}
+"related display" {
+	object {
+		x=12
+		y=166
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Scaler"
+		name="scaler_full.adl"
+		args="P=13LAB2:, S=scaler1"
+	}
+	display[1] {
+		label="SRS Current Preamplifier"
+		name="SR570.adl"
+		args="P=13LAB2:, A=A1"
+	}
+	display[2] {
+		label="Keithley 2000 DMM #1"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13LAB2:, Dmm=DMM1"
+	}
+	display[3] {
+		label="Keithley 2000 DMM #2"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13LAB2:, Dmm=DMM2"
+	}
+	display[4] {
+		label="IP-Unidig"
+		name="IpUnidig.adl"
+		args="P=13LAB2:, R=Unidig"
+	}
+	display[5] {
+		label="LAE500"
+		name="LAE500.adl"
+		args="P=13LAB2:, R=LAE500"
+	}
+	display[6] {
+		label="Acromag IP330 ADC"
+		name="Ip330Scan.adl"
+		args="P=13LAB2:, R=IP330_"
+	}
+	display[7] {
+		label="Vortex"
+		name="1element_dxp.adl"
+		args="P=dxpLinux:med:"
+	}
+	clr=14
+	bclr=4
+}
+"related display" {
+	object {
+		x=12
+		y=247
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Serial 1"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial1"
+	}
+	display[1] {
+		label="Serial 2"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial2"
+	}
+	display[2] {
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial4"
+	}
+	display[4] {
+		label="Serial 5"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial5"
+	}
+	display[5] {
+		label="Serial 6"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial6"
+	}
+	display[6] {
+		label="Serial 7"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial7"
+	}
+	display[7] {
+		label="Serial 8"
+		name="asynRecord.adl"
+		args="P=13LAB2:, R=serial8"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=91
+		y=247
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 1-8"
 }
