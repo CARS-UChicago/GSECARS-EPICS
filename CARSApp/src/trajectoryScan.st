@@ -17,14 +17,16 @@ program trajectoryScan("P=13IDC:,R=traj1,M1=M1,M2=M2,M3=M3,M4=M4,M5=M5,M6=M6,M7=
  *  Oct. 28, 2002 MLR   Fixed bug in reporting updated trajectory positions after padding
  *                      Was not a problem in executing trajectory, only in values reported
  *                      to EPICS
+ *  Dec. 18, 2003 MLR   Changed flyback (now a misnomer) so it does EPICS move to current motor positions,
+ *                      not start positions.  Start position move did not work because motors already thought
+ *                      they were there (if no encoder error) and motor record did nothing.
+ *  Feb. 12, 2004 MLR   Added delay after starting trajectory execution.  This is an attempt to
+ *                      eliminate problem where MM4000 seems to sometimes ignore TP command right
+ *                      after trajectory execution starts.  Also, first MS sometimes comes back saying
+ *                      motors are not moving yet, so software thinks trajectory is done.
 */
 
 %% #include <string.h>
-/* vxWorks.h, taskLib.h and sysLib.h only needed for WAIT_OUTPUT, temporary */
-%% #include <vxWorks.h>  
-%% #include <taskLib.h>
-%% #include <sysLib.h>
-%% #include <time.h>
 
 /* This program must be compiled with the recursive option */
 option +r;
@@ -92,10 +94,11 @@ option +r;
 #define POLL_INTERVAL 0.1
 
 /* Macro to wait for output to complete.  This is very ugly, and assumes
- * 19200 baud, i.e. 2000 characters/second.
+ * 38400 baud, i.e. 4000 characters/second.
  * It will go away when the sequencer supports ca_array_put_callback */
-#define WAIT_OUTPUT delay=strlen(stringOut)*sysClkRateGet()/2000 + 2; \
-                    taskDelay(delay)
+#define WAIT_OUTPUT delay=strlen(stringOut)/4000.; \
+                    if (delay < .02) delay = .02; \
+                    epicsThreadSleep(delay)
 
 /* Define PVs */
 int    numAxes;     assign numAxes      to "{P}{R}NumAxes.VAL"; 
@@ -353,7 +356,7 @@ evflag motorMDVSMon;    sync motorMDVS  motorMDVSMon;
 int i;
 int j;
 int k;
-int delay;
+double delay;
 int anyMoving;
 int ncomplete;
 int nextra;
@@ -661,6 +664,8 @@ ss trajectoryScan {
             startTime = time(0);
             execState = EXECUTE_STATE_EXECUTING;
             pvPut(execState);
+            /* This is an attempt to fix the problem of TP sometimes not responding */
+            epicsThreadSleep(0.1);
         } state wait_execute
     }
 
@@ -720,10 +725,12 @@ ss trajectoryScan {
             pvPut(execState);
             pvPut(execStatus);
             pvPut(execMessage);
-            /* Start flyback */
+            /* Get the current motor positions, post them */
+            %%getMotorPositions(ssId, pVar, pVar->motorCurrent);
+            for (j=0; j<numAxes; j++) pvPut(motorCurrent[j]);
             for (j=0; j<numAxes; j++) {
                 if (!moveAxis[j]) continue;
-                epicsMotorPos[j] = initialPos[j];
+                epicsMotorPos[j] = motorCurrent[j];
                 pvPut(epicsMotorPos[j]);
             }
             %%waitEpicsMotors(ssId, pVar);
@@ -837,21 +844,21 @@ static int writeRead(SS_ID ssId, struct UserVar *pVar, char *command)
 
     seq_efClear(ssId, stringInMon);
     strcpy(pVar->stringOutIn, command);
-    seq_pvPut(ssId, pVar->stringOutInIndex);
+    seq_pvPut(ssId, pVar->stringOutInIndex, 0);
     /* Compute number of loops (clock ticks) to wait for a response.
      * Use the timeout field of the record, which can be changed via the
      * database or channel access, rather than anything hardcoded. 
      * The TMOT field is in msec. */
-    nloops = pVar->stringInTO*sysClkRateGet()/1000;
+    nloops = pVar->stringInTO/1000./epicsThreadSleepQuantum();
     for (i=0; i<nloops; i++) {
         if (seq_efTestAndClear(ssId, stringInMon)) break;
-        taskDelay(1);
+        epicsThreadSleep(epicsThreadSleepQuantum());
     }
     if (pVar->stringInSevr == 0) {
         /* Copy the response to MMresponse.  May be able to do this in the
          * database so it won't be needed */
         strncpy(pVar->MMresponse, pVar->stringIn, MAX_STRING_SIZE-1);
-        seq_pvPut(ssId, pVar->MMresponseIndex);
+        seq_pvPut(ssId, pVar->MMresponseIndex, 0);
         return(0);
     } else {
         return(-1);
@@ -914,7 +921,7 @@ static int getEpicsMotorMoving(SS_ID ssId, struct UserVar *pVar)
     int result=0, mask=0x01;
 
     for (j=0; j<pVar->numAxes; j++) {
-        seq_pvGet(ssId, pVar->epicsMotorDoneIndex[j]);
+        seq_pvGet(ssId, pVar->epicsMotorDoneIndex[j], 0);
         if (pVar->epicsMotorDone[j] == 0) result |= mask;
         mask = mask << 1;
     }
@@ -932,11 +939,11 @@ static int waitMotors(SS_ID ssId, struct UserVar *pVar)
     while(getMotorMoving(ssId, pVar)) {
         /* Get the current motor positions, post them */
         getMotorPositions(ssId, pVar, pVar->motorCurrent);
-        for (j=0; j<pVar->numAxes; j++) seq_pvPut(ssId, pVar->motorCurrentIndex[j]);
-        taskDelay(POLL_INTERVAL * sysClkRateGet());
+        for (j=0; j<pVar->numAxes; j++) seq_pvPut(ssId, pVar->motorCurrentIndex[j], 0);
+        epicsThreadSleep(POLL_INTERVAL);
     }
     getMotorPositions(ssId, pVar, pVar->motorCurrent);
-    for (j=0; j<pVar->numAxes; j++) seq_pvPut(ssId, pVar->motorCurrentIndex[j]);
+    for (j=0; j<pVar->numAxes; j++) seq_pvPut(ssId, pVar->motorCurrentIndex[j], 0);
     return(0);
 }
 
@@ -952,13 +959,13 @@ static int waitEpicsMotors(SS_ID ssId, struct UserVar *pVar)
         /* Get the current motor positions, post them */
         for (j=0; j<pVar->numAxes; j++) {
             pVar->motorCurrent[j] = pVar->epicsMotorPos[j];
-            seq_pvPut(ssId, pVar->motorCurrentIndex[j]);
+            seq_pvPut(ssId, pVar->motorCurrentIndex[j], 0);
         }
-        taskDelay(POLL_INTERVAL * sysClkRateGet());
+        epicsThreadSleep(POLL_INTERVAL);
     }
     for (j=0; j<pVar->numAxes; j++) {
         pVar->motorCurrent[j] = pVar->epicsMotorPos[j];
-        seq_pvPut(ssId, pVar->motorCurrentIndex[j]);
+        seq_pvPut(ssId, pVar->motorCurrentIndex[j], 0);
     }
     return(0);
 }
