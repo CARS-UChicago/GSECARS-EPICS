@@ -21,6 +21,9 @@ tyGSMPFInit("serial10",  1, 1, 9600,'N',1,8,'N',"") /* Oxford ILM cryometer */
 tyGSMPFInit("serial11",  1, 2,19200,'E',1,8,'N',"") /* MKS */
 tyGSMPFInit("serial12",  1, 3, 9600,'N',1,8,'N',"") /* MPC */
 tyGSMPFInit("serial13",  1, 4,19200,'N',1,8,'N',"") /* Keithley 2000 */
+tyGSMPFInit("serial14",  1, 5, 9600,'N',1,8,'N',"") /* Unused */
+tyGSMPFInit("serial15",  1, 6, 9600,'N',1,8,'N',"") /* Unused */
+tyGSMPFInit("serial16",  1, 7, 9600,'N',1,8,'N',"") /* Unused */
 
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *serverName,
@@ -51,8 +54,3 @@ initIpUnidig("Unidig1", 0, 2, 20, 2000, 116, 0x0, 0x0, 0x0, 10)
 
 # Initialize Systran DAC
 initDAC128V("DAC1",0,3,20)
-
-
-# DEBUGGING
-#serialPortPeek("serial1",1000)
-

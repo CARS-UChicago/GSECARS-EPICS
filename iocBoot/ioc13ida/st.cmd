@@ -43,18 +43,14 @@ dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,C=0,SERVER=serial5,CC1=cc5,CC2=c
 dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip5,C=0,SERVER=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip2,C=0,SERVER=serial7,PA=0,PN=1", ip)
 # serial8 is McClennan PM-304 motor controller
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDA:,R=ser1,C=0,SERVER=serial8")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,C=0,SERVER=serial9")
 dbLoadRecords("$(CARS)/CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200,C=0,SERVER=serial10")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13IDA:,R=ser2,C=0,SERVER=serial11")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,C=0,SERVER=serial11,CC1=cc7,CC2=ccB,PR1=pr7,PR2=prB")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip6,C=0,SERVER=serial12,PA=0,PN=1")
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip7,C=0,SERVER=serial12,PA=0,PN=2")
 dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13IDA:,TSP=tsp1,C=0,SERVER=serial12,PA=0")
 
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,C=0,SERVER=serial13")
-
-#dbLoadRecords("$(CARS)/CARSApp/Db/generic_gpib.db","P=13IDA:,R=gpib1,SIZE=2048")
 
 dbLoadTemplate("motors.template")
 
@@ -84,7 +80,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_16.db","P=13IDA:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -92,13 +88,13 @@ dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS
 dbLoadTemplate("scanParms.template")
 
 #  load the databases for the MSL MRD100 module ...
-dbLoadRecords ("$(STD)/stdApp/Db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
+dbLoadRecords ("$(VME)/vmeApp/Db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13IDA:")
+dbLoadTemplate("vxStats.substitutions")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -132,11 +128,11 @@ PM304Setup(1, 1, 10)
 
 # PM304 driver configuration parameters:
 #     (1) controller
-#     (2) Hideos/MPF card
-#     (3) Hideos task/MPF server
+#     (2) asyn port
+#     (3) # axes
 # Example:
-#   PM304Config(0, 1, "serial4")  MPF ID 1, server serial4
-PM304Config(0, 0, "serial8")
+#   PM304Config(0, "serial4", 1)
+PM304Config(0, "serial8", 1)
 
 # initQuadEM(baseAddress, fiberChannel, microSecondsPerScan, maxClients,
 #            unidigName, unidigChan)
