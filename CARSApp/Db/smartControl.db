@@ -4,6 +4,11 @@
 #                   Mark Rivers
 #                   September 17, 2000
 #
+# Modifications:
+#   8-Feb-2002 MLR  Changed the _SIGN PVs from mbbo to bi.  mbbo was being
+#                   used to hold "1" or "-1" in the RVAL field, but 
+#                   RVAL type is ULONG, so it can't hold -1.
+#
 # Macro parameters:
 #   $(P)        - PV name prefix
 #   $(R)        - PV base record name
@@ -177,37 +182,29 @@ grecord(ao,"$(P)$(R)KAPPA_OFFSET") {
 }
 
 # Axis signs
-grecord(mbbo,"$(P)$(R)TTH_SIGN") {
+grecord(bi,"$(P)$(R)TTH_SIGN") {
     field(DESC,"SMART 2-theta sign")
     field(VAL, "0")
-    field(ZRVL, "1")
-    field(ZRST, "Positive")
-    field(ONVL, "-1")
-    field(ONST, "Negative")
+    field(ZNAM, "Positive")
+    field(ONAM, "Negative")
 }
-grecord(mbbo,"$(P)$(R)OMEGA_SIGN") {
+grecord(bi,"$(P)$(R)OMEGA_SIGN") {
     field(DESC,"SMART Omega sign")
     field(VAL, "0")
-    field(ZRVL, "1")
-    field(ZRST, "Positive")
-    field(ONVL, "-1")
-    field(ONST, "Negative")
+    field(ZNAM, "Positive")
+    field(ONAM, "Negative")
 }
-grecord(mbbo,"$(P)$(R)PHI_SIGN") {
+grecord(bi,"$(P)$(R)PHI_SIGN") {
     field(DESC,"SMART Phi sign")
     field(VAL, "0")
-    field(ZRVL, "1")
-    field(ZRST, "Positive")
-    field(ONVL, "-1")
-    field(ONST, "Negative")
+    field(ZNAM, "Positive")
+    field(ONAM, "Negative")
 }
-grecord(mbbo,"$(P)$(R)KAPPA_SIGN") {
+grecord(bi,"$(P)$(R)KAPPA_SIGN") {
     field(DESC,"SMART Kappa sign")
     field(VAL, "0")
-    field(ZRVL, "1")
-    field(ZRST, "Positive")
-    field(ONVL, "-1")
-    field(ONST, "Negative")
+    field(ZNAM, "Positive")
+    field(ONAM, "Negative")
 }
 
 # Record to control debugging output
