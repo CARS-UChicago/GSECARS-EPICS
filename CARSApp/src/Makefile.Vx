@@ -12,6 +12,7 @@ SRCS.c += ../drvAvme9210.c
 include ../baseLIBOBJS
 
 include ../carsLIBOBJS
+include ../carsMpfServerLIBOBJS
 
 include $(STD)/stdApp/src/stdLIBOBJS
 LIBOBJS += $(STDLIBOBJS)
@@ -38,11 +39,13 @@ LIBOBJS += $(MOTOR_BIN)/softMotorLib
 LIBOBJS += $(MOTOR_BIN)/newportLib
 #LIBOBJS += $(MOTOR_BIN)/pm500Lib
 
-# CAMAC librariew
+# CAMAC libraries
 LIBOBJS += $(CAMAC_BIN)/camacLib
 LIBOBJS += $(CAMAC_BIN)/devCamacLib
 LIBOBJS += $(CAMAC_BIN)/dxpCamacLib
 LIBNAME = CARSLib
+
+PROD += mpfServLib
 
 BIN_INSTALLS += $(EPICS_BASE_BIN)/iocCore $(EPICS_BASE_BIN)/seq
 
@@ -52,7 +55,6 @@ BIN_INSTALLS += $(STD_BIN)/getFilledBuckets.o
 BIN_INSTALLS += $(MPF_GPIB_BIN)/GpibHideosRemote.o
 BIN_INSTALLS += $(MPF_GPIB_BIN)/GpibHideosLocal.o
 BIN_INSTALLS += $(MPF_BIN)/mpfLib
-BIN_INSTALLS += $(IP_BIN)/mpfServLib
 BIN_INSTALLS += $(STD_BIN)/initHooks.o
 
 #Note that the command line that builds the
@@ -61,3 +63,6 @@ BIN_INSTALLS += $(STD_BIN)/initHooks.o
 include $(TOP)/config/RULES.Vx
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
+mpfServLib : $(CARSMPFSERVERLIBOBJS)
+	$(LINK.c) $@ $(CARSMPFSERVERLIBOBJS)
+
