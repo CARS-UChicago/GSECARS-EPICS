@@ -1,67 +1,37 @@
 # vxWorks startup file for 13BMD IOC
 < cdCommands
-
 < ../nfsCommandsGSE
 loginUserAdd "epics","SzeSebbzRR"
 
 cd topbin
-ld < iocCore
-ld < seq
-ld < CARSLib
-
-# This IOC loads the MPF server code locally
+ld < CARSApp.munch
 cd startup
-< st_mpfserver.cmd
-
-cd topbin
-# This IOC talks to a local GPIB server
-ld < GpibHideosLocal.o
-
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < initHooks.o
-
-cd startup
-
-# Initialize MPF 
-routerInit
-
-# Initialize local MPF connection
-localMessageRouterStart(0)
-
-# Set debugging flags
-#reboot_restoreDebug = 5
-#save_restore_debug =10
-devMcaMpfDebug=0
-mcaAIMServerDebug=0
-aimDebug=0
-
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
-
-# need more entries in Wait-record channel-access queue (?)
-recDynLinkQsize = 1024
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build.
-dbLoadDatabase("../../dbd/CARSApp.dbd")
+dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
+CARSVX_registerRecordDeviceDriver(pdbbase)
+
+# This IOC loads the MPF server code locally
+< st_mpfserver.cmd
+
+icbDebug=10
 
 # Load database
-dbLoadRecords  "stdApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0", std
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,IPSLOT=a,CHAN=0", ip
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,IPSLOT=a,CHAN=2", ip
-dbLoadRecords  "ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,IPSLOT=a,CHAN=3", ip
-# LVP Omega controller
-#dbLoadRecords "CARSApp/Db/BM_LVP_Omega.db","P=13BMD:,R=Omega1_,C=0,IPSLOT=a,CHAN=4,BAUD=9600,PRTY=None,DBIT=7,SBIT=2", top
-dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=0,IPSLOT=a,CHAN=5,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
-#dbLoadRecords  "CARSApp/Db/generic_gpib.db", "P=13BMD:,R=gpib1,SIZE=2048", top
-dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", ip
-dbLoadRecords  "CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1", top
-dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=7", ip
-dbLoadRecords  "CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1", top
+dbLoadRecords("$(STD)/stdApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,SERVER=serial1")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,C=0,SERVER=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,SERVER=serial3")
+dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,SERVER=serial4")
+dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13BMD:,R=ser2,C=0,SERVER=serial6")
+#dbLoadRecords("$(CARS)/CARSApp/Db/generic_gpib.db", "P=13BMD:,R=gpib1,SIZE=2048")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,SERVER=serial7")
+dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,SERVER=serial8")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,C=0,SERVER=serial9")
+dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
 dbLoadTemplate "DAC.template"
+dbLoadTemplate "heater_control.template"
 dbLoadTemplate "LVP_furnace_control.template"
 dbLoadTemplate "LVP_pressure_control.template"
 dbLoadTemplate "motors.template"
@@ -74,41 +44,41 @@ dbLoadTemplate "IpUnidig.template"
 
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13BMD:,R=smart1,C=0,IPSLOT=a,CHAN=5,BAUD=9600,")
+strcpy(str,"P=13BMD:,R=smart1,C=0,SERVER=serial6,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("CARSApp/Db/smartControl.db",str,top)
-
+dbLoadRecords("$(CARS)/CARSApp/Db/smartControl.db",str)
 
 # CCD synchronization record
-dbLoadRecords  "CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1", top
+dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
 
 # Multichannel analyzer stuff
 # AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
 #           maxSignals, maxSequences, ethernetDevice, queueSize)
 AIMConfig("NI9CE/1", 0x9CE, 1, 2048, 1, 1,"dc0", 40)
 AIMConfig("NI9CE/2", 0x9CE, 2, 2048, 4, 1,"dc0", 40)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @NI9CE/1,NCHAN=2048", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 @NI9CE/2,NCHAN=2048", mca)
-picbServer = icbConfig("icb/1", 10, "NI9CE:5", 100)
-dbLoadRecords "mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0", mca
-icbAddModule(picbServer, 1, "NI9CE:3")
-dbLoadRecords "mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1", mca
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @NI9CE/1,NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 @NI9CE/2,NCHAN=2048")
+icbSetup("icb/1", 10, 100)
+icbConfig("icb/1", 0, 0x9ce, 5)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
+icbConfig("icb/1", 1, 0x9ce, 3)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
 
 # Set up Struck multichannel scaler
 #STR7201Setup(1,0xA0000000,220,6)
 #STR7201Config(0, 4, 2048)
-#dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mca_str1,DTYPE=Struck STR7201 MCS,NCHAN=1024,INP=#C0 S0", mca)
+#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mca_str1,DTYPE=Struck STR7201 MCS,NCHAN=1024,INP=#C0 S0")
 
 # IP-330 ADC with MCA record as transient recorder
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @b-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @b-Ip330Sweep", mca)
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @Ip330Sweep1")
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_40.db) are in std/stdApp/Db
-dbLoadRecords("stdApp/Db/all_com_56.db","P=13BMD:", std)
+dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13BMD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -116,7 +86,7 @@ dbLoadRecords("stdApp/Db/all_com_56.db","P=13BMD:", std)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("stdApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10", std)
+dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -124,15 +94,16 @@ dbLoadRecords("stdApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,
 dbLoadTemplate "scanParms.template"
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("stdApp/Db/misc.db","P=13BMD:", std)
-dbLoadRecords("stdApp/Db/userTransform.db", "P=13BMD:, N=1", std)
-dbLoadRecords("stdApp/Db/userTransform.db", "P=13BMD:, N=2", std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
+dbLoadRecords("$(STD)/stdApp/Db/userTransform.db", "P=13BMD:, N=1")
+dbLoadRecords("$(STD)/stdApp/Db/userTransform.db", "P=13BMD:, N=2")
 
 # Experiment description
-dbLoadRecords("CARSApp/Db/experiment_info.db","P=13BMD:", top)
+dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
 
 # vxWorks statistics
-dbLoadRecords("stdApp/Db/VXstats.db","P=13BMD:", std)
+# FIX THIS!!!
+#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13BMD:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -170,14 +141,27 @@ create_monitor_set("auto_positions.req",5)
 create_monitor_set("auto_settings.req",30)
 
 seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM1, stack=10000"
-#ybW 1/19/99
 seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM2, stack=15000"
+seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM3, stack=15000"
+seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM4, stack=15000"
 seq &BMD_LVP_Detector, "P=13BMD:,PMT=pm4,PMR=pm3,X=m9,Y=m16,Z=m10,TV=m12,TH=m13"
 
 # Force the DAC to be 0 volts.  The hardware does this automatically on VME 
 # reset but the the software display is not correct
 dbpf "13BMD:DAC1_1", "0."
 
-# Need to wait 15 seconds before starting this task or CPU use is 100% - TRACK DOWN WHY !!!
-taskDelay(900)
 seq &smartControl, "P=13BMD:,R=smart1,TTH=m38,OMEGA=m38,PHI=m38,KAPPA=m38,SCALER=scaler1,I0=2,stack=10000"
+
+### Start the saveData task.
+# saveData_MessagePolicy
+# 0: wait forever for space in message queue, then send message
+# 1: send message only if queue is not full
+# 2: send message only if queue is not full and specified time has passed (SetCptWait()
+#    sets this time.)
+# 3: if specified time has passed, wait for space in queue, then send message
+# else: don't send message
+#debug_saveData = 2
+saveData_MessagePolicy = 2
+saveData_SetCptWait_ms(100)
+#saveData_Init("saveDataExtraPVs.req", "P=13BMD:")
+#saveData_PrintScanInfo("13BMD:scan1")

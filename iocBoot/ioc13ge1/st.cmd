@@ -3,25 +3,16 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < iocCore
-ld < seq
-ld < CARSLib
-
-# Initialize local MPF connection
-ld < mpfServLib 
-ld < GpibHideosLocal.o
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < initHooks.o
-
+ld < CARSApp.munch
 cd startup
+
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARSApp
+dbLoadDatabase("../../dbd/CARSVX.dbd")
+CARSVX_registerRecordDeviceDriver(pdbbase)
+
 routerInit
 localMessageRouterStart(0)
-
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
 
 # Set debugging flags
 mcaRecordDebug = 1
@@ -30,12 +21,6 @@ mcaAIMServerDebug = 1
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
 save_restoreDebug = 0
-
-# Tell EPICS all about the record types, device-support modules, drivers,
-# etc. in this build from CARSApp
-dbLoadDatabase("../../dbd/CARSApp.dbd")
-
-# Load database
 
 # Multichannel analyzer stuff
 # Load 16 element detector software
@@ -49,13 +34,13 @@ dbLoadDatabase("../../dbd/CARSApp.dbd")
 # and it's time to trigger detectors.
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("stdApp/Db/misc.db","P=13GE1:", std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE1:")
 
 # Experiment description
-dbLoadRecords("CARSApp/Db/experiment_info.db","P=13GE1:", top)
+dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13GE1:")
 
 # vxWorks statistics
-dbLoadRecords("stdApp/Db/VXstats.db","P=13GE1:", std)
+#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13GE1:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -66,6 +51,7 @@ sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
 iocInit
+#epicsThreadCreate("iocInit",100, 15000, iocInit, 0)
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".

@@ -6,35 +6,22 @@ mem = malloc(1024*1024*96)
 
 < ../nfsCommandsGSE
 
-cd appbin
-ld < iocCore
-ld < seq
-ld < CARSLib
+cd topbin
+ld < CARSApp.munch
+cd startup
+
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARSApp
+dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
+CARSVX_registerRecordDeviceDriver(pdbbase)
 
 putenv("EPICS_TS_MIN_WEST=300")
-
-# This IOC talks to a local GPIB server
-#ld < gpibHideosLocal.o
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-ld < initHooks.o
-cd startup
 
 # Initialize MPF stuff
 routerInit
 
 # Initialize local MPF connection
 localMessageRouterStart(0)
-
-# This IOC loads the MPF server code locally - disabled for now
-# < st_mpfserver.cmd
-
-
-
-# override address, interrupt vector, etc. information in module_types.h
-module_types()
 
 # Set debugging flags
 mcaRecordDebug = 0
@@ -46,10 +33,6 @@ icbDebug=0
 dxpRecordDebug=0
 mcaDXPServerDebug=0
 devDxpMpfDebug=0
-
-# Tell EPICS all about the record types, device-support modules, drivers,
-# etc. in this build from CARSApp
-dbLoadDatabase("../../dbd/CARSApp.dbd")
 
 # Setup the ksc2917 hardware definitions
 # These are all actually the defaults, so this is not really necessary
@@ -67,7 +50,7 @@ camacLibInit
 # < 8element.cmd
 
 # Generic CAMAC record
-dbLoadRecords("camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048", camac)
+dbLoadRecords("$(CAMAC)/camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048")
 
 ### Motors
 # E500 driver setup parameters: 
@@ -90,10 +73,9 @@ dbLoadTemplate  "motors.template"
 # AIMConfig(mpfServer, card, ethernet_address, port, maxChans,
 #           maxSignals, maxSequences, ethernetDevice, queueSize)
 #AIMConfig("AIM1/1", 0x59e, 1, 4000, 1, 1, "ei0", 100)
-#dbLoadRecords("mcaApp/Db/mca.db", "P=13GE2:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048", mca)
+#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13GE2:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048")
 #
 
-### Scalers: CAMAC scaler
 ### Scalers: CAMAC scaler
 # CAMACScalerSetup(int max_cards)   /* maximum number of logical cards */
 CAMACScalerSetup(1)
@@ -106,10 +88,10 @@ CAMACScalerSetup(1)
 #  int counter_type,                   /* 0=QS-450 */
 #  int counter_slot)                   /* Counter N */
 CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
-dbLoadRecords("camacApp/Db/CamacScaler.db","P=13GE2:,S=scaler1,C=0", camac)
+#dbLoadRecords("$(CAMAC)/camacApp/Db/CamacScaler.db","P=13GE2:,S=scaler1,C=0")
 
 # Test record for scaler synchronization at X-26
-#dbLoadRecords("CARSApp/Db/X26_scaler_sync.db","P=13GE2:,M=med:mca1,S=scaler1", top)
+#dbLoadRecords("$(CARS)/CARSApp/Db/X26_scaler_sync.db","P=13GE2:,M=med:mca1,S=scaler1")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -117,27 +99,27 @@ dbLoadRecords("camacApp/Db/CamacScaler.db","P=13GE2:,S=scaler1,C=0", camac)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("stdApp/Db/scan.db","P=13GE2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10", std)
+dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13GE2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
-dbLoadTemplate "scanParms.template", std
+dbLoadTemplate "scanParms.template"
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("stdApp/Db/userStringCalcs10.db","P=13GE2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db","P=13GE2:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("stdApp/Db/userTransforms10.db","P=13GE2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db","P=13GE2:")
 
 # vme test record
-dbLoadRecords("stdApp/Db/vme.db", "P=13GE2:,Q=vme1", std)
+dbLoadRecords("$(STD)/stdApp/Db/vme.db", "P=13GE2:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("stdApp/Db/misc.db","P=13GE2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE2:")
 
 # vxWorks statistics
-dbLoadRecords("stdApp/Db/VXstats.db","P=13GE2:", std)
+#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13GE2:")
 
 
 ################################################################################
