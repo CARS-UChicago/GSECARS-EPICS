@@ -78,6 +78,9 @@ dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDC:,A=A7,C=0,IPSLOT=b,CHAN=6",ip
 
 dbLoadTemplate "motors.template"
 
+# Digital to analog converter
+dbLoadTemplate "DAC.template"
+
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
@@ -92,8 +95,8 @@ dbLoadRecords("CARSApp/Db/trajectoryScan.db", str, top)
 # Multichannel analyzer stuff
 ### AIMConfig(serverName, ethernet_address, port, maxChans, maxSignals,
 ###           maxSequences, ethernetDevice, queueSize)
-AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "ei0", 40)
-AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "ei0", 40)
+AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "dc0", 40)
+AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "dc0", 40)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @NI6E6/1,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 @NI6E6/2,NCHAN=2048", mca)
 # dbLoadRecords "mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,ICB=NI6E6:3", mca
@@ -127,6 +130,9 @@ dbLoadRecords("stdApp/Db/all_com_56.db","P=13IDC:", std)
 # and it's time to trigger detectors.
 
 dbLoadRecords("stdApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10", std)
+
+## MN: scanner database for scan communication
+dbLoadRecords("CARSApp/Db/scanner.db","P=13IDC:,Q=EDB", top)
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -192,7 +198,7 @@ drvMM4000ReadbackDelay = 0.5
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
-VSCSetup(1, 0xD0000000, 200)
+VSCSetup(1, 0xB0000000, 200)
  
 
 # dbrestore setup

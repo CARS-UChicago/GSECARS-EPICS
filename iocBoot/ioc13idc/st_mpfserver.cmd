@@ -1,24 +1,27 @@
 # This loads the MPF server stuff
 
 cd topbin
-ld < ../mv162/mpfServLib 
+ld <mpfServLib 
 
 cd startup
 
 routerInit
 localMessageRouterStart(0)
 
-carrier = "ipac"
-ipacAddCarrier(&ipmv162, "A:l=3,3 m=0xe0000000,64;B:l=3,3 m=0xe0010000,64;C:l=3,3 m=0xe0020000,64;D:l=3,3 m=0xe0030000,64")
-initIpacCarrier(carrier, 0)
+carrier0 = "ipac0"
+carrier1 = "ipac1"
+ipacAddCarrier(&vipc616_01, "0x3000,0xa0000000")
+ipacAddCarrier(&vipc616_01, "0x3400,0xa2000000")
+initIpacCarrier(carrier0, 0)
+initIpacCarrier(carrier1, 1)
 
 # Initialize GPIB stuff
 #initGpibGsTi9914("GS-IP488-0",carrier,"IP_c",104)
 #initGpibServer("GPIB0","GS-IP488-0",1024,1000)
 
 # Initialize Octal UART stuff
-initOctalUART("octalUart0",carrier,"IP_a",8,100)
-initOctalUART("octalUart1",carrier,"IP_b",8,101)
+initOctalUART("octalUart0",carrier0,"IP_a",8,100)
+initOctalUART("octalUart1",carrier0,"IP_b",8,101)
 
 # initOctalUARTPort(char* portName,char* moduleName,int port,int baud,
 #                   char* parity,int stop_bits,int bits_char,char* flow_control)
@@ -84,7 +87,7 @@ initSerialServer("b-Serial[7]","UART[15]",1000,20,"\r",1)
 #               does not refer to the number of EPICS clients.  A value of
 #               10 should certainly be safe.
 # intVec        Interrupt vector
-pIp330 = initIp330("c-Ip330", carrier,"IP_c","D","-5to5",0,3,10,120)
+pIp330 = initIp330("c-Ip330", carrier0,"IP_c","D","-5to5",0,15,10,120)
 
 
 # int configIp330(
@@ -123,7 +126,7 @@ configIp330(pIp330, 3,"Input",1000,0)
 # milliSecondsToAverage = number of milliseconds to average readings
 # queueSize  = size of output queue for MPF. Make this the maximum number 
 #              of ai records attached to this server.
-initIp330Scan(pIp330,"c-Ip330Scan",0,3,100,20)
+initIp330Scan(pIp330,"c-Ip330Scan",0,15,100,20)
 
 # int initIp330Sweep(Ip330 *pIp330, char *serverName, int firstChan, int lastChan,
 #              int maxPoints, int queueSize)
@@ -145,4 +148,17 @@ initIp330Sweep(pIp330,"c-Ip330Sweep",0,3,2048,20)
 # carrierName = name of IPAC carrier from initIpacCarrier above
 # siteName    = name of IP site, e.g. "IP_a"
 # queueSize   = size of output queue for EPICS
-initIpUnidig("d-Unidig", carrier, "IP_d", 20)
+initIpUnidig("d-Unidig", carrier0, "IP_d", 20)
+
+# Initialize Systran DAC
+pDAC128V = initDAC128V("e-DAC",carrier1,"IP_a",20)
+
+# Initialize second Greenspring IP-Unidig
+# initIpUnidig(char *serverName, char *carrierName, char *siteName,
+#              int queueSize)
+# serverName  = name to give this server
+# carrierName = name of IPAC carrier from initIpacCarrier above
+# siteName    = name of IP site, e.g. "IP_a"
+# queueSize   = size of output queue for EPICS
+initIpUnidig("f-Unidig", carrier1, "IP_b", 20)
+
