@@ -9,14 +9,14 @@
 # Bruker shutter and crystal X-Y (previously 41-44).
 # Current definitions:
 # Motors   Card    Patch panel  Common use
-#  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
+#  1-8       0        D         LVP lift table (1-6)
 #  9-16      1        E         LVP detector (9,10,12,13,16), CCD detector (11,14,15)
 #  17-24     2        B         XAS lift table (17-22), CCD Detector(23), Photodiode(24)
-#  25-32     3        C         Hutch slits (29-32)
+#  25-32     3        C         LVP entrance slits (26-27), Hutch slits (29-32)
 #  33-40     4        A         Tomography, XAS, DAC sample stages
 #  41-48     5        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
 #  49-56     6        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
-#  57-64     7        F         LVP CCD stage (57-59), D-DIA diff. rams (60: bottom; 61: top), unused (62-64), 17-Nov-2003,YW
+#  57-64     7        F         LVP CCD stage (57-59), D-DIA diff. rams (60: bottom; 61: top), unused (62), High-P Tomo Rot. (63: top; 64: bott; both bipolar), 19-Jul-2004,YW
 # Previous definitions:
 # Motors   Card    Patch panel  Common use
 #  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
@@ -43,7 +43,7 @@ pattern
 {13BMD:,  m9, "OMS VME58",   1,  0, "Detect. X",         mm,    Neg,   .4,   .005,   .1,    0.1,  .4,   .1,   400, -5.08,    3,     50,    0}
 {13BMD:,  m10, "OMS VME58",  1,  1, "Detect. Z",         mm,    Pos,   .4,   .005,   .1,    0.1,  .4,   .1,   400, -5.08,    3,     50,    0}
 {13BMD:,  m16, "OMS VME58",  1,  7, "Detect. Y",         mm,    Pos,   .4,   .005,   .1,    0.1,  .4,   .1,   4000,  5.08,    3,     50,    0}
-{13BMD:,  m12, "OMS VME58",  1,  3, "Simple Two Theta",         deg,   Pos,   .1,   .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -3}
+{13BMD:,  m12, "OMS VME58",  1,  3, "Simple Two Theta",  deg,   Pos,   .1,   .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -3}
 {13BMD:,  m13, "OMS VME58",  1,  4, "Detector Phi",      deg,   Pos,    .1,  .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -10}
 
 #LVP ccd stage m11, m14 and 15
@@ -140,6 +140,7 @@ pattern
 # Third set of LVP motors, added 26-Sept-2002 MLR
 # LVP CCD camera stage 15-Sept-2003 TU
 # DDIA diff RAMS, 17-Nov-2003 YW
+# Hi-P Tomo Rotations, 19-Jul-2004 YW
 {13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
 {13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
@@ -147,11 +148,11 @@ pattern
 # Added planetary gear heads, gear ratio 10:1, UREV(new) = UREV(old)/10, 08-June-2004 YBW
 {13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
 {13BMD:,  m61, "OMS VME58",  7,  4, "DIFF RAM Top",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
-{13BMD:,  m62, "OMS VME58",  7,  5, "Motor 62",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
-{13BMD:,  m63, "OMS VME58",  7,  6, "Motor 63",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
-{13BMD:,  m64, "OMS VME58",  7,  7, "Motor 64",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m62, "OMS VME58",  7,  5, "Tomo Top",    deg,    Pos, 0.001,    0.001,  0.001,  0,   1, .2, 400,   0.001828,  6,  0,    0}
+# Hi-P Tomo rotation: 10:1 right angle gear; 260/80 coupling gear; 160:1 HarmonicDrive, total 5200:1. Angle=360/5200=0.069231 deg/motor rev
+{13BMD:,  m63, "OMS VME58",  7,  6, "Top Rot., deg.",    deg,    Pos, 0.05,    0.05,  0.05,  0,   1, .2, 400,   0.069231,  3,  0,    0}
+{13BMD:,  m64, "OMS VME58",  7,  7, "Bot Rot., deg.",    deg,    Neg, 0.05,    0.05,  0.05,  0,   1, .2, 400,   0.069231,  3,  0,    0}
 }
-
 
 file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
@@ -249,6 +250,33 @@ pattern
 {13BMD:, KBV:,  pm7, pm8,    m43.VAL,  m43.RBV,  m44.VAL, m44.RBV, m43.STOP, m43.DMOV, m44.STOP, m44.DMOV, 1}
 }
 #-->
+
+#  pseudomotors for LVP tomo
+file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,                        DESC,           EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,  RRES,   PREC, DHLM, DLLM}
+
+{13BMD:,  pm9,  "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm9DVAL.VAL PP MS",  "13BMD:LVPtomo:Readback.G NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Tomo Mode, deg.",     deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .000173,   1.0,  3,    10000, -10000}
+{13BMD:,  pm10, "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm10DVAL.VAL PP MS", "13BMD:LVPtomo:Readback.H NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Twist Mode, deg.",    deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .000173,   1.0,  3,    10000, -10000}
+}
+file "$(CARS)/CARSApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,         SUM, DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, LVPtomo:,  pm9, pm10,    m63.VAL,  m63.RBV,  m64.VAL, m64.RBV, m63.STOP, m63.DMOV, m64.STOP, m64.DMOV, 6}
+}
+
+#  pseudomotors for LVP table
+file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                        STOO,                DESC,       EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC,    DHLM, DLLM}
+
+{13BMD:,  pm11, "13BMD:LVP:T1:done NPP NMS", "13BMD:LVP:t1.X PP MS",  "13BMD:LVP:t1.EX NPP NMS", "13BMD:LVP:T1:stop PP MS",  "Table X",     mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    10000, -10000}
+{13BMD:,  pm12, "13BMD:LVP:T1:done NPP NMS", "13BMD:LVP:t1.Y PP MS",  "13BMD:LVP:t1.EY NPP NMS", "13BMD:LVP:T1:stop PP MS",  "Table Y",     mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    10000, -10000}
+}
+
 
 file "$(CARS)/CARSApp/Db/BMD_LVP_Detector.db"
 {
