@@ -14,6 +14,9 @@ program trajectoryScan("P=13IDC:,R=traj1,M1=M1,M2=M2,M3=M3,M4=M4,M5=M5,M6=M6,M7=
  *  Dec. 5, 2001 MLR    Fixed bug in computing following error
  *  Dec. 7, 2001 MLR    Fixed bug in converting from EPICS to MM4000 units when
  *                      building trajectory.
+ *  Oct. 28, 2002 MLR   Fixed bug in reporting updated trajectory positions after padding
+ *                      Was not a problem in executing trajectory, only in values reported
+ *                      to EPICS
 */
 
 %% #include <string.h>
@@ -515,7 +518,10 @@ ss trajectoryScan {
                 npoints += nextra;
                 pvPut(nelements);
                 pvPut(timeTrajectory);
-                pvPut(motorTrajectory);
+                /* Post the new trajectory position arrays */
+                for (j=0; j<numAxes; j++) {
+                   pvPut(motorTrajectory[j]);
+                }
             }
             /* Compute expected time for trajectory */
             expectedTime=0;
