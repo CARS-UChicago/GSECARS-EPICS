@@ -219,3 +219,9 @@ seq &trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m
 
 seq &smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER=scaler1,I0=2,stack=10000"
 
+# newport table sequencer
+str=malloc(256)
+strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
+strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
+seq &newport_table, str
+
