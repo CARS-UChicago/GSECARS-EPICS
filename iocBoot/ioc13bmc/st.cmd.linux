@@ -1,0 +1,56 @@
+< envPaths
+# Start errlog Task before any possible error messsage to prevent
+# erroneous "Interrupted system call" message on Linux OS.
+errlogInit(0)
+#
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+dbLoadTemplate "motors_xps.template"
+
+var motorRecordDebug 	0
+var devXPSC8Debug	0
+var drvXPSC8Debug	0
+
+# cards (total controllers), scan rate 
+XPSC8Setup(2, 60)
+#
+# card, IP, PORT, number of axes
+XPSC8Config(0,"164.54.160.124",5001,6)
+XPSC8Config(1,"164.54.160.131",5001,8)
+#
+# card,  axis, group, positioner
+XPSC8NameConfig(0,0,"GROUP1","GROUP1.PHI")
+XPSC8NameConfig(0,1,"GROUP2","GROUP2.KAPPA")
+XPSC8NameConfig(0,2,"GROUP3","GROUP3.OMEGA")
+XPSC8NameConfig(0,3,"GROUP4","GROUP4.PSI")
+XPSC8NameConfig(0,4,"GROUP5","GROUP5.2THETA")
+XPSC8NameConfig(0,5,"GROUP6","GROUP6.NU")
+#
+# card,  axis, group, positioner
+XPSC8NameConfig(1,0,"GROUP1","GROUP1.Y1_BASE")
+XPSC8NameConfig(1,1,"GROUP2","GROUP2.Y2_BASE")
+XPSC8NameConfig(1,2,"GROUP3","GROUP3.Y3_BASE")
+XPSC8NameConfig(1,3,"GROUP4","GROUP4.TRX_BASE")
+XPSC8NameConfig(1,4,"GROUP5","GROUP5.THETA-Y_BASE")
+XPSC8NameConfig(1,5,"GROUP6","GROUP6.X_SAMPLE")
+XPSC8NameConfig(1,6,"GROUP7","GROUP7.Y_SAMPLE")
+XPSC8NameConfig(1,7,"GROUP8","GROUP8.Z_SAMPLE")
+
+set_pass0_restoreFile("auto_positions_xps.sav")
+set_pass0_restoreFile("auto_settings_xps.sav")
+set_pass1_restoreFile("auto_settings_xps.sav")
+
+iocInit
+
+### Start up the autosave task and tell it what to do.
+# The task is actually named "save_restore".
+# (See also, 'initHooks' above, which is the means by which the values that
+# will be saved by the task we're starting here are going to be restored.
+#
+< ../requestFileCommands
+# save positions every five seconds
+create_monitor_set("auto_positions_xps.req",5)
+# save other things every thirty seconds
+create_monitor_set("auto_settings_xps.req",30)
+
