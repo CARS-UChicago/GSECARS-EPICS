@@ -76,48 +76,60 @@ devMCA_softDebug = 0
 #module_types()
 
 # Generic GPIB record
-#dbLoadRecords("$(CARS)/CARSApp/Db/generic_gpib.db", "P=13LAB:,R=gpib1,SIZE=4096")
+dbLoadRecords("$(IP)/ipApp/Db/generic_gpib.db", "P=13LAB:,R=gpib2,SIZE=4096,ADDR=3,PORT=gpib1")
+
+# Load asynRecord records on all ports
+dbLoadTemplate("asynRecord.template")
 
 # Serial 1 is for SMART
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13LAB:,R=smart1,C=0,SERVER=serial1,")
+strcpy(str,"P=13LAB:,R=smart1,PORT=serial1,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
 
-# Serial 2 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db", "P=13LAB:,R=LAE500,C=0,SERVER=serial2")
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13LAB:,R=ser2,C=0,SERVER=serial2")
+# Roper CCD detector database
+dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13LAB:, C=ccd1")
+
+# Serial 2 has Newport LAE500 Laser Autocollimator
+dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db", "P=13LAB:,R=LAE500,C=0,PORT=serial2")
 
 # Port 3 Encoder readout unit
-#dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,SERVER=serial4")
-#dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,SERVER=serial4")
+#dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,PORT=serial4")
 
 # Serial 4 MCB4B motor controller
-#dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13LAB:,R=ser1,C=0,SERVER=serial4")
 
 # Serial 5, 6 Keithley Multimeter
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,SERVER=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,SERVER=serial6")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,C=0,SERVER=serial7")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,PORT=serial5")
+dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,PORT=gpib1:2")
+#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,PORT=serial6")
+#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,C=0,PORT=serial7")
 
-# Serial 7 for the MM4000.  We have both motor record and generic serial records on them
-dbLoadRecords("$(CARS)/CARSApp/Db/generic_serial.db", "P=13LAB:,R=ser1,C=0,SERVER=serial7")
+# Serial 7 for the MM4000.
 
 # Serial 8 Stanford Research Systems SR570 Current Preamplifier
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,SERVER=serial8")
+#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,PORT=serial8")
+
+# Serial 8 XIA filter rack
+dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13LAB:,S=filter1,C=0,ADDRESS=1,PORT=serial8")
+
+# GPIB 3 is Fluke multimeter
+dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
 
 # Test initialization of ipUnidig
 #dbLoadRecords("testUnidig.db", "P=13LAB:")
 
 # Heidenhain IK320 VME encoder interpolator
-#dbLoadRecords("$(STD)/stdApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
-#dbLoadRecords("$(STD)/stdApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3")
-#dbLoadRecords("$(STD)/stdApp/Db/IK320group.db", "P=13LAB:,group=5")
+#dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
+#dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3")
+#dbLoadRecords("$(VME)/vmeApp/Db/IK320group.db", "P=13LAB:,group=5")
 #drvIK320RegErrStr()
 
 # DAC
 dbLoadTemplate "DAC.template"
+
+# Heater control
+dbLoadTemplate "heater_control.template"
 
 # IP-Unidig binary I/O
 dbLoadTemplate "IpUnidig.template"
@@ -133,13 +145,19 @@ dbLoadTemplate "pid_fast.template"
  
 ### Motors
 dbLoadTemplate  "motors.template"
+# -----------------------------------------------------
 
+dbLoadTemplate  "Jadd.template"
+
+dbLoadTemplate  "JDataStore.template"
+
+dbLoadTemplate  "JAngleMinimize.template" 
 
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
-strcpy(str, "P=13LAB:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,C=0,SERVER=serial7,")
-strcat(str, ",DONPV=13LAB:str:EraseStart,DONV=1,DOFFPV=13LAB:str:StopAll,DOFFV=1")
+strcpy(str, "P=13LAB:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,PORT=serial7,")
+strcat(str, "DONPV=13LAB:str:EraseStart,DONV=1,DOFFPV=13LAB:str:StopAll,DOFFV=1")
 dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
 
 
@@ -150,8 +168,18 @@ dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.db", "P=13LAB:, EM=EM1, CARD=0, SER
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db", "P=13LAB:")
 
 
-#MN
+
+#MN----------------------------------------------------------------------
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13LAB:,Q=EDB")
+
+#------------------Jons -------------------------------------
+#dbLoadRecords("$(CARS)/CARSApp/Db/JHKPMotor_Database.db","P=13LAB:,JM=JM")
+#dbLoadRecords("$(CARS)/CARSApp/Db/J2Slides.db","P=13LAB:,JS=JS")
+dbLoadRecords("$(CARS)/CARSApp/Db/JFuncSlides.db","P=13LAB:,JF=JF")
+dbLoadRecords("$(CARS)/CARSApp/Db/Jresetcounter.db")
+
+##
+
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -197,7 +225,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc2,CAR
 <Struck32.cmd
 
 ### Scalers: Joerger VSC8/16
-dbLoadRecords("$(STD)/stdApp/Db/Jscaler.db", "P=13LAB:,S=scaler1,C=0")
+dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db", "P=13LAB:,S=scaler1,C=0")
 
 ### Scalers: Struck/SIS as simple scaler 
 # Don't execute the next 2 lines if Struck8.cmd is loaded above
@@ -216,22 +244,22 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13LAB:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db.CA", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(STD)/stdApp/Db/userStringCalcs10.db", "P=13LAB:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13LAB:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(STD)/stdApp/Db/userTransforms10.db", "P=13LAB:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13LAB:")
 
 # vme test record
-dbLoadRecords("$(STD)/stdApp/Db/vme.db", "P=13LAB:,Q=vme1")
+dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13LAB:")
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db", "P=13LAB:")
+dbLoadTemplate("vxStats.substitutions")
 
 #HiDEOSGpibLinkConfig(10,0,"GPIB0")
 
@@ -258,27 +286,19 @@ MM4000Setup(1, 8, 10)
 
 # MM4000 driver configuration parameters: 
 #     (1) controller
-#     (2) port type: 0=GPIB, 1=RS232, 
-#     (3) GPIB link or Hideos card
-#     (4) GPIB address or Hideos task
-# GPIB example:
-#   MM4000Config(0,0,10,2)  #Link 10, address 2
-# RS-232 example:
-#   MM4000Config(0, 1, 0, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
-MM4000Config(0, 1, 0, "serial7")
+#     (2) asyn port name (e.g. serial1 or gpib1)
+#     (3) GPIB address (0 for serial)
+MM4000Config(0, "serial7", 0)
 # Delay to allow motors to settle
 #drvMM4000ReadbackDelay=.5  
 
 # MCB-4B driver configuration parameters:
 #     (1) controller
-#     (2) Hideos/MPF card
-#     (3) Hideos task/MPF server
-# Example:
-#   MCB4BConfig(0, 1, "serial1")  Hideos card 1, port 0 on IP slot A.
-MCB4BConfig(0, 0, "serial4")
+#     (2) asyn port name (e.g. serial1)
+MCB4BConfig(0, "serial4")
 
-# initQuadEM(baseAddress, fiberChannel, microSecondsPerScan, maxClients,
-#            unidigName, unidigChan)
+# initQuadEM(quadEMName, baseAddress, fiberChannel, microSecondsPerScan, 
+#            maxClients, unidigName, unidigChan)
 #  quadEMName  = name of quadEM object created 
 #  baseAddress = base address of VME card
 #  channel     = 0-3, fiber channel number
@@ -338,6 +358,7 @@ sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
 iocInit
+epicsThreadSleep 10.0
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
@@ -357,10 +378,15 @@ dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=20, stack=10000"
+seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=10, stack=10000"
 #seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
 #seq &seq_test, "pv1=13LAB:m1, pv2=13LAB:m2"
-seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=6,stack=10000"
+
+#-----------------------------------------------------------------------------------#
+#seq &JHKPMotor, "P=13LAB:,Mot1=m1,Mot2=m3,JM=JM"
+seq &JFuncSlides, "P=13LAB:,m1 = m1,JF = JF:,m2 = m3"
+seq &JScanLog, "P=13LAB:"
+
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message
@@ -376,3 +402,8 @@ saveData_Init("saveDataExtraPVs.req", "P=13LAB:")
 #saveData_PrintScanInfo("13LAB:scan1")
 
 free(mem)
+
+taskDelay(600)
+seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=6,stack=10000"
+seq &roperCCD, "P=13LAB:,C=ccd1"
+
