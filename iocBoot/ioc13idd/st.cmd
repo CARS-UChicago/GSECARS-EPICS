@@ -53,10 +53,10 @@ dbLoadRecords  "stdApp/Db/Jscaler.db","P=13IDD:,S=scaler1,C=0", std
 
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A1,C=0,IPSLOT=a,CHAN=0", ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A2,C=0,IPSLOT=a,CHAN=1", ip
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=2", top
+dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=2", ip
 dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDD:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=4800,PRTY=None,DBIT=8,SBIT=1", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,C=0,IPSLOT=a,CHAN=4", top
-dbLoadRecords  "CARSApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,C=0,IPSLOT=a,CHAN=5", top
+dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,C=0,IPSLOT=a,CHAN=4", ip
+dbLoadRecords  "ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,C=0,IPSLOT=a,CHAN=5", ip
 dbLoadRecords  "ipApp/Db/SR570.db", "P=13IDD:,A=A3,C=0,IPSLOT=a,CHAN=6", ip
 dbLoadRecords  "CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,C=0,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
 dbLoadRecords  "CARSApp/Db/generic_serial.db","P=13IDD:,R=ser2,C=0,IPSLOT=a,CHAN=7,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top
@@ -119,8 +119,8 @@ dbLoadRecords "CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,C=0,IPSLOT=a,CHA
 # LVP furnace controls
 dbLoadTemplate "LVP_furnace_control.template"
 
-# LVP Omega controller
-dbLoadRecords "CARSApp/Db/LVP_Omega.db","P=13IDD:,R=Omega1_,C=0,IPSLOT=b,CHAN=0,BAUD=9600,PRTY=None,DBIT=7,SBIT=2", top
+# LVP pressure control
+dbLoadTemplate "LVP_pressure_control.template"
 
 #MN May-29-2002
 # LVP Theta (temperature ramping) controller
