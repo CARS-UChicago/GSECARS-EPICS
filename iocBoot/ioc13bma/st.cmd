@@ -16,16 +16,11 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 
 # This IOC loads the MPF server code locally
 cd startup
-< st_mpfserver.cmd
+< industryPack.cmd
+< serial.cmd
 
 devPM304Debug = 0
 drvPM304Debug = 0
-serialIODebug = 0
-devSerialDebug = 0
-serialRecordDebug = 0
-devSiStrParmDebug=0
-devAiMKSDebug = 0
-devMPCDebug = 0
 
 # Set up the Allen-Bradley 6008 scanner
 abConfigNlinks 1
@@ -38,33 +33,11 @@ dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
 
-# Load asynRecords on all ports
-dbLoadTemplate("asynRecord.template")
-
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip1,C=0,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial2,CC1=cc1,CC2=cc3,PR1=pr1,PR2=pr3")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,C=0,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial4,CC1=cc7,CC2=ccy,PR1=pr7,PR2=pry")
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial5,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,C=0,PORT=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial7,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy")
-dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,C=0,PORT=serial8")
-
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM1,C=0,PORT=serial10")
-dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13BMA:,PUMP=ip8,C=0,SERVER=serial11,PA=0,PN=1")
-dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13BMA:,PUMP=ip9,C=0,SERVER=serial11,PA=0,PN=2")
-dbLoadRecords("$(IP)/ipApp/Db/TSP.db","P=13BMA:,TSP=tsp1,C=0,SERVER=serial11,PA=0")
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,C=0,SERVER=serial12,CC1=cc8,CC2=ccyyyy,PR1=pr8,PR2=pryyyy")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMA:,Dmm=DMM2,C=0,PORT=serial13")
-
 dbLoadTemplate("motors.template")
 
 # BMD and BMC filter racks
 dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_Filters.db","P=13BMA:,R=BMC_Filters,MOTOR=m6")
 dbLoadRecords("$(CARS)/CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
-
-# Digital to analog converter, used for Queensgate piezo drivers
-dbLoadTemplate "DAC.template"
 
 # Monochromator PID
 dbLoadTemplate "mono_pid.template"
@@ -100,9 +73,9 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
-set_pass0_restoreFile("auto_positions.sav")
-set_pass0_restoreFile("auto_settings.sav")
-set_pass1_restoreFile("auto_settings.sav")
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13BMA:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMA:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -113,32 +86,15 @@ set_pass1_restoreFile("auto_settings.sav")
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(4, 8, 0x4000, 190, 5, 10)
 
-# PM304 driver setup parameters: 
-#     (1) maximum # of controllers, 
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-PM304Setup(1, 1, 10)
-
-# PM304 driver configuration parameters: 
-#     (1) controller
-#     (2) asyn port
-#     (3) MAX axes
-# Example:
-#   PM304Config(0, "serial1", 1)
-PM304Config(0, "serial9", 1)
-
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
-
-iocInit
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
-< ../requestFileCommands
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
