@@ -9,7 +9,7 @@ void   calc_target_orient(double T_AX,      double T_AY,
                           double* T_X3_ptr, double* T_Y3_ptr, 
                           double* T_Z3_ptr);
 
-void   motor_from_psuedo(double lx,         double lz, 
+void   motor_from_pseudo(double lx,         double lz, 
                          double vD0[3],     double vT[3], 
                          double AX,         double AY, 
                          double AZ,         double T_AX, 
@@ -20,7 +20,7 @@ void   motor_from_psuedo(double lx,         double lz,
                          double* vD_ptr,    double* vDel_ptr, 
                          double* del_r_ret, double* del_angle_ret);
 
-void   psuedo_from_motor(double lx,         double lz, 
+void   pseudo_from_motor(double lx,         double lz, 
                          double vD0[3],     double vT[3], 
                          double* AX_ret,    double* AY_ret, 
                          double* AZ_ret,    double T_AX, 

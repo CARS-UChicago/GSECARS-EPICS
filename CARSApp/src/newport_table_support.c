@@ -92,8 +92,8 @@ matrix_x_vector(m,T_Z0,&T_Z3[0]);
 
 
 /**********************************************************************/ 
-/**********************  motor_from_psuedo ****************************/
-void   motor_from_psuedo(double lx,         double lz, 
+/**********************  motor_from_pseudo ****************************/
+void   motor_from_pseudo(double lx,         double lz, 
                          double vD0[3],     double vT[3], 
                          double AX,         double AY, 
                          double AZ,         double T_AX, 
@@ -215,8 +215,8 @@ vDel[2] = vT[2] - vD3[2];
 
 
 /**********************************************************************/ 
-/**********************  psuedo_from_motor ****************************/
-void psuedo_from_motor(double lx,         double lz, 
+/**********************  pseudo_from_motor ****************************/
+void pseudo_from_motor(double lx,         double lz, 
                        double vD0[3],     double vT[3], 
                        double* AX_ret,    double* AY_ret, 
                        double* AZ_ret,    double T_AX, 
