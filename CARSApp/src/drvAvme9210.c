@@ -10,6 +10,8 @@
  *   See Changelog.
  *   Mark Rivers, July 23, 2001  Removed module_types.h, added configuration function
  *                               drvAvme9210Config(maxCards)
+ *   Mark Rivers, October 22, 2001 Changed code so no cards are assumed to be
+ *                               present unless drvAvms9201Config is called
  */
 
 #include <vxWorks.h>
@@ -69,7 +71,7 @@ LOCAL avme9210_t *avme9210_addrs;
 LOCAL char *initString = "VMEIDACR9210   1 20 ";
 
 /* variables which can be configures */
-LOCAL maxCards=4;
+LOCAL maxCards=0;
 LOCAL maxChan=8;
 LOCAL moduleAddress=0x3000;
 
