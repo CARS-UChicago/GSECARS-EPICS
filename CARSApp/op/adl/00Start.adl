@@ -1,14 +1,14 @@
 
 file {
-	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\00Start.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
+	version=030000
 }
 display {
 	object {
-		x=450
-		y=337
-		width=500
-		height=210
+		x=529
+		y=149
+		width=400
+		height=175
 	}
 	clr=55
 	bclr=2
@@ -87,25 +87,12 @@ display {
 		1a7309,
 	}
 }
-text {
-	object {
-		x=70
-		y=55
-		width=140
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="ID Vacuum / EPS"
-}
 "related display" {
 	object {
 		x=10
-		y=50
-		width=50
-		height=25
+		y=30
+		width=180
+		height=30
 	}
 	display[0] {
 		label="Vacuum and EPS"
@@ -113,13 +100,14 @@ text {
 	}
 	clr=14
 	bclr=4
+	label="-ID Vacuum / EPS"
 }
 rectangle {
 	object {
-		x=10
-		y=10
-		width=480
-		height=30
+		x=0
+		y=0
+		width=400
+		height=25
 	}
 	"basic attribute" {
 		clr=55
@@ -127,8 +115,8 @@ rectangle {
 }
 text {
 	object {
-		x=20
-		y=15
+		x=25
+		y=5
 		width=330
 		height=20
 	}
@@ -136,65 +124,14 @@ text {
 		clr=14
 	}
 	textix="GSECARS: Sector 13 Main Menu"
-}
-text {
-	object {
-		x=70
-		y=175
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Undulator / BPM"
+	align="horiz. centered"
 }
 "related display" {
 	object {
-		x=10
-		y=170
-		width=50
-		height=25
-	}
-	display[0] {
-		label="Undulator Gap"
-		name="ID_NewCtl.adl"
-		args="xx=13"
-	}
-	display[1] {
-		label="Tapered Undulator Gap"
-		name="UndulatorTprCtl.adl"
-		args="xx=13"
-	}
-	display[2] {
-		label="Storage Ring Status"
-		name="SR_Status.adl"
-	}
-	display[3] {
-		label="ID Status and BPM"
-		name="MRD_ID.adl"
-		args="xx=13, ID1=13"
-	}
-	display[4] {
-		label="BPM Detail"
-		name="MRD_IDbpm.adl"
-		args="xx=13, ID1=13"
-	}
-	display[5] {
-		label="OLD BPM"
-		name="IDBPM.adl"
-		args="xx=13"
-	}
-	clr=14
-	bclr=4
-}
-"related display" {
-	object {
-		x=260
-		y=50
-		width=50
-		height=25
+		x=210
+		y=30
+		width=180
+		height=30
 	}
 	display[0] {
 		label="Vacuum and EPS"
@@ -202,165 +139,152 @@ text {
 	}
 	clr=14
 	bclr=4
-}
-text {
-	object {
-		x=320
-		y=55
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="BM Vacuum / EPS"
+	label="-BM Vacuum / EPS"
 }
 "related display" {
 	object {
-		x=260
-		y=80
-		width=50
-		height=25
+		x=210
+		y=65
+		width=180
+		height=30
 	}
 	display[0] {
 		label="13 BM"
 		name="13BM.adl"
 	}
+	display[1] {
+		label="BM Monochromator"
+		name="13BM_monochromator.adl"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17,Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12,TABLE=MON:"
+	}
+	display[3] {
+		label="Beam Position Monitors"
+		name="BMxbpm.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[4] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
 	clr=14
 	bclr=4
-}
-text {
-	object {
-		x=320
-		y=85
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="BM Main Control"
+	label="- BM Main Control"
 }
 "related display" {
 	object {
 		x=10
-		y=80
-		width=50
-		height=25
+		y=65
+		width=180
+		height=30
 	}
 	display[0] {
 		label="13 ID"
 		name="13ID.adl"
 	}
+	display[1] {
+		label="ID Monochromator"
+		name="13IDC_mprobe_mono.adl"
+		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6"
+	}
+	display[3] {
+		label="Beam Position Monitors"
+		name="IDxbpm.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[4] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
+	display[5] {
+		label="Undulator Control"
+		name="ID_NewCtl.adl"
+		args="xx=13"
+	}
 	clr=14
 	bclr=4
+	label="- ID Main Control"
 }
 "related display" {
 	object {
 		x=10
-		y=110
-		width=50
-		height=25
+		y=100
+		width=180
+		height=30
 	}
 	display[0] {
 		label="IDC Microprobe"
-		name="13IDC_xas_mprobe.adl"
+		name="13IDC_mprobe.adl"
 	}
 	display[1] {
 		label="IDC Main Control"
 		name="13IDC_xas.adl"
 	}
+	display[2] {
+		label="IDC Microprobe (old)"
+		name="13IDC_mprobe_old.adl"
+	}
+	display[3] {
+		label="IDC Hutch Camera"
+		name="camera_control.adl"
+		args="P=13IDC:, R=Unidig_2"
+	}
 	clr=14
 	bclr=4
+	label="- IDC Experiments"
 }
 "related display" {
 	object {
 		x=10
-		y=140
-		width=50
-		height=25
+		y=135
+		width=180
+		height=30
 	}
 	display[0] {
-		label="13 ID D"
+		label="13 IDD  Main Control"
 		name="13IDD.adl"
 	}
+	display[1] {
+		label="13 IDD DAC"
+		name="13IDD_vit.adl"
+	}
 	clr=14
 	bclr=4
+	label="- IDD Experiments"
 }
 "related display" {
 	object {
-		x=260
-		y=110
-		width=50
-		height=25
+		x=210
+		y=100
+		width=180
+		height=30
 	}
 	display[0] {
-		label="13 BMD"
+		label="13 BMD Main Control"
 		name="13BMD.adl"
+	}
+	display[1] {
+		label="13 BMD XAS Control"
+		name="13BMD_xas.adl"
+	}
+	display[2] {
+		label="13 BM Monochromator"
+		name="13BM_monochromator.adl"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, TILT=m12, TABLE=MON:"
+	}
+	display[3] {
+		label="13 BM DAC "
+		name="13BMD_vit.adl"
 	}
 	clr=14
 	bclr=4
-}
-text {
-	object {
-		x=320
-		y=115
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="BM D"
-}
-text {
-	object {
-		x=70
-		y=85
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="ID Main Control"
-}
-text {
-	object {
-		x=70
-		y=115
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="IDC XAS"
-}
-text {
-	object {
-		x=70
-		y=145
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="ID D"
+	label="- BMD Experiments"
 }
 "related display" {
 	object {
-		x=260
-		y=170
-		width=50
-		height=25
+		x=210
+		y=135
+		width=180
+		height=30
 	}
 	display[0] {
 		label="13 Lab"
@@ -375,47 +299,12 @@ text {
 		name="16element.adl"
 		args="P=13GE1:med:"
 	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=320
-		y=175
-		width=80
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Lab/Other IOCs"
-}
-"related display" {
-	object {
-		x=260
-		y=140
-		width=50
-		height=25
-	}
-	display[0] {
-		label="13 BM Mono"
-		name="13BM_monochromator.adl"
-		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17,Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12,TABLE=MON:"
+	display[3] {
+		label="13 GE 2"
+		name="16element_dxp.adl"
+		args="P=13GE2:med:"
 	}
 	clr=14
 	bclr=4
-}
-text {
-	object {
-		x=320
-		y=145
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="BM Mono"
+	label="- Lab/Other IOCs"
 }

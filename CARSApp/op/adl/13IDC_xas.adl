@@ -1,12 +1,12 @@
 
 file {
-	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\13IDC_xas.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC_xas.adl"
 	version=020306
 }
 display {
 	object {
-		x=253
-		y=85
+		x=94
+		y=148
 		width=590
 		height=400
 	}
@@ -296,18 +296,9 @@ text {
 		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m38,  M2=m39, M3=m40"
 	}
 	display[2] {
-		label="Attenuator"
-		name="13IDC_Unidig_atten.adl"
-		args="P=13IDC:, R=Unidig"
-	}
-	display[3] {
-		label="More"
-		name="newport_kappa_more.adl"
-	}
-	display[4] {
-		label="Shutter"
-		name="2motors.adl"
-		args="P=13IDC:, TITLE=Bruker_Shutter, M1=m46, M2=m47"
+		label="Goniometer readbacks"
+		name="diff_motors.adl"
+		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m40"
 	}
 	display[5] {
 		label="Detector Slits"
@@ -315,14 +306,13 @@ text {
 		args="P=13IDC:, TITLE=Detector_Slits, M1=m49, M2=m50, M3=m51, M4=m52, M5=m53, M6=m54, M7=m55,M8=m56"
 	}
 	display[6] {
-		label="Goniometer readbacks"
-		name="diff_motors.adl"
-		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m40"
-	}
-	display[7] {
 		label="Entrance Slits"
 		name="8motors.adl"
 		args="P=13IDC:, TITLE=Entrance_Slits, M1=m57, M2=m58, M3=m59, M4=m60, M5=m61, M6=m62, M7=m63,M8=m64"
+	}
+	display[7] {
+		label="More"
+		name="newport_kappa_more.adl"
 	}
 	clr=14
 	bclr=5
@@ -589,6 +579,11 @@ text {
 	display[2] {
 		label="Si detector (AIM ADC)"
 		name="aim_adc.adl"
+	}
+	display[3] {
+		label="16 element dxp"
+		name="16element_dxp.adl"
+		args="P=13GE2:med:"
 	}
 	clr=14
 	bclr=5
@@ -1195,24 +1190,34 @@ oval {
 		args="P=13IDC:, A=A5"
 	}
 	display[2] {
-		label="IP-Unidig binary I/O"
-		name="ipUnidig.adl"
-		args="P=13IDC:, R=Unidig"
-	}
-	display[3] {
-		label="Struck scaler"
-		name="scaler_full_calc.adl"
-		args="P=13IDC:, S=scaler2"
-	}
-	display[4] {
 		label="SRS Preamp #6"
 		name="SR570.adl"
 		args="P=13IDC:, A=A6"
 	}
-	display[5] {
+	display[3] {
 		label="SRS Preamp #7"
 		name="SR570.adl"
 		args="P=13IDC:, A=A7"
+	}
+	display[4] {
+		label="Struck scaler"
+		name="scaler_full_calc.adl"
+		args="P=13IDC:, S=scaler2"
+	}
+	display[5] {
+		label="Slit tilt DAC"
+		name="piezo_slit_display.adl"
+		args="P=13IDC:, D=1, C=1, E=2, F=3"
+	}
+	display[6] {
+		label="IP-Unidig binary I/O"
+		name="ipUnidig.adl"
+		args="P=13IDC:, R=Unidig"
+	}
+	display[7] {
+		label="IP-Unidig #2"
+		name="ipUnidig.adl"
+		args="P=13IDC:, R=Unidig_2"
 	}
 	clr=14
 	bclr=5

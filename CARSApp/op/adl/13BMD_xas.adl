@@ -1,17 +1,17 @@
 
 file {
-	name="c:\13BMD_xas.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/op/adl/13BMD_xas.adl"
+	version=030000
 }
 display {
 	object {
-		x=622
-		y=152
-		width=585
-		height=275
+		x=794
+		y=79
+		width=460
+		height=125
 	}
-	clr=46
-	bclr=3
+	clr=12
+	bclr=1
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,75 +87,40 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=10
-		y=10
-		width=291
-		height=40
-	}
-	"basic attribute" {
-		clr=55
-	}
-}
-text {
-	object {
-		x=14
-		y=18
-		width=277
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="13BMD X-Ray Microprobe"
-}
-text {
-	object {
-		x=75
-		y=180
-		width=100
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Scans"
-}
 "related display" {
 	object {
-		x=316
-		y=213
-		width=51
+		x=230
+		y=30
+		width=125
 		height=24
 	}
-	display[0] {
+	display[1] {
 		label="Beamline EPS"
 		name="13BM_EPS.adl"
 	}
 	clr=14
-	bclr=5
+	bclr=2
+	label="-Shutter / EPS"
 }
 "related display" {
 	object {
-		x=15
-		y=145
-		width=51
+		x=115
+		y=65
+		width=100
 		height=24
 	}
 	display[0] {
-		label="SRS Preamp #1"
+		label="SRS Preamp #1 (unused)"
 		name="SR570.adl"
 		args="P=13BMD:, A=A1"
 	}
 	display[1] {
-		label="SRS Preamp #2"
+		label="SRS Preamp #2 (I_1)"
 		name="SR570.adl"
 		args="P=13BMD:, A=A2"
 	}
 	display[2] {
-		label="SRS Preamp #3"
+		label="SRS Preamp #3 (I_0)"
 		name="SR570.adl"
 		args="P=13BMD:, A=A3"
 	}
@@ -170,25 +135,14 @@ text {
 		args="P=13BMA:,  Dmm=DMM1"
 	}
 	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=75
-		y=150
-		width=111
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Electronics"
+	bclr=2
+	label="-Electronics"
 }
 "related display" {
 	object {
-		x=15
-		y=175
-		width=51
+		x=5
+		y=95
+		width=100
 		height=24
 	}
 	display[0] {
@@ -207,78 +161,71 @@ text {
 		args="P=13BMD:, S=scan3, N=3"
 	}
 	clr=14
-	bclr=5
+	bclr=2
+	label="-Scans"
 }
 "related display" {
 	object {
-		x=15
-		y=55
-		width=51
+		x=5
+		y=35
+		width=100
 		height=24
 	}
 	display[0] {
-		label="Lift Table (simple)"
-		name="6motors.adl"
-		args="P=13BMD:, TITLE=Lift_Table, M1=m17,  M2=m18, M3=m19, M4=m20, M5=m21, M6=m22"
+		label="Sample Stage"
+		name="SampleXYZ.adl"
+		args="P=13BMD:, X=m35, Y=m34, Z=m33"
 	}
 	display[1] {
+		label="BM D Slits"
+		name="slit_simple.adl"
+		args="P=13BMD:, V=BMDV, H=BMDH, mYp=m31, mYn=m32, mXp=m29, mXn=m30, SLIT=BMD"
+	}
+	display[2] {
+		label="BM B Slits"
+		name="2slit.adl"
+		args="P=13BMA:, SLIT=Slit2V"
+	}
+	display[3] {
 		label="Lift Table (compound)"
 		name="table_full.adl"
 		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m21, M0Y=m18, M1Y=m19, M2X=m20, M2Y=m17, M2Z=junk"
 	}
-	display[2] {
-		label="BMD Slit Compound"
-		name="4SlitGraphic.adl"
-		args="P=13BMD:, V=BMDV, H=BMDH, mYp=m31, mYn=m32, mXp=m29, mXn=m30, SLIT=BMD"
+	display[4] {
+		label="Lift Table (simple)"
+		name="6motors.adl"
+		args="P=13BMD:, TITLE=Lift_Table, M1=m17,  M2=m18, M3=m19, M4=m20, M5=m21, M6=m22"
 	}
-	display[3] {
+	display[6] {
 		label="Vertical KB Mirror"
 		name="6motors.adl"
 		args="P=13BMD:, TITLE=Vertical_Focusing_Mirror, M1=m33, M2=m34, M3=m35, M4=m36, M5=pm7, M6=pm8"
 	}
-	display[4] {
+	display[7] {
 		label="Horizontal KB Mirror"
 		name="6motors.adl"
 		args="P=13BMD:, TITLE=Horizontal_Focusing_Mirror, M1=m37, M2=m38, M3=m39, M4=m40, M5=pm5, M6=pm6"
 	}
-	display[5] {
-		label="Sample Stage"
-		name="SampleXYZ.adl"
-		args="P=13BMD:, X=m25, Y=m27, Z=m26"
-	}
 	clr=14
-	bclr=5
-	label=" "
-}
-text {
-	object {
-		x=75
-		y=59
-		width=60
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Motors"
+	bclr=2
+	label="-Motors"
 }
 "related display" {
 	object {
-		x=15
-		y=115
-		width=51
+		x=5
+		y=65
+		width=100
 		height=24
 	}
 	display[0] {
-		label="Energy"
-		name="Energy.adl"
-		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m22"
+		label="Monochromator"
+		name="13BM_mono_small.adl"
+		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12, TABLE=MON:"
 	}
 	display[1] {
-		label="Crystal cage"
-		name="6motors.adl"
-		args="P=13BMA:, TITLE=BM_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
+		label="Monochromator (Full)"
+		name="13BM_monochromator.adl"
+		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12, TABLE=MON:"
 	}
 	display[2] {
 		label="Crystal Cage Table"
@@ -296,17 +243,18 @@ text {
 		args="P=13BMA:, D=1, PID=13IDA:mono_pid1"
 	}
 	display[6] {
-		label="Monochromator"
-		name="13BM_monochromator.adl"
-		args="P1=13BMA:, EN=E, TITLE=Energy, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, TILT=m12, TABLE=MON:"
+		label="Crystal cage"
+		name="6motors.adl"
+		args="P=13BMA:, TITLE=BM_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
 	}
 	clr=14
-	bclr=5
+	bclr=2
+	label="-Mono"
 }
 text {
 	object {
-		x=417
-		y=241
+		x=502
+		y=146
 		width=1
 		height=19
 	}
@@ -319,8 +267,8 @@ text {
 }
 "message button" {
 	object {
-		x=477
-		y=165
+		x=400
+		y=75
 		width=51
 		height=19
 	}
@@ -335,8 +283,8 @@ text {
 }
 "message button" {
 	object {
-		x=525
-		y=165
+		x=400
+		y=95
 		width=51
 		height=19
 	}
@@ -362,8 +310,8 @@ composite {
 }
 text {
 	object {
-		x=316
-		y=165
+		x=235
+		y=75
 		width=80
 		height=19
 	}
@@ -375,10 +323,10 @@ text {
 }
 rectangle {
 	object {
-		x=310
-		y=118
-		width=271
-		height=123
+		x=225
+		y=25
+		width=235
+		height=95
 	}
 	"basic attribute" {
 		clr=59
@@ -388,15 +336,15 @@ rectangle {
 }
 "text update" {
 	object {
-		x=405
-		y=168
+		x=325
+		y=75
 		width=54
 		height=15
 	}
 	monitor {
 		chan="13BMA:eps_mbbi4"
 		clr=14
-		bclr=56
+		bclr=0
 	}
 	align="horiz. centered"
 	limits {
@@ -404,67 +352,25 @@ rectangle {
 }
 "text update" {
 	object {
-		x=371
-		y=192
-		width=54
-		height=14
+		x=380
+		y=35
+		width=60
+		height=15
 	}
 	monitor {
 		chan="13BMA:eps_mbbi5"
 		clr=14
-		bclr=56
+		bclr=0
 	}
 	align="horiz. centered"
 	limits {
 	}
-}
-"text update" {
-	object {
-		x=516
-		y=192
-		width=54
-		height=14
-	}
-	monitor {
-		chan="13BMA:eps_mbbi81"
-		clr=14
-		bclr=56
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=316
-		y=189
-		width=60
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="EPS:"
-}
-text {
-	object {
-		x=441
-		y=189
-		width=60
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Vacuum:"
 }
 "related display" {
 	object {
-		x=15
-		y=205
-		width=51
+		x=115
+		y=95
+		width=100
 		height=24
 	}
 	display[0] {
@@ -477,163 +383,98 @@ text {
 		name="1motors.adl"
 		args="P=13BMA:, TITLE=13BMA_Diagnostic_Flag, M1=m8"
 	}
+	display[2] {
+		label="BM Main Control"
+		name="13BM.adl"
+	}
+	display[3] {
+		label="GSE Main Menu "
+		name="00Start.adl"
+	}
 	clr=14
-	bclr=5
+	bclr=2
+	label="-Front End "
 }
 "related display" {
 	object {
-		x=15
-		y=85
-		width=51
+		x=115
+		y=35
+		width=100
 		height=24
 	}
 	display[0] {
 		label="Scalers"
-		name="scaler_full_calc.adl"
+		name="scaler_calcs4.adl"
 		args="P=13BMD:, S=scaler1"
 	}
 	display[1] {
-		label="16 element detector"
+		label="16 element (GE1)"
 		name="16element.adl"
 		args="P=13GE1:med:"
 	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=75
-		y=120
-		width=80
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Monochromator"
-}
-text {
-	object {
-		x=75
-		y=95
-		width=111
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Detectors"
-}
-"related display" {
-	object {
-		x=316
-		y=80
-		width=46
-		height=23
-	}
-	display[0] {
-		label="Storage Ring Status"
-		name="SR_Status.adl"
-	}
-	display[1] {
-		label="Beam Position Monitor"
-		name="MRD_ID.adl"
-		args="xx=13, ID1=13"
+	display[2] {
+		label="16 element (GE2)"
+		name="16element_dxp.adl"
+		args="P=13GE2:med:"
 	}
 	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=376
-		y=85
-		width=211
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Storage Ring Details"
+	bclr=2
+	label="-Detectors"
 }
 "text update" {
 	object {
-		x=451
-		y=33
-		width=80
-		height=19
+		x=220
+		y=5
+		width=60
+		height=16
 	}
 	monitor {
 		chan="S:SRcurrentAI.VAL"
 		clr=14
-		bclr=56
+		bclr=0
 	}
-	align="horiz. centered"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
-		x=316
-		y=33
-		width=130
+		x=385
+		y=5
+		width=70
 		height=19
 	}
 	"basic attribute" {
-		clr=14
-	}
-	textix="Current:"
-}
-text {
-	object {
-		x=477
-		y=57
-		width=91
-		height=19
-	}
-	"basic attribute" {
-		clr=14
+		clr=63
 	}
 	"dynamic attribute" {
 		vis="if not zero"
 		chan="ACIS:ShutterPermit"
 	}
 	textix="Enabled"
+	align="horiz. centered"
 }
 text {
 	object {
-		x=477
-		y=57
-		width=91
+		x=385
+		y=5
+		width=70
 		height=19
 	}
 	"basic attribute" {
-		clr=14
+		clr=21
 	}
 	"dynamic attribute" {
 		vis="if zero"
 		chan="ACIS:ShutterPermit"
 	}
 	textix="Disabled"
+	align="horiz. centered"
 }
 text {
 	object {
-		x=316
-		y=57
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Shutter Permit:"
-}
-text {
-	object {
-		x=546
-		y=33
+		x=290
+		y=5
 		width=30
 		height=19
 	}
@@ -644,73 +485,8 @@ text {
 }
 text {
 	object {
-		x=376
-		y=215
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="EPS Details"
-}
-text {
-	object {
-		x=75
-		y=210
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Front End Motors"
-}
-rectangle {
-	object {
-		x=310
-		y=10
-		width=271
-		height=103
-	}
-	"basic attribute" {
-		clr=59
-		fill="outline"
-		width=2
-	}
-}
-text {
-	object {
-		x=316
-		y=123
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=54
-		width=2
-	}
-	textix="Shutter / EPS"
-}
-text {
-	object {
-		x=316
-		y=14
-		width=151
-		height=19
-	}
-	"basic attribute" {
-		clr=54
-		width=2
-	}
-	textix="Storage Ring"
-}
-text {
-	object {
-		x=316
-		y=141
+		x=235
+		y=55
 		width=160
 		height=19
 	}
@@ -722,8 +498,8 @@ text {
 }
 oval {
 	object {
-		x=500
-		y=145
+		x=425
+		y=55
 		width=15
 		height=14
 	}
@@ -737,8 +513,8 @@ oval {
 }
 oval {
 	object {
-		x=500
-		y=145
+		x=425
+		y=55
 		width=15
 		height=14
 	}
@@ -750,30 +526,83 @@ oval {
 		chan="PA:13BM:Q01:03.VAL"
 	}
 }
-"related display" {
+text {
 	object {
-		x=15
-		y=235
-		width=51
-		height=24
+		x=310
+		y=5
+		width=70
+		height=19
 	}
-	display[0] {
-		label="Beamline EPS"
-		name="13BM.adl"
+	"basic attribute" {
+		clr=54
+		width=2
 	}
-	clr=14
-	bclr=5
+	textix="Permit:"
+	align="horiz. right"
 }
 text {
 	object {
-		x=75
-		y=240
-		width=151
-		height=19
+		x=235
+		y=95
+		width=80
+		height=17
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="Front End Details"
+	textix="Auto-Open"
+}
+menu {
+	object {
+		x=325
+		y=95
+		width=70
+		height=20
+	}
+	control {
+		chan="13BMA:mono_pid1EnableShutter"
+		clr=54
+		bclr=1
+	}
+	clrmod="discrete"
+}
+"related display" {
+	object {
+		x=0
+		y=0
+		width=105
+		height=30
+	}
+	display[1] {
+		label="GSE Main Menu"
+		name="00Start.adl"
+	}
+	clr=14
+	bclr=55
+	label="-13BMD XAS"
+}
+"related display" {
+	object {
+		x=115
+		y=2
+		width=103
+		height=25
+	}
+	display[0] {
+		label="APS Info "
+		name="SR_Status.adl"
+	}
+	display[1] {
+		label="Status and Beam Positions"
+		name="MRD_BM.adl"
+		args="xx=13"
+	}
+	display[7] {
+		label="GSE Main Menu"
+		name="00Start.adl"
+	}
+	clr=54
+	bclr=1
+	label="-Ring Current"
 }

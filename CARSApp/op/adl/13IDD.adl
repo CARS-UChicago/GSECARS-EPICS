@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=448
-		y=28
+		x=528
+		y=62
 		width=320
 		height=472
 	}
@@ -194,7 +194,7 @@ text {
 	display[2] {
 		label="DAC Tabletop Slits"
 		name="6motors.adl"
-		args="P=13IDD:,TITLE=DAC_Tabletop_Slits, M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m14"
+		args="P=13IDD:,TITLE=DAC_Tabletop_Slits, M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m20"
 	}
 	display[3] {
 		label="Vertical K/B mirror"
@@ -212,14 +212,14 @@ text {
 		args="P=13IDD:, TITLE=DAC_Huber, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
 	}
 	display[6] {
-		label="DAC Misc. Motors"
-		name="4motors.adl"
-		args="P=13IDD:, TITLE=DAC_Misc. Motors, M1=m7,M2=m20, M3=m24,M4=m28"
+		label="Carbon Mirrors and CCD"
+		name="3motors.adl"
+		args="P=13IDD:, TITLE=Laser_Carbon_Mirrors and CCD Pos, M1=m21, M2=m22, M3=m7"
 	}
 	display[7] {
-		label="Carbon Mirrors"
-		name="2motors.adl"
-		args="P=13IDD:, TITLE=Laser_CarbonMirror, M1=m21, M2=m22"
+		label="DAC TableTopSlit (compound)"
+		name="4slitGraphic.adl"
+		args="P=13IDD:, V=DACV, H=DACH, mYp=m9, mYn=m10, mXp=m12, mXn=m11, SLIT=DAC"
 	}
 	clr=14
 	bclr=4
@@ -285,6 +285,11 @@ text {
 		label="CCD mount"
 		name="4motors.adl"
 		args="P=13IDD:,TITLE=LVP_CCD_camera, M1=m27,M2=m28,M3=m29,M4=m30"
+	}
+	display[1] {
+		label="Laser Stage X"
+		name="1motors.adl"
+		args="P=13IDD:,TITLE=LVP_Laser_Stage_X, M1=m32"
 	}
 	clr=14
 	bclr=4
@@ -425,6 +430,11 @@ text {
 		label="Pressure control"
 		name="LVP_Omega.adl"
 		args="P=13IDD:,R=Omega1_,D=1,C=8"
+	}
+	display[7] {
+		label="Temperature Ramp"
+		name="LVP_Theta.adl"
+		args="P=13IDD:,R=Theta1_,RBV=13IDD:LVP:PID1.VAL,DRV=13IDD:Theta1_RampOut.E, PID=LVP:PID1"
 	}
 	clr=14
 	bclr=4
@@ -718,4 +728,19 @@ text {
 		clr=14
 	}
 	textix="Experiment Information"
+}
+"related display" {
+	object {
+		x=189
+		y=135
+		width=119
+		height=23
+	}
+	display[0] {
+		label="Dac Control"
+		name="13IDD_vit.adl"
+	}
+	clr=14
+	bclr=4
+	label=" DAC control"
 }

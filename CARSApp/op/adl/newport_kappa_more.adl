@@ -1,14 +1,14 @@
 
 file {
-	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\newport_kappa_more.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\newport_kappa_more.adl"
 	version=020306
 }
 display {
 	object {
-		x=284
-		y=65
-		width=400
-		height=335
+		x=35
+		y=45
+		width=460
+		height=517
 	}
 	clr=14
 	bclr=4
@@ -90,7 +90,7 @@ display {
 text {
 	object {
 		x=91
-		y=119
+		y=120
 		width=137
 		height=20
 	}
@@ -102,8 +102,8 @@ text {
 }
 "related display" {
 	object {
-		x=11
-		y=116
+		x=10
+		y=120
 		width=74
 		height=24
 	}
@@ -157,7 +157,7 @@ text {
 text {
 	object {
 		x=90
-		y=153
+		y=155
 		width=137
 		height=20
 	}
@@ -170,7 +170,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=151
+		y=155
 		width=74
 		height=24
 	}
@@ -185,7 +185,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=188
+		y=190
 		width=74
 		height=24
 	}
@@ -214,4 +214,117 @@ text {
 		width=2
 	}
 	textix="Trajectory scans"
+}
+"related display" {
+	object {
+		x=10
+		y=225
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Bench Attenuators"
+		name="13IDC_Unidig_atten_bench.adl"
+		args="P=13IDC:, R=Unidig_2"
+	}
+	display[1] {
+		label="Arm Attenuators"
+		name="13IDC_Unidig_atten_arm.adl"
+		args="P=13IDC:, R=Unidig"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=94
+		y=225
+		width=148
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Attenuators"
+}
+"related display" {
+	object {
+		x=13
+		y=260
+		width=70
+		height=25
+	}
+	display[0] {
+		label="Smart control"
+		name="smartControl.adl"
+		args="P=13IDC:, R=smart1"
+	}
+	display[1] {
+		label="shutter"
+		name="2motors.adl"
+		args="P=13IDC:, TITLE=BruckerShutter, M1=m46, M2=m47"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=265
+		width=230
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Brucker Control"
+}
+"related display" {
+	object {
+		x=13
+		y=299
+		width=70
+		height=25
+	}
+	display[0] {
+		label="GPIB 1"
+		name="GPIB_IO.adl"
+		args="REC=13IDC:gpib1"
+	}
+	display[1] {
+		label="IDC Serial 1"
+		name="Serial_IO.adl"
+		args="REC=13IDC:ser1"
+	}
+	display[2] {
+		label="IDC Serial 2"
+		name="Serial_IO.adl"
+		args="REC=13IDC:ser2"
+	}
+	display[3] {
+		label="FOE Serial 1"
+		name="Serial_IO.adl"
+		args="REC=13IDA:ser1"
+	}
+	display[4] {
+		label="FOE Serial 2"
+		name="Serial_IO.adl"
+		args="REC=13IDA:ser2"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=303
+		width=230
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic Serial and GPIB"
 }
