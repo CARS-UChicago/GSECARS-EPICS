@@ -16,6 +16,10 @@
  * .04  08-16-00   mlr  Fixed serious problem with limits - they were not
  *                      correct, bring extract from wrong character in response
  *                      Minor fixes to avoid compiler warnings
+ * .05  11-27-01   mlr  Added global variable drvPM304ReadbackDelay.  This is a
+ *                      double time in seconds to wait after the PM304 says the move
+ *                      is complete before reading the encoder position the final
+ *                      time.
  */
 
 
@@ -47,6 +51,11 @@
 #define SERIAL_TIMEOUT 2000 /* Command timeout in msec */
 
 #define BUFF_SIZE 100       /* Maximum length of string to/from PM304 */
+
+/* This is a temporary fix to introduce a delayed reading of the motor
+ * position after a move completes
+ */
+volatile double drvPM304ReadbackDelay = 0.;
 
 struct mess_queue
 {
@@ -213,8 +222,11 @@ STATIC int set_status(int card, int signal)
 
     if (strcmp(response, "00000000") == 0)
         motor_info->status &= ~RA_DONE;
-    else
+    else {
         motor_info->status |= RA_DONE;
+        if (drvPM304ReadbackDelay != 0.)
+            taskDelay((int)(drvPM304ReadbackDelay * sysClkRateGet()));
+    }
 
     if (response[2] == '1')
         motor_info->status |= RA_PROBLEM;
