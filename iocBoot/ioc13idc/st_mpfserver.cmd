@@ -139,7 +139,7 @@ initIp330Scan(pIp330,"c-Ip330Scan",0,15,100,20)
 # maxPoints  = maximum number of points in a sweep.  The amount of memory
 #              allocated will be maxPoints*(lastChan-firstChan+1)*4 bytes
 # queueSize  = size of output queue for EPICS
-initIp330Sweep(pIp330,"c-Ip330Sweep",0,3,2048,20)
+initIp330Sweep(pIp330,"c-Ip330Sweep",0,3,2048,200)
 
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *serverName, char *carrierName, char *siteName,

@@ -9,6 +9,8 @@ ld < iocCore
 ld < seq
 ld < CARSLib
 
+devLiIpUnidigDebug=10
+
 # This IOC loads the MPF server code locally
 cd startup
 < st_mpfserver.cmd
@@ -186,7 +188,7 @@ seq &IDD_LVP_Detector, "P=13IDD:,PMR=pm9,PMT=pm10,PMC=pm11,X=m33,Y=m34,Z=m35,TX=
 
 # Need to wait 10 seconds before starting smartControl - THIS NEEDS TO BE FIXED
 taskDelay(600)
-seq &smartControl, "P=13IDD:,R=smart1,TTH=m21,OMEGA=m21,PHI=m21,KAPPA=m21,SCALER=scaler1,I0=6,stack=10000"
+seq &smartControl, "P=13IDD:,R=smart1,TTH=m31,OMEGA=m31,PHI=m31,KAPPA=m31,SCALER=scaler1,I0=6,stack=10000"
 
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
 dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"

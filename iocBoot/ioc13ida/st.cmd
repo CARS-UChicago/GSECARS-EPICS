@@ -168,8 +168,8 @@ seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
 # seq &Energy, "ID=ID13:, E=13IDA:E, MONO=13IDA:m17, EXPTAB_Z=13IDC:m6, XTAL=13IDA:MON:, SHUTTER=13IDA:eps_mbbi4" 
 
 str=malloc(256)
-strcpy(str,"ID=ID13:,E=13IDA:E,MONO=13IDA:m17,EXPTAB_Z=13IDC:m6,")
-strcat(str,"EXPTAB2=13IDA:pm5,XTAL=13IDA:MON:,SH=13IDA:eps_mbbi4,FB=13IDA:mono_pid1")
+strcpy(str,"PRE=13IDA:,ID=ID13:,EXPTAB_Z=13IDC:m6,")
+strcat(str,"EXPTAB2=13IDA:pm5,SH=eps_mbbi4,FB=mono_pid1")
 seq &Energy, str
 
 
@@ -193,5 +193,5 @@ dbpf "13IDA:V6_status.TWSV","NO_ALARM"
 #     0.5                  1
 #
 # Note: 1 encoder step ~= 0.05eV at 10keV.
-(double) drvPM304ReadbackDelay = 0.2
+(double) drvPM304ReadbackDelay = 0.3
 

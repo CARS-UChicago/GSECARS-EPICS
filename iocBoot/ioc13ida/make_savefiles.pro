@@ -3,7 +3,8 @@
 prefix = '13IDA:'
 dmms   = ['DMM1','DMM2']
 ;tables = ['MON:t1', 'HMIR:t1', 'VMIR:t1']
-tables = ['MON:t1', 'HMIR:t1']
+; tables = ['MON:t1', 'HMIR:t1']
+tables = ['HMIR:t1']
 feedback = ['mono_pid1']
 piezos   = ['DAC1_1','DAC1_2','DAC1_3']
 mpcs            = ['ip2:', 'ip6:', 'ip7:']

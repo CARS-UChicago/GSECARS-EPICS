@@ -17,11 +17,11 @@ pattern
 {13IDA:,   m7,  "OMS VME58",   0,  6, "Pinhole outboard Y",   mm,   Pos,   .5,   .1,    .2,    0,     1,     .2,    400,    -.250,  3,   109,  105}
 {13IDA:,   m8,  "OMS VME58",   0,  7, "Pinhole upstream X",   mm,   Neg,   .1,  .05,    .2,    0,     1,     .2,    400, .1058333,  3,     1,   -1}
 {13IDA:,   m9,  "OMS VME58",   1,  0, "Pinhole downstream X", mm,   Neg,   .1,  .05,    .2,    0,     1,     .2,    400, .1058333,  3,    73,   69}
-{13IDA:,  m10,  "OMS VME58",   1,  1, "Y-Out",                mm,   Neg,    .5,  .0,   1.5,   0.,   .05,    1.5,   2000,  .347368,  4,    10,    0}
-{13IDA:,  m11,  "OMS VME58",   1,  2, "Y-In",                 mm,   Neg,    .5,  .0,   1.5,   0.,   .05,    1.5,   2000,  .347368,  4,    10,    0}
-{13IDA:,  m12,  "OMS VME58",   1,  3, "Y-Up",                 mm,   Neg,    .5,  .0,   1.5,   0.,   .05,    1.5,   2000,  .882353,  4,    10,    0}
-{13IDA:,  m13,  "OMS VME58",   1,  4, "Cage Y",               mm,   Neg,    .5,  .0,   1.5,    0,    .1,    1.5,   5000,       2.,  3,    25,    0}
-{13IDA:,  m14,  "OMS VME58",   1,  5, "Xtal Z",               mm,   Pos,     4,  .1,   1.5,    0,    .5,     .2,   2000,       2.,  3,   150,    0}
+{13IDA:,  m10,  "OMS VME58",   1,  1, "Xtal Y",               mm,   Neg,   .5,  .0,    1.5,    0.,   .05,    1.5,   2000,  .347368,  4,    10,    0}
+{13IDA:,  m11,  "OMS VME58",   1,  2, "dChi",                 mm,   Pos,   .5,  .0,    1.5,    0.,   .05,    1.5,   2000,  .347368,  4,    10,    0}
+{13IDA:,  m12,  "OMS VME58",   1,  3, "dtheta",               mm,   Neg,   .5,  .0,    1.5,    0.,   .05,    1.5,   2000,  .882353,  4,    10,    0}
+{13IDA:,  m13,  "OMS VME58",   1,  4, "Cage Y",               mm,   Neg,   .5,  .0,    1.5,    0,    .1,     1.5,   5000,       2.,  3,    25,    0}
+{13IDA:,  m14,  "OMS VME58",   1,  5, "Xtal Z",               mm,   Pos,  6.0,  .2,    1.0,    0,    .5,     .2,   2000,       2.,  3,   150,    0}
 {13IDA:,  m15,  "OMS VME58",   1,  6, "Motor 15",          steps,   Pos,  100.,   1,    .2,    0      1,     .2,    400,    .0025,  1,   1e6, -1e6}
 {13IDA:,  m16,  "OMS VME58",   1,  7, "Diagnostic Flag",      mm,   Neg,   0.5,  0.5,   .2,    0,   0.5,     .2,    400,    0.635,  3,   1e6, -1e6}
 {13IDA:,  m17, "Mclennan PM304", 0, 0,  "Monochromator", degrees,   Pos,    1.,  0.,    .2,    0,     1,     .2,   2000,      0.1,  4,    50,  -50}
@@ -57,12 +57,12 @@ pattern
 {13IDA:, Slit2V,   m24,  m25}
 }
 
-file stdApp/Db/table.db, std
-{
-pattern
-{P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
-{13IDA:, MON:T1, MON:t1, junk, junk,   junk,   m11,   m10,    m12,   m14,   SRI}
-}
+#file stdApp/Db/table.db, std
+#{
+#pattern
+#{P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
+#{13IDA:, MON:T1, MON:t1, junk, junk,   junk,   m11,   m10,    m12,   m14,   SRI}
+#}
 
 #file stdApp/Db/table.db, std
 #{

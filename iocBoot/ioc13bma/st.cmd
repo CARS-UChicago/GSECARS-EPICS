@@ -32,6 +32,7 @@ serialIODebug = 0
 devSerialDebug = 0
 serialRecordDebug = 0
 devSiStrParmDebug=0
+devAiMKSDebug = 0
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build.

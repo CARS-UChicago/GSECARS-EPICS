@@ -204,11 +204,8 @@ VSCSetup(1, 0xB0000000, 200)
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
-memShow
 
 iocInit
-
-memShow
 
 # Wait 10 seconds so iocInit debugging output is not garbled
 #  with other messages and to allow MPF servers to start

@@ -16,6 +16,7 @@
 #  33-40     4        A         Tomography, XAS, DAC sample stages
 #  41-48     5        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
 #  49-56     6        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
+#  57-64     7        F         LVP motors (not assigned yet)
 # Previous definitions:
 # Motors   Card    Patch panel  Common use
 #  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
@@ -62,7 +63,7 @@ pattern
 # DAC clean_up slits
 # m23 is used for photodiode
 #{13BMD:,  m23, "OMS VME58",   2,  6, "clean_up x pos.",   mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
-{13BMD:,  m23, "OMS VME58",   2,  6, "photodiode",   mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
+{13BMD:,  m23, "OMS VME58",   2,  6, "photodiode",   deg,     Pos,   15.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,    3,     360, -360}
 # m24 is used for x-ray CCD position
 {13BMD:,  m24, "OMS VME58",   2,  7, "X-ray CCD pos.",   mm,     Pos,  2.0,    .1,    .5,    0,      1,     .2,     200,     -.10,     3,     100, 0}
 #Oriel motor used for clean_up slit
@@ -87,7 +88,7 @@ pattern
 # Motors 33-40, patch panel A.  This should only be used for 0.5A motors to save hassle
 # CCD camera stage  
 #<<MN 13-Mar-2002  using for sample stage
-{13BMD:,  m33, "OMS VME58",   4,  0, "Sample Z",   mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m33, "OMS VME58",   4,  0, "Sample Z",   mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m34, "OMS VME58",   4,  1, "Sample Y",   mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   2000,  -.10,  3,   70,  0}
 {13BMD:,  m35, "OMS VME58",   4,  2, "Sample X",   mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 									    		      	   
@@ -104,7 +105,7 @@ pattern
 
 #m37 for CCD detector, DAC, V.P., 25-June-2002
 {13BMD:,  m37, "OMS VME58",   4,  4, "CCD detector",        mm,     Pos,   2.0,    .1,    .5,     0,      1,     .2,    200,   0.010,    3,     100,    0}
-{13BMD:,  m38, "OMS VME58",   4,  5, "Sample Theta",       deg,     Neg,   15.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,    3,     360, -360}
+{13BMD:,  m38, "OMS VME58",   4,  5, "Sample Theta",       deg,     Pos,   15.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,    3,     360, -360}
 #temproray used for DAC clean-up slit V.P. June 25 2002
 {13BMD:,  m39, "OMS VME58",   4,  6, "clean_up Y pos.",   mm,       Pos,   0.5,   .1,    .5,    .1,      1,     .2,     100,     0.10,  3,      25,     0}
 #{13BMD:,  m39, "OMS VME58",   4,  6, "Sample tilt",      deg,     Pos,    5.,   .1,    .5,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
@@ -122,14 +123,27 @@ pattern
 {13BMD:,  m48, "OMS VME58",  5,  7, "Hor. force DownStream",   microns,  Pos,  100.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 
 # 2nd CARS BP8000  20-Sept-2000  PJE
-{13BMD:,  m49, "OMS VME58",  6,  0, "Shutter X",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
-{13BMD:,  m50, "OMS VME58",  6,  1, "Shutter Y",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+# m49 and m50 are now used for DAC clean-up slits, Guoyin - Vitali, 11/1/02
+#{13BMD:,  m49, "OMS VME58",  6,  0, "Shutter X",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+#{13BMD:,  m50, "OMS VME58",  6,  1, "Shutter Y",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m51, "OMS VME58",  6,  0, "clean_up X",   microns,  Neg,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMD:,  m52, "OMS VME58",  6,  1, "clean_up Y",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 {13BMD:,  m51, "OMS VME58",  6,  2, "Crystal X",   microns,  Neg,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 {13BMD:,  m52, "OMS VME58",  6,  3, "Crystal Y",   microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 {13BMD:,  m53, "OMS VME58",  6,  5, "MicroMo m54", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 {13BMD:,  m54, "OMS VME58",  6,  4, "MicroMo m54", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 {13BMD:,  m55, "OMS VME58",  6,  6, "MicroMo m55", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
 {13BMD:,  m56, "OMS VME58",  6,  7, "MicroMo m56", microns,  Pos,  200.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+
+# Third set of LVP motors, added 26-Sept-2002 MLR
+{13BMD:,  m57, "OMS VME58",  7,  0, "Motor 57",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m58, "OMS VME58",  7,  1, "Motor 58",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m59, "OMS VME58",  7,  2, "Motor 59",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m60, "OMS VME58",  7,  3, "Motor 60",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m61, "OMS VME58",  7,  4, "Motor 61",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m62, "OMS VME58",  7,  5, "Motor 62",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m63, "OMS VME58",  7,  6, "Motor 63",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
+{13BMD:,  m64, "OMS VME58",  7,  7, "Motor 64",    steps,    Pos, 2000.0,    10,  .2,  0,   1, .2, 400,   1,  1,  0,    0}
 }
 
 

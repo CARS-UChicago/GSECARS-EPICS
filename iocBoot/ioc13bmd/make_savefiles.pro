@@ -9,9 +9,10 @@ icb_adcs        = ['adc1']
 dmms            = ['DMM1','DMM2']
 mcas            = ['aim_adc1', 'aim_mcs1']
 smart           = ['smart1']
+feedback        = ['PID1', 'Press_PID']
 
 create_autosavefiles, prefix          = prefix,          $
-                      nmotors         = 56,              $
+                      nmotors         = 64,              $
                       npseudomotors   = 8,               $
                       nscans          = 4,               $
                       tables          = tables,          $
@@ -21,6 +22,7 @@ create_autosavefiles, prefix          = prefix,          $
                       icb_adcs        = icb_adcs,        $
                       dmms            = dmms,            $
                       smart           = smart,           $
+                      feedback        = feedback,        $
                       mcas            = mcas
 
 end
