@@ -20,7 +20,7 @@ tyGSMPFInit("serial8",  0, 7,  9600,'N',1,8,'N',"") /* SMART PC */
 tyGSMPFInit("serial9",  1, 0,  9600,'N',2,7,'N',"") /* Omega meter */
 tyGSMPFInit("serial10", 1, 1, 19200,'N',1,8,'N',"") /* RSF encoder readout */
 tyGSMPFInit("serial11", 1, 2, 19200,'N',1,8,'N',"") /* PicoMotor controller */
-tyGSMPFInit("serial12", 1, 3,  9600,'N',1,8,'N',"") /* Unused */
+tyGSMPFInit("serial12", 1, 3, 19200,'N',1,8,'N',"") /* Keithley 2700 */
 tyGSMPFInit("serial13", 1, 4,  9600,'N',1,8,'N',"") /* Unused */
 tyGSMPFInit("serial14", 1, 5,  9600,'N',1,8,'N',"") /* Unused */
 tyGSMPFInit("serial15", 1, 6,  9600,'N',1,8,'N',"") /* Unused */
