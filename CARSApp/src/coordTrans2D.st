@@ -6,6 +6,9 @@ program coordTrans2D("P=13LAB:,PMX=pm1,PMY=pm2,MX=m1,MY=m2")
  *
  *  Mark Rivers
  *  March 31, 1998
+ *
+ *  8-Jul-2003  Renamed variable "y0" to "yzero" to avoid conflict with Bessel function in math.h
+ *              Did same for x0 for consistency
 */
 
 %% #include <math.h>
@@ -21,20 +24,18 @@ evflag y_rbv_mon;   sync y_rbv   y_rbv_mon;
 
 double xp_drive; assign  xp_drive to "{P}{PMX}.VAL"; monitor xp_drive;
 double xp_rbv;   assign  xp_rbv   to "{P}{PMX}.RBV"; monitor xp_rbv;
-double xp_set;   assign  xp_set   to "{P}{PMX}.SET";
 double yp_drive; assign  yp_drive to "{P}{PMY}.VAL"; monitor yp_drive;
 double yp_rbv;   assign  yp_rbv   to "{P}{PMY}.RBV"; monitor yp_rbv;
-double yp_set;   assign  yp_set   to "{P}{PMY}.SET";
 evflag xp_drive_mon; sync xp_drive xp_drive_mon;
 evflag yp_drive_mon; sync yp_drive yp_drive_mon;
 
-double x0;    assign x0    to "{P}{PMX}C1";  monitor x0;
+double xzero;    assign xzero    to "{P}{PMX}C1";  monitor xzero;
 int synch;    assign synch to "{P}{PMX}set"; monitor synch;
-double y0;    assign y0    to "{P}{PMY}C1";  monitor y0;
+double yzero;    assign yzero    to "{P}{PMY}C1";  monitor yzero;
 double theta; assign theta to "{P}{PMY}C2";  monitor theta;
-evflag x0_mon;    sync x0 x0_mon;
+evflag xzero_mon;    sync xzero xzero_mon;
 evflag theta_mon; sync theta theta_mon;
-evflag y0_mon;    sync y0 y0_mon;
+evflag yzero_mon;    sync yzero yzero_mon;
 
 double dtor;  /* Degrees to radians */
 
@@ -52,37 +53,17 @@ ss coordTrans2D {
         when(efTestAndClear(xp_drive_mon) || efTestAndClear(yp_drive_mon)) {
             /* Drive fields in new coordinate system have changed, 
              * move motors */
-            x_drive = x0 + xp_drive*cos(theta*dtor)
+            x_drive = xzero + xp_drive*cos(theta*dtor)
                          - yp_drive*sin(theta*dtor);
             pvPut(x_drive);
-            y_drive = y0 + xp_drive*sin(theta*dtor)
+            y_drive = yzero + xp_drive*sin(theta*dtor)
                          + yp_drive*cos(theta*dtor);
             pvPut(y_drive);
         } state monitor_changes
 
-        when(efTestAndClear(x_drive_mon) || efTestAndClear(y_drive_mon) ||
-             efTestAndClear(x0_mon)      || efTestAndClear(y0_mon) ||
+        when(efTestAndClear(xzero_mon) || efTestAndClear(yzero_mon) ||
              efTestAndClear(theta_mon)) {
-            /* Drive values in old coordinate system, or geometry parameters
-             * have changed, update drive values in new coordinate system */
-            xp_drive = (y_drive - y0)*sin(theta*dtor) +
-                       (x_drive - x0)*cos(theta*dtor);
-            xp_set=1;
-            pvPut(xp_set);
-            pvPut(xp_drive);
-            xp_set=0;
-            pvPut(xp_set);
-            yp_drive = (y_drive - y0)*cos(theta*dtor) -
-                       (x_drive - x0)*sin(theta*dtor);
-            yp_set=1;
-            pvPut(yp_set);
-            pvPut(yp_drive);
-            yp_set=0;
-            pvPut(yp_set);
-            /* We have changed the drive fields, but don't want to move
-             * anything, so clear the event flags */
-            efClear(xp_drive_mon);
-            efClear(yp_drive_mon);
+            /* Geometry parameters have changed, update readbacks*/
         } state update_readbacks
 
         when(efTestAndClear(x_rbv_mon) || efTestAndClear(y_rbv_mon)) {
@@ -93,8 +74,8 @@ ss coordTrans2D {
         when(synch == 1) {
             /* Set the origin of the new coordinate system to be the current
              * position of the motors */
-            x0 = x_drive; pvPut(x0);
-            y0 = y_drive; pvPut(y0);
+            xzero = x_drive; pvPut(xzero);
+            yzero = y_drive; pvPut(yzero);
             synch = 0;    pvPut(synch);
         } state monitor_changes
     }
@@ -103,11 +84,11 @@ ss coordTrans2D {
         when () {
             /* Something has changed which requires recomputing readback
              * positions in new coordinate system */
-            xp_rbv = (y_rbv - y0)*sin(theta*dtor) +
-                     (x_rbv - x0)*cos(theta*dtor);
+            xp_rbv = (y_rbv - yzero)*sin(theta*dtor) +
+                     (x_rbv - xzero)*cos(theta*dtor);
             pvPut(xp_rbv);
-            yp_rbv = (y_rbv - y0)*cos(theta*dtor) -
-                     (x_rbv - x0)*sin(theta*dtor);
+            yp_rbv = (y_rbv - yzero)*cos(theta*dtor) -
+                     (x_rbv - xzero)*sin(theta*dtor);
             pvPut(yp_rbv);
         } state monitor_changes
     }
