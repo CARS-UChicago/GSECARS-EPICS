@@ -4,7 +4,7 @@
 # will automatically be started.  When the MCA acquisition completes the scaler will
 # be automatically stopped.
 
-grecord(calcout, "$(P)$(M)WhenAcqStops") {
+grecord(calcout, "$(P)$(M)OnStop") {
         field(INPA,"$(P)$(M).ACQG CP MS")
         field(CALC,"A")
         field(OOPT,"Transition To Zero")
@@ -12,7 +12,7 @@ grecord(calcout, "$(P)$(M)WhenAcqStops") {
         field(OCAL, "0")
         field(OUT,"$(P)$(S).CNT PP MS")
 }
-grecord(calcout,"$(P)$(M)WhenAcqStarts") {
+grecord(calcout,"$(P)$(M)OnStart") {
         field(INPA,"$(P)$(M).ACQG CP MS")
         field(CALC,"A")
         field(OOPT,"Transition To Non-zero")
