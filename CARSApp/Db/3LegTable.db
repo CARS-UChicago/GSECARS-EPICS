@@ -40,24 +40,6 @@ grecord(transform,"$(P)$(T)Readback") {
 	field(PREC,"$(PREC)")
 }
 
-# This record calculates the drive positions of the soft motors.  It 
-# processes whenever the real motors stop moving (via $(P)$(T)Done) or whenever
-# one of the geometry constants changes.  It puts the soft motors in "set" 
-# mode before writing the outputs so that it does not cause those motors to 
-# write to their output links.
-grecord(transform,"$(P)$(T)DReadback") {
-	field(INPA,"$(P)$(M1DRV) NPP MS")
-	field(INPB,"$(P)$(M2DRV) NPP MS")
-	field(INPC,"$(P)$(M3DRV) NPP MS")
-      field(CLCG,"1")
-      field(OUTG,"$(P)$(SUM).SET NPP MS")
-	field(CLCI,"(A+B+C)/3.")
-      field(OUTI,"$(P)$(SUM).DVAL PP MS")
-      field(CLCK,"0")
-      field(OUTK,"$(P)$(SUM).SET NPP MS")
-	field(PREC,"$(PREC)")
-}
-
 # This record processes if the soft motor STOP field is set.
 grecord(dfanout,"$(P)$(T)Stop") {
         field(VAL,"1")
@@ -68,14 +50,9 @@ grecord(dfanout,"$(P)$(T)Stop") {
 
 # This record computes whether the compound motor is done moving.  
 # It goes to 1 when all real motors are done moving.
-# On the transition to 1 its causes the DReadback record to process, which 
-# updates the DVAL fields of the soft motors so they reflect the drive 
-# positions of the real motors.
 grecord(calcout,"$(P)$(T)Done") {
         field(INPA,"$(P)$(M1DONE) CP MS")
         field(INPB,"$(P)$(M2DONE) CP MS")
         field(INPC,"$(P)$(M3DONE) CP MS")
         field(CALC,"A & B & C")
-        field(OUT,"$(P)$(T)DReadback.PROC PP MS")
-        field(OOPT,"Transition To Non-zero")
 }
