@@ -21,7 +21,7 @@ cd startup
 dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13IDD:,S=scaler1,C=0")
 
 # MAR345 shutter
-dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:UnidigBi14,OUT=13IDD:UnidigBo11")
+dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
 
 dbLoadTemplate("motors.template")
 
