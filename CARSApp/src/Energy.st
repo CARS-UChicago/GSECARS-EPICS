@@ -205,6 +205,7 @@ ss Energy {
         -> unset "energy busy"
       */
 
+      if (verbose) { printf("energy event: put en_busy to 1\n"); }
       en_busy = 1;  pvPut(en_busy);
       /* check that energy is in the allowable range */
       if (en <    0.0)  en = -en;         /* force positive */
@@ -308,13 +309,13 @@ ss Energy {
 	*/
 	d_time = 0.1; 
 	/* tweak mono theta and wait */
-        for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
+        for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
           still_busy = ((y2_track||z2_track) && (z2_done == 0)) ||
                         (xt_track  && (xt_done == 0)) ||
                         (xt2_track && (xt2_done == 0)) ||
                         (th_done == 0) || id_busy;
-	  if (verbose) { printf("  E feedback? > %i %i %i\n",fb_is_on, fb_use, fb_locked);}
+	  if (verbose) { printf("  E feedback? > %i %i %i\n", wait_count, fb_use, fb_locked);}
 	  if (fb_is_on && fb_use) {   still_busy = still_busy || (fb_locked == 0);
 	  }
           if (verbose) {
@@ -324,8 +325,8 @@ ss Energy {
         }
         if ((verbose) && (wait_count % 8)) {printf("\n");}
       }
-      en_busy = 0;
-      pvPut(en_busy);
+      if (verbose) { printf("end of energy event: put en_busy to 0\n"); }
+      en_busy = 0; pvPut(en_busy);
       efClear(ef_th);
       efClear(ef_width);
       pvGet(id_rbv);
@@ -356,6 +357,7 @@ ss Energy {
       }
       en  = omega / sin(th * d2r) ;
 
+      if (verbose) { printf("theta event: put en_busy to 1\n"); }
       en_busy = 1;  pvPut(en_busy);
 
       pvPut(en);
@@ -437,14 +439,14 @@ ss Energy {
 	/* wait for undulator */
 	d_time = 0.1; 
 	/* tweak mono theta and wait */
-        for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
+        for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
 	  still_busy = ((xt_track  && (xt_done == 0)) || 
 			(xt2_track && (xt2_done == 0)) ||
 			(th_done == 0) || id_busy);
 	  if (fb_is_on && fb_use) {  still_busy = still_busy || (fb_locked == 0); }
           if (verbose) {
-            printf("[%i%i%i]", id_busy, th_done, xt_done);
+            printf("E(mono) [%i%i%i%i]", id_busy, th_done, xt_done,wait_count);
             if (!(wait_count % 8)) printf("\n");
           }
         }
@@ -452,8 +454,9 @@ ss Energy {
       }
 
       efClear(ef_th_rbv); 
-      en_busy = 0;
-      pvPut(en_busy);
+
+      if (verbose) { printf("end of theta event: put en_busy to 0\n"); }
+      en_busy = 0;   pvPut(en_busy);
       if (use_id){ efClear(ef_id_track);}
 
     } state monitor_changes

@@ -2,8 +2,11 @@ grecord(ao,"$(P)$(EN):Energy") {
         field(DESC, "Energy")
 	field(PREC, "$(PREC)")
 	field(EGU, "$(EGU)")
-	field(FLNK,"$(P)$(EN):PutMoving.PROC  PP MS")
 }
+#MN 02/17/2004:  took out this line from the end of Energy record above
+#  it was causing 'Moving' to go to 1 even when Energy was driven to
+#  its current position.  Energy.st now sets and unsets 'Moving' field.
+#	field(FLNK,"$(P)$(EN):PutMoving.PROC  PP MS")
 
 grecord(ao,"$(P)$(EN):E_RBV") {
         field(DESC, "Energy Readback")
