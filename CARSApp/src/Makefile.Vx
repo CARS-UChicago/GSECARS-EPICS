@@ -7,6 +7,9 @@ include $(TOP)/config/CONFIG_APP
 SRCS.c += ../devAoAvme9210.c
 SRCS.c += ../drvAvme9210.c
 SRCS.c += ../devXxDg535Gpib.c
+SRCS.c += ../devLib.c
+SRCS.c += ../iVecShow.c
+SRCS.c += ../ppcveclist.c
 
 # Stuff from base - local copy of baeLIBOBJS so it can be customized for 
 # this app.
@@ -40,11 +43,8 @@ LIBOBJS += $(DAC128V_BIN)/devAoDAC128V.o
 MPFSERVERLIBOBJS += $(DAC128V_BIN)/dac128VLib
 
 # Objects from "ip330"
-LIBOBJS += $(IP330_BIN)/devAiIp330Scan.o
-LIBOBJS += $(IP330_BIN)/devLoIp330Config.o
-LIBOBJS += $(IP330_BIN)/devEpidIp330.o
+LIBOBJS += $(IP330_BIN)/ip330DevLib
 MPFSERVERLIBOBJS += $(IP330_BIN)/ip330Lib
-MPFSERVERLIBOBJS += $(IP330_BIN)/ip330ServLib
 
 # Objects from "ipUnidig"
 LIBOBJS += $(IPUNIDIG_BIN)/devIpUnidig.o
@@ -53,6 +53,10 @@ MPFSERVERLIBOBJS += $(IPUNIDIG_BIN)/ipUnidigLib
 # Objects from "love"
 LIBOBJS += $(LOVE_BIN)/devLove.o
 MPFSERVERLIBOBJS += $(LOVE_BIN)/loveServer.o
+
+# Objects from "quadEM"
+LIBOBJS += $(QUADEM_BIN)/devQuadEMLib
+MPFSERVERLIBOBJS += $(QUADEM_BIN)/quadEMLib
 
 
 # Objects from "std"
