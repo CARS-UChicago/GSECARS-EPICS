@@ -29,6 +29,7 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,SERVE
 dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,SERVER=serial8")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,C=0,SERVER=serial9")
+dbLoadRecords("$(STD)/stdApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,C=0,SERVER=serial10")
 dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
 dbLoadTemplate "DAC.template"
 dbLoadTemplate "heater_control.template"

@@ -22,7 +22,7 @@ tyGSMPFInit("serial7",  0, 6,19200,'N',1,8,'N',"")  /* Keithley 2000 */
 tyGSMPFInit("serial8",  0, 7,19200,'N',1,8,'N',"")  /* Keithley 2000 */
 # Second IP-Octal
 tyGSMPFInit("serial9",  1, 0,19200,'N',1,8,'N',"")  /* Keithley 2000 */
-tyGSMPFInit("serial10", 1, 1, 9600,'N',1,8,'N',"")  /* Unused */
+tyGSMPFInit("serial10", 1, 1, 9600,'N',1,8,'N',"")  /* XIA shutter */
 tyGSMPFInit("serial11", 1, 2, 9600,'N',1,8,'N',"")  /* Unused */
 tyGSMPFInit("serial12", 1, 3, 9600,'N',1,8,'N',"")  /* Unused */
 tyGSMPFInit("serial13", 1, 4, 9600,'N',1,8,'N',"")  /* Unused */
