@@ -19,7 +19,7 @@ tyGSMPFInit("serial7",  0, 6,  9600,'N',2,8,'N',"") /* SRS 570 */
 tyGSMPFInit("serial8",  0, 7,  9600,'N',1,8,'N',"") /* SMART PC */
 tyGSMPFInit("serial9",  1, 0,  9600,'N',2,7,'N',"") /* Omega meter */
 tyGSMPFInit("serial10", 1, 1, 19200,'N',1,8,'N',"") /* RSF encoder readout */
-tyGSMPFInit("serial11", 1, 2,  9600,'N',1,8,'N',"") /* Unused */
+tyGSMPFInit("serial11", 1, 2, 19200,'N',1,8,'N',"") /* PicoMotor controller */
 tyGSMPFInit("serial12", 1, 3,  9600,'N',1,8,'N',"") /* Unused */
 tyGSMPFInit("serial13", 1, 4,  9600,'N',1,8,'N',"") /* Unused */
 tyGSMPFInit("serial14", 1, 5,  9600,'N',1,8,'N',"") /* Unused */
@@ -152,6 +152,3 @@ initIp330PID("Ip330PID1", "Ip330_1", 0, "DAC1", 1, 20)
 #               10 should certainly be safe.
 #MN 12/05/04 initIpUnidig("Unidig1", 0, 2, 20, 2000, 116, 0xffffff, 0xffffff, 0xffffff,10)
 initIpUnidig("Unidig1", 0, 2, 20, 100, 116, 0xffffff, 0xffffff, 0xffffff, 10)
-
-# DEBUGGING
-#serialPortPeek("serial3",1000)
