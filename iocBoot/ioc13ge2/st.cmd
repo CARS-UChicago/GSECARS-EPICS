@@ -52,23 +52,23 @@ camacLibInit
 # Generic CAMAC record
 dbLoadRecords("$(CAMAC)/camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048")
 
-### Motors
-# E500 driver setup parameters: 
-#     (1) maximum # of controllers, 
-#     (2) maximum # axis per card
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-E500Setup(2, 8, 10)
-
-# E500 driver configuration parameters: 
-#     (1) controller
-#     (2) branch 
-#     (3) crate
-#     (4) slot
-E500Config(0, 0, 0, 13)
-E500Config(1, 0, 0, 14)
-
-dbLoadTemplate  "motors.template"
-
+# ### Motors
+# # E500 driver setup parameters: 
+# #     (1) maximum # of controllers, 
+# #     (2) maximum # axis per card
+# #     (3) motor task polling rate (min=1Hz, max=60Hz)
+# E500Setup(2, 8, 10)
+# 
+# # E500 driver configuration parameters: 
+# #     (1) controller
+# #     (2) branch 
+# #     (3) crate
+# #     (4) slot
+# E500Config(0, 0, 0, 13)
+# E500Config(1, 0, 0, 14)
+# 
+# dbLoadTemplate  "motors.template"
+#
 # Multichannel analyzer stuff
 # AIMConfig(mpfServer, card, ethernet_address, port, maxChans,
 #           maxSignals, maxSequences, ethernetDevice, queueSize)
@@ -78,7 +78,7 @@ dbLoadTemplate  "motors.template"
 
 ### Scalers: CAMAC scaler
 # CAMACScalerSetup(int max_cards)   /* maximum number of logical cards */
-CAMACScalerSetup(1)
+# CAMACScalerSetup(1)
 
 # CAMACScalerConfig(int card,       /* logical card */
 #  int branch,                         /* CAMAC branch */
@@ -87,7 +87,7 @@ CAMACScalerSetup(1)
 #  int timer_slot,                     /* Timer N */
 #  int counter_type,                   /* 0=QS-450 */
 #  int counter_slot)                   /* Counter N */
-CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
+# CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
 #dbLoadRecords("$(CAMAC)/camacApp/Db/CamacScaler.db","P=13GE2:,S=scaler1,C=0")
 
 # Test record for scaler synchronization at X-26
@@ -99,7 +99,7 @@ CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13GE2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(STD)/stdApp/Db/scan.db","P=13GE2:,MAXPTS1=2000,MAXPTS2=100,MAXPTS3=10,MAXPTS4=5,MAXPTSH=5")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
