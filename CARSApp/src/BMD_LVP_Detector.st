@@ -11,6 +11,9 @@ program BMD_LVP_Detector("P=13LAB:,PMT=pm1,PMR=pm2,X=m1,Y=m2,Z=m3,TV=m4,TH=m5")
  *  Mark Rivers
  *  March 31, 1998
  *  Converted to soft motor records 1/23/2000
+ *  8-Jul-2003  Renamed variable "0" to "yzero" to avoid conflict with Bessel function in math.h
+ *              Did same for x0 and z0 for consistency
+ *
 */
 
 %% #include <math.h>
@@ -41,25 +44,23 @@ evflag th_rbv_mon;   sync th_rbv   th_rbv_mon;
 double tp_drive; assign tp_drive  to "{P}{PMT}.VAL";    monitor tp_drive;
 double tp_move;  assign tp_move   to "{P}{PMT}Move";    monitor tp_move;
 double tp_rbv;   assign tp_rbv    to "{P}{PMT}Readback";
-double tp_set;   assign tp_set    to "{P}{PMT}.SET";
 
 double r_drive;  assign r_drive   to "{P}{PMR}.VAL";    monitor r_drive;
 double r_move;   assign r_move    to "{P}{PMR}Move";    monitor r_move;
 double r_rbv;    assign r_rbv     to "{P}{PMR}Readback";
-double r_set;    assign r_set     to "{P}{PMR}.SET";
 evflag tp_move_mon; sync tp_move tp_move_mon;
 evflag r_move_mon;  sync r_move  r_move_mon;
 
 /* Geometry offsets */
-double x0;  assign x0  to "{P}{PMR}C1"; monitor x0;
-double y0;  assign y0  to "{P}{PMR}C2"; monitor y0;
-double z0;  assign z0  to "{P}{PMR}C3"; monitor z0;
+double xzero;  assign xzero  to "{P}{PMR}C1"; monitor xzero;
+double yzero;  assign yzero  to "{P}{PMR}C2"; monitor yzero;
+double zzero;  assign zzero  to "{P}{PMR}C3"; monitor zzero;
 double b;   assign b   to "{P}{PMT}C1"; monitor b;
 double c;   assign c   to "{P}{PMT}C2"; monitor c;
 double chi; assign chi to "{P}{PMT}C3"; monitor chi;
-evflag x0_mon;  sync x0  x0_mon;
-evflag y0_mon;  sync y0  y0_mon;
-evflag z0_mon;  sync z0  z0_mon;
+evflag xzero_mon;  sync xzero  xzero_mon;
+evflag yzero_mon;  sync yzero  yzero_mon;
+evflag zzero_mon;  sync zzero  zzero_mon;
 evflag b_mon;   sync b   b_mon;
 evflag c_mon;   sync c   c_mon;
 evflag chi_mon; sync chi chi_mon;
@@ -93,10 +94,10 @@ ss LVPdetector {
             tv = asin( sin(tp_drive*dtor) * cos(chi*dtor) );
             th = asin( sin(tp_drive*dtor) * sin(chi*dtor) );
             printf("tv = %f, th=%f\n", tv, th);
-            x_drive = -r_drive*sin(th) + b*(1-cos(th)) - x0; pvPut(x_drive);
-            y_drive =  r_drive*sin(tv) + c*(1-cos(tv)) - y0; pvPut(y_drive);
+            x_drive = -r_drive*sin(th) + b*(1-cos(th)) - xzero; pvPut(x_drive);
+            y_drive =  r_drive*sin(tv) + c*(1-cos(tv)) - yzero; pvPut(y_drive);
             z_drive =  r_drive*(cos(tv) * cos(th)) + c*sin(tv) - b*sin(th) 
-                          - z0; pvPut(z_drive);
+                          - zzero; pvPut(z_drive);
             tv_drive = tv/dtor; pvPut(tv_drive);
             th_drive = th/dtor; pvPut(th_drive);
             printf("x_drive = %f\n", x_drive);
@@ -106,35 +107,13 @@ ss LVPdetector {
             printf("th_drive = %f\n", th_drive);
         } state monitor_changes
 
-        when((efTestAndClear(motors_stopped_mon) && motors_stopped == 1) ||
-             efTestAndClear(x0_mon)      ||
-             efTestAndClear(y0_mon)      ||
-             efTestAndClear(z0_mon)      || 
+        when(efTestAndClear(xzero_mon)      ||
+             efTestAndClear(yzero_mon)      ||
+             efTestAndClear(zzero_mon)      || 
              efTestAndClear(b_mon)       || 
              efTestAndClear(c_mon)       || 
              efTestAndClear(chi_mon)) {
-            /* The X, Y Z or 2-theta motor drive values, or a geometry constant
-             * has changed, update the 2-theta' and R drive fields */
-            tv = atan2((y_drive + y0), (z_drive + z0));
-            /* Put pseudomotors in "set" mode so we don't actually move 
-               anything */
-            tp_set = 1;
-            pvPut(tp_set);
-            r_set = 1;
-            pvPut(r_set);
-            tp_drive = (sin(tv) / cos(chi*dtor)) / dtor;
-            pvPut(tp_drive);
-            tv = asin( sin(tp_drive*dtor) * cos(chi*dtor) );
-            th = asin( sin(tp_drive*dtor) * sin(chi*dtor) );
-            /* Note - the following fails at angles=90 */
-            r_drive = (z_drive - c*sin(tv) + b*sin(th) + z0) /
-                        (cos(tv) * cos(th));
-            pvPut(r_drive);
-            /* Put pseudomotors back in "Use" mode */
-            tp_set = 0;
-            pvPut(tp_set);
-            r_set = 0;
-            pvPut(r_set);
+            /* A geometry constant has changed, update the readbacks */
         } state update_readbacks
 
         when(efTestAndClear(x_rbv_mon) || 
@@ -148,8 +127,8 @@ ss LVPdetector {
         when(synch == 1) {
             /* Assume that 2-theta, X0, and Y0 are correct, and that we are in 
              * the diffraction condition. Compute Z0 */
-            z0 = (y_drive+y0)/tan(tv_drive*dtor) - z_drive;
-            pvPut(z0);
+            zzero = (y_drive+yzero)/tan(tv_drive*dtor) - z_drive;
+            pvPut(zzero);
             synch = 0;    pvPut(synch);
         } state monitor_changes
     }
@@ -158,13 +137,13 @@ ss LVPdetector {
         when () {
             /* Something has changed which requires recomputing readback
              * positions */
-            tempv = atan2((y_rbv + y0), (z_rbv + z0));
+            tempv = atan2((y_rbv + yzero), (z_rbv + zzero));
             tp_rbv = (sin(tempv) / cos(chi*dtor)) / dtor;
             pvPut(tp_rbv);
             tempv = asin( sin(tp_rbv*dtor) * cos(chi*dtor) );
             temph = asin( sin(tp_rbv*dtor) * sin(chi*dtor) );
             /* Note - the following fails at angles=90 */
-            r_rbv = (z_rbv - c*sin(tempv) + b*sin(temph) + z0) /
+            r_rbv = (z_rbv - c*sin(tempv) + b*sin(temph) + zzero) /
                         (cos(tempv) * cos(temph));
             pvPut(r_rbv);
         } state monitor_changes

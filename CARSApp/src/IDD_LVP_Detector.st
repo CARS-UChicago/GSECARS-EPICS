@@ -12,7 +12,9 @@ program IDD_LVP_Detector("P=13IDD:,PMT=pm1,PMR=pm2,PMC=pm3,X=m1,Y=m2,Z=m3,TZ=m4,
  *  April 18, 2000
  *  Modified:
  *      May 12, 2000  MLR + YBW   Changed orientation of "A"
-*/
+ *     8-Jul-2003  Renamed variable "0" to "yzero" to avoid conflict with Bessel function in math.h
+ *                 Did same for xzero and zzero for consistency
+ */
 
 %% #include <math.h>
 
@@ -43,31 +45,28 @@ evflag tz_rbv_mon;   sync tz_rbv   tz_rbv_mon;
 double pmt_drive; assign pmt_drive  to "{P}{PMT}.VAL";    monitor pmt_drive;
 double pmt_move;  assign pmt_move   to "{P}{PMT}Move";    monitor pmt_move;
 double pmt_rbv;   assign pmt_rbv    to "{P}{PMT}Readback";
-double pmt_set;   assign pmt_set    to "{P}{PMT}.SET";
 
 /* Pseudomotor chi = compound chi */
 double pmc_drive; assign pmc_drive  to "{P}{PMC}.VAL";    monitor pmc_drive;
 double pmc_move;  assign pmc_move   to "{P}{PMC}Move";    monitor pmc_move;
 double pmc_rbv;   assign pmc_rbv    to "{P}{PMC}Readback";
-double pmc_set;   assign pmc_set    to "{P}{PMC}.SET";
 
 /* Pseudomotor radius */
 double pmr_drive;  assign pmr_drive   to "{P}{PMR}.VAL";    monitor pmr_drive;
 double pmr_move;   assign pmr_move    to "{P}{PMR}Move";    monitor pmr_move;
 double pmr_rbv;    assign pmr_rbv     to "{P}{PMR}Readback";
-double pmr_set;    assign pmr_set     to "{P}{PMR}.SET";
 evflag pmt_move_mon; sync pmt_move pmt_move_mon;
 evflag pmc_move_mon; sync pmc_move pmc_move_mon;
 evflag pmr_move_mon; sync pmr_move pmr_move_mon;
 
 /* Geometry offsets */
-double x0;  assign x0  to "{P}{PMR}C1"; monitor x0;
-double y0;  assign y0  to "{P}{PMR}C2"; monitor y0;
-double z0;  assign z0  to "{P}{PMR}C3"; monitor z0;
+double xzero;  assign xzero  to "{P}{PMR}C1"; monitor xzero;
+double yzero;  assign yzero  to "{P}{PMR}C2"; monitor yzero;
+double zzero;  assign zzero  to "{P}{PMR}C3"; monitor zzero;
 double a;   assign a   to "{P}{PMT}C1"; monitor a;
-evflag x0_mon;  sync x0  x0_mon;
-evflag y0_mon;  sync y0  y0_mon;
-evflag z0_mon;  sync z0  z0_mon;
+evflag xzero_mon;  sync xzero  xzero_mon;
+evflag yzero_mon;  sync yzero  yzero_mon;
+evflag zzero_mon;  sync zzero  zzero_mon;
 evflag a_mon;   sync a   a_mon;
 
 int synch; assign synch to "{P}{PMR}synch"; monitor synch;
@@ -100,45 +99,21 @@ ss LVPdetector {
             /* 2-theta', chi' or R been driven, drive real motors */
             tx = pmt_drive*dtor;
             tz = pmc_drive*dtor;
-            x_drive =  -pmr_drive*sin(tx)*sin(tz) - a*(1.-cos(tz)) - x0; 
+            x_drive =  -pmr_drive*sin(tx)*sin(tz) - a*(1.-cos(tz)) - xzero; 
             pvPut(x_drive);
-            y_drive =  pmr_drive*sin(tx)*cos(tz) + a*sin(tz) - y0; 
+            y_drive =  pmr_drive*sin(tx)*cos(tz) + a*sin(tz) - yzero; 
             pvPut(y_drive);
-            z_drive =  pmr_drive*cos(tx) - z0;
+            z_drive =  pmr_drive*cos(tx) - zzero;
             pvPut(z_drive);
             tx_drive = tx/dtor; pvPut(tx_drive);
             tz_drive = tz/dtor; pvPut(tz_drive);
         } state monitor_changes
 
-        when((efTestAndClear(motors_stopped_mon) && motors_stopped == 1) ||
-             efTestAndClear(x0_mon)      ||
-             efTestAndClear(y0_mon)      ||
-             efTestAndClear(z0_mon)      || 
+        when(efTestAndClear(xzero_mon)      ||
+             efTestAndClear(yzero_mon)      ||
+             efTestAndClear(zzero_mon)      || 
              efTestAndClear(a_mon)) {
-            /* The X, Y Z or 2-theta motor drive values, or a geometry constant
-             * has changed, update the 2-theta', chi' and R drive fields */
-            /* Put pseudomotors in "set" mode so we don't actually move 
-               anything */
-            pmt_set = 1; pvPut(pmt_set);
-            pmc_set = 1; pvPut(pmc_set);
-            pmr_set = 1; pvPut(pmr_set);
-            pmt_drive = tx_drive;
-            pvPut(pmt_drive);
-            pmc_drive = tz_drive;
-            pvPut(pmc_drive);
-            tx = pmt_drive*dtor;
-            tz = pmc_drive*dtor;
-            c = (x_drive + x0) * (x_drive + x0) + 
-                (y_drive + y0) * (y_drive + y0) + 
-                (z_drive + z0) * (z_drive + z0) -
-                2. * a * a * (1. - cos(tz));
-            b = 2. * a * sin(tx) * sin(tz);
-            pmr_drive = (-b + sqrt(b*b + 4.*c)) / 2.;
-            pvPut(pmr_drive);
-            /* Put pseudomotors back in "Use" mode */
-            pmt_set = 0; pvPut(pmt_set);
-            pmc_set = 0; pvPut(pmc_set);
-            pmr_set = 0; pvPut(pmr_set);
+            /* A geometry constant has changed, update the readbacks */
         } state update_readbacks
 
         when(efTestAndClear(x_rbv_mon) || 
@@ -154,12 +129,12 @@ ss LVPdetector {
              * the diffraction condition. Compute X0, Y0, Z0 */
             tx = pmt_drive*dtor;
             tz = pmc_drive*dtor;
-            x0 = -pmr_drive * sin(tx) * sin(tz) - a * (1. - cos(tz)) - x_drive;
-            y0 = pmr_drive * sin(tx) * cos(tx) + a * sin(tz) - y_drive;
-            z0 = pmr_drive * cos(tx) - z_drive;
-            pvPut(x0);
-            pvPut(y0);
-            pvPut(z0);
+            xzero = -pmr_drive * sin(tx) * sin(tz) - a * (1. - cos(tz)) - x_drive;
+            yzero = pmr_drive * sin(tx) * cos(tx) + a * sin(tz) - y_drive;
+            zzero = pmr_drive * cos(tx) - z_drive;
+            pvPut(xzero);
+            pvPut(yzero);
+            pvPut(zzero);
             synch = 0; pvPut(synch);
         } state monitor_changes
     }
@@ -174,9 +149,9 @@ ss LVPdetector {
             pvPut(pmc_rbv);
             tx = pmt_rbv*dtor;
             tz = pmc_rbv*dtor;
-            c = (x_rbv + x0) * (x_rbv + x0) + 
-                (y_rbv + y0) * (y_rbv + y0) + 
-                (z_rbv + z0) * (z_rbv + z0) -
+            c = (x_rbv + xzero) * (x_rbv + xzero) + 
+                (y_rbv + yzero) * (y_rbv + yzero) + 
+                (z_rbv + zzero) * (z_rbv + zzero) -
                 2. * a * a * (1. - cos(tz));
             b = 2. * a * sin(tx) * sin(tz);
             pmr_rbv = (-b + sqrt(b*b + 4.*c)) / 2.;
