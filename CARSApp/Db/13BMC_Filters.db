@@ -1,0 +1,19 @@
+# This is a database for the 13-BM-C filter rack
+# An MBBO record which provides the menu and motor positions
+grecord(mbbo,"$(P)$(R)Select") {
+        field(ZRVL,"0")
+        field(ZRST,"2 mm Al")
+        field(ONVL,"30")
+        field(ONST,"1 mm Al")
+        field(TWVL,"60")
+        field(TWST,"0.13 mm Al")
+        field(THVL,"90")
+        field(THST,"None")
+        field(FLNK,"$(P)$(R)Move PP MS")
+}
+
+grecord(ao,"$(P)$(R)Move") {
+        field(DOL,"$(P)$(R)Select.RVAL NPP NMS")
+        field(OMSL,"closed_loop")
+        field(OUT,"$(P)$(MOTOR).VAL PP MS")
+}
