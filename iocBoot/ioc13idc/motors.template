@@ -1,0 +1,202 @@
+#
+# motor template file for 13-ID-C
+#
+#  OMS Card             Patch Panel 
+#  0			Patch Panel H:  XAS Table
+#  1: Slots 1,2,3,4     XAS Table Top Slits
+#  1: Slots 5,6,7,8     Patch Panel J: J1, J2, J3, J8 (grey cables)
+#  2                    XAS Table Top KB Mirrors
+#  3                    Patch Panel G:  User Motors  (black cables)
+#
+# step-pak conventions:
+#  Motor  Motor        VME  VME     VME          Motor        sStepPak
+#  Number Name         Slot Channel Cable        Cable        Volt Amp
+#  m1     Table Y Up    0   0       ID-MC-CB-01  ID-MD-AD-01    4    4
+#  m2     Table Y In    0   1       ID-MC-CB-02  ID-MD-AD-02    4    4
+#  m3     Table Y Down  0   2       ID-MC-CB-03  ID-MD-AD-03    4    4
+#  m4     Table X Up    0   3       ID-MC-CB-04  ID-MD-AD-04    4    2
+#  m5     Table X Down  0   4       ID-MC-CB-05  ID-MD-AD-05    4    2
+#  m6     Table Y Base  0   5       ID-MC-CB-06  ID-MD-AD-06    8    6
+#  m7     Table unus    0   6       ID-MC-CB-07  ID-MD-AD-07    -    -
+#  m8     Table Mono    0   7       ID-MC-CB-08  ID-MD-AD-08    4    3
+
+# Note: all motors must be defined for 'motors_all_done' to work
+
+file CARSApp/Db/motor.db, top
+{
+pattern
+{P,       M,    DTYP,      C,  S,  DESC,              EGU,     DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM}
+							     
+{13IDC:,  m1, "OMS VME58", 0, 0, "Upstream Y",     mm,       Pos,  .07,  .005,  .2,  0,   1, .2, 400,  0.023813, 4,   50,    0}
+{13IDC:,  m2, "OMS VME58", 0, 1, "Inboard Y",      mm,       Pos,   .2,  .005,  .2,  0,   1, .2, 400,  0.023813, 4,   50,    0}
+{13IDC:,  m3, "OMS VME58", 0, 2, "Outboard Y",     mm,       Pos,   .2,  .005,  .2,  0,   1, .2, 400,  0.023813, 4,   50,    0}
+{13IDC:,  m4, "OMS VME58", 0, 3, "Upstream X",     mm,       Pos,   .5,  .005,  .2,  0,   1, .2, 400, -0.035278, 4,   79,  -52}
+{13IDC:,  m5, "OMS VME58", 0, 4, "Downstream X",   mm,       Pos,   .5,  .005,  .2,  0,   1, .2, 400,  0.035278, 4,   30,  -75}
+{13IDC:,  m6, "OMS VME58", 0, 5, "Base Y",         mm,       Pos,   .5,  .05,   .5, .05,.05, .5, 400, -0.10583,  4,  200,    0}
+{13IDC:,  m7, "OMS VME58", 0, 6, "Motor 7",        steps,    Pos, 100., 1.,     .5,  0, 100, .5, 400,  0.0025,   1,  1e6, -1e6}
+{13IDC:,  m8, "OMS VME58", 0, 7, "Mono. angle",    degrees,  Pos,   .3,  .05,   .2   0,   1, .2, 400,  .05,      4,   30,  -10}
+{13IDC:,  m9, "OMS VME58", 1, 0, "Hor. slit pos.",     microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7500,   0}
+{13IDC:, m10, "OMS VME58", 1, 1, "Hor. slit width",    microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7000,   0}
+{13IDC:, m11, "OMS VME58", 1, 2, "Vert. slit pos.",    microns,  Neg,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7500,   0}
+{13IDC:, m12, "OMS VME58", 1, 3, "Vert. slit width",   microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  8000,   0}
+#
+# these were for the sample stage
+# :: switch 13,14,15 with 41,42,43
+{13IDC:, m41, "OMS VME58", 1, 4, "Motor 13",             mm, Pos,  5.0, 1.0,  .5, 0, 1, .2, 2000,  0.10,  4,  95,  5}
+{13IDC:, m42, "OMS VME58", 1, 5, "Motor 14",             mm, Pos,  5.0, 1.0,  .5, 0, 1, .2, 2000,  0.10,  4,  95,  5}
+{13IDC:, m43, "OMS VME58", 1, 6, "Motor 15",             mm, Pos,  1.0, 0.1,  .5, 0, 1, .2,  200,  0.10,  4,  25,  0}
+
+#{13IDC:, m13, "OMS VME58", 3, 0, "Sample X",             mm, Pos,  0.5, 0.1,  .5, 0, 1, .2,  2000,  0.10,  4,  95,  5}
+#{13IDC:, m14, "OMS VME58", 3, 1, "Sample Y",             mm, Pos,  1.0, 1.0,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+{13IDC:, m13, "OMS VME58", 3, 0, "Sample Theta",        deg, Pos,  10,  1.0,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+{13IDC:, m14, "OMS VME58", 3, 1, "Unused",             mm, Pos,  1.0, 1.0,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+{13IDC:, m15, "OMS VME58", 3, 2, "Sample In/Out Board",   mm, Pos,  1.0, 0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+
+{13IDC:, m16, "OMS VME58", 1, 7, "Microscope Y",         mm, Pos,  1.0, 0.1,  .5, 0, 1, .2,  400, -.710,  4,  10,  0}
+
+#P,      M,    DTYP,       C, S,  DESC,               EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
+
+{13IDC:, m17, "OMS VME58", 2, 1, "Vert. mirror Y pos.",      microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDC:, m18, "OMS VME58", 2, 0, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+{13IDC:, m19, "OMS VME58", 2, 2, "Vert. force UpStream.",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDC:, m20, "OMS VME58", 2, 3, "Vert. force DownStream.",  microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDC:, m21, "OMS VME58", 2, 5, "Hor. mirror X pos",        microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDC:, m22, "OMS VME58", 2, 4, "Hor. mirror rotation",     mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+{13IDC:, m23, "OMS VME58", 2, 6, "Hor. force UpStream",      microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDC:, m24, "OMS VME58", 2, 7, "Hor. force DownStream",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+
+
+{13IDC:, m25, "MM4000",    0, 0, "Phi",             degrees,  Neg,  4.0,  .1,   .25, 0,  1,  .2,  1,  .001,    3,   180, -180}
+{13IDC:, m26, "MM4000",    0, 1, "Kappa",           degrees,  Neg,  6.0,  .1,   1.0, 0,  1,  .2,  1,  .0001,   4,   180, -180}
+{13IDC:, m27, "MM4000",    0, 2, "Omega",           degrees,  Pos,  8.0,  .1,   1.0, 0,  1,  .2,  1,  .0001,   4,   180, -180}
+{13IDC:, m28, "MM4000",    0, 3, "Psi",             degrees,  Pos,  4.0,  .1,   0.5, 0,  1,  .2,  1,  .00025,  4,   190, -190}
+{13IDC:, m29, "MM4000",    0, 4, "2-theta",         degrees,  Pos,  8.0,  .1,   1.0, 0,  1,  .2,  1,  .0001,   4,   196,  -17}
+{13IDC:, m30, "MM4000",    0, 5, "Nu",              degrees,  Pos,  4.0,  .1,   0.5, 0,  1,  .2,  1,  .00025,  4,   190, -190}
+{13IDC:, m31, "MM4000",    0, 6, "Motor 31",        degrees,  Pos,  4.0,  .1,   1.0, 0,  1,  .2,  1,  1.0,     1,   1e6, -1e6}
+{13IDC:, m32, "MM4000",    0, 7, "Motor 32",        degrees,  Pos,  4.0,  .1,   1.0, 0,  1,  .2,  1,  1.0,     1,   1e6, -1e6}
+	       					      	   	 	     	    	     			    
+{13IDC:, m33, "MM4000",    1, 0, "Y1",              mm,       Pos,  0.2, .01,   0.5, 0,  1,  .2,  1,  .0001,   4,    60, -115}
+{13IDC:, m34, "MM4000",    1, 1, "Y2",              mm,       Pos,  0.2, .01,   0.5, 0,  1,  .2,  1,  .0001,   4,    60, -115}
+{13IDC:, m35, "MM4000",    1, 2, "Y3",              mm,       Pos,  0.2, .01,   0.5, 0,  1,  .2,  1,  .0001,   4,    60, -115}
+{13IDC:, m36, "MM4000",    1, 3, "Rotation AY",     mm,       Neg,  20., .01,   2.0, 0,  1,  .2,  1,  .005,    3,    24,  -24}
+{13IDC:, m37, "MM4000",    1, 4, "X Translation",   mm,       Neg,  20., .01,   2.0, 0,  1,  .2,  1,  .005,    3,    50,  -50}
+{13IDC:, m38, "MM4000",    1, 5, "Sample X"         mm,       Pos,  .07, .01,   .07, 0,  1,  .2,  1,  .0000134,4,    28,    0}
+{13IDC:, m39, "MM4000",    1, 6, "Sample Y",        mm,       Pos,  .07, .01,   .07, 0,  1,  .2,  1,  .0000134,4,     3,   -3}
+{13IDC:, m40, "MM4000",    1, 7, "Sample Z",        mm,       Pos,  .07, .01,   .07, 0,  1,  .2,  1,  .00001,  4,     3,   -3}
+
+
+{13IDC:, m44, "OMS VME58", 3, 3, "Sample Up/DownStream", mm, Pos,  1.0,  0.1,  .5, 0, 1, .2, 200,  0.10,  4,  25,  0}
+{13IDC:, m45, "OMS VME58", 3, 4, "Sample Y (Vert)",      mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  25,  0}
+{13IDC:, m46, "OMS VME58", 3, 5, "MuMax_X",      mm, Pos,  1.0,  0.1,  .5, 0, 1, .2, 200,  0.10,  4,  25,  0}
+{13IDC:, m47, "OMS VME58", 3, 6, "MuMax_Y",      mm, Pos,  1.0,  0.1,  .5, 0, 1, .2, 2000,  0.10,  4,  25,  0}
+{13IDC:, m48, "OMS VME58", 3, 7, "MuMax_Z",      mm, Pos,  1.0,  0.1,  .5, 0, 1, .2, 200,  0.10,  4,  25,  0}
+
+
+{13IDC:, m49, "OMS VME58", 4, 0, "Hp UpStream",      microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m50, "OMS VME58", 4, 1, "Hw UpStream",      microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m51, "OMS VME58", 4, 2, "Vp UpStream",      microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m52, "OMS VME58", 4, 3, "Vw UpStream",      microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m53, "OMS VME58", 4, 4, "Hp DownStream",    microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m54, "OMS VME58", 4, 5, "Hw DownStream",    microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m55, "OMS VME58", 4, 6, "Vp DownStream",    microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m56, "OMS VME58", 4, 7, "Vw DownStream",    microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+ 	     		      			       		  	      	     	   	       
+{13IDC:, m57, "OMS VME58", 5, 0, "Hp UpStream",      microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m58, "OMS VME58", 5, 1, "Hw UpStream",      microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m59, "OMS VME58", 5, 2, "Vp UpStream",      microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m60, "OMS VME58", 5, 3, "Vw UpStream",      microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m61, "OMS VME58", 5, 4, "Hp DownStream",    microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m62, "OMS VME58", 5, 5, "Hw DownStream",    microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m63, "OMS VME58", 5, 6, "Vp DownStream",    microns, Pos, 200,  100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m64, "OMS VME58", 5, 7, "Vw DownStream",    microns, Pos, 400,  100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
+
+}
+
+file stdApp/Db/table.db, std
+{
+pattern
+{P,         Q,     T, M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
+{13IDC:, XAS:T1, XAS:t1, m5,   m2,   m3,   m4,   m1,  junk,  SRI}
+}
+
+file stdApp/Db/table.db, std
+{
+pattern
+{P,          Q,      T,  M0X,   M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13IDC:, DIF:T1, DIF:t1, m36,   m33,  m35, junk,  m34,  m37, NEWPORT}
+}
+
+file CARSApp/Db/pseudoMotor.db, top
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+
+{13IDC:,  pm1, "13IDC:KBH:Done NPP NMS", "13IDC:pm1DVAL.VAL PP MS", "13IDC:KBH:Readback.G NPP NMS", "13IDC:KBH:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDC:,  pm2, "13IDC:KBH:Done NPP NMS", "13IDC:pm2DVAL.VAL PP MS", "13IDC:KBH:Readback.H NPP NMS", "13IDC:KBH:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDC:,  pm3, "13IDC:KBV:Done NPP NMS", "13IDC:pm3DVAL.VAL PP MS", "13IDC:KBV:Readback.G NPP NMS", "13IDC:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDC:,  pm4, "13IDC:KBV:Done NPP NMS", "13IDC:pm4DVAL.VAL PP MS", "13IDC:KBV:Readback.H NPP NMS", "13IDC:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDC:,  pm5, "13IDC:XYZ:Done NPP NMS", "13IDC:pm5DVAL.VAL PP MS", "13IDC:XYZ:Readback.G NPP NMS", "13IDC:XYZ:Stop PP MS",   "Sample Z",       mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    10000, -10000}
+{13IDC:,  pm6, "13IDC:XYZ:Done NPP NMS", "13IDC:pm6DVAL.VAL PP MS", "13IDC:XYZ:Readback.H NPP NMS", "13IDC:XYZ:Stop PP MS",   "Sample X",       mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    10000, -10000}
+}
+
+file CARSApp/Db/sumDiff2D.db, top
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDC:, KBH:,  pm1, pm2,    m23.VAL,  m23.RBV,  m24.VAL, m24.RBV, m23.STOP, m23.DMOV, m24.STOP, m24.DMOV, 1}
+{13IDC:, KBV:,  pm3, pm4,    m19.VAL,  m19.RBV,  m20.VAL, m20.RBV, m19.STOP, m19.DMOV, m20.STOP, m20.DMOV, 1}
+}
+
+
+file CARSApp/Db/rot_2D.db, top
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDC:, XYZ:,  pm5, pm6,    m15.VAL,  m15.RBV,  m44.VAL, m44.RBV, m15.STOP, m15.DMOV, m44.STOP, m44.DMOV, 5}
+}
+
+# file CARSApp/Db/SampleXYZ.db, top
+# {
+# pattern
+# {P,      XYZ,  X,  Y,  Z}
+# {13IDC:, XYZ,  m13, m14, m15}
+# }
+
+
+# file CARSApp/Db/Energy.db, top
+# {
+# pattern
+# {P,      EN,   DESC,     EGU,  PREC,  SCANREC,       TWEAK}
+# {13IDC:,  E,  "Energy",   eV,    4,   13IDC:scan1,    1.00}
+# }
+# 
+file CARSApp/Db/Energy_CC.db, top
+{
+pattern
+{P,       EN,       DESC,     EGU,  PREC, SCANREC,      TWEAK}
+{13IDC:,  Energy,  "Energy",   eV,    4,  13IDC:scan1,  1.00}
+}
+
+file CARSApp/Db/Analyzer.db, top 
+{
+pattern
+{P,       ANAL,     DESC     , EGU, PREC}
+{13IDC:,  ANAL,   "Analyzer" ,  mm,  4}
+}
+
+
+file stdApp/Db/scanParms.db, std
+{
+{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1Z,POS=XAS:t1.Z,RDBK=XAS:t1.ZRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1AX,POS=XAS:t1.AX,RDBK=XAS:t1.AXRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1AY,POS=XAS:t1.AY,RDBK=XAS:t1.AYRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1X,POS=DIF:t1.X,RDBK=DIF:t1.XRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1Y,POS=DIF:t1.Y,RDBK=DIF:t1.YRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1Z,POS=DIF:t1.Z,RDBK=DIF:t1.ZRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1AX,POS=DIF:t1.AX,RDBK=DIF:t1.AXRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1AY,POS=DIF:t1.AY,RDBK=DIF:t1.AYRB}
+{P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1AZ,POS=DIF:t1.AZ,RDBK=DIF:t1.AZRB}
+}

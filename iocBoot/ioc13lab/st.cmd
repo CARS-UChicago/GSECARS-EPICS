@@ -25,7 +25,6 @@ tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
 # Initialize local MPF connection
 localMessageRouterStart(0)
 
-
 # override address, interrupt vector, etc. information in module_types.h
 module_types()
 
