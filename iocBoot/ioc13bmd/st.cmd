@@ -22,6 +22,8 @@ dbLoadTemplate "DAC.template"
 dbLoadTemplate "heater_control.template"
 dbLoadTemplate "LVP_furnace_control.template"
 dbLoadTemplate "motors.template"
+dbLoadTemplate "laser_pid.template"
+
 
 # MAR345 shutter
 str=malloc(256)
@@ -76,7 +78,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYP=asynMCA,NCHAN
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_40.db) are in std/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_64.db","P=13BMD:")
+dbLoadRecords("$(STD)/stdApp/Db/all_com_80.db","P=13BMD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -113,7 +115,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
 #     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(8, 8, 0x4000, 190, 5, 10)
+oms58Setup(10, 8, 0x4000, 190, 5, 10)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
