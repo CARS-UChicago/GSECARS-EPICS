@@ -1,21 +1,21 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13BM.adl"
+	name="i:\epics\3.14\CARS\CARSApp\op\adl\13BM.adl"
 	version=020306
 }
 display {
 	object {
-		x=390
-		y=38
-		width=360
-		height=500
+		x=298
+		y=44
+		width=350
+		height=490
 	}
 	clr=14
 	bclr=4
 	cmap=""
-	gridSpacing=10
+	gridSpacing=5
 	gridOn=0
-	snapToGrid=1
+	snapToGrid=0
 }
 "color map" {
 	ncolors=65
@@ -89,8 +89,8 @@ display {
 }
 text {
 	object {
-		x=92
-		y=175
+		x=85
+		y=165
 		width=137
 		height=20
 	}
@@ -102,10 +102,10 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=175
+		x=5
+		y=165
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="Vacuum and EPS"
@@ -130,7 +130,7 @@ text {
 		x=37
 		y=27
 		width=276
-		height=25
+		height=24
 	}
 	"basic attribute" {
 		clr=14
@@ -153,10 +153,10 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=207
+		x=5
+		y=192
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="FOE Slits (compound)"
@@ -193,8 +193,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=207
+		x=85
+		y=192
 		width=137
 		height=20
 	}
@@ -206,8 +206,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=335
+		x=85
+		y=327
 		width=128
 		height=20
 	}
@@ -219,7 +219,7 @@ text {
 }
 text {
 	object {
-		x=92
+		x=85
 		y=111
 		width=180
 		height=20
@@ -232,10 +232,10 @@ text {
 }
 "related display" {
 	object {
-		x=7
+		x=5
 		y=111
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="Storage Ring Status"
@@ -256,8 +256,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=143
+		x=85
+		y=138
 		width=180
 		height=20
 	}
@@ -269,10 +269,10 @@ text {
 }
 "shell command" {
 	object {
-		x=7
-		y=143
+		x=5
+		y=138
 		width=75
-		height=25
+		height=24
 	}
 	command[0] {
 		label="Storage Ring Status"
@@ -291,28 +291,58 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=399
+		x=5
+		y=381
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="Serial 1"
-		name="Serial_IO.adl"
-		args="REC=13BMA:ser1"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial1"
 	}
 	display[1] {
 		label="Serial 2"
-		name="Serial_IO.adl"
-		args="REC=13BMA:ser2"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial2"
+	}
+	display[2] {
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial4"
+	}
+	display[4] {
+		label="Serial 5"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial5"
+	}
+	display[5] {
+		label="Serial 6"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial6"
+	}
+	display[6] {
+		label="Serial 7"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial7"
+	}
+	display[7] {
+		label="Serial 8"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial8"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=92
-		y=399
+		x=85
+		y=381
 		width=128
 		height=20
 	}
@@ -320,12 +350,12 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Generic RS-232 and GPIB"
+	textix="Generic serial 1-8"
 }
 text {
 	object {
-		x=92
-		y=367
+		x=85
+		y=354
 		width=128
 		height=20
 	}
@@ -337,8 +367,8 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=367
+		x=5
+		y=354
 		width=75
 		height=24
 	}
@@ -357,10 +387,10 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=335
+		x=5
+		y=327
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="Mono Keithley 2000"
@@ -396,10 +426,10 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=303
+		x=5
+		y=273
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="Rotation axis"
@@ -436,8 +466,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=303
+		x=85
+		y=273
 		width=150
 		height=20
 	}
@@ -449,10 +479,10 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=431
+		x=5
+		y=435
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
 		label="Scan 1"
@@ -479,8 +509,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=431
+		x=85
+		y=435
 		width=40
 		height=20
 	}
@@ -491,27 +521,22 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=271
+		x=5
+		y=246
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
-		label="VG Monochromator"
-		name="1motors.adl"
-		args="P=13BMA:, TITLE=VG_Monochromator, M1=m9"
-	}
-	display[1] {
 		label="Diagnostic Flag"
 		name="1motors.adl"
 		args="P=13BMA:, TITLE=Diagnostic_Flag, M1=m8"
 	}
-	display[2] {
+	display[1] {
 		label="BM-D filter rack"
 		name="13BM_Filters.adl"
 		args="P=13BMA:, TITLE=BM-D_filters, R=BMD_Filters, M1=m5"
 	}
-	display[3] {
+	display[2] {
 		label="BM-C filter rack"
 		name="13BM_Filters.adl"
 		args="P=13BMA:, TITLE=BM-C_filters, R=BMC_Filters, M1=m6"
@@ -521,8 +546,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=271
+		x=85
+		y=246
 		width=137
 		height=20
 	}
@@ -530,14 +555,120 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Other Beamline Motors"
+	textix="Filters, flag"
 }
 "related display" {
 	object {
-		x=7
-		y=463
+		x=5
+		y=219
 		width=75
-		height=25
+		height=24
+	}
+	display[0] {
+		label="FOE Slits (individual)"
+		name="3motors.adl"
+		args="P=13BMA:, TITLE=BM-C_Slits, M1=m7, M2=m15, M3=m16"
+	}
+	display[1] {
+		label="Vertical FOE Slits (compound)"
+		name="2slit.adl"
+		args="P=13BMA:, SLIT=Slit3V"
+	}
+	display[2] {
+		label="BMB Slits (compound)"
+		name="2slit.adl"
+		args="P=13BMA:, SLIT=Slit4H"
+	}
+	display[3] {
+		label="BMB Slits (individual)"
+		name="2motors.adl"
+		args="P=13BMA:, TITLE=13BMB_Slits, M1=m26, M2=m27"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=219
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="BM-C Beamline Slits"
+}
+"related display" {
+	object {
+		x=5
+		y=408
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 9"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial9"
+	}
+	display[1] {
+		label="Serial 10"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial10"
+	}
+	display[2] {
+		label="Serial 11"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial11"
+	}
+	display[3] {
+		label="Serial 12"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial12"
+	}
+	display[4] {
+		label="Serial 13"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial13"
+	}
+	display[5] {
+		label="Serial 14"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial14"
+	}
+	display[6] {
+		label="Serial 15"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial15"
+	}
+	display[7] {
+		label="Serial 16"
+		name="asynRecord.adl"
+		args="P=13BMA:, R=serial16"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=408
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 9-16"
+}
+"related display" {
+	object {
+		x=5
+		y=300
+		width=75
+		height=24
 	}
 	display[0] {
 		label="Vertical Mirror"
@@ -574,8 +705,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=463
+		x=85
+		y=300
 		width=150
 		height=20
 	}
@@ -587,44 +718,28 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=239
+		x=5
+		y=462
 		width=75
-		height=25
+		height=24
 	}
 	display[0] {
-		label="FOE Slits (individual)"
-		name="3motors.adl"
-		args="P=13BMA:, TITLE=BM-C_Slits, M1=m7, M2=m15, M3=m16"
-	}
-	display[1] {
-		label="Vertical FOE Slits (compound)"
-		name="2slit.adl"
-		args="P=13BMA:, SLIT=Slit3V"
-	}
-	display[2] {
-		label="BMB Slits (compound)"
-		name="2slit.adl"
-		args="P=13BMA:, SLIT=Slit4H"
-	}
-	display[3] {
-		label="BMB Slits (individual)"
-		name="2motors.adl"
-		args="P=13BMA:, TITLE=13BMB_Slits, M1=m26, M2=m27"
+		label="vxWorks statistics"
+		name="IOC_Status.adl"
+		args="P=13BMA:"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=92
-		y=239
-		width=137
+		x=85
+		y=462
+		width=40
 		height=20
 	}
 	"basic attribute" {
 		clr=14
-		width=2
 	}
-	textix="BM-C Beamline Slits"
+	textix="vxWorks statistics"
 }
