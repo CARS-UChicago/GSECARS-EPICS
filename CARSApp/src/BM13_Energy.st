@@ -28,10 +28,10 @@ program BM13_Energy("E=XXBMA:E, MONO=XXBMA:m17, EXPTAB_Z=XXBMD:m22, YXTAL=XXBMA:
  *                      the motor (needed +- tiny so we don't try to move exactly to
  *                      the soft limit).  Made "en" update so that if it is changed by
  *                      SNL (for example, keV to eV) the correct value exists in the PV.
+ * Jun 05, 2003, MN     changes in recalculation of width when EXPTAB_Z table tracking is used.
  */
 %%#include <math.h>
-%%#include <sysLib.h>
-%%#include <taskLib.h>
+%%#include <epicsThread.h>
 
 /* Energy PVs (from {EN} and Energy.db) */
 double en;        assign en        to "{E}:Energy.VAL";    monitor en;
@@ -55,7 +55,7 @@ int    xt_track;  assign xt_track  to "{E}:xt_track.VAL";  monitor xt_track;
 double xt_off;    assign xt_off    to "{E}:xt_off.VAL";    monitor xt_off;
 double xt_sign;   assign xt_sign   to "{E}:xt_sign.VAL";   monitor xt_sign;
 double xt_mvmin;  assign xt_mvmin  to "{E}:xt_mvmin.VAL";  monitor xt_mvmin;
-double xt_ht;     assign xt_ht     to "{EXPTAB_Z}";        monitor xt_ht;
+double xt_ht;     assign xt_ht     to "{EXPTAB_Z}.VAL";    monitor xt_ht;
 int    xt_done;   assign xt_done   to "{EXPTAB_Z}.DMOV";   monitor xt_done;
 
 /* 2nd crystal table PVs  (from {TAB} variable for Table) */
@@ -96,7 +96,6 @@ double xt_old;
 double xt_new;
 float  d_time;
 double tiny;
-int i;
 int still_busy;
 int wait_count;
 /*   State Set Energy is the only State in this Sequencer */
@@ -191,22 +190,25 @@ ss Energy {
         }
         /*move 2nd xtal Y to keep beam offset fixed */
         if (y2_track) {
-          width  =  height / (2 * cos(th * d2r));
+          width  =  height / (2.0 * cos(th * d2r));
           pvPut(width);
           y2  = width;
           pvPut(y2);
           if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",y2, width, height);}
         } else {
-          width  =  height / (2 * cos(th * d2r));
-          pvPut(width);
-          if (verbose) { printf("  E(move)>    Channel width -> %12.6f\n",width);}
+          /* width  =  height / (2.0 * cos(th * d2r));
+	     pvPut(width);
+	     if (verbose) { printf("  E(move)>    Channel width -> %12.6f\n",width);}
+	  */
         }
         /*move Experimental Table to compensate for _NOT_ tracking y2 */
         if (xt_track) {
           xt_old  = xt_ht;
-          xt_new  = xt_off + 2 * xt_sign * width * cos(th * d2r);;
+	  pvGet(width);
+          xt_new  = xt_off + 2.00 * xt_sign * width * cos(th * d2r);;
           xt_diff = (xt_old *10000.0  - xt_new * 10000.0 ) / 10000.0 ;
           if (xt_diff < 0.0) xt_diff = - xt_diff;
+	  if (verbose) { printf("  E(move)> exptab from %12.6f to %12.6f \n",xt_old,xt_new);}	  
           if (xt_diff > xt_mvmin) {
             xt_ht = xt_new;
             pvPut (xt_ht);
@@ -221,7 +223,7 @@ ss Energy {
         d_time = 0.1;
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; 
                                                                     wait_count++) {
-          taskDelay(d_time*sysClkRateGet());
+          epicsThreadSleep(d_time);
           still_busy = ((y2_track && (y2_done == 0)) ||
                         (z2_track && (z2_done == 0)) ||
                         (xt_track && (xt_done == 0)) ||
@@ -277,7 +279,7 @@ ss Energy {
     /*  experimental table tracking : reset offset if switched to on */
     when( efTestAndClear(ef_xt_track) ) {
       if (xt_track) {
-        xt_off = xt_ht - 2 * width * xt_sign * cos(th * d2r);
+        xt_off = xt_ht - 2.00 * width * xt_sign * cos(th * d2r);
         pvPut(xt_off);
         if (verbose) {printf("  E(xt_track)> changed table offset => %12.6f\n",xt_off);}
       }
