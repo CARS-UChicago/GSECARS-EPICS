@@ -308,6 +308,23 @@ ss Energy {
       efClear(ef_en); 
       efClear(ef_th);
 
+      /*move Experimental Table to compensate for _NOT_ tracking y2 */
+      if (xt_track) {
+	xt_old  = xt_ht; 
+	pvGet(width);
+	xt_new  = xt_off + 2 * xt_sign * width * cos(th * d2r);;
+	xt_diff = (xt_old *10000.0  - xt_new * 10000.0 ) / 10000.0 ;
+	if (xt_diff < 0.0) xt_diff = - xt_diff;
+	if (verbose) {
+	  printf("  E(move)> exptab: from %12.6f to %12.6f \n", xt_old, xt_new);
+	}
+	if (xt_diff > xt_mvmin) { 
+	  xt_ht = xt_new;
+	  pvPut (xt_ht);  
+	  if (verbose) { printf("  E(move)> XAS Table Z -> %12.6f\n",xt_ht);}
+	}
+      } 
+
       /* track undulator    */
       if (use_id && id_track) {
 	pvGet(shutter_pv);
@@ -324,9 +341,9 @@ ss Energy {
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; wait_count++) {
           taskDelay(d_time*sysClkRateGet());
-          still_busy = id_busy; 
+	  still_busy = (xt_track && (xt_done == 0)) || (th_done == 0) || id_busy;
           if (verbose) {
-            printf("[%i%i%i%i]", id_busy, th_done, x2_done, xt_done);
+            printf("[%i%i%i]", id_busy, th_done, xt_done);
             if (!(wait_count % 8)) printf("\n");
           }
         }
