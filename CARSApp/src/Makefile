@@ -91,6 +91,7 @@ CARSApp_LIBS_vxWorks = $(CARSApp_vxWorks_LIBS) $(CARSApp_Common_LIBS)
 CARSApp_LIBS_Linux   = $(CARSApp_Linux_LIBS)   $(CARSApp_Common_LIBS)
 
 CARSApp_SYS_LIBS_Linux += net pcap
+CARSApp_SYS_LIBS_cygwin32 += rpc
 
 include $(TOP)/configure/RULES
 #----------------------------------------
