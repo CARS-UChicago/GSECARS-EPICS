@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program Energy("E=XXIDA:E, ID=IDXX:, MONO=XXIDA:m17, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, XTAL=XXIDA:MON:, SHUTTER=XXIDA:eps_mbbi4")
+program Energy("E=XXIDA:E, ID=IDXX:, MONO=XXIDA:m17, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, XTAL=XXIDA:MON:, SH=XXIDA:eps_mbbi4, FB=13IDA:mono_pid1")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -23,7 +23,7 @@ double id_rbv;    assign id_rbv    to "{ID}Energy.VAL";
 double id_harm;   assign id_harm   to "{ID}HarmonicValue.VAL";   
 int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
 
-int    shutter_pv;  assign shutter_pv to "{SHUTTER}";
+int    shutter_pv;  assign shutter_pv to "{SH}";
 
 /* Energy PVs (from {EN} and Energy.db) */
 int    use_id;    assign use_id    to "{E}:use_id.VAL";    monitor use_id;
@@ -38,6 +38,11 @@ int    id_abort;  assign id_abort  to "{E}:id_abort.VAL";
 int    id_factor; 
 int    en_busy;   assign en_busy   to "{E}:Moving.VAL";    monitor en_busy;
 int    en_set;    assign en_set    to "{E}:SET.VAL";       monitor en_set;
+
+/* feedback wait */
+int    fb_use;      assign fb_use    to "{E}:use_feedback.VAL";  monitor fb_use; 
+int    fb_is_on;    assign fb_is_on  to "{FB}.FBON";     monitor fb_is_on;
+int    fb_locked;   assign fb_locked to "{FB}Locked";    monitor fb_locked;
 
 /* undulator tracking and offset */
 int    id_track;   assign id_track  to "{E}:id_track.VAL"; monitor id_track;
@@ -70,6 +75,7 @@ int    xt2_done;   assign xt2_done   to "{EXPTAB2}.DMOV";     monitor xt2_done;
 /* 2nd crystal table PVs  (from {TAB} variable for Table) */
 double z2;        assign z2        to "{XTAL}t1.Z";        monitor z2;
 double y2;        assign y2        to "{XTAL}t1.Y";        monitor y2;
+double y2_mvmin;  assign y2_mvmin  to "{E}:y2_mvmin.VAL";  monitor y2_mvmin;
 int    x2_done;   assign x2_done   to "{XTAL}T1:done.VAL"; monitor x2_done;
 
 /* Mono Angle PV */		
@@ -108,6 +114,7 @@ double xt2_new;
 float  d_time;
 double tiny;
 double z2_sign;
+double y2_diff; double y2_old; 
 int i;
 int still_busy;
 int wait_count;
@@ -133,7 +140,7 @@ ss Energy {
 
       /* set up undulator info (if using undulator, that is!)*/
       id_busy = 0; id_val = 0. ; id_rbv=0.;
-      id_track = 0;     id_offset = 0;
+      id_track = 0;     id_offset = 0; fb_use=0;
       id_factor = 1;
       if (use_id) {
 	printf( "   Energy with undulator\n");
@@ -241,10 +248,14 @@ ss Energy {
 	if (y2_track) {
 	  width  =  height / (2 * cos(th * d2r));
 	  pvPut(width);
+	  pvGet(y2); y2_old = y2;
 	  y2  = y2_off + width;
-	  pvPut(y2);
-	  width  =  height / (2 * cos(th * d2r));
-	  pvPut(width);
+	  y2_diff = fabs(y2 - y2_old);
+	  if (verbose) { printf("  E(y2track: old, width, new, diff  %12.6f  %12.6f  %12.6f %12.6f\n",
+				y2_old, width, y2, y2_diff);}
+
+	  if (y2_diff > y2_mvmin) {  pvPut(y2);  }
+
 	  if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
 				y2, width, height);}
 	} else {
@@ -286,7 +297,6 @@ ss Energy {
 	  }
 	} 
 
-
 	/*
 	  wait for undulator, mono, 2nd xtal to finish 
 	  this gets tricky as we're waiting for things that 
@@ -300,6 +310,9 @@ ss Energy {
                         (xt_track  && (xt_done == 0)) ||
                         (xt2_track && (xt2_done == 0)) ||
                         (th_done == 0) || id_busy;
+	  if (verbose) { printf("  E feedback? > %i %i %i\n",fb_is_on, fb_use, fb_locked);}
+	  if (fb_is_on && fb_use) {   still_busy = still_busy || (fb_locked == 0);
+	  }
           if (verbose) {
             printf("[%i%i%i%i]", id_busy, th_done, x2_done, xt_done);
             if (!(wait_count % 8)) printf("\n");
@@ -394,6 +407,7 @@ ss Energy {
 	  still_busy = ((xt_track  && (xt_done == 0)) || 
 			(xt2_track && (xt2_done == 0)) ||
 			(th_done == 0) || id_busy);
+	  if (fb_is_on && fb_use) {  still_busy = still_busy || (fb_locked == 0); }
           if (verbose) {
             printf("[%i%i%i]", id_busy, th_done, xt_done);
             if (!(wait_count % 8)) printf("\n");
@@ -421,6 +435,15 @@ ss Energy {
 	if (verbose) {printf("  E(xt_track)> changed table offset => %12.6f\n",xt_off);}
       }
     } state monitor_changes
+
+    when( efTestAndClear(ef_xt2_track) ) {
+      if (xt2_track) {
+	xt2_off = xt2_ht - 2 * width * xt2_sign * cos(th * d2r);
+	pvPut(xt2_off);
+	if (verbose) {printf("  E(xt2_track)> changed table offset => %12.6f\n",xt2_off);}
+      }
+    } state monitor_changes
+
 	/*  xtal Z tracking : reset offset if switched to on */
 	/* when( efTestAndClear(ef_z2_track) ) {
 	   if (z2_track) {
