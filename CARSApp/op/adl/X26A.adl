@@ -1,0 +1,339 @@
+
+file {
+	name="x:\epics\CARS\CARSApp\op\adl\X26A.adl"
+	version=020306
+}
+display {
+	object {
+		x=1182
+		y=254
+		width=350
+		height=240
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"related display" {
+	object {
+		x=13
+		y=204
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=X26A:, S=scan1, N=1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=X26A:, S=scan2, N=2"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=204
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Scan"
+}
+"related display" {
+	object {
+		x=13
+		y=177
+		width=74
+		height=24
+	}
+	display[0] {
+		label="CAMAC"
+		name="CAMAC_IO.adl"
+		args="REC=X26A:camac1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=177
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic CAMAC"
+}
+"related display" {
+	object {
+		x=13
+		y=96
+		width=74
+		height=24
+	}
+	display[0] {
+		label="AIM ADC1"
+		name="mca.adl"
+		args="P=X26A:, M=aim_adc1"
+	}
+	display[1] {
+		label="Amplifier"
+		name="xxIcbAmp.adl"
+		args="P=X26A:, AMP=amp1"
+	}
+	display[2] {
+		label="High voltage"
+		name="xxIcbHVPS.adl"
+		args="P=X26A:, HVPS=hvps1"
+	}
+	display[7] {
+		name="l"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=96
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="MCA electronics"
+}
+rectangle {
+	object {
+		x=20
+		y=17
+		width=310
+		height=40
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+text {
+	object {
+		x=37
+		y=26
+		width=276
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X-26A Beamline Control"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=13
+		y=123
+		width=74
+		height=24
+	}
+	display[0] {
+		label="CAMAC Scaler"
+		name="scaler_full.adl"
+		args="P=X26A:, S=scaler1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=123
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Other electronics"
+}
+"related display" {
+	object {
+		x=13
+		y=150
+		width=74
+		height=24
+	}
+	display[0] {
+		label="User transforms"
+		name="userTrans10.adl"
+		args="P=X26A:"
+	}
+	display[1] {
+		label="User sCalcOut1"
+		name="yysCalcoutRecord.adl"
+		args="P=X26A:, C=userStringCalc1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=150
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="User calcs, transforms"
+}
+"related display" {
+	object {
+		x=13
+		y=69
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Sample stage"
+		name="4motors.adl"
+		args="P=X26A:, TITLE=Sample_Stage, M1=m1, M2=m2, M3=m3, M4=m4 "
+	}
+	display[1] {
+		label="Monochromator"
+		name="1motors.adl"
+		args="P=X26A:, TITLE=Monochromator, M1=m10"
+	}
+	display[2] {
+		label="4-jaw slits virtual"
+		name="4motors.adl"
+		args="P=X26A:, TITLE=Virtual_4_Jaw_Slits, M1=pm5, M2=pm6, M3=pm7, M4=pm8"
+	}
+	display[3] {
+		label="4-jaw slits real"
+		name="4motors.adl"
+		args="P=X26A:, TITLE=Real_4_Jaw_Slits, M1=m11, M2=m16, M3=m14, M4=m13"
+	}
+	display[4] {
+		label="Vertical K/B mirror"
+		name="6motors.adl"
+		args="P=X26A:, TITLE=Vertical_KB_Mirror, M1=m17, M2=m18, M3=m19, M4=m20, M5=pm3, M6=pm4"
+	}
+	display[5] {
+		label="Horizontal K/B mirror"
+		name="6motors.adl"
+		args="P=X26A:, TITLE=Horizonal_KB_Mirror, M1=m21, M2=m22, M3=m23, M4=m24, M5=pm1, M6=pm2"
+	}
+	display[6] {
+		label="Pinhole"
+		name="4motors.adl"
+		args="P=X26A:, TITLE=Pinhole_Stage, M1=m5, M2=m6, M3=m7, M4=m8"
+	}
+	display[7] {
+		label="Lift table and aperture"
+		name="3motors.adl"
+		args="P=X26A:, TITLE=Lift_table_and_aperture, M1=m9, M2=m12, M3=m15"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=69
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Motors"
+}

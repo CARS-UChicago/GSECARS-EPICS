@@ -1,0 +1,582 @@
+
+file {
+	name="j:\epics\current\CARS\CARSApp\op\adl\13BM.adl"
+	version=020306
+}
+display {
+	object {
+		x=723
+		y=479
+		width=360
+		height=460
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=10
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=92
+		y=175
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Vacuum and EPS"
+}
+"related display" {
+	object {
+		x=7
+		y=175
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Vacuum and EPS"
+		name="13BM_EPS.adl"
+	}
+	clr=14
+	bclr=4
+}
+rectangle {
+	object {
+		x=20
+		y=15
+		width=310
+		height=80
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+text {
+	object {
+		x=37
+		y=27
+		width=276
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="GSECARS Sector 13"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=30
+		y=62
+		width=291
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Bending Magnet Beamline"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=7
+		y=207
+		width=75
+		height=25
+	}
+	display[0] {
+		label="FOE Slits (compound)"
+		name="4slitGraphic.adl"
+		args="P=13BMA:, V=Slit1V, H=Slit1H, mYp=m1, mYn=m2, mXn=m3, mXp=m4, SLIT=Slit1"
+	}
+	display[1] {
+		label="FOE Slits (individual)"
+		name="4motors.adl"
+		args="P=13BMA:, TITLE=13BM_FOE_Slits, M1=m1, M2=m2, M3=m3, M4=m4"
+	}
+	display[2] {
+		label="BMB Slits (compound)"
+		name="2slit.adl"
+		args="P=13BMA:, SLIT=Slit2V"
+	}
+	display[3] {
+		label="BMB Slits (individual)"
+		name="2motors.adl"
+		args="P=13BMA:, TITLE=13BMB_Slits, M1=m24, M2=m25"
+	}
+	display[4] {
+		label="BMD Slits (compound)"
+		name="4slitGraphic.adl"
+		args="P=13BMD:, V=BMDV, H=BMDH, mYp=m31, mYn=m32, mXn=m29, mXp=m30, SLIT=BMD"
+	}
+	display[5] {
+		label="BMD Slits (individual)"
+		name="4motors.adl"
+		args="P=13BMD:, TITLE=13BMD_Slits, M1=m29, M2=m30, M3=m31, M4=m32"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=207
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Beamline Slits"
+}
+text {
+	object {
+		x=92
+		y=303
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="FOE electronics"
+}
+text {
+	object {
+		x=92
+		y=111
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Ring Status/Beam Position"
+}
+"related display" {
+	object {
+		x=7
+		y=111
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
+	display[1] {
+		label="13-BM Status and BPMs"
+		name="MRD_BM.adl"
+		args="xx=13"
+	}
+	display[2] {
+		label="13-BM BPM Detail"
+		name="MRD_BMbpm.adl"
+		args="xx=13"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=143
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Web Pages"
+}
+"shell command" {
+	object {
+		x=7
+		y=143
+		width=75
+		height=25
+	}
+	command[0] {
+		label="Storage Ring Status"
+		name="start http://www.aps.anl.gov/asd/operations/gifplots/statgif.html"
+	}
+	command[1] {
+		label="APS Home Page"
+		name="start http://www.aps.anl.gov"
+	}
+	command[2] {
+		label="CARS Home Page"
+		name="start http://cars.uchicago.edu"
+	}
+	clr=14
+	bclr=4
+}
+"related display" {
+	object {
+		x=7
+		y=367
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Serial 1"
+		name="Serial_IO.adl"
+		args="REC=13BMA:ser1"
+	}
+	display[1] {
+		label="Serial 2"
+		name="Serial_IO.adl"
+		args="REC=13BMA:ser2"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=367
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic RS-232 and GPIB"
+}
+text {
+	object {
+		x=92
+		y=335
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="User calcs, transforms"
+}
+"related display" {
+	object {
+		x=7
+		y=335
+		width=75
+		height=24
+	}
+	display[0] {
+		label="User transforms"
+		name="userTrans10.adl"
+		args="P=13BMA:"
+	}
+	display[1] {
+		label="User sCalcOut1"
+		name="yysCalcoutRecord.adl"
+		args="P=13BMA:, C=userStringCalc1"
+	}
+	clr=14
+	bclr=4
+}
+"related display" {
+	object {
+		x=7
+		y=303
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Mono Keithley 2000"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13BMA:, Dmm=DMM1"
+	}
+	display[1] {
+		label="DAC #1"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=1"
+	}
+	display[2] {
+		label="DAC #2"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=2"
+	}
+	display[3] {
+		label="DAC #3"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=3"
+	}
+	display[4] {
+		label="Monochromator"
+		name="13BM_MONO.adl"
+	}
+	display[5] {
+		label="Mirror Keithley 2000"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13BMA:, Dmm=DMM2"
+	}
+	clr=14
+	bclr=4
+}
+"related display" {
+	object {
+		x=7
+		y=271
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Rotation axis"
+		name="1motors.adl"
+		args="P=13BMA:, TITLE=VG_monochromator, M1=m17"
+	}
+	display[1] {
+		label="Crystal cage"
+		name="6motors.adl"
+		args="P=13BMA:, TITLE=BM_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
+	}
+	display[2] {
+		label="Crystal Cage Table"
+		name="table.adl"
+		args="P=13BMA:,  Q=MON:T1, T=MON:t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
+	}
+	display[3] {
+		label="2nd Crystal Feedback"
+		name="pid_control.adl"
+		args="P=13BMA:, PID=mono_pid1, TITLE=BM_Mono_feedback"
+	}
+	display[4] {
+		label="Energy"
+		name="Energy.adl"
+		args="P1=13BMA:, TITLE=energy, EN=E, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22"
+	}
+	display[5] {
+		label="Monochromator"
+		name="13BM_monochromator.adl"
+		args="P1=13BMA:, TITLE=energy, EN=E, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, TILT=m12, TABLE=MON:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=271
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Monochromator"
+}
+"related display" {
+	object {
+		x=7
+		y=399
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
+	}
+	display[2] {
+		label="Scan 3"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan3, N=3, DW=Dwait3, PW=Pwait3"
+	}
+	display[3] {
+		label="Scan 4"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan4, N=4, DW=Dwait4, PW=Pwait4"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=399
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Scan"
+}
+"related display" {
+	object {
+		x=7
+		y=239
+		width=75
+		height=25
+	}
+	display[0] {
+		label="VG Monochromator"
+		name="1motors.adl"
+		args="P=13BMA:, TITLE=VG_Monochromator, M1=m9"
+	}
+	display[1] {
+		label="Diagnostic Flag"
+		name="1motors.adl"
+		args="P=13BMA:, TITLE=Diagnostic_Flag, M1=m8"
+	}
+	display[2] {
+		label="BM-D filter rack"
+		name="13BMD_Filters.adl"
+		args="P=13BMA:, TITLE=BM-D_filters, R=BMD_Filters, M1=m5"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=92
+		y=239
+		width=137
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Other Beamline Motors"
+}
+"related display" {
+	object {
+		x=8
+		y=431
+		width=75
+		height=25
+	}
+	display[0] {
+		label="Vertical Mirror"
+		name="8motors.adl"
+		args="P=13BMA:, TITLE=BM_Vertical_Mirror, M1=m18, M2=m19, M3=pm1, M4=pm2, M5=pm3, M6=pm4, M7=pm5, M8=pm6"
+	}
+	display[1] {
+		label="Vertical Pitch (simple)"
+		name="2motors.adl"
+		args="P=13BMA:, TITLE=BM_Vertical_Mirror_Pitch_Simple, M1=m20, M2=m21"
+	}
+	display[2] {
+		label="Vertical Base (simple)"
+		name="2motors.adl"
+		args="P=13BMA:, TITLE=BM_Vertical_Mirror_Base, M1=m22, M2=m23"
+	}
+	display[3] {
+		label="Vertical Base Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13BMA:,PMR=pm6"
+	}
+	display[4] {
+		label="Vertical Pitch Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13BMA:,PMR=pm4"
+	}
+	display[5] {
+		label="Vertical Temperature"
+		name="MirrorTemps.adl"
+		args="P=13BMA:,TITLE=BM_Vert_Temperature,CH1=DMM2Ch2, CH2=DMM2Ch3, CH3=DMM2Ch4"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=94
+		y=432
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Vertical Mirror"
+}

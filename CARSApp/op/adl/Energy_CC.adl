@@ -1,0 +1,1261 @@
+
+file {
+	name="j:\epics\R3.13.3\CARS\CARSApp\op\adl\Energy_CC.adl"
+	version=020306
+}
+display {
+	object {
+		x=576
+		y=568
+		width=650
+		height=410
+	}
+	clr=24
+	bclr=45
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=10
+		y=280
+		width=162
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Undulator Settings"
+}
+"text entry" {
+	object {
+		x=175
+		y=125
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(MONO).VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=400
+		y=105
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(MONO).SET"
+		clr=54
+		bclr=33
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=128
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(P)$(MONO).RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=570
+		y=105
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="motorx_all.adl"
+		args="P=$(P), M=$(MONO)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P), Q=$(MONO), PV=$(MONO)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+polyline {
+	object {
+		x=-5
+		y=400
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(-4,401)
+		(644,401)
+	}
+}
+rectangle {
+	object {
+		x=170
+		y=105
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(MONO).SET"
+	}
+}
+oval {
+	object {
+		x=70
+		y=110
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(MONO).HLS"
+	}
+}
+text {
+	object {
+		x=85
+		y=110
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(MONO).LVIO"
+	}
+	textix="Soft-Limit"
+}
+oval {
+	object {
+		x=155
+		y=110
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(MONO).LLS"
+	}
+}
+text {
+	object {
+		x=15
+		y=365
+		width=60
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Harmonic"
+}
+text {
+	object {
+		x=15
+		y=335
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Deadband"
+}
+text {
+	object {
+		x=255
+		y=335
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="microns"
+}
+"message button" {
+	object {
+		x=285
+		y=127
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(MONO).TWR"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=380
+		y=127
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(MONO).TWF"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=127
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(MONO).TWV"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=170
+		y=105
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(MONO).SET"
+	}
+	textix="SET"
+	align="horiz. centered"
+}
+"choice button" {
+	object {
+		x=455
+		y=105
+		width=100
+		height=40
+	}
+	control {
+		chan="$(P)$(MONO).SPMG"
+		clr=31
+		bclr=21
+	}
+	stacking="row column"
+}
+text {
+	object {
+		x=10
+		y=95
+		width=117
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Monochromator"
+}
+polyline {
+	object {
+		x=0
+		y=150
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(1,151)
+		(649,151)
+	}
+}
+text {
+	object {
+		x=10
+		y=160
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Spectroscopy Table Height"
+}
+"text update" {
+	object {
+		x=100
+		y=305
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)Energy.VAL"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=35
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Energy"
+}
+text {
+	object {
+		x=15
+		y=305
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Energy"
+}
+"text update" {
+	object {
+		x=10
+		y=68
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(P)$(EN):RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=255
+		y=305
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="KeV"
+}
+"text entry" {
+	object {
+		x=175
+		y=190
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(TABLE).VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=400
+		y=170
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(TABLE).SET"
+		clr=54
+		bclr=33
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=195
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(P)$(TABLE).RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=570
+		y=165
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="motorx_all.adl"
+		args="P=$(P), M=$(TABLE)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P), Q=$(TABLE), PV=$(TABLE)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+rectangle {
+	object {
+		x=170
+		y=170
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(TABLE).SET"
+	}
+}
+oval {
+	object {
+		x=70
+		y=175
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(TABLE).HLS"
+	}
+}
+text {
+	object {
+		x=85
+		y=175
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(TABLE).LVIO"
+	}
+	textix="Soft-Limit"
+}
+oval {
+	object {
+		x=155
+		y=175
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(TABLE).LLS"
+	}
+}
+"message button" {
+	object {
+		x=285
+		y=192
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(TABLE).TWR"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=380
+		y=192
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(TABLE).TWF"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=192
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(TABLE).TWV"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=170
+		y=170
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(TABLE).SET"
+	}
+	textix="SET"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=303
+		y=175
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+"choice button" {
+	object {
+		x=455
+		y=170
+		width=100
+		height=40
+	}
+	control {
+		chan="$(P)$(TABLE).SPMG"
+		clr=31
+		bclr=21
+	}
+	stacking="row column"
+}
+polyline {
+	object {
+		x=-5
+		y=270
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(-4,271)
+		(644,271)
+	}
+}
+"text update" {
+	object {
+		x=100
+		y=335
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)DeadbandGap"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=100
+		y=365
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)HarmonicValue"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=190
+		y=330
+		width=60
+		height=20
+	}
+	control {
+		chan="$(ID)DeadbandGap"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=190
+		y=360
+		width=60
+		height=20
+	}
+	control {
+		chan="$(ID)HarmonicValue"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=190
+		y=300
+		width=60
+		height=20
+	}
+	control {
+		chan="$(ID)ScanEnergy.VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+polyline {
+	object {
+		x=0
+		y=30
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(1,31)
+		(649,31)
+	}
+}
+polyline {
+	object {
+		x=0
+		y=90
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(1,91)
+		(649,91)
+	}
+}
+"text entry" {
+	object {
+		x=175
+		y=65
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(EN).VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=400
+		y=45
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(EN):set"
+		clr=54
+		bclr=33
+	}
+}
+rectangle {
+	object {
+		x=170
+		y=45
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):set"
+	}
+}
+"message button" {
+	object {
+		x=285
+		y=67
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(EN)_tweak.A"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=380
+		y=67
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(EN)_tweak.B"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=67
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(EN)_tweakval"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=170
+		y=45
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):set"
+	}
+	textix="SET"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=570
+		y=45
+		width=60
+		height=20
+	}
+	display[0] {
+		label="Mono parameters"
+		name="monoParms.adl"
+		args="P=$(P), P1=$(P), P2=$(P), EN=$(EN), MONO=$(MONO), TABLE=$(TABLE)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P), Q=$(EN), PV=$(EN)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+polyline {
+	object {
+		x=370
+		y=270
+		width=3
+		height=133
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(371,271)
+		(371,401)
+	}
+}
+text {
+	object {
+		x=10
+		y=110
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Angle"
+}
+text {
+	object {
+		x=303
+		y=110
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+text {
+	object {
+		x=304
+		y=50
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+text {
+	object {
+		x=10
+		y=10
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="$(P)"
+}
+text {
+	object {
+		x=75
+		y=10
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="$(TITLE)"
+}
+"choice button" {
+	object {
+		x=530
+		y=295
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P)$(EN):id_track"
+		clr=54
+		bclr=33
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=400
+		y=300
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Undulator"
+}
+"choice button" {
+	object {
+		x=530
+		y=330
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P)$(EN):table_s_track"
+		clr=54
+		bclr=33
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=400
+		y=335
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Spectroscopy Table"
+}
+text {
+	object {
+		x=380
+		y=275
+		width=162
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Auto-Tracking"
+}
+rectangle {
+	object {
+		x=455
+		y=40
+		width=100
+		height=35
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):Busy"
+	}
+}
+text {
+	object {
+		x=455
+		y=50
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):Busy"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=-5
+		y=215
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(-4,216)
+		(644,216)
+	}
+}
+"text update" {
+	object {
+		x=65
+		y=245
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(P)$(DIF).EY"
+		clr=54
+		bclr=45
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=175
+		y=240
+		width=100
+		height=22
+	}
+	control {
+		chan="$(P)$(DIF).Y"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=305
+		y=225
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+"message button" {
+	object {
+		x=285
+		y=240
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(Q):y_dec.VAL"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=380
+		y=240
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(Q):y_inc.VAL"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=240
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(Q):y_tweak.D"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=220
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Diffractometer Table Height"
+}
+"choice button" {
+	object {
+		x=530
+		y=365
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P)$(EN):table_d_track"
+		clr=54
+		bclr=33
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=400
+		y=370
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Diffractometer "
+}
+"choice button" {
+	object {
+		x=300
+		y=300
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(EN):und_abort_mv"
+		clr=54
+		bclr=33
+	}
+}
