@@ -1,5 +1,5 @@
 # Note on address conversion:  A/B Output O:1.N/A is EPICS address C=2*N, S=A
-file CARSApp/Db/eps_inputs.db, top
+file "$(CARS)/CARSApp/Db/eps_inputs.db"
 {
 pattern
 {P,        N,   DESC,                           A,  C,  S, ZNAM,                  ZSV,        ONAM,                    OSV}
@@ -90,4 +90,10 @@ pattern
 {13BMA:,  94,   "BMD mirror mask (latched)",    1,  4,  3, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {13BMA:,  95,   "BMD mirror water",             1,  4,  4, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {13BMA:,  96,   "BMD mirr. water(latched)",     1,  4,  5, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  97,   "BMD shutter water",            1,  4,  6, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  98,   "BMD shut. water(latched)",     1,  4,  7, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:,  99,   "BMD shutter",                  0,  2, 10, "Closed",              "MAJOR",    "Open",                  "NO_ALARM"}
+{13BMA:, 100,   "BMC shutter",                  0,  2, 11, "Closed",              "MAJOR",    "Open",                  "NO_ALARM"}
+{13BMA:, 101,   "BMD transport vacuum (PG)",    0, 10,  6, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13BMA:, 102,   "BMD transport (PG) (latch))",  0, 10,  7, "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 } 
