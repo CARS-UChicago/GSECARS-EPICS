@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\3.14\CARS\CARSApp\op\adl\13Linux.adl"
+	name="i:\epics\3.14\CARS\CARSApp\op\adl\13Linux.adl"
 	version=020306
 }
 display {
@@ -138,29 +138,29 @@ text {
 		height=24
 	}
 	display[0] {
-		label="GPIB 1"
-		name="GPIB_IO.adl"
-		args="REC=13Linux:gpib1"
+		label="Serial 1"
+		name="asynRecord.adl"
+		args="P=13Linux:, R=serial1"
 	}
 	display[1] {
-		label="Serial 1"
-		name="Serial_IO.adl"
-		args="REC=13Linux:ser1"
+		label="Serial 2"
+		name="asynRecord.adl"
+		args="P=13Linux:, R=serial2"
 	}
 	display[2] {
-		label="Serial 2"
-		name="Serial_IO.adl"
-		args="REC=13Linux:ser2"
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13Linux:, R=serial3"
 	}
 	display[3] {
-		label="Serial 3"
-		name="Serial_IO.adl"
-		args="REC=13Linux:ser3"
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13Linux:, R=serial4"
 	}
 	display[4] {
-		label="Spehorsyn"
-		name="Serial_IO.adl"
-		args="REC=13Linux:E1Read"
+		label="asynTest"
+		name="asynRecord.adl"
+		args="P=13Linux:, R=asynTest"
 	}
 	clr=14
 	bclr=4
@@ -418,6 +418,16 @@ text {
 		label="Spherosyn"
 		name="spherosyn.adl"
 		args="P=13Linux:, E=E1"
+	}
+	display[3] {
+		label="Roper CCD"
+		name="ccd.adl"
+		args="P=13Linux:, C=ccd1"
+	}
+	display[4] {
+		label="marCCD"
+		name="ccd.adl"
+		args="P=13Linux:, C=ccd2"
 	}
 	clr=14
 	bclr=4
