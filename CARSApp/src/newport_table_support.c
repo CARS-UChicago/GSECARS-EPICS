@@ -1,23 +1,33 @@
-#include <math.h>
-#include "newport_table_support.h"
-
 /**********************************************************************/ 
 /* functions for newport table                                        */
 /* T^2 10-25-01                                                       */ 
-/*                                                                    */ 
+/* T^2 10-29-01: mod target point calc                                */ 
+/* T^2 10-30-01: fix bug in calcs                                     */ 
 /**********************************************************************/ 
+
+
+#include <math.h>
+#include "newport_table_support.h"
 
 
 /**********************************************************************/ 
 /************************  calc_target_point **************************/
-void   calc_target_point(double vR[3], double T_AX, 
-                                double T_AY,  double d1, 
-                                double d2,    double* vT_ptr)
+void   calc_target_point(double vR[3], double vD0[3],  
+                         double T_AX,  double T_AY,   
+                         double d1,    double d2,    
+                         double* vT_ptr)
 {
 
-double vT_R[3], vT2_R[3];
+double vRot_pt[3], vT_R[3], vT2_R[3];
 double m[3][3];
 
+/* the rotation pnt in the lab frame is specified by  the table
+   fixed point and the dim d1 */
+vRot_pt[0] = vD0[0] + vR[0];
+vRot_pt[1] = vD0[1] + vR[1];
+vRot_pt[2] = vD0[2] - d1 + vR[2];
+
+/* the below two vectors are wrt the rot point */
 vT_R[0] = 0,  vT_R[1] = 0,  vT_R[2] = d1;
 vT2_R[0] = 0, vT2_R[1] = 0, vT2_R[2] = d2; 
 
@@ -27,7 +37,7 @@ vT2_R[0] = 0, vT2_R[1] = 0, vT2_R[2] = d2;
   } else {
       rot_matrix_2(&m[0][0], T_AX, T_AY, 0);  /* assuming have mirrors in    */
       vT_R[2] = d1 - d2;                      /* and are doing an AX, AY rot */
-      matrix_x_vector(m,vT_R,&vT_R[0]);       /* the two mirrors are         */      
+      matrix_x_vector(m,vT_R,&vT_R[0]);       /* and the two mirrors are     */      
       rot_matrix_2(&m[0][0], T_AX, 0, 0);     /* seperated by d2             */
       matrix_x_vector(m,vT2_R,&vT2_R[0]);
       vT_R[0] = vT_R[0] + vT2_R[0];
@@ -35,9 +45,10 @@ vT2_R[0] = 0, vT2_R[1] = 0, vT2_R[2] = d2;
       vT_R[2] = vT_R[2] + vT2_R[2];
   }
 
-     *(vT_ptr + 0) = vR[0] + vT_R[0];
-     *(vT_ptr + 1) = vR[1] + vT_R[1];
-     *(vT_ptr + 2) = vR[2] + vT_R[2];
+     /* the target point in the lab frame */
+     *(vT_ptr + 0) = vRot_pt[0] + vT_R[0];
+     *(vT_ptr + 1) = vRot_pt[1] + vT_R[1];
+     *(vT_ptr + 2) = vRot_pt[2] + vT_R[2];
 
 
 
@@ -48,9 +59,9 @@ vT2_R[0] = 0, vT2_R[1] = 0, vT2_R[2] = d2;
 /**********************************************************************/ 
 /************************  calc_target_orient **************************/
 void   calc_target_orient(double T_AX,      double T_AY, 
-                                 double d1,        double d2, 
-                                 double* T_X3_ptr, double* T_Y3_ptr, 
-                                 double* T_Z3_ptr)
+                          double d1,        double d2, 
+                          double* T_X3_ptr, double* T_Y3_ptr, 
+                          double* T_Z3_ptr)
 {
 double T_X0[3], T_Y0[3], T_Z0[3];
 double m[3][3];
@@ -83,15 +94,15 @@ matrix_x_vector(m,T_Z0,&T_Z3[0]);
 /**********************************************************************/ 
 /**********************  motor_from_psuedo ****************************/
 void   motor_from_psuedo(double lx,         double lz, 
-                                double vD0[3],     double vT[3], 
-                                double AX,         double AY, 
-                                double AZ,         double T_AX, 
-                                double T_AY,       double d1, 
-                                double d2,         double* mAY_ret, 
-                                double* mBY_ret,   double* mCY_ret, 
-                                double* mAX_ret,   double* mBZ_ret, 
-                                double* vD_ptr,    double* vDel_ptr, 
-                                double* del_r_ret, double* del_angle_ret)
+                         double vD0[3],     double vT[3], 
+                         double AX,         double AY, 
+                         double AZ,         double T_AX, 
+                         double T_AY,       double d1, 
+                         double d2,         double* mAY_ret, 
+                         double* mBY_ret,   double* mCY_ret, 
+                         double* mAX_ret,   double* mBZ_ret, 
+                         double* vD_ptr,    double* vDel_ptr, 
+                         double* del_r_ret, double* del_angle_ret)
 {
 
 double vA0[3], vB0[3],vC0[3];
@@ -105,9 +116,10 @@ double temp1, temp2;
 double mAY, mBY, mCY, dmX, dmY3;
 
 /* initialize pivot vectors (note this is hard wired!!!) */
-vA0[0] = 0;    vA0[1] = 0; vA0[2] = 0;
-vB0[0] = lx;   vB0[1] = 0; vB0[2] = 0;
-vC0[0] = lx/2; vC0[1] = 0; vC0[2] = lz;
+/* also note lx is assumed to be input as a positive number */
+vA0[0] =   0;   vA0[1] = 0; vA0[2] = 0;
+vB0[0] = -lx;   vB0[1] = 0; vB0[2] = 0;
+vC0[0] = -lx/2; vC0[1] = 0; vC0[2] = lz;
 
 /* init some other useful vectors */
 X0[0] = 1; X0[1] = 0; X0[2] = 0;
@@ -124,20 +136,20 @@ matrix_x_vector(m,Y0,&Y3[0]);
 
 
 /* vectors and jacks for simple rot of the table about pivot A */
- mAY = -vpA3[1] / Y3[1];          /* this is = 0 */
- vA3[0] = vpA3[0] + mAY*Y3[0] ;   /* ie vA3 = vA0 */
-vA3[1] = vpA3[1] + mAY*Y3[1] ;   
-vA3[2] = vpA3[2] + mAY*Y3[2] ;
+mAY =  vpA3[1] / Y3[1];          /* this is = 0 */
+vA3[0] = vpA3[0] - mAY*Y3[0] ;   /* ie vA3 = vA0 */
+vA3[1] = vpA3[1] - mAY*Y3[1] ;   
+vA3[2] = vpA3[2] - mAY*Y3[2] ;
 
-mBY = -vpB3[1] / Y3[1];        
-vB3[0] = vpB3[0] + mBY*Y3[0] ;
-vB3[1] = vpB3[1] + mBY*Y3[1] ;
-vB3[2] = vpB3[2] + mBY*Y3[2] ; 
+mBY =  vpB3[1] / Y3[1];        
+vB3[0] = vpB3[0] - mBY*Y3[0] ;
+vB3[1] = vpB3[1] - mBY*Y3[1] ;
+vB3[2] = vpB3[2] - mBY*Y3[2] ; 
 
-mCY = -vpC3[1] / Y3[1];        
-vC3[0] = vpC3[0] + mCY*Y3[0] ;
-vC3[1] = vpC3[1] + mCY*Y3[1] ;
-vC3[2] = vpC3[2] + mCY*Y3[2] ;
+mCY =  vpC3[1] / Y3[1];        
+vC3[0] = vpC3[0] - mCY*Y3[0] ;
+vC3[1] = vpC3[1] - mCY*Y3[1] ;
+vC3[2] = vpC3[2] - mCY*Y3[2] ;
 
 
 /* calc delta vector */
@@ -160,7 +172,6 @@ dmX = temp1 / temp2;
 dmY3= dot_product(vDel,T_Y3) - dmX * dot_product(X0,T_Y3);
 dmY3 = dmY3/dot_product(Y3,T_Y3);
 
-
 /* update vectors */
 /* note that the real pivots dont move in Y and the Y3 translation
    calc above doesn't move the pivots since there is no additional 
@@ -170,12 +181,11 @@ vB3[0] = vB3[0] + dmX;
 vC3[0] = vC3[0] + dmX;
 
 vD3[0] = vD3[0] + dmX + dmY3*Y3[0];
-vD3[1] = vD3[1] + dmY3*Y3[1];
-vD3[2] = vD3[2] + dmY3*Y3[2];
-
+vD3[1] = vD3[1] +       dmY3*Y3[1];
+vD3[2] = vD3[2] +       dmY3*Y3[2];
 
 /* return values */
- *mAY_ret = mAY + dmY3; 
+*mAY_ret = mAY + dmY3; 
 *mBY_ret = mBY + dmY3; 
 *mCY_ret = mCY + dmY3; 
 *mAX_ret = vA3[0];     
@@ -207,15 +217,15 @@ vDel[2] = vT[2] - vD3[2];
 /**********************************************************************/ 
 /**********************  psuedo_from_motor ****************************/
 void psuedo_from_motor(double lx,         double lz, 
-                              double vD0[3],     double vT[3], 
-                              double* AX_ret,    double* AY_ret, 
-                              double* AZ_ret,    double T_AX, 
-                              double T_AY,       double d1, 
-                              double d2,         double mAY, 
-                              double mBY,        double mCY, 
-                              double mAX,        double mBZ,  
-                              double* vD_ptr,    double* vDel_ptr, 
-                              double* del_r_ret, double* del_angle_ret)
+                       double vD0[3],     double vT[3], 
+                       double* AX_ret,    double* AY_ret, 
+                       double* AZ_ret,    double T_AX, 
+                       double T_AY,       double d1, 
+                       double d2,         double mAY, 
+                       double mBY,        double mCY, 
+                       double mAX,        double mBZ,  
+                       double* vD_ptr,    double* vDel_ptr, 
+                       double* del_r_ret, double* del_angle_ret)
 {
 
 double t, a, b, x, y;
@@ -232,11 +242,11 @@ mBY = mBY - t;
 mCY = mCY - t;
 
 /* solve for the psudeo angles */
-a = lx;
-b = lz;
+a = -lx;  /* note lx is assumed to be input as a positive number */
+b =  lz;
 
 /* note below solutions are specific to forcing 
-  vA0 = [0,0,0], vB0 = [lx,0,0], vC0 = [lx/2,0,lz]  */
+  vA0 = [0,0,0], vB0 = [-lx,0,0], vC0 = [-lx/2,0,lz]  */
 /* calc AX */
 x = y = 0;
 x = -1 / sqrt(sqr(mBY) + sqr(a)) * 
@@ -244,7 +254,7 @@ x = -1 / sqrt(sqr(mBY) + sqr(a)) *
            4 * sqr(a) * sqr(mCY) + 4 * sqr(b) * sqr(mBY) + 4 * sqr(b) * sqr(a) ) * 
 	 sqrt( ( sqr(mBY) * sqr(a) - 4 * sqr(a) * mBY * mCY + 4 * sqr(a) * sqr(mCY) + 
 	         4 * sqr(b) * sqr(mBY) + 4 * sqr(b) * sqr(a) ) * (sqr(mBY) + sqr(a)) ) * 
-	( -mBY + 2 * mCY );
+	( mBY - 2 * mCY );
 y = 2 / ( sqr(mBY) * sqr(a) - 4 * sqr(a) * mBY * mCY + 4 * sqr(a) * sqr(mCY) + 
 		 4 * sqr(b) * sqr(mBY) + 4 * sqr(b) * sqr(a) ) * 
 	sqrt( ( sqr(mBY) * sqr(a) - 4 * sqr(a) * mBY * mCY + 4 * sqr(a) * sqr(mCY) + 
@@ -260,7 +270,7 @@ AY =   atan2(x,y);
 
 /* calc AZ */
 x = y = 0;
-x = mBY / sqrt( sqr(mBY) + sqr(a) );
+x = -mBY / sqrt( sqr(mBY) + sqr(a) );
 y = -1 / sqrt( sqr(mBY) + sqr(a) ) * a;
 AZ =   atan2(x,y);
 
@@ -333,7 +343,7 @@ return a;
 /**********************************************************************/ 
 /************************ matrix_x_vector *****************************/
 void   matrix_x_vector(double m[3][3], double x[3], 
-                              double *y_ptr)
+                       double *y_ptr)
 {
 
 *(y_ptr+0) = (m[0][0])*x[0] + (m[0][1])*x[1] + (m[0][2])*x[2];
@@ -347,7 +357,7 @@ void   matrix_x_vector(double m[3][3], double x[3],
 /**********************************************************************/ 
 /*************************** rot_matrix *******************************/
 void   rot_matrix(double *m_ptr, double AX, 
-                         double AY,     double AZ)
+                  double AY,     double AZ)
 {
 
 double n[3][3];
@@ -381,7 +391,7 @@ n[2][0] =  cx*sy;             n[2][1] = -sx;    n[2][2] =  cx*cy;
 /**********************************************************************/ 
 /*************************** rot_matrix_2 *******************************/
 void   rot_matrix_2(double *m_ptr, double AX, 
-                           double AY,     double AZ)
+                    double AY,     double AZ)
 {
 
 double n[3][3];
@@ -417,17 +427,19 @@ n[2][0] =  sy;     n[2][1] = -cy*sx;             n[2][2] =  cy*cx;
 double v_angle(double v1[3], double v2[3])
 {
 double mag_v1, mag_v2, v12, x;
-
+double small = 1.e-9;
 
 mag_v1 = sqrt(dot_product(v1,v1));
 mag_v2 = sqrt(dot_product(v2,v2));
-
 v12 = dot_product(v1,v2);
 
-x = v12/(mag_v1 * mag_v2);
-if ( fabs(x-1) < 1.e-9) x=1.0;
-   
- return acos(x);  /* return val in radians */
+  if ( (fabs(mag_v1) < small) || (fabs(mag_v2) < small) ){
+    return 0.0;
+  }else{
+    x = v12/(mag_v1 * mag_v2);
+    if ( fabs(x-1) < small) x=1.0;
+    return acos(x);  /* return val in radians */
+  }   
 }
 /**********************************************************************/ 
 
