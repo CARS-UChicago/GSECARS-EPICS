@@ -24,9 +24,9 @@ localMessageRouterStart(0)
 module_types()
 
 # Set debugging flags
-mcaRecordDebug = 0
+mcaRecordDebug = 1
 devMcaMpfDebug = 0
-mcaAIMServerDebug = 0
+mcaAIMServerDebug = 1
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
 save_restoreDebug = 0
@@ -72,8 +72,9 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
+< ../requestFileCommands
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5.0)
+create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30.0)
+create_monitor_set("auto_settings.req",30)
 
