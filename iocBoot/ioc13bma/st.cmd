@@ -154,4 +154,9 @@ seq &Keithley2kDMM, "P=13BMA:, Dmm=DMM2, stack=10000"
 dbpf "13BMA:EnableUserTrans.PROC","1"
 dbpf "13BMA:EnableUserSCalcs.PROC","1"
 
-seq &BM13_Energy, "E=13BMA:E, MONO=13BMA:m17, EXPTAB_Z=13BMD:m22, XTAL=13BMA:MON:" 
+seq &BM13_Energy, "E=13BMA:E, MONO=13BMA:m17, EXPTAB_Z=13BMD:m22, YXTAL=13BMA:MON:, ZXTAL=13BMA:m14" 
+
+# Mn 20/Mar/02  see note in ioc13ida st.cmd
+#  this reduces the readback following error for the McLennan mono controller.
+(double) drvPM304ReadbackDelay = 0.2
+
