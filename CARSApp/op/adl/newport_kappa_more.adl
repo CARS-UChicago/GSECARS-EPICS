@@ -1,12 +1,12 @@
 
 file {
-	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\newport_kappa_more.adl"
+	name="j:\epics\3.14\CARS\CARSApp\op\adl\newport_kappa_more.adl"
 	version=020306
 }
 display {
 	object {
-		x=90
-		y=79
+		x=467
+		y=50
 		width=323
 		height=379
 	}
@@ -312,6 +312,16 @@ text {
 		name="Serial_IO.adl"
 		args="REC=13IDA:ser2"
 	}
+	display[5] {
+		label="Serial 13"
+		name="asynRecord.adl"
+		args="P=13IDC:, R=serial13"
+	}
+	display[6] {
+		label="Serial 14"
+		name="asynRecord.adl"
+		args="P=13IDC:, R=serial14"
+	}
 	clr=14
 	bclr=4
 }
@@ -348,7 +358,12 @@ text {
 	display[2] {
 		label="Sample Microscope Z"
 		name="1motors.adl"
-		args="P=13IDC:,TITLE=Sample_Microscope_Z,M1=m71"
+		args="P=13IDC:,TITLE=Sample_Microscope_Z,M1=m87"
+	}
+	display[3] {
+		label="YAG Focus"
+		name="1motors.adl"
+		args="P=13IDC:,TITLE=YAG Focus,M1=m88"
 	}
 	clr=14
 	bclr=4
