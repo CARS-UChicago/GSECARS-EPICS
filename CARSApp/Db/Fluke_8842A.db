@@ -1,0 +1,51 @@
+# Database for Fluke multimeter
+# Mark Rivers, December 12, 2001
+# Converted from gpib to asyn record March 23, 2004
+
+# Initialize meter to following conditions
+# Medium speed acquisition (S1)
+# Volts DC (F1)
+# 200 mV range (R1)
+# Auto Range (R0)
+# Trigger mode continuous on talk (T0)
+# Terminate with CR only (W3) (or is this 3 millisecond delay?)
+
+grecord(asyn,"$(P)$(M)_Init")
+{
+      field(PORT,"$(PORT)")
+      field(IMAX,"100")
+      field(PINI,"YES")
+      field(ADDR,"$(A)")
+      field(AOUT,"S1 F1 R0 T0 W3")
+      field(IEOS,"\r")
+}
+          
+# Read value
+grecord(asyn,"$(P)$(M)_Read")
+{
+      field(PORT,"$(PORT)")
+      field(IMAX,"100")
+      field(ADDR,"$(A)")
+      field(AOUT,"?")
+      field(IEOS,"\r")
+      field(FLNK, "$(P)$(M)_Convert PP MS")
+}
+
+# Convert string to number
+grecord(scalcout,"$(P)$(M)_Convert") 
+{
+      field(INAA,"$(P)$(M)_Read.AINP NPP NMS")
+      field(CALC,"DBL(AA)")
+      field(PREC,"3")
+      field(FLNK, "$(P)$(M)_Calc PP MS")
+}
+
+# Convert to user units.  Dummy calculation here, actual
+# calculation will be remembered in save/restore
+grecord(scalcout,"$(P)$(M)_Calc") 
+{
+      field(INPA,"$(P)$(M)_Convert.VAL NPP NMS")
+      field(CALC,"A")
+      field(PREC,"1")
+      field(EGU,"TC")
+}
