@@ -9,25 +9,72 @@ SRCS.c += ../drvPM304.c
 SRCS.c += ../devAoAvme9210.c
 SRCS.c += ../drvAvme9210.c
 
+# Stuff from base - local copy of baeLIBOBJS so it can be customized for 
+# this app.
 include ../baseLIBOBJS
 
+# Objects from this app
 include ../carsLIBOBJS
-include ../carsMpfServerLIBOBJS
+# MPF server objects from this App
+#include ../carsMpfServerLIBOBJS
 
+# Objects from "mpf"
+LIBOBJS += $(MPF_BIN)/mpfLib
+LIBOBJS += $(MPF_BIN)/DevMpf.o
+MPFSERVERLIBOBJS += $(MPF_BIN)/ipLib
+
+# Objects from "mpfGpib"
+MPFSERVERLIBOBJS += $(MPF_GPIB_BIN)/Gpib.o
+MPFSERVERLIBOBJS += $(MPF_GPIB_BIN)/gpibSniff.o
+MPFSERVERLIBOBJS += $(MPF_GPIB_BIN)/GpibGsTi9914.o
+MPFSERVERLIBOBJS += $(MPF_GPIB_BIN)/gpibServer.o
+
+# Objects from "mpfSerial"
+LIBOBJS += $(MPF_SERIAL_BIN)/devStringMpf.o
+MPFSERVERLIBOBJS += $(MPF_SERIAL_BIN)/OctalUART.o
+MPFSERVERLIBOBJS += $(MPF_SERIAL_BIN)/SerialPort.o
+MPFSERVERLIBOBJS += $(MPF_SERIAL_BIN)/serialPortSniff.o
+MPFSERVERLIBOBJS += $(MPF_SERIAL_BIN)/serialServer.o
+
+# Objects from "dac128V"
+LIBOBJS += $(DAC128V_BIN)/devAoDAC128V.o
+MPFSERVERLIBOBJS += $(DAC128V_BIN)/dac128VLib
+
+# Objects from "ip330"
+LIBOBJS += $(IP330_BIN)/devAiIp330Scan.o
+LIBOBJS += $(IP330_BIN)/devLoIp330Config.o
+LIBOBJS += $(IP330_BIN)/devEpidIp330.o
+MPFSERVERLIBOBJS += $(IP330_BIN)/ip330Lib
+MPFSERVERLIBOBJS += $(IP330_BIN)/ip330ServLib
+
+# Objects from "ipUnidig"
+LIBOBJS += $(IPUNIDIG_BIN)/devIpUnidig.o
+MPFSERVERLIBOBJS += $(IPUNIDIG_BIN)/ipUnidigLib
+
+# Objects from "love"
+LIBOBJS += $(LOVE_BIN)/devLove.o
+MPFSERVERLIBOBJS += $(LOVE_BIN)/loveServer.o
+
+
+# Objects from "std"
 include $(STD)/stdApp/src/stdLIBOBJS
 LIBOBJS += $(STDLIBOBJS)
 #LIBOBJS += $(STD_BIN)/stdLib
 
+# Objects from "mca"
 include $(MCA)/mcaApp/src/mcaLIBOBJS
 LIBOBJS += $(MCALIBOBJS)
 #LIBOBJS += $(MCA_BIN)/mcaLib
 include $(MCA)/mcaApp/src/mcaMpfServerLIBOBJS
 LIBOBJS += $(MCAMPFSERVERLIBOBJS)
 
+# Objects from "ip"
 include $(IP)/ipApp/src/ipLIBOBJS
 LIBOBJS += $(IPLIBOBJS)
 #LIBOBJS += $(IP_BIN)/ipLib
+MPFSERVERLIBOBJS += $(IP_BIN)/mpcServer.o
 
+# Allen Bradley objects.  Local copy of file to edit in needed routines
 include ../allenBradleyLIBOBJS
 
 # motor record and device support
@@ -63,6 +110,5 @@ BIN_INSTALLS += $(STD_BIN)/initHooks.o
 include $(TOP)/config/RULES.Vx
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-mpfServLib : $(CARSMPFSERVERLIBOBJS)
-	$(LINK.c) $@ $(CARSMPFSERVERLIBOBJS)
-
+mpfServLib : $(MPFSERVERLIBOBJS)
+	$(LINK.c) $@ $(MPFSERVERLIBOBJS)
