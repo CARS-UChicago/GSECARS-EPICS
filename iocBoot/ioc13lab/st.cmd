@@ -8,8 +8,7 @@ cd topbin
 ld < iocCore
 ld < seq
 ld < CARSLib
-# This IOC talks to a remote GPIB server
-ld < GpibHideosRemote.o
+
 # Currently, the only thing we do in initHooks is call reboot_restore(), which
 # restores positions and settings saved ~continuously while EPICS is alive.
 # See calls to "create_monitor_set()" at the end of this file.  To disable
@@ -17,13 +16,15 @@ ld < GpibHideosRemote.o
 ld < initHooks.o
 
 cd startup
+# Load local MPF server
+< st_mpfserver_local.cmd
+cd topbin
+# This IOC talks to a local GPIB server
+ld < GpibHideosLocal.o
+cd startup
 
-# Initialize MPF stuff
-routerInit
+# Initialize remote MPF stuff
 tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
-
-# Initialize local MPF connection
-localMessageRouterStart(0)
 
 # override address, interrupt vector, etc. information in module_types.h
 module_types()
@@ -68,6 +69,10 @@ dbLoadRecords ("CARSApp/Db/generic_gpib.db","P=13LAB:,R=gpib1,SIZE=4096", top)
 # Port 1 has Newport LAE500 Laser Autocollimator (and generic serial port)
 dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB:,R=LAE500,C=1,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=1,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+
+# Encoder readout unit
+dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=1,IPSLOT=a,CHAN=3", top)
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=1,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
 
 # Keithley Multimeter
 dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=1,IPSLOT=a,CHAN=5", top)
@@ -119,10 +124,10 @@ dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYPE=MPF MCA,INP=#C0 S2 
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYPE=MPF MCA,INP=#C0 S4 @AIM1/2,NCHAN=2048", mca)
 dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYPE=MPF MCA,INP=#C0 S6 @AIM1/2,NCHAN=2048", mca)
 
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S0 @c-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S1 @c-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S2 @c-Ip330Sweep", mca)
-dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C1 S3 @c-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @a-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @a-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @a-Ip330Sweep", mca)
+dbLoadRecords("mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @a-Ip330Sweep", mca)
 
 #icbDspConfig("icbDsp/1", 1, "NI59E:1", 100)
 #dbLoadRecords "mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,CARD=0,SERVER=icbDsp/1,ADDR=0", mca
@@ -179,7 +184,7 @@ dbLoadRecords("stdApp/Db/misc.db","P=13LAB:", std)
 # vxWorks statistics
 dbLoadRecords("stdApp/Db/VXstats.db","P=13LAB:", std)
 
-HiDEOSGpibLinkConfig(10,1,"GPIB0")
+HiDEOSGpibLinkConfig(10,0,"GPIB0")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -188,7 +193,7 @@ HiDEOSGpibLinkConfig(10,1,"GPIB0")
 #     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
 #     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(1, 8, 0x4000, 190, 5, 10)
+oms58Setup(2, 8, 0x4000, 190, 5, 10)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -217,9 +222,17 @@ dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
-#seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
+seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
 
 # Need to wait 15 seconds before starting this task - TRACK DOWN WHY !!!
-taskDelay(900)
-seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=2,stack=10000"
+#taskDelay(900)
+#seq &smartControl, "P=13LAB:,R=smart1,TTH=m1,OMEGA=m1,PHI=m1,KAPPA=m1,SCALER=scaler1,I0=2,stack=10000"
+
+
+# newport table sequencer
+str=malloc(256)
+strcpy(str,"P=13LAB:,T=NewTab1:, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,")
+strcat(str,"PM1=pm1,PM2=pm2,PM3=pm3,PM4=pm4,PM5=pm5,PM6=pm6,PM7=pm7,PM8=pm8")
+seq &newport_table, str
+
 
