@@ -23,15 +23,57 @@ pattern
 #{13LAB:,  m14,   "OMS VME58",   1,    4, "Hor. mirror rotation",     mrad,     Pos,     10,    .1,    .2,    0,      1,     .2,     48,     0.5159, 3,       30,  -30}
 #{13LAB:,  m15,   "OMS VME58",   1,    6, "Hor. force UpStream",      microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
 #{13LAB:,  m16,   "OMS VME58",   1,    7, "Hor. force DownStream",    microns,  Pos,  200.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      10e3, -10e3}
+#
+# newport table tests....
+{13LAB:, m33, "OMS VME58",    1, 0, "mot_AY",   mm,       Pos,  20., .01,   0.5, 0,  1,  .2,  1,  .0001,   8,    1000,  -1000}
+{13LAB:, m34, "OMS VME58",    1, 1, "mot_BY",   mm,       Pos,  20., .01,   0.5, 0,  1,  .2,  1,  .0001,   8,    1000,  -1000}
+{13LAB:, m35, "OMS VME58",    1, 2, "mot_CY",   mm,       Pos,  20., .01,   0.5, 0,  1,  .2,  1,  .0001,   8,    1000,  -1000}
+{13LAB:, m36, "OMS VME58",    1, 3, "mot_BZ",   mm,       Pos,  20., .01,   2.0, 0,  1,  .2,  1,  .0001,   8,    1000,  -1000}
+{13LAB:, m37, "OMS VME58",    1, 4, "mot_AX",   mm,       Pos,  20., .01,   2.0, 0,  1,  .2,  1,  .0001,   8,    1000,  -1000}
+# below is fake ie make it think it has all six motors
+{13LAB:, m38, "OMS VME58",    1, 5, "fake_mot_AZ",	mm,       Pos,  20., .01,   2.0, 0,  1,  .2,  1,  .005,    6,    50,  -50}
 }
 
 file stdApp/Db/table.db std
 {
 pattern
-
 {P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
 {13LAB:, MON:T1, MON:t1, junk, junk,   junk,   m2,    m1,     m3,    junk,    SRI}
 }
+
+# newport table table record
+file stdApp/Db/table.db, std
+{
+pattern
+{P,          Q,      T,  M0X,   M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13LAB:, DIF:T1, DIF:t1, m36,   m33,  m35, junk,  m34,  m37, NEWPORT}
+# below includes sixth fake motor (m38)
+#{13LAB:, DIF:T1, DIF:t1, m36,   m33,  m35, m38,  m34,  m37, NEWPORT}
+}
+
+# Pseudomotors for newport table snl
+file CARSApp/Db/pseudoMotor.db, top
+{
+pattern
+{P,       M,           DINP,                        OUT,                               RDBL,                       STOO,                  DESC,   EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+{13LAB:,  pm1, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm1:Move PP MS", "13LAB:pm1:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "AX",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
+{13LAB:,  pm2, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm2:Move PP MS", "13LAB:pm2:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "AY",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
+{13LAB:,  pm3, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm3:Move PP MS", "13LAB:pm3:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "AZ",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
+{13LAB:,  pm4, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm4:Move PP MS", "13LAB:pm4:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "R_X",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e6, -1e6}
+{13LAB:,  pm5, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm5:Move PP MS", "13LAB:pm5:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "R_Y",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e6, -1e6}
+{13LAB:,  pm6, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm6:Move PP MS", "13LAB:pm6:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "R_Z",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e6, -1e6}
+{13LAB:,  pm7, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm7:Move PP MS", "13LAB:pm7:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "T_AX",  deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     30, -30}
+{13LAB:,  pm8, "13LAB:NewTab1:M_Done NPP NMS", "13LAB:pm8:Move PP MS", "13LAB:pm8:Readback  NPP NMS", "13LAB:NewTab1:M_Stop PP MS",   "T_AY",  deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     30, -30}
+}
+
+# Newport table db for newport table snl
+file CARSApp/Db/newport_table.db, top
+{
+pattern
+{P,         T,     M1,  M2,   M3,   M4,   M5,  PM1, PM2, PM3, PM4, PM5, PM6, PM7, PM8 }
+{13LAB:, NewTab1:, m33, m34,  m35,  m36,  m37, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8 }
+}
+
 
 file stdApp/Db/scanParms.db std
 {
