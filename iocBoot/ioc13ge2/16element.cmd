@@ -7,11 +7,20 @@ putenv("XIA_CONFIG=xiasystem.cfg")
 # decimation=0,2,4,6 respectively. FIPPI_DEFAULT should point to the
 # file that will be loaded initially at boot time.
 #
+# MN: Jun-28-2004 changed from:
 putenv("FIPPI0=f01x2p0g.fip")
 putenv("FIPPI1=f01x2p2g.fip")
 putenv("FIPPI2=f01x2p4g.fip")
 putenv("FIPPI3=f01x2p6g.fip")
 putenv("FIPPI_DEFAULT=f01x2p4g.fip")
+
+# from PNC CAT:
+# putenv("FIPPI0=f01x2pc0j.fip")
+# putenv("FIPPI1=f01x2pc2j.fip")
+# putenv("FIPPI2=f01x2pc4j.fip")
+# putenv("FIPPI3=f01x2pc6j.fip")
+# putenv("FIPPI_DEFAULT=f01x2pc0j.fip")
+
 # Set logging level (1=ERROR, 2=WARNING, 3=XXX, 4=DEBUG)
 dxp_md_set_log_level(2)
 dxp_initialize
