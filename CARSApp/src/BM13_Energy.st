@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program BM13_Energy("E=XXBMA:E, MONO=XXBMA:m17, EXPTAB_Z=XXBMD:m22, XTAL=XXBMA:MON:")
+program BM13_Energy("E=XXBMA:E, MONO=XXBMA:m17, EXPTAB_Z=XXBMD:m22, YXTAL=XXBMA:MON:, ZXTAL=XXBMA:m14")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -23,6 +23,11 @@ program BM13_Energy("E=XXBMA:E, MONO=XXBMA:m17, EXPTAB_Z=XXBMD:m22, XTAL=XXBMA:M
  *                      Fixed the logic for waiting for motors to get done.
  *                      Previously it was not waiting for mono motor and there was a
  *                      bug in the delay logic causing all moves to take 20 seconds!
+ *  Apr.  9, 2002  MLR  Changed second crystal Z to be a simple motor rather than part
+ *                      of table record.  Fixed bug in making Z move to soft limits of
+ *                      the motor (needed +- tiny so we don't try to move exactly to
+ *                      the soft limit).  Made "en" update so that if it is changed by
+ *                      SNL (for example, keV to eV) the correct value exists in the PV.
  */
 %%#include <math.h>
 %%#include <sysLib.h>
@@ -54,11 +59,12 @@ double xt_ht;     assign xt_ht     to "{EXPTAB_Z}";        monitor xt_ht;
 int    xt_done;   assign xt_done   to "{EXPTAB_Z}.DMOV";   monitor xt_done;
 
 /* 2nd crystal table PVs  (from {TAB} variable for Table) */
-double z2;        assign z2        to "{XTAL}t1.Z";        monitor z2;
-double z2lo;      assign z2lo      to "{XTAL}t1.LLZ";      monitor z2lo;
-double z2hi;      assign z2hi      to "{XTAL}t1.HLZ";      monitor z2hi;
-double y2;        assign y2        to "{XTAL}t1.Y";        monitor y2;
-int    x2_done;   assign x2_done   to "{XTAL}T1:done.VAL"; monitor x2_done;
+double z2;        assign z2        to "{ZXTAL}.VAL";       monitor z2;
+double z2lo;      assign z2lo      to "{ZXTAL}.LLM";       monitor z2lo;
+double z2hi;      assign z2hi      to "{ZXTAL}.HLM";       monitor z2hi;
+int    z2_done;   assign z2_done   to "{ZXTAL}.DMOV";      monitor z2_done;
+double y2;        assign y2        to "{YXTAL}t1.Y";       monitor y2;
+int    y2_done;   assign y2_done   to "{YXTAL}T1:done.VAL"; monitor y2_done;
 
 /* Mono Angle PV */
 double th;        assign th        to "{MONO}";            monitor th;
@@ -90,7 +96,6 @@ double xt_old;
 double xt_new;
 float  d_time;
 double tiny;
-double z2_sign;
 int i;
 int still_busy;
 int wait_count;
@@ -112,7 +117,6 @@ ss Energy {
       en_max  = 100 * omega ;             /* maximum energy  */
       th_min  = r2d * asin(omega/en_max); /* minimum mono angle in degrees */
       th_max  = r2d * asin(omega/en_min); /* maximum mono angle in degrees */
-      z2_sign = -1;  /* note: xtal2 table record is at 180 degrees */
       tiny    = 1.e-5;
 
       /* get current mono angle, update energy readback */
@@ -146,7 +150,7 @@ ss Energy {
             -> let the ev_th handle the rest
          else (normal energy move) then:
             -> move th
-            -> move table y and l
+            -> move table y and xtal z
         end if
         -> unset "energy busy"
       */
@@ -157,6 +161,9 @@ ss Energy {
       if (en <  500.0)  en =  en * 1000.; /* force units to eV, not KeV */
       if (en < en_min)  en =  en_min;     /* force minimum energy */
       if (en > en_max)  en =  en_max;     /* force maximum energy */
+      /* We might have changed en, so set new value - clear event flag so
+       * this code does not execute again */
+      pvPut(en); efClear(ef_en);
       if (en_set) {      /*  ENERGY SET  */
         if (verbose) { printf("   E(set)> mono energy -> %12.6f\n", en);}
         pvPut(en);
@@ -176,9 +183,9 @@ ss Energy {
         pvPut(th);
         /*move 2nd xtal Z to keep beam on the same place on xtal */
         if (z2_track) {
-          z2  = z2_sign * height * en / (2 * omega);
-          if (z2 < z2lo) z2 = z2lo;
-          if (z2 > z2hi) z2 = z2hi;
+          z2  = height * en / (2 * omega);
+          if (z2 < z2lo) z2 = z2lo + tiny;
+          if (z2 > z2hi) z2 = z2hi - tiny;
           pvPut(z2);
           if (verbose) { printf("  E(move)>    2nd Xtal Z -> %12.6f\n",z2);}
         }
@@ -215,11 +222,12 @@ ss Energy {
         for (wait_count=0, still_busy=1; (wait_count<256) && still_busy; 
                                                                     wait_count++) {
           taskDelay(d_time*sysClkRateGet());
-          still_busy = ((y2_track||z2_track) && (x2_done == 0)) ||
+          still_busy = ((y2_track && (y2_done == 0)) ||
+                        (z2_track && (z2_done == 0)) ||
                         (xt_track && (xt_done == 0)) ||
-                        (th_done == 0);
+                        (th_done == 0));
           if (verbose) {
-            printf("[%i%i%i]", th_done, x2_done, xt_done);
+            printf("[%i%i%i%i]", th_done, y2_done, z2_done, xt_done);
             if (!(wait_count % 8)) printf("\n");
           }
         }
@@ -277,7 +285,7 @@ ss Energy {
         /*  xtal Z tracking : reset offset if switched to on */
         /* when( efTestAndClear(ef_z2_track) ) {
            if (z2_track) {
-           if (verbose) {printf("  E(z2_track)> changed 2nd XTAL Z offset to off\n");}
+           if (verbose) {printf("  E(z2_track)> changed 2nd XTAL Z tracking to on\n");}
            }
            } state monitor_changes
         */
