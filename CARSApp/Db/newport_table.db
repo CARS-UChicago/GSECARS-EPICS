@@ -2,11 +2,10 @@
 # The logic is done in a SNL program (newport_table.st).
 #
 #Call this db from motors.template as:
-#file CARSApp/Db/newport_tabel.db, top
+#file CARSApp/Db/newport_table.db, top
 #{
 #pattern
 #{P,         T,     M1,  M2,   M3,   M4,   M5,  PM1, PM2, PM3, PM4, PM5, PM6, PM7, PM8 }
-#{13IDC:, NewTab1:, m33, m34,  m35,  m36,  m37, pm1, pm2, pm3, pm4, pm5, pm6, pm7, pm8 }
 #}
 
 # These records are where the psuedo motors write their output.
@@ -59,59 +58,94 @@ grecord(ao,"$(P)$(T)F1") {}
 
 grecord(ao,"$(P)$(T)lx") {
       field(DESC, "dist btwn jack A and B")
-      field(VAL,  "-1000.0")
-	field(PREC, "3")
+      field(VAL,  "1000.0")
+	  field(PREC, "3")
 }
 
 grecord(ao,"$(P)$(T)lz") {
       field(DESC, "dist btwn jack C line AB")
       field(VAL,  "1000.0")
-	field(PREC, "3")
+	  field(PREC, "3")
 }
 
-grecord(ao,"$(P)$(T)Dx") {
+grecord(ao,"$(P)$(T)D0x") {
       field(DESC, "X-val of table target")
       field(VAL,  "-500")
-	field(PREC, "3")
+	  field(PREC, "3")
 }
 
-grecord(ao,"$(P)$(T)Dy") {
+grecord(ao,"$(P)$(T)D0y") {
       field(DESC, "Y-val of table target")
       field(VAL,  "1000")
-	field(PREC, "3")
+	  field(PREC, "3")
 }
 
-grecord(ao,"$(P)$(T)Dz") {
+grecord(ao,"$(P)$(T)D0z") {
       field(DESC, "Z-val of table target")
       field(VAL,  "500")
-	field(PREC, "3")
+	  field(PREC, "3")
 }
 
 grecord(ao,"$(P)$(T)d1") {
       field(DESC, "Distance to rot point")
       field(VAL,  "10000")
-	field(PREC, "3")
+	  field(PREC, "3")
 }
 
 grecord(ao,"$(P)$(T)d2") {
       field(DESC, "Distance btwn rot pnts")
       field(VAL,  "0")
-	field(PREC, "3")
+      field(PREC, "3")
 }
+
+# Define some diagnostic pv's
 
 grecord(ao,"$(P)$(T)DELTA_R") {
       field(DESC, "distance btwn table and target")
       field(VAL,  "0")
-	field(PREC, "3")
+      field(PREC, "5")
 }
 
 grecord(ao,"$(P)$(T)DELTA_ANGLE") {
       field(DESC, "angle btwn table and target")
       field(VAL,  "0")
-	field(PREC, "3")
+      field(PREC, "5")
+}
+
+grecord(ao,"$(P)$(T)DX") {
+      field(DESC, "X of rotated fixed pnt")
+      field(VAL,  "0")
+      field(PREC, "5")
+}
+
+grecord(ao,"$(P)$(T)DY") {
+      field(DESC, "Y of rotated fixed pnt")
+      field(VAL,  "0")
+      field(PREC, "5")
 }
 
 
+grecord(ao,"$(P)$(T)DZ") {
+      field(DESC, "Z of rotated fixed pnt")
+      field(VAL,  "0")
+      field(PREC, "5")
+}
 
+grecord(ao,"$(P)$(T)TX") {
+      field(DESC, "X of rotated target pnt")
+      field(VAL,  "0")
+      field(PREC, "5")
+}
 
+grecord(ao,"$(P)$(T)TY") {
+      field(DESC, "Y of rotated target pnt")
+      field(VAL,  "0")
+      field(PREC, "5")
+}
+
+grecord(ao,"$(P)$(T)TZ") {
+      field(DESC, "Z of rotated target pnt")
+      field(VAL,  "0")
+      field(PREC, "5")
+}
 
