@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC_mprobe.adl"
+	name="/home/epics/3.14/CARS/CARSApp/op/adl/13IDC_mprobe.adl"
 	version=030000
 }
 display {
 	object {
-		x=226
-		y=226
+		x=354
+		y=30
 		width=600
 		height=125
 	}
@@ -140,23 +140,28 @@ rectangle {
 		args="P=13IDC:, A=A3"
 	}
 	display[3] {
-		label="Acromag IP300 ADC"
-		name="Ip330Scan.adl"
-		args="P=13IDC:, R=IP330_"
+		label="Ipre Left Preamp (A5)"
+		name="SR570.adl"
+		args="P=13IDC:, A=A5"
 	}
 	display[4] {
+		label="Ipre Right Preamp (A6)"
+		name="SR570.adl"
+		args="P=13IDC:, A=A6"
+	}
+	display[5] {
 		label="Keithley Multimeter (IDC)"
 		name="Keithley2kDMM_mf.adl"
 		args="P=13IDC:, Dmm=DMM1"
 	}
-	display[5] {
-		label="Keithley Multimeter (IDA)"
-		name="Keithley2kDMM_mf.adl"
-		args="P=13IDA:,  Dmm=DMM1"
-	}
 	display[6] {
 		label="Thermocouple Stripchart"
 		name="13IDC_tcouple.adl"
+	}
+	display[7] {
+		label="A4"
+		name="SR570.adl"
+		args="P=13IDC:, A=A4"
 	}
 	clr=14
 	bclr=1
@@ -248,12 +253,12 @@ rectangle {
 	}
 	display[0] {
 		label="Monochomator"
-		name="13IDC_mprobe_mono.adl"
+		name="13ID_mono_full.adl"
 		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6"
 	}
 	display[1] {
-		label="Monochomator, Full"
-		name="13IDC_mprobe_mono_all.adl"
+		label="Monochomator, Small"
+		name="13ID_mono_small.adl"
 		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6, DTH=m12"
 	}
 	display[4] {
@@ -380,6 +385,26 @@ rectangle {
 		name="1motors.adl"
 		args="P=13IDA:, TITLE=FOE_Flags,  M1=m16"
 	}
+	display[3] {
+		label="Secondary Source Slit"
+		name="4motors.adl"
+		args="P=13IDC:, TITLE=Secondary_Source_Slits, M1=m61, M2=m62, M3=m63, M4=m64"
+	}
+	display[4] {
+		label="Large Vertical Mirror"
+		name="8motors.adl"
+		args="P=13IDA:, TITLE=Vertical_Mirror, M1=m18, M2=m19,M3=pm1, M4=pm2, M5=pm5, M6=pm6, M7=pm9, M8=pm10"
+	}
+	display[5] {
+		label="Large Horizontal Mirror"
+		name="6motors.adl"
+		args="P=13IDA:, TITLE=Horizontal_Mirror, M1=m26, M2=m27,M3=pm3, M4=pm4, M5=pm7, M6=pm8"
+	}
+	display[6] {
+		label="BPM in IDB"
+		name="13ID_BPM.adl"
+		args="P=13IDA:, TITLE=BPM_Foil_Control, M1=m33, M2=m15, EN=E"
+	}
 	clr=14
 	bclr=1
 	label="-Front End"
@@ -402,16 +427,13 @@ rectangle {
 		args="P=13GE2:med:"
 	}
 	display[3] {
-		label="analog MED (GE1)"
 		name="16element.adl"
 		args="P=13GE1:med:"
 	}
 	display[6] {
-		label="Si detector (AIM ADC)"
 		name="aim_adc.adl"
 	}
 	display[7] {
-		label="RIXS detector motors"
 		name="3motors.adl"
 		args="P=13IDC:, TITLE=RIXS_Detector, M1=m14, M2=m42, M3=m44"
 	}
@@ -575,9 +597,9 @@ menu {
 		name="SR_Status.adl"
 	}
 	display[1] {
-		label="Status and Beam Positions"
-		name="MRD_ID.adl"
-		args="xx=13"
+		label="Beam Positions"
+		name="IDxbpm.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
 	}
 	display[7] {
 		label="GSE Main Menu"
@@ -605,6 +627,10 @@ menu {
 	display[5] {
 		label="Main ID Control"
 		name="13ID.adl"
+	}
+	display[6] {
+		label="Microscope "
+		name="13IDC_microscope.adl"
 	}
 	clr=14
 	bclr=55
