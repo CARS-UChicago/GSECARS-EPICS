@@ -12,3 +12,8 @@ LIBOBJS += drvAvme9210.o
 LIBOBJS += devXxDg535Gpib.o
 LIBOBJS += newport_table.o
 LIBOBJS += newport_table_support.o
+ifeq ($(T_A), ppc604)
+LIBOBJS += devLib.o
+LIBOBJS += iVecShow.o
+LIBOBJS += ppcveclist.o
+endif
