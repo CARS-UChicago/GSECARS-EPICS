@@ -1,21 +1,21 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13ID.adl"
+	name="i:\epics\3.14\CARS\CARSApp\op\adl\13ID.adl"
 	version=020306
 }
 display {
 	object {
-		x=463
-		y=227
-		width=411
-		height=525
+		x=657
+		y=52
+		width=350
+		height=520
 	}
 	clr=14
 	bclr=4
 	cmap=""
-	gridSpacing=10
+	gridSpacing=5
 	gridOn=0
-	snapToGrid=1
+	snapToGrid=0
 }
 "color map" {
 	ncolors=65
@@ -89,8 +89,8 @@ display {
 }
 text {
 	object {
-		x=140
-		y=206
+		x=87
+		y=191
 		width=140
 		height=20
 	}
@@ -102,10 +102,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=206
-		width=120
-		height=25
+		x=7
+		y=191
+		width=75
+		height=24
 	}
 	display[0] {
 		label="Vacuum and EPS"
@@ -116,7 +116,7 @@ text {
 }
 rectangle {
 	object {
-		x=35
+		x=20
 		y=15
 		width=310
 		height=80
@@ -127,10 +127,10 @@ rectangle {
 }
 text {
 	object {
-		x=57
+		x=42
 		y=27
 		width=276
-		height=25
+		height=24
 	}
 	"basic attribute" {
 		clr=14
@@ -140,7 +140,7 @@ text {
 }
 text {
 	object {
-		x=49
+		x=34
 		y=62
 		width=291
 		height=22
@@ -153,10 +153,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=238
-		width=120
-		height=25
+		x=7
+		y=218
+		width=75
+		height=24
 	}
 	display[0] {
 		label="FOE Slits"
@@ -188,20 +188,20 @@ text {
 }
 text {
 	object {
-		x=140
-		y=238
-		width=150
+		x=87
+		y=218
+		width=200
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="Beamline Motors"
+	textix="Slits, Pinhole, Flag"
 }
 text {
 	object {
-		x=138
+		x=86
 		y=110
 		width=250
 		height=20
@@ -214,10 +214,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
+		x=7
 		y=110
-		width=118
-		height=25
+		width=74
+		height=24
 	}
 	display[0] {
 		label="Storage Ring Status"
@@ -248,8 +248,8 @@ text {
 }
 text {
 	object {
-		x=138
-		y=174
+		x=87
+		y=164
 		width=90
 		height=20
 	}
@@ -261,10 +261,10 @@ text {
 }
 "shell command" {
 	object {
-		x=10
-		y=174
-		width=118
-		height=25
+		x=7
+		y=164
+		width=75
+		height=24
 	}
 	command[0] {
 		label="Storage Ring Status"
@@ -283,8 +283,8 @@ text {
 }
 text {
 	object {
-		x=138
-		y=142
+		x=86
+		y=137
 		width=210
 		height=20
 	}
@@ -296,10 +296,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=142
-		width=118
-		height=25
+		x=7
+		y=137
+		width=74
+		height=24
 	}
 	display[0] {
 		label="Undulator Gap"
@@ -316,10 +316,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=302
-		width=120
-		height=25
+		x=7
+		y=326
+		width=75
+		height=24
 	}
 	display[0] {
 		label="Mono Keithley 2000"
@@ -341,10 +341,6 @@ text {
 		name="singleDAC.adl"
 		args="P=13IDA:, D=1, C=3"
 	}
-	display[4] {
-		label="Monochromator"
-		name="13ID_MONO.adl"
-	}
 	display[5] {
 		label="Mirror Keithley 2000"
 		name="Keithley2kDMM_mf.adl"
@@ -365,8 +361,8 @@ text {
 }
 text {
 	object {
-		x=140
-		y=302
+		x=87
+		y=326
 		width=150
 		height=20
 	}
@@ -378,43 +374,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=334
-		width=120
-		height=25
-	}
-	display[0] {
-		label="Serial 1"
-		name="Serial_IO.adl"
-		args="REC=13IDA:ser1"
-	}
-	display[1] {
-		label="Serial 2"
-		name="Serial_IO.adl"
-		args="REC=13IDA:ser2"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=140
-		y=334
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Generic RS-232 and GPIB"
-}
-"related display" {
-	object {
-		x=10
-		y=270
-		width=120
-		height=25
+		x=7
+		y=245
+		width=75
+		height=24
 	}
 	display[0] {
 		label="Energy"
@@ -451,14 +414,18 @@ text {
 		name="pid_control.adl"
 		args="P=13IDA:, PID=fast_roll_pid, TITLE=Mono_Roll_feedback"
 	}
+	display[7] {
+		label="Cryo & Vacuum Status"
+		name="13ID_mono_cryovac.adl"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=140
-		y=270
-		width=150
+		x=87
+		y=245
+		width=130
 		height=20
 	}
 	"basic attribute" {
@@ -469,9 +436,9 @@ text {
 }
 text {
 	object {
-		x=140
-		y=398
-		width=150
+		x=87
+		y=299
+		width=170
 		height=20
 	}
 	"basic attribute" {
@@ -482,10 +449,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=398
-		width=120
-		height=23
+		x=7
+		y=299
+		width=75
+		height=24
 	}
 	display[0] {
 		label="Horizontal Mirror"
@@ -522,10 +489,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=366
-		width=120
-		height=25
+		x=7
+		y=272
+		width=75
+		height=24
 	}
 	display[0] {
 		label="Vertical Mirror"
@@ -567,8 +534,8 @@ text {
 }
 text {
 	object {
-		x=140
-		y=366
+		x=87
+		y=272
 		width=150
 		height=20
 	}
@@ -580,10 +547,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=494
-		width=120
-		height=23
+		x=9
+		y=698
+		width=75
+		height=24
 	}
 	display[0] {
 		label="scan 1"
@@ -595,23 +562,23 @@ text {
 }
 text {
 	object {
-		x=140
-		y=494
-		width=150
+		x=104
+		y=698
+		width=50
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="scans"
+	textix="Scans"
 }
 "related display" {
 	object {
-		x=10
-		y=430
-		width=120
-		height=23
+		x=7
+		y=407
+		width=75
+		height=24
 	}
 	display[0] {
 		label="BPM Motors"
@@ -628,9 +595,9 @@ text {
 }
 text {
 	object {
-		x=140
-		y=430
-		width=150
+		x=87
+		y=407
+		width=30
 		height=20
 	}
 	"basic attribute" {
@@ -641,10 +608,10 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=462
-		width=120
-		height=23
+		x=7
+		y=434
+		width=75
+		height=24
 	}
 	display[0] {
 		label="quadEM MCAs"
@@ -659,9 +626,9 @@ text {
 }
 text {
 	object {
-		x=140
-		y=462
-		width=137
+		x=87
+		y=434
+		width=110
 		height=20
 	}
 	"basic attribute" {
@@ -669,4 +636,325 @@ text {
 		width=2
 	}
 	textix="quadEM MCAs"
+}
+"related display" {
+	object {
+		x=9
+		y=614
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 1"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial1"
+	}
+	display[1] {
+		label="Serial 2"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial2"
+	}
+	display[2] {
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial4"
+	}
+	display[4] {
+		label="Serial 5"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial5"
+	}
+	display[5] {
+		label="Serial 6"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial6"
+	}
+	display[6] {
+		label="Serial 7"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial7"
+	}
+	display[7] {
+		label="Serial 8"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial8"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=104
+		y=614
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 1-8"
+}
+"related display" {
+	object {
+		x=9
+		y=656
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 9"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial9"
+	}
+	display[1] {
+		label="Serial 10"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial10"
+	}
+	display[2] {
+		label="Serial 11"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial11"
+	}
+	display[3] {
+		label="Serial 12"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial12"
+	}
+	display[4] {
+		label="Serial 13"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial13"
+	}
+	display[5] {
+		label="Serial 14"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial14"
+	}
+	display[6] {
+		label="Serial 15"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial15"
+	}
+	display[7] {
+		label="Serial 16"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial16"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=104
+		y=656
+		width=190
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 9-16"
+}
+"related display" {
+	object {
+		x=7
+		y=353
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 1"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial1"
+	}
+	display[1] {
+		label="Serial 2"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial2"
+	}
+	display[2] {
+		label="Serial 3"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial4"
+	}
+	display[4] {
+		label="Serial 5"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial5"
+	}
+	display[5] {
+		label="Serial 6"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial6"
+	}
+	display[6] {
+		label="Serial 7"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial7"
+	}
+	display[7] {
+		label="Serial 8"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial8"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=353
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 1-8"
+}
+"related display" {
+	object {
+		x=7
+		y=380
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 9"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial9"
+	}
+	display[1] {
+		label="Serial 10"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial10"
+	}
+	display[2] {
+		label="Serial 11"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial11"
+	}
+	display[3] {
+		label="Serial 12"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial12"
+	}
+	display[4] {
+		label="Serial 13"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial13"
+	}
+	display[5] {
+		label="Serial 14"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial14"
+	}
+	display[6] {
+		label="Serial 15"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial15"
+	}
+	display[7] {
+		label="Serial 16"
+		name="asynRecord.adl"
+		args="P=13IDA:, R=serial16"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=380
+		width=190
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 9-16"
+}
+"related display" {
+	object {
+		x=7
+		y=488
+		width=75
+		height=24
+	}
+	display[0] {
+		label="vxWorks statistics"
+		name="IOC_Status.adl"
+		args="P=13IDA:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=488
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="vxWorks statistics"
+}
+"related display" {
+	object {
+		x=7
+		y=461
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
+	}
+	display[2] {
+		label="Scan 3"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan3, N=3, DW=Dwait3, PW=Pwait3"
+	}
+	display[3] {
+		label="Scan 4"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan4, N=4, DW=Dwait4, PW=Pwait4"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=87
+		y=461
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Scan"
 }
