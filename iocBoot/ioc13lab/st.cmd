@@ -17,14 +17,14 @@ ld < initHooks.o
 
 cd startup
 # Load local MPF server
-< st_mpfserver_local.cmd
+< st_mpfserver.cmd
 cd topbin
 # This IOC talks to a local GPIB server
 ld < GpibHideosLocal.o
 cd startup
 
 # Initialize remote MPF stuff
-tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
+# tcpMessageRouterClientStart(1,9900,"164.54.160.118",10000,100)
 
 # override address, interrupt vector, etc. information in module_types.h
 module_types()
@@ -67,23 +67,28 @@ dbLoadRecords ("CARSApp/Db/generic_gpib.db","P=13LAB:,R=gpib1,SIZE=4096", top)
 
 # generic serial port
 # Port 1 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB:,R=LAE500,C=1,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=1,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+dbLoadRecords("CARSApp/Db/LAE500.db","P=13LAB:,R=LAE500,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
+#dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=a,CHAN=1,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 
 # Encoder readout unit
-dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=1,IPSLOT=a,CHAN=3", top)
-dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=1,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
+dbLoadRecords("CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,C=0,IPSLOT=a,CHAN=3", top)
+dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser1,C=0,IPSLOT=a,CHAN=3,BAUD=19200,PRTY=None,DBIT=8,SBIT=1", top)
 
 # Keithley Multimeter
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=1,IPSLOT=a,CHAN=5", top)
-dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=1,IPSLOT=a,CHAN=6", top)
+dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,C=0,IPSLOT=a,CHAN=5", top)
+dbLoadRecords("CARSApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,C=0,IPSLOT=a,CHAN=6", top)
+
+# Stanford Research Systems SR570 Current Preamplifier
+dbLoadRecords("ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=0,IPSLOT=a,CHAN=7", ip)
+
+#dbLoadRecords("CARSApp/Db/generic_serial.db","P=13LAB:,R=ser2,C=0,IPSLOT=e,CHAN=0,BAUD=9600,PRTY=None,DBIT=8,SBIT=1", top)
 
 # Performance tester - don't load routinely
 #dbLoadRecords("CARSApp/Db/perform.db", top)
 
 # SMART detector database
 str=malloc(256)
-strcpy(str,"P=13LAB:,R=smart1,C=1,IPSLOT=a,CHAN=0,BAUD=9600,")
+strcpy(str,"P=13LAB:,R=smart1,C=0,IPSLOT=a,CHAN=0,BAUD=9600,")
 strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("CARSApp/Db/smartControl.db",str, top)
 
@@ -94,13 +99,13 @@ dbLoadTemplate "DAC.template"
 dbLoadTemplate "IpUnidig.template"
 
 # Acromag Ip330 ADC
-dbLoadTemplate "Ip330_ADC.template"
+#dbLoadTemplate "Ip330_ADC.template"
 
 #PID slow
 dbLoadTemplate "pid_slow.template"
 
 #PID fast
-dbLoadTemplate "pid_fast.template"
+#dbLoadTemplate "pid_fast.template"
  
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -171,9 +176,6 @@ dbLoadRecords("stdApp/Db/userStringCalcs10.db","P=13LAB:", std)
 # Free-standing user transforms (transform records)
 dbLoadRecords("stdApp/Db/userTransforms10.db","P=13LAB:", std)
 
-# Stanford Research Systems SR570 Current Preamplifier
-dbLoadRecords("ipApp/Db/SR570.db", "P=13LAB:,A=A1,C=1,IPSLOT=a,CHAN=7", ip)
-
 # vme test record
 dbLoadRecords("stdApp/Db/vme.db", "P=13LAB:,Q=vme1", std)
 
@@ -221,8 +223,8 @@ create_monitor_set("auto_settings.req",30.0)
 dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
 
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
-seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
+# seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
+# seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
 
 # Need to wait 15 seconds before starting this task - TRACK DOWN WHY !!!
 #taskDelay(900)
@@ -230,9 +232,9 @@ seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, stack=10000"
 
 
 # newport table sequencer
-str=malloc(256)
-strcpy(str,"P=13LAB:,T=NewTab1:, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,")
-strcat(str,"PM1=pm1,PM2=pm2,PM3=pm3,PM4=pm4,PM5=pm5,PM6=pm6,PM7=pm7,PM8=pm8")
-seq &newport_table, str
+# str=malloc(256)
+# strcpy(str,"P=13LAB:,T=NewTab1:, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,")
+# strcat(str,"PM1=pm1,PM2=pm2,PM3=pm3,PM4=pm4,PM5=pm5,PM6=pm6,PM7=pm7,PM8=pm8")
+# seq &newport_table, str
 
 

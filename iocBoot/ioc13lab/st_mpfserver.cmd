@@ -1,27 +1,21 @@
-<cdCommands
-
-< ../nfsServerCommandsGSE
-
 cd topbin
-# topbin is for the primary CPU arch, need to move to AUX CPU arch
-ld < ../mv162/mpfLib 
-ld < ../mv162/mpfServLib 
+# This loads the MPF server stuff
+ld < mpfServLib
+
+routerInit
+localMessageRouterStart(0)
+
+carrier0 = "ipac0"
+carrier1 = "ipac1"
+ipacAddCarrier(&vipc616_01, "0x3000,0xa0000000")
+#ipacAddCarrier(&vipc616_01, "0x3400,0xa2000000")
+initIpacCarrier(carrier0, 0)
+#initIpacCarrier(carrier1, 1)
 
 Ip330Debug=0
 Ip330SweepDebug=0
 Ip330SweepServerDebug=0
 Ip330PIDServerDebug=0
-
-carrier = "ipac"
-ipacAddCarrier(&ipmv162, "A:l=3,3 m=0xe0000000,64;B:l=3,3 m=0xe0010000,64;C:l=3,3 m=0xe0020000,64;D:l=3,3 m=0xe0030000,64")
-initIpacCarrier(carrier, 0)
-
-routerInit
-tcpMessageRouterServerStart(1,9900,"164.54.160.118",10000,100)
-
-# Initialize GPIB stuff
-initGpibGsTi9914("GS-IP488-0",carrier,"IP_c",104)
-initGpibServer("GPIB0","GS-IP488-0",4096,1000)
 
 # Initialize Octal UART stuff
 # initOctalUART(char *moduleName, char *carrierName, char *siteName, 
@@ -32,7 +26,7 @@ initGpibServer("GPIB0","GS-IP488-0",4096,1000)
 # nports      = number of ports
 # intVec      = interrupt vector. Remember to give each module a different
 #               interrupt vector
-initOctalUART("octalUart0",carrier,"IP_a",8,100)
+initOctalUART("octalUart0",carrier0,"IP_a",8,100)
 
 # initOctalUARTPort(char* portName,char* moduleName,int port,int baud,
 #                   char* parity,int stop_bits,int bits_char,char* flow_control)
@@ -70,6 +64,18 @@ initSerialServer("a-Serial[5]","UART[5]",1000,20,"\r",1)
 initSerialServer("a-Serial[6]","UART[6]",1000,20,"\r",1)
 initSerialServer("a-Serial[7]","UART[7]",1000,20,"\r",1)
 
+# Initialize Greenspring IP-Unidig
+# initIpUnidig(char *serverName, char *carrierName, char *siteName,
+#              int queueSize)
+# serverName  = name to give this server
+# carrierName = name of IPAC carrier from initIpacCarrier above
+# siteName    = name of IP site, e.g. "IP_a"
+# queueSize   = size of output queue for EPICS
+initIpUnidig("b-Unidig", carrier0, "IP_b", 20)
+
+# Initialize GPIB stuff
+initGpibGsTi9914("GPIB0",carrier0,"IP_c",104)
+
 # Initialize Systran DAC
 # initDAC128V(char *serverName, char *carrierName, char *siteName,
 #             int queueSize)
@@ -78,16 +84,10 @@ initSerialServer("a-Serial[7]","UART[7]",1000,20,"\r",1)
 # siteName    = name of IP site, e.g. "IP_a"
 # queueSize   = size of output queue for EPICS
 #
-pDAC128V = initDAC128V("d-DAC",carrier,"IP_d",20)
+pDAC128V = initDAC128V("d-DAC",carrier0,"IP_d",20)
 
-# Initialize Greenspring IP-Unidig
-# initIpUnidig(char *serverName, char *carrierName, char *siteName,
-#              int queueSize)
-# serverName  = name to give this server
-# carrierName = name of IPAC carrier from initIpacCarrier above
-# siteName    = name of IP site, e.g. "IP_a"
-# queueSize   = size of output queue for EPICS
-initIpUnidig("b-Unidig", carrier, "IP_b", 20)
+
+# Second VIPC616
 
 # Initialize Acromag IP-330 ADC
 # Ip330 *initIp330(
@@ -112,7 +112,7 @@ initIpUnidig("b-Unidig", carrier, "IP_b", 20)
 #               does not refer to the number of EPICS clients.  A value of
 #               10 should certainly be safe.
 # intVec        Interrupt vector
-#pIp330 = initIp330("c-Ip330", carrier,"IP_c","D","-5to5",0,15,10,120)
+#Ip330 = initIp330("b-Ip330", carrier1,"IP_b","D","-5to5",0,15,10,120)
 
 # int configIp330(
 #   Ip330 *pIp330,
@@ -150,7 +150,7 @@ initIpUnidig("b-Unidig", carrier, "IP_b", 20)
 # milliSecondsToAverage = number of milliseconds to average readings
 # queueSize  = size of output queue for MPF. Make this the maximum number 
 #              of ai records attached to this server.
-#initIp330Scan(pIp330,"c-Ip330Scan",0,15,100,20)
+#initIp330Scan(pIp330,"a-Ip330Scan",0,15,100,20)
 
 # int initIp330Sweep(Ip330 *pIp330, char *serverName, int firstChan, 
 #     int lastChan, int maxPoints, int queueSize)
@@ -163,7 +163,7 @@ initIpUnidig("b-Unidig", carrier, "IP_b", 20)
 # maxPoints  = maximum number of points in a sweep.  The amount of memory
 #              allocated will be maxPoints*(lastChan-firstChan+1)*4 bytes
 # queueSize  = size of output queue for EPICS
-#initIp330Sweep(pIp330,"c-Ip330Sweep",0,3,2048,100)
+#initIp330Sweep(pIp330,"a-Ip330Sweep",0,3,2048,100)
 
 # Ip330PID *initIp330PID(const char *serverName,
 #        Ip330 *pIp330, int ADCChannel, DAC128V *pDAC128V, int DACChannel,
@@ -177,7 +177,7 @@ initIpUnidig("b-Unidig", carrier, "IP_b", 20)
 # DACChannel = DAC channel to be used by Ip330PID as its control output.  This
 #              must be in the range 0-7.
 # queueSize  = size of output queue for EPICS
-#pIp330PID = initIp330PID("Ip330PID_1", pIp330, 0, pDAC128V, 0, 20)
+#ipIp330PID = initIp330PID("Ip330PID_1", pIp330, 0, pDAC128V, 0, 20)
 
 # int configIp330PID(Ip330PID *pIp330PID,
 #        double KP, double KI, double KD,
@@ -191,6 +191,3 @@ initIpUnidig("b-Unidig", carrier, "IP_b", 20)
 # lowLimit   = low limit on DAC output
 # highLimit  = high limit on DAC output
 #configIp330PID(pIp330PID, .1, 10., 0., 1000, 0, 500, 1500)
-
-# DEBUGGING
-#serialPortSniff("UART[0]",1000)
