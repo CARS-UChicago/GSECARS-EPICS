@@ -8,6 +8,8 @@ program newport_table("P=13IDC:,T=NewTab1:, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,P
 %% #include "newport_table_support.h"
 %% #include <math.h>
 
+%% int newport_tableDebug = 0;
+
 /*************** The real motors ********************************************/
 /* drive values */
 double mAY_drive;  assign  mAY_drive  to "{P}{M1}.VAL";  monitor mAY_drive;
@@ -40,44 +42,36 @@ evflag   mBZ_rbv_mon;      sync mBZ_rbv      mBZ_rbv_mon;
 double pmAX_drive; assign pmAX_drive  to "{P}{PM1}.VAL";     monitor pmAX_drive;
 double pmAX_move;  assign pmAX_move   to "{P}{PM1}:Move";    monitor pmAX_move;
 double pmAX_rbv;   assign pmAX_rbv    to "{P}{PM1}:Readback";
-double pmAX_set;   assign pmAX_set    to "{P}{PM1}.SET";
 /* Pseudomotor AY*/
 double pmAY_drive; assign pmAY_drive  to "{P}{PM2}.VAL";     monitor pmAY_drive;
 double pmAY_move;  assign pmAY_move   to "{P}{PM2}:Move";    monitor pmAY_move;
 double pmAY_rbv;   assign pmAY_rbv    to "{P}{PM2}:Readback";
-double pmAY_set;   assign pmAY_set    to "{P}{PM2}.SET";
 /* Pseudomotor AZ*/
 double pmAZ_drive; assign pmAZ_drive  to "{P}{PM3}.VAL";     monitor pmAZ_drive;
 double pmAZ_move;  assign pmAZ_move   to "{P}{PM3}:Move";    monitor pmAZ_move;
 double pmAZ_rbv;   assign pmAZ_rbv    to "{P}{PM3}:Readback";
-double pmAZ_set;   assign pmAZ_set    to "{P}{PM3}.SET";
 
 /******* Rotation Point Translation and Angles *****/
 /* Pseudomotor RX*/
 double pmRX_drive; assign pmRX_drive  to "{P}{PM4}.VAL";     monitor pmRX_drive;
 double pmRX_move;  assign pmRX_move   to "{P}{PM4}:Move";    monitor pmRX_move;
 double pmRX_rbv;   assign pmRX_rbv    to "{P}{PM4}:Readback";
-double pmRX_set;   assign pmRX_set    to "{P}{PM4}.SET";
 /* Pseudomotor RY*/
 double pmRY_drive; assign pmRY_drive  to "{P}{PM5}.VAL";     monitor pmRY_drive;
 double pmRY_move;  assign pmRY_move   to "{P}{PM5}:Move";    monitor pmRY_move;
 double pmRY_rbv;   assign pmRY_rbv    to "{P}{PM5}:Readback";
-double pmRY_set;   assign pmRY_set    to "{P}{PM5}.SET";
 /* Pseudomotor RZ*/
 double pmRZ_drive; assign pmRZ_drive  to "{P}{PM6}.VAL";     monitor pmRZ_drive;
 double pmRZ_move;  assign pmRZ_move   to "{P}{PM6}:Move";    monitor pmRZ_move;
 double pmRZ_rbv;   assign pmRZ_rbv    to "{P}{PM6}:Readback";
-double pmRZ_set;   assign pmRZ_set    to "{P}{PM6}.SET";
 /* Pseudomotor T_AX*/
 double pmT_AX_drive; assign pmT_AX_drive  to "{P}{PM7}.VAL";     monitor pmT_AX_drive;
 double pmT_AX_move;  assign pmT_AX_move   to "{P}{PM7}:Move";    monitor pmT_AX_move;
 double pmT_AX_rbv;   assign pmT_AX_rbv    to "{P}{PM7}:Readback";
-double pmT_AX_set;   assign pmT_AX_set    to "{P}{PM7}.SET";
 /* Pseudomotor T_AY*/
 double pmT_AY_drive; assign pmT_AY_drive  to "{P}{PM8}.VAL";     monitor pmT_AY_drive;
 double pmT_AY_move;  assign pmT_AY_move   to "{P}{PM8}:Move";    monitor pmT_AY_move;
 double pmT_AY_rbv;   assign pmT_AY_rbv    to "{P}{PM8}:Readback";
-double pmT_AY_set;   assign pmT_AY_set    to "{P}{PM8}.SET";
 
 
 /* monitors and event flags */
@@ -159,6 +153,7 @@ double mBZ;
 ss NewportTable {
 /*** 1.  initialize ***/
   state init {
+        /* The delay(.01) in the following when() is necessary because of a bug in seq 2.0.4 */
         when() {
             dtor = 4. * atan(1.) / 180.;
             efSet(mAY_rbv_mon);         /* Force calculation first time through  */
@@ -170,44 +165,46 @@ ss NewportTable {
             efClear(pmRZ_move_mon);
             efClear(pmT_AX_move_mon);
             efClear(pmT_AY_move_mon);
+if (newport_tableDebug) printf("state 1, mAY_rbv==%f\n", mAY_rbv);
         } state monitor_changes
   }
 
 /*** 2. monitor changes ***/
   state monitor_changes {
-        /*** 2.1. drive a psuedo motor ***/
+        /*** 2.1. drive a pseudo motor ***/
         when(efTestAndClear(pmAX_move_mon) || 
              efTestAndClear(pmAY_move_mon) ||
              efTestAndClear(pmAZ_move_mon) ||
              efTestAndClear(pmRX_move_mon) ||
-		     efTestAndClear(pmRY_move_mon) ||
-		     efTestAndClear(pmRZ_move_mon) ||
-		     efTestAndClear(pmT_AX_move_mon) ||
-		     efTestAndClear(pmT_AY_move_mon) ) {
-             /* do the foreward calc and drive real motors  */
+             efTestAndClear(pmRY_move_mon) ||
+             efTestAndClear(pmRZ_move_mon) ||
+             efTestAndClear(pmT_AX_move_mon) ||
+             efTestAndClear(pmT_AY_move_mon) ) {
+            /* do the foreward calc and drive real motors  */
+if (newport_tableDebug) printf("state 2.1\n");
             
             /* calc the target point */
             T_AX =  pmT_AX_drive*dtor;
             T_AY =  pmT_AY_drive*dtor;  
-		    vR[0] = pmRX_drive;
- 		    vR[1] = pmRY_drive;
-		    vR[2] = pmRZ_drive;       
+            vR[0] = pmRX_drive;
+             vR[1] = pmRY_drive;
+            vR[2] = pmRZ_drive;       
             calc_target_point(vR, vD0, T_AX, T_AY, d1, d2, &vT[0]);
 
             /* calc the real motor positions */
             AX = pmAX_drive*dtor;
             AY = pmAY_drive*dtor;
             AZ = pmAZ_drive*dtor;
-            motor_from_psuedo(lx, lz, vD0, vT, AX, AY, AZ, T_AX, T_AY,d1,d2,
-				              &mAY, &mBY, &mCY, &mAX, &mBZ, &vD[0],
-				              &vDel[0],&del_r,&del_angle);
+            motor_from_pseudo(lx, lz, vD0, vT, AX, AY, AZ, T_AX, T_AY,d1,d2,
+                              &mAY, &mBY, &mCY, &mAX, &mBZ, &vD[0],
+                              &vDel[0],&del_r,&del_angle);
 
             /* drive the real motors */
             mAY_drive = mAY;   pvPut(mAY_drive);
-		    mBY_drive = mBY;   pvPut(mBY_drive);
-		    mCY_drive = mCY;   pvPut(mCY_drive);
-		    mAX_drive = mAX;   pvPut(mAX_drive);
-		    mBZ_drive = mBZ;   pvPut(mBZ_drive); 
+            mBY_drive = mBY;   pvPut(mBY_drive);
+            mCY_drive = mCY;   pvPut(mCY_drive);
+            mAX_drive = mAX;   pvPut(mAX_drive);
+            mBZ_drive = mBZ;   pvPut(mBZ_drive); 
             
             /* also update these diagnostic pvs' 
                note when calc here these are based on the 
@@ -231,41 +228,27 @@ ss NewportTable {
              efTestAndClear(vD0_mon)     ||
              efTestAndClear(d1_mon)      ||  
              efTestAndClear(d2_mon)) {
-            /* Update the psuedo-motor drive fields */
-
-            /* Put pseudomotors in "set" mode so we don't actually move anything */
-            pmAX_set = 1;   pvPut(pmAX_set);
-            pmAY_set = 1;   pvPut(pmAY_set);
-            pmAZ_set = 1;   pvPut(pmAZ_set);
-            pmRX_set = 1;   pvPut(pmRX_set);
-            pmRY_set = 1;   pvPut(pmRY_set);
-            pmRZ_set = 1;   pvPut(pmRZ_set);
-            pmT_AX_set = 1; pvPut(pmT_AX_set);
-            pmT_AY_set = 1; pvPut(pmT_AX_set);
+            /* Update the pseudo-motor drive fields */
+if (newport_tableDebug) printf("state 2.2\n");
 
             /* recalc the target point */
             T_AX =  pmT_AX_drive*dtor;
             T_AY =  pmT_AY_drive*dtor;  
-		    vR[0] = pmRX_drive;
- 		    vR[1] = pmRY_drive;
-		    vR[2] = pmRZ_drive; 
+            vR[0] = pmRX_drive;
+             vR[1] = pmRY_drive;
+            vR[2] = pmRZ_drive; 
             calc_target_point(vR, vD0, T_AX, T_AY, d1, d2, &vT[0]);
             
-            /* recalc the psuedo motor positions */
+            /* recalc the pseudo motor positions */
             mAY = mAY_drive;
-		    mBY = mBY_drive;
-		    mCY = mCY_drive;
-		    mAX = mAX_drive;
-		    mBZ = mBZ_drive;
-		    psuedo_from_motor(lx, lz, vD0, vT,&AX, &AY, &AZ, T_AX, T_AY,d1, d2,
-				              mAY, mBY, mCY, mAX, mBZ, &vD[0], &vDel[0],
-				              &del_r,&del_angle);
+            mBY = mBY_drive;
+            mCY = mCY_drive;
+            mAX = mAX_drive;
+            mBZ = mBZ_drive;
+            pseudo_from_motor(lx, lz, vD0, vT,&AX, &AY, &AZ, T_AX, T_AY,d1, d2,
+                              mAY, mBY, mCY, mAX, mBZ, &vD[0], &vDel[0],
+                              &del_r,&del_angle);
 
-		    pmAX_drive = AX/dtor;  pvPut(pmAX_drive);
- 		    pmAY_drive = AY/dtor;  pvPut(pmAY_drive);
-		    pmAZ_drive = AZ/dtor;  pvPut(pmAZ_drive);
-
-            
             /* also update these diagnostic pvs' 
                note when calc here these are based on the 
                drive values, not the rbvs !!!! */
@@ -278,17 +261,7 @@ ss NewportTable {
             TY = vT[1]; pvPut(TY);
             TZ = vT[2]; pvPut(TZ);
 
-            /* Put pseudomotors back in "use" mode */
-            pmAX_set = 0;   pvPut(pmAX_set);
-            pmAY_set = 0;   pvPut(pmAY_set);
-            pmAZ_set = 0;   pvPut(pmAZ_set);
-            pmRX_set = 0;   pvPut(pmRX_set);
-            pmRY_set = 0;   pvPut(pmRY_set);
-            pmRZ_set = 0;   pvPut(pmRZ_set);
-            pmT_AX_set = 0; pvPut(pmT_AX_set);
-            pmT_AY_set = 0; pvPut(pmT_AX_set);
-
-        } state update_readbacks  /* call #3 to get psuedo-motor rbv's correct */
+        } state update_readbacks  /* call #3 to get pseudo-motor rbv's correct */
 
         /*** 2.3. A real motor readback val has changed ***/
         when(efTestAndClear(mAY_rbv_mon) || 
@@ -296,34 +269,36 @@ ss NewportTable {
              efTestAndClear(mCY_rbv_mon) ||
              efTestAndClear(mAX_rbv_mon) || 
              efTestAndClear(mBZ_rbv_mon)) {
-             /* Update psuedo motor readbacks by calling #3 */
+             /* Update pseudo motor readbacks by calling #3 */
+if (newport_tableDebug) printf("state 2.3\n");
         } state update_readbacks
  
         /*** 2.4. Put the table on the ray with no angle changes ***/           
         when(trans_flag == 1) {
+if (newport_tableDebug) printf("state 2.4\n");
 
             /* recalc the target point */
             T_AX =  pmT_AX_drive*dtor;
             T_AY =  pmT_AY_drive*dtor;  
-		    vR[0] = pmRX_drive;
- 		    vR[1] = pmRY_drive;
-		    vR[2] = pmRZ_drive;
+            vR[0] = pmRX_drive;
+             vR[1] = pmRY_drive;
+            vR[2] = pmRZ_drive;
             calc_target_point(vR, vD0, T_AX, T_AY, d1, d2, &vT[0]);
 
             /* recalc the real-motor positions */
             AX = pmAX_drive*dtor;
             AY = pmAY_drive*dtor;
             AZ = pmAZ_drive*dtor;
-            motor_from_psuedo(lx, lz, vD0, vT, AX, AY, AZ, T_AX, T_AY,d1,d2,
-				              &mAY, &mBY, &mCY, &mAX, &mBZ, &vD[0],
-				              &vDel[0],&del_r,&del_angle);
+            motor_from_pseudo(lx, lz, vD0, vT, AX, AY, AZ, T_AX, T_AY,d1,d2,
+                              &mAY, &mBY, &mCY, &mAX, &mBZ, &vD[0],
+                              &vDel[0],&del_r,&del_angle);
 
             /* drive the real motors */
             mAY_drive = mAY;  pvPut(mAY_drive); 
-		    mBY_drive = mBY;  pvPut(mBY_drive); 
-		    mCY_drive = mCY;  pvPut(mCY_drive);
-		    mAX_drive = mAX;  pvPut(mAX_drive);
-		    mBZ_drive = mBZ;  pvPut(mBZ_drive);
+            mBY_drive = mBY;  pvPut(mBY_drive); 
+            mCY_drive = mCY;  pvPut(mCY_drive);
+            mAX_drive = mAX;  pvPut(mAX_drive);
+            mBZ_drive = mBZ;  pvPut(mBZ_drive);
 
           /* also update these diagnostic pvs' 
              note when calc here these are based on the 
@@ -345,37 +320,38 @@ ss NewportTable {
 /*** 3. update readbacks ***/
   state update_readbacks {
         when () {
+if (newport_tableDebug) printf("state 3\n");
          /* Something has changed which requires 
-            recomputing psuedomotor readback positions */
+            recomputing pseudomotor readback positions */
 
             /* recalc the target point */
             T_AX  = pmT_AX_drive*dtor;
             T_AY  = pmT_AY_drive*dtor;  
-		    vR[0] = pmRX_drive;
- 		    vR[1] = pmRY_drive;
-		    vR[2] = pmRZ_drive; 
+            vR[0] = pmRX_drive;
+             vR[1] = pmRY_drive;
+            vR[2] = pmRZ_drive; 
             calc_target_point(vR, vD0, T_AX, T_AY, d1, d2, &vT[0]);
 
-            /* recalc the psuedo-motor positions */
+            /* recalc the pseudo-motor positions */
             mAY = mAY_rbv;
-		    mBY = mBY_rbv;
-		    mCY = mCY_rbv;
-		    mAX = mAX_rbv;
-		    mBZ = mBZ_rbv;
-		    psuedo_from_motor(lx, lz, vD0, vT,&AX, &AY, &AZ, T_AX, T_AY,d1,d2,
-				              mAY, mBY, mCY, mAX, mBZ, &vD[0], &vDel[0],
-				              &del_r,&del_angle);
+            mBY = mBY_rbv;
+            mCY = mCY_rbv;
+            mAX = mAX_rbv;
+            mBZ = mBZ_rbv;
+            pseudo_from_motor(lx, lz, vD0, vT,&AX, &AY, &AZ, T_AX, T_AY,d1,d2,
+                              mAY, mBY, mCY, mAX, mBZ, &vD[0], &vDel[0],
+                              &del_r,&del_angle);
 
             /* update rbvs of table angles */
-		    pmAX_rbv = AX/dtor;  pvPut(pmAX_rbv);
- 		    pmAY_rbv = AY/dtor;  pvPut(pmAY_rbv);
-		    pmAZ_rbv = AZ/dtor;  pvPut(pmAZ_rbv);
+            pmAX_rbv = AX/dtor;  pvPut(pmAX_rbv);
+             pmAY_rbv = AY/dtor;  pvPut(pmAY_rbv);
+            pmAZ_rbv = AZ/dtor;  pvPut(pmAZ_rbv);
 
             /* update rbvs of the ray */
             /* note that these rbv's are same as drive vals */ 
             pmT_AX_rbv = T_AX / dtor;  pvPut(pmT_AX_rbv);
             pmT_AY_rbv = T_AY / dtor;  pvPut(pmT_AY_rbv);
-		    pmRX_rbv = vR[0];          pvPut(pmRX_rbv);
+            pmRX_rbv = vR[0];          pvPut(pmRX_rbv);
             pmRY_rbv = vR[1];          pvPut(pmRY_rbv);
             pmRZ_rbv = vR[2];          pvPut(pmRZ_rbv); 
  
