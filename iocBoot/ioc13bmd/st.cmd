@@ -12,30 +12,22 @@ cd startup
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
-# This IOC loads the MPF server code locally
-< st_mpfserver.cmd
-
-icbDebug=10
+< industryPack.cmd
+< serial.cmd
 
 # Load database
 dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0")
-# Load asyn records on all ports
-dbLoadTemplate("asynRecord.template")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,C=0,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,C=0,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A2,C=0,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A3,C=0,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,C=0,PORT=serial7")
-dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,C=0,PORT=serial8")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,C=0,PORT=serial9")
-dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,C=0,PORT=serial10")
 dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
 dbLoadTemplate "DAC.template"
 dbLoadTemplate "heater_control.template"
 dbLoadTemplate "LVP_furnace_control.template"
-dbLoadTemplate "LVP_pressure_control.template"
 dbLoadTemplate "motors.template"
+
+# MAR345 shutter
+str=malloc(256)
+strcpy(str,"P=13BMD:,R=MAR345,IN=13BMD:UnidigBi14,")
+strcat(str,"OUT=13BMD:filter1sendCommand.VAL")
+dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter_serial.db",str)
 
 # Acromag Ip330 ADC
 dbLoadTemplate "Ip330_ADC.template"
@@ -43,46 +35,48 @@ dbLoadTemplate "Ip330_ADC.template"
 # IP-Unidig binary I/O
 dbLoadTemplate "IpUnidig.template"
 
-# SMART detector database
-str=malloc(256)
-strcpy(str,"P=13BMD:,R=smart1,C=0,PORT=serial6,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db",str)
-
 # CCD synchronization record
 dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
 
 # Multichannel analyzer stuff
-# AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
-#           maxSignals, maxSequences, ethernetDevice, queueSize)
-AIMConfig("NI9CE/1", 0x9CE, 1, 2048, 1, 1,"dc0", 40)
-AIMConfig("NI9CE/2", 0x9CE, 2, 2048, 4, 1,"dc0", 40)
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @NI9CE/1,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYPE=MPF MCA,INP=#C0 S0 @NI9CE/2,NCHAN=2048")
-icbSetup("icb/1", 10, 100)
-icbConfig("icb/1", 0, 0x9ce, 5)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
-icbConfig("icb/1", 1, 0x9ce, 3)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
-icbConfig("icb/1", 2, 0x9ce, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
-
+# AIMConfig(portName, card, ethernet_address, port, maxChans,
+#           maxSignals, maxSequences, ethernetDevice)
+AIMConfig("NI9CE/1", 0x9CE, 1, 2048, 1, 1,"dc0")
+AIMConfig("NI9CE/2", 0x9CE, 2, 2048, 4, 1,"dc0")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=2048")
+#icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
+#   portName to give to this asyn port
+#   ethernetAddress - Ethernet address of module, low order 16 bits
+#   icbAddress - rotary switch setting inside ICB module
+#   moduleType
+#      0 = ADC
+#      1 = Amplifier
+#      2 = HVPS
+#      3 = TCA
+#      4 = DSP
+icbConfig("icbAdc1", 0x9ce, 5, 0)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,PORT=icbAdc1")
+icbConfig("icbAmp1", 0x9ce, 3, 1)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,PORT=icbAmp1")
+icbConfig("icbHvps1", 0x9ce, 2, 2)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 # Set up Struck multichannel scaler
 #STR7201Setup(1,0xA0000000,220,6)
 #STR7201Config(0, 4, 2048)
-#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mca_str1,DTYPE=Struck STR7201 MCS,NCHAN=1024,INP=#C0 S0")
+#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mca_str1,DTYP=Struck STR7201 MCS,NCHAN=1024,INP=#C0 S0")
 
 # IP-330 ADC with MCA record as transient recorder
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S0 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S1 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S2 @Ip330Sweep1")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYPE=MPF MCA,NCHAN=2048,INP=#C0 S3 @Ip330Sweep1")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_40.db) are in std/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13BMD:")
+dbLoadRecords("$(STD)/stdApp/Db/all_com_64.db","P=13BMD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -108,9 +102,9 @@ dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
-set_pass0_restoreFile("auto_positions.sav")
-set_pass0_restoreFile("auto_settings.sav")
-set_pass1_restoreFile("auto_settings.sav")
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13BMD:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -130,10 +124,6 @@ VSCSetup(1, 0xB0000000, 200)
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
-# Link to GPIB server.  Do this just before iocInit, since it waits for MPF
-# server to connect
-#HiDEOSGpibLinkConfig(10,1,"GPIB0")
-
 iocInit
 
 ### Start up the autosave task and tell it what to do.
@@ -141,7 +131,6 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
-< ../requestFileCommands
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
