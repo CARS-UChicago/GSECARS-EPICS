@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13BMD_xasstat.adl"
+	name="/home/epics/synApps5-1/CARS/CARSApp/op/adl/13BMD_xasstat.adl"
 	version=030000
 }
 display {
 	object {
-		x=416
-		y=397
-		width=577
-		height=57
+		x=498
+		y=680
+		width=580
+		height=75
 	}
 	clr=12
 	bclr=0
@@ -449,4 +449,137 @@ text {
 	}
 	textix="/"
 	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=72
+		y=56
+		width=60
+		height=16
+	}
+	monitor {
+		chan="13BMD:scaler1.S2"
+		clr=14
+		bclr=0
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=8
+		y=56
+		width=60
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="I0 / I1"
+}
+"text update" {
+	object {
+		x=136
+		y=56
+		width=60
+		height=16
+	}
+	monitor {
+		chan="13BMD:scaler1.S3"
+		clr=14
+		bclr=0
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=216
+		y=56
+		width=40
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="GE2"
+}
+"text update" {
+	object {
+		x=368
+		y=56
+		width=50
+		height=16
+	}
+	monitor {
+		chan="13GE2:med:ElapsedReal"
+		clr=14
+		bclr=0
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=248
+		y=56
+		width=30
+		height=16
+	}
+	"basic attribute" {
+		clr=63
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13GE2:med:Acquiring"
+	}
+	textix="On"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=296
+		y=56
+		width=80
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="RealTime"
+}
+"text update" {
+	object {
+		x=528
+		y=56
+		width=48
+		height=16
+	}
+	monitor {
+		chan="13GE2:med:DeadTime"
+		clr=14
+		bclr=0
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=440
+		y=56
+		width=80
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="% Dead Time"
 }
