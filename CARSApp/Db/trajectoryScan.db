@@ -24,6 +24,11 @@
 #   $(BAUD)     - Baud rate for the serial port
 #                 Note: the MM4005 is assumed to be configured with 8 data bits,
 #                 1 stop bit, no parity.
+#
+#  Modifications:
+#  5-Jun-2002    Mark Rivers  Increased TMOT field of StringOutIn record from 5000 to
+#                             20000, it was timing out when # trajectory elements exceeded
+#                             about 64. Should make it to about 250 now.
 
 #
 # PVs controlling the number of trajectory elements and the number of output
@@ -757,5 +762,5 @@ grecord(serial, "$(P)$(R)StringOutIn") {
         field(PRTY,"None")
         field(DBIT,"8")
         field(SBIT,"1")
-        field(TMOT,"5000")
+        field(TMOT,"20000")
 }
