@@ -17,7 +17,6 @@ CARS_SRCS_vxWorks  += drvAvme9210.c
 #CARS_SRCS += devLib.c
 #CARS_SRCS += iVecShow.c
 #CARS_SRCS += ppcveclist.c
-#CARS_SRCS += seq_test.st
 CARS_SRCS += coordTrans2D.st
 CARS_SRCS += BMD_LVP_Detector.st
 CARS_SRCS += IDD_LVP_Detector.st
@@ -77,14 +76,14 @@ CARSApp_vxWorks_LIBS += ipUnidig
 CARSApp_vxWorks_LIBS += dac128V
 CARSApp_vxWorks_LIBS += quadEM
 CARSApp_vxWorks_LIBS += camac devCamac
-CARSApp_vxWorks_LIBS += dxp xerxes
+CARSApp_vxWorks_LIBS += dxp handel
 CARSApp_vxWorks_LIBS += oms
 CARSApp_vxWorks_LIBS += TyGSOctal Ipac
 CARSApp_vxWorks_LIBS += vxStats
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARSApp_Linux_LIBS += dxp xerxes
+CARSApp_Linux_LIBS += dxp handel
 CARSApp_Linux_LIBS += mcaCanberra
 
 CARSApp_LIBS_DEFAULT = $(CARSApp_Common_LIBS)
