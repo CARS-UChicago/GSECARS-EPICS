@@ -1,0 +1,10 @@
+file "$(STD)/stdApp/Db/pid_control.db"
+{
+pattern
+{P,                   PID,               INP,                       OUT, LOPR,   HOPR,  DRVL, DRVH,  PREC,    KP,   KI,   KD,         SCAN}
+# This is the vertical mirror feedback
+{13IDA:,  vert_mirror_pid, 13IDC:vert_mirror_pid_incalc.P, 13IDA:DAC1_5,    0,      10,    0,   10,     3,   0.2,   3.,   0.,  ".1 second"}
+
+# This is the horizontail mirror feedback
+{13IDA:,  hor_mirror_pid, 13IDC:hor_mirror_pid_incalc.P,   13IDA:DAC1_6,    0,      10,    0,   10,     3,   0.2,   3.,   0.,  ".1 second"}
+}
