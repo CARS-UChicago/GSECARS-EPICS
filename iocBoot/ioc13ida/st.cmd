@@ -51,6 +51,9 @@ dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med_FFT.db", "P=13IDA:quadEM_FFT:,N
 # Monochromator PID
 dbLoadTemplate("mono_pid.template")
 
+# Large KB Mirror PID
+dbLoadTemplate("mirror_pid.template")
+
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in std/stdApp/Db
