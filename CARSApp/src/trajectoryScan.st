@@ -846,10 +846,10 @@ static int writeRead(SS_ID ssId, struct UserVar *pVar, char *command)
     /* Copy command so we can add terminator */
     strncpy(buffer, command, MAX_MM4000_STRING-3);
     strcat(buffer, "\r");
-    /* Use 10 second timeout */
+    /* Use 30 second timeout, some commands take a long time to reply */
     status = pasynOctetSyncIO->writeRead((asynUser *)pVar->pasynUser, buffer,
                                strlen(buffer), pVar->stringIn, MAX_MM4000_STRING, 
-                               10.0, &nwrite, &nread, &eomReason);
+                               30.0, &nwrite, &nread, &eomReason);
     return(status);
 }
 
