@@ -1,14 +1,13 @@
-
 file {
-	name="i:\epics\synApps5-1\CARS\CARSApp\op\adl\13Lab.adl"
-	version=030003
+	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13Lab.adl"
+	version=030000
 }
 display {
 	object {
-		x=547
-		y=43
+		x=148
+		y=32
 		width=370
-		height=585
+		height=590
 	}
 	clr=14
 	bclr=4
@@ -291,43 +290,29 @@ text {
 		height=24
 	}
 	display[0] {
-		label="Test motors"
+		label="OMS motors 1-8"
 		name="8motors.adl"
-		args="P=13LAB:, TITLE=Test Motors, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m7, M8=m8"
+		args="P=13LAB:, TITLE=OMS_motors_1-8, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m7, M8=m8"
 	}
 	display[1] {
-		label="Vertical Focusing K/B Mirror"
-		name="4motors.adl"
-		args="P=13LAB:, TITLE=Vertical Focusing Mirror, M1=m9, M2=m10, M3=m11, M4=m12"
+		label="OMS motors 9-16"
+		name="8motors.adl"
+		args="P=13LAB:, TITLE=OMS_motors_9-16, M1=m9, M2=m10, M3=m11, M4=m12, M5=m13, M6=m14, M7=m15, M8=m16"
 	}
 	display[2] {
-		label="Horizontal Focusing K/B Mirror"
+		label="MCB4B motors"
 		name="4motors.adl"
-		args="P=13LAB:, TITLE=Horizontal Focusing Mirror, M1=m13, M2=m14, M3=m15, M4=m16"
+		args="P=13LAB:, TITLE=MCB4B_motors, M1=m17, M2=m18, M3=m19, M4=m20"
 	}
 	display[3] {
 		label="MM4000 motors"
 		name="3motors.adl"
-		args="P=13LAB:, TITLE=MM4000 motors, M1=m21, M2=m22, M3=m23"
+		args="P=13LAB:, TITLE=MM4000_motors, M1=m21, M2=m22, M3=m23"
 	}
 	display[4] {
 		label="Test pseudomotors"
 		name="8motors.adl"
 		args="P=13LAB:, TITLE=Pseudo, M1=m5, M2=m6, M3=m7, M4=m8, M5=pm1, M6=pm2, M7=pm3, M8=pm4"
-	}
-	display[5] {
-		label="MCB4B motors"
-		name="4motors.adl"
-		args="P=13LAB:, TITLE=MCB4B_Motors, M1=m17, M2=m18, M3=m19, M4=m20"
-	}
-	display[6] {
-		label="Test Newport Table"
-		name="T2_newport_table.adl"
-	}
-	display[7] {
-		label="Mono Cage (compound)"
-		name="table.adl"
-		args="P=13LAB:, Q=MON:T1, T=MON:t1, M0X=junk, M0Y=m2, M1Y=m1, M2X=junk, M2Y=m3, M2Z=m5"
 	}
 	clr=14
 	bclr=4
@@ -487,6 +472,11 @@ text {
 		label="Roper CCD"
 		name="ccd.adl"
 		args="P=13LAB:, C=ccd1"
+	}
+	display[4] {
+		label="Verdi Laser"
+		name="VerdiLaser.adl"
+		args="P=13LAB:, R=Verdi1:"
 	}
 	clr=14
 	bclr=4
@@ -963,7 +953,7 @@ text {
 	object {
 		x=11
 		y=556
-		width=74
+		width=75
 		height=24
 	}
 	display[0] {
@@ -971,18 +961,23 @@ text {
 		name="IOC_Status.adl"
 		args="P=13LAB:"
 	}
+	display[1] {
+		label="Save/restore status"
+		name="save_restoreStatus_more.adl"
+		args="P=13LAB:"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=90
+		x=91
 		y=556
-		width=180
+		width=100
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="vxWorks statistics"
+	textix="IOC status"
 }
