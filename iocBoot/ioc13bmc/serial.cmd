@@ -1,13 +1,13 @@
 # int tyGSAsynInit(char *port, int uart, int channel, int baud, char parity, int sbits,
 #                 int dbits, char handshake, char *eomstr)
-tyGSAsynInit("serial1",  0, 0,19200,'N',1,8,'N',"")  /* Keithley */
-tyGSAsynInit("serial2",  0, 1, 9600,'N',2,8,'N',"")  /* SRS 570 */
-tyGSAsynInit("serial3",  0, 2, 9600,'N',2,8,'N',"")  /* SRS 570 */
-tyGSAsynInit("serial4",  0, 3, 9600,'N',1,8,'N',"")  /* LAE500 */
-tyGSAsynInit("serial5",  0, 4, 9600,'N',1,8,'N',"")  /* Unused */
-tyGSAsynInit("serial6",  0, 5, 9600,'N',1,8,'N',"")  /* Unused */
-tyGSAsynInit("serial7",  0, 6, 9600,'N',2,8,'N',"")  /* Unused */
-tyGSAsynInit("serial8",  0, 7, 9600,'N',2,8,'N',"")  /* Unused */
+tyGSAsynInit("serial1", "UART0", 0,19200,'N',1,8,'N',"\n","\r")  /* Keithley */
+tyGSAsynInit("serial2", "UART0", 1, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
+tyGSAsynInit("serial3", "UART0", 2, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
+tyGSAsynInit("serial4", "UART0", 3, 9600,'N',1,8,'N',"\n","\n")  /* LAE500 */
+tyGSAsynInit("serial5", "UART0", 4, 9600,'N',1,8,'N',"\n","\n")  /* Unused */
+tyGSAsynInit("serial6", "UART0", 5, 9600,'N',1,8,'N',"\n","\n")  /* Unused */
+tyGSAsynInit("serial7", "UART0", 6, 9600,'N',2,8,'N',"\n","\n")  /* Unused */
+tyGSAsynInit("serial8", "UART0", 7, 9600,'N',2,8,'N',"\n","\n")  /* Unused */
 
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
