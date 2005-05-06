@@ -36,11 +36,6 @@ dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
 
 dbLoadTemplate("motors.template")
-# Digital to analog converter, used for Queensgate piezo drivers
-dbLoadTemplate("DAC.template")
-
-# ipUnidig digital I/O
-dbLoadTemplate("IpUnidig.template")
 
 #Quad electrometer
 dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.db", "P=13IDA:, EM=EM1, CARD=0, PORT=quadEM1")
@@ -88,20 +83,17 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA:")
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
 
+# Machine Status Link (MSL) board (MRD 100)
 #####################################################
-# dev32VmeConfig(card,a32base,nreg,iVector,iLevel)                 
-#    card    = card number                         
-#    a32base = base address of card               
-#    nreg    = number of A32 registers on this card
-#    iVector = interrupt vector (MRD100 Only !!)
-#    iLevel  = interrupt level  (MRD100 Only !!)
-#  For Example                                     
-#   devA32VmeConfig(0, 0x80000000, 44, 0, 0)             
+# devAvmeMRDConfig( base, vector, level )
+#    base   = base address of card
+#    vector = interrupt vector
+#    level  = interrupt level
+# For Example
+#    devAvmeMRDConfig(0xA0000200, 0xA0, 5)
 #####################################################
 #  Configure the MSL MRD 100 module.....
-# Changed base address to 0xb0000200 from 0xa0000200 to avoid conflict
-# with VPIC616 IP carrier
-devA32VmeConfig(0, 0xb0000200, 30, 0xa0, 5)
+devAvmeMRDConfig(0xB0000200, 0xA0, 5)
 
 # OMS VME58 driver setup parameters: 
 #     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
