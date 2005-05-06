@@ -1,25 +1,25 @@
-# int tyGSAsynInit(char *server, int uart, int channel, int baud, char parity, int sbits,
-#                 int dbits, char handshake, char *eomstr)
-tyGSAsynInit("serial1",  0, 0,  9600,'E',1,7,'N',"\r") /* Digitel */
-tyGSAsynInit("serial2",  0, 1, 19200,'E',1,8,'N',"\r")  /* MKS */
-tyGSAsynInit("serial3",  0, 2,  9600,'E',1,7,'N',"\r")  /* Digitel */
-tyGSAsynInit("serial4",  0, 3, 19200,'E',1,8,'N',"\r")  /* MKS */
-tyGSAsynInit("serial5",  0, 4, 19200,'E',1,8,'N',"\r")  /* MKS */
-tyGSAsynInit("serial6",  0, 5,  9600,'E',1,7,'N',"\r")  /* Digitel */
-tyGSAsynInit("serial7",  0, 6, 19200,'E',1,8,'N',"\r")  /* MKS */
-tyGSAsynInit("serial8",  0, 7,  9600,'E',1,7,'N',"\r")  /* Digitel */
-tyGSAsynInit("serial9",  1, 0,  9600,'E',1,7,'N',"\r")  /* McClennan */
-tyGSAsynInit("serial10", 1, 1, 19200,'N',1,8,'N',"\r")  /* Keithley 2000 */
-tyGSAsynInit("serial11", 1, 2,  9600,'N',1,8,'N',"\r")  /* MPC */
-tyGSAsynInit("serial12", 1, 3, 19200,'E',1,8,'N',"\r")  /* MKS */
-tyGSAsynInit("serial13", 1, 4, 19200,'N',1,8,'N',"\r")  /* Keithley 2000 */
-tyGSAsynInit("serial14", 1, 5,  9600,'N',1,8,'N',"\r")  /* Unused */
-tyGSAsynInit("serial15", 1, 6,  9600,'N',1,8,'N',"\r")  /* Unused */
-tyGSAsynInit("serial16", 1, 7,  9600,'N',1,8,'N',"\r")  /* Unused */
+# int tyGSAsynInit(char *port, int uart, int channel, int baud, char parity, int sbits,
+#                 int dbits, char handshake, char *inputEos, char *outputEos)
+tyGSAsynInit("serial1",  "UART0", 0,  9600,'E',1,7,'N',"",  "\r") /* Digitel */
+tyGSAsynInit("serial2",  "UART0", 1, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
+tyGSAsynInit("serial3",  "UART0", 2,  9600,'E',1,7,'N',"",  "\r")  /* Digitel */
+tyGSAsynInit("serial4",  "UART0", 3, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
+tyGSAsynInit("serial5",  "UART0", 4, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
+tyGSAsynInit("serial6",  "UART0", 5,  9600,'E',1,7,'N',"",  "\r")  /* Digitel */
+tyGSAsynInit("serial7",  "UART0", 6, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
+tyGSAsynInit("serial8",  "UART0", 7,  9600,'E',1,7,'N',"",  "\r")  /* Digitel */
+tyGSAsynInit("serial9",  "UART1", 0,  9600,'E',1,7,'N',"\r","\r")  /* McClennan */
+tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
+tyGSAsynInit("serial11", "UART1", 2,  9600,'N',1,8,'N',"\r","\r")  /* MPC */
+tyGSAsynInit("serial12", "UART1", 3, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
+tyGSAsynInit("serial13", "UART1", 4, 19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
+tyGSAsynInit("serial14", "UART1", 5,  9600,'N',1,8,'N',"\r","\r")  /* Unused */
+tyGSAsynInit("serial15", "UART1", 6,  9600,'N',1,8,'N',"\r","\r")  /* Unused */
+tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r","\r")  /* Unused */
 
-# Debug MPC
-#asynSetTraceMask("serial11",0,255)
-#asynSetTraceIOMask("serial11",0,2)
+# Debug MKS
+#asynSetTraceMask("serial2",0,255)
+#asynSetTraceIOMask("serial2",0,2)
 
 # Debug McClennan
 #asynSetTraceMask("serial9",0,9)
