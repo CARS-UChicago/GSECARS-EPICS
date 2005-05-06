@@ -3,8 +3,17 @@ ipacAddVIPC616_01("0x3400,0xa2000000")
 
 # Initialize Octal UART stuff
 tyGSOctalDrv 2
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 0, 3)
+# Initialize IP Octal modules.
+# ----------------------------
+# tyGSOctalModuleInit(char *moduleID, char *ModuleType, int irq_num,
+#                     char *carrier#, int slot#)
+#   moduleID   - assign the IP module a name for future reference. 
+#   ModuleType - "232", "422", or "485".
+#   irq_num    - interrupt request number.
+#   carrier#   - carrier# assigned from the ipacAddCarrierType() call.
+#   slot#      - slot number on carrier; slot[A,B,C,D] -> slot#[0,1,2,3].
+tyGSOctalModuleInit("UART0", "232", 0x80, 0, 0)
+tyGSOctalModuleInit("UART1", "232", 0x81, 0, 3)
 
 # DAC in first slot on second board
 # Initialize Systran DAC

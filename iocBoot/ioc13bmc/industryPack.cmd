@@ -1,7 +1,17 @@
 ipacAddVIPC616_01("0x3000,0xa0000000")
 
+# Initialize Octal UART stuff
 tyGSOctalDrv 1
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
+# Initialize IP Octal modules.
+# ----------------------------
+# tyGSOctalModuleInit(char *moduleID, char *ModuleType, int irq_num,
+#                     char *carrier#, int slot#)
+#   moduleID   - assign the IP module a name for future reference. 
+#   ModuleType - "232", "422", or "485".
+#   irq_num    - interrupt request number.
+#   carrier#   - carrier# assigned from the ipacAddCarrierType() call.
+#   slot#      - slot number on carrier; slot[A,B,C,D] -> slot#[0,1,2,3].
+tyGSOctalModuleInit("UART0", "232", 0x80, 0, 0)
 
 # Initialize Acromag IP-330 ADC
 # initIp330(
@@ -81,5 +91,5 @@ dbLoadTemplate("DAC.template")
 # risingMask  = mask of bits to generate interrupts on low to high (24 bits)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 3, 100, 116, 0xffffff, 0xffffff)
-dbLoadTemplate("IpUnidig.template")
+dbLoadTemplate("ipUnidig.substitutions")
 
