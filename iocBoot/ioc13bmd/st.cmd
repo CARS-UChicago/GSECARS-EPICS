@@ -35,10 +35,11 @@ dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter_serial.db",str)
 dbLoadTemplate "Ip330_ADC.template"
 
 # IP-Unidig binary I/O
-dbLoadTemplate "IpUnidig.template"
+dbLoadTemplate "ipUnidig.substitutions"
 
-# CCD synchronization record
-dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
+# CCD synchronization
+dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db","P=13BMD:,C=ccd1:")
+dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db","P=13BMD:,C=ccd2:")
 
 # Multichannel analyzer stuff
 # AIMConfig(portName, card, ethernet_address, port, maxChans,
@@ -149,6 +150,9 @@ seq &BMD_LVP_Detector, "P=13BMD:,PMT=pm4,PMR=pm3,X=m9,Y=m16,Z=m10,TV=m12,TH=m13"
 dbpf "13BMD:DAC1_1", "0."
 
 seq &smartControl, "P=13BMD:,R=smart1,TTH=m38,OMEGA=m38,PHI=m38,KAPPA=m38,SCALER=scaler1,I0=2,stack=10000"
+
+seq(&roperCCD,"P=13BMD:,C=ccd1:")
+seq(&roperCCD,"P=13BMD:,C=ccd2:")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
