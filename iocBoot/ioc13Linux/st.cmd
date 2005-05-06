@@ -8,21 +8,16 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 var aimDebug,0
 var icbDebug,0
 var dxpRecordDebug,0
-var mcaDXPServerDebug,0
-var devDxpMpfDebug,0
 var
 
-routerInit
-localMessageRouterStart(0)
-
 # Set up 2 local serial ports
-drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
-asynSetOption(serial1,0,baud,19200)
-drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
-asynSetOption(serial2,0,baud,38400)
+#drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
+#asynSetOption(serial1,0,baud,19200)
+#drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
+#asynSetOption(serial2,0,baud,38400)
 # Set up last 2 ports on Moxa box
-drvAsynTCPPortConfigure("serial3", "164.54.160.50:4003", 0, 0, 0)
-drvAsynTCPPortConfigure("serial4", "164.54.160.50:4004", 0, 0, 0)
+#drvAsynTCPPortConfigure("serial3", "164.54.160.50:4003", 0, 0, 0)
+#drvAsynTCPPortConfigure("serial4", "164.54.160.50:4004", 0, 0, 0)
 # Creat MPF servers on all of these
 initSerialServer("serial1", "serial1", 1000, 20, "")
 initSerialServer("serial2", "serial2", 1000, 20, "")
