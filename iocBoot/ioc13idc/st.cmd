@@ -62,7 +62,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
 ### Scalers: Struck/SIS as simple scaler 
 # Don't execute the next 2 lines if Struck8.cmd is loaded above
 #STR7201Setup(1,0xA0000000,220,6)
-#STR7201Config(0, 16, 100)
+#STR7201Config(0, 16, 100, 1, 1)
 dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13IDC:,S=scaler2,C=0")
 
 
@@ -166,6 +166,7 @@ seq(&trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m
 str=malloc(256)
 strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
 strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
+newport_tableDebug = 1
 seq(&newport_table, str)
 
 seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER=scaler2,I0=2,stack=10000")
