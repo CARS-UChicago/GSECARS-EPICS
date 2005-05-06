@@ -3,11 +3,22 @@ ipacAddVIPC616_01("0x3400,0xa2000000")
 
 ipacReport(2)
 
+# gsIP488Configure(char *portName, int carrier, int module, int vector,
+#                  unsigned int priority, int noAutoConnect)
 gsIP488Configure("gpib1",1,1,0x69,0,0) 
-     
+    
 tyGSOctalDrv 2
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 1, 2)
+# Initialize IP Octal modules.
+# ----------------------------
+# tyGSOctalModuleInit(char *moduleID, char *ModuleType, int irq_num,
+#                     char *carrier#, int slot#)
+#   moduleID   - assign the IP module a name for future reference. 
+#   ModuleType - "232", "422", or "485".
+#   irq_num    - interrupt request number.
+#   carrier#   - carrier# assigned from the ipacAddCarrierType() call.
+#   slot#      - slot number on carrier; slot[A,B,C,D] -> slot#[0,1,2,3].
+tyGSOctalModuleInit("UART0", "232", 0x80, 0, 0)
+tyGSOctalModuleInit("UART1", "232", 0x81, 1, 2)
 
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *portName, 
@@ -27,7 +38,7 @@ tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 1, 2)
 # risingMask  = mask of bits to generate interrupts on low to high (24 bits)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 1, 2000, 116, 0xfffffb, 0xfffffb)
-dbLoadTemplate "IpUnidig.template"
+dbLoadTemplate "ipUnidig.substitutions"
 
 # Initialize Systran DAC
 # initDAC128V(char *portName, int carrier, int slot)
@@ -77,7 +88,7 @@ initIp330("Ip330_1",0,2,"D","-10to10",0,15,120)
 # secondsBetweenCalibrate = number of seconds between calibration cycles.
 #               If zero then there will be no periodic calibration, but
 #               one calibration will still be done at initialization.
-configIp330("Ip330_1", 3,"Input",500,0)
+configIp330("Ip330_1", 3,"Input",1000,0)
 
 # int initFastSweep(char *portName, char *inputName, 
 #                   int maxSignals, int maxPoints)

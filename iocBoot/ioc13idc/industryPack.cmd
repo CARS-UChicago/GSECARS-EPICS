@@ -3,8 +3,8 @@ ipacAddVIPC616_01("0x3400,0xa2000000")
 
 # Initialize Octal UART stuff
 tyGSOctalDrv 2
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x80, 0, 0)
-tyGSOctalModuleInit("GSIP_OCTAL232", 0x81, 0, 1)
+tyGSOctalModuleInit("UART0", "232", 0x80, 0, 0)
+tyGSOctalModuleInit("UART1", "232", 0x81, 0, 1)
 
 # Initialize Acromag IP-330 ADC
 # Ip330 *initIp330(
@@ -71,13 +71,13 @@ dbLoadTemplate("Ip330_ADC.template")
 # portName  = name to give this asyn port
 # carrier     = IPAC carrier number (0, 1, etc.)
 # slot        = IPAC slot (0,1,2,3, etc.)
-# msecPoll    = polling time for input bits in msec.  Default=100.
+# msecPoll    = polling time for input bits in msec.
 # intVec      = interrupt vector
 # risingMask  = mask of bits to generate interrupts on low to high (24 bits)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 3, 100, 116, 0xffffff, 0xffffff)
 initIpUnidig("Unidig2", 1, 1, 100, 117, 0xffffff, 0xffffff)
-dbLoadTemplate("IpUnidig.template")
+dbLoadTemplate("ipUnidig.substitutions")
 
 # DAC in first slot on second board
 # Initialize Systran DAC
