@@ -1,19 +1,22 @@
-tyGSAsynInit("serial1",  0, 0,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial2",  0, 1,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial3",  0, 2,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial4",  0, 3,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial5",  0, 4, 19200,'N',1,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial6",  0, 5, 19200,'N',1,8,'N',"") /* Keithley 2000 */
-tyGSAsynInit("serial7",  0, 6,  9600,'N',2,8,'N',"") /* Unused */
-tyGSAsynInit("serial8",  0, 7, 19200,'N',1,8,'N',"") /* Keithley 2000 */
-tyGSAsynInit("serial9",  1, 0,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial10", 1, 1,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial11", 1, 2,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial12", 1, 3,  9600,'N',2,8,'N',"") /* SRS570 */
-tyGSAsynInit("serial13", 1, 4, 38400,'N',1,8,'N',"") /* MM4000 */
-tyGSAsynInit("serial14", 1, 5, 38400,'N',1,8,'N',"") /* MM4000 */
-tyGSAsynInit("serial15", 1, 6,  9600,'N',2,8,'N',"") /* Unused */
-tyGSAsynInit("serial16", 1, 7,  9600,'N',1,8,'N',"") /* SMART PC */
+# tyGSAsynInit(char *port, char *moduleName, int channel, int baud,
+#              char parity, int sbits, int dbits, char handshake,
+#              char *inputEos, char *outputEos)
+tyGSAsynInit("serial1", "UART0", 0,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial2", "UART0", 1,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial3", "UART0", 2,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial4", "UART0", 3,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial5", "UART0", 4, 19200,'N',1,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial6", "UART0", 5, 19200,'N',1,8,'N',"\r\n","\n") /* Keithley 2000 */
+tyGSAsynInit("serial7", "UART0", 6,  9600,'N',2,8,'N',"\r","\r") /* Unused */
+tyGSAsynInit("serial8", "UART0", 7, 19200,'N',1,8,'N',"\r\n","\n") /* Keithley 2000 */
+tyGSAsynInit("serial9", "UART1", 0,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial10","UART1", 1,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial11","UART1", 2,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial12","UART1", 3,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
+tyGSAsynInit("serial13","UART1", 4, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
+tyGSAsynInit("serial14","UART1", 5, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
+tyGSAsynInit("serial15","UART1", 6,  9600,'N',2,8,'N',"\r","\r") /* Unused */
+tyGSAsynInit("serial16","UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* SMART PC */
 
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
@@ -64,6 +67,6 @@ dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
 # Serial port 16 is for the SMART PC
 str=malloc(256)
 strcpy(str,"P=13IDC:,R=smart1,PORT=serial16,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
+strcat(str,"FSHUT=Unidig1Bo0,TRIG=Unidig1Bo1,SSHUT=Unidig1Bo2")
 dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db",str)
 
