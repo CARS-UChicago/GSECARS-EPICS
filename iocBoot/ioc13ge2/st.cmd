@@ -10,6 +10,9 @@ cd topbin
 ld < CARSApp.munch
 cd startup
 
+# Increase size of buffer for error logging from default 1256
+errlogInit(50000)
+
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARSApp
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
@@ -39,9 +42,11 @@ ksc2917_setup(1, 0xFF00, 0x00A0, 2)
 camacLibInit
 
 # Load the DXP stuff
+#< 1element.cmd
+#< 4element.cmd
+#< 8element.cmd
+#< 12element.cmd
 < 16element.cmd
-# <  4element.cmd
-# < 8element.cmd
 
 # Generic CAMAC record
 dbLoadRecords("$(CAMAC)/camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048")
@@ -109,8 +114,8 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE2:")
 dbLoadTemplate("vxStats.substitutions")
 
 < ../save_restore.cmd
-save_restoreSet_status_prefix("13LAB:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
+save_restoreSet_status_prefix("13GE2:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13GE2:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
@@ -119,16 +124,12 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
-#asynSetTraceMask "DXP1",0,255
+#asynSetTraceMask "DXP1",0,3
 
 iocInit
 
-#Reset the CAMAC crate - may not want to do this after things are all working
-#ext = 0
-#cdreg &ext, 0, 0, 1, 0
-#cccz ext
-
-
+# Wait 30 seconds for iocInit to complete so output does not get garbled
+taskDelay(1800)
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
@@ -137,9 +138,14 @@ iocInit
 < ../requestFileCommands
 #
 # save positions every five seconds
+# DISABLE SAVE RESTORE FOR NOW
 create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30)
+
+seq &dxpMED, "P=13GE2:med:, DXP=dxp, MCA=mca, N_DETECTORS=16"
+# Wait 5 seconds for iocInit to complete so output does not get garbled
+taskDelay(300)
 
 # Enable user string calcs and user transforms
 dbpf "13GE2:EnableUserTrans.PROC","1"
@@ -147,3 +153,8 @@ dbpf "13GE2:EnableUserSCalcs.PROC","1"
 
 # Free the memory we allocated at the beginning of this script
 free(mem)
+
+# This should not be needed, but for some reason output is being turned off by
+# iocInit
+xiaSetLogOutput("stdout")
+xiaSetLogLevel(4)
