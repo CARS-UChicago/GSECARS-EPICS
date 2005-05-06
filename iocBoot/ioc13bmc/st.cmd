@@ -109,26 +109,35 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 #     (6)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(4, 8, 0x4000, 190, 5, 10)
 
-# Newport XPS configuration
-# XPSC8Setup(cards, scan rate)
-#XPSC8Setup(1, 60)
+# cards (total controllers), scan rate
+XPSC8Setup(2, 60)
 
-# XPSC8Config(card, IP, PORT, number of axes)
-#XPSC8Config(0,"164.54.160.124",5001,6)
-#XPSC8Config(1,"164.54.160.131",5001,6)
+# card, IP, PORT, number of axes
+XPSC8Config(0,"164.54.160.124",5001,6)
+XPSC8Config(1,"164.54.160.131",5001,8)
 
-# XPSC8NameConfig(card,  axis, group, positioner)
-#XPSC8NameConfig(0,0,"GROUP1","GROUP1.PHI")
-#XPSC8NameConfig(0,1,"GROUP2","GROUP2.KAPPA")
-#XPSC8NameConfig(0,2,"GROUP3","GROUP3.OMEGA")
-#XPSC8NameConfig(0,3,"GROUP4","GROUP4.PSI")
-#XPSC8NameConfig(0,4,"GROUP5","GROUP5.2THETA")
-#XPSC8NameConfig(0,5,"GROUP6","GROUP6.NU")
+# card,  axis, group, positioner
+XPSC8NameConfig(0,0,"GROUP1","GROUP1.PHI")
+XPSC8NameConfig(0,1,"GROUP2","GROUP2.KAPPA")
+XPSC8NameConfig(0,2,"GROUP3","GROUP3.OMEGA")
+XPSC8NameConfig(0,3,"GROUP4","GROUP4.PSI")
+XPSC8NameConfig(0,4,"GROUP5","GROUP5.2THETA")
+XPSC8NameConfig(0,5,"GROUP6","GROUP6.NU")
+
+# card,  axis, group, positioner
+XPSC8NameConfig(1,0,"GROUP1","GROUP1.Y1_BASE")
+XPSC8NameConfig(1,1,"GROUP2","GROUP2.Y2_BASE")
+XPSC8NameConfig(1,2,"GROUP3","GROUP3.Y3_BASE")
+XPSC8NameConfig(1,3,"GROUP4","GROUP4.TRX_BASE")
+XPSC8NameConfig(1,4,"GROUP5","GROUP5.THETA-Y_BASE")
+XPSC8NameConfig(1,5,"GROUP6","GROUP6.X_SAMPLE")
+XPSC8NameConfig(1,6,"GROUP7","GROUP7.Y_SAMPLE")
+XPSC8NameConfig(1,7,"GROUP8","GROUP8.Z_SAMPLE")
 
 # Set the debug variables which are now available to the shell
-#motorRecordDebug = 0
-#devXPSC8Debug = 0
-#drvXPSC8Debug = 0
+motorRecordDebug = 0
+devXPSC8Debug = 0
+drvXPSC8Debug = 0
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
