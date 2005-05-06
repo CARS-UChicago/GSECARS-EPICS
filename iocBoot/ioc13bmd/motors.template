@@ -72,8 +72,8 @@ pattern
 #This is the definition when using the Huber jack for Y on tomography or diffraction
 {13BMD:,  m25, "OMS VME58",   3,  0,  "Sample Y",         mm,    Pos,   0.2,  0.03,  .5,    0,      1,     .2,     400,    -.02,   3,      40,     0}
 # LVP Front Slits 15-Sept-2003 TU
-{13BMD:,  m26, "OMS VME58",   3,  1,  "Vert. slit Y pos.",  mm,   Pos,   0.5,   .1,    .05,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
-{13BMD:,  m27, "OMS VME58",   3,  2,  "Hori. slit X Pos.",  mm,   Neg,   1.0,   .2,    .05,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
+{13BMD:,  m26, "OMS VME58",   3,  1,  "Vert. slit Y pos.",  mm,   Pos,   0.5,   .1,    1.0,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
+{13BMD:,  m27, "OMS VME58",   3,  2,  "Hori. slit X Pos.",  mm,   Neg,   1.0,   .2,    1.0,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
 # This is for the sample twirler for some tomography
 {13BMD:,  m28, "OMS VME58",   3,  3, "Sample Twirl",      rev,   Pos,   .5,   .03,    3.,    0,      1,     .2,     400,     0.02778,  3,     1e9,   -1e9}
 
@@ -147,13 +147,13 @@ pattern
 # LVP CCD camera stage 15-Sept-2003 TU
 # DDIA diff RAMS, 17-Nov-2003 YW
 # Hi-P Tomo Rotations, 19-Jul-2004 YW
-{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
-{13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio
 # Added planetary gear heads, gear ratio 10:1, UREV(new) = UREV(old)/10, 08-June-2004 YBW
-{13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
-{13BMD:,  m61, "OMS VME58",  7,  4, "DIFF RAM Top",     mm,    Pos,   0.3,  0,  0.5,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
+{13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.1,  0,  1.0,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
+{13BMD:,  m61, "OMS VME58",  7,  4, "DIFF RAM Top",     mm,    Pos,   0.1,  0,  1.0,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
 {13BMD:,  m62, "OMS VME58",  7,  5, "Tomo Top",    deg,    Pos, 0.001,    0.001,  0.001,  0,   1, .2, 400,   0.001828,  6,  0,    0}
 # Hi-P Tomo rotation: 10:1 right angle gear; 260/80 coupling gear; 160:1 HarmonicDrive, total 5200:1. Angle=360/5200=0.069231 deg/motor rev
 {13BMD:,  m63, "OMS VME58",  7,  6, "Top Rot., deg.",    deg,    Pos, 0.05,    0.05,  0.05,  0,   1, .2, 400,   0.069231,  3,  0,    0}
@@ -243,7 +243,7 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
 }
 
-file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -254,7 +254,7 @@ pattern
 {13BMD:,  pm4, "13BMD:pm3Done   NPP NMS", "13BMD:pm4Move     PP MS", "13BMD:pm4Readback     NPP NMS", "13BMD:pm3Stop   PP MS", "Compound Two-theta",        deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
 }
 
-file "$(CARS)/CARSApp/Db/coordTrans2D.db"
+file "$(MOTOR)/motorApp/Db/coordTrans2D.db"
 {
 pattern
 {P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
@@ -263,7 +263,7 @@ pattern
 
 #<--
 #    KB mirror setup of pseudomotors  11-Sept-2000
-file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -273,7 +273,7 @@ pattern
 {13BMD:,  pm7, "13BMD:KBV:Done NPP NMS", "13BMD:pm7DVAL.VAL PP MS", "13BMD:KBV:Readback.G NPP NMS", "13BMD:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
 {13BMD:,  pm8, "13BMD:KBV:Done NPP NMS", "13BMD:pm8DVAL.VAL PP MS", "13BMD:KBV:Readback.H NPP NMS", "13BMD:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
 }
-file "$(CARS)/CARSApp/Db/sumDiff2D.db"
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -283,7 +283,7 @@ pattern
 #-->
 
 #  pseudomotors for LVP tomo
-file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,                        DESC,           EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,  RRES,   PREC, DHLM, DLLM}
@@ -291,7 +291,7 @@ pattern
 {13BMD:,  pm9,  "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm9DVAL.VAL PP MS",  "13BMD:LVPtomo:Readback.G NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Tomo Mode, deg.",     deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .000173,   1.0,  3,    10000, -10000}
 {13BMD:,  pm10, "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm10DVAL.VAL PP MS", "13BMD:LVPtomo:Readback.H NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Twist Mode, deg.",    deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .000173,   1.0,  3,    10000, -10000}
 }
-file "$(CARS)/CARSApp/Db/sumDiff2D.db"
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,         SUM, DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -299,7 +299,7 @@ pattern
 }
 
 #  pseudomotors for LVP table
-file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                        STOO,                DESC,       EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC,    DHLM, DLLM}
