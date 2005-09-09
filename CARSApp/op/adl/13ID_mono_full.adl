@@ -1,7 +1,7 @@
 
 file {
-	name="j:\epics\synApps5-1\CARS\CARSApp\op\adl\13ID_mono_full.adl"
-	version=020306
+	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13ID_mono_full.adl"
+	version=030000
 }
 display {
 	object {
@@ -1269,7 +1269,12 @@ text {
 		height=25
 	}
 	display[1] {
-		label="Feedback "
+		label="XAS Feedback "
+		name="13ID_mono_fb_xas.adl"
+		args="P=13IDA:, M1=m12, M2=m11"
+	}
+	display[2] {
+		label="Full Feedback"
 		name="13ID_mono_feedback.adl"
 		args="P=13IDA:, M1=m12, M2=m11, PID1=fast_pitch_pid, PID2=fast_roll_pid"
 	}
