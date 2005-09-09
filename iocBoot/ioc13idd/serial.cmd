@@ -10,7 +10,7 @@ tyGSAsynInit("serial9",  "UART1", 0,  9600,'N',2,7,'N',"\r","\r") /* Omega meter
 tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\r","\r") /* RSF encoder readout */
 tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',"\r","\r") /* PicoMotor controller */
 tyGSAsynInit("serial12", "UART1", 3, 19200,'N',1,8,'N',"\r","\r") /* Keithley 2700 */
-tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r") /* Unused */
+tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r") /* Pelco CM6700 video switch */
 tyGSAsynInit("serial14", "UART1", 5,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 tyGSAsynInit("serial15", "UART1", 6,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* Unused */
@@ -39,4 +39,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,PORT=seria
 # Serial 11 is picoMotors
 dbLoadTemplate("picoMotors.template")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM5,PORT=serial12")
+
+# Serial 13 is Pelco CM6700 video switch
+dbLoadTemplate("Pelco_CM6700.substitutions")
 
