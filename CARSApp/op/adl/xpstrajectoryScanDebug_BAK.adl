@@ -1,0 +1,331 @@
+
+file {
+	name="J:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\xpstrajectoryScanDebug.adl"
+	version=030003
+}
+display {
+	object {
+		x=4
+		y=526
+		width=248
+		height=214
+	}
+	clr=55
+	bclr=2
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"related display" {
+	object {
+		x=6
+		y=37
+		width=111
+		height=37
+	}
+	display[0] {
+		label="Vacuum and EPS"
+		name="13ID_EPS.adl"
+	}
+	clr=14
+	bclr=4
+	label="-ID Vacuum / EPS"
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=248
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+	}
+}
+text {
+	object {
+		x=15
+		y=6
+		width=205
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="GSECARS: Sector 13 Main Menu"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=130
+		y=37
+		width=111
+		height=37
+	}
+	display[0] {
+		label="Vacuum and EPS"
+		name="13BM_EPS.adl"
+	}
+	clr=14
+	bclr=4
+	label="-BM Vacuum / EPS"
+}
+"related display" {
+	object {
+		x=130
+		y=79
+		width=111
+		height=37
+	}
+	display[0] {
+		label="13 BM"
+		name="13BM.adl"
+	}
+	display[1] {
+		label="BM Monochromator"
+		name="13BM_monochromator.adl"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17,Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12,TABLE=MON:"
+	}
+	display[3] {
+		label="Beam Position Monitors"
+		name="BMxbpm.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[4] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
+	clr=14
+	bclr=4
+	label="- BM Main Control"
+}
+"related display" {
+	object {
+		x=6
+		y=79
+		width=111
+		height=37
+	}
+	display[0] {
+		label="13 ID"
+		name="13ID.adl"
+	}
+	display[1] {
+		label="ID Monochromator"
+		name="13ID_mono_full.adl"
+		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6, DTH=m12"
+	}
+	display[3] {
+		label="Beam Position Monitors"
+		name="IDxbpm.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[4] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
+	display[5] {
+		label="Undulator Control"
+		name="ID_NewCtl.adl"
+		args="xx=13"
+	}
+	clr=14
+	bclr=4
+	label="- ID Main Control"
+}
+"related display" {
+	object {
+		x=6
+		y=122
+		width=111
+		height=37
+	}
+	display[0] {
+		label="IDC Microprobe"
+		name="13IDC_mprobe.adl"
+	}
+	display[1] {
+		label="IDC Main Control"
+		name="13IDC_xas.adl"
+	}
+	display[3] {
+		label="IDC Hutch Camera"
+		name="camera_control.adl"
+		args="P=13IDC:, R=Unidig2"
+	}
+	display[4] {
+		label="GPD More"
+		name="newport_kappa_more.adl"
+	}
+	display[6] {
+		name="13IDC_mprobe_old.adl"
+	}
+	clr=14
+	bclr=4
+	label="- IDC Experiments"
+}
+"related display" {
+	object {
+		x=6
+		y=165
+		width=111
+		height=37
+	}
+	display[0] {
+		label="13 IDD  Main Control"
+		name="13IDD.adl"
+	}
+	display[1] {
+		label="13 IDD DAC"
+		name="13IDD_dac_user.adl"
+	}
+	clr=14
+	bclr=4
+	label="- IDD Experiments"
+}
+"related display" {
+	object {
+		x=130
+		y=122
+		width=111
+		height=37
+	}
+	display[0] {
+		label="13 BMD Main Control"
+		name="13BMD.adl"
+	}
+	display[1] {
+		label="13 BMD XAS Control"
+		name="13BMD_xas.adl"
+	}
+	display[2] {
+		label="13 BM Monochromator"
+		name="13BM_monochromator.adl"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
+	}
+	display[3] {
+		label="13 BM DAC "
+		name="13BMD_vit.adl"
+	}
+	display[4] {
+		label="13 BM radio"
+		name="13BMD_radio.adl"
+	}
+	display[5] {
+		label="13 BM VerdiLaser"
+		name="VerdiLaser.adl"
+		args="P=13BMD:, R=Verdi1:"
+	}
+	display[6] {
+		label="13 BM Brillouin"
+		name="13BMD_brill.adl"
+		args="P=13BMD:, R=Unidig2, D=1"
+	}
+	clr=14
+	bclr=4
+	label="- BMD Experiments"
+}
+"related display" {
+	object {
+		x=130
+		y=165
+		width=111
+		height=37
+	}
+	display[0] {
+		label="13 Lab"
+		name="13Lab.adl"
+	}
+	display[1] {
+		label="13 Lab 2"
+		name="13Lab2.adl"
+	}
+	display[2] {
+		label="13 GE 1"
+		name="16element.adl"
+		args="P=13GE1:med:"
+	}
+	display[3] {
+		label="13 GE 2"
+		name="16element_dxp.adl"
+		args="P=13GE2:med:"
+	}
+	display[4] {
+		label="13-BM-C"
+		name="13BMC.adl"
+	}
+	clr=14
+	bclr=4
+	label="- Lab/Other IOCs"
+}
