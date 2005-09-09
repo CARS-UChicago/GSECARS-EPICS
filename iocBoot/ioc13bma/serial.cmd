@@ -8,7 +8,7 @@ tyGSAsynInit("serial5",  "UART0", 4, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
 tyGSAsynInit("serial6",  "UART0", 5,  9600,'E',1,7,'N',"",  "\r")  /* Digitel */
 tyGSAsynInit("serial7",  "UART0", 6, 19200,'E',1,8,'N',"\r","\r")  /* MKS */
 tyGSAsynInit("serial8",  "UART0", 7,  9600,'E',1,7,'N',"",  "\r")  /* Digitel */
-tyGSAsynInit("serial9",  "UART1", 0,  9600,'E',1,7,'N',"\r","\r")  /* McClennan */
+tyGSAsynInit("serial9",  "UART1", 0,  9600,'E',1,7,'N',"\r\n","\r")  /* McClennan */
 tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
 tyGSAsynInit("serial11", "UART1", 2,  9600,'N',1,8,'N',"\r","\r")  /* MPC */
 tyGSAsynInit("serial12", "UART1", 3, 19200,'E',1,8,'N',"\r","\r")  /* MKS */

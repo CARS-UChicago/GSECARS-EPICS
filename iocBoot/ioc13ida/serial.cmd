@@ -7,7 +7,7 @@ tyGSAsynInit("serial4",   "UART0", 3, 9600,'E',1,7,'N',"",  "\r") /* Digitel */
 tyGSAsynInit("serial5",   "UART0", 4,19200,'E',1,8,'N',"\r","\r") /* MKS */
 tyGSAsynInit("serial6",   "UART0", 5, 9600,'E',1,7,'N',"",  "\r") /* Digitel */
 tyGSAsynInit("serial7",   "UART0", 6, 9600,'N',1,8,'N',"\r","\r") /* MPC */
-tyGSAsynInit("serial8",   "UART0", 7, 9600,'E',1,7,'N',"\r","\r") /* McClennan PM304 */
+tyGSAsynInit("serial8",   "UART0", 7, 9600,'E',1,7,'N',"\r\n","\r") /* McClennan PM304 */
 tyGSAsynInit("serial9",   "UART1", 0,19200,'N',1,8,'N',"\n","\r") /* Keithley 2000 */
 tyGSAsynInit("serial10",  "UART1", 1, 9600,'N',1,8,'N',"\r","\r") /* Oxford ILM cryometer */
 tyGSAsynInit("serial11",  "UART1", 2,19200,'E',1,8,'N',"\r","\r") /* MKS */
