@@ -1,0 +1,190 @@
+==============================================================================
+	SITE CONFIGURATION
+==============================================================================
+Edit the following for your site:
+
+MASTER_RELEASE - Specify module paths.
+	After modifying this file,
+		gnumake release
+	to propagate changes to all module RELEASE files.
+	
+Makefile - Select modules to build.
+	Add/delete support modules by adding/deleting
+	'#' to the two entries for each support module;	 
+		DIRS += $(module)
+		RELEASE_FILES += $(module)/configure/RELEASE
+
+To rebuild synApps:
+	gnumake clean uninstall
+	gnumake
+
+	This will also do a "gnumake release", to make sure all the modules
+	have consistent paths in their RELEASE files.
+
+==============================================================================
+	STANDARD SUPPORT MODULES
+==============================================================================
+
+MODULE:  EPICS base
+VERSION: 3-14-7
+BUILD DEPENDENCIES: Tornado 2.0.2
+
+MODULE:  vxStats
+VERSION: 1-7-2c
+SOURCE:  modification of ics-web1.sns.ornl.gov/share/vxStats314.tar.gz
+BUILD DEPENDENCIES: EPICS_BASE
+PROCEDURE:
+	cd <supporttop>/vxStats;
+	tar xf <supporttop>/TAR/vxStatsR1-7-2c.tar
+
+	(See vxStats/releaseNotes.txt for changes from the
+	original distribution, vxStats314.tar)
+
+MODULE:  seq
+VERSION: 2-0-10
+SOURCE:  www.slac.stanford.edu/comp/unix/package/epics/sequencer/
+BUILD DEPENDENCIES: EPICS_BASE
+PROCEDURE:
+- After unzipping and untarring seq-2.0.10.tar.gz;
+	cd <supporttop>;
+	mv seq-2.0.10 seq/2-0-10
+
+MODULE:  allenBradley
+VERSION: 2-1
+SOURCE:  www.aps.anl.gov/asd/people/mrk/epics/modules/bus/allenBradley/
+BUILD DEPENDENCIES: EPICS_BASE
+PROCEDURE:
+- After unzipping and untarring allenBradley2-1.tar.gz; "mv 2-1 allenBradley/2-1".
+
+MODULE:  ipac
+VERSION: 2-8
+SOURCE:  www.aps.anl.gov/asd/people/anj/ipac/
+BUILD DEPENDENCIES: EPICS_BASE
+PROCEDURE:
+- After unzipping and untarring ipac-2.8.tar.gz; "mv ipac-2.8 ipac/2-8".
+- uncomment registrar lines from drvIpac/drvIpac.dbd
+
+MODULE:  motor
+VERSION: 5-5
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, ASYN, IPAC
+PROCEDURE:
+- <top>/configure/RELEASE. Edit per comments in the file.
+- <top>/motorApp/Makefile.  Edit per comments in the file.
+
+MODULE:  std
+VERSION: 2-5
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MPF, GPIB
+PROCEDURE:
+
+MODULE:  dac128V
+VERSION: 2-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, IPAC, MPF
+PROCEDURE:
+
+MODULE:  ipUnidig
+VERSION: 2-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MPF
+PROCEDURE:
+- Made <top>/config/RELEASE compatible with makeReleaseConsistent.pl.
+- <top>/config/RULES.Db updated to EPICS base R3.13.5 for 'depends' make target.
+
+MODULE:  love
+VERSION: 3-0-0
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MPF
+PROCEDURE:
+
+MODULE:  mca
+VERSION: 6-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MPF, STD
+PROCEDURE:
+
+MODULE:  camac
+VERSION: 2-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MPF, STD, SSCAN, CALC, MOTOR
+PROCEDURE:
+
+MODULE:  ip330
+VERSION: 2-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, IPAC, MPF, DAC128V, STD, MCA
+PROCEDURE:
+
+NOTES:
+	- ip330PID.cc -> Ip330PID.h -> DAC128V.h; hence, one of ip330's build
+	dependencies is DAC128V.
+
+
+MODULE:  ip
+VERSION: 2-4
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, SNCSEQ, MPF, STD
+
+MODULE:  autosave
+VERSION: 4-1
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE
+
+MODULE:  calc
+VERSION: 2-5
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, SSCAN, GENSUB
+
+MODULE:  optics
+VERSION: 2-4
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, SNCSEQ, STD, MPF
+
+MODULE:  sscan
+VERSION: 2-5
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE
+
+MODULE:  vme
+VERSION: 2-4-0
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, STD
+
+MODULE:  asyn
+VERSION: 4-2
+SOURCE:  www.aps.anl.gov/epics/modules/soft/asyn/
+BUILD DEPENDENCIES: (recommended) EPICS_BASE 3.14.7; ipac 2.8 
+PROCEDURE:
+  cd <supporttop>/asyn
+  gunzip asyn4-2.tar.gz
+  tar xvf asyn4-2.tar
+  edit 4-2/configure/RELEASE to uncomment definition of IPAC
+
+MODULE:  quadEM
+VERSION: 2-0
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MCA, SSCAN, CALC, STD, DAC128V,IPUNIDIG, MPF
+
+MODULE:  ccd
+VERSION: 1-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, SNCSEQ, IP, SSCAN, MPF
+
+MODULE:  dxp
+VERSION: 1-2
+SOURCE:  www.aps.anl.gov/aod/bcda/synApps
+BUILD DEPENDENCIES: EPICS_BASE, MPF, MCA, CALC, SSCAN, CAMAC
+
+MODULE:  genSub
+VERSION: 1-6
+SOURCE:  www.observatorysciences.co.uk/genSubV1-6.tar.gz
+BUILD DEPENDENCIES: EPICS_BASE
+PROCEDURE:
+    gunzip genSubV1-6.tar.gz; tar xv genSubV1-6.tar
+	mv genSubV1-6 genSub/1-6
+
+================================================================
+After adding a module
+1) edit support/config/MASTER_RELEASE
+2) run "gnumake release" in support/config
