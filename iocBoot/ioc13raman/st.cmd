@@ -68,7 +68,7 @@ MCB4BSetup(1, 4, 10)
 #     (2) asyn port name (e.g. serial1)
 MCB4BConfig(0, "serial2")
 
-< ../save_restore_iocsh.cmd
+< ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Raman:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Raman:")
 
