@@ -1,6 +1,6 @@
 
 file {
-	name="/home/epics/synApps5-1/CARS/CARSApp/op/adl/13IDC_mprobe.adl"
+	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13IDC_mprobe.adl"
 	version=030000
 }
 display {
@@ -232,8 +232,8 @@ rectangle {
 	}
 	display[6] {
 		label="Microscope motors"
-		name="3motors.adl"
-		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m82, M3=m83 "
+		name="2motors.adl"
+		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m81"
 	}
 	display[7] {
 		label="Sample Stage"
@@ -388,7 +388,7 @@ rectangle {
 	display[3] {
 		label="Split Ion Chamber "
 		name="1motors.adl"
-		args="P=13IDC:, TITLE=Split_Ion_Chamber, M1=m81 "
+		args="P=13IDC:, TITLE=Split_Ion_Chamber, M1=m82 "
 	}
 	display[4] {
 		label="Large Vertical Mirror"
@@ -429,7 +429,7 @@ rectangle {
 	display[2] {
 		label="Vortex"
 		name="1element_dxp.adl"
-		args="P=dxpLinux:med:"
+		args="P=dxpSaturn:med:, M=mca1, D=dxp1"
 	}
 	display[3] {
 		label="Ion Chamber"
@@ -631,6 +631,11 @@ menu {
 		label="GSE Main Menu"
 		name="00Start.adl"
 	}
+	display[2] {
+		label="Video Switch"
+		name="Pelco_CM6700.adl"
+		args="P=13IDC:, R=Pelco1"
+	}
 	display[3] {
 		label="More IDC XAS"
 		name="13IDC_xas.adl"
@@ -638,10 +643,6 @@ menu {
 	display[5] {
 		label="Main ID Control"
 		name="13ID.adl"
-	}
-	display[6] {
-		label="Microscope "
-		name="13IDC_microscope.adl"
 	}
 	clr=14
 	bclr=55
