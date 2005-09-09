@@ -1,13 +1,14 @@
+
 file {
-	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13Lab.adl"
-	version=030000
+	name="j:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\13Lab.adl"
+	version=020306
 }
 display {
 	object {
-		x=148
-		y=32
+		x=1428
+		y=25
 		width=370
-		height=590
+		height=587
 	}
 	clr=14
 	bclr=4
@@ -112,7 +113,7 @@ text {
 }
 "related display" {
 	object {
-		x=11
+		x=10
 		y=529
 		width=74
 		height=24
@@ -313,6 +314,16 @@ text {
 		label="Test pseudomotors"
 		name="8motors.adl"
 		args="P=13LAB:, TITLE=Pseudo, M1=m5, M2=m6, M3=m7, M4=m8, M5=pm1, M6=pm2, M7=pm3, M8=pm4"
+	}
+	display[5] {
+		label="DC motors, MAXv"
+		name="4motors.adl"
+		args="P=13LAB:, TITLE=DC_motors, M1=m25, M2=m26, M3=m27, M4=m28"
+	}
+	display[6] {
+		label="13BMC-Temp-Mono"
+		name="6motors.adl"
+		args="P=13LAB:, TITLE=13BMC-Temp-Mono, M1=m5, M2=m6, M3=m7, M4=m8, M5=pm1, M6=pm2 "
 	}
 	clr=14
 	bclr=4
@@ -613,9 +624,9 @@ text {
 		args="P=13LAB:, D=1"
 	}
 	display[4] {
-		label="Lab Traj Scan"
-		name="trajectoryScan.adl"
-		args="P=13LAB:, R=traj1, M1=m13,M2=m14,M3=m15,TITLE=Trajectory_Scan"
+		label="SR630"
+		name="SR630.adl"
+		args="P=13LAB:, R=TC1"
 	}
 	display[5] {
 		label="XIA filter rack"
@@ -626,6 +637,11 @@ text {
 		label="Fluke 884x meter"
 		name="Fluke_8842A.adl"
 		args="P=13LAB:, M=Fluke1, N=1"
+	}
+	display[7] {
+		label="Pelco video server"
+		name="Pelco_CM6700.adl"
+		args="P=13LAB:, R=Pelco1"
 	}
 	clr=14
 	bclr=4
@@ -792,7 +808,7 @@ text {
 }
 "related display" {
 	object {
-		x=11
+		x=10
 		y=502
 		width=74
 		height=24
@@ -951,7 +967,7 @@ text {
 }
 "related display" {
 	object {
-		x=11
+		x=10
 		y=556
 		width=75
 		height=24
