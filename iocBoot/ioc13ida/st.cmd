@@ -95,11 +95,11 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA:")
 #  Configure the MSL MRD 100 module.....
 devAvmeMRDConfig(0xB0000200, 0xA0, 5)
 
-# OMS VME58 driver setup parameters: 
-#     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
-#     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
-#     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(4, 8, 0x4000, 190, 5, 10)
+# OMS VME58 driver setup parameters:
+#     (1)cards, (2)base address(short, 4k boundary),
+#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
+#     (5)motor task polling rate (min=1Hz,max=60Hz)
+oms58Setup(4, 0x4000, 190, 5, 10)
 
 # initQuadEM(baseAddress, fiberChannel, microSecondsPerScan, maxClients,
 #            unidigName, unidigChan)
@@ -169,7 +169,9 @@ dbpf "13IDA:V6_status.TWSV","NO_ALARM"
 #     0.5                  1
 #
 # Note: 1 encoder step ~= 0.05eV at 10keV.
-(double) drvPM304ReadbackDelay = 0.25
+# (double) drvPM304ReadbackDelay = 0.25
+# Note, the above has been replaced with the .DLY field of the motor record, which
+# we now have in save/restore.  Change the .DLY field in medm.
 
 ### Start the saveData task.
 # saveData_MessagePolicy
