@@ -8,6 +8,7 @@ mem = malloc(1024*1024*96)
 cd topbin
 # ld < CARS167.munch
 ld < CARSApp.munch
+# ld < ../../../motor/bin/vxWorks-ppc604/XPSGathering.munch
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
@@ -28,12 +29,25 @@ devScalerCamacDebug=0
 devE500Debug=0
 drvE500Debug=0
 icbDebug=0
+motorRecordDebug = 0
+devXPSC8Debug = 0
+drvXPSC8Debug = 0
+# Asyn XPS driver debug variable 0-5
+asynXPSC8Debug = 0
 
 < industryPack.cmd
 < serial.cmd
 
 ### Motors
 dbLoadTemplate  "motors.template"
+
+##### Poll motor record every POLL seconds
+dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m33,POLL=1 second")
+dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m34,POLL=1 second")
+dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m35,POLL=1 second")
+dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m36,POLL=1 second")
+dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m37,POLL=1 second")
+dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m38,POLL=1 second")
 
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
@@ -99,45 +113,63 @@ dbLoadTemplate("vxStats.substitutions")
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMC:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
+################################################################################
+# XPS trajectoryScan records
+
+# Database for trajectory scanning with the XPS
+# The required command string is longer than the vxWorks command line, 
+# must use malloc and strcpy, strcat. Some of the macros don't apply
+
+str = malloc(500)
+strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
+strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
+dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
+strcpy(str, "P=13BMC:,R=traj1,IP=164.54.160.124,GROUP=GROUP1,AXIS1=GROUP1.PHI,AXIS2=GROUP1.KAPPA")
+strcat(str, ",AXIS3=GROUP1.OMEGA,AXIS4=GROUP1.PSI,AXIS5=GROUP1.2THETA,AXIS6=GROUP1.NU")
+strcat(str, ",AXIS7=NULL,AXIS8=NULL,XPSPORT=5001,ASYNPORT=tcp1")
+dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScanXPS.db", str)
+
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
 
-# OMS VME58 driver setup parameters: 
-#     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
-#     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
-#     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(4, 8, 0x4000, 190, 5, 10)
+# OMS VME58 driver setup parameters:
+#     (1)cards, (2)base address(short, 4k boundary),
+#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
+#     (5)motor task polling rate (min=1Hz,max=60Hz)
+oms58Setup(4, 0x4000, 190, 5, 10)
+
+drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
+#asynOctetSetInputEos("tcp1",0,"")
+#asynOctetSetOutputEos("tcp1",0,"")
+drvAsynIPPortConfigure("tcp2","164.54.160.131:5001 tcp", 0, 0, 1)
+#asynOctetSetInputEos("tcp2",0,"")
+#asynOctetSetOutputEos("tcp2",0,"")
 
 # cards (total controllers), scan rate
 XPSC8Setup(2, 60)
 
 # card, IP, PORT, number of axes
-XPSC8Config(0,"164.54.160.124",5001,6)
-XPSC8Config(1,"164.54.160.131",5001,8)
+XPSC8Config(0,"tcp1",0,6)
+XPSC8Config(1,"tcp2",0,8)
 
-# card,  axis, group, positioner
-XPSC8NameConfig(0,0,"GROUP1","GROUP1.PHI")
-XPSC8NameConfig(0,1,"GROUP2","GROUP2.KAPPA")
-XPSC8NameConfig(0,2,"GROUP3","GROUP3.OMEGA")
-XPSC8NameConfig(0,3,"GROUP4","GROUP4.PSI")
-XPSC8NameConfig(0,4,"GROUP5","GROUP5.2THETA")
-XPSC8NameConfig(0,5,"GROUP6","GROUP6.NU")
+# card,  axis, groupnumber, groupsize,axis in group, group, positioner
+XPSC8NameConfig(0,0,0,6,0,"GROUP1","GROUP1.PHI")
+XPSC8NameConfig(0,1,0,6,1,"GROUP1","GROUP1.KAPPA")
+XPSC8NameConfig(0,2,0,6,2,"GROUP1","GROUP1.OMEGA")
+XPSC8NameConfig(0,3,0,6,3,"GROUP1","GROUP1.PSI")
+XPSC8NameConfig(0,4,0,6,4,"GROUP1","GROUP1.2THETA")
+XPSC8NameConfig(0,5,0,6,5,"GROUP1","GROUP1.NU")
 
-# card,  axis, group, positioner
-XPSC8NameConfig(1,0,"GROUP1","GROUP1.Y1_BASE")
-XPSC8NameConfig(1,1,"GROUP2","GROUP2.Y2_BASE")
-XPSC8NameConfig(1,2,"GROUP3","GROUP3.Y3_BASE")
-XPSC8NameConfig(1,3,"GROUP4","GROUP4.TRX_BASE")
-XPSC8NameConfig(1,4,"GROUP5","GROUP5.THETA-Y_BASE")
-XPSC8NameConfig(1,5,"GROUP6","GROUP6.X_SAMPLE")
-XPSC8NameConfig(1,6,"GROUP7","GROUP7.Y_SAMPLE")
-XPSC8NameConfig(1,7,"GROUP8","GROUP8.Z_SAMPLE")
-
-# Set the debug variables which are now available to the shell
-motorRecordDebug = 0
-devXPSC8Debug = 0
-drvXPSC8Debug = 0
+# card,  axis, groupnumber, groupsize,axis in group, group, positioner
+XPSC8NameConfig(1,0,0,1,0,"GROUP1","GROUP1.Y1_BASE")
+XPSC8NameConfig(1,1,1,1,0,"GROUP2","GROUP2.Y2_BASE")
+XPSC8NameConfig(1,2,2,1,0,"GROUP3","GROUP3.Y3_BASE")
+XPSC8NameConfig(1,3,3,1,0,"GROUP4","GROUP4.TRX_BASE")
+XPSC8NameConfig(1,4,4,1,0,"GROUP5","GROUP5.THETA-Y_BASE")
+XPSC8NameConfig(1,5,5,1,0,"GROUP6","GROUP6.X_SAMPLE")
+XPSC8NameConfig(1,6,6,1,0,"GROUP7","GROUP7.Y_SAMPLE")
+XPSC8NameConfig(1,7,7,1,0,"GROUP8","GROUP8.Z_SAMPLE")
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -156,5 +188,9 @@ create_monitor_set("auto_positions.req",5)
 create_monitor_set("auto_settings.req",30)
 
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
+
+# Trajectory scanning with XPS
+seq(&xpsTrajectoryScan,"P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m45,M8=m46")
+
 
 free(mem)
