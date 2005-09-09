@@ -1,0 +1,11 @@
+# This record causes the motor record to process every POLL seconds
+# if it is not moving.  This is usefull for XPS group moves.
+# By Jon Kelly June 2005
+
+grecord(calcout,"$(P)$(R)motorProcess") {
+      field(SCAN,"$(POLL)")
+      field(INPA,"$(P)$(R).DMOV")
+      field(CALC,"A")
+      field(OOPT,"When Non-zero")
+      field(OUT,"$(P)$(R).PROC")
+}
