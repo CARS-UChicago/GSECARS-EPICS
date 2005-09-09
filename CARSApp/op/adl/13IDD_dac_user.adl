@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\synApps5-1\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
-	version=030003
+	name="J:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
+	version=020306
 }
 display {
 	object {
-		x=47
-		y=186
+		x=10
+		y=104
 		width=1432
 		height=788
 	}
@@ -412,8 +412,8 @@ text {
 }
 oval {
 	object {
-		x=1295
-		y=156
+		x=1290
+		y=146
 		width=15
 		height=15
 	}
@@ -427,8 +427,8 @@ oval {
 }
 oval {
 	object {
-		x=1373
-		y=156
+		x=1368
+		y=146
 		width=15
 		height=15
 	}
@@ -442,8 +442,8 @@ oval {
 }
 oval {
 	object {
-		x=1333
-		y=156
+		x=1328
+		y=146
 		width=15
 		height=15
 	}
@@ -457,8 +457,8 @@ oval {
 }
 text {
 	object {
-		x=1270
-		y=135
+		x=1265
+		y=125
 		width=84
 		height=15
 	}
@@ -470,8 +470,8 @@ text {
 }
 text {
 	object {
-		x=1263
-		y=157
+		x=1258
+		y=147
 		width=86
 		height=19
 	}
@@ -483,8 +483,8 @@ text {
 }
 oval {
 	object {
-		x=1255
-		y=157
+		x=1250
+		y=147
 		width=15
 		height=15
 	}
@@ -498,8 +498,8 @@ oval {
 }
 oval {
 	object {
-		x=1255
-		y=157
+		x=1250
+		y=147
 		width=15
 		height=15
 	}
@@ -513,8 +513,8 @@ oval {
 }
 oval {
 	object {
-		x=1295
-		y=156
+		x=1290
+		y=146
 		width=15
 		height=15
 	}
@@ -528,8 +528,8 @@ oval {
 }
 oval {
 	object {
-		x=1333
-		y=156
+		x=1328
+		y=146
 		width=15
 		height=15
 	}
@@ -543,8 +543,8 @@ oval {
 }
 oval {
 	object {
-		x=1373
-		y=156
+		x=1368
+		y=146
 		width=15
 		height=15
 	}
@@ -559,7 +559,7 @@ oval {
 "text update" {
 	object {
 		x=1220
-		y=110
+		y=105
 		width=50
 		height=20
 	}
@@ -575,7 +575,7 @@ oval {
 "text update" {
 	object {
 		x=1324
-		y=110
+		y=105
 		width=30
 		height=20
 	}
@@ -591,7 +591,7 @@ oval {
 text {
 	object {
 		x=1270
-		y=110
+		y=105
 		width=45
 		height=20
 	}
@@ -603,7 +603,7 @@ text {
 text {
 	object {
 		x=1360
-		y=110
+		y=105
 		width=50
 		height=20
 	}
@@ -5363,7 +5363,7 @@ text {
 		bclr=54
 	}
 	label="MAR-CCD"
-	press_msg="-333."
+	press_msg="-331."
 }
 "text update" {
 	object {
@@ -5497,7 +5497,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="marCCD:det2:Seconds"
+				chan="marCCD:det1:Seconds"
 				clr=14
 				bclr=51
 			}
@@ -5512,7 +5512,7 @@ composite {
 				height=41
 			}
 			control {
-				chan="marCCD:det2:AcquireCLBK"
+				chan="marCCD:det1:AcquireCLBK"
 				clr=14
 				bclr=35
 			}
@@ -5540,7 +5540,7 @@ composite {
 				height=18
 			}
 			monitor {
-				chan="marCCD:det2:TimeRemaining"
+				chan="marCCD:det1:TimeRemaining"
 				clr=50
 				bclr=41
 			}
@@ -5555,7 +5555,7 @@ composite {
 				height=19
 			}
 			control {
-				chan="marCCD:det2:SeqNumber"
+				chan="marCCD:det1:SeqNumber"
 				clr=14
 				bclr=51
 			}
@@ -5583,7 +5583,7 @@ composite {
 				height=19
 			}
 			control {
-				chan="marCCD:det2:FileTemplate"
+				chan="marCCD:det1:FileTemplate"
 				clr=14
 				bclr=51
 			}
@@ -5611,7 +5611,7 @@ composite {
 				height=19
 			}
 			control {
-				chan="marCCD:det2:FilePath"
+				chan="marCCD:det1:FilePath"
 				clr=14
 				bclr=51
 			}
@@ -5626,7 +5626,7 @@ composite {
 				height=19
 			}
 			monitor {
-				chan="marCCD:det2:FullFilename"
+				chan="marCCD:det1:FullFilename"
 				clr=30
 				bclr=41
 			}
@@ -5656,7 +5656,7 @@ composite {
 			display[0] {
 				label="MAR CCD"
 				name="ccd.adl"
-				args="P=marCCD:, C=det2:"
+				args="P=marCCD:, C=det1:"
 			}
 			clr=14
 			bclr=15
@@ -6630,4 +6630,299 @@ text {
 	}
 	textix="Moving"
 	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1354
+		y=191
+		width=45
+		height=15
+	}
+	monitor {
+		chan="13IDD:m40.RBV"
+		clr=50
+		bclr=19
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=1250
+		y=190
+		width=70
+		height=19
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Filter:"
+}
+composite {
+	object {
+		x=1308
+		y=190
+		width=39
+		height=19
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1308
+				y=190
+				width=39
+				height=19
+			}
+			control {
+				chan="13IDD:m40.VAL"
+				clr=0
+				bclr=14
+			}
+			label="In"
+			press_msg="0."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>14"
+		chan="13IDD:m40.RBV"
+	}
+}
+text {
+	object {
+		x=1311
+		y=192
+		width=37
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:m40.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1213
+		y=165
+		width=200
+		height=15
+	}
+	monitor {
+		chan="S:IOC:timeOfDayForm1SI"
+		clr=33
+		bclr=49
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+composite {
+	object {
+		x=15
+		y=85
+		width=231
+		height=187
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=15
+				y=85
+				width=231
+				height=187
+			}
+			"basic attribute" {
+				clr=18
+			}
+		}
+		menu {
+			object {
+				x=60
+				y=142
+				width=150
+				height=18
+			}
+			control {
+				chan="$(P)$(C)Mon1.VAL"
+				clr=35
+				bclr=64
+			}
+		}
+		menu {
+			object {
+				x=60
+				y=167
+				width=150
+				height=20
+			}
+			control {
+				chan="$(P)$(C)Mon2.VAL"
+				clr=30
+				bclr=64
+			}
+		}
+		menu {
+			object {
+				x=60
+				y=192
+				width=150
+				height=20
+			}
+			control {
+				chan="$(P)$(C)Mon3.VAL"
+				clr=50
+				bclr=64
+			}
+		}
+		menu {
+			object {
+				x=60
+				y=217
+				width=150
+				height=20
+			}
+			control {
+				chan="$(P)$(C)Mon4.VAL"
+				clr=60
+				bclr=64
+			}
+		}
+		"related display" {
+			object {
+				x=177
+				y=121
+				width=33
+				height=16
+			}
+			display[0] {
+				label="Camera/monitor descriptions"
+				name="Pelco_CM6700_names.adl"
+				args="P=$(P),R=$(C)"
+			}
+			display[1] {
+				label="asynRecord"
+				name="asynOctet.adl"
+				args="P=$(P),R=$(C)Serial"
+			}
+			clr=14
+			bclr=60
+			label="-More"
+		}
+		text {
+			object {
+				x=42
+				y=141
+				width=10
+				height=20
+			}
+			"basic attribute" {
+				clr=35
+			}
+			textix="1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=42
+				y=166
+				width=10
+				height=20
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=42
+				y=191
+				width=10
+				height=20
+			}
+			"basic attribute" {
+				clr=50
+			}
+			textix="3"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=42
+				y=216
+				width=10
+				height=20
+			}
+			"basic attribute" {
+				clr=60
+			}
+			textix="4"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=51
+				y=116
+				width=62
+				height=19
+			}
+			"basic attribute" {
+				clr=40
+			}
+			textix="Monitor/"
+		}
+		text {
+			object {
+				x=116
+				y=117
+				width=62
+				height=19
+			}
+			"basic attribute" {
+				clr=40
+			}
+			textix="Camera"
+		}
+	}
+}
+composite {
+	object {
+		x=1310
+		y=190
+		width=35
+		height=16
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1310
+				y=190
+				width=35
+				height=16
+			}
+			control {
+				chan="13IDD:m40.VAL"
+				clr=14
+				bclr=4
+			}
+			label="Out"
+			press_msg="15."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<1"
+		chan="13IDD:m40.RBV"
+	}
 }
