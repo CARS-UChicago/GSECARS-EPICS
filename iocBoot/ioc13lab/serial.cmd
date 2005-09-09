@@ -9,8 +9,8 @@ tyGSAsynInit("serial5",  "UART0", 4,19200,'N',1,8,'N',"\n","\r")  /* Keithley 20
 tyGSAsynInit("serial6",  "UART0", 5,19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
 tyGSAsynInit("serial7",  "UART0", 6,38400,'N',1,8,'N',"\r","\r")  /* MM4000 */
 tyGSAsynInit("serial8",  "UART0", 7,19200,'N',1,8,'N',"\r\n","\r\n")  /* Verdi Laser */
-tyGSAsynInit("serial9",  "UART1", 0, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
-tyGSAsynInit("serial10", "UART1", 1, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
+tyGSAsynInit("serial9",  "UART1", 0, 9600,'N',1,8,'N',"\r","\r")  /* Pelco CM6700 video switch */
+tyGSAsynInit("serial10", "UART1", 1, 9600,'N',1,8,'N',"\r","\r")  /* SR630 thermocouple reader */
 tyGSAsynInit("serial11", "UART1", 2, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial12", "UART1", 3, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial13", "UART1", 4, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
@@ -41,9 +41,6 @@ asynOctetConnect("gpib1:3", "gpib1", 3, 1, 80)
 #asynSetTraceIOMask("serial3",0,2)
 #asynSetTraceMask("serial20",0,0xff)
 #asynSetTraceIOMask("serial20",0,2)
-
-# Generic GPIB record
-dbLoadRecords("$(IP)/ipApp/Db/generic_gpib.db", "P=13LAB:,R=gpib2,SIZE=4096,ADDR=3,PORT=gpib1")
 
 # Load asynRecord records on all ports
 dbLoadTemplate("asynRecord.template")
@@ -92,10 +89,10 @@ MM4000Config(0, "serial7", 0)
 
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
-str = malloc(300)
-strcpy(str, "P=13LAB:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,PORT=serial7,")
-strcat(str, "DONPV=13LAB:str:EraseStart,DONV=1,DOFFPV=13LAB:str:StopAll,DOFFV=1")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
+#str = malloc(300)
+#strcpy(str, "P=13LAB:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,PORT=serial7,")
+#strcat(str, "DONPV=13LAB:str:EraseStart,DONV=1,DOFFPV=13LAB:str:StopAll,DOFFV=1")
+#dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
 
 # Serial 8 Stanford Research Systems SR570 Current Preamplifier
 #dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB:,A=A1,PORT=serial8")
@@ -105,6 +102,12 @@ dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
 
 # Serial 8 XIA filter rack
 #dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13LAB:,S=filter1,ADDRESS=1,PORT=serial8")
+
+# Serial 9 Pelco CM6700 video switch
+dbLoadTemplate("Pelco_CM6700.substitutions")
+
+# Serial 10 SR630 thermocouple reader
+dbLoadTemplate("SR630.substitutions")
 
 # GPIB 3 is Fluke multimeter
 dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
