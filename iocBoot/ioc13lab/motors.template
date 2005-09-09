@@ -2,34 +2,58 @@ file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern 
 {P,       M,        DTYP,  C, S, DESC,                    EGU,   DIR,  VELO,   VBAS,   ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,  PREC,   DHLM,   DLLM}
-# Diffractometer bench slits		       		  	      	     	   	       
-{13LAB:, m1, "OMS MAXv",  0, 0, "M1",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m2, "OMS MAXv",  0, 1, "M2",                microns,   Pos,    50,      0,      1,     0,      1,    .2,  10240,  -1000,     0,   5100,   -100}
-{13LAB:, m3, "OMS MAXv",  0, 2, "M3",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m4, "OMS MAXv",  0, 3, "BMC Mono Theta",        deg,   Neg,   5.0,    1.0,     .5,     0,      1,    .2,    200,   0.10,     4,    361,   -361}
-#{13LAB:, m4, "OMS MAXv",  0, 3, "Vp UpStream",       microns,   Pos,   100,      0,      1,     0,      1,    .2,  10240,   -500,     0,  10100,   -100}
-{13LAB:, m5, "OMS MAXv",  0, 4, "BMC Mono X",             mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,  0.010,     4,     95,    5}
-#{13LAB:, m5, "OMS MAXv",  0, 4, "Hw DownStream",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,  -1000,     3,   5100,   -100}
-{13LAB:, m6, "OMS MAXv",  0, 5, "Hp DownStream",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,   -500,     3,  10100,   -100}
-{13LAB:, m7, "OMS MAXv",  0, 6, "Vw DownStream",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,  -1000,     3,   5100,   -100}
-{13LAB:, m8, "OMS MAXv",  0, 7, "Vp DownStream",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,   -500,     3,  10100,   -100}
-{13LAB:, m9, "OMS VME58",  0, 0, "M9",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m10, "OMS VME58",  0, 1, "M10",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m11, "OMS VME58",  0, 2, "M11",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m12, "OMS VME58",  0, 3, "M12",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m13, "OMS VME58",  0, 4, "M13",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m14, "OMS VME58",  0, 5, "M14",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m15, "OMS VME58",  0, 6, "M15",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:, m16, "OMS VME58",  0, 7, "M16",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
-{13LAB:,  m17,     "ACS MCB-4B",   0,    0, "Motor 9",    steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
-{13LAB:,  m18,     "ACS MCB-4B",  0,    1, "Motor 10",   steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
-{13LAB:,  m19,     "ACS MCB-4B",  0,    2, "Motor 11",   steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
-{13LAB:,  m20,     "ACS MCB-4B",  0,    3, "Motor 12",   steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
+{13LAB:, m1, "OMS VME58",  0, 0, "Tilt1",   degrees,   Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,     20,    -20}
+{13LAB:, m2, "OMS VME58",  0, 1, "Tilt2",   degrees,   Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,     20,    -20}
+{13LAB:, m3, "OMS VME58",  0, 2, "X",       mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8}
+{13LAB:, m4, "OMS VME58",  0, 3, "Y",       mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8}
+#{13LAB:, m5, "OMS VME58",  0, 4, "Hw",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,  -1000,     3,   5100,   -100}
+#{13LAB:, m6, "OMS VME58",  0, 5, "Vw",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,   -500,     3,  10100,   -100}
+#{13LAB:, m7, "OMS VME58",  0, 6, "Hp",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,  -1000,     3,   5100,   -100}
+#{13LAB:, m8, "OMS VME58",  0, 7, "Vp",     microns,   Pos,   200,      0,      1,     0,      1,    .2,  10240,   -500,     3,  10100,   -100}
+{13LAB:, m5, "OMS VME58",  0, 4, "Mono X pos",     mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,  -0.10,     3,  100, 0}
+{13LAB:, m6, "OMS VME58",  0, 5, "Mono rotation",   deg,     Pos,    3.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,  3,  360, -360}
+{13LAB:, m7, "OMS VME58",  0, 6, "Mono force Upstream",     microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13LAB:, m8, "OMS VME58",  0, 7, "Mono force Dnstream",     microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13LAB:, m9, "OMS VME58",  1, 0, "M9",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m10, "OMS VME58",  1, 1, "M10",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m11, "OMS VME58",  1, 2, "M11",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m12, "OMS VME58",  1, 3, "M12",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m13, "OMS VME58",  1, 4, "M13",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m14, "OMS VME58",  1, 5, "M14",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m15, "OMS VME58",  1, 6, "M15",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m16, "OMS VME58",  1, 7, "M16",                     mm,   Pos,   1.0,    0.1,     .5,     0,      1,    .2,    200,   0.10,     4,     95,      5}
+{13LAB:, m17, "ACS MCB-4B",  0,    0, "Motor 9",    steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
+{13LAB:, m18, "ACS MCB-4B",  0,    1, "Motor 10",   steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
+{13LAB:, m19, "ACS MCB-4B",  0,    2, "Motor 11",   steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
+{13LAB:, m20, "ACS MCB-4B",  0,    3, "Motor 12",   steps,   Pos,  2000,      0,     .2,     0,      1,    .2,      1,      1,      0,      1e6, -1e6}
 #
 {13LAB:, m21, "MM4000",    0, 0, "Omega",    degrees,  Pos,  10.0,  .1,   1., 0,  1,  .2,  1,  .001,    4,   180, -180}
 {13LAB:, m22, "MM4000",    0, 1, "Kappa",    degrees,  Pos,  60.0,  .1,   1.5, 0,  1,  .2,  1,  .001,    4,   180, -180}
 {13LAB:, m23, "MM4000",    0, 2, "Phi",      degrees,  Pos,  60.0,  .1,   1., 0,  1,  .2,  1,  .001,    3,   180, -180}
-#{13LAB:, m24, "MM4000",    0, 3, "Unused",   degrees,  Pos,  60.0,  .1,   1., 0,  1,  .2,  1,  .001,    3,   180, -180}
+{13LAB:, m24, "MM4000",    0, 3, "Unused",   degrees,  Pos,  60.0,  .1,   1., 0,  1,  .2,  1,  .001,    3,   180, -180}
+}
+
+# Huber stage with stepper  motors on MAXv
+# 48 half steps per rev of motor, 141:1 gearhead, 1mm pitch leadscrew
+#file "$(CARS)/CARSApp/Db/motor.db"
+#{
+#pattern 
+#{P,       M,    DTYP,      C, S, DESC,      EGU,       DIR,  VELO,   VBAS,   ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,  PREC,   DHLM,   DLLM}
+#{13LAB:, m25, "OMS MAXv",  0, 0, "Tilt1",   degrees,   Pos,   .30,      0,     .2,     0,      1,    .2,   6768,    1.0,     4,     20,    -20}
+#{13LAB:, m26, "OMS MAXv",  0, 1, "Tilt2",   degrees,   Pos,   .30,      0,     .2,     0,      1,    .2,   6768,    1.0,     4,     20,    -20}
+#{13LAB:, m27, "OMS MAXv",  0, 2, "X",       mm,        Pos,   .30,      0,     .2,     0,      1,    .2,   6768,    1.0,     4,      8,     -8}
+#{13LAB:, m28, "OMS MAXv",  0, 3, "Y",       mm,        Pos,   .30,      0,     .2,     0,      1,    .2,   6768,    1.0,     4,      8,     -8}
+#}
+
+# Huber stage with DC server motors on MAXv
+file "$(CARS)/CARSApp/Db/dc_motor.db"
+{
+pattern 
+{P,       M,    DTYP,      C, S, DESC,      EGU,       DIR,  VELO,   VBAS,   ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,  PREC,   DHLM,   DLLM,  PCOF,  ICOF,  DCOF}
+{13LAB:, m25, "OMS MAXv",  0, 0, "Tilt1",   degrees,   Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,     20,    -20,   0.6,  0.01,   0.0}
+{13LAB:, m26, "OMS MAXv",  0, 1, "Tilt2",   degrees,   Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,     20,    -20,   0.6,  0.01,   0.0}
+{13LAB:, m27, "OMS MAXv",  0, 2, "X",       mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
+{13LAB:, m28, "OMS MAXv",  0, 3, "Y",       mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
 }
 
 #file "$(OPTICS)/opticsApp/Db/table.db"
@@ -52,7 +76,7 @@ file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13LAB:, KBV:,  pm1, pm2,    m5.VAL,   m5.RBV,  m6.VAL,  m6.RBV,  m5.STOP,  m5.DMOV,  m6.STOP,  m6.DMOV, 1}
+{13LAB:, KBV:,  pm1, pm2,    m7.VAL,   m7.RBV,  m8.VAL,  m8.RBV,  m7.STOP,  m7.DMOV,  m8.STOP,  m8.DMOV, 1}
 }
 
 
