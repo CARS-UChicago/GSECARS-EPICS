@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\synApps5-1\CARS\CARSApp\op\adl\00Start.adl"
+	name="J:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\00Start.adl"
 	version=020306
 }
 display {
@@ -249,6 +249,7 @@ text {
 	display[1] {
 		label="13 IDD DAC"
 		name="13IDD_dac_user.adl"
+		args="P=13IDD:, D=1, C=Pelco1"
 	}
 	clr=14
 	bclr=4
@@ -277,10 +278,12 @@ text {
 	display[3] {
 		label="13 BM DAC "
 		name="13BMD_vit.adl"
+		args="P=13BMD:, C=Pelco1"
 	}
 	display[4] {
 		label="13 BM radio"
 		name="13BMD_radio.adl"
+		args="P=13BMD:, D=1, C=Pelco1"
 	}
 	display[5] {
 		label="13 BM VerdiLaser"
@@ -290,7 +293,7 @@ text {
 	display[6] {
 		label="13 BM Brillouin"
 		name="13BMD_brill.adl"
-		args="P=13BMD:, R=Unidig2, D=1"
+		args="P=13BMD:, R=Unidig2, D=1, C=Pelco1"
 	}
 	clr=14
 	bclr=4
@@ -324,6 +327,11 @@ text {
 	display[4] {
 		label="13-BM-C"
 		name="13BMC.adl"
+	}
+	display[5] {
+		label="Vortex (Saturn)"
+		name="single_dxp_top.adl"
+		args="P=dxpSaturn:, D=dxp1, M=mca1"
 	}
 	clr=14
 	bclr=4
