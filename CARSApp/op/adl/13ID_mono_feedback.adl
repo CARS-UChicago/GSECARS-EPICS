@@ -1,13 +1,13 @@
 
 file {
-	name="/home/epics/3.14/CARS/CARSApp/op/adl/13ID_mono_feedback.adl"
+	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13ID_mono_feedback.adl"
 	version=030000
 }
 display {
 	object {
-		x=131
-		y=33
-		width=600
+		x=165
+		y=31
+		width=630
 		height=410
 	}
 	clr=14
@@ -106,7 +106,7 @@ rectangle {
 	object {
 		x=2
 		y=63
-		width=590
+		width=625
 		height=37
 	}
 	"basic attribute" {
@@ -422,7 +422,7 @@ rectangle {
 	object {
 		x=2
 		y=110
-		width=590
+		width=625
 		height=37
 	}
 	"basic attribute" {
@@ -445,10 +445,15 @@ text {
 }
 "related display" {
 	object {
-		x=535
+		x=575
 		y=70
 		width=45
 		height=25
+	}
+	display[0] {
+		label="Feedback lock"
+		name="userTransform_full.adl"
+		args="P=13IDA:, T=fast_pitch_pid_incalc, TITLE=Mono_Pitch_feedback"
 	}
 	display[1] {
 		label="Fast PID setup"
@@ -466,10 +471,15 @@ text {
 }
 "related display" {
 	object {
-		x=535
+		x=575
 		y=115
 		width=45
 		height=25
+	}
+	display[0] {
+		label="Feedback lock"
+		name="userTransform_full.adl"
+		args="P=13IDA:, T=fast_roll_pid_incalc"
 	}
 	display[1] {
 		label="Fast PID setup"
@@ -659,7 +669,7 @@ rectangle {
 	object {
 		x=4
 		y=151
-		width=590
+		width=625
 		height=120
 	}
 	"basic attribute" {
@@ -841,7 +851,7 @@ rectangle {
 	object {
 		x=2
 		y=280
-		width=590
+		width=625
 		height=120
 	}
 	"basic attribute" {
@@ -1215,4 +1225,34 @@ text {
 		clr=23
 	}
 	textix="Fine"
+}
+oval {
+	object {
+		x=540
+		y=73
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(P)fast_pitch_pidLocked"
+	}
+}
+oval {
+	object {
+		x=540
+		y=121
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(P)fast_roll_pidLocked"
+	}
 }
