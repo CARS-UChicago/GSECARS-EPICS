@@ -22,10 +22,10 @@ pattern
 {13IDA:, FOE,   13IDA:eps_mbbi4, 13IDA:OpenFEShutter }
 }
 
-file "$(STD)/stdApp/Db/fast_pid_control.db"
+file "$(CARS)/CARSApp/Db/mono_fast_pid_control.db"
 {
 pattern
-{P,      PID,           INPUT,  ICHAN, OUTPUT, OCHAN, LOPR,    HOPR,  DRVL,  DRVH,  PREC,   KP,    KI,  KD,   DT,        SCAN}
-{13IDA:, fast_pitch_pid, quadEM1, 8,   DAC1,    2,  -32767,    32767,    0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
-{13IDA:, fast_roll_pid,  quadEM1, 9,   DAC1,    1,  -32767,    32767,    0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
+{P,      PID,           INPUT,  ICHAN, OUTPUT, OCHAN,    SUM,   LOPR,     HOPR, DRVL,  DRVH,  PREC,   KP,    KI,  KD,   DT,        SCAN}
+{13IDA:, fast_pitch_pid, quadEM1, 8,   DAC1,    2,   EM1Sum1, -32767,    32767,    0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
+{13IDA:, fast_roll_pid,  quadEM1, 9,   DAC1,    1,   EM1Sum2, -32767,    32767,    0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
 }
