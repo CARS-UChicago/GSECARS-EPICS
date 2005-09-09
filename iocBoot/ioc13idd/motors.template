@@ -70,15 +70,14 @@ pattern
 {13IDD:,  m67,   "OMS VME58",   8,    2, "DAC Microscope X pos",    mm,       Pos,   5.0,   0.2,   .2,    0.02,      1,     .2,     200,    -.1,    3,      100,    0}
 {13IDD:,  m68,   "OMS VME58",   8,    3, "DAC Microscope Y pos",    mm,       Neg,    0.15,  .01,   .2,  0.0,      1,     .2,   480,    .03546,  3,      24.,    0}
 {13IDD:,  m69,   "OMS VME58",   8,    4, "DAC Microscope Z pos",    mm,       Pos,    0.15,  .01,   .2,  0,      1,     .2,   480,    .03546,  3,      24.,    0}
-{13IDD:,  m70,   "OMS VME58",   8,    5, "TEM00 Total Power",      deg,      Pos,   2.50,  2.5,   2.50,    0,      1,     1.0,     100,    .083,     5,      360.,    -360.}
+{13IDD:,  m70,   "OMS VME58",   8,    5, "TEM00 Total Power",      deg,      Pos,    1.0,  1.0,   2.50,    0,      1,     1.0,     100,    .083,     5,      360.,    -360.}
 {13IDD:,  m71,   "OMS VME58",   8,    6, "TEM00 Split Power",      deg,      Pos,   10.0,  5.0,   10.0,    0,      1,     5.0,     10,    .1,     3,      360.,    -360.}
 {13IDD:,  m72,   "OMS VME58",   8,    7, "TEM01 Split Power",      deg,      Pos,   10.0,  5.0,   10.0,    0,      1,     5.0,     10,    .1,     3,      360.,    -360.}
 
 #******************************************************************************************************************************************************************
 # LVP front slits
-#m25 is used for beam filter for DAC. 3/8/05 GS
-{13IDD:,  m25,   "OMS VME58",   3,    0, "beam filter for DAC",     deg,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
-#{13IDD:,  m25,   "OMS VME58",   3,    0, "Vert. slit pos. (Y)",     mm,     Pos,   0.5,   .1,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
+#{13IDD:,  m25,   "OMS VME58",   3,    0, "beam filter for DAC",     deg,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
+{13IDD:,  m25,   "OMS VME58",   3,    0, "Vert. slit pos. (Y)",     mm,     Pos,   0.5,   .1,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
 {13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
 
 # LVP CCD camera stage
@@ -108,7 +107,9 @@ pattern
 {13IDD:,  m38,   "OMS VME58",   4,    5, "Gimbal AY/AX",           degrees,     Pos,    2.,   .01,   .5,    0,     2.,     .5,     400,     .20,   3,      360,    -360}
 # Detector tilt: 2000:1 total gear reducer, UREV=360/2000. = .18
 {13IDD:,  m39,   "OMS VME58",   4,    6, "Gimbal AZ",              degrees,     Pos,    2.,   .01,   .5,    0,     2.,     .5,     400,     .18,   3,      92,   -2}
-{13IDD:,  m40,   "OMS VME58",   4,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
+# used for DAC rotary stage, 8.6.2005, vitali
+{13IDD:,  m40,   "OMS VME58",   4,    7, "beam filter for DAC",     deg,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
+#{13IDD:,  m40,   "OMS VME58",   4,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
 
 # Unused
 {13IDD:,  m41,   "OMS VME58",   5,    0, "M41",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
