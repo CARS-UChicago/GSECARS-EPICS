@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\synApps5-1\CARS\CARSApp\op\adl\13BMD_vit.adl"
+	name="J:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\13BMD_vit.adl"
 	version=020306
 }
 display {
 	object {
-		x=134
-		y=144
+		x=1722
+		y=145
 		width=1367
 		height=660
 	}
@@ -2769,8 +2769,8 @@ text {
 }
 text {
 	object {
-		x=394
-		y=83
+		x=364
+		y=194
 		width=65
 		height=20
 	}
@@ -3349,10 +3349,10 @@ text {
 }
 text {
 	object {
-		x=356
-		y=93
+		x=392
+		y=75
 		width=20
-		height=38
+		height=36
 	}
 	"basic attribute" {
 		clr=36
@@ -3856,7 +3856,7 @@ text {
 		bclr=55
 	}
 	label="Out"
-	press_msg="51."
+	press_msg="49."
 }
 composite {
 	object {
@@ -4004,8 +4004,8 @@ composite {
 }
 "text update" {
 	object {
-		x=395
-		y=112
+		x=368
+		y=113
 		width=55
 		height=14
 	}
@@ -4438,4 +4438,74 @@ composite {
 		calc="A<48"
 		chan="13BMD:m27.RBV"
 	}
+}
+text {
+	object {
+		x=348
+		y=83
+		width=30
+		height=22
+	}
+	"basic attribute" {
+		clr=4
+	}
+	textix="m52"
+}
+"text update" {
+	object {
+		x=677
+		y=55
+		width=250
+		height=20
+	}
+	monitor {
+		chan="S:IOC:timeOfDayForm1SI"
+		clr=40
+		bclr=12
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=735
+		y=631
+		width=70
+		height=22
+	}
+	display[0] {
+		label="Camera/monitor descriptions"
+		name="Pelco_CM6700.adl"
+		args="P=$(P),R=$(C)"
+	}
+	clr=0
+	bclr=49
+	label="-cameras"
+}
+"shell command" {
+	object {
+		x=809
+		y=631
+		width=26
+		height=22
+	}
+	command[0] {
+		label="BMD hutch camera"
+		name="start http://164.54.160.138"
+	}
+	command[1] {
+		label="BMD video server"
+		name="start http://13bmcam.cars.aps.anl.gov"
+	}
+	command[2] {
+		label="CARS Home Page"
+		name="start http://cars.uchicago.edu"
+	}
+	command[3] {
+		label="Calc"
+		name="start calc"
+	}
+	clr=14
+	bclr=33
 }
