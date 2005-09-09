@@ -25,6 +25,7 @@ CARS_SRCS += Energy.st
 CARS_SRCS += BM13_Energy.st
 CARS_SRCS += Analyzer.st
 CARS_SRCS += trajectoryScan.st
+CARS_SRCS_vxWorks += xpsTrajectoryScan.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 
@@ -86,12 +87,15 @@ CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 CARSApp_Linux_LIBS += dxp handel
 CARSApp_Linux_LIBS += mcaCanberra
 
-CARSApp_LIBS_DEFAULT = $(CARSApp_Common_LIBS)
-CARSApp_LIBS_vxWorks = $(CARSApp_vxWorks_LIBS) $(CARSApp_Common_LIBS)
-CARSApp_LIBS_Linux   = $(CARSApp_Linux_LIBS)   $(CARSApp_Common_LIBS)
+CARSApp_cygwin32_LIBS += dxp handel
+
+CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)
+CARSApp_LIBS_vxWorks  = $(CARSApp_vxWorks_LIBS)  $(CARSApp_Common_LIBS)
+CARSApp_LIBS_Linux    = $(CARSApp_Linux_LIBS)    $(CARSApp_Common_LIBS)
+CARSApp_LIBS_cygwin32 = $(CARSApp_cygwin32_LIBS) $(CARSApp_Common_LIBS)
 
 CARSApp_SYS_LIBS_Linux += net pcap
-CARSApp_SYS_LIBS_cygwin32 += rpc
+CARSApp_SYS_LIBS_cygwin32 += rpc DLPORTIO
 
 include $(TOP)/configure/RULES
 #----------------------------------------
