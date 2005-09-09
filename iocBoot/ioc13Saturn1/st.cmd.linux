@@ -34,7 +34,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Saturn1:, M=mca1, DTYP=asynMCA,INP
 dbLoadTemplate("roi_to_sca.substitutions")
 
 # Setup for save_restore
-< ../save_restore_cygwin.cmd
+< ../save_restore_iocsh.cmd
 save_restoreSet_status_prefix("13Saturn1:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Saturn1:")
 
