@@ -27,7 +27,7 @@ dbLoadTemplate "laser_pid.template"
 
 # MAR345 shutter
 str=malloc(256)
-strcpy(str,"P=13BMD:,R=MAR345,IN=13BMD:UnidigBi14,")
+strcpy(str,"P=13BMD:,R=MAR345,IN=13BMD:Unidig1Bi14,")
 strcat(str,"OUT=13BMD:filter1sendCommand.VAL")
 dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter_serial.db",str)
 
@@ -37,7 +37,10 @@ dbLoadTemplate "Ip330_ADC.template"
 # IP-Unidig binary I/O
 dbLoadTemplate "ipUnidig.substitutions"
 
-# CCD synchronization
+# CCD synchronization for tomo.exe Visual Basic program
+dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
+
+# CCD synchronization for Roper SNL program
 dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db","P=13BMD:,C=ccd1:")
 dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db","P=13BMD:,C=ccd2:")
 
@@ -112,11 +115,11 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
 
-# OMS VME58 driver setup parameters: 
-#     (1)cards, (2)axis per card, (3)base address(short, 4k boundary), 
-#     (4)interrupt vector (0=disable or  64 - 255), (5)interrupt level (1 - 6),
-#     (6)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(10, 8, 0x4000, 190, 5, 10)
+# OMS VME58 driver setup parameters:
+#     (1)cards, (2)base address(short, 4k boundary),
+#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
+#     (5)motor task polling rate (min=1Hz,max=60Hz)
+oms58Setup(10, 0x4000, 190, 5, 10)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
