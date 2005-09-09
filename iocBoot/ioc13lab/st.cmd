@@ -187,9 +187,9 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
 #     (4)interrupt vector (0=disable or  64 - 255).
 #     (5)interrupt level (1 - 6).
 #     (6)motor task polling rate (min=1Hz,max=60Hz).
-MAXvSetup(1, 16, 0x4000, 190, 5, 10)
+MAXvSetup(1, 16, 0x6000, 190, 5, 10)
 
-#!drvMAXvdebug=4
+drvMAXvdebug=0
 
 # OMS MAXv configuration string:
 #     (1) number of card being configured (0-14).
@@ -202,14 +202,16 @@ MAXvSetup(1, 16, 0x4000, 190, 5, 10)
 #!config0="AX LH PSM; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
 
 # Set all axes to open-loop stepper and active low limits
-config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+#config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+# Set all axes to servo and active low limits
+config0="AX LH PSM; AY LH PSM; AZ LH PSM; AT LH PSM; AU LH PSM; AV LH PSM; AR LH PSM; AS LH PSM;"
 MAXvConfig(0, config0)
 
 # OMS VME58 driver setup parameters: 
 #     (1)cards, (2)base address(short, 4k boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(1, 0x5000, 190, 5, 10)
+oms58Setup(2, 0x4000, 190, 5, 10)
 
 # initQuadEM(quadEMName, baseAddress, fiberChannel, microSecondsPerScan, 
 #            maxClients, unidigName, unidigChan)
