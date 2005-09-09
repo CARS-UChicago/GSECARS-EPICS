@@ -70,13 +70,19 @@ pattern
 
 # m25-28 don't have home or +5V.
 #This is the definition when using the Huber jack for Y on tomography or diffraction
-{13BMD:,  m25, "OMS VME58",   3,  0,  "Sample Y",         mm,    Pos,   0.2,  0.03,  .5,    0,      1,     .2,     400,    -.02,   3,      40,     0}
+#{13BMD:,  m25, "OMS VME58",   3,  0,  "Sample Y",         mm,    Pos,   0.2,  0.03,  .5,    0,      1,     .2,     400,    -.02,   3,      40,     0}
+# This is the definition when using the BioCARS jack for Y on tomography
+{13BMD:,  m25, "OMS VME58",   3,  0,  "Sample Y"          mm,    Pos,  1.0,   0.1,   .5,    0,      1,     .2,     400,   -.710,   4,      25,     0}
 # LVP Front Slits 15-Sept-2003 TU
 {13BMD:,  m26, "OMS VME58",   3,  1,  "Vert. slit Y pos.",  mm,   Pos,   0.5,   .1,    1.0,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
-{13BMD:,  m27, "OMS VME58",   3,  2,  "Hori. slit X Pos.",  mm,   Neg,   1.0,   .2,    1.0,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
 # This is for the sample twirler for some tomography
-{13BMD:,  m28, "OMS VME58",   3,  3, "Sample Twirl",      rev,   Pos,   .5,   .03,    3.,    0,      1,     .2,     400,     0.02778,  3,     1e9,   -1e9}
-
+## MN 2005-Jul-23 set-up huber 410/20xgear reducer for waveplate
+# {13BMD:,  m27, "OMS VME58",   3,  2,  "Hori. slit X Pos.",  mm,   Neg,   1.0,   .2,    1.0,   0.1,  .1,   .2,   400,  1.0,     3,     25,   -25}
+{13BMD:,  m27, "OMS VME58",   3,  2,  "WavePlate Chi",  deg,   Neg,   5.0,   .1,  0.5,   0,  1,   .2,   200,  -0.025,     3,    10,-10}
+# This is for the sample twirler for some tomography
+## MN 2005-Jul-23 set-up huber 410/20xgear reducer for waveplate
+#  {13BMD:,  m28, "OMS VME58",   3,  3, "Sample Twirl",      rev,   Pos,   .5,   .03,    3.,    0,      1,     .2,     400,     0.02778,  3,     1e9,   -1e9}
+{13BMD:,  m28, "OMS VME58",      3,  3, "WavePlate Theta",    degrees,  Pos,   .3,  .05,   .2   0,   1, .2, 400,  .05,      4,   30,  -10}
 #BMD Hutch Slits
 # MLR changed sign of m30 MRES 26-Jul-2000 when a phase wiring problem was found and corrected
 {13BMD:,  m29,  "OMS VME58",   3,  4, "Inboard slit",      mm,    Pos,   1.0,   .1,    .2,    0,    1,    .2,   400,  0.50,    3,     85,   -4.}
