@@ -13,7 +13,7 @@ tyGSAsynInit("serial8",  "UART0", 7,19200,'N',1,8,'N',"\n","\r")  /* Keithley 20
 tyGSAsynInit("serial9",  "UART1", 0,19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
 tyGSAsynInit("serial10", "UART1", 1, 9600,'N',1,8,'N',"\r","\r")  /* XIA shutter */
 tyGSAsynInit("serial11", "UART1", 2,19200,'N',1,8,'N',"\r\n","\r\n")  /* Verdi Laser */
-tyGSAsynInit("serial12", "UART1", 3, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
+tyGSAsynInit("serial12", "UART1", 3, 9600,'N',1,8,'N',"\r","\r")  /* Pelco CM6700 video switch */
 tyGSAsynInit("serial13", "UART1", 4, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial14", "UART1", 5, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial15", "UART1", 6, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
@@ -37,7 +37,8 @@ dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,PORT=serial8")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,PORT=serial9")
 dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,PORT=serial10")
-# Serial 11 is Verdi Laser for testing
+# Serial 11 is Verdi Laser
 dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13BMD:,R=Verdi1:,PORT=serial11")
 
-
+# Serial 12 is Pelco CM6700 video switch
+dbLoadTemplate("Pelco_CM6700.substitutions")
