@@ -135,8 +135,6 @@ taskDelay(1800)
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 
-< ../requestFileCommands
-#
 # save positions every five seconds
 # DISABLE SAVE RESTORE FOR NOW
 create_monitor_set("auto_positions.req",5)
@@ -154,7 +152,3 @@ dbpf "13GE2:EnableUserSCalcs.PROC","1"
 # Free the memory we allocated at the beginning of this script
 free(mem)
 
-# This should not be needed, but for some reason output is being turned off by
-# iocInit
-xiaSetLogOutput("stdout")
-xiaSetLogLevel(4)
