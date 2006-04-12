@@ -28,6 +28,8 @@ program trajectoryScan(
 */
 
 %% #include <string.h>
+%% #include <stdio.h>
+%% #include <epicsString.h>
 %% #include <asynOctetSyncIO.h>
 
 /* This program must be compiled with the recursive option */
@@ -760,11 +762,11 @@ ss trajectoryScan {
                  * 15TQ,1TH2.7,1TP2.65,2TH3.1,2TP3.1 ... */
                 tok_save = 0;
                 /* Skip the first token, which is nnTQ */
-                p = strtok_r(stringIn, ",", &tok_save);
+                p = epicsStrtok_r(stringIn, ",", &tok_save);
                 for (j=0; (j<numAxes && p!=0); j++) {
-                    p = strtok_r(0, ",", &tok_save);
+                    p = epicsStrtok_r(0, ",", &tok_save);
                     posTheory = atof(p+3);
-                    p = strtok_r(0, ",", &tok_save);
+                    p = epicsStrtok_r(0, ",", &tok_save);
                     if (epicsMotorDir[j] == 0) dir=1; else dir=-1;
                     posActual = atof(p+3);
                     motorError[j][i] = posActual-posTheory;
@@ -866,11 +868,11 @@ static int getMotorPositions(SS_ID ssId, struct UserVar *pVar, double *pos)
     /* Parse the return string which is of the form 
      * 1TP2.65,2TP3.1 ... */
     tok_save = 0;
-    p = strtok_r(pVar->stringIn, ",", &tok_save);
+    p = epicsStrtok_r(pVar->stringIn, ",", &tok_save);
     for (j=0; (j<pVar->numAxes && p!=0); j++) {
         if (pVar->epicsMotorDir[j] == 0) dir=1; else dir=-1;
         pos[j] = atof(p+3)*dir + pVar->epicsMotorOff[j];
-        p = strtok_r(0, ",", &tok_save);
+        p = epicsStrtok_r(0, ",", &tok_save);
     }
     return(0);
 }
@@ -890,12 +892,12 @@ static int getMotorMoving(SS_ID ssId, struct UserVar *pVar)
     /* Parse the return string which is of the form 
      * 1MSA,2MS@ ... */
     tok_save = 0;
-    p = strtok_r(pVar->stringIn, ",", &tok_save);
+    p = epicsStrtok_r(pVar->stringIn, ",", &tok_save);
     for (j=0; (j<pVar->numAxes && p!=0); j++) {
         /* The low order bit in the status byte is the MOVING bit */
         if (*(p+3) & 0x01) result |= mask;
         mask = mask << 1;
-        p = strtok_r(0, ",", &tok_save);
+        p = epicsStrtok_r(0, ",", &tok_save);
     }
     return(result);
 }
