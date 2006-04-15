@@ -25,6 +25,17 @@ program trajectoryScan(
  *                      eliminate problem where MM4000 seems to sometimes ignore TP command right
  *                      after trajectory execution starts.  Also, first MS sometimes comes back saying
  *                      motors are not moving yet, so software thinks trajectory is done.
+ *                      Converted to OSI
+ *                      Converted to new version of seq which changes call to seq_pvPut
+ *                      Changed flyback (now a misnomer) so it does EPICS move to current motor positions,
+ *                      not start positions.  Start position move did not work because motors already thought
+ *                      they were there (if no encoder error) and motor record did nothing.
+ *  Oct.  1, 2004 MLR   Changed from using asynRecord (previously generic serial record) to using asynOctetSyncIO calls.
+ *                      This fixed bugs in I/O due to timing, and is simpler and cleaner.
+ *  Feb.  6, 2005 MLR   Changes for last version of asyn; terminators done differently
+ *  Mar. 28, 2005 MLR   Increased number of pulses; added readback during trajectory download to prevent buffer overflow
+ *  Apr. 29, 2005 MLR   Changed timeout to 30 seconds - necessary?
+ *  Apr. 12, 2006 MLR   Changed from strtok_r to epicsStrtok_r
 */
 
 %% #include <string.h>
