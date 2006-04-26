@@ -2,14 +2,14 @@ file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,        M,          DTYP,  C,  S, DESC,                  EGU,  DIR,  VELO, VBAS, ACCL, BDST,BVEL, BACC, SREV,  UREV, PREC, DHLM, DLLM}
-{13BMC:,  m1,   "OMS VME58",   0,  0, "CCD X",               mm,  Neg,   2.0,   .1,   .5,    0,   1,   .2,  200,  -.10,    3,  100,    0}
-{13BMC:,  m2,   "OMS VME58",   0,  1, "CCD Y",               mm,  Neg,   2.0,   .1,   .5,    0,   1,   .2,  200,  -.10,    3,  150,    0}
-{13BMC:,  m3,   "OMS VME58",   0,  2, "CCD Z",               mm,  Pos,   2.0,   .1,   .5,    0,   1,   .2,  200,  -.10,    3,  100,    0}
-{13BMC:,  m4,   "OMS VME58",   0,  3, "Sample-X",            mm,  Neg,     2,   .1,   .5,    0,  .0,   .0,  200,  -.10,    3,  100,    0}
-{13BMC:,  m5,   "OMS VME58",   0,  4, "Sample-Y",            mm,  Neg,     1,   .1,   .5,    0,  .0,   .0,  200, -.010,    3,  101,   -1}
-{13BMC:,  m6,   "OMS VME58",   0,  5, "Downstream-X",        mm,  Pos,     1,   .0,   .5,    0,  .0,   .0,  400,   .02,    2,  101,   -1}
-{13BMC:,  m7,   "OMS VME58",   0,  6, "Slit-1",              mm,  Neg,     1,   .0,   .5,    0,  .0,   .0,  400,    .5,    3,  100,  -10}
-{13BMC:,  m8,   "OMS VME58",   0,  7, "Slit-2",              mm,  Neg,     1,   .0,   .5,    0,  .0,   .0,  400,    .5,    3,  100,  -10}
+{13BMC:,  m1,   "OMS VME58",   0,  0, "Vert Mirr Y pos",     microns,  150.0,    10,  .2,  0,   1, .2,  48,   3.546,  1,  8e3,    0}
+{13BMC:,  m2,   "OMS VME58",   0,  1, "Vert Mirr rotation",   mrad,     Pos,     10,    .1,  .2,  0,   1, .2,  48, -0.8868,  3,   300,  -300}
+{13BMC:,  m3,   "OMS VME58",   0,  2, "Vert force Upstream", microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13BMC:,  m4,   "OMS VME58",   0,  3, "Vert force Dnstream", microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13BMC:,  m5,   "OMS VME58",   0,  4, "CCD X",               mm,  Neg,   2.0,   .1,   .5,    0,   1,   .2,  200,  -.10,    3,  100,    0}
+{13BMC:,  m6,   "OMS VME58",   0   5  "CCD Y",               mm,  Neg,   2.0,   .1,   .5,    0,   1,   .2,  200,  -.10,    3,  150,    0}
+{13BMC:,  m7,   "OMS VME58",   0,  6, "CCD Z",               mm,  Pos,   2.0,   .1,   .5,    0,   1,   .2,  200,  -.10,    3,  100,    0}
+{13BMC:,  m8,   "OMS VME58",   0,  7, "Sample-X",            mm,  Neg,     2,   .1,   .5,    0,  .0,   .0,  200,  -.10,    3,  100,    0}
 
 # Diffractometer detector slits
 {13BMC:,  m9,   "OMS VME58",   1, 0, "Hp UpStream",      microns, Pos,    100,   100, .2, 0,  1,  .2,  2571,  -350,   0,   5100, -100}
@@ -32,14 +32,14 @@ pattern
 {13BMC:, m24,   "OMS VME58",   2, 7, "Vw DownStream",    microns, Pos,    200,   100, .2, 0,  1,  .2,  2571,  -700,   0,  10100, -100}
 
 #13BMB Motors
-{13BMC:, m25,   "OMS VME58",   3, 0, "BMC Mono X",            mm, Pos,    1.0,   0.1, .5, 0,  1,  .2,    200,  0.010,   4,   1000,  -1000}
-{13BMC:, m26,   "OMS VME58",   3, 1, "BMC Mono Theta",       deg, Neg,    5.0,   1.0, .5, 0,  1,  .2,    200,   0.10,   4,    361,   -361}
-{13BMC:, m27,   "OMS VME58",   3, 2, "Mono force Dnstream",     microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-{13BMC:, m28,   "OMS VME58",   3, 3, "Unused",             steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
-{13BMC:, m29,   "OMS VME58",   3, 4, "Mono X pos",     mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,  -0.10,     3,  99, 1}
-{13BMC:, m30,   "OMS VME58",   3, 5, "Mono rotation",   deg,     Pos,    3.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,  3,  360, -360}
-{13BMC:, m31,   "OMS VME58",   3, 6, "Mono force Upstream",     microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-{13BMC:, m32,   "OMS VME58",   3, 7, "Mono force Dnstream",     microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13BMC:, m25,   "OMS VME58",   3, 0, "unused",            mm, Pos,    1.0,   0.1, .5, 0,  1,  .2,    200,  0.010,   4,   1000,  -1000}
+{13BMC:, m26,   "OMS VME58",   3, 1, "unused",        deg, Neg,    5.0,   1.0, .5, 0,  1,  .2,    200,   0.10,   4,    361,   -361}
+{13BMC:, m27,   "OMS VME58",   3, 2, "unused",   microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13BMC:, m28,   "OMS VME58",   3, 3, "unused",   steps, Pos,   1000.,   10, .5, 0,  1,  .2,      1,      1,   1,    1e6,   -1e6}
+{13BMC:, m29,   "OMS VME58",   3, 4, "Horz Mono X pos",            mm, Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,  -0.10,     3,  99, 1}
+{13BMC:, m30,   "OMS VME58",   3, 5, "Horz Mono rotation",         deg,Pos,    3.,   0.0,    .5,     0,      1,     .2,    200,    -0.10,  3,  360, -360}
+{13BMC:, m31,   "OMS VME58",   3, 6, "Horz Mono force Upstream",   microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13BMC:, m32,   "OMS VME58",   3, 7, "Horz Mono force Dnstream",    microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
 
 # Diffractometer motors
 {13BMC:, m33,   "XPSC8",       0, 0, "Phi",              degrees,  Pos,   16.0,  0.1,  1, 0,  1,  .2,  1,       .001,   5,     180,   -180}
@@ -57,7 +57,7 @@ pattern
 {13BMC:, m42,   "XPSC8",       1, 4, "RotAY-mBZ",             mm,  Pos,    5.,   .01, 0.25, 0,  1,  .2,  1,  .005,        4,    24,  -24}
 {13BMC:, m44,   "XPSC8",       1, 5, "Sample X"               mm,  Pos,    .5,   .01, 0.25, 0,  1,  .2,  1,  .0002620545, 4,    28,    0}
 {13BMC:, m45,   "XPSC8",       1, 6, "Sample Y",              mm,  Pos,    .5,   .01, 0.25, 0,  1,  .2,  1,  .0002620545, 4,     3,   -3}
-{13BMC:, m46,   "XPSC8",       1, 7, "Sample Z",              mm,  Pos,    .5,   .01, 0.25, .1,  1,  .2,  1, .0002620545, 4,     3,   -3}
+{13BMC:, m46,   "XPSC8",       1, 7, "Sample Z",              mm,  Pos,    .5,   .01, 0.25, .1,  1,  .2,  1, .0002620545, 4,   7.5, -7.5}
 }
 
 # Newport table using generic table-record
@@ -71,23 +71,30 @@ pattern
 file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
-{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+{P,       M,           DINP,                   OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
 {13BMC:,  pm1, "13BMC:KBH:Done NPP NMS", "13BMC:pm1DVAL.VAL PP MS", "13BMC:KBH:Readback.G NPP NMS", "13BMC:KBH:Stop PP MS",
 "Height (Sum)",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
 {13BMC:,  pm2, "13BMC:KBH:Done NPP NMS", "13BMC:pm2DVAL.VAL PP MS", "13BMC:KBH:Readback.H NPP NMS", "13BMC:KBH:Stop PP MS",
 "Pitch (Diff)",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
 
-{13BMC:,  pm3, "13BMC:KBV:Done NPP NMS", "13BMC:pm3DVAL.VAL PP MS", "13BMC:KBV:Readback.G NPP NMS", "13BMC:KBV:Stop PP MS",  
+{13BMC:,  pm3, "13BMC:MNH:Done NPP NMS", "13BMC:pm3DVAL.VAL PP MS", "13BMC:MNH:Readback.G NPP NMS", "13BMC:MNH:Stop PP MS",  
  "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
-{13BMC:,  pm4, "13BMC:KBV:Done NPP NMS", "13BMC:pm4DVAL.VAL PP MS", "13BMC:KBV:Readback.H NPP NMS", "13BMC:KBV:Stop PP MS",   
+{13BMC:,  pm4, "13BMC:MNH:Done NPP NMS", "13BMC:pm4DVAL.VAL PP MS", "13BMC:MNH:Readback.H NPP NMS", "13BMC:MNH:Stop PP MS",   
  "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
+
+{13BMC:,  pm5, "13BMC:MNV:Done NPP NMS", "13BMC:pm5DVAL.VAL PP MS", "13BMC:MNV:Readback.G NPP NMS", "13BMC:MNV:Stop PP MS",  
+ "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
+{13BMC:,  pm6, "13BMC:MNV:Done NPP NMS", "13BMC:pm6DVAL.VAL PP MS", "13BMC:MNV:Readback.H NPP NMS", "13BMC:MNV:Stop PP MS",   
+ "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
+
 }
 
 file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13BMC:, KBH:,  pm1, pm2,    m3.VAL,  m3.RBV,  m4.VAL, m4.RBV, m3.STOP, m3.DMOV, m4.STOP, m4.DMOV, 3}
-{13BMC:, KBV:,  pm3, pm4,    m31.VAL,   m31.RBV,  m32.VAL,  m32.RBV,  m31.STOP,  m31.DMOV,  m32.STOP,  m32.DMOV, 1}
+{13BMC:, KBH:,  pm1, pm2,    m7.VAL,  m7.RBV,  m8.VAL, m8.RBV, m7.STOP, m7.DMOV, m8.STOP, m8.DMOV, 3}
+{13BMC:, MNH:,  pm3, pm4,    m31.VAL,   m31.RBV,  m32.VAL,  m32.RBV,  m31.STOP,  m31.DMOV,  m32.STOP,  m32.DMOV, 1}
+{13BMC:, MNV:,  pm5, pm6,    m3.VAL,   m3.RBV,  m4.VAL,  m4.RBV,  m3.STOP,  m3.DMOV,  m4.STOP,  m4.DMOV, 1}
 }
 
