@@ -52,7 +52,7 @@ set_requestfile_path("$(MCA)",      "mcaApp/Db")
 set_requestfile_path("$(MOTOR)",    "motorApp/Db")
 set_requestfile_path("$(OPTICS)",   "opticsApp/Db")
 set_requestfile_path("$(QUADEM)",   "quadEMApp/Db")
-set_requestfile_path("$(QUADEM)",    "sscanApp/Db")
+set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
 set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
