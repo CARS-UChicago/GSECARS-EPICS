@@ -1,6 +1,6 @@
 
 file {
-	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13ID_EPS.adl"
+	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13ID_EPS.adl"
 	version=030000
 }
 display {
@@ -5885,5 +5885,59 @@ text {
 	}
 	align="horiz. centered"
 	limits {
+	}
+}
+rectangle {
+	object {
+		x=241
+		y=712
+		width=120
+		height=26
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+oval {
+	object {
+		x=333
+		y=716
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="PA:13ID:OPSS_MODE1.VAL"
+	}
+}
+text {
+	object {
+		x=244
+		y=718
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Backstop"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=333
+		y=716
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:13ID:OPSS_MODE1.VAL"
 	}
 }
