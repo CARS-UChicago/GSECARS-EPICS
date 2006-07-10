@@ -35,9 +35,13 @@ CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 #===========================
 
 # <name>.dbd will be created from <name>Include.dbd
+ifeq ($(OS_CLASS), WIN32)
+DBD    += CARSWin32.dbd
+else
 DBD += CARS.dbd
 DBD += CARSVX.dbd
 DBD += CARSLinux.dbd
+endif
 
 #=============================
 # build an ioc application
@@ -45,12 +49,10 @@ DBD += CARSLinux.dbd
 PROD_IOC = CARSApp
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
-CARSApp_SRCS_DEFAULT += CARS_registerRecordDeviceDriver.cpp
+CARSApp_SRCS_DEFAULT += CARS_registerRecordDeviceDriver.cpp CARSMain.cpp
+CARSApp_SRCS_Linux   += CARSLinux_registerRecordDeviceDriver.cpp CARSMain.cpp
+CARSApp_SRCS_WIN32   += CARSWin32_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_vxWorks += CARSVX_registerRecordDeviceDriver.cpp
-CARSApp_SRCS_Linux   += CARSLinux_registerRecordDeviceDriver.cpp
-CARSApp_SRCS_DEFAULT += CARSMain.cpp
-CARSApp_SRCS_Linux += CARSMain.cpp
-CARSApp_SRCS_vxWorks += -nil-
 
 CARSApp_Common_LIBS += CARS
 CARSApp_Common_LIBS += mca 
@@ -60,11 +62,10 @@ CARSApp_Common_LIBS += autosave
 CARSApp_Common_LIBS += optics
 CARSApp_Common_LIBS += vme
 CARSApp_Common_LIBS += std
+CARSApp_Common_LIBS += love
 CARSApp_Common_LIBS += ip
-#CARSApp_Common_LIBS += gpib
 CARSApp_Common_LIBS += brukerCCD marCCD roperCCD
-#CARSApp_Common_LIBS += Acs Ims Mclennan motor Newport softMotor
-CARSApp_Common_LIBS += Acs Mclennan motor Newport softMotor
+CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport motor
 CARSApp_Common_LIBS += asyn
 CARSApp_Common_LIBS += seq pv
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -77,25 +78,31 @@ CARSApp_vxWorks_LIBS += ipUnidig
 CARSApp_vxWorks_LIBS += dac128V
 CARSApp_vxWorks_LIBS += quadEM
 CARSApp_vxWorks_LIBS += camac devCamac
-CARSApp_vxWorks_LIBS += dxp handel
+CARSApp_vxWorks_LIBS += dxp handelSrc
 CARSApp_vxWorks_LIBS += oms
 CARSApp_vxWorks_LIBS += TyGSOctal Ipac
 CARSApp_vxWorks_LIBS += vxStats
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARSApp_Linux_LIBS += dxp handel
+CARSApp_Linux_LIBS += dxp handelSrc
 CARSApp_Linux_LIBS += mcaCanberra
 
-CARSApp_cygwin32_LIBS += dxp handel
+CARSApp_cygwin32_LIBS += dxp handelSrc
+
+CARSApp_WIN32_LIBS    += dxp handelSrc
 
 CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)
 CARSApp_LIBS_vxWorks  = $(CARSApp_vxWorks_LIBS)  $(CARSApp_Common_LIBS)
 CARSApp_LIBS_Linux    = $(CARSApp_Linux_LIBS)    $(CARSApp_Common_LIBS)
 CARSApp_LIBS_cygwin32 = $(CARSApp_cygwin32_LIBS) $(CARSApp_Common_LIBS)
+CARSApp_LIBS_WIN32    = $(CARSApp_WIN32_LIBS)   $(CARSApp_Common_LIBS)
 
-CARSApp_SYS_LIBS_Linux += net pcap
+CARSApp_SYS_LIBS_Linux    += net pcap
 CARSApp_SYS_LIBS_cygwin32 += rpc DLPORTIO
+CARSApp_LIBS_WIN32        += DLPORTIO
+
+BIN_INSTALLS_vxWorks += printf_test.o
 
 include $(TOP)/configure/RULES
 #----------------------------------------
