@@ -8,7 +8,7 @@ tyGSAsynInit("serial7",  "UART0", 6,  9600,'N',2,8,'N',"\r","\r") /* SRS 570 */
 tyGSAsynInit("serial8",  "UART0", 7,  9600,'N',1,8,'N',"\r","\r") /* SMART PC */
 tyGSAsynInit("serial9",  "UART1", 0,  9600,'N',2,7,'N',"\r","\r") /* Omega meter */
 tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\r","\r") /* RSF encoder readout */
-tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',"\r","\r") /* PicoMotor controller */
+tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',">","\r") /* PicoMotor controller */
 tyGSAsynInit("serial12", "UART1", 3, 19200,'N',1,8,'N',"\r","\r") /* Keithley 2700 */
 tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r") /* Pelco CM6700 video switch */
 tyGSAsynInit("serial14", "UART1", 5,  9600,'N',1,8,'N',"\r","\r") /* Unused */
