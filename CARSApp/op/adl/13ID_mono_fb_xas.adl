@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13ID_mono_fb_xas.adl"
+	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13ID_mono_fb_xas.adl"
 	version=030000
 }
 display {
 	object {
-		x=81
-		y=603
+		x=200
+		y=77
 		width=601
 		height=250
 	}
@@ -102,8 +102,8 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=45
+		x=5
+		y=40
 		width=150
 		height=25
 	}
@@ -138,9 +138,9 @@ text {
 }
 "text entry" {
 	object {
-		x=270
+		x=285
 		y=45
-		width=75
+		width=60
 		height=20
 	}
 	control {
@@ -153,7 +153,7 @@ text {
 }
 text {
 	object {
-		x=185
+		x=175
 		y=45
 		width=40
 		height=20
@@ -161,7 +161,7 @@ text {
 	"basic attribute" {
 		clr=23
 	}
-	textix="I0 setpoint"
+	textix="setpoint"
 }
 "text update" {
 	object {
@@ -191,31 +191,6 @@ menu {
 		clr=14
 		bclr=1
 	}
-}
-menu {
-	object {
-		x=515
-		y=105
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)mono_pid1EnableReset"
-		clr=14
-		bclr=1
-	}
-}
-text {
-	object {
-		x=375
-		y=105
-		width=50
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="AutoReset On/Off"
 }
 text {
 	object {
@@ -267,9 +242,9 @@ text {
 }
 "text entry" {
 	object {
-		x=270
+		x=285
 		y=150
-		width=75
+		width=60
 		height=20
 	}
 	control {
@@ -282,7 +257,7 @@ text {
 }
 text {
 	object {
-		x=185
+		x=180
 		y=150
 		width=40
 		height=20
@@ -290,7 +265,7 @@ text {
 	"basic attribute" {
 		clr=23
 	}
-	textix="Setpoint"
+	textix="setpoint"
 }
 "text update" {
 	object {
@@ -321,19 +296,6 @@ menu {
 		bclr=1
 	}
 }
-menu {
-	object {
-		x=515
-		y=208
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)mono_pid2EnableReset"
-		clr=14
-		bclr=1
-	}
-}
 text {
 	object {
 		x=355
@@ -345,21 +307,6 @@ text {
 		clr=14
 	}
 	textix="Actual"
-}
-oval {
-	object {
-		x=565
-		y=150
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="$(P)mono_pid2Locked"
-	}
 }
 "text entry" {
 	object {
@@ -390,8 +337,8 @@ text {
 }
 "message button" {
 	object {
-		x=266
-		y=79
+		x=265
+		y=80
 		width=20
 		height=20
 	}
@@ -420,8 +367,8 @@ text {
 }
 "text entry" {
 	object {
-		x=286
-		y=79
+		x=285
+		y=80
 		width=60
 		height=20
 	}
@@ -451,8 +398,8 @@ text {
 }
 "message button" {
 	object {
-		x=266
-		y=114
+		x=265
+		y=115
 		width=20
 		height=20
 	}
@@ -466,8 +413,8 @@ text {
 }
 "message button" {
 	object {
-		x=344
-		y=114
+		x=345
+		y=115
 		width=20
 		height=20
 	}
@@ -481,8 +428,8 @@ text {
 }
 "text entry" {
 	object {
-		x=286
-		y=114
+		x=285
+		y=115
 		width=60
 		height=20
 	}
@@ -566,8 +513,8 @@ text {
 }
 "message button" {
 	object {
-		x=266
-		y=188
+		x=265
+		y=190
 		width=20
 		height=20
 	}
@@ -581,8 +528,8 @@ text {
 }
 "message button" {
 	object {
-		x=351
-		y=188
+		x=345
+		y=190
 		width=20
 		height=20
 	}
@@ -596,9 +543,9 @@ text {
 }
 "text entry" {
 	object {
-		x=286
+		x=285
 		y=188
-		width=65
+		width=60
 		height=20
 	}
 	control {
@@ -627,8 +574,8 @@ text {
 }
 "message button" {
 	object {
-		x=266
-		y=218
+		x=265
+		y=220
 		width=20
 		height=20
 	}
@@ -642,8 +589,8 @@ text {
 }
 "message button" {
 	object {
-		x=351
-		y=218
+		x=345
+		y=220
 		width=20
 		height=20
 	}
@@ -657,9 +604,9 @@ text {
 }
 "text entry" {
 	object {
-		x=286
+		x=285
 		y=218
-		width=65
+		width=60
 		height=20
 	}
 	control {
@@ -723,7 +670,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="Feeback   On/Off"
+	textix="Feedback   On/Off"
 }
 polyline {
 	object {
@@ -762,30 +709,6 @@ polyline {
 text {
 	object {
 		x=375
-		y=213
-		width=50
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="AutoReset On/Off"
-}
-text {
-	object {
-		x=510
-		y=150
-		width=50
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Status"
-}
-text {
-	object {
-		x=375
 		y=188
 		width=50
 		height=18
@@ -793,7 +716,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="Feeback   On/Off"
+	textix="Feedback   On/Off"
 }
 rectangle {
 	object {
