@@ -107,7 +107,7 @@ MM4000Config(0, "serial7", 0)
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
 # Serial 10 SR630 thermocouple reader
-dbLoadTemplate("SR630.substitutions")
+#dbLoadTemplate("SR630.substitutions")
 
 # GPIB 3 is Fluke multimeter
 dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
