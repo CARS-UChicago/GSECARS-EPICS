@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13BMD_xas.adl"
+	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13BMD_xas.adl"
 	version=030000
 }
 display {
 	object {
-		x=452
-		y=135
+		x=959
+		y=111
 		width=460
 		height=125
 	}
@@ -160,6 +160,11 @@ display {
 		name="scan_more.adl"
 		args="P=13BMD:, S=scan3, N=3"
 	}
+	display[3] {
+		label="Sample Tomo"
+		name="MicroTomo_BMD.adl"
+		args="P=13BMD:, X=m33, Y=m34, Z=m70, TH=m39"
+	}
 	clr=14
 	bclr=2
 	label="-Scans"
@@ -174,7 +179,7 @@ display {
 	display[0] {
 		label="Sample Stage"
 		name="SampleXYZ.adl"
-		args="P=13BMD:, X=m33, Y=m34, Z=m35"
+		args="P=13BMD:, X=m70, Y=m34, Z=m33"
 	}
 	display[1] {
 		label="BM D Slits"
@@ -196,15 +201,20 @@ display {
 		name="6motors.adl"
 		args="P=13BMD:, TITLE=Lift_Table, M1=m17,  M2=m18, M3=m19, M4=m20, M5=m21, M6=m22"
 	}
+	display[5] {
+		label="Horizontal Mirror"
+		name="6motors.adl"
+		args="P=13BMD:, TITLE=Horizontal_Mirror, M1=m45, M2=m46, M3=m47, M4=m48, M5=pm5, M6=pm6"
+	}
 	display[6] {
 		label="Lift Table (compound)"
 		name="table_full.adl"
 		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m21, M2Y=m17, M2Z=junk"
 	}
 	display[7] {
-		label="Waveplate"
-		name="2motors.adl"
-		args="P=13BMD:, M1=m28, M2=m27, TITLE=WAVEPLATE"
+		label="BLCA"
+		name="4motors.adl"
+		args="P=13BMD:, M1=m77, M2=m78, M3=m79, M4=m80, TITLE=OTHER"
 	}
 	clr=14
 	bclr=2
@@ -407,15 +417,20 @@ rectangle {
 		name="scaler_calcs4.adl"
 		args="P=13BMD:, S=scaler1"
 	}
-	display[2] {
-		label="16 element "
+	display[1] {
+		label="16 element (old)"
 		name="13GE_med.adl"
 		args="P=13GE2:med:"
 	}
-	display[5] {
-		label="16 element (old: GE1)"
-		name="16element.adl"
-		args="P=13GE1:med:"
+	display[2] {
+		label="16 element (new)"
+		name="16element_dxp.adl"
+		args="P=13GE2:med:"
+	}
+	display[4] {
+		label="Video Switch"
+		name="Pelco_CM6700.adl"
+		args="P=13BMD:, R=Pelco1"
 	}
 	clr=14
 	bclr=2
