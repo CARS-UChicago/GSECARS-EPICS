@@ -10,31 +10,10 @@ var icbDebug,0
 var dxpRecordDebug,0
 var
 
-# Set up 2 local serial ports
-#drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
-#asynSetOption(serial1,0,baud,19200)
-#drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
-#asynSetOption(serial2,0,baud,38400)
-# Set up last 2 ports on Moxa box
-#drvAsynTCPPortConfigure("serial3", "164.54.160.50:4003", 0, 0, 0)
-#drvAsynTCPPortConfigure("serial4", "164.54.160.50:4004", 0, 0, 0)
-# Creat MPF servers on all of these
-initSerialServer("serial1", "serial1", 1000, 20, "")
-initSerialServer("serial2", "serial2", 1000, 20, "")
-initSerialServer("serial3", "serial3", 1000, 20, "")
-initSerialServer("serial4", "serial4", 1000, 20, "")
-# Make these ports available from the iocsh command line
-asynConnect("serial1", "serial1", 0, "\r", "\r")
-asynConnect("serial2", "serial2", 0, "\r", "\r")
-asynConnect("serial3", "serial3", 0, "\r", "\r\n")
-asynConnect("serial4", "serial4", 0, "\r", "\r")
+< serial.cmd
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
-
-# Load asyn record with no port or addr
-dbLoadRecords("asynTest.db","P=13Linux:, R=asynTest")
-
 
 # Serial 1 Keithley Multimeter
 #dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13Linux:,Dmm=DMM1,C=0,SERVER=serial1")
@@ -57,34 +36,37 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13Linux:,Q=EDB")
 dbLoadTemplate "scanParms.template"
 
 # Multichannel analyzer stuff
-# AIMConfig(mpfServer, card, ethernet_address, port, maxChans, 
-#           maxSignals, maxSequences, ethernetDevice, queueSize)
-AIMConfig("AIM1/1", 0x3ed, 1, 2048, 1, 1, "eth0", 100)
-AIMConfig("AIM1/2", 0x3ed, 2, 2048, 8, 1, "eth0", 400)
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc1,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/1,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc2,DTYPE=MPF MCA,INP=#C0 S0 @AIM1/2,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc3,DTYPE=MPF MCA,INP=#C0 S2 @AIM1/2,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc4,DTYPE=MPF MCA,INP=#C0 S4 @AIM1/2,NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc5,DTYPE=MPF MCA,INP=#C0 S6 @AIM1/2,NCHAN=2048")
+# AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
+#           maxSignals, maxSequences, ethernetDevice)
+#AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "eth0")
+#AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "eth0")
+#AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "eth0")
+#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
+#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13Linux:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
 
-#icbDspConfig("icbDsp/1", 1, "NI59E:1", 100)
-#dbLoadRecords("mcaApp/Db/icbDsp.db", "P=13Linux:,DSP=dsp1,CARD=0,SERVER=icbDsp/1,ADDR=0")
-icbSetup("icb/1", 10, 100)
-#icbConfig("icb/1", 0, 0x3ed, 5)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13Linux:,ADC=adc1,CARD=0,SERVER=icb/1,ADDR=0")
-icbConfig("icb/1", 1, 0x3ed, 3)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13Linux:,AMP=amp1,CARD=0,SERVER=icb/1,ADDR=1")
-icbConfig("icb/1", 2, 0x3ed, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13Linux:,HVPS=hvps1,CARD=0,SERVER=icb/1,ADDR=2, LIMIT=1000")
-
-#icbTcaSetup(serverName, maxModules, queueSize)
-icbTcaSetup("icbTca/1", 10, 100)
-#icbTcaConfig(serverName, module, ethernetAddress, icbAddress)
-icbTcaConfig("icbTca/1", 0, 0x3ed, 8)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13Linux:,TCA=tca1,MCA=aim_adc2,CARD=0,SERVER=icbTca/1,ADDR=0")
+#icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
+#   portName to give to this asyn port
+#   ethernetAddress - Ethernet address of module, low order 16 bits
+#   icbAddress - rotary switch setting inside ICB module
+#   moduleType
+#      0 = ADC
+#      1 = Amplifier
+#      2 = HVPS
+#      3 = TCA
+#      4 = DSP
+#icbConfig("icbAdc1", 0x59e, 5, 0)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13Linux:,ADC=adc1,PORT=icbAdc1")
+#icbConfig("icbAmp1", 0x59e, 3, 1)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13Linux:,AMP=amp1,PORT=icbAmp1")
+#icbConfig("icbHvps1", 0x59e, 2, 2)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13Linux:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+#icbConfig("icbTca1", 0x59e, 8, 3)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13Linux:,TCA=tca1,MCA=aim_adc2,PORT=icbTca1")
+##icbConfig("icbDsp1", 0x8058, 0, 4)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13Linux:,DSP=dsp1,PORT=icbDsp1")
 
 # Roper CCD detector database
-dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd1")
+#dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd1")
 
 # MAR CCD detector database
 #dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd2")
@@ -114,46 +96,16 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Linux:")
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Linux:")
 
-# MM4000 driver setup parameters: 
-#     (1) maximum # of controllers, 
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-MM4000Setup(1, 8, 10)
+< ../save_restore_IOCSH.cmd
+save_restoreSet_status_prefix("13Linux:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Linux:")
 
-# MM4000 driver configuration parameters: 
-#     (1) controller
-#     (2) Port name
-#     (3) Address (GPIB)
-# GPIB example:
-#   MM4000Config(0,0,10,2)  #Link 10, address 2
-# RS-232 example:
-#   MM4000Config(0, 1, 0, "a-Serial[0]")  Hideos card 1, port 0 on IP slot A.
-MM4000Config(0, "serial2", 0)
-
-# MCB-4B driver setup parameters:
-#     (1) maximum # of controllers,
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-MCB4BSetup(1, 4, 10)
-
-# MCB-4B driver configuration parameters:
-#     (1) controller
-#     (2) asyn port name (e.g. serial1)
-MCB4BConfig(0, "serial1")
-
-
+asynSetTraceMask serial3 0 3
+asynSetTraceIOMask serial3 0 2
 iocInit
 
 dbpr "13Linux:ccd1ServerName"
 dbpr "13Linux:ccd1ServerPort"
-
-### Start up the autosave task and tell it what to do.
-# The task is actually named "save_restore".
-# (See also, 'initHooks' above, which is the means by which the values that
-# will be saved by the task we're starting here are going to be restored.
-#
-# Load the list of search directories for request files
-< ../requestFileCommands
 
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5)
@@ -164,7 +116,7 @@ create_monitor_set("auto_settings.req", 30)
 dbpf "13Linux:EnableUserTrans.PROC","1"
 dbpf "13Linux:EnableUserSCalcs.PROC","1"
 
-seq &roperCCD, "P=13Linux:,C=ccd1"
+#seq &roperCCD, "P=13Linux:,C=ccd1"
 #seq &marCCD, "P=13Linux:,C=ccd2"
-#seq &Keithley2kDMM, "P=13Linux:, Dmm=DMM1, stack=10000"
+seq &Keithley2kDMM, "P=13Linux:, Dmm=DMM1, model=2700, stack=10000"
 
