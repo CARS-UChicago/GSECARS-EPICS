@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\13IDD_dac_expert.adl"
+	name="J:\epics\support\CARS\1-4\CARSApp\op\adl\13IDD_dac_expert.adl"
 	version=020306
 }
 display {
@@ -4147,7 +4147,7 @@ text {
 		name="13ID.adl"
 	}
 	display[1] {
-		args="P=13IDC:, TITLE=Energy, ID=ID13:, EN=Energy, TABLE=m6, MONO=m8"
+		args="P=13IDC:, TITLE=Energy, ID=ID13ds:, EN=Energy, TABLE=m6, MONO=m8"
 	}
 	clr=14
 	bclr=55
@@ -4214,7 +4214,7 @@ text {
 	display[0] {
 		label="Monochromator (full)"
 		name="13IDC_mprobe_mono_all.adl"
-		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=m6, DTH=m12"
+		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6, DTH=m12"
 	}
 	display[1] {
 		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
@@ -4517,7 +4517,7 @@ oval {
 		height=20
 	}
 	monitor {
-		chan="ID13:Energy.VAL"
+		chan="ID13ds:Energy.VAL"
 		clr=33
 		bclr=48
 	}
@@ -4533,7 +4533,7 @@ oval {
 		height=20
 	}
 	monitor {
-		chan="ID13:HarmonicValue"
+		chan="ID13ds:HarmonicValue"
 		clr=33
 		bclr=48
 	}
@@ -4894,11 +4894,6 @@ composite {
 				}
 			}
 		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<-250"
-		chan="13IDD:m8.RBV"
 	}
 }
 "text update" {
