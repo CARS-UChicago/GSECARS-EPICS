@@ -139,37 +139,42 @@ dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScanXPS.db", str)
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(4, 0x4000, 190, 5, 10)
 
-drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
+#drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
 #asynOctetSetInputEos("tcp1",0,"")
 #asynOctetSetOutputEos("tcp1",0,"")
-drvAsynIPPortConfigure("tcp2","164.54.160.131:5001 tcp", 0, 0, 1)
+#drvAsynIPPortConfigure("tcp2","164.54.160.131:5001 tcp", 0, 0, 1)
 #asynOctetSetInputEos("tcp2",0,"")
 #asynOctetSetOutputEos("tcp2",0,"")
 
-# cards (total controllers), scan rate
-XPSC8Setup(2, 60)
+# cards (total controllers)
+XPSSetup(2)
 
-# card, IP, PORT, number of axes
-XPSC8Config(0,"tcp1",0,6)
-XPSC8Config(1,"tcp2",0,8)
+# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+XPSConfig(0, "164.54.160.124", 5001, 6, 10, 500)
+# asyn port, driver name, controller index, max. axes)
+drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
+# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+XPSConfig(1, "164.54.160.131", 5001, 8, 10, 500)
+# asyn port, driver name, controller index, max. axes)
+drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
+
+# card,  axis, groupName.positionerName, stepsPerUnit
+XPSConfigAxis(0,0,"GROUP1.PHI",     1000)
+XPSConfigAxis(0,1,"GROUP1.KAPPA",   5000)
+XPSConfigAxis(0,2,"GROUP1.OMEGA",   5000)
+XPSConfigAxis(0,3,"GROUP1.PSI",     4000)
+XPSConfigAxis(0,4,"GROUP1.2THETA", 10000)
+XPSConfigAxis(0,5,"GROUP1.NU",      4000)
 
 # card,  axis, groupnumber, groupsize,axis in group, group, positioner
-XPSC8NameConfig(0,0,0,6,0,"GROUP1","GROUP1.PHI")
-XPSC8NameConfig(0,1,0,6,1,"GROUP1","GROUP1.KAPPA")
-XPSC8NameConfig(0,2,0,6,2,"GROUP1","GROUP1.OMEGA")
-XPSC8NameConfig(0,3,0,6,3,"GROUP1","GROUP1.PSI")
-XPSC8NameConfig(0,4,0,6,4,"GROUP1","GROUP1.2THETA")
-XPSC8NameConfig(0,5,0,6,5,"GROUP1","GROUP1.NU")
-
-# card,  axis, groupnumber, groupsize,axis in group, group, positioner
-XPSC8NameConfig(1,0,0,1,0,"GROUP1","GROUP1.Y1_BASE")
-XPSC8NameConfig(1,1,1,1,0,"GROUP2","GROUP2.Y2_BASE")
-XPSC8NameConfig(1,2,2,1,0,"GROUP3","GROUP3.Y3_BASE")
-XPSC8NameConfig(1,3,3,1,0,"GROUP4","GROUP4.TRX_BASE")
-XPSC8NameConfig(1,4,4,1,0,"GROUP5","GROUP5.THETA-Y_BASE")
-XPSC8NameConfig(1,5,5,1,0,"GROUP6","GROUP6.X_SAMPLE")
-XPSC8NameConfig(1,6,6,1,0,"GROUP7","GROUP7.Y_SAMPLE")
-XPSC8NameConfig(1,7,7,1,0,"GROUP8","GROUP8.Z_SAMPLE")
+XPSConfigAxis(1,0,"GROUP1.Y1_BASE",    10000)
+XPSConfigAxis(1,1,"GROUP2.Y2_BASE",    10000)
+XPSConfigAxis(1,2,"GROUP3.Y3_BASE",    10000)
+XPSConfigAxis(1,3,"GROUP4.TRX_BASE",     200)
+XPSConfigAxis(1,4,"GROUP5.THETA-Y_BASE", 200)
+XPSConfigAxis(1,5,"GROUP6.X_SAMPLE",    3816)
+XPSConfigAxis(1,6,"GROUP7.Y_SAMPLE",    3816)
+XPSConfigAxis(1,7,"GROUP8.Z_SAMPLE",    3816)
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -190,7 +195,7 @@ create_monitor_set("auto_settings.req",30)
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
 
 # Trajectory scanning with XPS
-seq(&xpsTrajectoryScan,"P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m45,M8=m46")
+#seq(&xpsTrajectoryScan,"P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m45,M8=m46")
 
 
 free(mem)
