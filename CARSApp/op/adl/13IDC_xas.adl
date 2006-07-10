@@ -355,7 +355,7 @@ text {
 	display[0] {
 		label="Energy"
 		name="Energy.adl"
-		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDC:, ID=ID13:, MONO=m17, Z=m14, EXPTAB=pm11"
+		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=pm11"
 	}
 	display[1] {
 		label="Crystal cage"
@@ -606,9 +606,14 @@ text {
 		args="P=13GE2:med:"
 	}
 	display[4] {
-		label="Vortex"
+		label="Vortex 1"
 		name="1element_dxp.adl"
-		args="P=dxpSaturn:med:,D=dxp1,M=mca1"
+		args="P=13Saturn1:med:,D=dxp1,M=mca1"
+	}
+	display[5] {
+		label="Vortex 2"
+		name="1element_dxp.adl"
+		args="P=13Saturn2:med:,D=dxp1,M=mca1"
 	}
 	clr=14
 	bclr=5
@@ -1054,7 +1059,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="ID13:Energy.VAL"
+		chan="ID13ds:Energy.VAL"
 		clr=14
 		bclr=3
 	}
@@ -1082,7 +1087,7 @@ text {
 		height=20
 	}
 	control {
-		chan="ID13:ScanEnergy.VAL"
+		chan="ID13ds:ScanEnergy.VAL"
 		clr=14
 		bclr=2
 	}
@@ -1097,7 +1102,7 @@ text {
 		height=20
 	}
 	control {
-		chan="ID13:HarmonicValue"
+		chan="ID13ds:HarmonicValue"
 		clr=14
 		bclr=2
 	}
@@ -1112,7 +1117,7 @@ text {
 		height=16
 	}
 	monitor {
-		chan="ID13:HarmonicValue"
+		chan="ID13ds:HarmonicValue"
 		clr=14
 		bclr=3
 	}
