@@ -181,9 +181,9 @@ seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER
 #debug_saveData = 2
 #{ MN 16-Dec-2004 
 # problems with scan record, trying to comment outsaveData 
-saveData_MessagePolicy = 2
-saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
+# saveData_MessagePolicy = 2
+# saveData_SetCptWait_ms(100)
+# saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
 #}
 #saveData_PrintScanInfo("13IDC:scan1")
 
