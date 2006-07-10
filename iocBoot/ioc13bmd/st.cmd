@@ -27,7 +27,7 @@ dbLoadTemplate "laser_pid.template"
 
 # MAR345 shutter
 str=malloc(256)
-strcpy(str,"P=13BMD:,R=MAR345,IN=13BMD:Unidig1Bi14,")
+strcpy(str,"P=13BMD:,R=MAR345,IN=13BMD:Unidig1Bi13,")
 strcat(str,"OUT=13BMD:filter1sendCommand.VAL")
 dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter_serial.db",str)
 
