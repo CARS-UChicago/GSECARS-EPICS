@@ -1,12 +1,10 @@
 # vxWorks startup file
-mem = malloc(1024*1024*96)
 
 < cdCommands
 
 < ../nfsCommandsGSE
 
 cd topbin
-# ld < CARS167.munch
 ld < CARSApp.munch
 cd startup
 
@@ -15,8 +13,8 @@ cd startup
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
-# This IOC loads the MPF server code locally
-< st_mpfserver.cmd
+< industryPack.cmd
+< serial.cmd
 
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
@@ -30,7 +28,7 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
 dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,PORT=serial4")
 
 # Acromag Ip330 ADC
-dbLoadTemplate "Ip330_ADC.template"
+#dbLoadTemplate "Ip330_ADC.template"
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -81,6 +79,9 @@ oms58Setup(1, 0x4000, 190, 5, 10)
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
+< ../save_restore.cmd
+save_restoreSet_status_prefix("13LAB2:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB2:")
 
 iocInit
 
@@ -89,12 +90,9 @@ iocInit
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
 #
-< ../requestFileCommands
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30)
 
 seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
-
-free(mem)
