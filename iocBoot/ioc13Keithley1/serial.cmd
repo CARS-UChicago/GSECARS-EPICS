@@ -1,11 +1,10 @@
 # BEGIN serial.cmd ------------------------------------------------------------
 
-# Set up ports 1 on Moxa box
+# Set up port on Digi box
 
-# serial 3 is connected to the ACS MCB-4B at 9600 baud
 #drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
 #                        noProcessEos)
-drvAsynIPPortConfigure("serial1", "164.54.160.50:4001", 0, 0, 0)
+drvAsynIPPortConfigure("serial1", "164.54.160.153:2001", 0, 0, 0)
 asynOctetConnect("serial1", "serial1")
 
 # Load asynRecord records on all ports
