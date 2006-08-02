@@ -26,7 +26,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,PORT=ser
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,PORT=serial5")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,PORT=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,PORT=serial7")
-#dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13IDD:,R=LAE500,PORT=serial8")
+#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13IDD:,R=LAE500,PORT=serial8")
 # SMART detector database
 str=malloc(256)
 strcpy(str,"P=13IDD:,R=smart1,PORT=serial8,")

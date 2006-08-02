@@ -18,7 +18,7 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A1,PORT=serial2")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A2,PORT=serial3")
 
 # Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13BMC:,R=LAE500,PORT=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13BMC:,R=LAE500,PORT=serial4")
 
 # Serial 5 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")

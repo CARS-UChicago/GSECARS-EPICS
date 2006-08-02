@@ -33,7 +33,7 @@ dbLoadRecords("asynTest.db","P=13Win32:, R=asynTest")
 # Serial 1 is MCB4B motor controller
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db", "P=13Win32:,R=LAE500,C=0,PORT=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13Win32:,R=LAE500,PORT=serial2")
 
 #PID slow
 dbLoadTemplate "pid_slow.template"

@@ -25,7 +25,7 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
 
 # Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db","P=13LAB2:,R=LAE500,C=0,PORT=serial4")
+dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
 
 # Acromag Ip330 ADC
 #dbLoadTemplate "Ip330_ADC.template"

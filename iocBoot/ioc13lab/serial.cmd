@@ -53,7 +53,7 @@ strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-dbLoadRecords("$(CARS)/CARSApp/Db/LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
+dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
 
 # Port 3 Encoder readout unit
 #dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,PORT=serial4")
