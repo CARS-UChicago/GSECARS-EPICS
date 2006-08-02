@@ -7,9 +7,6 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 < serial.cmd
 
-# Load asyn records on each of these ports
-dbLoadTemplate("asynRecord.template")
-
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
