@@ -1,0 +1,395 @@
+# Database for IPG YLR laser
+
+# This record controls the readback rate
+record(bo, "$(P)$(R)ReadBack") {
+        field(SCAN,"1 second")
+        field(FLNK,"$(P)$(R)ReadFirmware PP MS")
+}
+
+# records to read info
+# Serial record for the laser firmware
+record(asyn, "$(P)$(R)ReadFirmware") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"RFV")
+        field(FLNK,"$(P)$(R)Firmware.PROC PP MS")
+}
+
+# Parse firmware
+record(scalcout,"$(P)$(R)Firmware") {
+        field(INAA,"$(P)$(R)ReadFirmware.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, 'RFV: %s')")
+        field(PREC,"0")
+        field(FLNK,"$(P)$(R)ReadTemperature.PROC PP MS")
+        
+}
+
+# Serial record for the temperature
+record(asyn, "$(P)$(R)ReadTemperature") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"RCT")
+        field(FLNK,"$(P)$(R)Temperature.PROC PP MS")
+}
+
+# Parse temperature
+record(scalcout,"$(P)$(R)Temperature") {
+        field(INAA,"$(P)$(R)ReadTemperature.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, 'RCT: %f')")
+        field(PREC,"1")
+        field(FLNK,"$(P)$(R)ReadDiodeCurrent.PROC PP MS")
+        
+}
+
+# Serial record for the diode current
+record(asyn, "$(P)$(R)ReadDiodeCurrent") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"RDC")
+        field(FLNK,"$(P)$(R)DiodeCurrent.PROC PP MS")
+}
+
+# Parse diode current
+record(scalcout,"$(P)$(R)DiodeCurrent") {
+        field(INAA,"$(P)$(R)ReadDiodeCurrent.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, 'RDC: %f')")
+        field(FLNK,"$(P)$(R)ReadOutputPower.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the output power
+record(asyn, "$(P)$(R)ReadOutputPower") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"ROP")
+        field(FLNK,"$(P)$(R)OutputPower.PROC PP MS")
+}
+
+# Parse output power
+record(scalcout,"$(P)$(R)OutputPower") {
+        field(INAA,"$(P)$(R)ReadOutputPower.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, 'ROP: %f')")
+        field(FLNK,"$(P)$(R)ReadStatus.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the status
+record(asyn, "$(P)$(R)ReadStatus") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"STA")
+        field(FLNK,"$(P)$(R)Status.PROC PP MS")
+}
+
+# Parse status
+record(scalcout,"$(P)$(R)Status") {
+        field(INAA,"$(P)$(R)ReadStatus.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, 'STA: %d')")
+        field(FLNK,"$(P)$(R)CalcOverTemperature.PROC PP MS")
+        field(PREC,"0")
+}
+
+# Status bits
+# Over temperature
+record(scalcout,"$(P)$(R)CalcOverTemperature") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&2)#0")
+       field(FLNK,"$(P)$(R)OverTemperature.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)OverTemperature") {
+       field(INP,"$(P)$(R)CalcOverTemperature.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"Over Temperature")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcEmission.PROC PP MS")
+}
+
+# Emission status
+record(scalcout,"$(P)$(R)CalcEmission") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&4)#0")
+       field(FLNK,"$(P)$(R)Emission.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Emission") {
+       field(INP,"$(P)$(R)CalcEmission.VAL NPP NMS")
+       field(ZNAM,"Off")
+       field(ONAM,"On")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcBackreflection.PROC PP MS")
+}
+
+# Backreflection status
+record(scalcout,"$(P)$(R)CalcBackreflection") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&8)#0")
+       field(FLNK,"$(P)$(R)Backreflection.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Backreflection") {
+       field(INP,"$(P)$(R)CalcBackreflection.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"High")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcExternalMode.PROC PP MS")
+}
+
+# External mode status
+record(scalcout,"$(P)$(R)CalcExternalMode") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&16)#0")
+       field(FLNK,"$(P)$(R)ExternalMode.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)ExternalMode") {
+       field(INP,"$(P)$(R)CalcExternalMode.VAL NPP NMS")
+       field(ZNAM,"Disabled")
+       field(ONAM,"Enabled")
+       field(ZSV,"MAJOR")
+       field(OSV,"NO_ALARM")
+       field(FLNK,"$(P)$(R)CalcConnection.PROC PP MS")
+}
+
+# Bit 5 (=32) is reserved
+# Connection status
+record(scalcout,"$(P)$(R)CalcConnection") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&64)#0")
+       field(FLNK,"$(P)$(R)Connection.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Connection") {
+       field(INP,"$(P)$(R)CalcConnection.VAL NPP NMS")
+       field(ZNAM,"Connected")
+       field(ONAM,"Disconnected")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcFailure.PROC PP MS")
+}
+
+# Failure status
+record(scalcout,"$(P)$(R)CalcFailure") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&128)#0")
+       field(FLNK,"$(P)$(R)Failure.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Failure") {
+       field(INP,"$(P)$(R)CalcFailure.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"Failed")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcInterlock.PROC PP MS")
+}
+
+# Bit 8 (=256) is reserved
+# Interlock status
+record(scalcout,"$(P)$(R)CalcInterlock") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&512)#0")
+       field(FLNK,"$(P)$(R)Interlock.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Interlock") {
+       field(INP,"$(P)$(R)CalcInterlock.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"Open")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcOpticalInterlock.PROC PP MS")
+}
+
+# Optical interlock status
+record(scalcout,"$(P)$(R)CalcOpticalInterlock") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&1024)#0")
+       field(FLNK,"$(P)$(R)OpticalInterlock.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)OpticalInterlock") {
+       field(INP,"$(P)$(R)CalcOpticalInterlock.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"Failed")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcPowerSupply.PROC PP MS")
+}
+
+# PowerSupply status
+record(scalcout,"$(P)$(R)CalcPowerSupply") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&2048)#0")
+       field(FLNK,"$(P)$(R)PowerSupply.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)PowerSupply") {
+       field(INP,"$(P)$(R)CalcPowerSupply.VAL NPP NMS")
+       field(ZNAM,"On")
+       field(ONAM,"Off")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcModulation.PROC PP MS")
+}
+
+# Modulation enable
+record(scalcout,"$(P)$(R)CalcModulation") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&4096)#0")
+       field(FLNK,"$(P)$(R)Modulation.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Modulation") {
+       field(INP,"$(P)$(R)CalcModulation.VAL NPP NMS")
+       field(ZNAM,"Disabled")
+       field(ONAM,"Enabled")
+       field(ZSV,"MAJOR")
+       field(OSV,"NO_ALARM")
+       field(FLNK,"$(P)$(R)CalcEmissionStarting.PROC PP MS")
+}
+
+# Bits 13 and 14 (8192, 16384) are reserved
+# Emission starting
+record(scalcout,"$(P)$(R)CalcEmissionStarting") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&32768)#0")
+       field(FLNK,"$(P)$(R)EmissionStarting.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)EmissionStarting") {
+       field(INP,"$(P)$(R)CalcEmissionStarting.VAL NPP NMS")
+       field(ZNAM,"Not starting")
+       field(ONAM,"Starting")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcControl.PROC PP MS")
+}
+
+# Bit 16 (65536) is reserved
+# Control status
+record(scalcout,"$(P)$(R)CalcControl") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&131072)#0")
+       field(FLNK,"$(P)$(R)Control.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Control") {
+       field(INP,"$(P)$(R)CalcControl.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"Failure")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcSync.PROC PP MS")
+}
+
+# Sync status
+record(scalcout,"$(P)$(R)CalcSync") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&262144)#0")
+       field(FLNK,"$(P)$(R)Sync.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)Sync") {
+       field(INP,"$(P)$(R)CalcSync.VAL NPP NMS")
+       field(ZNAM,"OK")
+       field(ONAM,"Error")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+}
+
+
+# ################################################################
+# Set diode current
+record(ao,"$(P)$(R)SetDiodeCurrent") {
+       field(LOPR,"0")
+       field(DRVL,"0")
+       field(HOPR,"100")
+       field(DRVH,"100")
+       field(PREC,"3")
+       field(FLNK,"$(P)$(R)FormatDiodeCurrent.PROC PP MS")
+}
+
+record(scalcout,"$(P)$(R)FormatDiodeCurrent") {
+        field(INPA,"$(P)$(R)SetDiodeCurrent.VAL NPP NMS")
+        field(CALC,"PRINTF('SDC %f', A)")
+        field(OUT,"$(P)$(R)WriteDiodeCurrent.AOUT PP MS")
+}
+
+# Serial record for setting the diode 1 power
+record(asyn, "$(P)$(R)WriteDiodeCurrent") {
+        field(PORT,"$(PORT)")
+}
+
+# These records are for tweaking the power
+record(ao,"$(P)$(R)PowerTweak") {
+        field(VAL, ".01")
+        field(PREC,"3")
+}
+
+record(calcout,"$(P)$(R)PowerTweakDown") {
+        field(INPA,"$(P)$(R)PowerTweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)SetDiodeCurrent.VAL NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(R)SetDiodeCurrent.VAL PP NMS")
+}
+
+record(calcout,"$(P)$(R)PowerTweakUp") {
+        field(INPA,"$(P)$(R)PowerTweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)SetDiodeCurrent.VAL NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(R)SetDiodeCurrent.VAL PP NMS")
+}
+
+# Turn On Emission
+record(asyn, "$(P)$(R)EmissionOn") {
+        field(AOUT,"EMON")
+        field(PORT,"$(PORT)")
+}
+
+# Turn Off Emission
+record(asyn, "$(P)$(R)EmissionOff") {
+        field(AOUT,"EMOFF")
+        field(PORT,"$(PORT)")
+}
+
+# Enable modulation
+record(asyn, "$(P)$(R)EnableModulation") {
+        field(AOUT,"EMOD")
+        field(PORT,"$(PORT)")
+}
+
+# Disable modulation
+record(asyn, "$(P)$(R)DisableModulation") {
+        field(AOUT,"DMOD")
+        field(PORT,"$(PORT)")
+}
+
+# Enable external control
+record(asyn, "$(P)$(R)EnableExternal") {
+        field(AOUT,"EEC")
+        field(PORT,"$(PORT)")
+}
+
+# Disable external control
+record(asyn, "$(P)$(R)DisableExternal") {
+        field(AOUT,"DEC")
+        field(PORT,"$(PORT)")
+}
+
+# Reset errors
+record(asyn, "$(P)$(R)ResetErrors") {
+        field(AOUT,"RERR")
+        field(PORT,"$(PORT)")
+}
+
+# Aiming beam on
+record(asyn, "$(P)$(R)AimOn") {
+        field(AOUT,"ABN")
+        field(PORT,"$(PORT)")
+}
+
+# Aiming beam off
+record(asyn, "$(P)$(R)AimOff") {
+        field(AOUT,"ABF")
+        field(PORT,"$(PORT)")
+}
+

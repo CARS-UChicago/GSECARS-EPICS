@@ -1,0 +1,997 @@
+
+file {
+	name="/home/epics/devel/CARS/1-5/CARSApp/op/adl/IPG_YLR_laser.adl"
+	version=030000
+}
+display {
+	object {
+		x=619
+		y=51
+		width=440
+		height=655
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=8
+		y=177
+		width=425
+		height=465
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+menu {
+	object {
+		x=203
+		y=613
+		width=83
+		height=18
+	}
+	control {
+		chan="$(P)$(R)ReadBack.SCAN"
+		clr=14
+		bclr=51
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=188
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)OutputPower"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=77
+		y=613
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status rate:"
+}
+"text update" {
+	object {
+		x=203
+		y=588
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Firmware.SVAL"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=538
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Status"
+		clr=53
+		bclr=4
+	}
+	format="hexadecimal"
+	limits {
+	}
+}
+composite {
+	object {
+		x=203
+		y=463
+		width=225
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=203
+				y=463
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)Modulation"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=291
+				y=463
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)EnableModulation.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Enable"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=361
+				y=463
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)DisableModulation.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Disable"
+			press_msg="1"
+		}
+	}
+}
+composite {
+	object {
+		x=203
+		y=488
+		width=226
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=203
+				y=488
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)ExternalMode"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=292
+				y=488
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)EnableExternal.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Enable"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=362
+				y=488
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)DisableExternal.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Disable"
+			press_msg="1"
+		}
+	}
+}
+composite {
+	object {
+		x=203
+		y=513
+		width=137
+		height=20
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=203
+				y=513
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)AimOn.PROC"
+				clr=14
+				bclr=51
+			}
+			label="On"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=273
+				y=513
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)AimOff.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Off"
+			press_msg="1"
+		}
+	}
+}
+"message button" {
+	object {
+		x=203
+		y=563
+		width=67
+		height=20
+	}
+	control {
+		chan="$(P)$(R)ResetErrors.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Reset"
+	press_msg="1"
+}
+text {
+	object {
+		x=97
+		y=188
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power (W):"
+}
+text {
+	object {
+		x=127
+		y=538
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status:"
+}
+text {
+	object {
+		x=87
+		y=463
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Modulation:"
+}
+text {
+	object {
+		x=37
+		y=213
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature (C):"
+}
+text {
+	object {
+		x=107
+		y=588
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Firmware:"
+}
+text {
+	object {
+		x=37
+		y=238
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Back Reflection:"
+}
+text {
+	object {
+		x=27
+		y=488
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="External Control:"
+}
+text {
+	object {
+		x=87
+		y=288
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Connection:"
+}
+text {
+	object {
+		x=117
+		y=313
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Failure:"
+}
+text {
+	object {
+		x=97
+		y=338
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Interlock:"
+}
+text {
+	object {
+		x=17
+		y=363
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Optical interlock:"
+}
+text {
+	object {
+		x=67
+		y=388
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power supply:"
+}
+text {
+	object {
+		x=17
+		y=263
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Emission starting:"
+}
+text {
+	object {
+		x=117
+		y=413
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Control:"
+}
+text {
+	object {
+		x=147
+		y=438
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Sync:"
+}
+text {
+	object {
+		x=77
+		y=513
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Aiming beam:"
+}
+text {
+	object {
+		x=67
+		y=563
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Reset errors:"
+}
+composite {
+	object {
+		x=203
+		y=213
+		width=146
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=203
+				y=213
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)Temperature"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=289
+				y=213
+				width=60
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)OverTemperature"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=100
+		y=5
+		width=241
+		height=39
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=100
+				y=5
+				width=241
+				height=39
+			}
+			"basic attribute" {
+				clr=52
+			}
+		}
+		text {
+			object {
+				x=143
+				y=8
+				width=155
+				height=26
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="IPG YLR Laser"
+		}
+	}
+}
+text {
+	object {
+		x=250
+		y=58
+		width=156
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Diode Current"
+}
+rectangle {
+	object {
+		x=228
+		y=50
+		width=200
+		height=120
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=30
+		y=58
+		width=168
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser Emission"
+}
+rectangle {
+	object {
+		x=14
+		y=50
+		width=200
+		height=120
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"text update" {
+	object {
+		x=74
+		y=89
+		width=80
+		height=25
+	}
+	monitor {
+		chan="$(P)$(R)Emission"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+composite {
+	object {
+		x=43
+		y=116
+		width=143
+		height=25
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=119
+				y=116
+				width=67
+				height=25
+			}
+			control {
+				chan="$(P)$(R)EmissionOn.PROC"
+				clr=14
+				bclr=20
+			}
+			label="On"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=43
+				y=116
+				width=67
+				height=25
+			}
+			control {
+				chan="$(P)$(R)EmissionOff.PROC"
+				clr=14
+				bclr=15
+			}
+			label="Off"
+			press_msg="1"
+		}
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=238
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Backreflection"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=263
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)EmissionStarting"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=288
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Connection"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=313
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Failure"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=338
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Interlock"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=363
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)OpticalInterlock"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=388
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)PowerSupply"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=413
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Control"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=203
+		y=438
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Sync"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+composite {
+	object {
+		x=241
+		y=88
+		width=100
+		height=73
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=249
+				y=108
+				width=84
+				height=25
+			}
+			control {
+				chan="$(P)$(R)SetDiodeCurrent"
+				clr=14
+				bclr=25
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=256
+				y=88
+				width=70
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Percent"
+		}
+		composite {
+			object {
+				x=241
+				y=135
+				width=100
+				height=26
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=241
+						y=135
+						width=20
+						height=25
+					}
+					control {
+						chan="$(P)$(R)PowerTweakDown.PROC"
+						clr=14
+						bclr=27
+					}
+					label="<"
+					press_msg="1"
+				}
+				"message button" {
+					object {
+						x=321
+						y=135
+						width=20
+						height=25
+					}
+					control {
+						chan="$(P)$(R)PowerTweakUp.PROC"
+						clr=14
+						bclr=27
+					}
+					label=">"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=262
+						y=136
+						width=60
+						height=25
+					}
+					control {
+						chan="$(P)$(R)PowerTweak.VAL"
+						clr=14
+						bclr=27
+					}
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=366
+		y=88
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Amps"
+}
+"text update" {
+	object {
+		x=356
+		y=110
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)DiodeCurrent"
+		clr=53
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
