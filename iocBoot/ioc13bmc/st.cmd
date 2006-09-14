@@ -192,6 +192,20 @@ create_monitor_set("auto_positions.req",5)
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30)
 
+### Start the saveData task.
+# saveData_MessagePolicy
+# 0: wait forever for space in message queue, then send message
+# 1: send message only if queue is not full
+# 2: send message only if queue is not full and specified time has passed (SetCptWait()
+#    sets this time.)
+# 3: if specified time has passed, wait for space in queue, then send message
+# else: don't send message
+#debug_saveData = 2
+saveData_MessagePolicy = 2
+saveData_SetCptWait_ms(100)
+#saveData_Init("saveDataExtraPVs.req", "P=13BMC:")
+saveData_PrintScanInfo("13BMC:scan1")
+
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
 
 # Trajectory scanning with XPS
