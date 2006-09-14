@@ -20,12 +20,10 @@ program xpsTrajectoryScan(
  *
  * Modifications:
 */
-/* typrdef to remove warnings from xps_c8_driver.h */
-%%typedef int bool;
 
 %% #include <string.h>
 %% #include <stdio.h>
-%% #include "xps_c8_driver.h"
+%% #include "XPS_C8_drivers.h" 
 %% #include "Socket.h"
 %% #include <hostLib.h>
 %% #include <remLib.h>
