@@ -65,6 +65,21 @@ record(asyn, "$(P)$(R)ReadOutputPower") {
 record(scalcout,"$(P)$(R)OutputPower") {
         field(INAA,"$(P)$(R)ReadOutputPower.AINP NPP NMS")
         field(CALC,"SSCANF(AA, 'ROP: %f')")
+        field(FLNK,"$(P)$(R)ReadPowerFilterTime.PROC PP MS")
+        field(PREC,"2")
+}
+
+# Serial record for the power filter time
+record(asyn, "$(P)$(R)ReadPowerFilterTime") {
+        field(PORT,"$(PORT)")
+        field(AOUT,"RFWS")
+        field(FLNK,"$(P)$(R)PowerFilterTime.PROC PP MS")
+}
+
+# Parse power filter time
+record(scalcout,"$(P)$(R)PowerFilterTime") {
+        field(INAA,"$(P)$(R)ReadPowerFilterTime.AINP NPP NMS")
+        field(CALC,"SSCANF(AA, 'RFWS: %f')")
         field(FLNK,"$(P)$(R)ReadStatus.PROC PP MS")
         field(PREC,"2")
 }
@@ -85,7 +100,9 @@ record(scalcout,"$(P)$(R)Status") {
 }
 
 # Status bits
-# Over temperature
+# Bit 0 - Reserved
+
+# Bit 1 - Over temperature
 record(scalcout,"$(P)$(R)CalcOverTemperature") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&2)#0")
@@ -101,7 +118,7 @@ record(bi,"$(P)$(R)OverTemperature") {
        field(FLNK,"$(P)$(R)CalcEmission.PROC PP MS")
 }
 
-# Emission status
+# Bit 2 - Emission status
 record(scalcout,"$(P)$(R)CalcEmission") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&4)#0")
@@ -117,7 +134,7 @@ record(bi,"$(P)$(R)Emission") {
        field(FLNK,"$(P)$(R)CalcBackreflection.PROC PP MS")
 }
 
-# Backreflection status
+# Bit 3 - Backreflection status
 record(scalcout,"$(P)$(R)CalcBackreflection") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&8)#0")
@@ -130,18 +147,18 @@ record(bi,"$(P)$(R)Backreflection") {
        field(ONAM,"High")
        field(ZSV,"NO_ALARM")
        field(OSV,"MAJOR")
-       field(FLNK,"$(P)$(R)CalcExternalMode.PROC PP MS")
+       field(FLNK,"$(P)$(R)CalcAnalogControlMode.PROC PP MS")
 }
 
-# External mode status
-record(scalcout,"$(P)$(R)CalcExternalMode") {
+# Bit 4 Analog control mode status
+record(scalcout,"$(P)$(R)CalcAnalogControlMode") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&16)#0")
-       field(FLNK,"$(P)$(R)ExternalMode.PROC PP MS")
+       field(FLNK,"$(P)$(R)AnalogControlMode.PROC PP MS")
 }
 
-record(bi,"$(P)$(R)ExternalMode") {
-       field(INP,"$(P)$(R)CalcExternalMode.VAL NPP NMS")
+record(bi,"$(P)$(R)AnalogControlMode") {
+       field(INP,"$(P)$(R)CalcAnalogControlMode.VAL NPP NMS")
        field(ZNAM,"Disabled")
        field(ONAM,"Enabled")
        field(ZSV,"MAJOR")
@@ -149,8 +166,9 @@ record(bi,"$(P)$(R)ExternalMode") {
        field(FLNK,"$(P)$(R)CalcConnection.PROC PP MS")
 }
 
-# Bit 5 (=32) is reserved
-# Connection status
+# Bit 5 - Reserved
+
+# Bit 6 - Connection status
 record(scalcout,"$(P)$(R)CalcConnection") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&64)#0")
@@ -166,7 +184,7 @@ record(bi,"$(P)$(R)Connection") {
        field(FLNK,"$(P)$(R)CalcFailure.PROC PP MS")
 }
 
-# Failure status
+# Bit 7 - Failure status
 record(scalcout,"$(P)$(R)CalcFailure") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&128)#0")
@@ -179,43 +197,30 @@ record(bi,"$(P)$(R)Failure") {
        field(ONAM,"Failed")
        field(ZSV,"NO_ALARM")
        field(OSV,"MAJOR")
-       field(FLNK,"$(P)$(R)CalcInterlock.PROC PP MS")
+       field(FLNK,"$(P)$(R)CalcAimingBeam.PROC PP MS")
 }
 
-# Bit 8 (=256) is reserved
-# Interlock status
-record(scalcout,"$(P)$(R)CalcInterlock") {
+# Bit 8 - Aiming beam status
+record(scalcout,"$(P)$(R)CalcAimingBeam") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
-       field(CALC,"(A&512)#0")
-       field(FLNK,"$(P)$(R)Interlock.PROC PP MS")
+       field(CALC,"(A&256)#0")
+       field(FLNK,"$(P)$(R)AimingBeam.PROC PP MS")
 }
 
-record(bi,"$(P)$(R)Interlock") {
-       field(INP,"$(P)$(R)CalcInterlock.VAL NPP NMS")
-       field(ZNAM,"OK")
-       field(ONAM,"Open")
-       field(ZSV,"NO_ALARM")
-       field(OSV,"MAJOR")
-       field(FLNK,"$(P)$(R)CalcOpticalInterlock.PROC PP MS")
-}
-
-# Optical interlock status
-record(scalcout,"$(P)$(R)CalcOpticalInterlock") {
-       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
-       field(CALC,"(A&1024)#0")
-       field(FLNK,"$(P)$(R)OpticalInterlock.PROC PP MS")
-}
-
-record(bi,"$(P)$(R)OpticalInterlock") {
-       field(INP,"$(P)$(R)CalcOpticalInterlock.VAL NPP NMS")
-       field(ZNAM,"OK")
-       field(ONAM,"Failed")
+record(bi,"$(P)$(R)AimingBeam") {
+       field(INP,"$(P)$(R)CalcAimingBeam.VAL NPP NMS")
+       field(ZNAM,"Off")
+       field(ONAM,"On")
        field(ZSV,"NO_ALARM")
        field(OSV,"MAJOR")
        field(FLNK,"$(P)$(R)CalcPowerSupply.PROC PP MS")
 }
 
-# PowerSupply status
+# Bit 9 - Reserved
+
+# Bit 10 - Reserved
+
+# Bit 11 - PowerSupply status
 record(scalcout,"$(P)$(R)CalcPowerSupply") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&2048)#0")
@@ -231,7 +236,7 @@ record(bi,"$(P)$(R)PowerSupply") {
        field(FLNK,"$(P)$(R)CalcModulation.PROC PP MS")
 }
 
-# Modulation enable
+# Bit 12 - Modulation enable
 record(scalcout,"$(P)$(R)CalcModulation") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&4096)#0")
@@ -244,11 +249,28 @@ record(bi,"$(P)$(R)Modulation") {
        field(ONAM,"Enabled")
        field(ZSV,"MAJOR")
        field(OSV,"NO_ALARM")
+       field(FLNK,"$(P)$(R)CalcLaserEnabled.PROC PP MS")
+}
+
+# Bit 13 - Reserved
+
+# Bit 14 - Laser enabled (THIS IS ONLY ON NEW MODULES, NOT ON LOANER)
+record(scalcout,"$(P)$(R)CalcLaserEnabled") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&16384)#0")
+       field(FLNK,"$(P)$(R)LaserEnabled.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)LaserEnabled") {
+       field(INP,"$(P)$(R)CalcLaserEnabled.VAL NPP NMS")
+       field(ZNAM,"Disabled")
+       field(ONAM,"Enabled")
+       field(ZSV,"MAJOR")
+       field(OSV,"NO_ALARM")
        field(FLNK,"$(P)$(R)CalcEmissionStarting.PROC PP MS")
 }
 
-# Bits 13 and 14 (8192, 16384) are reserved
-# Emission starting
+# Bit 15 - Emission starting
 record(scalcout,"$(P)$(R)CalcEmissionStarting") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&32768)#0")
@@ -264,8 +286,9 @@ record(bi,"$(P)$(R)EmissionStarting") {
        field(FLNK,"$(P)$(R)CalcControl.PROC PP MS")
 }
 
-# Bit 16 (65536) is reserved
-# Control status
+# Bit 16  - Reserved
+
+# Bit 17 - Control status
 record(scalcout,"$(P)$(R)CalcControl") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
        field(CALC,"(A&131072)#0")
@@ -278,24 +301,76 @@ record(bi,"$(P)$(R)Control") {
        field(ONAM,"Failure")
        field(ZSV,"NO_ALARM")
        field(OSV,"MAJOR")
-       field(FLNK,"$(P)$(R)CalcSync.PROC PP MS")
+       field(FLNK,"$(P)$(R)CalcKeyswitch.PROC PP MS")
 }
 
-# Sync status
-record(scalcout,"$(P)$(R)CalcSync") {
+# Bits 18-20  - Reserved
+
+# NOTE: THE FOLLOWING BITS ARE ONLY PRESENT ON NEW UNITS, NOT LOANER
+# Bit 21 - Keyswitch
+record(scalcout,"$(P)$(R)CalcKeyswitch") {
        field(INPA,"$(P)$(R)Status.VAL NPP NMS")
-       field(CALC,"(A&262144)#0")
-       field(FLNK,"$(P)$(R)Sync.PROC PP MS")
+       field(CALC,"(A&2097152)#0")
+       field(FLNK,"$(P)$(R)Keyswitch.PROC PP MS")
 }
 
-record(bi,"$(P)$(R)Sync") {
-       field(INP,"$(P)$(R)CalcSync.VAL NPP NMS")
-       field(ZNAM,"OK")
-       field(ONAM,"Error")
+record(bi,"$(P)$(R)Keyswitch") {
+       field(INP,"$(P)$(R)CalcKeyswitch.VAL NPP NMS")
+       field(ZNAM,"Local")
+       field(ONAM,"Remote")
+       field(ZSV,"MAJOR")
+       field(OSV,"NO_ALARM")
+       field(FLNK,"$(P)$(R)CalcAimingBeamControl.PROC PP MS")
+}
+
+# Bit 22 - Aiming beam control
+record(scalcout,"$(P)$(R)CalcAimingBeamControl") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&4194304)#0")
+       field(FLNK,"$(P)$(R)AimingBeamControl.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)AimingBeamControl") {
+       field(INP,"$(P)$(R)CalcAimingBeamControl.VAL NPP NMS")
+       field(ZNAM,"RS-232")
+       field(ONAM,"Hardware")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"NO_ALARM")
+       field(FLNK,"$(P)$(R)CalcModulesEnabled.PROC PP MS")
+}
+
+# Bit 29 - All modules enabled
+record(scalcout,"$(P)$(R)CalcModulesEnabled") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&536870912)#0")
+       field(FLNK,"$(P)$(R)ModulesEnabled.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)ModulesEnabled") {
+       field(INP,"$(P)$(R)CalcModulesEnabled.VAL NPP NMS")
+       field(ZNAM,"Enabled")
+       field(ONAM,"Disabled")
+       field(ZSV,"NO_ALARM")
+       field(OSV,"MAJOR")
+       field(FLNK,"$(P)$(R)CalcCollimatorConnected.PROC PP MS")
+}
+
+# Bit 30 - Collimator connected
+record(scalcout,"$(P)$(R)CalcCollimatorConnected") {
+       field(INPA,"$(P)$(R)Status.VAL NPP NMS")
+       field(CALC,"(A&1073741824)#0")
+       field(FLNK,"$(P)$(R)CollimatorConnected.PROC PP MS")
+}
+
+record(bi,"$(P)$(R)CollimatorConnected") {
+       field(INP,"$(P)$(R)CalcCollimatorConnected.VAL NPP NMS")
+       field(ZNAM,"Connected")
+       field(ONAM,"Disconnected")
        field(ZSV,"NO_ALARM")
        field(OSV,"MAJOR")
 }
 
+# Bit 31 - Reserved
 
 # ################################################################
 # Set diode current
@@ -339,6 +414,27 @@ record(calcout,"$(P)$(R)PowerTweakUp") {
         field(OUT, "$(P)$(R)SetDiodeCurrent.VAL PP NMS")
 }
 
+# Set filter time for power monitor
+record(ao,"$(P)$(R)SetPowerFilterTime") {
+       field(LOPR,"0.2")
+       field(DRVL,"0.2")
+       field(HOPR,"5.0")
+       field(DRVH,"5.0")
+       field(PREC,"1")
+       field(FLNK,"$(P)$(R)FormatPowerFilterTime.PROC PP MS")
+}
+
+record(scalcout,"$(P)$(R)FormatPowerFilterTime") {
+        field(INPA,"$(P)$(R)SetPowerFilterTime.VAL NPP NMS")
+        field(CALC,"PRINTF('SFWS %f', A)")
+        field(OUT,"$(P)$(R)WritePowerFilterTime.AOUT PP MS")
+}
+
+# Serial record for setting the power monitor filter time
+record(asyn, "$(P)$(R)WritePowerFilterTime") {
+        field(PORT,"$(PORT)")
+}
+
 # Turn On Emission
 record(asyn, "$(P)$(R)EmissionOn") {
         field(AOUT,"EMON")
@@ -352,7 +448,10 @@ record(asyn, "$(P)$(R)EmissionOff") {
 }
 
 # Enable modulation
+# NOTE: ON THE LOADER LASER WE ARE USING MODULATION FOR THE SAFETY SYSTEM, SO IT MUST ALWAYS
+# ENABLED.  USE PINI=1 IN THIS RECORD
 record(asyn, "$(P)$(R)EnableModulation") {
+        field(PINI,"1")
         field(AOUT,"EMOD")
         field(PORT,"$(PORT)")
 }
@@ -364,13 +463,13 @@ record(asyn, "$(P)$(R)DisableModulation") {
 }
 
 # Enable external control
-record(asyn, "$(P)$(R)EnableExternal") {
+record(asyn, "$(P)$(R)EnableAnalogControl") {
         field(AOUT,"EEC")
         field(PORT,"$(PORT)")
 }
 
 # Disable external control
-record(asyn, "$(P)$(R)DisableExternal") {
+record(asyn, "$(P)$(R)DisableAnalogControl") {
         field(AOUT,"DEC")
         field(PORT,"$(PORT)")
 }
@@ -378,6 +477,19 @@ record(asyn, "$(P)$(R)DisableExternal") {
 # Reset errors
 record(asyn, "$(P)$(R)ResetErrors") {
         field(AOUT,"RERR")
+        field(PORT,"$(PORT)")
+}
+
+# NOTE: THE COMMANDS TO CONTROL THE AIMING BEAM CONTROL SOURCE ARE ONLY ON NEW LASER, NOT LOANER
+# Enable external (TTL) control of aiming beam
+record(asyn, "$(P)$(R)EnableExternalAimingControl") {
+        field(AOUT,"EEABC")
+        field(PORT,"$(PORT)")
+}
+
+# Disable external (TTL) control of aiming beam
+record(asyn, "$(P)$(R)DisableExternalAimingControl") {
+        field(AOUT,"DEABC")
         field(PORT,"$(PORT)")
 }
 
