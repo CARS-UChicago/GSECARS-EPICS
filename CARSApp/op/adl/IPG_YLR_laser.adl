@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=769
-		y=111
+		x=304
+		y=30
 		width=480
-		height=730
+		height=755
 	}
 	clr=14
 	bclr=4
@@ -92,7 +92,7 @@ rectangle {
 		x=7
 		y=213
 		width=465
-		height=510
+		height=535
 	}
 	"basic attribute" {
 		clr=14
@@ -102,7 +102,7 @@ rectangle {
 menu {
 	object {
 		x=241
-		y=697
+		y=722
 		width=83
 		height=18
 	}
@@ -115,7 +115,7 @@ menu {
 text {
 	object {
 		x=115
-		y=697
+		y=722
 		width=120
 		height=20
 	}
@@ -1187,4 +1187,48 @@ composite {
 			}
 		}
 	}
+}
+text {
+	object {
+		x=85
+		y=697
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Communications:"
+}
+text {
+	object {
+		x=241
+		y=697
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)$(R)ReadStatus.STAT"
+	}
+	textix="OK"
+}
+text {
+	object {
+		x=241
+		y=697
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(R)ReadStatus.STAT"
+	}
+	textix="Failure"
 }
