@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=99
-		y=326
+		x=29
+		y=347
 		width=1432
 		height=757
 	}
@@ -7314,4 +7314,172 @@ meter {
 	clr=30
 	bclr=29
 	label="- 2D-scan"
+}
+composite {
+	object {
+		x=760
+		y=118
+		width=91
+		height=123
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=760
+				y=160
+				width=30
+				height=46
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDD:Unidig1Bi20.VAL"
+			}
+			points {
+				(775,160)
+				(760,206)
+				(790,206)
+				(775,160)
+			}
+		}
+		"message button" {
+			object {
+				x=785
+				y=120
+				width=30
+				height=19
+			}
+			control {
+				chan="13IDD:Unidig1Bo20"
+				clr=0
+				bclr=39
+			}
+			label="OFF"
+			press_msg="0"
+		}
+		"message button" {
+			object {
+				x=820
+				y=118
+				width=31
+				height=21
+			}
+			control {
+				chan="13IDD:Unidig1Bo20"
+				clr=14
+				bclr=60
+			}
+			label="On"
+			press_msg="1"
+		}
+		valuator {
+			object {
+				x=825
+				y=150
+				width=21
+				height=91
+			}
+			control {
+				chan="13IDD:DAC2_1.VAL"
+				clr=14
+				bclr=51
+			}
+			direction="up"
+			dPrecision=1.000000
+			limits {
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-5"
+		chan="13IDD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=284
+		y=115
+		width=88
+		height=126
+	}
+	"composite name"=""
+	children {
+		valuator {
+			object {
+				x=290
+				y=150
+				width=21
+				height=91
+			}
+			control {
+				chan="13IDD:DAC2_2.VAL"
+				clr=14
+				bclr=51
+			}
+			direction="up"
+			dPrecision=1.000000
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=284
+				y=115
+				width=31
+				height=21
+			}
+			control {
+				chan="13IDD:Unidig1Bo22"
+				clr=14
+				bclr=60
+			}
+			label="On"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=320
+				y=115
+				width=30
+				height=19
+			}
+			control {
+				chan="13IDD:Unidig1Bo22"
+				clr=0
+				bclr=39
+			}
+			label="OFF"
+			press_msg="0"
+		}
+		polygon {
+			object {
+				x=342
+				y=164
+				width=30
+				height=46
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDD:Unidig1Bi22.VAL"
+			}
+			points {
+				(357,164)
+				(342,210)
+				(372,210)
+				(357,164)
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-5"
+		chan="13IDD:m24.RBV"
+	}
 }
