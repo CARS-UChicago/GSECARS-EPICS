@@ -1,11 +1,11 @@
 
 file {
-	name="/home/epics/devel/CARS/1-5/CARSApp/op/adl/13IDD.adl"
-	version=030000
+	name="J:\epics\support\CARS\1-4\CARSApp\op\adl\13IDD.adl"
+	version=020306
 }
 display {
 	object {
-		x=701
+		x=201
 		y=46
 		width=370
 		height=590
@@ -475,6 +475,16 @@ text {
 		label="Unidig2"
 		name="ipUnidig.adl"
 		args="P=13IDD:, R=Unidig2"
+	}
+	display[6] {
+		label="8 dacs (DAC1)"
+		name="8_DACs.adl"
+		args="P=13IDD:, D=1"
+	}
+	display[7] {
+		label="8 dacs (DAC2)"
+		name="8_DACs.adl"
+		args="P=13IDD:, D=2"
 	}
 	clr=14
 	bclr=4
@@ -996,4 +1006,55 @@ text {
 		width=2
 	}
 	textix="Video switch"
+}
+"related display" {
+	object {
+		x=131
+		y=414
+		width=74
+		height=24
+	}
+	display[0] {
+		label="DAC 1"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=1"
+	}
+	display[1] {
+		label="DAC 2"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=2"
+	}
+	display[2] {
+		label="DAC 3"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=3"
+	}
+	display[3] {
+		label="DAC 4"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=4"
+	}
+	display[4] {
+		label="DAC 5"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=5"
+	}
+	display[5] {
+		label="DAC 6"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=6"
+	}
+	display[6] {
+		label="DAC 7"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=7"
+	}
+	display[7] {
+		label="DAC 8"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=8"
+	}
+	clr=14
+	bclr=4
+	label="-IP DAC"
 }
