@@ -134,19 +134,18 @@ rectangle {
 		args="P=13IDC:, A=A2"
 	}
 	display[2] {
-		label="IF Preamp (A3)"
 		name="SR570.adl"
 		args="P=13IDC:, A=A3"
 	}
 	display[3] {
 		label="Ipre Left Preamp (A5)"
 		name="SR570.adl"
-		args="P=13IDC:, A=A5"
+		args="P=13IDC:, A=A3"
 	}
 	display[4] {
 		label="Ipre Right Preamp (A6)"
 		name="SR570.adl"
-		args="P=13IDC:, A=A6"
+		args="P=13IDC:, A=A4"
 	}
 	display[5] {
 		label="Keithley Multimeter (IDC)"
@@ -201,11 +200,7 @@ rectangle {
 	display[5] {
 		label="Expt Info"
 		name="scanner.adl"
-		args="P=13IDC:, Q=edb"
-	}
-	display[6] {
-		name="scanner_1.adl"
-		args="P=13IDC:, Q=edb"
+		args="P=13XRM:, Q=edb"
 	}
 	clr=54
 	bclr=1
@@ -220,8 +215,7 @@ rectangle {
 	}
 	display[0] {
 		label="Sample Stage"
-		name="SampleXYZ.adl"
-		args="P=13IDC:, X=m15, Y=m16, Z=m13"
+		name="13IDC_SampleStage.adl"
 	}
 	display[1] {
 		label="Sample Stage (tomo)"
@@ -252,6 +246,11 @@ rectangle {
 		label="Microscope motors"
 		name="4motors.adl"
 		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m81, M3=m82, M4=m83"
+	}
+	display[7] {
+		label="XPS Motors"
+		name="6motors.adl"
+		args="P=13XRM:,TITLE=XPSMOTORS, M1=m1,M2=m2,M3=m3,M4=m4,M5=m5"
 	}
 	clr=54
 	bclr=1
@@ -866,22 +865,26 @@ rectangle {
 		args="P=13IDC:, S=scaler1"
 	}
 	display[1] {
-		label="16 element detector"
 		name="16element_dxp.adl"
 		args="P=13GE2:med:"
 	}
 	display[2] {
 		label="Vortex"
-		name="1element_dxp.adl"
-		args="P=13Saturn2:med:, M=mca1, D=dxp1"
+		name="single_dxp_top.adl"
+		args="P=13XRM:, M=mca1, D=dxp1"
 	}
 	display[3] {
 		label="Ion Chamber"
 		name="IonChamber.adl"
-		args="P=13IDC:, Q=ION"
+		args="P=13XRM:, Q=ION"
+	}
+	display[4] {
+		label="Vortex (old)"
+		name="1element_dxp.adl "
+		args="P=13Saturn3:med:, M=mca1, D=dxp1"
 	}
 	display[5] {
-		label="smart ccd"
+		label="ccd"
 		name="ccd.adl"
 		args="P=roperCCD:, C=det1:"
 	}
@@ -1028,12 +1031,12 @@ text {
 "message button" {
 	object {
 		x=150
-		y=194
+		y=195
 		width=60
 		height=20
 	}
 	control {
-		chan="$(FD)EraseAll"
+		chan="$(FD)Erase"
 		clr=54
 		bclr=1
 	}
@@ -1063,7 +1066,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD)StopAll"
+		chan="$(FD)Stop"
 		clr=54
 		bclr=1
 	}
@@ -1082,7 +1085,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(FD)Acquiring"
+		chan="$(FD).ACQG"
 	}
 	textix="Done"
 }
@@ -1098,7 +1101,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(FD)Acquiring"
+		chan="$(FD).ACQG"
 	}
 	textix="Acquiring"
 }
@@ -1110,7 +1113,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(FD)ElapsedReal"
+		chan="$(FD).ERTM"
 		clr=54
 		bclr=0
 	}
@@ -1126,7 +1129,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD)PresetReal"
+		chan="$(FD).PRTM"
 		clr=14
 		bclr=0
 	}
@@ -1153,7 +1156,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(FD)mca1.IDTIM"
+		chan="$(FD).IDTIM"
 		clr=54
 		bclr=0
 	}
