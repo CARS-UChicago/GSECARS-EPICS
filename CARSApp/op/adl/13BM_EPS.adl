@@ -1,14 +1,14 @@
 
 file {
-	name="v:\epics\synApps5-1beta2\CARS\CARSApp\op\adl\13BM_EPS.adl"
-	version=030003
+	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13BM_EPS.adl"
+	version=030000
 }
 display {
 	object {
-		x=13
-		y=30
+		x=104
+		y=40
 		width=1200
-		height=830
+		height=1100
 	}
 	clr=14
 	bclr=4
@@ -87,10 +87,22 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=658
+		y=598
+		width=20
+		height=28
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
 text {
 	object {
 		x=426
-		y=8
+		y=14
 		width=317
 		height=30
 	}
@@ -100,11 +112,955 @@ text {
 	textix="13-BM Beamline"
 	align="horiz. centered"
 }
+"message button" {
+	object {
+		x=255
+		y=857
+		width=50
+		height=20
+	}
+	control {
+		chan="13BMA:eps_bo2"
+		clr=14
+		bclr=51
+	}
+	label="Reset"
+	press_msg="Reset_on"
+	release_msg="Reset_off"
+}
+text {
+	object {
+		x=215
+		y=755
+		width=120
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EPS Status"
+	align="horiz. centered"
+}
 rectangle {
 	object {
-		x=288
-		y=570
-		width=391
+		x=200
+		y=750
+		width=160
+		height=150
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=263
+		y=880
+		width=80
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PLC Status"
+}
+"related display" {
+	object {
+		x=210
+		y=879
+		width=46
+		height=20
+	}
+	display[0] {
+		label="PLC Status"
+		name="plc_status.adl"
+		args="P=13BMA"
+	}
+	clr=14
+	bclr=4
+}
+composite {
+	object {
+		x=371
+		y=750
+		width=150
+		height=90
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=371
+				y=750
+				width=150
+				height=90
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		text {
+			object {
+				x=415
+				y=757
+				width=63
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Utilities"
+			align="horiz. centered"
+		}
+		polyline {
+			object {
+				x=371
+				y=775
+				width=150
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(371,775)
+				(521,775)
+			}
+		}
+		oval {
+			object {
+				x=502
+				y=785
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13BMA:eps_mbbi72"
+			}
+		}
+		text {
+			object {
+				x=381
+				y=786
+				width=119
+				height=13
+			}
+			"basic attribute" {
+				clr=13
+			}
+			textix="Water Resistivity"
+			align="horiz. centered"
+		}
+		oval {
+			object {
+				x=502
+				y=803
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi67"
+			}
+		}
+		text {
+			object {
+				x=381
+				y=804
+				width=119
+				height=13
+			}
+			"basic attribute" {
+				clr=13
+			}
+			textix="He Tank Farm Left"
+			align="horiz. centered"
+		}
+		oval {
+			object {
+				x=502
+				y=821
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi68"
+			}
+		}
+		text {
+			object {
+				x=374
+				y=822
+				width=126
+				height=13
+			}
+			"basic attribute" {
+				clr=13
+			}
+			textix="He Tank Farm Right"
+			align="horiz. centered"
+		}
+	}
+}
+rectangle {
+	object {
+		x=561
+		y=733
+		width=174
+		height=26
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+oval {
+	object {
+		x=715
+		y=738
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:13BM:Q01:03.VAL"
+	}
+}
+rectangle {
+	object {
+		x=739
+		y=763
+		width=90
+		height=112
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+oval {
+	object {
+		x=811
+		y=805
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi65"
+	}
+}
+"text update" {
+	object {
+		x=745
+		y=805
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:pr9"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=745
+		y=850
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:cc9"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=742
+		y=767
+		width=84
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Vacuum Gauge"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=766
+		y=787
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pirani"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=743
+		y=832
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cold Cathode"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=814
+		y=808
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi64"
+	}
+}
+polyline {
+	object {
+		x=739
+		y=827
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(739,827)
+		(829,827)
+	}
+}
+polyline {
+	object {
+		x=739
+		y=785
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(739,785)
+		(829,785)
+	}
+}
+oval {
+	object {
+		x=811
+		y=849
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi63"
+	}
+}
+oval {
+	object {
+		x=814
+		y=852
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi62"
+	}
+}
+rectangle {
+	object {
+		x=710
+		y=961
+		width=127
+		height=85
+	}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=774
+		y=984
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip10_Volts"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=774
+		y=1002
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip10_Current"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=774
+		y=1020
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip10_Pressure"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=745
+		y=965
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=735
+		y=984
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=721
+		y=1002
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=714
+		y=1020
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=710
+		y=982
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(710,982)
+		(837,982)
+	}
+}
+rectangle {
+	object {
+		x=774
+		y=875
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=728
+		y=900
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMD Slit"
+}
+rectangle {
+	object {
+		x=707
+		y=889
+		width=120
+		height=57
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=748
+		y=920
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tank"
+}
+rectangle {
+	object {
+		x=763
+		y=946
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=547
+		y=728
+		width=295
+		height=327
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=743
+		y=735
+		width=84
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13-BM-D"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=552
+		y=763
+		width=130
+		height=134
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=558
+		y=768
+		width=119
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Water and He Flow"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=552
+		y=786
+		width=130
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(552,786)
+		(682,786)
+	}
+}
+oval {
+	object {
+		x=664
+		y=788
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi47"
+	}
+}
+oval {
+	object {
+		x=667
+		y=791
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi46"
+	}
+}
+text {
+	object {
+		x=556
+		y=789
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Vert. Slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=664
+		y=806
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi49"
+	}
+}
+oval {
+	object {
+		x=667
+		y=809
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi48"
+	}
+}
+text {
+	object {
+		x=563
+		y=807
+		width=98
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Hor. Slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=664
+		y=824
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi51"
+	}
+}
+oval {
+	object {
+		x=667
+		y=827
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi50"
+	}
+}
+text {
+	object {
+		x=556
+		y=825
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Station Water 1"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=715
+		y=738
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="PA:13BM:Q01:03.VAL"
+	}
+}
+oval {
+	object {
+		x=664
+		y=842
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi53"
+	}
+}
+oval {
+	object {
+		x=667
+		y=845
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi52"
+	}
+}
+text {
+	object {
+		x=556
+		y=843
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Station Water 2"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=664
+		y=860
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi88"
+	}
+}
+oval {
+	object {
+		x=667
+		y=863
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi87"
+	}
+}
+text {
+	object {
+		x=556
+		y=861
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Station Water 3"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=664
+		y=878
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi86"
+	}
+}
+oval {
+	object {
+		x=667
+		y=881
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi85"
+	}
+}
+text {
+	object {
+		x=556
+		y=879
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Be window water"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=692
+		y=932
+		width=10
+		height=28
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=687
+		y=908
+		width=20
 		height=24
 	}
 	"basic attribute" {
@@ -114,8 +1070,172 @@ rectangle {
 }
 rectangle {
 	object {
+		x=615
+		y=961
+		width=90
+		height=60
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+"text update" {
+	object {
+		x=619
+		y=1003
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:pr10"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=616
+		y=966
+		width=84
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Vacuum Gauge"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=639
+		y=986
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pirani"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=616
+		y=984
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(616,984)
+		(706,984)
+	}
+}
+text {
+	object {
+		x=595
+		y=740
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Station Searched"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=685
+		y=1003
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi102"
+	}
+}
+oval {
+	object {
+		x=688
+		y=1006
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi101"
+	}
+}
+composite {
+	object {
+		x=552
+		y=918
+		width=97
+		height=26
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=554
+				y=918
+				width=95
+				height=26
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		text {
+			object {
+				x=552
+				y=923
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Temp:"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=596
+				y=923
+				width=50
+				height=15
+			}
+			monitor {
+				chan="G:AHU:FP5095Ai"
+				clr=53
+				bclr=56
+			}
+			align="horiz. centered"
+			limits {
+			}
+		}
+	}
+}
+rectangle {
+	object {
 		x=248
-		y=55
+		y=60
 		width=174
 		height=26
 	}
@@ -126,7 +1246,7 @@ rectangle {
 oval {
 	object {
 		x=401
-		y=60
+		y=65
 		width=15
 		height=15
 	}
@@ -141,7 +1261,7 @@ oval {
 oval {
 	object {
 		x=401
-		y=60
+		y=65
 		width=15
 		height=15
 	}
@@ -156,7 +1276,7 @@ oval {
 rectangle {
 	object {
 		x=559
-		y=240
+		y=245
 		width=71
 		height=24
 	}
@@ -168,7 +1288,7 @@ rectangle {
 rectangle {
 	object {
 		x=973
-		y=240
+		y=245
 		width=200
 		height=24
 	}
@@ -180,7 +1300,7 @@ rectangle {
 rectangle {
 	object {
 		x=22
-		y=46
+		y=51
 		width=1066
 		height=338
 	}
@@ -191,8 +1311,8 @@ rectangle {
 }
 text {
 	object {
-		x=435
-		y=54
+		x=586
+		y=59
 		width=84
 		height=25
 	}
@@ -205,7 +1325,7 @@ text {
 text {
 	object {
 		x=280
-		y=60
+		y=65
 		width=84
 		height=15
 	}
@@ -216,679 +1336,176 @@ text {
 	align="horiz. centered"
 }
 rectangle {
-	object {
-		x=986
-		y=396
-		width=174
-		height=26
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-oval {
-	object {
-		x=1139
-		y=401
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13BM:Q01:01.VAL"
-	}
-}
-rectangle {
-	object {
-		x=1143
-		y=571
-		width=50
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-		width=3
-	}
-}
-rectangle {
-	object {
-		x=500
-		y=390
-		width=670
-		height=327
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-text {
-	object {
-		x=890
-		y=397
-		width=84
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="13-BM-B"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=1139
-		y=401
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="PA:13BM:Q01:01.VAL"
-	}
-}
-text {
-	object {
-		x=1018
-		y=401
-		width=84
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Station Searched"
-	align="horiz. centered"
-}
-composite {
-	object {
-		x=1020
-		y=425
-		width=127
-		height=283
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=1038
-				y=425
-				width=90
-				height=112
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		oval {
-			object {
-				x=1110
-				y=467
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi61"
-			}
-		}
-		"text update" {
-			object {
-				x=1044
-				y=467
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:pr7"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1044
-				y=512
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:cc7"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=1041
-				y=429
-				width=84
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Vacuum Gauge"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=1065
-				y=449
-				width=42
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pirani"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=1042
-				y=494
-				width=84
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Cold Cathode"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=1113
-				y=470
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi60"
-			}
-		}
-		polyline {
-			object {
-				x=1038
-				y=489
-				width=90
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(1038,489)
-				(1128,489)
-			}
-		}
-		polyline {
-			object {
-				x=1038
-				y=447
-				width=90
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(1038,447)
-				(1128,447)
-			}
-		}
-		oval {
-			object {
-				x=1110
-				y=511
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi59"
-			}
-		}
-		oval {
-			object {
-				x=1113
-				y=514
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi58"
-			}
-		}
-		composite {
-			object {
-				x=1023
-				y=537
-				width=120
-				height=85
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=1073
-						y=537
-						width=20
-						height=14
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-					}
-				}
-				text {
-					object {
-						x=1043
-						y=561
-						width=80
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="BMC Slit"
-				}
-				rectangle {
-					object {
-						x=1023
-						y=551
-						width=120
-						height=57
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-					}
-				}
-				text {
-					object {
-						x=1063
-						y=581
-						width=40
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Tank"
-				}
-				rectangle {
-					object {
-						x=1073
-						y=608
-						width=20
-						height=14
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=1020
-				y=623
-				width=127
-				height=85
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=1020
-						y=623
-						width=127
-						height=85
-					}
-					"basic attribute" {
-						clr=46
-					}
-				}
-				"text update" {
-					object {
-						x=1084
-						y=646
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13BMA:ip7_Volts"
-						clr=0
-						bclr=14
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=1084
-						y=664
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13BMA:ip7_Current"
-						clr=0
-						bclr=14
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					format="exponential"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=1084
-						y=682
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13BMA:ip7_Pressure"
-						clr=0
-						bclr=14
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					format="exponential"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=1055
-						y=627
-						width=56
-						height=14
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Ion Pump"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=1045
-						y=646
-						width=35
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Volts"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=1031
-						y=664
-						width=49
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Current"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=1024
-						y=682
-						width=56
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Pressure"
-					align="horiz. centered"
-				}
-				polyline {
-					object {
-						x=1020
-						y=644
-						width=127
-						height=0
-					}
-					"basic attribute" {
-						clr=14
-					}
-					points {
-						(1020,644)
-						(1147,644)
-					}
-				}
-			}
-		}
-	}
-}
-composite {
 	object {
 		x=1088
-		y=46
+		y=51
 		width=85
 		height=338
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=1088
-				y=46
-				width=85
-				height=338
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=1099
-				y=49
-				width=60
-				height=18
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Front End"
-			align="horiz. centered"
-		}
-		rectangle {
-			object {
-				x=1096
-				y=75
-				width=70
-				height=120
-			}
-			"basic attribute" {
-				clr=45
-			}
-		}
-		rectangle {
-			object {
-				x=1129
-				y=234
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMA:eps_mbbi4"
-			}
-		}
-		rectangle {
-			object {
-				x=1129
-				y=204
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMA:eps_mbbi4"
-			}
-		}
-		rectangle {
-			object {
-				x=1124
-				y=199
-				width=14
-				height=41
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		polyline {
-			object {
-				x=1096
-				y=103
-				width=70
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(1096,103)
-				(1166,103)
-			}
-		}
-		menu {
-			object {
-				x=1100
-				y=148
-				width=60
-				height=20
-			}
-			control {
-				chan="13BMA:eps_bo1"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-		}
-		"text update" {
-			object {
-				x=1101
-				y=174
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi4"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=1109
-				y=126
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:CloseFEShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Close"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=1109
-				y=106
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:OpenFEShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Open"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=1107
-				y=82
-				width=49
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="FE Shutter"
-			align="horiz. centered"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
+}
+text {
+	object {
+		x=1099
+		y=54
+		width=60
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Front End"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1096
+		y=80
+		width=70
+		height=120
+	}
+	"basic attribute" {
+		clr=45
+	}
+}
+rectangle {
+	object {
+		x=1129
+		y=239
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMA:eps_mbbi4"
+	}
+}
+rectangle {
+	object {
+		x=1129
+		y=209
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMA:eps_mbbi4"
+	}
+}
+rectangle {
+	object {
+		x=1123
+		y=204
+		width=25
+		height=41
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+polyline {
+	object {
+		x=1096
+		y=108
+		width=70
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1096,108)
+		(1166,108)
+	}
+}
+menu {
+	object {
+		x=1100
+		y=153
+		width=60
+		height=20
+	}
+	control {
+		chan="13BMA:eps_bo1"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+}
+"text update" {
+	object {
+		x=1101
+		y=179
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi4"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=1109
+		y=131
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:CloseFEShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Close"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=1109
+		y=111
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:OpenFEShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Open"
+	press_msg="1"
+}
+text {
+	object {
+		x=1107
+		y=87
+		width=49
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="FE Shutter"
+	align="horiz. centered"
 }
 composite {
 	object {
 		x=1010
-		y=108
+		y=113
 		width=70
 		height=156
 	}
@@ -897,7 +1514,7 @@ composite {
 		rectangle {
 			object {
 				x=1010
-				y=108
+				y=113
 				width=70
 				height=90
 			}
@@ -908,7 +1525,7 @@ composite {
 		rectangle {
 			object {
 				x=1043
-				y=234
+				y=239
 				width=5
 				height=30
 			}
@@ -923,7 +1540,7 @@ composite {
 		rectangle {
 			object {
 				x=1043
-				y=204
+				y=209
 				width=5
 				height=30
 			}
@@ -938,7 +1555,7 @@ composite {
 		rectangle {
 			object {
 				x=1038
-				y=199
+				y=204
 				width=14
 				height=41
 			}
@@ -950,7 +1567,7 @@ composite {
 		text {
 			object {
 				x=1028
-				y=115
+				y=120
 				width=35
 				height=14
 			}
@@ -963,7 +1580,7 @@ composite {
 		"text update" {
 			object {
 				x=1013
-				y=156
+				y=161
 				width=45
 				height=15
 			}
@@ -981,7 +1598,7 @@ composite {
 		oval {
 			object {
 				x=1063
-				y=156
+				y=161
 				width=15
 				height=15
 			}
@@ -996,7 +1613,7 @@ composite {
 		oval {
 			object {
 				x=1066
-				y=159
+				y=164
 				width=9
 				height=9
 			}
@@ -1011,7 +1628,7 @@ composite {
 		polyline {
 			object {
 				x=1010
-				y=136
+				y=141
 				width=70
 				height=0
 			}
@@ -1019,8 +1636,8 @@ composite {
 				clr=14
 			}
 			points {
-				(1010,136)
-				(1080,136)
+				(1010,141)
+				(1080,141)
 			}
 		}
 	}
@@ -1028,7 +1645,7 @@ composite {
 rectangle {
 	object {
 		x=30
-		y=240
+		y=245
 		width=185
 		height=24
 	}
@@ -1040,7 +1657,7 @@ rectangle {
 composite {
 	object {
 		x=212
-		y=292
+		y=297
 		width=127
 		height=85
 	}
@@ -1049,7 +1666,7 @@ composite {
 		rectangle {
 			object {
 				x=212
-				y=292
+				y=297
 				width=127
 				height=85
 			}
@@ -1060,7 +1677,7 @@ composite {
 		"text update" {
 			object {
 				x=276
-				y=315
+				y=320
 				width=60
 				height=15
 			}
@@ -1077,7 +1694,7 @@ composite {
 		"text update" {
 			object {
 				x=276
-				y=333
+				y=338
 				width=60
 				height=15
 			}
@@ -1095,7 +1712,7 @@ composite {
 		"text update" {
 			object {
 				x=276
-				y=351
+				y=356
 				width=60
 				height=15
 			}
@@ -1113,7 +1730,7 @@ composite {
 		text {
 			object {
 				x=247
-				y=296
+				y=301
 				width=56
 				height=14
 			}
@@ -1126,7 +1743,7 @@ composite {
 		text {
 			object {
 				x=237
-				y=315
+				y=320
 				width=35
 				height=13
 			}
@@ -1139,7 +1756,7 @@ composite {
 		text {
 			object {
 				x=223
-				y=333
+				y=338
 				width=49
 				height=13
 			}
@@ -1152,7 +1769,7 @@ composite {
 		text {
 			object {
 				x=216
-				y=351
+				y=356
 				width=56
 				height=13
 			}
@@ -1165,7 +1782,7 @@ composite {
 		polyline {
 			object {
 				x=212
-				y=313
+				y=318
 				width=127
 				height=0
 			}
@@ -1173,8 +1790,8 @@ composite {
 				clr=14
 			}
 			points {
-				(212,313)
-				(339,313)
+				(212,318)
+				(339,318)
 			}
 		}
 	}
@@ -1182,7 +1799,7 @@ composite {
 rectangle {
 	object {
 		x=230
-		y=94
+		y=99
 		width=90
 		height=112
 	}
@@ -1193,7 +1810,7 @@ rectangle {
 oval {
 	object {
 		x=302
-		y=136
+		y=141
 		width=15
 		height=15
 	}
@@ -1208,7 +1825,7 @@ oval {
 "text update" {
 	object {
 		x=236
-		y=136
+		y=141
 		width=60
 		height=15
 	}
@@ -1226,7 +1843,7 @@ oval {
 "text update" {
 	object {
 		x=236
-		y=181
+		y=186
 		width=60
 		height=15
 	}
@@ -1244,7 +1861,7 @@ oval {
 text {
 	object {
 		x=233
-		y=98
+		y=103
 		width=84
 		height=14
 	}
@@ -1257,7 +1874,7 @@ text {
 text {
 	object {
 		x=257
-		y=118
+		y=123
 		width=42
 		height=13
 	}
@@ -1270,7 +1887,7 @@ text {
 text {
 	object {
 		x=234
-		y=163
+		y=168
 		width=84
 		height=13
 	}
@@ -1283,7 +1900,7 @@ text {
 oval {
 	object {
 		x=305
-		y=139
+		y=144
 		width=9
 		height=9
 	}
@@ -1298,7 +1915,7 @@ oval {
 polyline {
 	object {
 		x=230
-		y=158
+		y=163
 		width=90
 		height=0
 	}
@@ -1306,14 +1923,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(230,158)
-		(320,158)
+		(230,163)
+		(320,163)
 	}
 }
 polyline {
 	object {
 		x=230
-		y=116
+		y=121
 		width=90
 		height=0
 	}
@@ -1321,14 +1938,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(230,116)
-		(320,116)
+		(230,121)
+		(320,121)
 	}
 }
 oval {
 	object {
 		x=302
-		y=180
+		y=185
 		width=15
 		height=15
 	}
@@ -1343,7 +1960,7 @@ oval {
 oval {
 	object {
 		x=305
-		y=183
+		y=188
 		width=9
 		height=9
 	}
@@ -1358,7 +1975,7 @@ oval {
 rectangle {
 	object {
 		x=444
-		y=94
+		y=99
 		width=90
 		height=112
 	}
@@ -1369,7 +1986,7 @@ rectangle {
 oval {
 	object {
 		x=516
-		y=136
+		y=141
 		width=15
 		height=15
 	}
@@ -1384,7 +2001,7 @@ oval {
 "text update" {
 	object {
 		x=450
-		y=136
+		y=141
 		width=60
 		height=15
 	}
@@ -1402,7 +2019,7 @@ oval {
 "text update" {
 	object {
 		x=450
-		y=181
+		y=186
 		width=60
 		height=15
 	}
@@ -1420,7 +2037,7 @@ oval {
 text {
 	object {
 		x=447
-		y=98
+		y=103
 		width=84
 		height=14
 	}
@@ -1433,7 +2050,7 @@ text {
 text {
 	object {
 		x=471
-		y=118
+		y=123
 		width=42
 		height=13
 	}
@@ -1446,7 +2063,7 @@ text {
 text {
 	object {
 		x=448
-		y=163
+		y=168
 		width=84
 		height=13
 	}
@@ -1459,7 +2076,7 @@ text {
 oval {
 	object {
 		x=519
-		y=139
+		y=144
 		width=9
 		height=9
 	}
@@ -1474,7 +2091,7 @@ oval {
 polyline {
 	object {
 		x=444
-		y=158
+		y=163
 		width=90
 		height=0
 	}
@@ -1482,14 +2099,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(444,158)
-		(534,158)
+		(444,163)
+		(534,163)
 	}
 }
 polyline {
 	object {
 		x=444
-		y=116
+		y=121
 		width=90
 		height=0
 	}
@@ -1497,14 +2114,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(444,116)
-		(534,116)
+		(444,121)
+		(534,121)
 	}
 }
 oval {
 	object {
 		x=516
-		y=180
+		y=185
 		width=15
 		height=15
 	}
@@ -1519,7 +2136,7 @@ oval {
 oval {
 	object {
 		x=519
-		y=183
+		y=188
 		width=9
 		height=9
 	}
@@ -1534,7 +2151,7 @@ oval {
 rectangle {
 	object {
 		x=335
-		y=240
+		y=245
 		width=84
 		height=24
 	}
@@ -1546,7 +2163,7 @@ rectangle {
 rectangle {
 	object {
 		x=346
-		y=108
+		y=113
 		width=70
 		height=90
 	}
@@ -1557,7 +2174,7 @@ rectangle {
 polyline {
 	object {
 		x=346
-		y=132
+		y=137
 		width=70
 		height=0
 	}
@@ -1565,14 +2182,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(346,132)
-		(416,132)
+		(346,137)
+		(416,137)
 	}
 }
 rectangle {
 	object {
 		x=379
-		y=234
+		y=239
 		width=5
 		height=30
 	}
@@ -1587,7 +2204,7 @@ rectangle {
 rectangle {
 	object {
 		x=379
-		y=204
+		y=209
 		width=5
 		height=30
 	}
@@ -1602,7 +2219,7 @@ rectangle {
 rectangle {
 	object {
 		x=374
-		y=199
+		y=204
 		width=14
 		height=41
 	}
@@ -1614,7 +2231,7 @@ rectangle {
 "message button" {
 	object {
 		x=359
-		y=156
+		y=161
 		width=45
 		height=20
 	}
@@ -1631,7 +2248,7 @@ rectangle {
 "message button" {
 	object {
 		x=359
-		y=176
+		y=181
 		width=45
 		height=20
 	}
@@ -1648,7 +2265,7 @@ rectangle {
 text {
 	object {
 		x=364
-		y=115
+		y=120
 		width=35
 		height=14
 	}
@@ -1661,7 +2278,7 @@ text {
 "text update" {
 	object {
 		x=349
-		y=138
+		y=143
 		width=45
 		height=15
 	}
@@ -1679,7 +2296,7 @@ text {
 oval {
 	object {
 		x=399
-		y=138
+		y=143
 		width=15
 		height=15
 	}
@@ -1694,7 +2311,7 @@ oval {
 oval {
 	object {
 		x=402
-		y=141
+		y=146
 		width=9
 		height=9
 	}
@@ -1709,7 +2326,7 @@ oval {
 composite {
 	object {
 		x=215
-		y=206
+		y=211
 		width=120
 		height=85
 	}
@@ -1718,7 +2335,7 @@ composite {
 		rectangle {
 			object {
 				x=215
-				y=220
+				y=225
 				width=120
 				height=57
 			}
@@ -1730,7 +2347,7 @@ composite {
 		text {
 			object {
 				x=225
-				y=230
+				y=235
 				width=100
 				height=20
 			}
@@ -1742,7 +2359,7 @@ composite {
 		rectangle {
 			object {
 				x=265
-				y=277
+				y=282
 				width=20
 				height=14
 			}
@@ -1754,7 +2371,7 @@ composite {
 		rectangle {
 			object {
 				x=265
-				y=206
+				y=211
 				width=20
 				height=14
 			}
@@ -1766,7 +2383,7 @@ composite {
 		text {
 			object {
 				x=255
-				y=250
+				y=255
 				width=40
 				height=20
 			}
@@ -1780,7 +2397,7 @@ composite {
 composite {
 	object {
 		x=419
-		y=206
+		y=211
 		width=140
 		height=85
 	}
@@ -1789,7 +2406,7 @@ composite {
 		rectangle {
 			object {
 				x=419
-				y=220
+				y=225
 				width=140
 				height=57
 			}
@@ -1801,7 +2418,7 @@ composite {
 		text {
 			object {
 				x=424
-				y=230
+				y=235
 				width=130
 				height=20
 			}
@@ -1813,7 +2430,7 @@ composite {
 		rectangle {
 			object {
 				x=479
-				y=277
+				y=282
 				width=20
 				height=14
 			}
@@ -1825,7 +2442,7 @@ composite {
 		rectangle {
 			object {
 				x=479
-				y=206
+				y=211
 				width=20
 				height=14
 			}
@@ -1837,7 +2454,7 @@ composite {
 		text {
 			object {
 				x=469
-				y=250
+				y=255
 				width=40
 				height=20
 			}
@@ -1851,7 +2468,7 @@ composite {
 rectangle {
 	object {
 		x=151
-		y=108
+		y=113
 		width=70
 		height=90
 	}
@@ -1862,7 +2479,7 @@ rectangle {
 polyline {
 	object {
 		x=151
-		y=132
+		y=137
 		width=70
 		height=0
 	}
@@ -1870,14 +2487,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(151,132)
-		(221,132)
+		(151,137)
+		(221,137)
 	}
 }
 rectangle {
 	object {
 		x=184
-		y=234
+		y=239
 		width=5
 		height=30
 	}
@@ -1892,7 +2509,7 @@ rectangle {
 rectangle {
 	object {
 		x=184
-		y=204
+		y=209
 		width=5
 		height=30
 	}
@@ -1907,7 +2524,7 @@ rectangle {
 rectangle {
 	object {
 		x=179
-		y=199
+		y=204
 		width=14
 		height=41
 	}
@@ -1919,7 +2536,7 @@ rectangle {
 "message button" {
 	object {
 		x=164
-		y=156
+		y=161
 		width=45
 		height=20
 	}
@@ -1936,7 +2553,7 @@ rectangle {
 "message button" {
 	object {
 		x=164
-		y=176
+		y=181
 		width=45
 		height=20
 	}
@@ -1953,7 +2570,7 @@ rectangle {
 text {
 	object {
 		x=169
-		y=115
+		y=120
 		width=35
 		height=14
 	}
@@ -1966,7 +2583,7 @@ text {
 "text update" {
 	object {
 		x=154
-		y=138
+		y=143
 		width=45
 		height=15
 	}
@@ -1984,7 +2601,7 @@ text {
 oval {
 	object {
 		x=203
-		y=138
+		y=143
 		width=15
 		height=15
 	}
@@ -1999,7 +2616,7 @@ oval {
 oval {
 	object {
 		x=206
-		y=141
+		y=146
 		width=9
 		height=9
 	}
@@ -2013,21 +2630,8 @@ oval {
 }
 rectangle {
 	object {
-		x=5
-		y=240
-		width=24
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-		width=3
-	}
-}
-rectangle {
-	object {
 		x=426
-		y=292
+		y=297
 		width=127
 		height=85
 	}
@@ -2038,7 +2642,7 @@ rectangle {
 "text update" {
 	object {
 		x=490
-		y=315
+		y=320
 		width=60
 		height=15
 	}
@@ -2055,7 +2659,7 @@ rectangle {
 "text update" {
 	object {
 		x=490
-		y=333
+		y=338
 		width=60
 		height=15
 	}
@@ -2073,7 +2677,7 @@ rectangle {
 "text update" {
 	object {
 		x=490
-		y=351
+		y=356
 		width=60
 		height=15
 	}
@@ -2091,7 +2695,7 @@ rectangle {
 text {
 	object {
 		x=461
-		y=296
+		y=301
 		width=56
 		height=14
 	}
@@ -2104,7 +2708,7 @@ text {
 text {
 	object {
 		x=451
-		y=315
+		y=320
 		width=35
 		height=13
 	}
@@ -2117,7 +2721,7 @@ text {
 text {
 	object {
 		x=437
-		y=333
+		y=338
 		width=49
 		height=13
 	}
@@ -2130,7 +2734,7 @@ text {
 text {
 	object {
 		x=430
-		y=351
+		y=356
 		width=56
 		height=13
 	}
@@ -2143,7 +2747,7 @@ text {
 polyline {
 	object {
 		x=426
-		y=313
+		y=318
 		width=127
 		height=0
 	}
@@ -2151,14 +2755,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(426,313)
-		(553,313)
+		(426,318)
+		(553,318)
 	}
 }
 rectangle {
 	object {
 		x=45
-		y=112
+		y=117
 		width=100
 		height=70
 	}
@@ -2169,7 +2773,7 @@ rectangle {
 text {
 	object {
 		x=57
-		y=117
+		y=122
 		width=77
 		height=14
 	}
@@ -2182,7 +2786,7 @@ text {
 polyline {
 	object {
 		x=44
-		y=135
+		y=140
 		width=100
 		height=0
 	}
@@ -2190,14 +2794,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(44,135)
-		(144,135)
+		(44,140)
+		(144,140)
 	}
 }
 composite {
 	object {
 		x=49
-		y=160
+		y=165
 		width=93
 		height=15
 	}
@@ -2206,7 +2810,7 @@ composite {
 		oval {
 			object {
 				x=127
-				y=160
+				y=165
 				width=15
 				height=15
 			}
@@ -2221,7 +2825,7 @@ composite {
 		oval {
 			object {
 				x=130
-				y=163
+				y=168
 				width=9
 				height=9
 			}
@@ -2236,7 +2840,7 @@ composite {
 		text {
 			object {
 				x=49
-				y=161
+				y=166
 				width=77
 				height=13
 			}
@@ -2251,7 +2855,7 @@ composite {
 composite {
 	object {
 		x=49
-		y=140
+		y=145
 		width=93
 		height=15
 	}
@@ -2260,7 +2864,7 @@ composite {
 		oval {
 			object {
 				x=127
-				y=140
+				y=145
 				width=15
 				height=15
 			}
@@ -2275,7 +2879,7 @@ composite {
 		oval {
 			object {
 				x=130
-				y=143
+				y=148
 				width=9
 				height=9
 			}
@@ -2290,7 +2894,7 @@ composite {
 		text {
 			object {
 				x=49
-				y=141
+				y=146
 				width=77
 				height=13
 			}
@@ -2305,7 +2909,7 @@ composite {
 composite {
 	object {
 		x=749
-		y=292
+		y=297
 		width=127
 		height=85
 	}
@@ -2314,7 +2918,7 @@ composite {
 		rectangle {
 			object {
 				x=749
-				y=292
+				y=297
 				width=127
 				height=85
 			}
@@ -2325,7 +2929,7 @@ composite {
 		"text update" {
 			object {
 				x=813
-				y=315
+				y=320
 				width=60
 				height=15
 			}
@@ -2342,7 +2946,7 @@ composite {
 		"text update" {
 			object {
 				x=813
-				y=333
+				y=338
 				width=60
 				height=15
 			}
@@ -2360,7 +2964,7 @@ composite {
 		"text update" {
 			object {
 				x=813
-				y=351
+				y=356
 				width=60
 				height=15
 			}
@@ -2378,7 +2982,7 @@ composite {
 		text {
 			object {
 				x=784
-				y=296
+				y=301
 				width=56
 				height=14
 			}
@@ -2391,7 +2995,7 @@ composite {
 		text {
 			object {
 				x=774
-				y=315
+				y=320
 				width=35
 				height=13
 			}
@@ -2404,7 +3008,7 @@ composite {
 		text {
 			object {
 				x=760
-				y=333
+				y=338
 				width=49
 				height=13
 			}
@@ -2417,7 +3021,7 @@ composite {
 		text {
 			object {
 				x=753
-				y=351
+				y=356
 				width=56
 				height=13
 			}
@@ -2430,7 +3034,7 @@ composite {
 		polyline {
 			object {
 				x=749
-				y=313
+				y=318
 				width=127
 				height=0
 			}
@@ -2438,8 +3042,8 @@ composite {
 				clr=14
 			}
 			points {
-				(749,313)
-				(876,313)
+				(749,318)
+				(876,318)
 			}
 		}
 	}
@@ -2447,7 +3051,7 @@ composite {
 composite {
 	object {
 		x=915
-		y=94
+		y=99
 		width=90
 		height=112
 	}
@@ -2456,7 +3060,7 @@ composite {
 		rectangle {
 			object {
 				x=915
-				y=94
+				y=99
 				width=90
 				height=112
 			}
@@ -2467,7 +3071,7 @@ composite {
 		oval {
 			object {
 				x=987
-				y=136
+				y=141
 				width=15
 				height=15
 			}
@@ -2482,7 +3086,7 @@ composite {
 		"text update" {
 			object {
 				x=921
-				y=136
+				y=141
 				width=60
 				height=15
 			}
@@ -2500,7 +3104,7 @@ composite {
 		"text update" {
 			object {
 				x=921
-				y=181
+				y=186
 				width=60
 				height=15
 			}
@@ -2518,7 +3122,7 @@ composite {
 		text {
 			object {
 				x=918
-				y=98
+				y=103
 				width=84
 				height=14
 			}
@@ -2531,7 +3135,7 @@ composite {
 		text {
 			object {
 				x=942
-				y=118
+				y=123
 				width=42
 				height=13
 			}
@@ -2544,7 +3148,7 @@ composite {
 		text {
 			object {
 				x=919
-				y=163
+				y=168
 				width=84
 				height=13
 			}
@@ -2557,7 +3161,7 @@ composite {
 		oval {
 			object {
 				x=990
-				y=139
+				y=144
 				width=9
 				height=9
 			}
@@ -2572,7 +3176,7 @@ composite {
 		polyline {
 			object {
 				x=915
-				y=158
+				y=163
 				width=90
 				height=0
 			}
@@ -2580,14 +3184,14 @@ composite {
 				clr=14
 			}
 			points {
-				(915,158)
-				(1005,158)
+				(915,163)
+				(1005,163)
 			}
 		}
 		polyline {
 			object {
 				x=915
-				y=116
+				y=121
 				width=90
 				height=0
 			}
@@ -2595,14 +3199,14 @@ composite {
 				clr=14
 			}
 			points {
-				(915,116)
-				(1005,116)
+				(915,121)
+				(1005,121)
 			}
 		}
 		oval {
 			object {
 				x=987
-				y=180
+				y=185
 				width=15
 				height=15
 			}
@@ -2617,7 +3221,7 @@ composite {
 		oval {
 			object {
 				x=990
-				y=183
+				y=188
 				width=9
 				height=9
 			}
@@ -2634,7 +3238,7 @@ composite {
 rectangle {
 	object {
 		x=630
-		y=220
+		y=225
 		width=343
 		height=57
 	}
@@ -2646,7 +3250,7 @@ rectangle {
 text {
 	object {
 		x=791
-		y=229
+		y=234
 		width=100
 		height=20
 	}
@@ -2658,7 +3262,7 @@ text {
 rectangle {
 	object {
 		x=950
-		y=206
+		y=211
 		width=20
 		height=14
 	}
@@ -2670,7 +3274,7 @@ rectangle {
 rectangle {
 	object {
 		x=837
-		y=206
+		y=211
 		width=20
 		height=14
 	}
@@ -2682,7 +3286,7 @@ rectangle {
 rectangle {
 	object {
 		x=802
-		y=277
+		y=282
 		width=20
 		height=14
 	}
@@ -2694,7 +3298,7 @@ rectangle {
 text {
 	object {
 		x=791
-		y=251
+		y=256
 		width=100
 		height=20
 	}
@@ -2706,7 +3310,7 @@ text {
 composite {
 	object {
 		x=779
-		y=51
+		y=56
 		width=130
 		height=155
 	}
@@ -2715,7 +3319,7 @@ composite {
 		rectangle {
 			object {
 				x=779
-				y=51
+				y=56
 				width=130
 				height=155
 			}
@@ -2726,7 +3330,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=80
+				y=85
 				width=15
 				height=15
 			}
@@ -2741,7 +3345,7 @@ composite {
 		text {
 			object {
 				x=806
-				y=58
+				y=63
 				width=77
 				height=14
 			}
@@ -2754,7 +3358,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=83
+				y=88
 				width=9
 				height=9
 			}
@@ -2769,7 +3373,7 @@ composite {
 		polyline {
 			object {
 				x=779
-				y=76
+				y=81
 				width=130
 				height=0
 			}
@@ -2777,14 +3381,14 @@ composite {
 				clr=14
 			}
 			points {
-				(779,76)
-				(909,76)
+				(779,81)
+				(909,81)
 			}
 		}
 		text {
 			object {
 				x=831
-				y=81
+				y=86
 				width=56
 				height=13
 			}
@@ -2797,7 +3401,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=98
+				y=103
 				width=15
 				height=15
 			}
@@ -2812,7 +3416,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=101
+				y=106
 				width=9
 				height=9
 			}
@@ -2827,7 +3431,7 @@ composite {
 		text {
 			object {
 				x=817
-				y=99
+				y=104
 				width=70
 				height=13
 			}
@@ -2840,7 +3444,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=116
+				y=121
 				width=15
 				height=15
 			}
@@ -2855,7 +3459,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=119
+				y=124
 				width=9
 				height=9
 			}
@@ -2870,7 +3474,7 @@ composite {
 		text {
 			object {
 				x=838
-				y=117
+				y=122
 				width=49
 				height=13
 			}
@@ -2883,7 +3487,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=134
+				y=139
 				width=15
 				height=15
 			}
@@ -2898,7 +3502,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=137
+				y=142
 				width=9
 				height=9
 			}
@@ -2913,7 +3517,7 @@ composite {
 		text {
 			object {
 				x=782
-				y=135
+				y=140
 				width=105
 				height=13
 			}
@@ -2926,7 +3530,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=152
+				y=157
 				width=15
 				height=15
 			}
@@ -2941,7 +3545,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=155
+				y=160
 				width=9
 				height=9
 			}
@@ -2956,7 +3560,7 @@ composite {
 		text {
 			object {
 				x=789
-				y=153
+				y=158
 				width=98
 				height=13
 			}
@@ -2969,7 +3573,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=170
+				y=175
 				width=15
 				height=15
 			}
@@ -2984,7 +3588,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=173
+				y=178
 				width=9
 				height=9
 			}
@@ -2999,7 +3603,7 @@ composite {
 		text {
 			object {
 				x=782
-				y=171
+				y=176
 				width=105
 				height=13
 			}
@@ -3012,7 +3616,7 @@ composite {
 		oval {
 			object {
 				x=891
-				y=188
+				y=193
 				width=15
 				height=15
 			}
@@ -3027,7 +3631,7 @@ composite {
 		oval {
 			object {
 				x=894
-				y=191
+				y=196
 				width=9
 				height=9
 			}
@@ -3042,7 +3646,7 @@ composite {
 		text {
 			object {
 				x=817
-				y=189
+				y=194
 				width=70
 				height=13
 			}
@@ -3057,7 +3661,7 @@ composite {
 composite {
 	object {
 		x=547
-		y=108
+		y=113
 		width=70
 		height=156
 	}
@@ -3066,7 +3670,7 @@ composite {
 		rectangle {
 			object {
 				x=547
-				y=108
+				y=113
 				width=70
 				height=90
 			}
@@ -3077,7 +3681,7 @@ composite {
 		rectangle {
 			object {
 				x=580
-				y=234
+				y=239
 				width=5
 				height=30
 			}
@@ -3092,7 +3696,7 @@ composite {
 		rectangle {
 			object {
 				x=580
-				y=204
+				y=209
 				width=5
 				height=30
 			}
@@ -3107,7 +3711,7 @@ composite {
 		rectangle {
 			object {
 				x=575
-				y=199
+				y=204
 				width=14
 				height=41
 			}
@@ -3119,7 +3723,7 @@ composite {
 		"message button" {
 			object {
 				x=560
-				y=156
+				y=161
 				width=45
 				height=20
 			}
@@ -3136,7 +3740,7 @@ composite {
 		"message button" {
 			object {
 				x=560
-				y=176
+				y=181
 				width=45
 				height=20
 			}
@@ -3153,7 +3757,7 @@ composite {
 		text {
 			object {
 				x=565
-				y=115
+				y=120
 				width=35
 				height=14
 			}
@@ -3166,7 +3770,7 @@ composite {
 		"text update" {
 			object {
 				x=550
-				y=138
+				y=143
 				width=45
 				height=15
 			}
@@ -3184,7 +3788,7 @@ composite {
 		oval {
 			object {
 				x=600
-				y=138
+				y=143
 				width=15
 				height=15
 			}
@@ -3199,7 +3803,7 @@ composite {
 		oval {
 			object {
 				x=603
-				y=141
+				y=146
 				width=9
 				height=9
 			}
@@ -3214,7 +3818,7 @@ composite {
 		polyline {
 			object {
 				x=547
-				y=132
+				y=137
 				width=70
 				height=0
 			}
@@ -3222,8 +3826,8 @@ composite {
 				clr=14
 			}
 			points {
-				(547,132)
-				(617,132)
+				(547,137)
+				(617,137)
 			}
 		}
 	}
@@ -3231,7 +3835,7 @@ composite {
 rectangle {
 	object {
 		x=702
-		y=108
+		y=113
 		width=70
 		height=90
 	}
@@ -3242,8 +3846,8 @@ rectangle {
 rectangle {
 	object {
 		x=735
-		y=234
-		width=5
+		y=239
+		width=10
 		height=30
 	}
 	"basic attribute" {
@@ -3257,8 +3861,8 @@ rectangle {
 rectangle {
 	object {
 		x=735
-		y=204
-		width=5
+		y=209
+		width=10
 		height=30
 	}
 	"basic attribute" {
@@ -3272,8 +3876,8 @@ rectangle {
 rectangle {
 	object {
 		x=730
-		y=199
-		width=14
+		y=204
+		width=19
 		height=21
 	}
 	"basic attribute" {
@@ -3284,7 +3888,7 @@ rectangle {
 "message button" {
 	object {
 		x=715
-		y=156
+		y=161
 		width=45
 		height=20
 	}
@@ -3301,7 +3905,7 @@ rectangle {
 "message button" {
 	object {
 		x=715
-		y=176
+		y=181
 		width=45
 		height=20
 	}
@@ -3318,7 +3922,7 @@ rectangle {
 text {
 	object {
 		x=720
-		y=115
+		y=120
 		width=35
 		height=14
 	}
@@ -3331,7 +3935,7 @@ text {
 "text update" {
 	object {
 		x=715
-		y=138
+		y=143
 		width=45
 		height=15
 	}
@@ -3349,7 +3953,7 @@ text {
 polyline {
 	object {
 		x=702
-		y=132
+		y=137
 		width=70
 		height=0
 	}
@@ -3357,14 +3961,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(702,132)
-		(772,132)
+		(702,137)
+		(772,137)
 	}
 }
 rectangle {
 	object {
 		x=625
-		y=108
+		y=113
 		width=70
 		height=90
 	}
@@ -3375,8 +3979,8 @@ rectangle {
 rectangle {
 	object {
 		x=658
-		y=234
-		width=5
+		y=239
+		width=10
 		height=30
 	}
 	"basic attribute" {
@@ -3390,8 +3994,8 @@ rectangle {
 rectangle {
 	object {
 		x=658
-		y=204
-		width=5
+		y=209
+		width=10
 		height=30
 	}
 	"basic attribute" {
@@ -3405,8 +4009,8 @@ rectangle {
 rectangle {
 	object {
 		x=653
-		y=199
-		width=14
+		y=204
+		width=19
 		height=21
 	}
 	"basic attribute" {
@@ -3417,7 +4021,7 @@ rectangle {
 "message button" {
 	object {
 		x=638
-		y=156
+		y=161
 		width=45
 		height=20
 	}
@@ -3434,7 +4038,7 @@ rectangle {
 "message button" {
 	object {
 		x=638
-		y=176
+		y=181
 		width=45
 		height=20
 	}
@@ -3451,7 +4055,7 @@ rectangle {
 text {
 	object {
 		x=643
-		y=115
+		y=120
 		width=35
 		height=14
 	}
@@ -3464,7 +4068,7 @@ text {
 "text update" {
 	object {
 		x=638
-		y=138
+		y=143
 		width=45
 		height=15
 	}
@@ -3482,7 +4086,7 @@ text {
 polyline {
 	object {
 		x=625
-		y=132
+		y=137
 		width=70
 		height=0
 	}
@@ -3490,71 +4094,306 @@ polyline {
 		clr=14
 	}
 	points {
-		(625,132)
-		(695,132)
+		(625,137)
+		(695,137)
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=245
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=988
+		y=400
+		width=174
+		height=26
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+oval {
+	object {
+		x=1141
+		y=405
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:13BM:Q01:01.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1145
+		y=575
+		width=50
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=22
+		y=395
+		width=1150
+		height=327
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=365
+		y=650
+		width=84
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13-BM-B"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1141
+		y=405
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="PA:13BM:Q01:01.VAL"
+	}
+}
+text {
+	object {
+		x=1020
+		y=405
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Station Searched"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1040
+		y=429
+		width=90
+		height=112
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+oval {
+	object {
+		x=1112
+		y=471
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi61"
+	}
+}
+"text update" {
+	object {
+		x=1046
+		y=471
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:pr7"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1046
+		y=516
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:cc7"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=1043
+		y=433
+		width=84
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Vacuum Gauge"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1067
+		y=453
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pirani"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1044
+		y=498
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cold Cathode"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1115
+		y=474
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi60"
+	}
+}
+polyline {
+	object {
+		x=1040
+		y=493
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1040,493)
+		(1130,493)
+	}
+}
+polyline {
+	object {
+		x=1040
+		y=451
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1040,451)
+		(1130,451)
+	}
+}
+oval {
+	object {
+		x=1112
+		y=515
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi59"
+	}
+}
+oval {
+	object {
+		x=1115
+		y=518
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi58"
 	}
 }
 composite {
 	object {
-		x=161
-		y=730
-		width=150
-		height=80
+		x=1025
+		y=541
+		width=120
+		height=85
 	}
 	"composite name"=""
 	children {
-		"message button" {
-			object {
-				x=251
-				y=763
-				width=50
-				height=20
-			}
-			control {
-				chan="13BMA:eps_bo2"
-				clr=14
-				bclr=51
-			}
-			label="Reset"
-			press_msg="Reset_on"
-			release_msg="Reset_off"
-		}
-		"text update" {
-			object {
-				x=170
-				y=763
-				width=70
-				height=20
-			}
-			monitor {
-				chan="13BMA:eps_mbbi5"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=176
-				y=735
-				width=120
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="EPS Status"
-			align="horiz. centered"
-		}
 		rectangle {
 			object {
-				x=161
-				y=730
-				width=150
-				height=80
+				x=1075
+				y=541
+				width=20
+				height=14
 			}
 			"basic attribute" {
 				clr=14
@@ -3563,382 +4402,67 @@ composite {
 		}
 		text {
 			object {
-				x=224
-				y=791
+				x=1045
+				y=565
 				width=80
-				height=18
+				height=20
 			}
 			"basic attribute" {
 				clr=14
 			}
-			textix="PLC Status"
+			textix="BMC Slit"
 		}
-		"related display" {
+		rectangle {
 			object {
-				x=171
-				y=789
-				width=46
-				height=18
+				x=1025
+				y=555
+				width=120
+				height=57
 			}
-			display[0] {
-				label="PLC Status"
-				name="plc_status.adl"
-				args="P=13BMA"
+			"basic attribute" {
+				clr=14
+				fill="outline"
 			}
-			clr=14
-			bclr=4
+		}
+		text {
+			object {
+				x=1065
+				y=585
+				width=40
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Tank"
+		}
+		rectangle {
+			object {
+				x=1075
+				y=612
+				width=20
+				height=14
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
 		}
 	}
 }
 composite {
 	object {
-		x=367
-		y=727
-		width=150
-		height=90
+		x=1022
+		y=627
+		width=127
+		height=85
 	}
 	"composite name"=""
 	children {
 		rectangle {
 			object {
-				x=367
-				y=727
-				width=150
-				height=90
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		text {
-			object {
-				x=411
-				y=734
-				width=63
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Utilities"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=367
-				y=752
-				width=150
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(367,752)
-				(517,752)
-			}
-		}
-		oval {
-			object {
-				x=498
-				y=762
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi72"
-			}
-		}
-		text {
-			object {
-				x=377
-				y=763
-				width=119
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Water Resistivity"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=498
-				y=780
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13IDA:eps_mbbi67"
-			}
-		}
-		text {
-			object {
-				x=377
-				y=781
-				width=119
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="He Tank Farm Left"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=498
-				y=798
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13IDA:eps_mbbi68"
-			}
-		}
-		text {
-			object {
-				x=370
-				y=799
-				width=126
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="He Tank Farm Right"
-			align="horiz. centered"
-		}
-	}
-}
-composite {
-	object {
-		x=8
-		y=390
-		width=295
-		height=327
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=22
-				y=395
-				width=174
-				height=26
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		oval {
-			object {
-				x=176
-				y=400
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="PA:13BM:Q01:03.VAL"
-			}
-		}
-		rectangle {
-			object {
-				x=200
-				y=425
-				width=90
-				height=112
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		oval {
-			object {
-				x=272
-				y=467
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi65"
-			}
-		}
-		"text update" {
-			object {
-				x=206
-				y=467
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:pr9"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=206
-				y=512
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:cc9"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=203
-				y=429
-				width=84
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Vacuum Gauge"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=227
-				y=449
-				width=42
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pirani"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=204
-				y=494
-				width=84
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Cold Cathode"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=275
-				y=470
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi64"
-			}
-		}
-		polyline {
-			object {
-				x=200
-				y=489
-				width=90
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(200,489)
-				(290,489)
-			}
-		}
-		polyline {
-			object {
-				x=200
-				y=447
-				width=90
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(200,447)
-				(290,447)
-			}
-		}
-		oval {
-			object {
-				x=272
-				y=511
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi63"
-			}
-		}
-		oval {
-			object {
-				x=275
-				y=514
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi62"
-			}
-		}
-		rectangle {
-			object {
-				x=171
-				y=623
+				x=1022
+				y=627
 				width=127
 				height=85
 			}
@@ -3948,13 +4472,13 @@ composite {
 		}
 		"text update" {
 			object {
-				x=235
-				y=646
+				x=1086
+				y=650
 				width=60
 				height=15
 			}
 			monitor {
-				chan="13BMA:ip10_Volts"
+				chan="13BMA:ip7_Volts"
 				clr=0
 				bclr=14
 			}
@@ -3965,13 +4489,13 @@ composite {
 		}
 		"text update" {
 			object {
-				x=235
-				y=664
+				x=1086
+				y=668
 				width=60
 				height=15
 			}
 			monitor {
-				chan="13BMA:ip10_Current"
+				chan="13BMA:ip7_Current"
 				clr=0
 				bclr=14
 			}
@@ -3983,13 +4507,13 @@ composite {
 		}
 		"text update" {
 			object {
-				x=235
-				y=682
+				x=1086
+				y=686
 				width=60
 				height=15
 			}
 			monitor {
-				chan="13BMA:ip10_Pressure"
+				chan="13BMA:ip7_Pressure"
 				clr=0
 				bclr=14
 			}
@@ -4001,8 +4525,8 @@ composite {
 		}
 		text {
 			object {
-				x=206
-				y=627
+				x=1057
+				y=631
 				width=56
 				height=14
 			}
@@ -4014,8 +4538,8 @@ composite {
 		}
 		text {
 			object {
-				x=196
-				y=646
+				x=1047
+				y=650
 				width=35
 				height=13
 			}
@@ -4027,8 +4551,8 @@ composite {
 		}
 		text {
 			object {
-				x=182
-				y=664
+				x=1033
+				y=668
 				width=49
 				height=13
 			}
@@ -4040,8 +4564,8 @@ composite {
 		}
 		text {
 			object {
-				x=175
-				y=682
+				x=1026
+				y=686
 				width=56
 				height=13
 			}
@@ -4053,8 +4577,8 @@ composite {
 		}
 		polyline {
 			object {
-				x=171
-				y=644
+				x=1022
+				y=648
 				width=127
 				height=0
 			}
@@ -4062,646 +4586,57 @@ composite {
 				clr=14
 			}
 			points {
-				(171,644)
-				(298,644)
-			}
-		}
-		rectangle {
-			object {
-				x=235
-				y=537
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=189
-				y=562
-				width=80
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="BMD Slit"
-		}
-		rectangle {
-			object {
-				x=168
-				y=551
-				width=120
-				height=57
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=209
-				y=582
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Tank"
-		}
-		rectangle {
-			object {
-				x=224
-				y=608
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=8
-				y=390
-				width=295
-				height=327
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=204
-				y=397
-				width=84
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="13-BM-D"
-			align="horiz. centered"
-		}
-		rectangle {
-			object {
-				x=13
-				y=425
-				width=130
-				height=149
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		text {
-			object {
-				x=19
-				y=430
-				width=119
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Water and He Flow"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=13
-				y=448
-				width=130
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(13,448)
-				(143,448)
-			}
-		}
-		oval {
-			object {
-				x=125
-				y=450
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi47"
-			}
-		}
-		oval {
-			object {
-				x=128
-				y=453
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi46"
-			}
-		}
-		text {
-			object {
-				x=17
-				y=451
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Vert. Slits"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=125
-				y=468
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi49"
-			}
-		}
-		oval {
-			object {
-				x=128
-				y=471
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi48"
-			}
-		}
-		text {
-			object {
-				x=24
-				y=469
-				width=98
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Hor. Slits"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=125
-				y=486
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi51"
-			}
-		}
-		oval {
-			object {
-				x=128
-				y=489
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi50"
-			}
-		}
-		text {
-			object {
-				x=17
-				y=487
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Station Water 1"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=176
-				y=400
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="PA:13BM:Q01:03.VAL"
-			}
-		}
-		oval {
-			object {
-				x=125
-				y=504
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi53"
-			}
-		}
-		oval {
-			object {
-				x=128
-				y=507
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi52"
-			}
-		}
-		text {
-			object {
-				x=17
-				y=505
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Station Water 2"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=125
-				y=522
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi88"
-			}
-		}
-		oval {
-			object {
-				x=128
-				y=525
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi87"
-			}
-		}
-		text {
-			object {
-				x=17
-				y=523
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Station Water 3"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=125
-				y=540
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi86"
-			}
-		}
-		oval {
-			object {
-				x=128
-				y=543
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi85"
-			}
-		}
-		text {
-			object {
-				x=17
-				y=541
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Be window water"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=124
-				y=558
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi74"
-			}
-		}
-		oval {
-			object {
-				x=127
-				y=561
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi73"
-			}
-		}
-		text {
-			object {
-				x=80
-				y=558
-				width=42
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Helium"
-			align="horiz. centered"
-		}
-		rectangle {
-			object {
-				x=153
-				y=594
-				width=10
-				height=28
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=148
-				y=570
-				width=20
-				height=24
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=76
-				y=623
-				width=90
-				height=60
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		"text update" {
-			object {
-				x=80
-				y=665
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:pr10"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=77
-				y=628
-				width=84
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Vacuum Gauge"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=100
-				y=648
-				width=42
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pirani"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=77
-				y=646
-				width=90
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(77,646)
-				(167,646)
-			}
-		}
-		text {
-			object {
-				x=56
-				y=402
-				width=84
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Station Searched"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=146
-				y=665
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi102"
-			}
-		}
-		oval {
-			object {
-				x=149
-				y=668
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi101"
-			}
-		}
-		composite {
-			object {
-				x=13
-				y=580
-				width=97
-				height=26
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=15
-						y=580
-						width=95
-						height=26
-					}
-					"basic attribute" {
-						clr=56
-					}
-				}
-				text {
-					object {
-						x=13
-						y=585
-						width=45
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Temp:"
-					align="horiz. centered"
-				}
-				"text update" {
-					object {
-						x=57
-						y=585
-						width=50
-						height=15
-					}
-					monitor {
-						chan="G:AHU:FP5095Ai"
-						clr=53
-						bclr=56
-					}
-					align="horiz. centered"
-					limits {
-					}
-				}
+				(1022,648)
+				(1149,648)
 			}
 		}
 	}
 }
 rectangle {
 	object {
-		x=361
-		y=428
-		width=91
-		height=50
+		x=840
+		y=400
+		width=135
+		height=110
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=874
+		y=405
+		width=77
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Water Flow"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=840
+		y=423
+		width=135
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(840,423)
+		(975,423)
+	}
+}
+rectangle {
+	object {
+		x=877
+		y=733
+		width=174
+		height=26
 	}
 	"basic attribute" {
 		clr=56
@@ -4709,8 +4644,8 @@ rectangle {
 }
 oval {
 	object {
-		x=436
-		y=454
+		x=1030
+		y=739
 		width=15
 		height=15
 	}
@@ -4724,9 +4659,9 @@ oval {
 }
 rectangle {
 	object {
-		x=320
-		y=390
-		width=170
+		x=862
+		y=728
+		width=295
 		height=327
 	}
 	"basic attribute" {
@@ -4736,8 +4671,8 @@ rectangle {
 }
 text {
 	object {
-		x=363
-		y=397
+		x=1065
+		y=735
 		width=80
 		height=25
 	}
@@ -4749,8 +4684,8 @@ text {
 }
 oval {
 	object {
-		x=436
-		y=454
+		x=1030
+		y=739
 		width=15
 		height=15
 	}
@@ -4762,36 +4697,10 @@ oval {
 		chan="PA:13BM:Q01:02.VAL"
 	}
 }
-text {
-	object {
-		x=358
-		y=433
-		width=80
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Station"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=358
-		y=454
-		width=80
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Searched"
-	align="horiz. centered"
-}
 composite {
 	object {
-		x=360
-		y=485
+		x=912
+		y=767
 		width=93
 		height=26
 	}
@@ -4799,8 +4708,8 @@ composite {
 	children {
 		rectangle {
 			object {
-				x=362
-				y=485
+				x=914
+				y=767
 				width=91
 				height=26
 			}
@@ -4810,8 +4719,8 @@ composite {
 		}
 		text {
 			object {
-				x=360
-				y=490
+				x=912
+				y=772
 				width=43
 				height=15
 			}
@@ -4823,8 +4732,8 @@ composite {
 		}
 		"text update" {
 			object {
-				x=402
-				y=490
+				x=954
+				y=772
 				width=48
 				height=15
 			}
@@ -4839,163 +4748,23 @@ composite {
 		}
 	}
 }
-composite {
+rectangle {
 	object {
-		x=603
-		y=405
-		width=80
-		height=189
+		x=826
+		y=908
+		width=350
+		height=24
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=603
-				y=405
-				width=80
-				height=120
-			}
-			"basic attribute" {
-				clr=45
-			}
-		}
-		rectangle {
-			object {
-				x=641
-				y=564
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMA:eps_mbbi99"
-			}
-		}
-		rectangle {
-			object {
-				x=641
-				y=534
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMA:eps_mbbi99"
-			}
-		}
-		rectangle {
-			object {
-				x=636
-				y=529
-				width=14
-				height=41
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		polyline {
-			object {
-				x=608
-				y=433
-				width=70
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(608,433)
-				(678,433)
-			}
-		}
-		"text update" {
-			object {
-				x=613
-				y=504
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi99"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=621
-				y=456
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:CloseBMDShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Close"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=621
-				y=436
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:OpenBMDShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Open"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=619
-				y=412
-				width=49
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="BMD Shutter"
-			align="horiz. centered"
-		}
-		menu {
-			object {
-				x=613
-				y=479
-				width=60
-				height=20
-			}
-			control {
-				chan="13BMA:eps_bo9"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
 	}
 }
 rectangle {
 	object {
-		x=511
-		y=396
+		x=38
+		y=409
 		width=80
 		height=120
 	}
@@ -5005,9 +4774,151 @@ rectangle {
 }
 rectangle {
 	object {
-		x=549
-		y=540
-		width=5
+		x=76
+		y=568
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMA:eps_mbbi99"
+	}
+}
+rectangle {
+	object {
+		x=76
+		y=538
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMA:eps_mbbi99"
+	}
+}
+rectangle {
+	object {
+		x=70
+		y=533
+		width=26
+		height=41
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+polyline {
+	object {
+		x=43
+		y=437
+		width=70
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(43,437)
+		(113,437)
+	}
+}
+"text update" {
+	object {
+		x=48
+		y=508
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi99"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=56
+		y=460
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:CloseBMDShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Close"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=56
+		y=440
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:OpenBMDShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Open"
+	press_msg="1"
+}
+text {
+	object {
+		x=54
+		y=416
+		width=49
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="BMD Shutter"
+	align="horiz. centered"
+}
+menu {
+	object {
+		x=48
+		y=483
+		width=60
+		height=20
+	}
+	control {
+		chan="13BMA:eps_bo9"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+}
+rectangle {
+	object {
+		x=512
+		y=400
+		width=80
+		height=120
+	}
+	"basic attribute" {
+		clr=45
+	}
+}
+rectangle {
+	object {
+		x=550
+		y=544
+		width=15
 		height=20
 	}
 	"basic attribute" {
@@ -5020,9 +4931,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=549
-		y=520
-		width=5
+		x=550
+		y=524
+		width=15
 		height=20
 	}
 	"basic attribute" {
@@ -5036,8 +4947,8 @@ rectangle {
 rectangle {
 	object {
 		x=544
-		y=514
-		width=14
+		y=518
+		width=25
 		height=31
 	}
 	"basic attribute" {
@@ -5047,8 +4958,8 @@ rectangle {
 }
 polyline {
 	object {
-		x=516
-		y=424
+		x=517
+		y=428
 		width=70
 		height=0
 	}
@@ -5056,14 +4967,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(516,424)
-		(586,424)
+		(517,428)
+		(587,428)
 	}
 }
 "text update" {
 	object {
-		x=521
-		y=495
+		x=522
+		y=499
 		width=60
 		height=15
 	}
@@ -5079,8 +4990,8 @@ polyline {
 }
 "message button" {
 	object {
-		x=529
-		y=447
+		x=530
+		y=451
 		width=45
 		height=20
 	}
@@ -5094,8 +5005,8 @@ polyline {
 }
 "message button" {
 	object {
-		x=529
-		y=427
+		x=530
+		y=431
 		width=45
 		height=20
 	}
@@ -5109,8 +5020,8 @@ polyline {
 }
 text {
 	object {
-		x=527
-		y=403
+		x=528
+		y=407
 		width=49
 		height=14
 	}
@@ -5122,8 +5033,8 @@ text {
 }
 menu {
 	object {
-		x=521
-		y=470
+		x=522
+		y=474
 		width=60
 		height=20
 	}
@@ -5136,9 +5047,9 @@ menu {
 }
 rectangle {
 	object {
-		x=470
-		y=545
-		width=114
+		x=471
+		y=549
+		width=137
 		height=14
 	}
 	"basic attribute" {
@@ -5148,8 +5059,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=584
-		y=545
+		x=845
+		y=549
 		width=12
 		height=25
 	}
@@ -5160,242 +5071,182 @@ rectangle {
 }
 composite {
 	object {
-		x=901
-		y=429
-		width=130
-		height=110
+		x=255
+		y=443
+		width=70
+		height=156
 	}
 	"composite name"=""
 	children {
 		rectangle {
 			object {
-				x=901
-				y=429
-				width=130
-				height=110
+				x=255
+				y=443
+				width=70
+				height=90
 			}
 			"basic attribute" {
-				clr=56
+				clr=45
 			}
+		}
+		rectangle {
+			object {
+				x=288
+				y=569
+				width=5
+				height=30
+			}
+			"basic attribute" {
+				clr=12
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13BMA:eps_mbbi70"
+			}
+		}
+		rectangle {
+			object {
+				x=288
+				y=539
+				width=5
+				height=30
+			}
+			"basic attribute" {
+				clr=12
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13BMA:eps_mbbi70"
+			}
+		}
+		rectangle {
+			object {
+				x=283
+				y=533
+				width=14
+				height=41
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		"message button" {
+			object {
+				x=268
+				y=491
+				width=45
+				height=20
+			}
+			control {
+				chan="13BMA:V4D_open_request"
+				clr=14
+				bclr=0
+			}
+			label="Open"
+			press_msg="Open_on"
+			release_msg="Open_off"
+			clrmod="alarm"
+		}
+		"message button" {
+			object {
+				x=268
+				y=511
+				width=45
+				height=20
+			}
+			control {
+				chan="13BMA:V4D_close_request"
+				clr=14
+				bclr=0
+			}
+			label="Close"
+			press_msg="Close_on"
+			release_msg="Close_off"
+			clrmod="alarm"
 		}
 		text {
 			object {
-				x=928
-				y=434
-				width=77
+				x=273
+				y=450
+				width=35
 				height=14
 			}
 			"basic attribute" {
 				clr=54
 			}
-			textix="Water Flow"
+			textix="Valve"
 			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=258
+				y=473
+				width=45
+				height=15
+			}
+			monitor {
+				chan="13BMA:V4D_status"
+				clr=14
+				bclr=0
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		oval {
+			object {
+				x=308
+				y=473
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13BMA:eps_mbbi71"
+			}
+		}
+		oval {
+			object {
+				x=311
+				y=476
+				width=9
+				height=9
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13BMA:eps_mbbi70"
+			}
 		}
 		polyline {
 			object {
-				x=901
-				y=452
-				width=130
+				x=255
+				y=467
+				width=70
 				height=0
 			}
 			"basic attribute" {
 				clr=14
 			}
 			points {
-				(901,452)
-				(1031,452)
+				(255,467)
+				(325,467)
 			}
-		}
-		oval {
-			object {
-				x=1013
-				y=480
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi45"
-			}
-		}
-		oval {
-			object {
-				x=1016
-				y=483
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi44"
-			}
-		}
-		text {
-			object {
-				x=904
-				y=481
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Vert. Slits"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=1012
-				y=500
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi96"
-			}
-		}
-		oval {
-			object {
-				x=1015
-				y=503
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi95"
-			}
-		}
-		text {
-			object {
-				x=925
-				y=501
-				width=84
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Vert. Mirror"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=1012
-				y=518
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi94"
-			}
-		}
-		oval {
-			object {
-				x=1015
-				y=521
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi93"
-			}
-		}
-		text {
-			object {
-				x=932
-				y=519
-				width=77
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Mirror Mask"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=1013
-				y=460
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi98"
-			}
-		}
-		oval {
-			object {
-				x=1016
-				y=463
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi97"
-			}
-		}
-		text {
-			object {
-				x=932
-				y=461
-				width=77
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Shutter"
-			align="horiz. centered"
 		}
 	}
 }
 rectangle {
 	object {
-		x=799
-		y=570
-		width=92
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
-		x=824
-		y=439
+		x=753
+		y=418
 		width=70
 		height=90
 	}
@@ -5405,8 +5256,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=857
-		y=565
+		x=786
+		y=533
 		width=5
 		height=30
 	}
@@ -5415,13 +5266,13 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMA:eps_mbbi70"
+		chan="13BMA:eps_mbbi115"
 	}
 }
 rectangle {
 	object {
-		x=857
-		y=535
+		x=786
+		y=514
 		width=5
 		height=30
 	}
@@ -5430,13 +5281,13 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMA:eps_mbbi70"
+		chan="13BMA:eps_mbbi115"
 	}
 }
 rectangle {
 	object {
-		x=852
-		y=529
+		x=781
+		y=508
 		width=14
 		height=41
 	}
@@ -5447,13 +5298,13 @@ rectangle {
 }
 "message button" {
 	object {
-		x=837
-		y=487
+		x=766
+		y=466
 		width=45
 		height=20
 	}
 	control {
-		chan="13BMA:V4D_open_request"
+		chan="13BMA:V4C_open_request"
 		clr=14
 		bclr=0
 	}
@@ -5464,13 +5315,13 @@ rectangle {
 }
 "message button" {
 	object {
-		x=837
-		y=507
+		x=766
+		y=486
 		width=45
 		height=20
 	}
 	control {
-		chan="13BMA:V4D_close_request"
+		chan="13BMA:V4C_close_request"
 		clr=14
 		bclr=0
 	}
@@ -5481,8 +5332,8 @@ rectangle {
 }
 text {
 	object {
-		x=842
-		y=446
+		x=771
+		y=425
 		width=35
 		height=14
 	}
@@ -5494,13 +5345,13 @@ text {
 }
 "text update" {
 	object {
-		x=827
-		y=469
+		x=756
+		y=448
 		width=45
 		height=15
 	}
 	monitor {
-		chan="13BMA:V4D_status"
+		chan="13BMA:V4C_status"
 		clr=14
 		bclr=0
 	}
@@ -5512,8 +5363,8 @@ text {
 }
 oval {
 	object {
-		x=877
-		y=469
+		x=806
+		y=448
 		width=15
 		height=15
 	}
@@ -5522,13 +5373,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13BMA:eps_mbbi71"
+		chan="13BMA:eps_mbbi116"
 	}
 }
 oval {
 	object {
-		x=880
-		y=472
+		x=809
+		y=451
 		width=9
 		height=9
 	}
@@ -5537,13 +5388,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13BMA:eps_mbbi70"
+		chan="13BMA:eps_mbbi115"
 	}
 }
 polyline {
 	object {
-		x=824
-		y=463
+		x=753
+		y=442
 		width=70
 		height=0
 	}
@@ -5551,209 +5402,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(824,463)
-		(894,463)
-	}
-}
-text {
-	object {
-		x=898
-		y=561
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="BMC Mirror"
-}
-rectangle {
-	object {
-		x=891
-		y=551
-		width=110
-		height=57
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-text {
-	object {
-		x=930
-		y=581
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Tank"
-}
-rectangle {
-	object {
-		x=936
-		y=608
-		width=20
-		height=14
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
+		(753,442)
+		(823,442)
 	}
 }
 rectangle {
 	object {
-		x=883
-		y=623
-		width=127
-		height=85
-	}
-	"basic attribute" {
-		clr=46
-	}
-}
-"text update" {
-	object {
-		x=947
-		y=646
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13BMA:ip8:VOLT"
-		clr=0
-		bclr=14
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=947
-		y=664
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13BMA:ip8:CUR"
-		clr=0
-		bclr=14
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=947
-		y=682
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13BMA:ip8:PRES"
-		clr=0
-		bclr=14
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-text {
-	object {
-		x=900
-		y=627
-		width=56
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Ion Pump"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=908
-		y=646
-		width=35
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Volts"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=894
-		y=664
-		width=49
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Current"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=887
-		y=682
-		width=56
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Pressure"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=883
-		y=644
-		width=127
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(883,644)
-		(1010,644)
-	}
-}
-"related display" {
-	object {
-		x=968
-		y=625
-		width=40
-		height=18
-	}
-	display[0] {
-		label="MPC Ion Pump"
-		name="MPC.adl"
-		args="P=13BMA:, PUMP=ip8"
-	}
-	clr=13
-	bclr=52
-	label="More"
-}
-rectangle {
-	object {
-		x=694
-		y=424
+		x=623
+		y=397
 		width=90
 		height=112
 	}
@@ -5763,8 +5419,8 @@ rectangle {
 }
 oval {
 	object {
-		x=766
-		y=466
+		x=695
+		y=439
 		width=15
 		height=15
 	}
@@ -5773,13 +5429,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13BMA:eps_mbbi92"
+		chan="13BMA:eps_mbbi106"
 	}
 }
 "text update" {
 	object {
-		x=700
-		y=466
+		x=629
+		y=439
 		width=60
 		height=15
 	}
@@ -5796,8 +5452,8 @@ oval {
 }
 "text update" {
 	object {
-		x=700
-		y=511
+		x=629
+		y=484
 		width=60
 		height=15
 	}
@@ -5814,8 +5470,8 @@ oval {
 }
 text {
 	object {
-		x=697
-		y=428
+		x=626
+		y=401
 		width=84
 		height=14
 	}
@@ -5827,8 +5483,8 @@ text {
 }
 text {
 	object {
-		x=721
-		y=448
+		x=650
+		y=421
 		width=42
 		height=13
 	}
@@ -5840,8 +5496,8 @@ text {
 }
 text {
 	object {
-		x=698
-		y=493
+		x=627
+		y=466
 		width=84
 		height=13
 	}
@@ -5853,8 +5509,328 @@ text {
 }
 oval {
 	object {
-		x=769
-		y=469
+		x=698
+		y=442
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi105"
+	}
+}
+polyline {
+	object {
+		x=623
+		y=461
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(623,461)
+		(713,461)
+	}
+}
+polyline {
+	object {
+		x=623
+		y=419
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(623,419)
+		(713,419)
+	}
+}
+oval {
+	object {
+		x=695
+		y=483
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi104"
+	}
+}
+oval {
+	object {
+		x=698
+		y=486
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi103"
+	}
+}
+rectangle {
+	object {
+		x=658
+		y=509
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=627
+		y=529
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMC Mono"
+}
+rectangle {
+	object {
+		x=608
+		y=523
+		width=120
+		height=45
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=648
+		y=550
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tank"
+}
+rectangle {
+	object {
+		x=728
+		y=549
+		width=117
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=248
+		y=574
+		width=620
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=875
+		y=565
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMC Mirror"
+}
+rectangle {
+	object {
+		x=868
+		y=555
+		width=110
+		height=57
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=907
+		y=585
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tank"
+}
+rectangle {
+	object {
+		x=913
+		y=612
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=978
+		y=574
+		width=47
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=15
+		y=574
+		width=113
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=143
+		y=428
+		width=90
+		height=112
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+oval {
+	object {
+		x=215
+		y=470
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi92"
+	}
+}
+"text update" {
+	object {
+		x=149
+		y=470
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:pr4"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=149
+		y=515
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:cc4"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=146
+		y=432
+		width=84
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Vacuum Gauge"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=170
+		y=452
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pirani"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=147
+		y=497
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cold Cathode"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=218
+		y=473
 		width=9
 		height=9
 	}
@@ -5868,8 +5844,8 @@ oval {
 }
 polyline {
 	object {
-		x=694
-		y=488
+		x=143
+		y=492
 		width=90
 		height=0
 	}
@@ -5877,14 +5853,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(694,488)
-		(784,488)
+		(143,492)
+		(233,492)
 	}
 }
 polyline {
 	object {
-		x=694
-		y=446
+		x=143
+		y=450
 		width=90
 		height=0
 	}
@@ -5892,14 +5868,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(694,446)
-		(784,446)
+		(143,450)
+		(233,450)
 	}
 }
 oval {
 	object {
-		x=766
-		y=510
+		x=215
+		y=514
 		width=15
 		height=15
 	}
@@ -5913,8 +5889,8 @@ oval {
 }
 oval {
 	object {
-		x=769
-		y=513
+		x=218
+		y=517
 		width=9
 		height=9
 	}
@@ -5928,8 +5904,8 @@ oval {
 }
 rectangle {
 	object {
-		x=729
-		y=536
+		x=178
+		y=540
 		width=20
 		height=14
 	}
@@ -5940,8 +5916,8 @@ rectangle {
 }
 text {
 	object {
-		x=692
-		y=560
+		x=141
+		y=564
 		width=80
 		height=20
 	}
@@ -5952,8 +5928,8 @@ text {
 }
 rectangle {
 	object {
-		x=679
-		y=550
+		x=128
+		y=554
 		width=120
 		height=57
 	}
@@ -5964,8 +5940,8 @@ rectangle {
 }
 text {
 	object {
-		x=719
-		y=580
+		x=168
+		y=584
 		width=40
 		height=20
 	}
@@ -5976,8 +5952,8 @@ text {
 }
 rectangle {
 	object {
-		x=729
-		y=607
+		x=178
+		y=611
 		width=20
 		height=14
 	}
@@ -5988,8 +5964,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=676
-		y=622
+		x=125
+		y=626
 		width=127
 		height=85
 	}
@@ -5999,8 +5975,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=740
-		y=645
+		x=189
+		y=649
 		width=60
 		height=15
 	}
@@ -6016,8 +5992,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=740
-		y=663
+		x=189
+		y=667
 		width=60
 		height=15
 	}
@@ -6034,8 +6010,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=740
-		y=681
+		x=189
+		y=685
 		width=60
 		height=15
 	}
@@ -6052,8 +6028,8 @@ rectangle {
 }
 text {
 	object {
-		x=694
-		y=626
+		x=143
+		y=630
 		width=56
 		height=14
 	}
@@ -6065,8 +6041,8 @@ text {
 }
 text {
 	object {
-		x=701
-		y=645
+		x=150
+		y=649
 		width=35
 		height=13
 	}
@@ -6078,8 +6054,8 @@ text {
 }
 text {
 	object {
-		x=687
-		y=663
+		x=136
+		y=667
 		width=49
 		height=13
 	}
@@ -6091,8 +6067,8 @@ text {
 }
 text {
 	object {
-		x=680
-		y=681
+		x=129
+		y=685
 		width=56
 		height=13
 	}
@@ -6104,8 +6080,8 @@ text {
 }
 polyline {
 	object {
-		x=676
-		y=643
+		x=125
+		y=647
 		width=127
 		height=0
 	}
@@ -6113,14 +6089,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(676,643)
-		(803,643)
+		(125,647)
+		(252,647)
 	}
 }
 "related display" {
 	object {
-		x=760
-		y=624
+		x=209
+		y=628
 		width=40
 		height=18
 	}
@@ -6140,13 +6116,860 @@ polyline {
 }
 rectangle {
 	object {
-		x=1001
-		y=570
-		width=22
+		x=345
+		y=400
+		width=135
+		height=130
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=376
+		y=405
+		width=77
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Water Flow"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=345
+		y=423
+		width=135
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(345,423)
+		(480,423)
+	}
+}
+oval {
+	object {
+		x=462
+		y=427
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi112"
+	}
+}
+oval {
+	object {
+		x=465
+		y=430
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi111"
+	}
+}
+text {
+	object {
+		x=369
+		y=428
+		width=91
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC mono xtal"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=462
+		y=447
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi94"
+	}
+}
+oval {
+	object {
+		x=465
+		y=450
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi93"
+	}
+}
+text {
+	object {
+		x=355
+		y=448
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Mirror Mask"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=959
+		y=428
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi45"
+	}
+}
+oval {
+	object {
+		x=962
+		y=431
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi44"
+	}
+}
+text {
+	object {
+		x=850
+		y=429
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Vert. Slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=959
+		y=448
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi108"
+	}
+}
+oval {
+	object {
+		x=962
+		y=451
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi107"
+	}
+}
+text {
+	object {
+		x=850
+		y=449
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC Mirror Mask"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=958
+		y=488
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi114"
+	}
+}
+oval {
+	object {
+		x=961
+		y=491
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi113"
+	}
+}
+text {
+	object {
+		x=863
+		y=489
+		width=91
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC Mono stop"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=605
+		y=627
+		width=127
+		height=85
+	}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=669
+		y=650
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip8:VOLT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=669
+		y=668
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip8:CUR"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=669
+		y=686
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip8:PRES"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=623
+		y=631
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=630
+		y=650
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=616
+		y=668
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=609
+		y=686
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=605
+		y=648
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(605,648)
+		(732,648)
+	}
+}
+"related display" {
+	object {
+		x=689
+		y=629
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Ion Pump"
+		name="MPC.adl"
+		args="P=13BMA:, PUMP=ip8"
+	}
+	display[1] {
+		label="MPC TSP"
+		name="MPC_TSP.adl"
+		args="P=13BMA:, TSP=tsp1"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+composite {
+	object {
+		x=858
+		y=627
+		width=127
+		height=85
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=858
+				y=627
+				width=127
+				height=85
+			}
+			"basic attribute" {
+				clr=46
+			}
+		}
+		"text update" {
+			object {
+				x=922
+				y=650
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13BMA:ip7_Volts"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=922
+				y=668
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13BMA:ip7_Current"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=922
+				y=686
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13BMA:ip7_Pressure"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=893
+				y=631
+				width=56
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Ion Pump"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=883
+				y=650
+				width=35
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Volts"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=869
+				y=668
+				width=49
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Current"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=862
+				y=686
+				width=56
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pressure"
+			align="horiz. centered"
+		}
+		polyline {
+			object {
+				x=858
+				y=648
+				width=127
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(858,648)
+				(985,648)
+			}
+		}
+	}
+}
+oval {
+	object {
+		x=959
+		y=468
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi110"
+	}
+}
+oval {
+	object {
+		x=962
+		y=471
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi109"
+	}
+}
+text {
+	object {
+		x=843
+		y=469
+		width=112
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC Vert. Mirror"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=462
+		y=487
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi98"
+	}
+}
+oval {
+	object {
+		x=465
+		y=490
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi97"
+	}
+}
+text {
+	object {
+		x=383
+		y=488
+		width=77
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Shutter"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=910
+		y=739
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Station Searched"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=462
+		y=507
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi74"
+	}
+}
+oval {
+	object {
+		x=465
+		y=510
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi73"
+	}
+}
+text {
+	object {
+		x=355
+		y=507
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC mono helium"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=462
+		y=467
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi96"
+	}
+}
+oval {
+	object {
+		x=465
+		y=470
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi95"
+	}
+}
+text {
+	object {
+		x=348
+		y=468
+		width=112
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Vert. Mirror"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=658
+		y=574
+		width=20
 		height=24
 	}
 	"basic attribute" {
 		clr=14
+		style="dash"
 		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=658
+		y=568
+		width=20
+		height=6
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=211
+		y=785
+		width=145
+		height=20
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=211
+				y=786
+				width=64
+				height=18
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="EPS fault:"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=286
+				y=785
+				width=70
+				height=20
+			}
+			monitor {
+				chan="13BMA:eps_mbbi5"
+				clr=14
+				bclr=0
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=211
+		y=811
+		width=64
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMC fault:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=286
+		y=810
+		width=70
+		height=20
+	}
+	monitor {
+		chan="13BMA:eps_mbbi117"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=211
+		y=836
+		width=64
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMD fault:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=286
+		y=835
+		width=70
+		height=20
+	}
+	monitor {
+		chan="13BMA:eps_mbbi118"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
 	}
 }
