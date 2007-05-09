@@ -1,19 +1,31 @@
-tyGSAsynInit("serial1",  "UART0", 0,  9600,'N',2,8,'N',"\r","\r") /* SRS 570 */
-tyGSAsynInit("serial2",  "UART0", 1,  9600,'N',2,8,'N',"\r","\r") /* SRS 570 */
+tyGSAsynInit("serial1",  "UART0", 0,  9600,'N',2,8,'N',"\r","\r")   /* SRS 570 */
+tyGSAsynInit("serial2",  "UART0", 1,  9600,'N',2,8,'N',"\r","\r")   /* SRS 570 */
 tyGSAsynInit("serial3",  "UART0", 2, 19200,'N',1,8,'N',"\r\n","\n") /* Keithley 2000 */
-tyGSAsynInit("serial4",  "UART0", 3,  4800,'N',1,8,'N',"\r","\r") /* Generic serial / LPC */
+tyGSAsynInit("serial4",  "UART0", 3,  4800,'N',1,8,'N',"\r","\r")   /* Generic serial / LPC */
 tyGSAsynInit("serial5",  "UART0", 4, 19200,'N',1,8,'N',"\r\n","\n") /* Keithley 2000 */
 tyGSAsynInit("serial6",  "UART0", 5, 19200,'N',1,8,'N',"\r\n","\n") /* Keithley 2000 */
-tyGSAsynInit("serial7",  "UART0", 6,  9600,'N',2,8,'N',"\r","\r") /* SRS 570 */
-tyGSAsynInit("serial8",  "UART0", 7,  9600,'N',1,8,'N',"\r","\r") /* SMART PC */
-tyGSAsynInit("serial9",  "UART1", 0,  9600,'N',2,7,'N',"\r","\r") /* Omega meter */
-tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\r","\r") /* RSF encoder readout */
-tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',">","\r") /* PicoMotor controller */
-tyGSAsynInit("serial12", "UART1", 3, 19200,'N',1,8,'N',"\r","\r") /* Keithley 2700 */
-tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r") /* Pelco CM6700 video switch */
-tyGSAsynInit("serial14", "UART1", 5,  9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial15", "UART1", 6,  9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* Unused */
+tyGSAsynInit("serial7",  "UART0", 6,  9600,'N',2,8,'N',"\r","\r")   /* SRS 570 */
+tyGSAsynInit("serial8",  "UART0", 7,  9600,'N',1,8,'N',"\r","\r")   /* SMART PC */
+tyGSAsynInit("serial9",  "UART1", 0,  9600,'N',2,7,'N',"\r","\r")   /* Omega meter */
+tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\r","\r")   /* RSF encoder readout */
+tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',">","\r")    /* PicoMotor controller */
+tyGSAsynInit("serial12", "UART1", 3, 19200,'N',1,8,'N',"\r","\r")   /* Keithley 2700 */
+tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r")   /* Pelco CM6700 video switch */
+tyGSAsynInit("serial14", "UART1", 5, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
+tyGSAsynInit("serial15", "UART1", 6, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
+tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r","\r")   /* Unused */
+
+# Set up port on Digi box
+#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
+#                        noProcessEos)
+#drvAsynIPPortConfigure("serial17", "164.54.160.154:2101", 0, 0, 0)
+#asynOctetConnect("serial17", "serial17")
+#asynOctetSetInputEos("serial17",0,"\r")
+#asynOctetSetOutputEos("serial17",0,"\r")
+
+# IPG laser
+dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13IDD:,R=Laser1,PORT=serial14")
+dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13IDD:,R=Laser2,PORT=serial15")
 
 # asyn record on each serial port
 dbLoadTemplate("asynRecord.template")
