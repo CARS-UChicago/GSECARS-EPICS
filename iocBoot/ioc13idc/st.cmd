@@ -80,11 +80,6 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13IDC:")
 
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 
-## MN: database for scan communication
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=EDB", top)
-## MN: database for ion chamber calculations
-dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13IDC:,Q=ION", top)
-
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
@@ -104,11 +99,11 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDC:")
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDC:")
 
+# SCA Window for Bede detector
+dbLoadRecords("$(CARS)/CARSApp/Db/sca_window.db","P=13IDC:,SCA=BEDE,DAC1=DAC1_1,DAC2=DAC1_2,MIN=0,MAX=3")
+
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
-
-# MN scanner db for long string args
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:,Q=edb")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDC:")
@@ -148,7 +143,7 @@ create_monitor_set("auto_settings.req",30)
 ## seq(&Keithley2kDMM, "P=13IDC:, Dmm=DMM1, stack=10000")
 
 #{MN 15-Feb-00 : energy sequencer for channel-cut crystal
-seq(&Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1.Y")
+## seq(&Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1.Y")
 
 #}
 #{ for using crystal analyzer
