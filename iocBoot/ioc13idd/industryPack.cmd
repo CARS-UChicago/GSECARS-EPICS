@@ -12,6 +12,7 @@ tyGSOctalModuleInit("UART1", "232", 0x81, 0, 1)
 # carrier     = IPAC carrier number (0, 1, etc.)
 # slot        = IPAC slot (0,1,2,3, etc.)
 initDAC128V("DAC1", 1, 3)
+initDAC128V("DAC2", 1, 0)
 dbLoadTemplate("DigitalToAnalog.template")
 
 # Initialize Acromag IP-330 ADC
