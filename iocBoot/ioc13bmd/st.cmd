@@ -92,6 +92,8 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_80.db","P=13BMD:")
 # and it's time to trigger detectors.
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13BMD:,Q=edb")
+
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
