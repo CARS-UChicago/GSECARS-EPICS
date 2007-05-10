@@ -1,0 +1,82 @@
+# sca with lower level discriminator and window
+
+grecord(ao,"$(P)$(SCA):LLD") {
+        field(VAL,  "$(MIN)")
+        field(FLNK, "$(P)$(SCA):Calc")
+	  field(PREC, "3")
+        field(DRVL,"$(MIN)")
+        field(DRVH,"$(MAX)")
+	  field(LOPR,"$(MIN)")
+        field(HOPR,"$(MAX)")
+}
+
+grecord(ao,"$(P)$(SCA):WIN") {
+        field(VAL,  "$(MAX)")
+        field(FLNK, "$(P)$(SCA):Calc")
+        field(PREC, "3")
+        field(DRVL,"$(MIN)")
+        field(DRVH,"$(MAX)")
+	  field(LOPR,"$(MIN)")
+        field(HOPR,"$(MAX)")
+}
+
+grecord(transform,"$(P)$(SCA):Calc") {
+        field(PINI,"YES")
+	field(INPA,"$(MIN)")
+	field(INPB,"$(MAX)")
+	field(INPC,"$(P)$(SCA):WIN.VAL NPP MS")
+	field(INPD,"$(P)$(SCA):LLD.VAL NPP MS")
+        field(CLCE,"D>A?D:A")
+        field(OUTE,"$(P)$(DAC1).VAL  PP MS")
+        field(CLCF,"(C+D)>B?B:(C<0?D:(C+D))")
+        field(OUTF,"$(P)$(DAC2).VAL  PP MS")
+	field(CLCG,"A")
+        field(OUTG,"$(P)$(DAC1).DRVL PP MS")
+	field(CLCH,"A")
+        field(OUTH,"$(P)$(DAC2).DRVL PP MS")
+        field(CLCI,"B")
+        field(OUTI,"$(P)$(DAC1).DRVH PP MS")
+	field(CLCJ,"B")
+        field(OUTJ,"$(P)$(DAC2).DRVH PP MS")
+        field(PREC,"3")
+}
+
+grecord(transform,"$(P)$(SCA):Calc2") {
+        field(INPA,"$(P)$(DAC1).VAL  CP MS")
+        field(INPB,"$(P)$(DAC2).VAL  CP MS")
+        field(CLCC,"A")
+        field(OUTC,"$(P)$(SCA):LLD.VAL  NPP MS")
+        field(CLCD,"B-A")
+        field(OUTD,"$(P)$(SCA):WIN.VAL  NPP MS")
+}
+
+grecord(ao,"$(P)$(SCA):LLD_tweakVal") {
+    field(PREC,"3")
+}
+
+grecord(transform,"$(P)$(SCA):LLD_tweak") {
+    field(CLCE,"a?d-c:b?d+c:d")
+    field(INPC,"$(P)$(SCA):LLD_tweakVal.VAL  NPP MS")
+    field(INPD,"$(P)$(SCA):LLD.VAL  NPP MS")
+    field(OUTE,"$(P)$(SCA):LLD.VAL  PP MS")
+    field(OUTF,"$(P)$(SCA):LLD_tweak.A  NPP MS")
+    field(OUTG,"$(P)$(SCA):LLD_tweak.B  NPP MS")
+    field(PREC,"3")
+}
+
+
+
+grecord(ao,"$(P)$(SCA):WIN_tweakVal") {
+    field(PREC,"3")
+}
+
+grecord(transform,"$(P)$(SCA):WIN_tweak") {
+    field(CLCE,"a?d-c:b?d+c:d")
+    field(INPC,"$(P)$(SCA):WIN_tweakVal.VAL  NPP MS")
+    field(INPD,"$(P)$(SCA):WIN.VAL  NPP MS")
+    field(OUTE,"$(P)$(SCA):WIN.VAL  PP MS")
+    field(OUTF,"$(P)$(SCA):WIN_tweak.A  NPP MS")
+    field(OUTG,"$(P)$(SCA):WIN_tweak.B  NPP MS")
+    field(PREC,"3")
+}
+
