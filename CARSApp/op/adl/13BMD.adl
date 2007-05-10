@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13BMD.adl"
-	version=030000
+	name="j:\epics\support\CARS\1-4\CARSApp\op\adl\13BMD.adl"
+	version=020306
 }
 display {
 	object {
-		x=246
-		y=239
+		x=357
+		y=30
 		width=300
 		height=615
 	}
@@ -179,8 +179,8 @@ text {
 	}
 	display[4] {
 		label="LVP Front Slits"
-		name="3motors.adl"
-		args="P=13BMD:,TITLE=LVP_Front_Slits, M1=m26,M2=m27,M3=m72"
+		name="4motors.adl"
+		args="P=13BMD:,TITLE=LVP_Front_Slits, M1=m26,M2=m27,M3=m72, M4=m62"
 	}
 	display[5] {
 		label="CCD Camera Stage"
@@ -523,14 +523,14 @@ text {
 		args="P=13BMD:, TITLE=Horizontal Focusing Mirror, M1=m45, M2=m46, M3=m47, M4=m48, M5=pm5, M6=pm6"
 	}
 	display[3] {
-		label="Tip Stage"
+		label="CCD camera"
 		name="3motors.adl"
 		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m33, M2=m34, M3=m35"
 	}
 	display[4] {
-		label="X-ray CCD/Photodiode"
-		name="2motors.adl"
-		args="P=13BMD:, TITLE=CCD and Photodiode, M1=m37, M2=m23"
+		label="Microscope/Detectors"
+		name="6motors.adl"
+		args="P=13BMD:, TITLE=Microscope and Detectors, M1=m23, M2=m77, M3=m71, M4=m70, M5=m69, M6=m37"
 	}
 	display[5] {
 		label="Lift Table (Simple)"
@@ -540,12 +540,12 @@ text {
 	display[6] {
 		label="Lift Table (Compound)"
 		name="table.adl"
-		args="P=13BMD:, Q=XAS:Table1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m21, M2Y=m17, M2Z=junk"
+		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m17, M2Z=junk"
 	}
 	display[7] {
 		label="Clean_up slits"
-		name="2motors.adl"
-		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m49, M2=m50"
+		name="5motors.adl"
+		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m49, M2=m50, M3=m27, M4=m23, M5=m72"
 	}
 	clr=14
 	bclr=4
@@ -1002,6 +1002,10 @@ composite {
 	command[0] {
 		label="Axis 4-channel server"
 		name="start http://13BMD_AXIS.cars.aps.anl.gov"
+	}
+	command[1] {
+		label="Canon camera"
+		name="start http://13vdsrv2.cars.aps.anl.gov"
 	}
 	clr=14
 	bclr=4
