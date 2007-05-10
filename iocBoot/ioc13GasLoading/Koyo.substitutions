@@ -1,0 +1,97 @@
+# asyn record for the underlying asyn TCP port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,           R,       PORT,      ADDR,   IMAX,    OMAX}
+{13GasLoad:    OctetAsyn,    Koyo,     0,      80,      80}
+}
+
+# These are the Xn inputs done with bit access X0-X17
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,             R,            PORT,        OFFSET,     ZNAM,     ONAM,  ZSV,         OSV,    SCAN}
+{13GasLoad:,    V1_Status,    K1_Xn_Bit,    00,        Closed,   Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    V2_Status,    K1_Xn_Bit,    01,        Closed,   Open,     MINOR, NO_ALARM,  "I/O Intr"}
+{13GasLoad:,    V3_Status,    K1_Xn_Bit,    02,        Closed,   Open,     MINOR, NO_ALARM,  "I/O Intr"}
+{13GasLoad:,    V4_Status,    K1_Xn_Bit,    03,        Closed,   Open,     MINOR, NO_ALARM,  "I/O Intr"}
+{13GasLoad:,    V5_Status,    K1_Xn_Bit,    04,        Closed,   Open,     MINOR, NO_ALARM,  "I/O Intr"}
+{13GasLoad:,    V6_Status,    K1_Xn_Bit,    05,        Closed,   Open,     MINOR, NO_ALARM,  "I/O Intr"}
+{13GasLoad:,    V7_Status,    K1_Xn_Bit,    06,        Closed,   Open,     MINOR, NO_ALARM,  "I/O Intr"}
+{13GasLoad:,    LowP_SP1,     K1_Xn_Bit,    07,        Below,    Above, NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    LowP_SP2,     K1_Xn_Bit,   010,        Below,    Above, NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    LowP_SP3,     K1_Xn_Bit,   011,        Below,    Above, NO_ALARM,    MAJOR,  "I/O Intr"}
+{13GasLoad:,    HighP_SP1,    K1_Xn_Bit,   012,        Below,    Above, NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    HighP_SP2,    K1_Xn_Bit,   013,        Below,    Above, NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    HighP_SP3,    K1_Xn_Bit,   014,        Below,    Above, NO_ALARM,    MAJOR,  "I/O Intr"}
+{13GasLoad:,    X15,          K1_Xn_Bit,   015,        Low,      High,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{13GasLoad:,    X16,          K1_Xn_Bit,   016,        Low,      High,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{13GasLoad:,    X17,          K1_Xn_Bit,   017,        Low,      High,  NO_ALARM,    MAJOR,  "I/O Intr"}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,       PORT,          ADDR,     TMOD,  IFACE}
+{13GasLoad:,    XnBAsyn, K1_Xn_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,       PORT,       SCAN}
+{13GasLoad:,    XnB,     K1_Xn_Bit,  "10 second"}
+} 
+file "$(MODBUS)/db/poll_delay.template" { pattern
+{P,           R,            PORT}
+{13GasLoad:,    XnBPollDelay, K1_Xn_Bit}
+}
+
+# These are the Yn inputs done with bit access Y0-Y7
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,           R,             PORT,            OFFSET,   ZNAM,      ONAM,       ZSV,    OSV,        SCAN}
+{13GasLoad:,  V1_Output,     K1_Yn_In_Bit,     0,       Close,     Open,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  V2_Output,     K1_Yn_In_Bit,     1,        Open,    Close,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  V3_Output,     K1_Yn_In_Bit,     2,        Open,    Close,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  V4_Output,     K1_Yn_In_Bit,     3,        Open,    Close,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  V5_Output,     K1_Yn_In_Bit,     4,        Open,    Close,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  V6_Output,     K1_Yn_In_Bit,     5,        Open,    Close,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  V7_Output,     K1_Yn_In_Bit,     6,        Open,    Close,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13GasLoad:,  Comp_Output,   K1_Yn_In_Bit,     7,         Off,       On,  NO_ALARM,  MINOR,  "I/O Intr"}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,         PORT,             ADDR,     TMOD,  IFACE}
+{13GasLoad:,    YnInBAsyn, K1_Yn_In_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{13GasLoad:,    YnInB,     K1_Yn_In_Bit,  "10 second"}
+}
+file "$(MODBUS)/db/poll_delay.template" { pattern
+{P,           R,              PORT}
+{13GasLoad:,    YnInBPollDelay, K1_Yn_In_Bit}
+}
+
+# These are the Cn inputs done with bit access C200-C207
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,           R,           PORT,             OFFSET,      ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{13GasLoad:,    C200In,     K1_Cn_In_Bit,     0200,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C201In,     K1_Cn_In_Bit,     0201,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C202In,     K1_Cn_In_Bit,     0202,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C203In,     K1_Cn_In_Bit,     0203,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C204In,     K1_Cn_In_Bit,     0204,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C205In,     K1_Cn_In_Bit,     0205,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C206In,     K1_Cn_In_Bit,     0206,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13GasLoad:,    C207In,     K1_Cn_In_Bit,     0207,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+}
+
+# These are the Cn outputs done with bit access.  C300-C317 
+file "$(MODBUS)/db/bo_bit.template" { pattern
+{P,             R,              PORT,          OFFSET,      ZNAM,     ONAM}
+{13GasLoad:,    V1_Request,     K1_Cn_Out_Bit,    0300,       Close,    Open}
+{13GasLoad:,    V2_Request,     K1_Cn_Out_Bit,    0301,        Open,   Close}
+{13GasLoad:,    V3_Request,     K1_Cn_Out_Bit,    0302,        Open,   Close}
+{13GasLoad:,    V4_Request,     K1_Cn_Out_Bit,    0303,        Open,   Close}
+{13GasLoad:,    V5_Request,     K1_Cn_Out_Bit,    0304,        Open,   Close}
+{13GasLoad:,    V6_Request,     K1_Cn_Out_Bit,    0305,        Open,   Close}
+{13GasLoad:,    V7_Request,     K1_Cn_Out_Bit,    0306,        Open,   Close}
+{13GasLoad:,    Comp_Request,   K1_Cn_Out_Bit,    0307,         Off,      On}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,          PORT,              ADDR,     TMOD,  IFACE}
+{13GasLoad:,    CnOutBAsyn, K1_Cn_Out_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{13GasLoad:,    CnOutB,     K1_Cn_Out_Bit,  "10 second"}
+}
