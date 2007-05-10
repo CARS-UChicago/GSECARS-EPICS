@@ -1,12 +1,12 @@
 
 file {
-	name="C:\Program Files\EPICS\adls\13IDC_xas.adl"
+	name="J:\epics\support\CARS\1-4\CARSApp\op\adl\13IDC_xas.adl"
 	version=020306
 }
 display {
 	object {
-		x=200
-		y=256
+		x=496
+		y=191
 		width=590
 		height=450
 	}
@@ -606,14 +606,23 @@ text {
 		args="P=13GE2:med:"
 	}
 	display[4] {
-		label="Vortex 1"
-		name="1element_dxp.adl"
-		args="P=13Saturn1:med:,D=dxp1,M=mca1"
+		label="Vortex"
+		name="single_dxp_top.adl"
+		args="P=13XRM:,D=dxp1,M=mca1"
 	}
 	display[5] {
-		label="Vortex 2"
 		name="1element_dxp.adl"
 		args="P=13Saturn2:med:,D=dxp1,M=mca1"
+	}
+	display[6] {
+		label="XRF Collect"
+		name="XRF_Collect.adl"
+		args="P=13XRM:, Q=XRF, M=mca1"
+	}
+	display[7] {
+		label="GSE-PILATUS1"
+		name="pilatus.adl"
+		args="DET=GSE-PILATUS1"
 	}
 	clr=14
 	bclr=5
@@ -1235,9 +1244,9 @@ oval {
 		args="P=13IDC:, S=scaler2"
 	}
 	display[5] {
-		label="Slit tilt DAC"
-		name="piezo_slit_display.adl"
-		args="P=13IDC:, D=1, C=1, E=2, F=3"
+		label="Bede SCA Control"
+		name="sca_bede_control.adl"
+		args="P=13IDC:, SCA=BEDE"
 	}
 	display[6] {
 		label="IP-Unidig binary I/O"
