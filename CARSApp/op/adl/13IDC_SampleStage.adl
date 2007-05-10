@@ -1,4 +1,3 @@
-
 file {
 	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13IDC_SampleStage.adl"
 	version=030000
@@ -95,7 +94,7 @@ display {
 		height=25
 	}
 	control {
-		chan="13IDC:m13.TWF"
+		chan="$(P)$(XC).TWF"
 		clr=14
 		bclr=8
 	}
@@ -110,7 +109,7 @@ display {
 		height=25
 	}
 	control {
-		chan="13IDC:m13.TWR"
+		chan="$(P)$(XC).TWR"
 		clr=14
 		bclr=8
 	}
@@ -125,7 +124,7 @@ display {
 		height=25
 	}
 	control {
-		chan="13XRM:m5.TWF"
+		chan="$(P)$(YC).TWF"
 		clr=14
 		bclr=8
 	}
@@ -140,7 +139,7 @@ display {
 		height=25
 	}
 	control {
-		chan="13XRM:m5.TWR"
+		chan="$(P)$(YC).TWR"
 		clr=14
 		bclr=8
 	}
@@ -155,7 +154,7 @@ display {
 		height=25
 	}
 	control {
-		chan="13IDC:m13.TWV"
+		chan="$(P)$(XC).TWV"
 		clr=14
 		bclr=0
 	}
@@ -214,7 +213,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13IDC:m13.LVIO"
+		chan="$(P)$(XC).LVIO"
 	}
 	textix="LIMIT"
 	align="horiz. centered"
@@ -231,7 +230,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13IDC:m13.HLS"
+		chan="$(P)$(XC).HLS"
 	}
 }
 oval {
@@ -246,7 +245,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13IDC:m13.LLS"
+		chan="$(P)$(XC).LLS"
 	}
 }
 "text update" {
@@ -257,7 +256,7 @@ oval {
 		height=18
 	}
 	monitor {
-		chan="13IDC:m13.RBV"
+		chan="$(P)$(XC).RBV"
 		clr=54
 		bclr=2
 	}
@@ -273,7 +272,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13IDC:m13.VAL"
+		chan="$(P)$(XC).VAL"
 		clr=14
 		bclr=0
 	}
@@ -289,7 +288,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m4.TWR"
+		chan="$(P)$(ZC).TWR"
 		clr=14
 		bclr=8
 	}
@@ -304,7 +303,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m4.TWF"
+		chan="$(P)$(ZC).TWF"
 		clr=14
 		bclr=8
 	}
@@ -319,7 +318,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m5.TWV"
+		chan="$(P)$(YC).TWV"
 		clr=14
 		bclr=0
 	}
@@ -339,7 +338,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m5.LVIO"
+		chan="$(P)$(YC).LVIO"
 	}
 	textix="LIMIT"
 	align="horiz. centered"
@@ -356,7 +355,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m5.HLS"
+		chan="$(P)$(YC).HLS"
 	}
 }
 oval {
@@ -371,7 +370,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m5.LLS"
+		chan="$(P)$(YC).LLS"
 	}
 }
 "text update" {
@@ -382,7 +381,7 @@ oval {
 		height=18
 	}
 	monitor {
-		chan="13XRM:m5.RBV"
+		chan="$(P)$(YC).RBV"
 		clr=54
 		bclr=2
 	}
@@ -398,7 +397,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m5.VAL"
+		chan="$(P)$(YC).VAL"
 		clr=14
 		bclr=0
 	}
@@ -414,7 +413,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m4.TWV"
+		chan="$(P)$(ZC).TWV"
 		clr=14
 		bclr=0
 	}
@@ -435,7 +434,7 @@ text {
 	"dynamic attribute" {
 		clr="alarm"
 		vis="if not zero"
-		chan="13XRM:m4.LVIO"
+		chan="$(P)$(ZC).LVIO"
 	}
 	textix="LIMIT"
 	align="horiz. centered"
@@ -452,7 +451,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m4.HLS"
+		chan="$(P)$(ZC).HLS"
 	}
 }
 oval {
@@ -467,7 +466,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m4.LLS"
+		chan="$(P)$(ZC).LLS"
 	}
 }
 "text update" {
@@ -478,7 +477,7 @@ oval {
 		height=18
 	}
 	monitor {
-		chan="13XRM:m4.RBV"
+		chan="$(P)$(ZC).RBV"
 		clr=54
 		bclr=2
 	}
@@ -494,7 +493,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m4.VAL"
+		chan="$(P)$(ZC).VAL"
 		clr=14
 		bclr=0
 	}
@@ -510,7 +509,7 @@ oval {
 		height=28
 	}
 	control {
-		chan="13XRM:Stage:home"
+		chan="$(P)Stage:home"
 		clr=14
 		bclr=55
 	}
@@ -527,12 +526,7 @@ oval {
 	display[0] {
 		label="XPS Motors"
 		name="6motors.adl"
-		args="P=13XRM:,TITLE=XPS_Stages,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5"
-	}
-	display[1] {
-		label="coarse X stage"
-		name="1motors.adl"
-		args="P=13IDC:, M1=m13,TITLE=Coarse_X"
+		args="P=$(P),TITLE=XPS_Stages,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6"
 	}
 	clr=14
 	bclr=55
@@ -546,7 +540,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m3.TWR"
+		chan="$(P)$(TH).TWR"
 		clr=14
 		bclr=8
 	}
@@ -561,7 +555,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m3.TWF"
+		chan="$(P)$(TH).TWF"
 		clr=14
 		bclr=8
 	}
@@ -576,7 +570,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m3.TWV"
+		chan="$(P)$(TH).TWV"
 		clr=14
 		bclr=0
 	}
@@ -597,7 +591,7 @@ text {
 	"dynamic attribute" {
 		clr="alarm"
 		vis="if not zero"
-		chan="13XRM:m3.LVIO"
+		chan="$(P)$(TH).LVIO"
 	}
 	textix="LIMIT"
 	align="horiz. centered"
@@ -614,7 +608,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m3.HLS"
+		chan="$(P)$(TH).HLS"
 	}
 }
 oval {
@@ -629,7 +623,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m3.LLS"
+		chan="$(P)$(TH).LLS"
 	}
 }
 "text update" {
@@ -640,7 +634,7 @@ oval {
 		height=18
 	}
 	monitor {
-		chan="13XRM:m3.RBV"
+		chan="$(P)$(TH).RBV"
 		clr=54
 		bclr=2
 	}
@@ -656,7 +650,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m3.VAL"
+		chan="$(P)$(TH).VAL"
 		clr=14
 		bclr=0
 	}
@@ -711,7 +705,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:m1.TWF"
+		chan="$(P)$(XF).TWF"
 		clr=14
 		bclr=8
 	}
@@ -726,7 +720,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:m1.TWR"
+		chan="$(P)$(XF).TWR"
 		clr=14
 		bclr=8
 	}
@@ -741,7 +735,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:m2.TWF"
+		chan="$(P)$(YF).TWF"
 		clr=14
 		bclr=8
 	}
@@ -756,7 +750,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:m1.TWV"
+		chan="$(P)$(XF).TWV"
 		clr=14
 		bclr=0
 	}
@@ -789,7 +783,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m1.LVIO"
+		chan="$(P)$(XF).LVIO"
 	}
 	textix="LIMIT"
 	align="horiz. centered"
@@ -806,7 +800,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m1.HLS"
+		chan="$(P)$(XF).HLS"
 	}
 }
 oval {
@@ -821,7 +815,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m1.LLS"
+		chan="$(P)$(XF).LLS"
 	}
 }
 "text update" {
@@ -832,7 +826,7 @@ oval {
 		height=17
 	}
 	monitor {
-		chan="13XRM:m1.RBV"
+		chan="$(P)$(XF).RBV"
 		clr=54
 		bclr=2
 	}
@@ -848,7 +842,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m1.VAL"
+		chan="$(P)$(XF).VAL"
 		clr=14
 		bclr=0
 	}
@@ -920,7 +914,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:m2.TWV"
+		chan="$(P)$(YF).TWV"
 		clr=14
 		bclr=0
 	}
@@ -940,7 +934,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m2.LVIO"
+		chan="$(P)$(YF).LVIO"
 	}
 	textix="LIMIT"
 	align="horiz. centered"
@@ -957,7 +951,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m2.HLS"
+		chan="$(P)$(YF).HLS"
 	}
 }
 oval {
@@ -972,7 +966,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13XRM:m2.LLS"
+		chan="$(P)$(YF).LLS"
 	}
 }
 "text update" {
@@ -983,7 +977,7 @@ oval {
 		height=18
 	}
 	monitor {
-		chan="13XRM:m2.RBV"
+		chan="$(P)$(YF).RBV"
 		clr=54
 		bclr=2
 	}
@@ -999,7 +993,7 @@ oval {
 		height=25
 	}
 	control {
-		chan="13XRM:m2.VAL"
+		chan="$(P)$(YF).VAL"
 		clr=14
 		bclr=0
 	}
@@ -1028,7 +1022,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:m2.TWR"
+		chan="$(P)$(YF).TWR"
 		clr=14
 		bclr=8
 	}
