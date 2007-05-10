@@ -112,7 +112,7 @@ ss Energy {
       r2d     = 57.29577951;   d2r    = 1./r2d;   mil    = 0.001;
       hc      = 12398.61;                 /* in eV*Ang */
       omega   = hc/(2 * dspace);          /* (hc / 2d) in eV */
-      en_min  = 3000.000 ;                /* minimum energy  */
+      en_min  = 4125.000 ;                /* minimum energy  */
       en_max  = 100 * omega ;             /* maximum energy  */
       th_min  = r2d * asin(omega/en_max); /* minimum mono angle in degrees */
       th_max  = r2d * asin(omega/en_min); /* maximum mono angle in degrees */
