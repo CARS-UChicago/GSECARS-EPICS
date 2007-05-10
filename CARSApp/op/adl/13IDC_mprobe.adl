@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=287
-		y=443
+		x=192
+		y=59
 		width=595
 		height=276
 	}
@@ -216,6 +216,7 @@ rectangle {
 	display[0] {
 		label="Sample Stage"
 		name="13IDC_SampleStage.adl"
+		args="P=13XRM:, XF=m1, YF=m2, TH=m3, XC=m4, ZC=m5, YC=m6"
 	}
 	display[1] {
 		label="Sample Stage (tomo)"
@@ -879,14 +880,14 @@ rectangle {
 		args="P=13XRM:, Q=ION"
 	}
 	display[4] {
-		label="Vortex (old)"
-		name="1element_dxp.adl "
-		args="P=13Saturn3:med:, M=mca1, D=dxp1"
+		label="XRF Collector"
+		name="XRF_Collect.adl"
+		args="P=13XRM:, Q=XRF, M=mca1"
 	}
 	display[5] {
 		label="ccd"
 		name="ccd.adl"
-		args="P=roperCCD:, C=det1:"
+		args="P=marCCD:, C=dnd1:"
 	}
 	display[6] {
 		name="aim_adc.adl"
@@ -927,7 +928,7 @@ rectangle {
 		height=18
 	}
 	monitor {
-		chan="13IDA:mono_pid1_incalc.P"
+		chan="13IDA:mono_pid2_incalc.M"
 		clr=54
 		bclr=0
 	}
@@ -967,7 +968,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="13IDA:mono_pid1_incalc.O"
+		chan="13IDA:mono_pid2_incalc.N"
 		clr=54
 		bclr=0
 	}
@@ -995,7 +996,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="13IDA:mono_pid1_incalc.E"
+		chan="13IDA:mono_pid2_incalc.I"
 		clr=54
 		bclr=0
 	}

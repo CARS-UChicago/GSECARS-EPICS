@@ -6,9 +6,9 @@ file {
 display {
 	object {
 		x=200
-		y=77
+		y=80
 		width=601
-		height=250
+		height=247
 	}
 	clr=14
 	bclr=4
@@ -120,7 +120,7 @@ text {
 	display[4] {
 		label="PID Calculation"
 		name="userTransform_full.adl"
-		args="P=$(P), T=mono_pid1_incalc"
+		args="P=$(P), T=mono_pid2_incalc"
 	}
 	display[5] {
 		label="Mono DTheta Piezo"
@@ -767,7 +767,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A<0.5"
-		chan="$(P)mono_pid1_incalc.F"
+		chan="$(P)mono_pid2_incalc.J"
 	}
 }
 text {
@@ -783,7 +783,7 @@ text {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A<0.5"
-		chan="$(P)mono_pid1_incalc.F"
+		chan="$(P)mono_pid2_incalc.J"
 	}
 	textix="no beam"
 }
@@ -795,7 +795,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="13IDA:mono_pid1_incalc.P"
+		chan="13IDA:mono_pid2_incalc.M"
 		clr=54
 		bclr=4
 	}
@@ -835,7 +835,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="13IDA:mono_pid1_incalc.O"
+		chan="13IDA:mono_pid2_incalc.N"
 		clr=54
 		bclr=4
 	}
@@ -863,7 +863,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="13IDA:mono_pid1_incalc.E"
+		chan="13IDA:mono_pid2_incalc.I"
 		clr=54
 		bclr=4
 	}

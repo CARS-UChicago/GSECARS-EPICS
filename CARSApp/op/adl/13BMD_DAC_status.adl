@@ -1,7 +1,7 @@
 
 file {
-	name="j:\epics\support\CARS\1-4\CARSApp\op\adl\13BMD_DAC_status.adl"
-	version=020306
+	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13BMD_DAC_status.adl"
+	version=030000
 }
 display {
 	object {
@@ -90,7 +90,7 @@ display {
 text {
 	object {
 		x=7
-		y=7
+		y=6
 		width=201
 		height=38
 	}
@@ -98,7 +98,8 @@ text {
 		clr=20
 	}
 	"dynamic attribute" {
-		vis="if not zero"
+		vis="calc"
+		calc="(A+B+C+D)>1"
 		chan="13BMD:Unidig2Bo10.VAL"
 		chanB="13BMD:filter1Status2"
 		chanC="13BMD:filter1Status1"
@@ -387,8 +388,8 @@ text {
 }
 text {
 	object {
-		x=7
-		y=7
+		x=8
+		y=8
 		width=201
 		height=40
 	}
@@ -399,22 +400,6 @@ text {
 		vis="calc"
 		calc="A<-1"
 		chan="13BMD:m27.RBV"
-	}
-	textix="NOT READY"
-}
-text {
-	object {
-		x=7
-		y=7
-		width=201
-		height=39
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMA:mono_pid1Locked"
 	}
 	textix="NOT READY"
 }
