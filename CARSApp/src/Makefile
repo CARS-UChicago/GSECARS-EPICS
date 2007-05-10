@@ -35,13 +35,9 @@ CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 #===========================
 
 # <name>.dbd will be created from <name>Include.dbd
-ifeq ($(OS_CLASS), WIN32)
-DBD    += CARSWin32.dbd
-else
 DBD += CARS.dbd
 DBD += CARSVX.dbd
 DBD += CARSLinux.dbd
-endif
 
 #=============================
 # build an ioc application
@@ -51,7 +47,6 @@ PROD_IOC = CARSApp
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 CARSApp_SRCS_DEFAULT += CARS_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_Linux   += CARSLinux_registerRecordDeviceDriver.cpp CARSMain.cpp
-CARSApp_SRCS_WIN32   += CARSWin32_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_vxWorks += CARSVX_registerRecordDeviceDriver.cpp
 
 CARSApp_Common_LIBS += CARS
@@ -66,6 +61,8 @@ CARSApp_Common_LIBS += love
 CARSApp_Common_LIBS += ip
 CARSApp_Common_LIBS += brukerCCD marCCD roperCCD
 CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport motor
+CARSApp_Common_LIBS += stream streamSynApps
+CARSApp_Common_LIBS += modbus
 CARSApp_Common_LIBS += asyn
 CARSApp_Common_LIBS += seq pv
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
