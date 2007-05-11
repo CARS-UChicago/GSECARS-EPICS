@@ -54,7 +54,28 @@ pattern
 {13LAB:, m26, "OMS MAXv",  0, 1, "Tilt2",   degrees,   Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,     20,    -20,   0.6,  0.01,   0.0}
 {13LAB:, m27, "OMS MAXv",  0, 2, "X",       mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
 {13LAB:, m28, "OMS MAXv",  0, 3, "Y",       mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
+{13LAB:, m29, "OMS MAXv",  0, 4, "M29",     mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
+{13LAB:, m30, "OMS MAXv",  0, 5, "M30",     mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
+{13LAB:, m31, "OMS MAXv",  0, 6, "M31",     mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
+{13LAB:, m32, "OMS MAXv",  0, 7, "M32",     mm,        Pos,   .07,      0,     .2,     0,      1,    .2,   2000,    1.0,     4,      8,     -8,   0.6,  0.01,   0.0}
 }
+
+#file "$(MOTOR)/db/basic_asyn_motor.db"
+#{
+#pattern
+#{P,        N,  M,      DTYP,           PORT, ADDR,  DESC,      EGU,   DIR,  VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,  MRES,  PREC,  DHLM,  DLLM,  INIT}
+#{13LAB:,  33,  m$(N),  "asynMotor",   XPS1,  0,  "motor $(N)",  mm,   Pos,  .3,     .1,    .2,    0,     1,     .2,    0.000048828,  5,   62.5,  50,      ""}
+#{13LAB:,  34,  m$(N),  "asynMotor",   XPS1,  1,  "motor $(N)",  mm,   Pos,  .3,     .1,    .2,    0,     1,     .2,    0.000147750,  5,     10,   0,      ""}
+#{13LAB:,  35,  m$(N),  "asynMotor",   XPS1,  2,  "motor $(N)",  mm,   Pos,  .3,     .1,    .2,    0,     1,     .2,    0.000048828,  5,   62.5,  50,      ""}
+#}
+#file "$(MOTOR)/db/XPS_extra.db"
+#{
+#pattern
+#{P,        R,  PORT,  ADDR}
+#{13LAB:,  m33, XPS1,  0}
+#{13LAB:,  m34, XPS1   1}
+#{13LAB:,  m35, XPS1   2}
+#}
 
 #file "$(OPTICS)/opticsApp/Db/table.db"
 #{

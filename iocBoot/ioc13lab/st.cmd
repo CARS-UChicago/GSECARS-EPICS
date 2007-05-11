@@ -134,9 +134,10 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc2,POR
 
 # Struck MCS as 32-channel multi-element detector
 <Struck32.cmd
+#<SIS3820_32.cmd
 
 ### Scalers: Joerger VSC8/16
-dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db", "P=13LAB:,S=scaler1,C=0")
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 ### Scalers: Struck/SIS as simple scaler 
 # Don't execute the next 2 lines if Struck8.cmd is loaded above
@@ -203,8 +204,8 @@ drvMAXvdebug=0
 
 # Set all axes to open-loop stepper and active low limits
 #config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-# Set all axes to servo and active low limits
-config0="AX LH PSM; AY LH PSM; AZ LH PSM; AT LH PSM; AU LH PSM; AV LH PSM; AR LH PSM; AS LH PSM;"
+# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
+config0="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
 MAXvConfig(0, config0)
 
 # OMS VME58 driver setup parameters: 
@@ -213,6 +214,27 @@ MAXvConfig(0, config0)
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(2, 0x4000, 190, 5, 10)
 
+#{{{ MN May 7, 2007 -- comment out XPS controller
+# # cards (total controllers)
+# XPSSetup(1)
+# 
+# # card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+# XPSConfig(0, "164.54.160.34", 5001, 3, 10, 5000)
+# 
+# # asynPort, IP address, IP port, poll period (ms)
+# XPSAuxConfig("XPS_AUX1", "164.54.160.34", 5001, 50)
+# #asynSetTraceMask("XPS_AUX1", 0, 255)
+# #asynSetTraceIOMask("XPS_AUX1", 0, 2)
+# 
+# # asyn port, driver name, controller index, max. axes)
+# drvAsynMotorConfigure("XPS1", "motorXPS", 0, 3)
+# XPSInterpose("XPS1")
+# 
+# # card,  axis, groupName.positionerName
+# XPSConfigAxis(0,0,"GROUP1.POSITIONER",20480)
+# XPSConfigAxis(0,1,"GROUP2.POSITIONER1",6768)
+# XPSConfigAxis(0,2,"GROUP2.POSITIONER2",20480)
+#}}}}  
 # initQuadEM(quadEMName, baseAddress, fiberChannel, microSecondsPerScan, 
 #            maxClients, unidigName, unidigChan)
 #  quadEMName  = name of quadEM object created 
