@@ -4,6 +4,7 @@
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-dbLoadRecords "simple_test.db"
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Linux:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+#dbLoadRecords "simple_test.db"
 
 iocInit
