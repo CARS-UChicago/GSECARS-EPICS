@@ -41,14 +41,6 @@ asynXPSC8Debug = 0
 ### Motors
 dbLoadTemplate  "motors.template"
 
-##### Poll motor record every POLL seconds
-dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m33,POLL=1 second")
-dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m34,POLL=1 second")
-dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m35,POLL=1 second")
-dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m36,POLL=1 second")
-dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m37,POLL=1 second")
-dbLoadRecords("$(CARS)/CARSApp/Db/motorPoll.db","P=13BMC:,R=m38,POLL=1 second")
-
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
 
@@ -120,14 +112,10 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 # The required command string is longer than the vxWorks command line, 
 # must use malloc and strcpy, strcat. Some of the macros don't apply
 
-str = malloc(500)
-strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
-strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
-strcpy(str, "P=13BMC:,R=traj1,IP=164.54.160.124,GROUP=GROUP1,AXIS1=GROUP1.PHI,AXIS2=GROUP1.KAPPA")
-strcat(str, ",AXIS3=GROUP1.OMEGA,AXIS4=GROUP1.PSI,AXIS5=GROUP1.2THETA,AXIS6=GROUP1.NU")
-strcat(str, ",AXIS7=NULL,AXIS8=NULL,XPSPORT=5001,ASYNPORT=tcp1")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScanXPS.db", str)
+#str = malloc(500)
+#strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
+#strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
+#dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
 
 
 ################################################################################
@@ -137,7 +125,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScanXPS.db", str)
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(4, 0x4000, 190, 5, 10)
+oms58Setup(5, 0x4000, 190, 5, 10)
 
 #drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
 #asynOctetSetInputEos("tcp1",0,"")
@@ -180,6 +168,10 @@ XPSConfigAxis(1,7,"GROUP8.Z_SAMPLE",    3816)
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
+# Turn on debugging for the Omega axis
+#asynSetTraceMask("XPS1",2,255)
+#asynSetTraceIOMask("XPS1",2,2)
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
@@ -209,7 +201,26 @@ saveData_PrintScanInfo("13BMC:scan1")
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
 
 # Trajectory scanning with XPS
-#seq(&xpsTrajectoryScan,"P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m45,M8=m46")
+#str = malloc(500)
+#strcpy(str, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,")
+#strcat(str, "PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
+#seq(&XPS_trajectoryScan, str)
 
+# Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
+dbpf("13BMC:m33.NTM","0")
+dbpf("13BMC:m34.NTM","0")
+dbpf("13BMC:m35.NTM","0")
+dbpf("13BMC:m36.NTM","0")
+dbpf("13BMC:m37.NTM","0")
+dbpf("13BMC:m38.NTM","0")
+dbpf("13BMC:m39.NTM","0")
+dbpf("13BMC:m40.NTM","0")
+dbpf("13BMC:m41.NTM","0")
+dbpf("13BMC:m42.NTM","0")
+dbpf("13BMC:m43.NTM","0")
+dbpf("13BMC:m44.NTM","0")
+dbpf("13BMC:m45.NTM","0")
+dbpf("13BMC:m46.NTM","0")
 
+# Free memory allocated at top
 free(mem)
