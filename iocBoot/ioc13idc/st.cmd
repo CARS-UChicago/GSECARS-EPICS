@@ -26,7 +26,7 @@ devSTR7201Debug = 0
 save_restoreDebug = 0
 
 # Load database
-dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13IDC:,S=scaler1,C=0")
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 dbLoadTemplate("motors.template")
 
@@ -135,9 +135,9 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5)
+create_monitor_set("auto_positions.req",5,"P=13IDC:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30,"P=13IDC:")
 
 #mn 16-sep-1999
 ## seq(&Keithley2kDMM, "P=13IDC:, Dmm=DMM1, stack=10000")
@@ -160,7 +160,7 @@ seq(&trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m
 str=malloc(256)
 strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
 strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
-newport_tableDebug = 1
+#newport_tableDebug = 1
 seq(&newport_table, str)
 
 seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER=scaler2,I0=2,stack=10000")
@@ -174,12 +174,10 @@ seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER
 # 3: if specified time has passed, wait for space in queue, then send message
 # else: don't send message
 #debug_saveData = 2
-#{ MN 16-Dec-2004
-problems with scan record, trying to comment outsaveData 
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
 saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
-saveData_PrintScanInfo("13IDC:scan1")
+#saveData_PrintScanInfo("13IDC:scan1")
 
 
 seq &Keithley2kDMM, "P=13IDC:, Dmm=DMM1"

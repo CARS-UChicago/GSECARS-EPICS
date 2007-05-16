@@ -15,6 +15,6 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDDMicroMax1:")
 iocInit()
 
 # save things every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13IDDMicroMax1:")
 
 seq(roperCCD,"P=13IDDMicroMax1:,C=det1:")

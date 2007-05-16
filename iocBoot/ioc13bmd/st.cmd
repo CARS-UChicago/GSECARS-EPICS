@@ -16,7 +16,8 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 < serial.cmd
 
 # Load database
-dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13BMD:,S=scaler1,C=0")
+### Scalers: Joerger VSC8/16
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13BMD:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
 dbLoadTemplate "DAC.template"
 dbLoadTemplate "heater_control.template"
@@ -140,9 +141,9 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5)
+create_monitor_set("auto_positions.req",5,"P=13BMD:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30,"P=13BMD:")
 
 seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM1, stack=10000"
 seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM2, stack=15000"

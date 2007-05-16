@@ -80,7 +80,7 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5)
+create_monitor_set("auto_positions.req", 5, "P=13Raman:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13Raman:")
 

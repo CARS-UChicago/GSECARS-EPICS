@@ -278,9 +278,9 @@ iocInit
 #
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5)
+create_monitor_set("auto_positions.req", 5, "P=13LAB:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13LAB:")
 
 # Enable user string calcs and user transforms
 dbpf "13LAB:EnableUserTrans.PROC","1"
@@ -302,7 +302,7 @@ seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=22, model=2700, stack=10000"
 #debug_saveData = 2
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-#saveData_Init("saveDataExtraPVs.req", "P=13LAB:")
+saveData_Init("saveDataExtraPVs.req", "P=13LAB:")
 #saveData_PrintScanInfo("13LAB:scan1")
 
 #free(mem)

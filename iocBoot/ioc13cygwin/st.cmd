@@ -16,16 +16,6 @@ asynSetOption(serial2,0,baud,38400)
 # Set up last 2 ports on Moxa box
 drvAsynTCPPortConfigure("serial3", "164.54.160.50:4003", 0, 0, 0)
 drvAsynTCPPortConfigure("serial4", "164.54.160.50:4004", 0, 0, 0)
-# Create MPF servers on all of these
-initSerialServer("serial1", "serial1", 1000, 20, "")
-initSerialServer("serial2", "serial2", 1000, 20, "")
-initSerialServer("serial3", "serial3", 1000, 20, "")
-initSerialServer("serial4", "serial4", 1000, 20, "")
-# Make these ports available from the iocsh command line
-asynConnect("serial1", "serial1", 0, "\r", "\r")
-asynConnect("serial2", "serial2", 0, "\r", "\r")
-asynConnect("serial3", "serial3", 0, "\r", "\r\n")
-asynConnect("serial4", "serial4", 0, "\r", "\r")
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
@@ -124,9 +114,9 @@ iocInit
 < ../requestFileCommands
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5)
+create_monitor_set("auto_positions.req", 5, "P=13Cygwin:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13Cygwin:")
 
 seq &roperCCD, "P=13Cygwin:,C=ccd1"
 #seq &Keithley2kDMM, "P=13Cygwin:, Dmm=DMM1, stack=10000"

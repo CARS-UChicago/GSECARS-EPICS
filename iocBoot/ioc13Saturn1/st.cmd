@@ -48,5 +48,5 @@ iocInit
 ### Start up the autosave task and tell it what to do.
 
 # Save settings every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13Saturn1:")
 

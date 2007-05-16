@@ -137,9 +137,9 @@ taskDelay(1800)
 
 # save positions every five seconds
 # DISABLE SAVE RESTORE FOR NOW
-create_monitor_set("auto_positions.req",5)
+create_monitor_set("auto_positions.req",5,"P=13GE2:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30,"P=13GE2:")
 
 seq &dxpMED, "P=13GE2:med:, DXP=dxp, MCA=mca, N_DETECTORS=16"
 # Wait 5 seconds for iocInit to complete so output does not get garbled

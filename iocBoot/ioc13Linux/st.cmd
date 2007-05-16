@@ -108,9 +108,9 @@ dbpr "13Linux:ccd1ServerName"
 dbpr "13Linux:ccd1ServerPort"
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5)
+create_monitor_set("auto_positions.req", 5, "P=13Linux:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13Linux:")
 
 # Enable user string calcs and user transforms
 dbpf "13Linux:EnableUserTrans.PROC","1"

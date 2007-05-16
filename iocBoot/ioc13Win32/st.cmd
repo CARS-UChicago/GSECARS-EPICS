@@ -114,9 +114,9 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Win32:")
 iocInit
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5)
+create_monitor_set("auto_positions.req", 5, "P=13Win32:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30)
+create_monitor_set("auto_settings.req", 30, "P=13Win32:")
 
 seq &roperCCD, "P=13Win32:,C=ccd1"
 #seq &Keithley2kDMM, "P=13Win32:, Dmm=DMM1, stack=10000"

@@ -18,7 +18,7 @@ cd startup
 < serial.cmd
 
 # Load database
-dbLoadRecords("$(VME)/vmeApp/Db/Jscaler.db","P=13IDD:,S=scaler1,C=0")
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDD:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 # MAR345 shutter
 dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
@@ -129,9 +129,9 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5)
+create_monitor_set("auto_positions.req",5,"P=13IDD:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30,"P=13IDD:")
 
 seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, channels=20, model=2700, stack=10000"
 seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM3, stack=10000"

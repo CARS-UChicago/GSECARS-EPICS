@@ -107,7 +107,7 @@ iocInit
 < ../requestFileCommands
 #
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30,"P=13GE3:")
 
 # Enable user string calcs and user transforms
 dbpf "13GE3:EnableUserTrans.PROC","1"
