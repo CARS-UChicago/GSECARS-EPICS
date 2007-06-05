@@ -80,7 +80,7 @@ CAMACScalerSetup(1)
 #  int counter_type,                   /* 0=QS-450 */
 #  int counter_slot)                   /* Counter N */
 CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db","P=13GE2:,S=scaler1,C=0,DTYP=CAMAC scaler,FREQ=262144")
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db","P=13GE2:,S=scaler1,OUT=#C0 S0 @,DTYP=CAMAC scaler,FREQ=262144")
 
 # Test record for scaler synchronization at X-26
 #dbLoadRecords("$(CARS)/CARSApp/Db/X26_scaler_sync.db","P=13GE2:,M=med:mca1,S=scaler1")
