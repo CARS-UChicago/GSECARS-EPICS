@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/CARS/1-5/CARSApp/op/adl/13GasLoadingGraphic.adl"
+	name="/home/epics/devel/CARS/1-6beta/CARSApp/op/adl/13GasLoadingGraphic.adl"
 	version=030000
 }
 display {
 	object {
-		x=98
-		y=440
+		x=102
+		y=63
 		width=900
 		height=900
 	}
@@ -893,11 +893,13 @@ rectangle {
 		height=25
 	}
 	monitor {
-		chan="$(P)Omega2Filtered"
-		clr=20
+		chan="$(P)ACS1000Pressure"
+		clr=61
 		bclr=14
 	}
+	clrmod="alarm"
 	align="horiz. right"
+	format="exponential"
 	limits {
 	}
 }
