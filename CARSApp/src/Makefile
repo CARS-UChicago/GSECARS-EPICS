@@ -24,8 +24,6 @@ CARS_SRCS += Energy_CC.st
 CARS_SRCS += Energy.st
 CARS_SRCS += BM13_Energy.st
 CARS_SRCS += Analyzer.st
-CARS_SRCS += trajectoryScan.st
-CARS_SRCS_vxWorks += xpsTrajectoryScan.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 
