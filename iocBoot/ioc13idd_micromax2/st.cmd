@@ -1,0 +1,20 @@
+< envPaths
+errlogInit(20000)
+dbLoadDatabase("$(CCD)/dbd/roperCCDApp.dbd")
+roperCCDApp_registerRecordDeviceDriver(pdbbase) 
+dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db","P=13IDDMicroMax2:,C=det1:")
+
+set_requestfile_path("./")
+set_savefile_path("./autosave")
+set_requestfile_path("$(CCD)/ccdApp/Db")
+set_pass0_restoreFile("auto_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
+save_restoreSet_status_prefix("13IDDMicroMax2:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDDMicroMax2:")
+
+iocInit()
+
+# save things every thirty seconds
+create_monitor_set("auto_settings.req", 30, "P=13IDDMicroMax2:")
+
+seq(roperCCD,"P=13IDDMicroMax2:,C=det1:")
