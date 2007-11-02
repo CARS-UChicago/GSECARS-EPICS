@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=102
-		y=63
+		x=239
+		y=52
 		width=900
-		height=900
+		height=950
 	}
 	clr=14
 	bclr=4
@@ -85,37 +85,6 @@ display {
 		3cb420,
 		289315,
 		1a7309,
-	}
-}
-"text update" {
-	object {
-		x=580
-		y=614
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(P)Omega2SP2_Read"
-		clr=14
-		bclr=51
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=579
-		y=630
-		width=60
-		height=20
-	}
-	control {
-		chan="$(P)Omega2SP2_Write.A"
-		clr=14
-		bclr=51
-	}
-	limits {
 	}
 }
 text {
@@ -432,18 +401,6 @@ text {
 }
 text {
 	object {
-		x=583
-		y=252
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="V5"
-}
-text {
-	object {
 		x=784
 		y=287
 		width=20
@@ -699,40 +656,29 @@ composite {
 		}
 	}
 }
-composite {
+text {
+	object {
+		x=588
+		y=106
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Rough pump"
+	align="horiz. right"
+}
+rectangle {
 	object {
 		x=584
 		y=100
 		width=130
 		height=50
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=594
-				y=115
-				width=110
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Vacuum pump"
-			align="horiz. right"
-		}
-		rectangle {
-			object {
-				x=584
-				y=100
-				width=130
-				height=50
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
 rectangle {
@@ -752,7 +698,7 @@ rectangle {
 		x=281
 		y=165
 		width=10
-		height=326
+		height=376
 	}
 	"basic attribute" {
 		clr=14
@@ -807,70 +753,59 @@ rectangle {
 		fill="outline"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=324
-		y=233
+		y=255
 		width=120
-		height=92
+		height=45
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=324
-				y=255
-				width=120
-				height=45
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=334
-				y=266
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Compressor"
-		}
-		"choice button" {
-			object {
-				x=334
-				y=305
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P)Comp_Request"
-				clr=14
-				bclr=51
-			}
-			stacking="column"
-		}
-		"text update" {
-			object {
-				x=351
-				y=233
-				width=67
-				height=20
-			}
-			monitor {
-				chan="$(P)Comp_Output"
-				clr=14
-				bclr=4
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=334
+		y=266
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Compressor"
+}
+"choice button" {
+	object {
+		x=334
+		y=305
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)Comp_Request"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"text update" {
+	object {
+		x=351
+		y=233
+		width=67
+		height=20
+	}
+	monitor {
+		chan="$(P)Comp_Output"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
 	}
 }
 rectangle {
@@ -878,7 +813,7 @@ rectangle {
 		x=646
 		y=150
 		width=10
-		height=341
+		height=391
 	}
 	"basic attribute" {
 		clr=14
@@ -945,18 +880,6 @@ rectangle {
 		x=291
 		y=272
 		width=33
-		height=10
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
-		x=624
-		y=387
-		width=22
 		height=10
 	}
 	"basic attribute" {
@@ -1229,143 +1152,6 @@ rectangle {
 }
 rectangle {
 	object {
-		x=612
-		y=264
-		width=12
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(P)V5_Status"
-	}
-}
-rectangle {
-	object {
-		x=612
-		y=253
-		width=12
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)V5_Status"
-	}
-}
-rectangle {
-	object {
-		x=610
-		y=247
-		width=15
-		height=26
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-composite {
-	object {
-		x=515
-		y=185
-		width=127
-		height=62
-	}
-	"composite name"=""
-	children {
-		"text update" {
-			object {
-				x=582
-				y=185
-				width=60
-				height=15
-			}
-			monitor {
-				chan="$(P)V5_Status"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=582
-				y=203
-				width=60
-				height=15
-			}
-			monitor {
-				chan="$(P)V5_Output"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"choice button" {
-			object {
-				x=582
-				y=217
-				width=60
-				height=30
-			}
-			control {
-				chan="$(P)V5_Request"
-				clr=14
-				bclr=51
-			}
-		}
-		text {
-			object {
-				x=524
-				y=185
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Switch"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=524
-				y=203
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Output"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=515
-				y=225
-				width=63
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Request"
-			align="horiz. right"
-		}
-	}
-}
-rectangle {
-	object {
 		x=272
 		y=288
 		width=19
@@ -1565,486 +1351,1023 @@ composite {
 		}
 	}
 }
-text {
+"choice button" {
 	object {
-		x=155
-		y=497
-		width=216
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Low Pressure Meter"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=116
-		y=560
-		width=124
-		height=30
-	}
-	monitor {
-		chan="$(P)Omega1Unfiltered"
-		clr=20
-		bclr=14
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=259
-		y=560
-		width=124
-		height=30
-	}
-	monitor {
-		chan="$(P)Omega1UnfilteredBars"
-		clr=20
-		bclr=14
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=167
-		y=531
-		width=36
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="PSI"
-	align="horiz. right"
-}
-text {
-	object {
-		x=291
-		y=531
-		width=48
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Bars"
-	align="horiz. right"
-}
-text {
-	object {
-		x=245
-		y=597
-		width=189
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Safe opening pressure"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=179
-		y=597
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(P)Omega1SP1_Read"
-		clr=14
-		bclr=51
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=245
-		y=624
-		width=207
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Target working pressure"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=181
-		y=654
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(P)Omega1SP3_Read"
-		clr=14
-		bclr=51
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=245
-		y=654
-		width=207
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Emergency vent pressure"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=116
-		y=597
-		width=56
-		height=15
-	}
-	monitor {
-		chan="$(P)LowP_SP1"
-		clr=14
-		bclr=11
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=116
-		y=624
-		width=56
-		height=15
-	}
-	monitor {
-		chan="$(P)LowP_SP2"
-		clr=14
-		bclr=11
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=116
-		y=654
-		width=56
-		height=15
-	}
-	monitor {
-		chan="$(P)LowP_SP3"
-		clr=14
-		bclr=11
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-rectangle {
-	object {
-		x=142
-		y=491
-		width=245
-		height=35
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-"strip chart" {
-	object {
-		x=107
-		y=678
-		width=326
-		height=203
-	}
-	plotcom {
-		title="Low Pressure"
-		xlabel="Time (seconds)"
-		ylabel="Pressure (PSI)"
-		clr=14
-		bclr=4
-	}
-	pen[0] {
-		chan="$(P)Omega1Filtered"
-		clr=20
-		limits {
-		}
-	}
-}
-text {
-	object {
-		x=550
-		y=497
-		width=228
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="High Pressure Meter"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=516
-		y=560
-		width=124
-		height=30
-	}
-	monitor {
-		chan="$(P)Omega2Unfiltered"
-		clr=20
-		bclr=14
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=659
-		y=560
-		width=124
-		height=30
-	}
-	monitor {
-		chan="$(P)Omega2UnfilteredBars"
-		clr=20
-		bclr=14
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=567
-		y=531
-		width=36
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="PSI"
-	align="horiz. right"
-}
-text {
-	object {
-		x=691
-		y=531
-		width=48
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Bars"
-	align="horiz. right"
-}
-text {
-	object {
-		x=645
-		y=597
-		width=189
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Safe opening pressure"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=579
-		y=597
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(P)Omega2SP1_Read"
-		clr=14
-		bclr=51
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=645
-		y=624
-		width=207
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Target working pressure"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=581
-		y=654
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(P)Omega2SP3_Read"
-		clr=14
-		bclr=51
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=645
-		y=654
-		width=207
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Emergency vent pressure"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=516
-		y=597
-		width=56
-		height=15
-	}
-	monitor {
-		chan="$(P)HighP_SP1"
-		clr=14
-		bclr=11
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=516
-		y=624
-		width=56
-		height=15
-	}
-	monitor {
-		chan="$(P)HighP_SP2"
-		clr=14
-		bclr=11
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=516
-		y=654
-		width=56
-		height=15
-	}
-	monitor {
-		chan="$(P)HighP_SP3"
-		clr=14
-		bclr=11
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-rectangle {
-	object {
-		x=541
-		y=491
-		width=245
-		height=35
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-"strip chart" {
-	object {
-		x=519
-		y=678
-		width=326
-		height=203
-	}
-	plotcom {
-		title="High Pressure"
-		xlabel="Time (seconds)"
-		ylabel="Pressure (PSI)"
-		clr=14
-		bclr=4
-	}
-	pen[0] {
-		chan="$(P)Omega2Filtered"
-		clr=20
-		limits {
-		}
-	}
-}
-"text update" {
-	object {
-		x=180
-		y=614
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(P)Omega1SP2_Read"
-		clr=14
-		bclr=51
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=180
-		y=630
-		width=60
+		x=600
+		y=79
+		width=100
 		height=20
 	}
 	control {
-		chan="$(P)Omega1SP2_Write.A"
+		chan="$(P)Vacuum_Request"
 		clr=14
 		bclr=51
 	}
+	stacking="column"
+}
+text {
+	object {
+		x=588
+		y=129
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Turbo pump"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=683
+		y=108
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(P)Vac_Pump"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=683
+		y=129
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(P)Turbo_Pump"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+composite {
+	object {
+		x=470
+		y=185
+		width=127
+		height=98
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=538
+				y=252
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="V5"
+		}
+		rectangle {
+			object {
+				x=567
+				y=264
+				width=12
+				height=19
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P)V5_Status"
+			}
+		}
+		rectangle {
+			object {
+				x=567
+				y=253
+				width=12
+				height=19
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P)V5_Status"
+			}
+		}
+		rectangle {
+			object {
+				x=565
+				y=247
+				width=15
+				height=26
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		composite {
+			object {
+				x=470
+				y=185
+				width=127
+				height=62
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=537
+						y=185
+						width=60
+						height=15
+					}
+					monitor {
+						chan="$(P)V5_Status"
+						clr=14
+						bclr=11
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=537
+						y=203
+						width=60
+						height=15
+					}
+					monitor {
+						chan="$(P)V5_Output"
+						clr=14
+						bclr=11
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"choice button" {
+					object {
+						x=537
+						y=217
+						width=60
+						height=30
+					}
+					control {
+						chan="$(P)V5_Request"
+						clr=14
+						bclr=51
+					}
+				}
+				text {
+					object {
+						x=479
+						y=185
+						width=54
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Switch"
+					align="horiz. right"
+				}
+				text {
+					object {
+						x=479
+						y=203
+						width=54
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Output"
+					align="horiz. right"
+				}
+				text {
+					object {
+						x=470
+						y=225
+						width=63
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Request"
+					align="horiz. right"
+				}
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=624
+		y=388
+		width=22
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+polyline {
+	object {
+		x=518
+		y=331
+		width=125
+		height=125
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(510,330)
+		(510,455)
+		(635,455)
+		(635,330)
+	}
+}
+polyline {
+	object {
+		x=509
+		y=329
+		width=127
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(635,330)
+		(510,330)
+	}
+}
+text {
+	object {
+		x=311
+		y=94
+		width=252
+		height=25
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)EStop_Switch"
+	}
+	textix="Emergency Stop Switch"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=772
+		y=424
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Cell_Up"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=772
+		y=384
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Laser_Expert_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=772
+		y=444
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Cell_Down"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=699
+		y=424
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cell up:"
+}
+text {
+	object {
+		x=672
+		y=384
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser Mode:"
+}
+text {
+	object {
+		x=681
+		y=444
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cell down:"
+}
+composite {
+	object {
+		x=107
+		y=541
+		width=745
+		height=390
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=580
+				y=664
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P)Omega2SP2_Read"
+				clr=14
+				bclr=51
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=579
+				y=680
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)Omega2SP2_Write.A"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=155
+				y=547
+				width=216
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Low Pressure Meter"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=116
+				y=610
+				width=124
+				height=30
+			}
+			monitor {
+				chan="$(P)Omega1Unfiltered"
+				clr=20
+				bclr=14
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=259
+				y=610
+				width=124
+				height=30
+			}
+			monitor {
+				chan="$(P)Omega1UnfilteredBars"
+				clr=20
+				bclr=14
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=167
+				y=581
+				width=36
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PSI"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=291
+				y=581
+				width=48
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Bars"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=245
+				y=647
+				width=189
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Safe opening pressure"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=179
+				y=647
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P)Omega1SP1_Read"
+				clr=14
+				bclr=51
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=245
+				y=674
+				width=207
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Target working pressure"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=181
+				y=704
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P)Omega1SP3_Read"
+				clr=14
+				bclr=51
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=245
+				y=704
+				width=207
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Emergency vent pressure"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=116
+				y=647
+				width=56
+				height=15
+			}
+			monitor {
+				chan="$(P)LowP_SP1"
+				clr=14
+				bclr=11
+			}
+			clrmod="alarm"
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=116
+				y=674
+				width=56
+				height=15
+			}
+			monitor {
+				chan="$(P)LowP_SP2"
+				clr=14
+				bclr=11
+			}
+			clrmod="alarm"
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=116
+				y=704
+				width=56
+				height=15
+			}
+			monitor {
+				chan="$(P)LowP_SP3"
+				clr=14
+				bclr=11
+			}
+			clrmod="alarm"
+			align="horiz. right"
+			limits {
+			}
+		}
+		rectangle {
+			object {
+				x=142
+				y=541
+				width=245
+				height=35
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		"strip chart" {
+			object {
+				x=107
+				y=728
+				width=326
+				height=203
+			}
+			plotcom {
+				title="Low Pressure"
+				xlabel="Time (seconds)"
+				ylabel="Pressure (PSI)"
+				clr=14
+				bclr=4
+			}
+			pen[0] {
+				chan="$(P)Omega1Filtered"
+				clr=20
+				limits {
+				}
+			}
+		}
+		text {
+			object {
+				x=550
+				y=547
+				width=228
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="High Pressure Meter"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=516
+				y=610
+				width=124
+				height=30
+			}
+			monitor {
+				chan="$(P)Omega2Unfiltered"
+				clr=20
+				bclr=14
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=659
+				y=610
+				width=124
+				height=30
+			}
+			monitor {
+				chan="$(P)Omega2UnfilteredBars"
+				clr=20
+				bclr=14
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=567
+				y=581
+				width=36
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PSI"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=691
+				y=581
+				width=48
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Bars"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=645
+				y=647
+				width=189
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Safe opening pressure"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=579
+				y=647
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P)Omega2SP1_Read"
+				clr=14
+				bclr=51
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=645
+				y=674
+				width=207
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Target working pressure"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=581
+				y=704
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P)Omega2SP3_Read"
+				clr=14
+				bclr=51
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=645
+				y=704
+				width=207
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Emergency vent pressure"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=516
+				y=647
+				width=56
+				height=15
+			}
+			monitor {
+				chan="$(P)HighP_SP1"
+				clr=14
+				bclr=11
+			}
+			clrmod="alarm"
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=516
+				y=674
+				width=56
+				height=15
+			}
+			monitor {
+				chan="$(P)HighP_SP2"
+				clr=14
+				bclr=11
+			}
+			clrmod="alarm"
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=516
+				y=704
+				width=56
+				height=15
+			}
+			monitor {
+				chan="$(P)HighP_SP3"
+				clr=14
+				bclr=11
+			}
+			clrmod="alarm"
+			align="horiz. right"
+			limits {
+			}
+		}
+		rectangle {
+			object {
+				x=541
+				y=541
+				width=245
+				height=35
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		"strip chart" {
+			object {
+				x=519
+				y=728
+				width=326
+				height=203
+			}
+			plotcom {
+				title="High Pressure"
+				xlabel="Time (seconds)"
+				ylabel="Pressure (PSI)"
+				clr=14
+				bclr=4
+			}
+			pen[0] {
+				chan="$(P)Omega2Filtered"
+				clr=20
+				limits {
+				}
+			}
+		}
+		"text update" {
+			object {
+				x=180
+				y=664
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P)Omega1SP2_Read"
+				clr=14
+				bclr=51
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=180
+				y=680
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)Omega1SP2_Write.A"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=681
+		y=484
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Press. OK:"
+}
+"text update" {
+	object {
+		x=772
+		y=484
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Pressurize_OK_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=717
+		y=504
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Doors:"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=772
+		y=504
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Encl_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=699
+		y=464
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Load OK:"
+}
+"text update" {
+	object {
+		x=772
+		y=464
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Load_OK_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=536
+		y=459
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Sample stage"
+		name="4motors.adl"
+		args="P=13GasLoad:, TITLE=Gas_Loading, M1=m1, M2=m2, M3=pm1,  M4=pm2"
+	}
+	clr=14
+	bclr=51
+	label="Motors"
+}
+text {
+	object {
+		x=717
+		y=404
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser:"
+}
+"text update" {
+	object {
+		x=772
+		y=404
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Laser_Enable"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
 	limits {
 	}
 }
