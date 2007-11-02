@@ -1,6 +1,6 @@
 
 file {
-	name="/home/epics/devel/CARS/1-5/CARSApp/op/adl/13GasLoading.adl"
+	name="/home/epics/devel/CARS/1-6beta/CARSApp/op/adl/13GasLoading.adl"
 	version=030000
 }
 display {
@@ -8,7 +8,7 @@ display {
 		x=555
 		y=31
 		width=370
-		height=300
+		height=320
 	}
 	clr=14
 	bclr=4
@@ -113,8 +113,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=227
+		x=12
+		y=253
 		width=74
 		height=24
 	}
@@ -133,8 +133,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=227
+		x=91
+		y=253
 		width=40
 		height=20
 	}
@@ -146,28 +146,28 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=200
+		x=12
+		y=226
 		width=74
 		height=24
 	}
 	display[0] {
-		label="Serial 1"
+		label="Serial 1 (Low-P meter)"
 		name="asynOctet.adl"
 		args="P=13GasLoad:, R=serial1"
 	}
 	display[1] {
-		label="Serial 2"
+		label="Serial 2 (High-P meter)"
 		name="asynOctet.adl"
 		args="P=13GasLoad:, R=serial2"
 	}
 	display[2] {
-		label="Serial 3"
+		label="Serial 3 (motor controller)"
 		name="asynOctet.adl"
 		args="P=13GasLoad:, R=serial3"
 	}
 	display[3] {
-		label="Serial 4"
+		label="Serial 4 (vacuum gauge)"
 		name="asynOctet.adl"
 		args="P=13GasLoad:, R=serial4"
 	}
@@ -176,21 +176,21 @@ text {
 }
 text {
 	object {
-		x=93
-		y=200
-		width=180
+		x=91
+		y=226
+		width=120
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="asyn records 1-4"
+	textix="Serial ports"
 }
 text {
 	object {
-		x=93
-		y=146
+		x=91
+		y=172
 		width=60
 		height=20
 	}
@@ -202,43 +202,43 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=146
+		x=12
+		y=172
 		width=74
 		height=24
 	}
 	display[0] {
 		label="Sample stage"
 		name="4motors.adl"
-		args="P=13GasLoad:, TITLE=Gas_Loading, M1=m1, M2=m2, M3=m3,  M4=m4"
+		args="P=13GasLoad:, TITLE=Gas_Loading, M1=m1, M2=m2, M3=pm1,  M4=pm2"
 	}
 	clr=14
 	bclr=4
 }
 "related display" {
 	object {
-		x=14
-		y=173
+		x=12
+		y=199
 		width=74
 		height=24
 	}
 	display[0] {
 		label="User transforms"
-		name="userTrans10.adl"
+		name="userTransforms10.adl"
 		args="P=13GasLoad:"
 	}
 	display[1] {
-		label="User sCalcOut1"
-		name="yysCalcoutRecord.adl"
-		args="P=13GasLoad:, C=userStringCalc1"
+		label="User string calcs"
+		name="userStringCalcs10.adl"
+		args="P=13GasLoad:"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=93
-		y=173
+		x=91
+		y=199
 		width=220
 		height=20
 	}
@@ -250,8 +250,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=254
+		x=12
+		y=280
 		width=75
 		height=24
 	}
@@ -265,8 +265,8 @@ text {
 }
 text {
 	object {
-		x=94
-		y=254
+		x=92
+		y=280
 		width=100
 		height=20
 	}
@@ -277,8 +277,8 @@ text {
 }
 "related display" {
 	object {
-		x=14
-		y=92
+		x=12
+		y=91
 		width=74
 		height=24
 	}
@@ -297,9 +297,9 @@ text {
 }
 text {
 	object {
-		x=93
-		y=92
-		width=60
+		x=91
+		y=91
+		width=120
 		height=20
 	}
 	"basic attribute" {
@@ -307,59 +307,6 @@ text {
 		width=2
 	}
 	textix="Omega meters"
-}
-text {
-	object {
-		x=93
-		y=119
-		width=60
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="PLC"
-}
-"related display" {
-	object {
-		x=14
-		y=118
-		width=74
-		height=24
-	}
-	display[0] {
-		label="X0-X7 inputs (bit access)"
-		name="Koyo_8inputs.adl"
-		args="P=13GasLoad:,R=X,A=B,L=X0L,PORT=XnB,AC=Bit"
-	}
-	display[1] {
-		label="Y0-Y7 inputs (bit access)"
-		name="Koyo_8inputs.adl"
-		args="P=13GasLoad:,R=X,A=W,L=XnL,PORT=XnW,AC=Word"
-	}
-	display[2] {
-		label="C0-C7 inputs (bit access)"
-		name="Koyo_8inputs.adl"
-		args="P=13GasLoad:,R=C,A=InB,L=C0InBL,PORT=CnInB,AC=Bit"
-	}
-	display[3] {
-		label="C300-C307 inputs (bit access)"
-		name="Koyo_8inputs.adl"
-		args="P=13GasLoad:,R=C30,A=InW,L=C30nInWL,PORT=C30nInW,AC=Word"
-	}
-	display[4] {
-		label="Y0-Y7 outputs (bit access)"
-		name="Koyo_8outputs.adl"
-		args="P=13GasLoad:,R=Y,A=OutB,L=Y0OutBL,PORT=YnOutB,AC=Bit"
-	}
-	display[5] {
-		label="C300-C307 outputs (bit access)"
-		name="Koyo_8outputs.adl"
-		args="P=13GasLoad:,R=C30,A=OutB,L=C300OutBL,PORT=C30nOutB,AC=Bit"
-	}
-	clr=14
-	bclr=4
 }
 "related display" {
 	object {
@@ -380,7 +327,7 @@ text {
 	object {
 		x=91
 		y=64
-		width=60
+		width=70
 		height=20
 	}
 	"basic attribute" {
@@ -388,4 +335,95 @@ text {
 		width=2
 	}
 	textix="Graphic"
+}
+"related display" {
+	object {
+		x=12
+		y=118
+		width=74
+		height=24
+	}
+	display[0] {
+		label="X input statistics"
+		name="modbusStatistics.adl"
+		args="P=13GasLoad:,R=XnB"
+	}
+	display[1] {
+		label="Y input statistics"
+		name="modbusStatistics.adl"
+		args="P=13GasLoad:,R=YnInB"
+	}
+	display[2] {
+		label="C input statistics"
+		name="modbusStatistics.adl"
+		args="P=13GasLoad:,R=CnInB"
+	}
+	display[3] {
+		label="C output statistics"
+		name="modbusStatistics.adl"
+		args="P=13GasLoad:,R=CnOutB"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=91
+		y=118
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="PLC statistics"
+}
+"related display" {
+	object {
+		x=12
+		y=145
+		width=74
+		height=24
+	}
+	display[0] {
+		label="X input debugging"
+		name="asynRecord.adl"
+		args="P=13GasLoad:,R=XnBAsyn"
+	}
+	display[1] {
+		label="Y input debugging"
+		name="asynRecord.adl"
+		args="P=13GasLoad:,R=YnInBAsyn"
+	}
+	display[2] {
+		label="C input debugging"
+		name="asynRecord.adl"
+		args="P=13GasLoad:,R=CnInBAsyn"
+	}
+	display[3] {
+		label="C output debugging"
+		name="asynRecord.adl"
+		args="P=13GasLoad:,R=CnOutBAsyn"
+	}
+	display[4] {
+		label="Koyo TCP port"
+		name="asynRecord.adl"
+		args="P=13GasLoad:,R=KoyoOctetAsyn"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=91
+		y=145
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="PLC debugging"
 }
