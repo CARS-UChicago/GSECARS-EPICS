@@ -4,7 +4,7 @@ errlogInit(5000)
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARS.dbd")
-CARSLinux_registerRecordDeviceDriver(pdbbase)
+CARS_registerRecordDeviceDriver(pdbbase)
 
 # Set up 4 serial ports on Moxa terminal server
 
@@ -17,7 +17,7 @@ drvAsynIPPortConfigure("serial1", "164.54.160.163:4001", 0, 0, 0)
 drvAsynIPPortConfigure("serial2", "164.54.160.163:4002", 0, 0, 0)
 # Serial 3 is the ACS MCB-4B motor controller
 drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
-# Serial 4 is the SansaVac vaccum gauge controller
+# Serial 4 is the SensaVac vaccum gauge controller
 drvAsynIPPortConfigure("serial4", "164.54.160.163:4004", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
@@ -35,8 +35,11 @@ dbLoadTemplate("asynRecord.template")
 epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
 dbLoadTemplate("Omega.substitutions")
 
+# Alcatel vacuum gauge
+dbLoadRecords("$(IP)/ipApp/Db/Alcatel_ACS1000.db", "P=13GasLoad:, R=ACS1000, PORT=serial4")
+
 ### Motors
-#dbLoadTemplate  "motors.template"
+dbLoadTemplate  "motors.template"
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -74,7 +77,7 @@ MCB4BSetup(1, 4, 10)
 # MCB-4B driver configuration parameters:
 #     (1) controller
 #     (2) asyn port name (e.g. serial1)
-#MCB4BConfig(0, "serial2")
+MCB4BConfig(0, "serial3")
 
 # Koyo PLC
 < Koyo.cmd
