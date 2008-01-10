@@ -2,12 +2,12 @@ file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,       DTYP,       C,  S, DESC,                           EGU,  DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC,   SREV,         UREV, PREC,   DHLM,   DLLM}
-{13BMC:,  m1,   "OMS VME58",   0,  0, "Vert Mirr Y pos",          microns,  Pos,  150.0,    10,   .2,    0,    1,   .2,     48,        3.546,    1,    8e3,      0}
-{13BMC:,  m2,   "OMS VME58",   0,  1, "Hp UpStream",              microns,  Pos,    100,   100,   .2,    0,    1,   .2,   2571,         -350,    0,   5100,   -100}
-{13BMC:,  m3,   "OMS VME58",   0,  2, "Hw UpStream",              microns,  Pos,    200,   100,   .2,    0,    1,   .2,   2571,         -700,    0,  10100,   -100}
-{13BMC:,  m4,   "OMS VME58",   0,  3, "Vert force Dnstream",      microns,  Pos,  200.0,    10,   .2,    0,    1,   .2,     48,        3.546,    1,    8e3,      0}
-{13BMC:,  m5,   "OMS VME58",   0,  4, "CCD X",                         mm,  Neg,    2.0,    .1,   .5,    0,    1,   .2,    200,         -.10,    3,    100,      0}
-{13BMC:,  m6,   "OMS VME58",   0   5  "CCD Y",                         mm,  Neg,    2.0,    .1,   .5,    0,    1,   .2,    200,         -.10,    3,    150,      0}
+{13BMC:,  m1,   "OMS VME58",   0,  0, "Hp UpStream",              microns,  Pos,    100,   100,   .2,    0,    1,   .2,   2571,          350,    0,   5100,   -100}
+{13BMC:,  m2,   "OMS VME58",   0,  1, "Hw UpStream",              microns,  Pos,    200,   100,   .2,    0,    1,   .2,   2571,          700,    0,  10100,   -100}
+{13BMC:,  m3,   "OMS VME58",   0,  2, "Vp UpStream",              microns,  Pos,    100,   100,   .2,    0,    1,   .2,   2571,          350,    0,   5100,   -100}
+{13BMC:,  m4,   "OMS VME58",   0,  3, "microscope Z",                  mm, Pos,   1.0,  0.1, .5, 0,  1,  .2,   200,  0.1,   4,     95,    5}
+{13BMC:,  m5,   "OMS VME58",   0,  4, "Yag X",                         microns, Pos,  200.0,  10  .2,  0, 10,  .2,  10240,  500,   1,    27000,  -150}
+{13BMC:,  m6,   "OMS VME58",   0   5  "microscope X",                  mm, Pos,   1.0,  0.1, .5, 0,  1,  .2,   200,  0.1,   4,     95,    5}
 {13BMC:,  m7,   "OMS VME58",   0,  6, "CCD Z",                         mm,  Pos,    2.0,    .1,   .5,    0,    1,   .2,    200,         -.10,    3,    100,      0}
 {13BMC:,  m8,   "OMS VME58",   0,  7, "Sample-X",                      mm,  Neg,      2,    .1,   .5,    0,   .0,   .0,    200,         -.10,    3,    100,      0}
 
@@ -35,7 +35,7 @@ pattern
 {13BMC:, m25,   "OMS VME58",   3,  0, "unused",              	mm,  	    Pos,    1.0,   0.1,   .5,    0,    1,   .2,    200,        0.010,    4,   1000,  -1000}
 {13BMC:, m26,   "OMS VME58",   3,  1, "unused",              	deg,      Neg,    5.0,   1.0,   .5,    0,    1,   .2,    200,         0.10,    4,    361,   -361}
 {13BMC:, m27,   "OMS VME58",   3,  2, "Kozhu_X",            	mm,       Neg,    1.0,   0.2,   1.,    0,   .0,   .0,   1000,           1.,    4,    100,   -100}
-{13BMC:, m28,   "OMS VME58",   3,  3, "Kozhu_Theta",       		deg,      Pos,    1.0,   0.2,   1.,    0,   .0,   .0,   2000,          -2.,    4,    100,   -100}
+{13BMC:, m28,   "OMS VME58",   3,  3, "Kozhu_Theta",       		deg,      Pos,    1.0,   0.2,   1., .005,   .2,   1.,   2000,          -2.,    4,    100,   -100}
 {13BMC:, m29,   "OMS VME58",   3,  4, "Kozhu_Chi",         		deg,      Neg,    1.0,   0.1,   1.,    0,   .0,   .0,   2000,         1.20,    4,    100,   -100}
 {13BMC:, m30,   "OMS VME58",   3,  5, "Side_Mono_Y",       		mm,       Pos,    1.2,   0.1,   1.,    0,    1,   .2,    400,    0.1607717,    4,     95,      5}
 {13BMC:, m31,   "OMS VME58",   3,  6, "Horz Mono force Upstream", microns,  Pos,  200.0,    10,   .2,    0,    1,   .2,     48,        3.546,    1,    8e3,      0}
@@ -78,6 +78,20 @@ pattern
 {13BMC:,  m52,  "OMS VME58",   4,  5, "Downstream Translation", mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,    2,    101,     -1}
 {13BMC:,  m53,  "OMS VME58",   4,  6, "Gravity Sag",            mm,   Pos,    .5,   .1,    .5,    0,      .0,    .0,     400,      1.0,    3,     50,      0}
 {13BMC:,  m54,  "OMS VME58",   4,  7, "motor54",                mm,   Neg,     1.,  .1,    .5,    0,      .1,   1.5,     400,     0.50,    3,     50,      0}
+}
+
+file "$(CARS)/CARSApp/Db/dc_motor.db"
+{
+pattern 
+{P,       M,    DTYP,      C, S, DESC,    EGU,       DIR,  VELO,   VBAS,   ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,  PREC,   DHLM,   DLLM,  PCOF,  ICOF,  DCOF}
+{13BMC:, m55, "OMS MAXv",  0, 0, "fu",    mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
+{13BMC:, m56, "OMS MAXv",  0, 1, "fd",    mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
+{13BMC:, m57, "OMS MAXv",  0, 2, "m57",   mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
+{13BMC:, m58, "OMS MAXv",  0, 3, "m58",   mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
+{13BMC:, m59, "OMS MAXv",  0, 4, "M59",   mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
+{13BMC:, m60, "OMS MAXv",  0, 5, "M60",   mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
+{13BMC:, m61, "OMS MAXv",  0, 6, "M61",   mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0} 
+{13BMC:, m62, "OMS MAXv",  0, 7, "M62",   mm,        Pos,    .2,      0,     .2,     0,      1,    .2,  12288,    -.5,     4,      8,     -8,   0.8,  0.01,   0.0}
 }
 
 # Newport table using generic table-record
