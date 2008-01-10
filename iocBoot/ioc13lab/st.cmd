@@ -9,6 +9,7 @@
 
 cd topbin
 ld < CARSApp.munch
+
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
@@ -36,6 +37,7 @@ drvMCB4BDebug=0
 drvMM4000debug = 0
 mcaRecordDebug = 0
 aimDebug = 0
+llcDebug=0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
 scalerRecordDebug=0
@@ -44,11 +46,13 @@ icbDebug=0
 sscanRecordDebug=0
 devMCA_softDebug = 0 
 
+ifShow
+
 < industryPack.cmd
 < serial.cmd
 
-# override address, interrupt vector, etc. information in module_types.h
-#module_types()
+# Test Koyo PLC
+# < Koyo1.cmd
 
 # Roper CCD detector database
 dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13LAB:, C=ccd1")
@@ -91,10 +95,11 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13LAB:,Q=EDB")
 dbLoadTemplate "scanParms.template"
 
 # Multichannel analyzer stuff
+
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans, 
 #           maxSignals, maxSequences, ethernetDevice)
-AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "dc0")
-AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "dc0")
+AIMConfig("AIM1/1", 0xc4b, 1, 2048, 1, 1, "dc0")
+AIMConfig("AIM1/2", 0xc4b, 2, 2048, 8, 1, "dc0")
 AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "dc0")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
@@ -121,16 +126,16 @@ dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med_FFT.db", "P=13LAB:quadEM_FFT:,N
 #      2 = HVPS
 #      3 = TCA
 #      4 = DSP
-icbConfig("icbAdc1", 0x59e, 5, 0)
+icbConfig("icbAdc1", 0xc4b, 5, 0)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
-icbConfig("icbAmp1", 0x59e, 3, 1)
+icbConfig("icbAmp1", 0xc4b, 3, 1)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
-icbConfig("icbHvps1", 0x59e, 2, 2)
+icbConfig("icbHvps1", 0xc4b, 2, 2)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
-icbConfig("icbTca1", 0x59e, 8, 3)
+icbConfig("icbTca1", 0xc4b, 8, 3)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc2,PORT=icbTca1")
-#icbConfig("icbDsp1", 0x8058, 0, 4)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
+icbConfig("icbDsp1", 0x8058, 0, 4)
+dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
 
 # Struck MCS as 32-channel multi-element detector
 <Struck32.cmd
@@ -205,7 +210,9 @@ drvMAXvdebug=0
 # Set all axes to open-loop stepper and active low limits
 #config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
 # Set all to active low limits for ThorLabs micrometers.  Set all to servo.
-config0="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+#config0="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+# Set all to active low limits for ThorLabs micrometers.  Set all to servo.  First channel normal limits!
+config0="AX LH PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
 MAXvConfig(0, config0)
 
 # OMS VME58 driver setup parameters: 
