@@ -37,11 +37,11 @@ pattern
 # Channel 11 is for IPG laser
 {13IDD:, 2, 3, DAC2,  2, -100.0,  0.,  0.,   100.,  100.,  100.,    3,  LINEAR, 0.0}
 
-# Channel 12 is for temperature control in DAC (33V, 33A power supply)
-{13IDD:, 2, 4, DAC2,  3, -33.0,  0.,   0.,   33.,   33.,   33.,    3,  LINEAR, 0.0}
+# Channel 12 is for IPG laser
+{13IDD:, 2, 4, DAC2,  3, -100.0,  0.,  0.,   100.,  100.,  100.,    3,  LINEAR, 0.0}
 
-# Channel 13 is unused
-{13IDD:, 2, 5, DAC2,  4, -10.0, -10.,  -10.,  10.,  10.,   10.,    3,  LINEAR, 0.0}
+# Channel 13 is for temperature control in DAC (33V, 33A power supply)
+{13IDD:, 2, 5, DAC2,  4, -33.0,  0.,   0.,   33.,   33.,   33.,    3,  LINEAR, 0.0}
 
 # Channel 14 is unused
 {13IDD:, 2, 6, DAC2,  5, -10.0, -10.,  -10.,  10.,  10.,   10.,    3,  LINEAR, 0.0}
@@ -53,3 +53,11 @@ pattern
 {13IDD:, 2, 8, DAC2,  7, -10.0, -10.,  -10.,  10.,  10.,   10.,    3,  LINEAR, 0.0}
 
 }
+
+file "$(CARS)/CARSApp/Db/13IDD_laser_tweak.db"
+{
+pattern
+{P,      R,       DAC1,  DAC2}
+{13IDD:, Lasers,  DAC2_3, DAC2_4}
+}
+
