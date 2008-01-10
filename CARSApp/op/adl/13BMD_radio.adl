@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13BMD_radio.adl"
-	version=030000
+	name="j:\epics\support\CARS\1-5\CARSApp\op\adl\13BMD_radio.adl"
+	version=020306
 }
 display {
 	object {
-		x=145
-		y=250
+		x=258
+		y=37
 		width=1157
 		height=660
 	}
@@ -100,7 +100,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=168
+		x=135
 		y=143
 		width=145
 		height=253
@@ -111,30 +111,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=528
-		y=59
-		width=129
-		height=249
-	}
-	"basic attribute" {
-		clr=63
-	}
-}
-rectangle {
-	object {
-		x=335
-		y=59
-		width=129
-		height=249
-	}
-	"basic attribute" {
-		clr=63
-	}
-}
-rectangle {
-	object {
-		x=430
-		y=367
+		x=452
+		y=364
 		width=236
 		height=211
 	}
@@ -166,25 +144,10 @@ rectangle {
 		width=5
 	}
 }
-text {
-	object {
-		x=590
-		y=364
-		width=20
-		height=38
-	}
-	"basic attribute" {
-		clr=30
-	}
-	"dynamic attribute" {
-		chan="X"
-	}
-	textix="Y"
-}
 "text entry" {
 	object {
-		x=449
-		y=487
+		x=471
+		y=484
 		width=92
 		height=29
 	}
@@ -199,8 +162,8 @@ text {
 }
 "text entry" {
 	object {
-		x=465
-		y=515
+		x=487
+		y=512
 		width=59
 		height=30
 	}
@@ -214,8 +177,8 @@ text {
 }
 "message button" {
 	object {
-		x=450
-		y=517
+		x=472
+		y=514
 		width=17
 		height=27
 	}
@@ -229,8 +192,8 @@ text {
 }
 "message button" {
 	object {
-		x=525
-		y=517
+		x=547
+		y=514
 		width=17
 		height=28
 	}
@@ -244,8 +207,8 @@ text {
 }
 text {
 	object {
-		x=460
-		y=458
+		x=482
+		y=455
 		width=79
 		height=26
 	}
@@ -296,31 +259,6 @@ text {
 	}
 	textix="Chamber"
 }
-polygon {
-	object {
-		x=550
-		y=320
-		width=16
-		height=84
-	}
-	"basic attribute" {
-		clr=60
-	}
-	points {
-		(558,320)
-		(550,335)
-		(556,333)
-		(556,390)
-		(550,385)
-		(558,404)
-		(566,386)
-		(560,390)
-		(560,334)
-		(566,335)
-		(559,323)
-		(558,320)
-	}
-}
 polyline {
 	object {
 		x=0
@@ -339,8 +277,8 @@ polyline {
 }
 arc {
 	object {
-		x=467
-		y=415
+		x=489
+		y=412
 		width=53
 		height=55
 	}
@@ -354,8 +292,8 @@ arc {
 }
 polygon {
 	object {
-		x=516
-		y=437
+		x=538
+		y=434
 		width=10
 		height=13
 	}
@@ -363,18 +301,18 @@ polygon {
 		clr=60
 	}
 	points {
-		(516,441)
-		(523,450)
-		(526,438)
-		(525,437)
-		(522,443)
-		(516,441)
+		(538,438)
+		(545,447)
+		(548,435)
+		(547,434)
+		(544,440)
+		(538,438)
 	}
 }
 polygon {
 	object {
-		x=464
-		y=436
+		x=486
+		y=433
 		width=10
 		height=13
 	}
@@ -382,12 +320,12 @@ polygon {
 		clr=60
 	}
 	points {
-		(474,440)
-		(466,449)
-		(464,437)
-		(464,436)
-		(467,442)
-		(474,440)
+		(496,437)
+		(488,446)
+		(486,434)
+		(486,433)
+		(489,439)
+		(496,437)
 	}
 }
 "text update" {
@@ -596,333 +534,6 @@ rectangle {
 	bclr=55
 	label="DAC motors"
 }
-"text entry" {
-	object {
-		x=543
-		y=190
-		width=92
-		height=28
-	}
-	control {
-		chan="13BMD:m51.VAL"
-		clr=14
-		bclr=50
-	}
-	clrmod="discrete"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=559
-		y=217
-		width=59
-		height=29
-	}
-	control {
-		chan="13BMD:m51.TWV"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=544
-		y=219
-		width=16
-		height=27
-	}
-	control {
-		chan="13BMD:m51.TWR"
-		clr=14
-		bclr=52
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=620
-		y=219
-		width=17
-		height=27
-	}
-	control {
-		chan="13BMD:m51.TWF"
-		clr=14
-		bclr=52
-	}
-	label=">"
-	press_msg="1"
-}
-oval {
-	object {
-		x=540
-		y=253
-		width=13
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m51.HLS"
-	}
-}
-oval {
-	object {
-		x=623
-		y=254
-		width=13
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m51.LLS"
-	}
-}
-text {
-	object {
-		x=552
-		y=255
-		width=69
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m51.LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
-"text entry" {
-	object {
-		x=353
-		y=108
-		width=92
-		height=30
-	}
-	control {
-		chan="13BMD:m52.VAL"
-		clr=14
-		bclr=50
-	}
-	clrmod="discrete"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=371
-		y=135
-		width=58
-		height=30
-	}
-	control {
-		chan="13BMD:m52.TWV"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=354
-		y=137
-		width=17
-		height=28
-	}
-	control {
-		chan="13BMD:m52.TWR"
-		clr=14
-		bclr=52
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=425
-		y=137
-		width=18
-		height=28
-	}
-	control {
-		chan="13BMD:m52.TWF"
-		clr=14
-		bclr=52
-	}
-	label=">"
-	press_msg="1"
-}
-oval {
-	object {
-		x=354
-		y=174
-		width=13
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m52.HLS"
-	}
-}
-oval {
-	object {
-		x=437
-		y=175
-		width=13
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m52.LLS"
-	}
-}
-text {
-	object {
-		x=367
-		y=176
-		width=69
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m52.LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
-"text entry" {
-	object {
-		x=568
-		y=398
-		width=93
-		height=31
-	}
-	control {
-		chan="13BMD:m25.VAL"
-		clr=14
-		bclr=50
-	}
-	clrmod="discrete"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=586
-		y=428
-		width=58
-		height=30
-	}
-	control {
-		chan="13BMD:m25.TWV"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=568
-		y=430
-		width=16
-		height=26
-	}
-	control {
-		chan="13BMD:m25.TWR"
-		clr=14
-		bclr=52
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=643
-		y=431
-		width=17
-		height=26
-	}
-	control {
-		chan="13BMD:m25.TWF"
-		clr=14
-		bclr=52
-	}
-	label=">"
-	press_msg="1"
-}
-oval {
-	object {
-		x=565
-		y=464
-		width=13
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m25.HLS"
-	}
-}
-oval {
-	object {
-		x=647
-		y=465
-		width=13
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m25.LLS"
-	}
-}
-text {
-	object {
-		x=580
-		y=466
-		width=69
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:m25.LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
 "related display" {
 	object {
 		x=240
@@ -1111,8 +722,8 @@ valuator {
 }
 text {
 	object {
-		x=463
-		y=443
+		x=485
+		y=440
 		width=65
 		height=20
 	}
@@ -1123,60 +734,6 @@ text {
 	"dynamic attribute" {
 		vis="if zero"
 		chan="13BMD:m38.DMOV"
-	}
-	textix="Moving"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=580
-		y=340
-		width=65
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMD:m25.DMOV"
-	}
-	textix="Moving"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=596
-		y=164
-		width=65
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMD:m51.DMOV"
-	}
-	textix="Moving"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=399
-		y=60
-		width=65
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMD:m52.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -1343,7 +900,7 @@ text {
 }
 text {
 	object {
-		x=215
+		x=182
 		y=253
 		width=85
 		height=31
@@ -1354,29 +911,29 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMD:m68.DMOV"
+		chan="13BMD:m35.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
 }
 "message button" {
 	object {
-		x=244
+		x=211
 		y=323
 		width=54
 		height=27
 	}
 	control {
-		chan="13BMD:m68.VAL"
+		chan="13BMD:m35.VAL"
 		clr=14
 		bclr=55
 	}
 	label="Out"
-	press_msg="100"
+	press_msg="105"
 }
 text {
 	object {
-		x=180
+		x=147
 		y=146
 		width=126
 		height=23
@@ -1523,13 +1080,13 @@ text {
 }
 "text update" {
 	object {
-		x=192
+		x=159
 		y=176
 		width=98
 		height=18
 	}
 	monitor {
-		chan="13BMD:m68.RBV"
+		chan="13BMD:m35.RBV"
 		clr=50
 		bclr=19
 	}
@@ -1567,21 +1124,6 @@ text {
 	clr=54
 	bclr=17
 	label="-more"
-}
-"message button" {
-	object {
-		x=843
-		y=325
-		width=53
-		height=27
-	}
-	control {
-		chan="13BMD:filter1sendCommand.VAL"
-		clr=19
-		bclr=55
-	}
-	label="Open"
-	press_msg="R4"
 }
 rectangle {
 	object {
@@ -1954,8 +1496,8 @@ text {
 }
 image {
 	object {
-		x=443
-		y=314
+		x=465
+		y=311
 		width=101
 		height=95
 	}
@@ -1967,135 +1509,9 @@ image {
 		chan="13BMD:m38.VAL"
 	}
 }
-composite {
-	object {
-		x=480
-		y=138
-		width=31
-		height=163
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=493
-				y=138
-				width=5
-				height=101
-			}
-			"basic attribute" {
-				clr=5
-				width=5
-			}
-		}
-		oval {
-			object {
-				x=480
-				y=239
-				width=31
-				height=15
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		rectangle {
-			object {
-				x=480
-				y=248
-				width=31
-				height=46
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		oval {
-			object {
-				x=480
-				y=286
-				width=31
-				height=15
-			}
-			"basic attribute" {
-				clr=32
-				width=5
-			}
-		}
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:filter1Status1"
-	}
-}
-composite {
-	object {
-		x=480
-		y=138
-		width=31
-		height=90
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=492
-				y=138
-				width=6
-				height=28
-			}
-			"basic attribute" {
-				clr=5
-				width=5
-			}
-		}
-		oval {
-			object {
-				x=480
-				y=166
-				width=31
-				height=15
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		rectangle {
-			object {
-				x=480
-				y=175
-				width=31
-				height=46
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		oval {
-			object {
-				x=480
-				y=213
-				width=31
-				height=15
-			}
-			"basic attribute" {
-				clr=32
-				width=5
-			}
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMD:filter1Status1"
-	}
-}
 rectangle {
 	object {
-		x=554
+		x=576
 		y=492
 		width=131
 		height=89
@@ -2200,7 +1616,7 @@ text {
 }
 composite {
 	object {
-		x=196
+		x=163
 		y=283
 		width=35
 		height=104
@@ -2209,7 +1625,7 @@ composite {
 	children {
 		oval {
 			object {
-				x=201
+				x=168
 				y=283
 				width=28
 				height=15
@@ -2221,7 +1637,7 @@ composite {
 		}
 		polyline {
 			object {
-				x=196
+				x=163
 				y=350
 				width=34
 				height=37
@@ -2231,13 +1647,13 @@ composite {
 				width=5
 			}
 			points {
-				(227,384)
-				(198,352)
+				(194,384)
+				(165,352)
 			}
 		}
 		rectangle {
 			object {
-				x=200
+				x=167
 				y=290
 				width=30
 				height=46
@@ -2249,7 +1665,7 @@ composite {
 		}
 		oval {
 			object {
-				x=199
+				x=166
 				y=330
 				width=32
 				height=15
@@ -2263,12 +1679,12 @@ composite {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A<35"
-		chan="13BMD:m68.RBV"
+		chan="13BMD:m35.RBV"
 	}
 }
 composite {
 	object {
-		x=196
+		x=163
 		y=194
 		width=35
 		height=104
@@ -2277,7 +1693,7 @@ composite {
 	children {
 		oval {
 			object {
-				x=201
+				x=168
 				y=194
 				width=28
 				height=15
@@ -2289,7 +1705,7 @@ composite {
 		}
 		polyline {
 			object {
-				x=196
+				x=163
 				y=261
 				width=34
 				height=37
@@ -2299,13 +1715,13 @@ composite {
 				width=5
 			}
 			points {
-				(227,295)
-				(198,263)
+				(194,295)
+				(165,263)
 			}
 		}
 		rectangle {
 			object {
-				x=200
+				x=167
 				y=201
 				width=30
 				height=46
@@ -2317,7 +1733,7 @@ composite {
 		}
 		oval {
 			object {
-				x=199
+				x=166
 				y=241
 				width=32
 				height=15
@@ -2331,80 +1747,13 @@ composite {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A>35"
-		chan="13BMD:m68.RBV"
-	}
-}
-"message button" {
-	object {
-		x=478
-		y=72
-		width=33
-		height=30
-	}
-	control {
-		chan="13BMD:filter1sendCommand.VAL"
-		clr=14
-		bclr=55
-	}
-	label="Out"
-	press_msg="R1"
-}
-composite {
-	object {
-		x=464
-		y=78
-		width=60
-		height=49
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=473
-				y=78
-				width=47
-				height=19
-			}
-			"basic attribute" {
-				clr=41
-			}
-			textix="check"
-		}
-		text {
-			object {
-				x=470
-				y=94
-				width=54
-				height=18
-			}
-			"basic attribute" {
-				clr=41
-			}
-			textix="sample"
-		}
-		text {
-			object {
-				x=464
-				y=110
-				width=58
-				height=17
-			}
-			"basic attribute" {
-				clr=41
-			}
-			textix="position"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<-10&&A>-170ORA>10&&A<170"
-		chan="13BMD:m38.VAL"
+		chan="13BMD:m35.RBV"
 	}
 }
 image {
 	object {
-		x=445
-		y=317
+		x=467
+		y=314
 		width=96
 		height=90
 	}
@@ -2418,554 +1767,8 @@ image {
 }
 composite {
 	object {
-		x=567
-		y=57
-		width=45
-		height=107
-	}
-	"composite name"=""
-	children {
-		polygon {
-			object {
-				x=567
-				y=72
-				width=44
-				height=71
-			}
-			"basic attribute" {
-				clr=30
-			}
-			points {
-				(567,143)
-				(568,114)
-				(572,127)
-				(600,83)
-				(589,83)
-				(611,72)
-				(608,93)
-				(604,84)
-				(576,129)
-				(585,131)
-				(567,143)
-			}
-		}
-		text {
-			object {
-				x=573
-				y=57
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="+"
-		}
-		text {
-			object {
-				x=583
-				y=121
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="-"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<45&&A>-45"
-		chan="13BMD:m38"
-	}
-}
-composite {
-	object {
-		x=539
-		y=65
-		width=115
-		height=51
-	}
-	"composite name"=""
-	children {
-		polygon {
-			object {
-				x=539
-				y=95
-				width=103
-				height=21
-			}
-			"basic attribute" {
-				clr=36
-			}
-			points {
-				(642,105)
-				(620,95)
-				(623,103)
-				(554,103)
-				(560,96)
-				(539,105)
-				(559,116)
-				(554,108)
-				(621,108)
-				(620,116)
-				(636,107)
-				(642,105)
-			}
-		}
-		text {
-			object {
-				x=625
-				y=66
-				width=28
-				height=43
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="+"
-		}
-		text {
-			object {
-				x=541
-				y=65
-				width=28
-				height=43
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="-"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-45&&A<45"
-		chan="13BMD:m38.VAL"
-	}
-}
-composite {
-	object {
-		x=532
-		y=67
-		width=115
-		height=51
-	}
-	"composite name"=""
-	children {
-		polygon {
-			object {
-				x=544
-				y=97
-				width=103
-				height=21
-			}
-			"basic attribute" {
-				clr=36
-			}
-			points {
-				(544,107)
-				(564,97)
-				(561,105)
-				(630,105)
-				(624,98)
-				(647,107)
-				(625,118)
-				(630,110)
-				(563,110)
-				(564,118)
-				(548,109)
-				(544,107)
-			}
-		}
-		text {
-			object {
-				x=532
-				y=68
-				width=28
-				height=43
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="+"
-		}
-		text {
-			object {
-				x=617
-				y=67
-				width=28
-				height=43
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="-"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-225&&A<-135ORA>135&&A<225"
-		chan="13BMD:m38.VAL"
-	}
-}
-composite {
-	object {
-		x=576
-		y=52
-		width=45
-		height=107
-	}
-	"composite name"=""
-	children {
-		polygon {
-			object {
-				x=576
-				y=73
-				width=44
-				height=71
-			}
-			"basic attribute" {
-				clr=30
-			}
-			points {
-				(576,73)
-				(577,102)
-				(581,89)
-				(609,133)
-				(598,133)
-				(620,144)
-				(617,123)
-				(613,132)
-				(585,87)
-				(594,85)
-				(576,73)
-			}
-		}
-		text {
-			object {
-				x=582
-				y=116
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="+"
-		}
-		text {
-			object {
-				x=592
-				y=52
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="-"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<225&&A>135ORA<-135&&A>-225"
-		chan="13BMD:m38"
-	}
-}
-composite {
-	object {
-		x=351
-		y=227
-		width=110
-		height=50
-	}
-	"composite name"=""
-	children {
-		polygon {
-			object {
-				x=351
-				y=256
-				width=103
-				height=21
-			}
-			"basic attribute" {
-				clr=30
-			}
-			points {
-				(454,266)
-				(432,256)
-				(435,264)
-				(366,264)
-				(372,257)
-				(351,266)
-				(371,277)
-				(366,269)
-				(433,269)
-				(432,277)
-				(448,268)
-				(454,266)
-			}
-		}
-		text {
-			object {
-				x=352
-				y=228
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="+"
-		}
-		text {
-			object {
-				x=432
-				y=227
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="-"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<-45&&A>-135"
-		chan="13BMD:m38.VAL"
-	}
-}
-text {
-	object {
-		x=552
-		y=157
-		width=20
-		height=38
-	}
-	"basic attribute" {
-		clr=30
-	}
-	"dynamic attribute" {
-		chan="X"
-	}
-	textix="Z2"
-}
-text {
-	object {
-		x=360
-		y=70
-		width=20
-		height=38
-	}
-	"basic attribute" {
-		clr=36
-	}
-	"dynamic attribute" {
-		chan="X"
-	}
-	textix="Z1"
-}
-composite {
-	object {
-		x=350
-		y=227
-		width=111
-		height=53
-	}
-	"composite name"=""
-	children {
-		polygon {
-			object {
-				x=350
-				y=259
-				width=103
-				height=21
-			}
-			"basic attribute" {
-				clr=30
-			}
-			points {
-				(453,269)
-				(431,259)
-				(434,267)
-				(365,267)
-				(371,260)
-				(350,269)
-				(370,280)
-				(365,272)
-				(432,272)
-				(431,280)
-				(447,271)
-				(453,269)
-			}
-		}
-		text {
-			object {
-				x=432
-				y=227
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="+"
-		}
-		text {
-			object {
-				x=354
-				y=230
-				width=29
-				height=43
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="-"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>45&&A<135"
-		chan="13BMD:m38.VAL"
-	}
-}
-composite {
-	object {
-		x=382
-		y=214
-		width=44
-		height=96
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=403
-				y=273
-				width=22
-				height=37
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="-"
-		}
-		polygon {
-			object {
-				x=382
-				y=230
-				width=44
-				height=71
-			}
-			"basic attribute" {
-				clr=36
-			}
-			points {
-				(382,301)
-				(383,272)
-				(387,285)
-				(415,241)
-				(404,241)
-				(426,230)
-				(423,251)
-				(419,242)
-				(391,287)
-				(400,289)
-				(382,301)
-			}
-		}
-		text {
-			object {
-				x=393
-				y=214
-				width=22
-				height=37
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="+"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<-45&&A>-135"
-		chan="13BMD:m38.VAL"
-	}
-}
-composite {
-	object {
-		x=384
-		y=215
-		width=44
-		height=95
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=391
-				y=215
-				width=22
-				height=37
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="-"
-		}
-		polygon {
-			object {
-				x=384
-				y=230
-				width=44
-				height=71
-			}
-			"basic attribute" {
-				clr=36
-			}
-			points {
-				(384,301)
-				(385,272)
-				(389,285)
-				(417,241)
-				(406,241)
-				(428,230)
-				(425,251)
-				(421,242)
-				(393,287)
-				(402,289)
-				(384,301)
-			}
-		}
-		text {
-			object {
-				x=406
-				y=273
-				width=22
-				height=37
-			}
-			"basic attribute" {
-				clr=36
-			}
-			textix="+"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>45&&A<135"
-		chan="13BMD:m38.VAL"
-	}
-}
-composite {
-	object {
-		x=439
-		y=322
+		x=461
+		y=319
 		width=109
 		height=81
 	}
@@ -2973,8 +1776,8 @@ composite {
 	children {
 		"message button" {
 			object {
-				x=439
-				y=322
+				x=461
+				y=319
 				width=109
 				height=81
 			}
@@ -2994,8 +1797,8 @@ composite {
 }
 "text entry" {
 	object {
-		x=711
-		y=273
+		x=719
+		y=276
 		width=92
 		height=29
 	}
@@ -3010,8 +1813,8 @@ composite {
 }
 "text entry" {
 	object {
-		x=727
-		y=301
+		x=735
+		y=304
 		width=60
 		height=28
 	}
@@ -3025,8 +1828,8 @@ composite {
 }
 "message button" {
 	object {
-		x=709
-		y=304
+		x=717
+		y=307
 		width=17
 		height=27
 	}
@@ -3040,8 +1843,8 @@ composite {
 }
 "message button" {
 	object {
-		x=786
-		y=303
+		x=794
+		y=306
 		width=17
 		height=28
 	}
@@ -3173,8 +1976,8 @@ composite {
 }
 "text update" {
 	object {
-		x=711
-		y=253
+		x=719
+		y=256
 		width=89
 		height=16
 	}
@@ -3204,8 +2007,8 @@ text {
 }
 text {
 	object {
-		x=708
-		y=222
+		x=716
+		y=225
 		width=79
 		height=26
 	}
@@ -3219,8 +2022,8 @@ text {
 }
 oval {
 	object {
-		x=449
-		y=548
+		x=471
+		y=545
 		width=13
 		height=15
 	}
@@ -3234,8 +2037,8 @@ oval {
 }
 oval {
 	object {
-		x=531
-		y=549
+		x=553
+		y=546
 		width=13
 		height=15
 	}
@@ -3249,8 +2052,8 @@ oval {
 }
 text {
 	object {
-		x=463
-		y=550
+		x=485
+		y=547
 		width=69
 		height=13
 	}
@@ -3452,35 +2255,6 @@ composite {
 composite {
 	object {
 		x=70
-		y=337
-		width=18
-		height=56
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=70
-				y=337
-				width=18
-				height=56
-			}
-			control {
-				chan="13BMD:Unidig2Bo10"
-				clr=0
-				bclr=34
-			}
-			press_msg="0"
-		}
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMD:Unidig2Bi10.VAL"
-	}
-}
-composite {
-	object {
-		x=70
 		y=283
 		width=18
 		height=56
@@ -3510,7 +2284,7 @@ composite {
 text {
 	object {
 		x=1
-		y=242
+		y=234
 		width=128
 		height=26
 	}
@@ -3844,66 +2618,20 @@ text {
 	limits {
 	}
 }
-composite {
+"message button" {
 	object {
-		x=478
-		y=103
-		width=34
-		height=31
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=478
-				y=103
-				width=34
-				height=31
-			}
-			control {
-				chan="13BMD:filter1sendCommand.VAL"
-				clr=14
-				bclr=35
-			}
-			label="In"
-			press_msg="I1"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>99"
-		chan="13BMD:m68.RBV"
-	}
-}
-composite {
-	object {
-		x=243
+		x=210
 		y=365
 		width=57
 		height=28
 	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=243
-				y=365
-				width=57
-				height=28
-			}
-			control {
-				chan="13BMD:m68.VAL"
-				clr=14
-				bclr=35
-			}
-			label="In"
-			press_msg="20"
-		}
+	control {
+		chan="13BMD:m35.VAL"
+		clr=14
+		bclr=35
 	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMD:filter1Status1"
-	}
+	label="In"
+	press_msg="0"
 }
 "related display" {
 	object {
@@ -3923,8 +2651,188 @@ composite {
 }
 composite {
 	object {
-		x=470
-		y=259
+		x=316
+		y=213
+		width=31
+		height=165
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=329
+				y=213
+				width=5
+				height=102
+			}
+			"basic attribute" {
+				clr=5
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=316
+				y=315
+				width=31
+				height=15
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		rectangle {
+			object {
+				x=316
+				y=324
+				width=31
+				height=47
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=316
+				y=363
+				width=31
+				height=15
+			}
+			"basic attribute" {
+				clr=32
+				width=5
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1"
+		chan="13BMD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=316
+		y=213
+		width=31
+		height=91
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=328
+				y=213
+				width=6
+				height=28
+			}
+			"basic attribute" {
+				clr=5
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=316
+				y=241
+				width=31
+				height=15
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		rectangle {
+			object {
+				x=316
+				y=250
+				width=31
+				height=47
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=316
+				y=289
+				width=31
+				height=15
+			}
+			"basic attribute" {
+				clr=32
+				width=5
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-84"
+		chan="13BMD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=301
+		y=178
+		width=60
+		height=50
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=310
+				y=178
+				width=47
+				height=19
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="check"
+		}
+		text {
+			object {
+				x=307
+				y=194
+				width=54
+				height=18
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="sample"
+		}
+		text {
+			object {
+				x=301
+				y=211
+				width=58
+				height=17
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="position"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-95ORA>-85&&A<85ORA>95"
+		chan="13BMD:m38.RBV"
+	}
+}
+composite {
+	object {
+		x=308
+		y=269
 		width=48
 		height=17
 	}
@@ -3932,8 +2840,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=470
-				y=261
+				x=308
+				y=271
 				width=48
 				height=14
 			}
@@ -3941,8 +2849,8 @@ composite {
 			children {
 				"message button" {
 					object {
-						x=470
-						y=261
+						x=308
+						y=271
 						width=48
 						height=14
 					}
@@ -3963,8 +2871,8 @@ composite {
 		}
 		composite {
 			object {
-				x=475
-				y=259
+				x=313
+				y=269
 				width=36
 				height=17
 			}
@@ -3972,8 +2880,8 @@ composite {
 			children {
 				"message button" {
 					object {
-						x=475
-						y=259
+						x=313
+						y=269
 						width=36
 						height=17
 					}
@@ -3994,7 +2902,1498 @@ composite {
 		}
 	}
 	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1"
+		chan="13BMD:m23.RBV"
+	}
+}
+text {
+	object {
+		x=282
+		y=381
+		width=107
+		height=38
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:m23.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=314
+		y=179
+		width=34
+		height=31
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=314
+				y=179
+				width=34
+				height=31
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=35
+			}
+			label="In"
+			press_msg="0."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-85&&A>-95ORA<95&&A>85"
+		chan="13BMD:m38.RBV"
+	}
+}
+composite {
+	object {
+		x=315
+		y=347
+		width=45
+		height=31
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=321
+				y=347
+				width=34
+				height=31
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=349
+				y=347
+				width=11
+				height=31
+			}
+			"basic attribute" {
+				clr=32
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=315
+				y=347
+				width=11
+				height=31
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1"
+		chan="13BMD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=316
+		y=277
+		width=45
+		height=31
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=322
+				y=277
+				width=34
+				height=31
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=277
+				width=11
+				height=31
+			}
+			"basic attribute" {
+				clr=32
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=316
+				y=277
+				width=11
+				height=31
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-84"
+		chan="13BMD:m23.RBV"
+	}
+}
+"text update" {
+	object {
+		x=302
+		y=212
+		width=55
+		height=14
+	}
+	monitor {
+		chan="13BMD:m23.RBV"
+		clr=50
+		bclr=14
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=314
+		y=148
+		width=33
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=314
+				y=148
+				width=33
+				height=30
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=55
+			}
+			label="Out"
+			press_msg="-85."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>5"
+		chan="13BMD:m68.RBV"
+	}
+}
+rectangle {
+	object {
+		x=363
+		y=110
+		width=352
+		height=149
+	}
+	"basic attribute" {
+		clr=17
+	}
+}
+"text entry" {
+	object {
+		x=600
+		y=162
+		width=91
+		height=28
+	}
+	control {
+		chan="13BMD:m51.VAL"
+		clr=14
+		bclr=50
+	}
+	clrmod="discrete"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=617
+		y=189
+		width=59
+		height=29
+	}
+	control {
+		chan="13BMD:m51.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=601
+		y=191
+		width=16
+		height=27
+	}
+	control {
+		chan="13BMD:m51.TWR"
+		clr=14
+		bclr=52
+	}
+	label="-"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=676
+		y=191
+		width=17
+		height=27
+	}
+	control {
+		chan="13BMD:m51.TWF"
+		clr=14
+		bclr=52
+	}
+	label="+"
+	press_msg="1"
+}
+oval {
+	object {
+		x=599
+		y=226
+		width=13
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:filter1Status1"
+		chan="13BMD:m51.HLS"
+	}
+}
+oval {
+	object {
+		x=681
+		y=227
+		width=13
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m51.LLS"
+	}
+}
+text {
+	object {
+		x=611
+		y=228
+		width=69
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m51.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=375
+		y=159
+		width=91
+		height=30
+	}
+	control {
+		chan="13BMD:m52.VAL"
+		clr=14
+		bclr=50
+	}
+	clrmod="discrete"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=392
+		y=186
+		width=59
+		height=29
+	}
+	control {
+		chan="13BMD:m52.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=374
+		y=188
+		width=17
+		height=28
+	}
+	control {
+		chan="13BMD:m52.TWR"
+		clr=14
+		bclr=52
+	}
+	label="-"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=447
+		y=188
+		width=18
+		height=28
+	}
+	control {
+		chan="13BMD:m52.TWF"
+		clr=14
+		bclr=52
+	}
+	label="+"
+	press_msg="1"
+}
+oval {
+	object {
+		x=372
+		y=226
+		width=13
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m52.HLS"
+	}
+}
+oval {
+	object {
+		x=457
+		y=227
+		width=13
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m52.LLS"
+	}
+}
+text {
+	object {
+		x=388
+		y=229
+		width=69
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m52.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=618
+		y=122
+		width=65
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:m51.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=391
+		y=228
+		width=65
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:m52.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=508
+		y=141
+		width=45
+		height=108
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=508
+				y=156
+				width=44
+				height=71
+			}
+			"basic attribute" {
+				clr=30
+			}
+			points {
+				(508,227)
+				(509,198)
+				(513,211)
+				(541,167)
+				(530,167)
+				(552,156)
+				(549,177)
+				(545,168)
+				(517,213)
+				(526,215)
+				(508,227)
+			}
+		}
+		text {
+			object {
+				x=514
+				y=141
+				width=29
+				height=43
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="+"
+		}
+		text {
+			object {
+				x=524
+				y=206
+				width=29
+				height=43
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="-"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>135&&A<225ORA<-135&&A>-225"
+		chan="13BMD:m38.RBV"
+	}
+}
+text {
+	object {
+		x=603
+		y=141
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="focus"
+}
+text {
+	object {
+		x=372
+		y=140
+		width=99
+		height=20
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="horisontal"
+}
+"text update" {
+	object {
+		x=655
+		y=144
+		width=55
+		height=14
+	}
+	monitor {
+		chan="13BMD:m51.RBV"
+		clr=50
+		bclr=13
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=374
+		y=126
+		width=55
+		height=14
+	}
+	monitor {
+		chan="13BMD:m52.RBV"
+		clr=50
+		bclr=13
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=438
+		y=121
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="m52"
+}
+"message button" {
+	object {
+		x=618
+		y=219
+		width=25
+		height=15
+	}
+	control {
+		chan="13BMD:m51.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=649
+		y=218
+		width=25
+		height=15
+	}
+	control {
+		chan="13BMD:m51.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".1"
+	press_msg=".1"
+}
+"message button" {
+	object {
+		x=392
+		y=216
+		width=25
+		height=15
+	}
+	control {
+		chan="13BMD:m52.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=422
+		y=216
+		width=25
+		height=15
+	}
+	control {
+		chan="13BMD:m52.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".1"
+	press_msg=".1"
+}
+composite {
+	object {
+		x=470
+		y=137
+		width=121
+		height=108
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=477
+				y=149
+				width=114
+				height=52
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=477
+						y=180
+						width=102
+						height=21
+					}
+					"basic attribute" {
+						clr=36
+					}
+					points {
+						(579,190)
+						(558,180)
+						(561,188)
+						(492,188)
+						(498,181)
+						(477,190)
+						(497,201)
+						(492,193)
+						(559,193)
+						(558,201)
+						(574,192)
+						(579,190)
+					}
+				}
+				text {
+					object {
+						x=562
+						y=150
+						width=28
+						height=44
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="+"
+				}
+				text {
+					object {
+						x=479
+						y=149
+						width=28
+						height=44
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="-"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>-45&&A<45"
+				chan="13BMD:m38.VAL"
+			}
+		}
+		composite {
+			object {
+				x=470
+				y=151
+				width=114
+				height=52
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=482
+						y=182
+						width=102
+						height=21
+					}
+					"basic attribute" {
+						clr=36
+					}
+					points {
+						(482,192)
+						(502,182)
+						(499,190)
+						(568,190)
+						(562,183)
+						(584,192)
+						(563,203)
+						(568,195)
+						(501,195)
+						(502,203)
+						(486,194)
+						(482,192)
+					}
+				}
+				text {
+					object {
+						x=470
+						y=152
+						width=28
+						height=44
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="+"
+				}
+				text {
+					object {
+						x=554
+						y=151
+						width=28
+						height=44
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="-"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>-225&&A<-135ORA>135&&A<225"
+				chan="13BMD:m38.VAL"
+			}
+		}
+		composite {
+			object {
+				x=505
+				y=137
+				width=45
+				height=108
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=505
+						y=158
+						width=44
+						height=71
+					}
+					"basic attribute" {
+						clr=30
+					}
+					points {
+						(505,158)
+						(506,187)
+						(510,174)
+						(538,218)
+						(527,218)
+						(549,229)
+						(546,208)
+						(542,217)
+						(514,172)
+						(523,170)
+						(505,158)
+					}
+				}
+				text {
+					object {
+						x=511
+						y=202
+						width=29
+						height=43
+					}
+					"basic attribute" {
+						clr=30
+					}
+					textix="+"
+				}
+				text {
+					object {
+						x=521
+						y=137
+						width=29
+						height=43
+					}
+					"basic attribute" {
+						clr=30
+					}
+					textix="-"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>-45&&A<45"
+				chan="13BMD:m38"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=480
+		y=137
+		width=114
+		height=97
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=480
+				y=158
+				width=109
+				height=51
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=480
+						y=188
+						width=102
+						height=21
+					}
+					"basic attribute" {
+						clr=30
+					}
+					points {
+						(582,198)
+						(561,188)
+						(564,196)
+						(495,196)
+						(501,189)
+						(480,198)
+						(500,209)
+						(495,201)
+						(562,201)
+						(561,209)
+						(577,200)
+						(582,198)
+					}
+				}
+				text {
+					object {
+						x=481
+						y=159
+						width=29
+						height=44
+					}
+					"basic attribute" {
+						clr=30
+					}
+					textix="+"
+				}
+				text {
+					object {
+						x=560
+						y=158
+						width=29
+						height=44
+					}
+					"basic attribute" {
+						clr=30
+					}
+					textix="-"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>45&&A<135"
+				chan="13BMD:m38.VAL"
+			}
+		}
+		composite {
+			object {
+				x=484
+				y=151
+				width=110
+				height=54
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=484
+						y=184
+						width=102
+						height=21
+					}
+					"basic attribute" {
+						clr=30
+					}
+					points {
+						(586,194)
+						(565,184)
+						(568,192)
+						(499,192)
+						(505,185)
+						(484,194)
+						(504,205)
+						(499,197)
+						(566,197)
+						(565,205)
+						(581,196)
+						(586,194)
+					}
+				}
+				text {
+					object {
+						x=565
+						y=151
+						width=29
+						height=44
+					}
+					"basic attribute" {
+						clr=30
+					}
+					textix="+"
+				}
+				text {
+					object {
+						x=488
+						y=154
+						width=29
+						height=44
+					}
+					"basic attribute" {
+						clr=30
+					}
+					textix="-"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A<-45&&A>-135"
+				chan="13BMD:m38.VAL"
+			}
+		}
+		composite {
+			object {
+				x=516
+				y=137
+				width=44
+				height=97
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=537
+						y=197
+						width=22
+						height=37
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="-"
+				}
+				polygon {
+					object {
+						x=516
+						y=153
+						width=44
+						height=71
+					}
+					"basic attribute" {
+						clr=36
+					}
+					points {
+						(516,224)
+						(517,195)
+						(521,208)
+						(549,164)
+						(538,164)
+						(560,153)
+						(557,174)
+						(553,165)
+						(525,210)
+						(534,212)
+						(516,224)
+					}
+				}
+				text {
+					object {
+						x=527
+						y=137
+						width=22
+						height=37
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="+"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A<-45&&A>-135"
+				chan="13BMD:m38.VAL"
+			}
+		}
+		composite {
+			object {
+				x=519
+				y=138
+				width=44
+				height=96
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=526
+						y=138
+						width=22
+						height=37
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="-"
+				}
+				polygon {
+					object {
+						x=519
+						y=153
+						width=44
+						height=71
+					}
+					"basic attribute" {
+						clr=36
+					}
+					points {
+						(519,224)
+						(520,195)
+						(524,208)
+						(552,164)
+						(541,164)
+						(563,153)
+						(560,174)
+						(556,165)
+						(528,210)
+						(537,212)
+						(519,224)
+					}
+				}
+				text {
+					object {
+						x=541
+						y=197
+						width=22
+						height=37
+					}
+					"basic attribute" {
+						clr=36
+					}
+					textix="+"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>45&&A<135"
+				chan="13BMD:m38.VAL"
+			}
+		}
+	}
+}
+polygon {
+	object {
+		x=571
+		y=319
+		width=19
+		height=84
+	}
+	"basic attribute" {
+		clr=60
+	}
+	points {
+		(581,319)
+		(571,334)
+		(579,332)
+		(579,389)
+		(573,384)
+		(581,403)
+		(590,385)
+		(583,389)
+		(583,333)
+		(590,334)
+		(582,322)
+		(581,319)
+	}
+}
+text {
+	object {
+		x=594
+		y=310
+		width=64
+		height=20
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="vertical"
+}
+"text entry" {
+	object {
+		x=592
+		y=328
+		width=81
+		height=28
+	}
+	control {
+		chan="13BMD:m25.VAL"
+		clr=14
+		bclr=50
+	}
+	clrmod="discrete"
+	limits {
+	}
+}
+oval {
+	object {
+		x=586
+		y=414
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m25.HLS"
+	}
+}
+oval {
+	object {
+		x=667
+		y=414
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m25.LLS"
+	}
+}
+text {
+	object {
+		x=599
+		y=416
+		width=75
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m25.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=599
+		y=417
+		width=71
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:m25.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=647
+		y=293
+		width=36
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="m25"
+}
+"text update" {
+	object {
+		x=586
+		y=300
+		width=55
+		height=14
+	}
+	monitor {
+		chan="13BMD:m25.RBV"
+		clr=50
+		bclr=14
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=593
+		y=366
+		width=51
+		height=52
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=593
+				y=382
+				width=51
+				height=17
+			}
+			control {
+				chan="13BMD:m25.TWV"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=594
+				y=401
+				width=49
+				height=17
+			}
+			control {
+				chan="13BMD:m25.TWR"
+				clr=14
+				bclr=52
+			}
+			label="\/"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=593
+				y=366
+				width=51
+				height=16
+			}
+			control {
+				chan="13BMD:m25.TWF"
+				clr=14
+				bclr=52
+			}
+			label="/\"
+			press_msg="1"
+		}
+	}
+}
+"message button" {
+	object {
+		x=646
+		y=376
+		width=33
+		height=15
+	}
+	control {
+		chan="13BMD:m25.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=646
+		y=393
+		width=33
+		height=15
+	}
+	control {
+		chan="13BMD:m25.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".1"
+	press_msg=".1"
+}
+composite {
+	object {
+		x=843
+		y=325
+		width=53
+		height=27
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=843
+				y=325
+				width=53
+				height=27
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=843
+						y=325
+						width=53
+						height=27
+					}
+					control {
+						chan="13BMD:filter1sendCommand.VAL"
+						clr=19
+						bclr=55
+					}
+					label="Open"
+					press_msg="R4"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A<-20"
+				chan="13BMD:m23.RBV"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bo10.VAL"
+	}
+}
+composite {
+	object {
+		x=70
+		y=337
+		width=18
+		height=56
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=70
+				y=337
+				width=18
+				height=56
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=70
+						y=337
+						width=18
+						height=56
+					}
+					control {
+						chan="13BMD:Unidig2Bo10"
+						clr=0
+						bclr=34
+					}
+					press_msg="0"
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13BMD:Unidig2Bi10.VAL"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:filter1Status4"
+	}
+}
+text {
+	object {
+		x=66
+		y=372
+		width=102
+		height=19
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:filter1Status4"
+	}
+	textix="shutter open"
+}
+rectangle {
+	object {
+		x=58
+		y=359
+		width=1088
+		height=6
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:filter1Status4"
 	}
 }

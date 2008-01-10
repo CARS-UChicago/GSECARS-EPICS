@@ -1,12 +1,12 @@
 
 file {
-	name="\\cars5\users\epics\adl\13BMC_Unidig_atten_arm.adl"
+	name="J:\epics\support\CARS\1-5\CARSApp\op\adl\13BMC_Unidig_atten_arm.adl"
 	version=020306
 }
 display {
 	object {
-		x=108
-		y=278
+		x=105
+		y=503
 		width=409
 		height=600
 	}
@@ -87,6 +87,66 @@ display {
 		1a7309,
 	}
 }
+oval {
+	object {
+		x=123
+		y=114
+		width=19
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(R)Bi4.VAL"
+	}
+}
+oval {
+	object {
+		x=122
+		y=223
+		width=19
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(R)Bi11.VAL"
+	}
+}
+oval {
+	object {
+		x=122
+		y=223
+		width=19
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)$(R)Bi5.VAL"
+	}
+}
+oval {
+	object {
+		x=123
+		y=114
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)$(R)Bi4.VAL"
+	}
+}
 text {
 	object {
 		x=77
@@ -126,7 +186,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(P)$(R)Bi8.VAL"
+		chan="$(P)$(R)Bi0.VAL"
 	}
 }
 text {
@@ -139,7 +199,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="8"
+	textix="0"
 	align="horiz. centered"
 }
 oval {
@@ -167,7 +227,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="9"
+	textix="4"
 	align="horiz. centered"
 }
 oval {
@@ -197,7 +257,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(P)$(R)Bi10.VAL"
+		chan="$(P)$(R)Bi1.VAL"
 	}
 }
 text {
@@ -210,38 +270,8 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="10"
+	textix="1"
 	align="horiz. centered"
-}
-oval {
-	object {
-		x=122
-		y=223
-		width=19
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(R)Bi11.VAL"
-	}
-}
-oval {
-	object {
-		x=122
-		y=223
-		width=19
-		height=20
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(P)$(R)Bi11.VAL"
-	}
 }
 text {
 	object {
@@ -253,7 +283,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="11"
+	textix="5"
 	align="horiz. centered"
 }
 "choice button" {
@@ -264,7 +294,7 @@ text {
 		height=30
 	}
 	control {
-		chan="$(P)$(R)Bo11"
+		chan="$(P)$(R)Bo5"
 		clr=14
 		bclr=4
 	}
@@ -296,7 +326,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(P)$(R)Bi12.VAL"
+		chan="$(P)$(R)Bi2.VAL"
 	}
 }
 text {
@@ -309,7 +339,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="12"
+	textix="2"
 	align="horiz. centered"
 }
 oval {
@@ -339,7 +369,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(P)$(R)Bi13.VAL"
+		chan="$(P)$(R)Bi6.VAL"
 	}
 }
 text {
@@ -352,7 +382,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="13"
+	textix="6"
 	align="horiz. centered"
 }
 "choice button" {
@@ -363,7 +393,7 @@ text {
 		height=30
 	}
 	control {
-		chan="$(P)$(R)Bo13"
+		chan="$(P)$(R)Bo6"
 		clr=14
 		bclr=4
 	}
@@ -395,7 +425,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(P)$(R)Bi14.VAL"
+		chan="$(P)$(R)Bi3.VAL"
 	}
 }
 text {
@@ -408,7 +438,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="14"
+	textix="3"
 	align="horiz. centered"
 }
 oval {
@@ -438,7 +468,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(P)$(R)Bi15.VAL"
+		chan="$(P)$(R)Bi7.VAL"
 	}
 }
 text {
@@ -451,7 +481,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="15"
+	textix="7"
 	align="horiz. centered"
 }
 "choice button" {
@@ -462,7 +492,7 @@ text {
 		height=30
 	}
 	control {
-		chan="$(P)$(R)Bo15"
+		chan="$(P)$(R)Bo7"
 		clr=14
 		bclr=4
 	}
@@ -605,21 +635,6 @@ text {
 	}
 	textix="Channel 4"
 }
-oval {
-	object {
-		x=123
-		y=114
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(R)Bi9.VAL"
-	}
-}
 "choice button" {
 	object {
 		x=118
@@ -628,7 +643,7 @@ oval {
 		height=30
 	}
 	control {
-		chan="$(P)$(R)Bo9"
+		chan="$(P)$(R)Bo4"
 		clr=14
 		bclr=4
 	}

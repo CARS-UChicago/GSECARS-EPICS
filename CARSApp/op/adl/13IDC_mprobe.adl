@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13IDC_mprobe.adl"
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13IDC_mprobe.adl"
 	version=030000
 }
 display {
 	object {
-		x=192
-		y=59
+		x=142
+		y=101
 		width=595
 		height=276
 	}
@@ -202,6 +202,11 @@ rectangle {
 		name="scanner.adl"
 		args="P=13XRM:, Q=edb"
 	}
+	display[6] {
+		label="OLD TT Slits"
+		name="4motors.adl"
+		args="P=13IDC:, TITLE=OLD_Slits, M1=m9, M2=m10, M3=m11, M4=m12"
+	}
 	clr=54
 	bclr=1
 	label="-Setup"
@@ -225,8 +230,8 @@ rectangle {
 	}
 	display[2] {
 		label="Table Top Slits"
-		name="4motors.adl"
-		args="P=13IDC:, TITLE=Table_Top_Slits, M1=m9, M2=m10, M3=m11, M4=m12"
+		name="TableSlits.adl"
+		args="P=13IDC:, V=TTVSlit, H=TTHSlit, mYp=m86, mYn=m85, mXn=m88, mXp=m87, SLIT=Table_Top_Slits"
 	}
 	display[3] {
 		label="Vertical KB Mirror"
@@ -245,8 +250,8 @@ rectangle {
 	}
 	display[6] {
 		label="Microscope motors"
-		name="4motors.adl"
-		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m81, M3=m82, M4=m83"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m81, M3=m82, M4=m13, M5=m14, M6=m82"
 	}
 	display[7] {
 		label="XPS Motors"
@@ -866,11 +871,12 @@ rectangle {
 		args="P=13IDC:, S=scaler1"
 	}
 	display[1] {
-		name="16element_dxp.adl"
-		args="P=13GE2:med:"
+		label="Quad Vortex"
+		name="4element_dxp.adl"
+		args="P=dxpXMAP:, D=dxp, M=mca"
 	}
 	display[2] {
-		label="Vortex"
+		label="Single Vortex"
 		name="single_dxp_top.adl"
 		args="P=13XRM:, M=mca1, D=dxp1"
 	}
@@ -882,7 +888,7 @@ rectangle {
 	display[4] {
 		label="XRF Collector"
 		name="XRF_Collect.adl"
-		args="P=13XRM:, Q=XRF, M=mca1"
+		args="P=13XRM:, Q=XRF, D=dxpXMAP:"
 	}
 	display[5] {
 		label="ccd"
@@ -1037,7 +1043,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD)Erase"
+		chan="$(FD):EraseAll"
 		clr=54
 		bclr=1
 	}
@@ -1052,7 +1058,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD)EraseStart"
+		chan="$(FD):EraseStart"
 		clr=54
 		bclr=1
 	}
@@ -1067,7 +1073,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD)Stop"
+		chan="$(FD):StopAll"
 		clr=54
 		bclr=1
 	}
@@ -1086,7 +1092,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(FD).ACQG"
+		chan="$(FD):Acquiring"
 	}
 	textix="Done"
 }
@@ -1102,7 +1108,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(FD).ACQG"
+		chan="$(FD):Acquiring"
 	}
 	textix="Acquiring"
 }
@@ -1114,7 +1120,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(FD).ERTM"
+		chan="$(FD):ElapsedReal"
 		clr=54
 		bclr=0
 	}
@@ -1130,7 +1136,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD).PRTM"
+		chan="$(FD):PresetReal"
 		clr=14
 		bclr=0
 	}
@@ -1157,7 +1163,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(FD).IDTIM"
+		chan="$(FD):DeadTime"
 		clr=54
 		bclr=0
 	}

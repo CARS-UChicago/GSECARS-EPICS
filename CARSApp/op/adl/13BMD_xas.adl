@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/1-4/CARSApp/op/adl/13BMD_xas.adl"
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13BMD_xas.adl"
 	version=030000
 }
 display {
 	object {
-		x=959
-		y=111
+		x=98
+		y=470
 		width=460
 		height=125
 	}
@@ -184,7 +184,7 @@ display {
 	display[0] {
 		label="Sample Stage"
 		name="SampleXYZTheta.adl"
-		args="P=13BMD:, X=m70, Y=m34, Z=m33, TH=m40, CHI=m39"
+		args="P=13BMD:, X=m34, Y=m33, Z=m35, TH=m40, CHI=m39"
 	}
 	display[1] {
 		label="BM D Slits"
@@ -430,12 +430,22 @@ rectangle {
 	display[2] {
 		label="16 element (new)"
 		name="16element_dxp.adl"
-		args="P=13GE2:med:"
+		args="P=13GE2:med:, D=dxp, M=mca"
 	}
 	display[4] {
 		label="Video Switch"
 		name="Pelco_CM6700.adl"
 		args="P=13BMD:, R=Pelco1"
+	}
+	display[5] {
+		label="XRF Collector"
+		name="XRF_Collect.adl"
+		args="P=13XRM:, Q=XRF, D=dxpXMAP:"
+	}
+	display[6] {
+		label="MAR 345"
+		name="MAR345_Collect.adl"
+		args="P=13XRM:, Q=MAR345"
 	}
 	clr=14
 	bclr=2
