@@ -53,7 +53,7 @@ strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
 dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
+#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
 
 # Port 3 Encoder readout unit
 #dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,PORT=serial4")
@@ -67,7 +67,7 @@ MCB4BSetup(1, 10)
 # MCB-4B driver configuration parameters:
 #     (1) controller
 #     (2) asyn port name (e.g. serial1)
-MCB4BConfig(0, "serial4")
+#MCB4BConfig(0, "serial4")
 
 # Serial 5, 6 Keithley Multimeter
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,PORT=serial5")
@@ -79,13 +79,13 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=seri
 # MM4000 driver setup parameters:
 #     (1) maximum # of controllers,
 #     (2) motor task polling rate (min=1Hz, max=60Hz)
-MM4000Setup(1, 10)
+#MM4000Setup(1, 10)
 
 # MM4000 driver configuration parameters:
 #     (1) controller
 #     (2) asyn port name (e.g. serial1 or gpib1)
 #     (3) GPIB address (0 for serial)
-MM4000Config(0, "serial7", 0)
+#MM4000Config(0, "serial7", 0)
 
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
@@ -110,5 +110,5 @@ dbLoadTemplate("Pelco_CM6700.substitutions")
 #dbLoadTemplate("SR630.substitutions")
 
 # GPIB 3 is Fluke multimeter
-dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
+#dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
 
