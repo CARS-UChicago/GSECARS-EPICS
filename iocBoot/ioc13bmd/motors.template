@@ -17,7 +17,7 @@
 #  41-48     5        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
 #  49-56     6        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
 #  57-64     7        F         LVP CCD stage (57-59), D-DIA diff. rams (60: bottom; 61: top), LVP Ion Chamber (62), High-P Tomo Rot. (63: top; 64: bott; both bipolar), 
-#  65-72     8	    X	        DAC Brill (65-68), 69 free, Detector position(70), microscope zoom(71), LVP slit laser (72) 
+#  65-72     8	      X	        DAC Brill (65-68), 69 free, Detector position(70), microscope zoom(71), LVP slit laser (72) 
 #19-Jul-2004,YW
 # Previous definitions:
 # Motors   Card    Patch panel  Common use
@@ -52,7 +52,8 @@ pattern
 #LVP ccd stage m11, m14 and 15
 #changed by Vitali 11.14.05 for CDW experiment, !!!current 4A!!!
 {13BMD:,  m11, "OMS VME58",  1,  2, "horisontal X1",     mm,    Pos,   0.2,   .1,    .25,   0.02,   1,     .2,     400,    .1,  3,      6,     -6}
-{13BMD:,  m14, "OMS VME58",  1,  5, "Phosphor X",        mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
+#Claim back m14 (E6) for LVP phorphos Y, Oct 15, 07
+{13BMD:,  m14, "OMS VME58",  1,  5, "Phosphor Y",        mm,    Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
 
 #changed by Vitali 11.14.05 for CDW experiment, !!!current 4A!!!
 {13BMD:,  m15, "OMS VME58",  1,  6, "horisontal X2",     mm,    Pos,   0.2,   .1,    .25,   0.02,   1,     .2,     400,    .1,  3,      6,     -6}
@@ -100,13 +101,13 @@ pattern
 
 # Motors 33-40, patch panel A.  This should only be used for 0.5A motors to save hassle
  
-#{13BMD:,  m33, "OMS VME58",   4,  0, "Sample X",   mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+#{13BMD:,  m33, "OMS VME58",   4,  0, "Sample X",   mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 #{13BMD:,  m34, "OMS VME58",   4,  1, "Sample Y",   mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 #{13BMD:,  m35, "OMS VME58",   4,  2, "Sample Z",   mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 									    		      	   
 # CCD camera stage 
 ##< MN Dec-2004 using a 0.1micron y stage
-{13BMD:,  m33, "OMS VME58",   4,  0, "CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m33, "OMS VME58",   4,  0, "CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # Borrow m33 for LVP phosphor assembly, Nov 2006, YW
 #{13BMD:,  m33, "OMS VME58",   4,  0, "DDIA Phorphor Y",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 ## {13BMD:,  m34, "OMS VME58",   4,  1, "CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  150,  0}
@@ -163,7 +164,7 @@ pattern
 # LVP CCD camera stage 15-Sept-2003 TU
 # DDIA diff RAMS, 17-Nov-2003 YW
 # Hi-P Tomo Rotations, 19-Jul-2004 YW
-{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
 {13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio
@@ -209,8 +210,9 @@ pattern
 {13BMD:,  m76, "OMS VME58",  9,  3, "Polarization",         deg,    Pos, 10.0,  5.0, 10.0,  0,   1,  5.0,  10,    .1,     3,  360.,  -360.}
 #MFN newport stage 25 mm travel
 {13BMD:,  m77, "OMS VME58",  9,  4, "DAC microscope Z",     mm,     Neg,  .2,      .01,  .2,  0,   1, .2,  48, .003546,  3,   24,    0}
+#Newport actuator, vitali 7-24-2007
+{13BMD:,  m78, "OMS VME58",  9,  5, "YAG Focus",        microns, Pos,  200.0,  10  .2,  0, 10,  .2,  10240,  500,   1,    27000,  -150}
 #changed by vitali for Peter's slit
-{13BMD:,  m78, "OMS VME58",  9,  5, "Hw UpStream",      microns, Neg, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
 {13BMD:,  m79, "OMS VME58",  9,  6, "Vp UpStream",      microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
 {13BMD:,  m80, "OMS VME58",  9,  7, "Vw UpStream",      microns, Neg, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
 
