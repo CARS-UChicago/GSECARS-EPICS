@@ -58,13 +58,12 @@ MM4000Config(1, "serial14", 0)
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
 str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=serial13,")
-strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=2000,NPULSE=2000,PORT=serial14,")
-strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-strcat(str, ",M1=Y1,M2=Y2,M3=Y3,M4=Rotation AY,M5=X translation,M6=Sample X,M7=Sample Y,M8=Sample Z")
-dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str)
+strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,")
+strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
+dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
+strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=2000,NPULSE=2000,")
+strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
+dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
 
 # Serial port 16 is for the SMART PC
 str=malloc(256)
