@@ -30,7 +30,8 @@ set_pass1_restoreFile("auto_settings.sav")
 set_requestfile_path("./")
 set_requestfile_path("$(AUTOSAVE)", "asApp/Db")
 set_requestfile_path("$(CALC)",     "calcApp/Db")
-set_requestfile_path("$(PILATUS)",      "pilatusApp/Db")
+set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
+set_requestfile_path("$(PILATUS)",  "pilatusApp/Db")
 
 ###
 # Load the save/restore status PVs
@@ -41,6 +42,9 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=GSE-PILATUS2:")
 dbLoadTemplate("GSE-PILATUS2_all.subs")
 # Load an asyn record for debugging
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=GSE-PILATUS2:,R=asyn1,PORT=pilatus,ADDR=0,IMAX=80,OMAX=80")
+
+# Load sscan records for scanning
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=GSE-PILATUS2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=2048")
 
 ###
 # Set debugging flags if desired
