@@ -91,7 +91,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_80.db","P=13BMD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=4,MAXPTS4=3,MAXPTSH=10")
 
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13BMD:,Q=edb")
 
@@ -168,8 +168,13 @@ seq(&roperCCD,"P=13BMD:,C=ccd2:")
 #    sets this time.)
 # 3: if specified time has passed, wait for space in queue, then send message
 # else: don't send message
-#debug_saveData = 2
+debug_saveData = 2
+##{
+##  MN 13-Dec-2007 
+## altered saveDataExtraPVs
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=13BMD:")
+saveData_Init("saveDataExtraPVsMN.req", "P=13BMD:")
+##}
+
 #saveData_PrintScanInfo("13BMD:scan1")
