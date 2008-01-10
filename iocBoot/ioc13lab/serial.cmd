@@ -19,8 +19,8 @@ tyGSAsynInit("serial15", "UART1", 6, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial16", "UART1", 7, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 
 # Set up first 2 ports on Moxa box
-drvAsynIPPortConfigure("serial20", "164.54.160.50:4001", 0, 0)
-drvAsynIPPortConfigure("serial21", "164.54.160.50:4002", 0, 0)
+#drvAsynIPPortConfigure("serial20", "164.54.160.50:4001", 0, 0)
+#drvAsynIPPortConfigure("serial21", "164.54.160.50:4002", 0, 0)
 # Make these ports available from the iocsh command line
 #asynOctetConnect("serial20", "serial20", 0, 1, 80)
 #asynOctetConnect("serial21", "serial21", 0, 1, 80)
