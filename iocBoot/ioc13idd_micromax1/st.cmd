@@ -1,7 +1,7 @@
 < envPaths
 errlogInit(20000)
 dbLoadDatabase("$(CCD)/dbd/roperCCDApp.dbd")
-roperCCDAppWin32_registerRecordDeviceDriver(pdbbase) 
+roperCCDApp_registerRecordDeviceDriver(pdbbase) 
 dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db","P=13IDDMicroMax1:,C=det1:")
 
 set_requestfile_path("./")
