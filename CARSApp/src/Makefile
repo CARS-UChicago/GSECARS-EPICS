@@ -73,19 +73,19 @@ CARSApp_vxWorks_LIBS += ipUnidig
 CARSApp_vxWorks_LIBS += dac128V
 CARSApp_vxWorks_LIBS += quadEM
 CARSApp_vxWorks_LIBS += camac devCamac
-CARSApp_vxWorks_LIBS += dxp handelSrc
+CARSApp_vxWorks_LIBS += dxp handel
 CARSApp_vxWorks_LIBS += oms
 CARSApp_vxWorks_LIBS += TyGSOctal Ipac
 CARSApp_vxWorks_LIBS += vxStats
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARSApp_Linux_LIBS += dxp handelSrc
+CARSApp_Linux_LIBS += dxp handel
 CARSApp_Linux_LIBS += mcaCanberra
 
-CARSApp_cygwin32_LIBS += dxp handelSrc
+CARSApp_cygwin32_LIBS += dxp handel
 
-CARSApp_WIN32_LIBS    += dxp handelSrc
+CARSApp_WIN32_LIBS    += dxp handel
 
 CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)
 CARSApp_LIBS_vxWorks  = $(CARSApp_vxWorks_LIBS)  $(CARSApp_Common_LIBS)
@@ -94,6 +94,7 @@ CARSApp_LIBS_cygwin32 = $(CARSApp_cygwin32_LIBS) $(CARSApp_Common_LIBS)
 CARSApp_LIBS_WIN32    = $(CARSApp_WIN32_LIBS)   $(CARSApp_Common_LIBS)
 
 CARSApp_SYS_LIBS_Linux    += net pcap
+CARSApp_SYS_LIBS_Linux    += usb
 CARSApp_SYS_LIBS_cygwin32 += rpc DLPORTIO
 CARSApp_LIBS_WIN32        += DLPORTIO
 
