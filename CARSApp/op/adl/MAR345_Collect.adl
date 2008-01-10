@@ -1,0 +1,543 @@
+
+file {
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/MAR345_Collect.adl"
+	version=030000
+}
+display {
+	object {
+		x=622
+		y=563
+		width=400
+		height=400
+	}
+	clr=14
+	bclr=2
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=8
+		y=8
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="MAR345 Collect"
+}
+"text entry" {
+	object {
+		x=95
+		y=100
+		width=300
+		height=25
+	}
+	control {
+		chan="$(P)host"
+		clr=14
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=95
+		y=130
+		width=300
+		height=25
+	}
+	control {
+		chan="$(P)dir"
+		clr=14
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=95
+		y=160
+		width=300
+		height=25
+	}
+	control {
+		chan="$(P)filebase"
+		clr=14
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=105
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Host"
+}
+text {
+	object {
+		x=10
+		y=135
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Folder"
+}
+text {
+	object {
+		x=10
+		y=165
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Name"
+}
+"text entry" {
+	object {
+		x=95
+		y=190
+		width=140
+		height=25
+	}
+	control {
+		chan="$(P)fileext"
+		clr=14
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=195
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Extension"
+}
+"text update" {
+	object {
+		x=5
+		y=375
+		width=390
+		height=18
+	}
+	monitor {
+		chan="$(P)Status"
+		clr=24
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=5
+		y=35
+		width=390
+		height=15
+	}
+	monitor {
+		chan="$(P)MSG"
+		clr=24
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=170
+		y=10
+		width=225
+		height=18
+	}
+	monitor {
+		chan="$(P)TSTAMP"
+		clr=24
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+menu {
+	object {
+		x=95
+		y=65
+		width=180
+		height=28
+	}
+	control {
+		chan="$(P)Mode"
+		clr=54
+		bclr=1
+	}
+}
+text {
+	object {
+		x=10
+		y=270
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Shutter"
+}
+text {
+	object {
+		x=10
+		y=230
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Exposure Time (s)"
+}
+"message button" {
+	object {
+		x=5
+		y=310
+		width=130
+		height=28
+	}
+	control {
+		chan="$(P)SaveImage"
+		clr=14
+		bclr=55
+	}
+	label="Save Image"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=300
+		y=190
+		width=90
+		height=28
+	}
+	control {
+		chan="$(P)Erase"
+		clr=14
+		bclr=55
+	}
+	label="Erase"
+	press_msg="1"
+}
+text {
+	object {
+		x=10
+		y=70
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+}
+"message button" {
+	object {
+		x=300
+		y=225
+		width=90
+		height=28
+	}
+	control {
+		chan="$(P)Abort"
+		clr=14
+		bclr=22
+	}
+	label="Abort"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=165
+		y=265
+		width=70
+		height=28
+	}
+	control {
+		chan="$(P)Shutter"
+		clr=14
+		bclr=16
+	}
+	label="Open"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=240
+		y=265
+		width=70
+		height=28
+	}
+	control {
+		chan="$(P)Shutter"
+		clr=14
+		bclr=22
+	}
+	label="Close"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=5
+		y=340
+		width=130
+		height=28
+	}
+	control {
+		chan="$(P)Collect"
+		clr=14
+		bclr=55
+	}
+	label="Collect"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=150
+		y=225
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P)ExposureTime"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=140
+		y=345
+		width=240
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="(Open,Expose,Close,Save Image)"
+}
+rectangle {
+	object {
+		x=395
+		y=260
+		width=2
+		height=40
+	}
+	"basic attribute" {
+		clr=4
+	}
+	"dynamic attribute" {
+		chan="$(P)$(Q):Shutter"
+	}
+}
+text {
+	object {
+		x=140
+		y=315
+		width=180
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Save Current Image"
+}
+rectangle {
+	object {
+		x=5
+		y=300
+		width=390
+		height=2
+	}
+	"basic attribute" {
+		clr=4
+	}
+	"dynamic attribute" {
+		chan="$(P)$(Q):Shutter"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=260
+		width=390
+		height=2
+	}
+	"basic attribute" {
+		clr=4
+	}
+	"dynamic attribute" {
+		chan="$(P)$(Q):Shutter"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=260
+		width=2
+		height=40
+	}
+	"basic attribute" {
+		clr=4
+	}
+	"dynamic attribute" {
+		chan="$(P)$(Q):Shutter"
+	}
+}
+"text update" {
+	object {
+		x=90
+		y=270
+		width=65
+		height=18
+	}
+	monitor {
+		chan="$(P)ShutterState"
+		clr=14
+		bclr=1
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=295
+		y=310
+		width=90
+		height=28
+	}
+	control {
+		chan="$(P)INFO1"
+		clr=14
+		bclr=55
+	}
+	label="Restart"
+	press_msg="stop"
+}
+"related display" {
+	object {
+		x=320
+		y=265
+		width=70
+		height=30
+	}
+	display[0] {
+		label="MAR345 Setup"
+		name="MAR345_Setup.adl"
+		args="P=$(P)"
+	}
+	clr=14
+	bclr=55
+	label="-Setup"
+}
