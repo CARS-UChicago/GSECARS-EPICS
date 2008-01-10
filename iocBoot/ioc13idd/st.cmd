@@ -23,6 +23,26 @@ dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDD:,S=scaler1,OUT=#C0 S0 @,FRE
 # MAR345 shutter
 dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
 
+
+##==== XPS Motors    ==================================
+XPSSetup(1)
+#    card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+XPSConfig(0, "164.54.160.34", 5001, 8, 10, 200)
+
+# asyn port, driver name, controller index, max. axes)
+drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
+ XPSInterpose("XPS1")
+
+# configure axes
+#card, axis, groupName.positionerName, steps/rev
+XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
+XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
+XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
+# XPSConfigAxis(0,3,"GROUP4.POSITIONER",  2000)  
+# XPSConfigAxis(0,4,"GROUP5.POSITIONER",  2000)  
+# XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000)  
+##=====================================================
+
 dbLoadTemplate("motors.template")
 
 
@@ -59,7 +79,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_4,DTYP=asynMCA,NCHAN
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in share/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_72.db","P=13IDD:")
+dbLoadRecords("$(STD)/stdApp/Db/all_com_88.db","P=13IDD:")
 
 # Laser PID control
 dbLoadTemplate("laser_pid.template")
@@ -111,7 +131,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDD:")
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(9, 0x4000, 190, 5, 10)
+oms58Setup(10, 0x4000, 190, 5, 10)
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
