@@ -112,14 +112,42 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 # The required command string is longer than the vxWorks command line, 
 # must use malloc and strcpy, strcat. Some of the macros don't apply
 
-#str = malloc(500)
-#strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
-#strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
+str = malloc(500)
+strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
+strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
 #dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
 
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
+
+
+# OMS MAXv driver setup parameters:
+#     (1)number of cards in array.
+#     (2)VME Address Type (16,24,32).
+#     (3)Base Address on 4K (0x1000) boundary.
+#     (4)interrupt vector (0=disable or  64 - 255).
+#     (5)interrupt level (1 - 6).
+#     (6)motor task polling rate (min=1Hz,max=60Hz).
+MAXvSetup(1, 16, 0x9000, 190, 5, 10)
+
+drvMAXvdebug=0
+
+# OMS MAXv configuration string:
+#     (1) number of card being configured (0-14).
+#     (2) configuration string; axis type (PSO/PSE/PSM) MUST be set here.
+#         For example, set which TTL signal level defines
+#         an active limit switch.  Set X,Y,Z,T to active low and set U,V,R,S
+#         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
+#         User's Manual for LL/LH and PSO/PSE/PSM commands.
+#config0="AX LL PSO; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+#!config0="AX LH PSM; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+
+# Set all axes to open-loop stepper and active low limits
+#config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
+config0="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+MAXvConfig(0, config0)
 
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),
@@ -201,9 +229,9 @@ saveData_Init("saveDataExtraPVs.req", "P=13BMC:")
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
 
 # Trajectory scanning with XPS
-#str = malloc(500)
-#strcpy(str, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,")
-#strcat(str, "PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
+str = malloc(500)
+strcpy(str, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,")
+strcat(str, "PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
 #seq(&XPS_trajectoryScan, str)
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
