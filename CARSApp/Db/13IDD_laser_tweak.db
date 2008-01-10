@@ -1,0 +1,18 @@
+# This is a database that tweaks 2 lasers up and down via DACs
+# The 2 DACs are the ones controlling the laser
+record(dfanout,"$(P)$(R)TweakUp") {
+        field(VAL,  "1")
+        field(OUTA, "$(P)$(DAC1)_tweak.B PP MS")
+        field(OUTB, "$(P)$(DAC2)_tweak.B PP MS")
+}
+
+record(dfanout,"$(P)$(R)TweakDown") {
+        field(VAL,  "1")
+        field(OUTA, "$(P)$(DAC1)_tweak.A PP MS")
+        field(OUTB, "$(P)$(DAC2)_tweak.A PP MS")
+}
+
+record(dfanout,"$(P)$(R)Both") {
+        field(OUTA, "$(P)$(DAC1).VAL PP MS")
+        field(OUTB, "$(P)$(DAC2).VAL PP MS")
+}
