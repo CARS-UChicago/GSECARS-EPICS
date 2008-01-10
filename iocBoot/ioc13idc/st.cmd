@@ -153,8 +153,8 @@ create_monitor_set("auto_settings.req",30,"P=13IDC:")
 #  PVSstart
 
 # Trajectory scanning with GPD
-seq(&trajectoryScan, "P=13IDC:, R=traj1, M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,M7=m31,M8=m32,PORT=serial13")
-seq(&trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m39,M8=m40,PORT=serial14")
+seq(&MM4005_trajectoryScan, "P=13IDC:, R=traj1, M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,M7=m31,M8=m32,PORT=serial13")
+seq(&MM4005_trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m39,M8=m40,PORT=serial14")
 
 # newport table sequencer
 str=malloc(256)
