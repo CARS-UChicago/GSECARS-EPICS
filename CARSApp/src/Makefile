@@ -95,7 +95,9 @@ CARSApp_LIBS_WIN32    = $(CARSApp_WIN32_LIBS)   $(CARSApp_Common_LIBS)
 
 CARSApp_SYS_LIBS_Linux    += net pcap
 CARSApp_SYS_LIBS_Linux    += usb
-CARSApp_SYS_LIBS_cygwin32 += rpc DLPORTIO
+CARSApp_SYS_LIBS_cygwin32 += DLPORTIO PlxApi setupapi
+CARSApp_SYS_LIBS_cygwin32 += rpc
+
 CARSApp_LIBS_WIN32        += DLPORTIO
 
 BIN_INSTALLS_vxWorks += printf_test.o
