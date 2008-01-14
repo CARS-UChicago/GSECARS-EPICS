@@ -98,7 +98,8 @@ CARSApp_SYS_LIBS_Linux    += usb
 CARSApp_SYS_LIBS_cygwin32 += DLPORTIO PlxApi setupapi
 CARSApp_SYS_LIBS_cygwin32 += rpc
 
-CARSApp_LIBS_WIN32        += DLPORTIO
+CARSApp_LIBS_WIN32        += DLPORTIO PlxApi
+CARSApp_SYS_LIBS_WIN32    += setupapi
 
 BIN_INSTALLS_vxWorks += printf_test.o
 
