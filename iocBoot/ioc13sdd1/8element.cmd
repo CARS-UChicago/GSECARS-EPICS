@@ -6,7 +6,7 @@ dbLoadDatabase("$(DXP)/dbd/dxp.dbd")
 dxp_registerRecordDeviceDriver(pdbbase)
 
 # Setup for save_restore
-< ../save_restore.cmd
+< ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13SDD1:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13SDD1:")
 set_pass0_restoreFile("auto_settings8.sav")
