@@ -65,6 +65,9 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13GasLoad:")
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13GasLoad:")
 
+# sseq records
+dbLoadRecords("$(STD)/stdApp/Db/userStringSeqs10.db", "P=13GasLoad:")
+
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13GasLoad:")
 
