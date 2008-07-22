@@ -7,10 +7,9 @@ xiaSetLogLevel(2)
 xiaInit("12element_reset.ini")
 xiaStartSystem()
 
-# DXPConfig(serverName, nchans)
-DXPConfig("DXP1", 12)
+# DXPConfig(serverName, ndetectors, ngroups, pollFrequency)
+DXPConfig("DXP1",  12, 1, 10)
 
-dbLoadRecords("$(DXP)/dxpApp/Db/dxpMED.db","P=13GE2:med:")
 
 # Load all of the MCA and DXP records
 dbLoadTemplate("12element.template")
