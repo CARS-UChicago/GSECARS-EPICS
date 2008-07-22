@@ -44,9 +44,9 @@ camacLibInit
 # Load the DXP stuff
 #< 1element.cmd
 #< 4element.cmd
-#< 8element.cmd
+< 8element.cmd
 #< 12element.cmd
-< 16element.cmd
+#< 16element.cmd
 
 # Generic CAMAC record
 dbLoadRecords("$(CAMAC)/camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048")
@@ -91,7 +91,7 @@ dbLoadRecords("$(STD)/stdApp/Db/scaler.db","P=13GE2:,S=scaler1,OUT=#C0 S0 @,DTYP
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13GE2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13GE2:med:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -141,7 +141,7 @@ create_monitor_set("auto_positions.req",5,"P=13GE2:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13GE2:")
 
-seq &dxpMED, "P=13GE2:med:, DXP=dxp, MCA=mca, N_DETECTORS=16"
+seq &dxpMED, "P=13GE2:med:, DXP=dxp, MCA=mca, N_DETECTORS=8"
 # Wait 5 seconds for iocInit to complete so output does not get garbled
 taskDelay(300)
 
