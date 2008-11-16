@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/00Start.adl"
-	version=030000
+	name="j:\epics\support\CARS\1-5\CARSApp\op\adl\00Start.adl"
+	version=020306
 }
 display {
 	object {
@@ -214,7 +214,7 @@ text {
 	display[0] {
 		label="IDC Microprobe"
 		name="13IDC_mprobe.adl"
-		args="FD=dxpXMAP"
+		args="FD=13SDD1"
 	}
 	display[1] {
 		label="IDC Main Control"
@@ -324,6 +324,11 @@ text {
 		label="13LAE500"
 		name="13LAE500.adl"
 	}
+	display[3] {
+		label="Gas Loading"
+		name="13GasLoading.adl"
+		args="P=13GasLoad:"
+	}
 	clr=14
 	bclr=4
 	label="- Other IOCs"
@@ -407,6 +412,11 @@ text {
 		name="4element_dxp.adl"
 		args="P=13SDD2:, D=dxp, M=mca"
 	}
+	display[6] {
+		label="FTomo Detector"
+		name="FTomoCollect.adl"
+		args="P=13XRM:, Q=FT"
+	}
 	clr=14
 	bclr=4
 	label="- XRF detectors"
@@ -420,13 +430,13 @@ text {
 	}
 	display[0] {
 		label="Pilatus #1"
-		name="pilatusROI.adl"
-		args="DET=GSE-PILATUS1:"
+		name="pilatusDetector.adl"
+		args="P=GSE-PILATUS1:, R=cam1:,ROI=ROI1:,I=image1:"
 	}
 	display[1] {
 		label="Pilatus #2"
-		name="pilatusROI.adl"
-		args="DET=GSE-PILATUS2:"
+		name="pilatusDetector.adl"
+		args="P=GSE-PILATUS2:, R=cam1:,ROI=ROI1:,I=image1:"
 	}
 	display[2] {
 		label="MAR-CCD #1"
