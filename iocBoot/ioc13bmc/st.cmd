@@ -44,6 +44,9 @@ dbLoadTemplate  "motors.template"
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
 
+# CCD synchronization for tomo.exe Visual Basic program
+dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMC:,C=CCD1")
+
 ### Scalers: Struck/SIS as simple scaler
 # Don't execute the next 2 lines if Struck8.cmd is loaded above
 #STR7201Setup(1,0xA0000000,220,6)
@@ -54,8 +57,8 @@ dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13BMC:,S=scaler1,C=0")
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
-#AIMConfig("AIM1/1", 0x6E6, 1, 2048, 1, 1, "dc0")
-#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
+AIMConfig("AIM1/1", 0x8D7, 1, 2048, 1, 1, "dc0")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
@@ -66,8 +69,10 @@ dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13BMC:,S=scaler1,C=0")
 #      2 = HVPS
 #      3 = TCA
 #      4 = DSP
-#icbConfig("icbAdc1", 0x6e6, 5, 0)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
+icbConfig("icbAdc1", 0x8D7, 1, 0)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
+icbConfig("icbAmp1", 0x8D7, 4, 1)
+dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMC:,AMP=amp1,PORT=icbAmp1")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -105,6 +110,9 @@ dbLoadTemplate("vxStats.substitutions")
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMC:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
+
+# Setup device/driver support addresses, interrupt vectors, etc.
+
 ################################################################################
 # XPS trajectoryScan records
 
@@ -116,12 +124,9 @@ str = malloc(500)
 strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
 strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
 #dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
-
+################################################################################
 
 ################################################################################
-# Setup device/driver support addresses, interrupt vectors, etc.
-
-
 # OMS MAXv driver setup parameters:
 #     (1)number of cards in array.
 #     (2)VME Address Type (16,24,32).
@@ -129,7 +134,7 @@ strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1
 #     (4)interrupt vector (0=disable or  64 - 255).
 #     (5)interrupt level (1 - 6).
 #     (6)motor task polling rate (min=1Hz,max=60Hz).
-MAXvSetup(1, 16, 0x9000, 190, 5, 10)
+MAXvSetup(2, 16, 0x9000, 190, 5, 10)
 
 drvMAXvdebug=0
 
@@ -140,21 +145,27 @@ drvMAXvdebug=0
 #         an active limit switch.  Set X,Y,Z,T to active low and set U,V,R,S
 #         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
 #         User's Manual for LL/LH and PSO/PSE/PSM commands.
-#config0="AX LL PSO; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-#!config0="AX LH PSM; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
 
-# Set all axes to open-loop stepper and active low limits
-#config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+# Set all axes to open-loop stepper and active high limits
+configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
 # Set all to active low limits for ThorLabs micrometers.  Set all to servo.
-config0="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
-MAXvConfig(0, config0)
+configServo="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+# First MAXv
+MAXvConfig(0, configServo)
+# Second MAXv is steppers
+MAXvConfig(1, configStep)
+################################################################################
 
+################################################################################
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(5, 0x4000, 190, 5, 10)
+################################################################################
 
+################################################################################
+# XPS Setup
 #drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
 #asynOctetSetInputEos("tcp1",0,"")
 #asynOctetSetOutputEos("tcp1",0,"")
@@ -191,6 +202,7 @@ XPSConfigAxis(1,4,"GROUP5.THETA-Y_BASE", 200)
 XPSConfigAxis(1,5,"GROUP6.X_SAMPLE",    3816)
 XPSConfigAxis(1,6,"GROUP7.Y_SAMPLE",    3816)
 XPSConfigAxis(1,7,"GROUP8.Z_SAMPLE",    3816)
+################################################################################
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1

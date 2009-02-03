@@ -1,5 +1,13 @@
 ipacAddVIPC616_01("0x3000,0xa0000000")
 
+# The second carrier in our system is a TEW200
+# The argument to ipacAddTVME200 is the values of the 6 switches on the board
+# In thise case 34 = base address 3400
+#                2 = interrupt mapping 4, 5, 2, 1, 4, 5, 2, 1
+#                F = A32 address space, 8MB per slot
+#               A2 = A2000000 base address in A32 space
+ipacAddTVME200("342FA2") 
+
 # Initialize Octal UART stuff
 tyGSOctalDrv 1
 # Initialize IP Octal modules.
@@ -91,5 +99,8 @@ dbLoadTemplate("DAC.template")
 # risingMask  = mask of bits to generate interrupts on low to high (24 bits)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 3, 100, 116, 0xffffff, 0xffffff)
+
+# Second IP Unidig
+initIpUnidig("Unidig2", 1, 0, 1000, 117, 0xffffff, 0xffffff)
 dbLoadTemplate("ipUnidig.substitutions")
 
