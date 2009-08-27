@@ -173,6 +173,10 @@ dbpf "13IDA:V6_status.TWSV","NO_ALARM"
 # Note, the above has been replaced with the .DLY field of the motor record, which
 # we now have in save/restore.  Change the .DLY field in medm.
 
+# 2009-May-28: Set the NTM fields of the DC/PID motors to 0 (NO) so they don't 
+#              get stopped when the motor changes direction due to PID
+dbpf("13IDA:m17.NTM","0")
+
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message
