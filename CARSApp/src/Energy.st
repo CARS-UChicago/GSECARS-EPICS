@@ -15,6 +15,9 @@ program Energy("PRE=XXIDA:, ID=IDXX:, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, SH=ep
  *  Oct  7, 2002   MN: altered arg list to use PRE for main prefix,
  *                     converted from XTAL table to true motors
  *                     for 2nd crystal motions.
+ *  Feb 17, 2008   MN: add check for 'undulator busy' before trying to 
+ *                     move the undulator: if it is busy, poke {ID}Stop.VAL 
+ *                     before trying to move again
  */
 %%#include <math.h>
 %%#include <epicsThread.h>
@@ -36,6 +39,7 @@ double id_val;    assign id_val    to "{ID}ScanEnergy.VAL"; monitor id_val;
 double id_rbv;    assign id_rbv    to "{ID}Energy.VAL";   
 double id_harm;   assign id_harm   to "{ID}HarmonicValue.VAL";   
 int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
+int    id_stop;   assign id_stop   to "{ID}Stop.VAL";
 
 int    shutter_pv;  assign shutter_pv to "{PRE}{SH}";
 
@@ -140,7 +144,7 @@ ss Energy {
       th_min  = r2d * asin(omega/en_max); /* minimum mono angle in degrees */
       th_max  = r2d * asin(omega/en_min); /* maximum mono angle in degrees */
       z2_sign =   1;  /* note: xtal2 table record is at 180 degrees */      
-      tiny    = 1.e-5;
+      tiny    = 2.e-6;
 
       /* set up undulator info (if using undulator, that is!)*/
       id_busy = 0; id_val = 0. ; id_rbv=0.;
@@ -231,6 +235,14 @@ ss Energy {
 	    /*id_val  = (id_offset + en * mil * id_factor)*id_harm; */
 	    id_val  = (id_offset + en * mil * id_factor) ;  
 	    if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+
+	    /* if the undulator is still busy (from a previous move?? stuck??), stop the undulator now */	    
+	    if (id_busy) {
+	      if (verbose) { printf("  E(move)> clear busy ID!\n");}
+	      id_stop = 1; 
+	      pvPut(id_stop);
+	    }
+	    /* put id value*/
 	    pvPut(id_val);
 	    if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_val);}
 	  } else {
@@ -307,7 +319,7 @@ ss Energy {
 	  this gets tricky as we're waiting for things that 
 	  may or may not be moving
 	*/
-	d_time = 0.1; 
+	d_time = 0.03; 
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
@@ -437,7 +449,7 @@ ss Energy {
 	  if (verbose) { printf("  E(mono) cancelled: shutter closed\n");}
 	}
 	/* wait for undulator */
-	d_time = 0.1; 
+	d_time = 0.03; 
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
