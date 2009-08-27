@@ -1,0 +1,18 @@
+# This is a database that tweaks 2 motors up and down
+# Vitali 5/5/2008
+record(dfanout,"$(P)$(R)TweakUp") {
+        field(VAL,  "1")
+        field(OUTA, "$(P)$(Mot1).TWF PP MS")
+        field(OUTB, "$(P)$(Mot2).TWF PP MS")
+}
+
+record(dfanout,"$(P)$(R)TweakDown") {
+        field(VAL,  "1")
+        field(OUTA, "$(P)$(Mot1).TWR PP MS")
+        field(OUTB, "$(P)$(Mot2).TWR PP MS")
+}
+
+record(dfanout,"$(P)$(R)Both") {
+        field(OUTA, "$(P)$(Mot1).VAL PP MS")
+        field(OUTB, "$(P)$(Mot2).VAL PP MS")
+}
