@@ -38,7 +38,7 @@ drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
 XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
 XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
 XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
-# XPSConfigAxis(0,3,"GROUP4.POSITIONER",  2000)  
+XPSConfigAxis(0,3,"GROUP4.POSITIONER",  1000)  
 # XPSConfigAxis(0,4,"GROUP5.POSITIONER",  2000)  
 # XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000)  
 ##=====================================================
