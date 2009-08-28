@@ -180,8 +180,6 @@ seq &BMD_LVP_Detector, "P=13BMD:,PMT=pm4,PMR=pm3,X=m9,Y=m16,Z=m10,TV=m12,TH=m13"
 # reset but the the software display is not correct
 dbpf "13BMD:DAC1_1", "0."
 
-seq &smartControl, "P=13BMD:,R=smart1,TTH=m38,OMEGA=m38,PHI=m38,KAPPA=m38,SCALER=scaler1,I0=2,stack=10000"
-
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message
