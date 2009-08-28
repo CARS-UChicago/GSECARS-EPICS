@@ -18,12 +18,15 @@ cd startup
 < serial.cmd
 
 # Set debugging flags
-devMM4000debug = 0
-drvMM4000debug = 0
 mcaRecordDebug = 0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
 save_restoreDebug = 0
+devXPSC8Debug = 0
+drvXPSC8Debug = 0
+# Asyn XPS driver debug variable 0-5
+asynXPSC8Debug = 0
+
 
 # Load database
 dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
@@ -109,19 +112,81 @@ dbLoadTemplate("vxStats.substitutions")
 save_restoreSet_status_prefix("13IDC:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDC:")
 
-################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
 
+################################################################################
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(9, 0x4000, 190, 5, 10)
+################################################################################
 
+################################################################################
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
 VSCSetup(1, 0xB0000000, 200)
+################################################################################
+
+################################################################################
+# XPS trajectoryScan records
+
+# Database for trajectory scanning with the XPS
+# The required command string is longer than the vxWorks command line, 
+# must use malloc and strcpy, strcat. Some of the macros don't apply
+
+# str = malloc(500)
+# strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
+# strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
+# dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
+################################################################################
+
+################################################################################
+# XPS Setup
+drvAsynIPPortConfigure("tcp1","164.54.160.55:5001 tcp", 0, 0, 1)
+drvAsynIPPortConfigure("tcp2","164.54.160.56:5001 tcp", 0, 0, 1)
+
+# cards (total controllers)
+XPSSetup(2)
+
+# Setup the XPS for the Rotation
+# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+ XPSConfig(0, "164.54.160.55", 5001, 6, 10, 500)
+# asyn port, driver name, controller index, max. axes)
+ drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
+
+# Setup the XPS for the Base and X, Y and Z
+# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+XPSConfig(1, "164.54.160.56", 5001, 8, 10, 500)
+# asyn port, driver name, controller index, max. axes)
+drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
+
+
+# Define the group names and the steps per unit.  This must match values defined
+# in the XPS system.ini ([group.names]) and stages.ini (1/EncoderResolution)
+
+# XPS for the Roations
+# card,  axis, groupName.positionerName, stepsPerUnit
+XPSConfigAxis(0,0,"GROUP.PHI",      1000)
+XPSConfigAxis(0,1,"GROUP.KAPPA",   10000)
+XPSConfigAxis(0,2,"GROUP.OMEGA",   10000)
+XPSConfigAxis(0,3,"GROUP.PSI",      4000)
+XPSConfigAxis(0,4,"GROUP.THETA",   10000)
+XPSConfigAxis(0,5,"GROUP.NU",       4000)
+
+# XPS for the Base and X, Y and Z 
+# card,  axis, groupName.positionerName, stepsPerUnit
+XPSConfigAxis(1,0,"Y_Base.Y1",     10000)
+XPSConfigAxis(1,1,"Y_Base.Y2",     10000)
+XPSConfigAxis(1,2,"Y_Base.Y3",     10000)
+XPSConfigAxis(1,3,"GROUP4.THETAY",   200)
+XPSConfigAxis(1,4,"GROUP5.TRX",      200)
+XPSConfigAxis(1,5,"GROUP6.X",      74627)
+XPSConfigAxis(1,6,"GROUP7.Y",      74627)
+XPSConfigAxis(1,7,"GROUP8.Z",     100000)
+
+################################################################################
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -152,18 +217,12 @@ create_monitor_set("auto_settings.req",30,"P=13IDC:")
 #}
 #  PVSstart
 
-# Trajectory scanning with GPD
-seq(&MM4005_trajectoryScan, "P=13IDC:, R=traj1, M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,M7=m31,M8=m32,PORT=serial13")
-seq(&MM4005_trajectoryScan, "P=13IDC:, R=traj2, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m39,M8=m40,PORT=serial14")
-
 # newport table sequencer
 str=malloc(256)
 strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
 strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
-#newport_tableDebug = 1
+newport_tableDebug = 1
 seq(&newport_table, str)
-
-seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER=scaler2,I0=2,stack=10000")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
@@ -175,10 +234,32 @@ seq(&smartControl, "P=13IDC:,R=smart1,TTH=m29,OMEGA=m27,PHI=m25,KAPPA=m26,SCALER
 # else: don't send message
 #debug_saveData = 2
 saveData_MessagePolicy = 2
-saveData_SetCptWait_ms(100)
+saveData_SetCptWait_ms(10)
 saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
 #saveData_PrintScanInfo("13IDC:scan1")
 
 
 seq &Keithley2kDMM, "P=13IDC:, Dmm=DMM1"
+
+# Trajectory scanning with XPS
+# str = malloc(500)
+# strcpy(str, "P=13IDC:,R=traj1,M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,IPADDR=164.54.160.55,")
+# strcat(str, "PORT=5001,GROUP=GROUP,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=THETA,P6=NU")
+# seq(&XPS_trajectoryScan, str)
+
+# Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
+dbpf("13IDC:m25.NTM","0")
+dbpf("13IDC:m26.NTM","0")
+dbpf("13IDC:m27.NTM","0")
+dbpf("13IDC:m28.NTM","0")
+dbpf("13IDC:m29.NTM","0")
+dbpf("13IDC:m30.NTM","0")
+dbpf("13IDC:m33.NTM","0")
+dbpf("13IDC:m34.NTM","0")
+dbpf("13IDC:m35.NTM","0")
+dbpf("13IDC:m36.NTM","0")
+dbpf("13IDC:m37.NTM","0")
+dbpf("13IDC:m38.NTM","0")
+dbpf("13IDC:m39.NTM","0")
+dbpf("13IDC:m40.NTM","0")
 
