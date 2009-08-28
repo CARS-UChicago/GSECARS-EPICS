@@ -82,7 +82,8 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_4,DTYP=asynMCA,NCHAN
 dbLoadRecords("$(STD)/stdApp/Db/all_com_88.db","P=13IDD:")
 
 # Laser PID control
-dbLoadTemplate("laser_pid.template")
+# This is for the old YLF laser using a photodiode with slow and fast feedback records, not used any more
+#dbLoadTemplate("laser_pid.template")
 
 # Simple laser heating database
 dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
