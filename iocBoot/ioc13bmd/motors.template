@@ -18,6 +18,9 @@
 #  49-56     6        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
 #  57-64     7        F         LVP CCD stage (57-59), D-DIA diff. rams (60: bottom; 61: top), LVP Ion Chamber (62), High-P Tomo Rot. (63: top; 64: bott; both bipolar), 
 #  65-72     8	      X	        DAC Brill (65-68), 69 free, Detector position(70), microscope zoom(71), LVP slit laser (72) 
+#  73-80     9        NA        3rd CARS BP8000  
+#  81-88    10        CC        bipolar microstep stepPack (BM-C rack on roof, front of XAS lift table)
+
 #19-Jul-2004,YW
 # Previous definitions:
 # Motors   Card    Patch panel  Common use
@@ -164,9 +167,9 @@ pattern
 # LVP CCD camera stage 15-Sept-2003 TU
 # DDIA diff RAMS, 17-Nov-2003 YW
 # Hi-P Tomo Rotations, 19-Jul-2004 YW
-{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
-{13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio
 # Added planetary gear heads, gear ratio 10:1, UREV(new) = UREV(old)/10, 08-June-2004 YBW
 {13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.1,  0,  1.0,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
@@ -212,12 +215,25 @@ pattern
 {13BMD:,  m77, "OMS VME58",  9,  4, "DAC microscope Z",     mm,     Neg,  .2,      .01,  .2,  0,   1, .2,  48, .003546,  3,   24,    0}
 #Newport actuator, vitali 7-24-2007
 {13BMD:,  m78, "OMS VME58",  9,  5, "YAG Focus",        microns, Pos,  200.0,  10  .2,  0, 10,  .2,  10240,  500,   1,    27000,  -150}
-#changed by vitali for Peter's slit
-{13BMD:,  m79, "OMS VME58",  9,  6, "Vp UpStream",      microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
-{13BMD:,  m80, "OMS VME58",  9,  7, "Vw UpStream",      microns, Neg, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
-
+#changed by vitali for BS, 4/29/2008
+{13BMD:,  m79, "OMS VME58",  9,  6, "Top laser hor",      mm,     Pos,  .2,      .01,  .2,  0,   1, .2,  48, .003546,  3,   24,    0}
+{13BMD:,  m80, "OMS VME58",  9,  7, "Top signal hor",      mm,     Pos,  .2,      .01,  .2,  0,   1, .2,  48, .003546,  3,   24,    0}
 }
-
+##
+## MAXv motor connectors bipolar microstep, BMC rack, patch panel labeled CC
+file "$(CARS)/CARSApp/Db/motor.db"
+{
+pattern
+{P,       M,     DTYP,        C,  S,   DESC,        EGU,   DIR,   VELO,  VBAS,  ACCL,  BDST, BVEL, BACC, SREV,  UREV,  PREC,  DHLM,  DLLM}
+{13BMD:,  m81, "OMS MAXv",   0,  0, "Sample Y",     mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52, 4,   157.5, 0.5}
+{13BMD:,  m82, "OMS MAXv",   0,  1, "Sample X",     mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52, 4,   157.5, 0.5}
+{13BMD:,  m83, "OMS MAXv",   0,  2, "Unused",       mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52, 3,     250,   -250}
+{13BMD:,  m84, "OMS MAXv",   0,  3, "Unused",       mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52, 3,     250,   -250}
+{13BMD:,  m85, "OMS MAXv",   0,  4, "Unused",       mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52, 3,     250,   -250}
+{13BMD:,  m86, "OMS MAXv",   0,  5, "Unused",       mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52, 3,     250,   -250}
+{13BMD:,  m87, "OMS MAXv",   0,  6, "Unused",       mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52, 3,     250,   -250}
+{13BMD:,  m88, "OMS MAXv",   0,  7, "Unused",       mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52, 3,     250,   -250}
+}
 
 file "$(OPTICS)/opticsApp/Db/2slit.db"
 {
@@ -369,3 +385,38 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=pm7,POS=pm7.VAL,RDBK=pm7RBV}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=pm8,POS=pm8.VAL,RDBK=pm8RBV}
 }
+
+#  pseudomotors for laser horizontal
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern  
+{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
+
+{13BMD:,  pm13,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm13DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.G NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+{13BMD:,  pm14,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm14DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.H NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+}
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,            SUM, DIFF,   M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, LaserHoriz:,  pm13, pm14,  m67.VAL,  m67.RBV,  m79.VAL, m79.RBV, m67.STOP, m67.DMOV, m79.STOP, m79.DMOV, 3}
+}
+
+#  pseudomotors for signal horizontal
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern  
+{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
+
+{13BMD:,  pm15,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm15DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.G NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+{13BMD:,  pm16,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm16DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.H NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+}
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,             SUM,  DIFF,   M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, SignalHoriz:,  pm15, pm16,   m66.VAL,  m66.RBV,  m80.VAL, m80.RBV, m66.STOP, m66.DMOV, m80.STOP, m80.DMOV, 3}
+}
+
+
+
