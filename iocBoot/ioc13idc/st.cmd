@@ -194,6 +194,10 @@ sr_restore_incomplete_sets_ok = 1
 
 iocInit
 
+# Sleep for 10 seconds to let iocInit do its thing and see any messages
+# before going on
+taskDelay(600)
+
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
