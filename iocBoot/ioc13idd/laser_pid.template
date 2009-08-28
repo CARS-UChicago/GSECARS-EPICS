@@ -5,9 +5,9 @@ pattern
 {13IDD:, PID1,  IP330_7.VAL,       m13.RLV,   0,     10,   -20,   20,    3,    1,     1,     0.,  ".1 second"}
 }
 
-file "$(IP330)/ip330App/Db/ip330PID.db"
+file "$(STD)/stdApp/Db/fast_pid_control.db"
 {
 pattern
-{P,      PID,   C,  PORT,     LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,  KI,   KD,  DT,      SCAN}
-{13IDD:, PID2,  0, Ip330PID_1,  0,    65535,  1024,  3072,   3,    .02,  100.,  0., .001, ".1 second"}
+{P,      PID,   INPUT,  ICHAN, INPUT_DATA, INPUT_INTERVAL, OUTPUT, OCHAN, OUTPUT_DATA, LOPR,  HOPR,  DRVL,  DRVH, PREC,   KP,   KI,   KD,  DT,      SCAN}
+{13IDD:, PID2,  Ip330_1,    0,       DATA,    SCAN_PERIOD,   DAC1,     1,        DATA,    0, 65535,  1024,  3072,    3,  .02, 100.,   0., .001, ".1 second"}
 }
