@@ -16,7 +16,7 @@ tyGSAsynInit("serial12","UART1", 3,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
 tyGSAsynInit("serial13","UART1", 4, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
 tyGSAsynInit("serial14","UART1", 5, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
 tyGSAsynInit("serial15","UART1", 6,  9600,'N',2,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial16","UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* SMART PC */
+tyGSAsynInit("serial16","UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
@@ -46,28 +46,24 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B4,PORT=serial12")
 #     (1) maximum # of controllers,
 #     (2) maximum # axis per controller
 #     (3) motor task polling rate (min=1Hz, max=60Hz)
-MM4000Setup(2, 8, 10)
+# MM4000Setup(2, 8, 10)
 
 # MM4000 driver configuration parameters:
 #     (1) controller
 #     (2) asyn port name (e.g. serial1 or gpib1)
 #     (3) GPIB address (0 for serial)
-MM4000Config(0, "serial13", 0)
-MM4000Config(1, "serial14", 0)
+# MM4000Config(0, "serial13", 0)
+# MM4000Config(1, "serial14", 0)
 
 # Database for trajectory scanning with the MM4005/GPD
 # The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
-str = malloc(300)
-strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,")
-strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
-strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=2000,NPULSE=2000,")
-strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
+# str = malloc(300)
+# strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,")
+# strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
+# dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
+# strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=2000,NPULSE=2000,")
+# strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
+# dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
 
-# Serial port 16 is for the SMART PC
-str=malloc(256)
-strcpy(str,"P=13IDC:,R=smart1,PORT=serial16,")
-strcat(str,"FSHUT=Unidig1Bo0,TRIG=Unidig1Bo1,SSHUT=Unidig1Bo2")
-dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db",str)
+# Serial port 16 is unused
 
