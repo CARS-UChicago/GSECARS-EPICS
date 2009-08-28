@@ -124,6 +124,35 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(10, 0x4000, 190, 5, 10)
 
+################################################################################
+# OMS MAXv driver setup parameters:
+#     (1)number of cards in array.
+#     (2)VME Address Type (16,24,32).
+#     (3)Base Address on 4K (0x1000) boundary.
+#     (4)interrupt vector (0=disable or  64 - 255).
+#     (5)interrupt level (1 - 6).
+#     (6)motor task polling rate (min=1Hz,max=60Hz).
+MAXvSetup(1, 16, 0xE000, 190, 5, 10)
+
+drvMAXvdebug=0
+
+# OMS MAXv configuration string:
+#     (1) number of card being configured (0-14).
+#     (2) configuration string; axis type (PSO/PSE/PSM) MUST be set here.
+#         For example, set which TTL signal level defines
+#         an active limit switch.  Set X,Y,Z,T to active low and set U,V,R,S
+#         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
+#         User's Manual for LL/LH and PSO/PSE/PSM commands.
+
+# Set all axes to open-loop stepper and active high limits
+configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
+configServo="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+# First MAXv
+MAXvConfig(0, configStep)
+################################################################################
+
+
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
@@ -168,13 +197,15 @@ seq(&roperCCD,"P=13BMD:,C=ccd2:")
 #    sets this time.)
 # 3: if specified time has passed, wait for space in queue, then send message
 # else: don't send message
-debug_saveData = 2
+# debug_saveData = 2
 ##{
-##  MN 13-Dec-2007 
+##  MN 05-Apr-2008  turn save data off
 ## altered saveDataExtraPVs
-saveData_MessagePolicy = 2
-saveData_SetCptWait_ms(100)
+saveData_MessagePolicy = 1
+# saveData_SetCptWait_ms(100)
 saveData_Init("saveDataExtraPVsMN.req", "P=13BMD:")
+#saveData_PrintScanInfo("13BMD:scan1")
+
 ##}
 
-#saveData_PrintScanInfo("13BMD:scan1")
+
