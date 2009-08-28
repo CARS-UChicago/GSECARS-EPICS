@@ -1,0 +1,32 @@
+< envPaths
+# Start errlog Task before any possible error messsage to prevent
+# erroneous "Interrupted system call" message on Linux OS.
+errlogInit(0)
+#
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+################################################################################
+# XPS trajectoryScan records
+
+# Database for trajectory scanning with the XPS
+
+dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001,DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
+
+iocInit
+
+### Start up the autosave task and tell it what to do.
+# The task is actually named "save_restore".
+# (See also, 'initHooks' above, which is the means by which the values that
+# will be saved by the task we're starting here are going to be restored.
+#
+< ../requestFileCommands
+# save positions every five seconds
+#create_monitor_set("auto_positions_xps.req",5,"P=13IDC:")
+# save other things every thirty seconds
+#create_monitor_set("auto_settings_xps.req",30,"P=13IDC:")
+
+dbpf("13IDC:traj1DebugLevel","1")
+
+# Trajectory scanning with XPS
+seq(XPS_trajectoryScan, "P=13IDC:,R=traj1,M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,IPADDR=164.54.160.55,PORT=5001,GROUP=GROUP,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=THETA,P6=NU")
