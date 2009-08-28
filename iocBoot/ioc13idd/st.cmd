@@ -159,8 +159,6 @@ seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM4, stack=10000"
 
 seq &IDD_LVP_Detector, "P=13IDD:,PMR=pm9,PMT=pm10,PMC=pm11,X=m33,Y=m34,Z=m35,TX=m38,TZ=m39"
 
-seq &smartControl, "P=13IDD:,R=smart1,TTH=m31,OMEGA=m31,PHI=m31,KAPPA=m31,SCALER=scaler1,I0=6,stack=10000"
-
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message

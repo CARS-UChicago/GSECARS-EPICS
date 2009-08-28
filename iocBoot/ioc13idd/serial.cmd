@@ -39,13 +39,6 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,PORT=seri
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,PORT=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,PORT=serial7")
 #dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13IDD:,R=LAE500,PORT=serial8")
-# SMART detector database
-str=malloc(256)
-strcpy(str,"P=13IDD:,R=smart1,PORT=serial8,")
-# Use Bo0 for Bruker shutter, Bo11 for XIA
-strcat(str,"FSHUT=Unidig1Bo11,TRIG=Unidig1Bo1,SSHUT=Unidig1Bo2")
-dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
-
 
 dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,PORT=serial10")
 # Serial 11 is picoMotors
