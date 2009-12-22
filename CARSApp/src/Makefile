@@ -11,9 +11,6 @@ include $(TOP)/configure/CONFIG
 LIBRARY_IOC += CARS
 
 # The following are compiled and added to the Support library
-CARS_SRCS_vxWorks += devAoAvme9210.c
-CARS_SRCS_vxWorks  += drvAvme9210.c
-#CARS_SRCS += devXxDg535Gpib.c
 #CARS_SRCS += devLib.c
 #CARS_SRCS += iVecShow.c
 #CARS_SRCS += ppcveclist.c
@@ -36,6 +33,7 @@ CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 DBD += CARS.dbd
 DBD += CARSVX.dbd
 DBD += CARSLinux.dbd
+DBD += CARSWin32.dbd
 
 #=============================
 # build an ioc application
@@ -45,9 +43,11 @@ PROD_IOC = CARSApp
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 CARSApp_SRCS_DEFAULT += CARS_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_Linux   += CARSLinux_registerRecordDeviceDriver.cpp CARSMain.cpp
+CARSApp_SRCS_WIN32   += CARSWin32_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_vxWorks += CARSVX_registerRecordDeviceDriver.cpp
 
 CARSApp_Common_LIBS += CARS
+CARSApp_Common_LIBS += busy
 CARSApp_Common_LIBS += mca 
 CARSApp_Common_LIBS += calc
 CARSApp_Common_LIBS += sscan
@@ -62,6 +62,7 @@ CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motor
 CARSApp_Common_LIBS += stream streamSynApps
 CARSApp_Common_LIBS += modbus
 CARSApp_Common_LIBS += asyn
+CARSApp_Common_LIBS += ADBase
 CARSApp_Common_LIBS += seq pv
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 
