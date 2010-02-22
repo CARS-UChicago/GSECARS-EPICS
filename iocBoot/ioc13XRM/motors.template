@@ -20,37 +20,37 @@ pattern
 # #{13XRM:, 4, m12, "asynMotor", XPS2, 3,  "Unused",    mm,  Pos, 20.,   1,   0.5,   0, 1, .2,       200, 0.1,    4,  149.0,   0.0}
 # }
 
-file "$(MOTOR)/motorApp/Db/XPS_extra.db"
-{
-pattern
-{P,     R,  PORT,  ADDR}
-{13XRM:,  m1,  XPS1,  0}
-{13XRM:,  m2,  XPS1,  1}
-{13XRM:,  m3,  XPS1,  2}
-{13XRM:,  m4,  XPS1,  3}
-{13XRM:,  m5,  XPS1,  4}
-{13XRM:,  m6,  XPS1,  5}
+# file "$(MOTOR)/motorApp/Db/XPS_extra.db"
+# {
+# pattern
+# {P,     R,  PORT,  ADDR}
+# {13XRM:,  m1,  XPS1,  0}
+# {13XRM:,  m2,  XPS1,  1}
+# {13XRM:,  m3,  XPS1,  2}
+# {13XRM:,  m4,  XPS1,  3}
+# {13XRM:,  m5,  XPS1,  4}
+# {13XRM:,  m6,  XPS1,  5}
 #{13XRM:,  m7,  XPS1,  6}
 #{13XRM:,  m8,  XPS1,  7}
 #{13XRM:,  m9,  XPS2,  0}
 #{13XRM:,  m10, XPS2,  1}
 #{13XRM:,  m11, XPS2,  2}
 #{13XRM:,  m12, XPS2,  3}
-}
+# }
 
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
-{
-pattern
-{P,       M,           DINP,    OUT,    RDBL,  STOO,DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
-{13XRM:,pm1, "13XRM:MAP:Done NPP NMS", "13XRM:pm1DVAL.VAL PP MS", "13XRM:MAP:Readback.G NPP NMS", "13XRM:MAP:Stop PP MS","Sum",mm, Pos, 1,.1,.1,0,1,.1,.1,1.0,1,10000,-10000}
-{13XRM:,pm2, "13XRM:MAP:Done NPP NMS", "13XRM:pm2DVAL.VAL PP MS", "13XRM:MAP:Readback.H NPP NMS", "13XRM:MAP:Stop PP MS","Diff",mm, Pos,1,.1,.1,0,1,.1,.1,1.0,1,10000,-10000}
-}
+#file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+#{
+#pattern
+#{P,       M,           DINP,    OUT,    RDBL,  STOO,DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+#{13XRM:,pm1, "13XRM:MAP:Done NPP NMS", "13XRM:pm1DVAL.VAL PP MS", "13XRM:MAP:Readback.G NPP NMS", "13XRM:MAP:Stop PP MS","Sum",mm, Pos, #1,.1,.1,0,1,.1,.1,1.0,1,10000,-10000}
+#{13XRM:,pm2, "13XRM:MAP:Done NPP NMS", "13XRM:pm2DVAL.VAL PP MS", "13XRM:MAP:Readback.H NPP NMS", "13XRM:MAP:Stop PP MS","Diff",mm, #Pos,1,.1,.1,0,1,.1,.1,1.0,1,10000,-10000}
+#}
 
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
-{
-pattern
-{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13XRM:, MAP:,  pm1, pm2,    m1.VAL,  m1.RBV,  m2.VAL, m2.RBV, m1.STOP, m1.DMOV, m2.STOP, m2.DMOV, 5}
-}
+#file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+#{
+#pattern
+#{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+#{13XRM:, MAP:,  pm1, pm2,    m1.VAL,  m1.RBV,  m2.VAL, m2.RBV, m1.STOP, m1.DMOV, m2.STOP, m2.DMOV, 5}
+#}
 
 

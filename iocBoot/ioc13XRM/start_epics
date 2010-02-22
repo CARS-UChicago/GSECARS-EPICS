@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# generic procserver wrapper 
+PORT=20063
+LOGFILE=/home/epics/logs/iocXRM.log
+
+PROCSERV=/usr/local/bin/procServ
+
+$PROCSERV -i ^D -L $LOGFILE $PORT ../../bin/linux-x86/CARSApp st.cmd
+telnet localhost $PORT
