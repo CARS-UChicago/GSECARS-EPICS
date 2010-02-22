@@ -1,0 +1,56 @@
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,   N, M,  DTYP,   PORT, ADDR,  DESC,             EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV,UREV, PREC,  DHLM,     DLLM}
+{13XRM:, 1, m1, "asynMotor", XPS1, 0,  "scanX",      mm,  Neg,  5.,   1,   0.5,   0, 1, .2,     100000, 1,    5,    12.4,    -12.4}
+{13XRM:, 2, m2, "asynMotor", XPS1, 2,  "scanY",      mm,  Pos,  5.,   1,   0.5,   0, 1, .2,      50000, 1,    5,     2.4,     -2.4}
+{13XRM:, 3, m3, "asynMotor", XPS1, 1,  "theta", degrees,  Pos, 20.,   1,   0.5,   0, 1, .2,       2000, 1,    4,   150.0,   -150.0}
+{13XRM:, 4, m4, "asynMotor", XPS1, 3, "stageX",      mm,  Neg,  5.,   1,   1.0,   0, 1, .5,       2000, 1,    4,   100.0,   -100.0}
+{13XRM:, 5, m5, "asynMotor", XPS1, 4, "stageZ",      mm,  Neg,  5.,   1,   1.0,   0, 1, .5,       2000, 1,    4,   100.0,   -100.0}
+{13XRM:, 6, m6, "asynMotor", XPS1, 5, "stageY",      mm,  Pos,  5.,   1,   1.0,   0, 2, .2,       5000, 1,    4,   292.0,     -8.0}
+}
+
+# file "$(CARS)/CARSApp/Db/asynMotor.db"
+# {
+# pattern
+# {P,   N, M,  DTYP,   PORT, ADDR,  DESC,             EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV,UREV, PREC,  DHLM,  DLLM}
+# {13XRM:, 1, m9,  "asynMotor", XPS2, 0,  "Vortex X",  mm,  Pos,  5.,   1,   0.5,   0, 1, .2,       100, 0.1,    4,  75.0,  -75.0}
+# {13XRM:, 2, m10, "asynMotor", XPS2, 1,  "Vortex Y",  mm,  Pos,  5.,   1,   0.5,   0, 1, .2,       100, 0.1,    4,  50.0,  -50.0}
+# {13XRM:, 3, m11, "asynMotor", XPS2, 2,  "Vortex Z",  mm,  Pos,  5.,   1,   0.5,   0, 1, .2,       100, 0.1,    4,  50.0,  -50.0}
+# #{13XRM:, 4, m12, "asynMotor", XPS2, 3,  "Unused",    mm,  Pos, 20.,   1,   0.5,   0, 1, .2,       200, 0.1,    4,  149.0,   0.0}
+# }
+
+file "$(MOTOR)/motorApp/Db/XPS_extra.db"
+{
+pattern
+{P,     R,  PORT,  ADDR}
+{13XRM:,  m1,  XPS1,  0}
+{13XRM:,  m2,  XPS1,  1}
+{13XRM:,  m3,  XPS1,  2}
+{13XRM:,  m4,  XPS1,  3}
+{13XRM:,  m5,  XPS1,  4}
+{13XRM:,  m6,  XPS1,  5}
+#{13XRM:,  m7,  XPS1,  6}
+#{13XRM:,  m8,  XPS1,  7}
+#{13XRM:,  m9,  XPS2,  0}
+#{13XRM:,  m10, XPS2,  1}
+#{13XRM:,  m11, XPS2,  2}
+#{13XRM:,  m12, XPS2,  3}
+}
+
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,    OUT,    RDBL,  STOO,DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+{13XRM:,pm1, "13XRM:MAP:Done NPP NMS", "13XRM:pm1DVAL.VAL PP MS", "13XRM:MAP:Readback.G NPP NMS", "13XRM:MAP:Stop PP MS","Sum",mm, Pos, 1,.1,.1,0,1,.1,.1,1.0,1,10000,-10000}
+{13XRM:,pm2, "13XRM:MAP:Done NPP NMS", "13XRM:pm2DVAL.VAL PP MS", "13XRM:MAP:Readback.H NPP NMS", "13XRM:MAP:Stop PP MS","Diff",mm, Pos,1,.1,.1,0,1,.1,.1,1.0,1,10000,-10000}
+}
+
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13XRM:, MAP:,  pm1, pm2,    m1.VAL,  m1.RBV,  m2.VAL, m2.RBV, m1.STOP, m1.DMOV, m2.STOP, m2.DMOV, 5}
+}
+
+
