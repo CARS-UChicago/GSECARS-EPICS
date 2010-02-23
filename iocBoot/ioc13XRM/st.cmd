@@ -22,8 +22,8 @@ drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
 
 # card,  axis, groupName.positionerName, stepsPerUnit
 XPSConfigAxis(0,0,"GROUP1.POSITIONER",  100000) # VP-25XL
-XPSConfigAxis(0,1,"GROUP2.POSITIONER",    2000) # URS75CC
-XPSConfigAxis(0,2,"GROUP3.POSITIONER",   50000) # VP-5ZA
+XPSConfigAxis(0,1,"GROUP3.POSITIONER",   50000) # VP-5ZA
+XPSConfigAxis(0,2,"GROUP2.POSITIONER",    2000) # URS75CC
 XPSConfigAxis(0,3,"GROUP4.POSITIONER",    2000) # ILS200CC
 XPSConfigAxis(0,4,"GROUP5.POSITIONER",    2000) # ILS200CC
 XPSConfigAxis(0,5,"GROUP6.POSITIONER",    5000) # IMS300CC
@@ -89,9 +89,8 @@ asynSetTraceIOTruncateSize("XPS1",0,200)
 
 iocInit
 
-
 # Trajectory scanning with XPS
-seq(XPS_trajectoryScan, "P=13XRM:,R=traj1,M1=m1,IPADDR=164.54.160.108,PORT=5001,GROUP=GROUP1,P1=POSITIONER")
+seq(XPS_trajectoryScan, "P=13XRM:,R=traj1,M1=m1,IPADDR=164.54.160.180,PORT=5001,GROUP=GROUP1,P1=POSITIONER")
 
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5, "P=13XRM:")
