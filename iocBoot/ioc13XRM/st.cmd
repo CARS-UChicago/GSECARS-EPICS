@@ -21,12 +21,12 @@ drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
 # drvAsynMotorConfigure("XPS2", "motorXPS", 1, 3)
 
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSConfigAxis(0,0,"GROUP1.POSITIONER",  100000) # VP-25XL
-XPSConfigAxis(0,1,"GROUP3.POSITIONER",   50000) # VP-5ZA
-XPSConfigAxis(0,2,"GROUP2.POSITIONER",    2000) # URS75CC
-XPSConfigAxis(0,3,"GROUP4.POSITIONER",    2000) # ILS200CC
-XPSConfigAxis(0,4,"GROUP5.POSITIONER",    2000) # ILS200CC
-XPSConfigAxis(0,5,"GROUP6.POSITIONER",    5000) # IMS300CC
+XPSConfigAxis(0,0,"FINE.X",             100000) # VP-25XL
+XPSConfigAxis(0,1,"FINE.Y",              50000) # VP-5ZA
+XPSConfigAxis(0,2,"FINE.THETA",           2000) # URS75CC
+XPSConfigAxis(0,3,"STAGEX.POSITIONER",    2000) # ILS200CC
+XPSConfigAxis(0,4,"STAGEY.POSITIONER",    2000) # ILS200CC
+XPSConfigAxis(0,5,"STAGEZ.POSITIONER",    5000) # IMS300CC
 
 # XPSConfigAxis(1,0,"GROUP1.POSITIONER",  1000) # UTS100PP
 # XPSConfigAxis(1,1,"GROUP2.POSITIONER",  1000) # UTS100PP
@@ -41,7 +41,7 @@ XPSEnableSetPosition(0)
 dbLoadTemplate "scanParms.template"
 
 # Database for trajectory scanning with the XPS
-dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db","P=13XRM:,R=traj1,NAXES=1,NELM=2000,NPULSE=2000,PORT=5001")
+dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db","P=13XRM:,R=traj1,NAXES=2,NELM=2000,NPULSE=2000,PORT=5001")
 
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
@@ -90,7 +90,7 @@ asynSetTraceIOTruncateSize("XPS1",0,200)
 iocInit
 
 # Trajectory scanning with XPS
-seq(XPS_trajectoryScan, "P=13XRM:,R=traj1,M1=m1,IPADDR=164.54.160.180,PORT=5001,GROUP=GROUP1,P1=POSITIONER")
+seq(XPS_trajectoryScan, "P=13XRM:,R=traj1,M1=m1,M2=m2,IPADDR=164.54.160.180,PORT=5001,GROUP=FINE,P1=X,P2=Y")
 
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5, "P=13XRM:")
