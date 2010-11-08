@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/devel/CARS/1-6beta/CARSApp/op/adl/13Lab.adl"
-	version=030000
+	name="/home/epics/devel/CARS/CARSApp/op/adl/13Lab.adl"
+	version=030102
 }
 display {
 	object {
-		x=400
-		y=30
+		x=44
+		y=299
 		width=370
-		height=587
+		height=625
 	}
 	clr=14
 	bclr=4
@@ -127,6 +127,21 @@ text {
 		label="Scan 2"
 		name="scan_more.adl"
 		args="P=13LAB:, S=scan2, N=2"
+	}
+	display[2] {
+		label="Scan 3"
+		name="scan_more.adl"
+		args="P=13LAB:, S=scan3, N=3"
+	}
+	display[3] {
+		label="Scan 4"
+		name="scan_more.adl"
+		args="P=13LAB:, S=scan4, N=4"
+	}
+	display[4] {
+		label="Scan H"
+		name="scan_more.adl"
+		args="P=13LAB:, S=scanH, N=H"
 	}
 	clr=14
 	bclr=4
@@ -643,6 +658,11 @@ text {
 		name="Pelco_CM6700.adl"
 		args="P=13LAB:, R=Pelco1"
 	}
+	display[8] {
+		label="SIS3820 scaler"
+		name="scaler32_full.adl"
+		args="P=13LAB:, S=scaler3"
+	}
 	clr=14
 	bclr=4
 }
@@ -972,8 +992,8 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=556
+		x=9
+		y=582
 		width=75
 		height=24
 	}
@@ -992,8 +1012,8 @@ text {
 }
 text {
 	object {
-		x=91
-		y=556
+		x=90
+		y=582
 		width=100
 		height=20
 	}
@@ -1001,4 +1021,32 @@ text {
 		clr=14
 	}
 	textix="IOC status"
+}
+"related display" {
+	object {
+		x=10
+		y=554
+		width=74
+		height=24
+	}
+	display[0] {
+		label="SoftGlue"
+		name="softGlueMenu.adl"
+		args="P=13LAB:,H=softGlue:,PORT=SOFTGLUE,IPORT=SGI1,OPORT=SGO1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=554
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="SoftGlue"
 }
