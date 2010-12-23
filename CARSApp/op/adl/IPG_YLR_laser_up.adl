@@ -1,0 +1,1274 @@
+
+file {
+	name="J:\epics\support\CARS\1-5\CARSApp\op\adl\IPG_YLR_laser_up.adl"
+	version=020306
+}
+display {
+	object {
+		x=516
+		y=94
+		width=480
+		height=780
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=7
+		y=238
+		width=465
+		height=535
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+menu {
+	object {
+		x=241
+		y=747
+		width=83
+		height=18
+	}
+	control {
+		chan="$(P)$(R)ReadBack.SCAN"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=115
+		y=747
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status rate:"
+}
+"text update" {
+	object {
+		x=241
+		y=697
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Firmware.SVAL"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=647
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Status"
+		clr=53
+		bclr=4
+	}
+	format="hexadecimal"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=241
+		y=672
+		width=67
+		height=20
+	}
+	control {
+		chan="$(P)$(R)ResetErrors.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Reset"
+	press_msg="1"
+}
+text {
+	object {
+		x=165
+		y=647
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status:"
+}
+text {
+	object {
+		x=75
+		y=272
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature (C):"
+}
+text {
+	object {
+		x=145
+		y=697
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Firmware:"
+}
+text {
+	object {
+		x=75
+		y=297
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Back Reflection:"
+}
+text {
+	object {
+		x=85
+		y=572
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Analog Control:"
+}
+text {
+	object {
+		x=125
+		y=347
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Connection:"
+}
+text {
+	object {
+		x=155
+		y=372
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Failure:"
+}
+text {
+	object {
+		x=95
+		y=397
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser enabled:"
+}
+text {
+	object {
+		x=75
+		y=422
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Modules enabled:"
+}
+text {
+	object {
+		x=105
+		y=447
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power supply:"
+}
+text {
+	object {
+		x=55
+		y=322
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Emission starting:"
+}
+text {
+	object {
+		x=155
+		y=497
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Control:"
+}
+text {
+	object {
+		x=125
+		y=522
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Key switch:"
+}
+text {
+	object {
+		x=115
+		y=622
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Aiming beam:"
+}
+text {
+	object {
+		x=105
+		y=672
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Reset errors:"
+}
+composite {
+	object {
+		x=241
+		y=272
+		width=146
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=241
+				y=272
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)Temperature"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=327
+				y=272
+				width=60
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)OverTemperature"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=65
+		y=5
+		width=350
+		height=60
+	}
+	"basic attribute" {
+		clr=52
+	}
+}
+text {
+	object {
+		x=163
+		y=9
+		width=155
+		height=26
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IPG YLR Laser"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=265
+		y=118
+		width=156
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Diode Current"
+}
+rectangle {
+	object {
+		x=245
+		y=110
+		width=200
+		height=120
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=42
+		y=118
+		width=168
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser Emission"
+}
+rectangle {
+	object {
+		x=26
+		y=110
+		width=200
+		height=120
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"text update" {
+	object {
+		x=86
+		y=149
+		width=80
+		height=25
+	}
+	monitor {
+		chan="$(P)$(R)Emission"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+composite {
+	object {
+		x=55
+		y=176
+		width=143
+		height=25
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=131
+				y=176
+				width=67
+				height=25
+			}
+			control {
+				chan="$(P)$(R)EmissionOn.PROC"
+				clr=14
+				bclr=20
+			}
+			label="On"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=55
+				y=176
+				width=67
+				height=25
+			}
+			control {
+				chan="$(P)$(R)EmissionOff.PROC"
+				clr=14
+				bclr=15
+			}
+			label="Off"
+			press_msg="1"
+		}
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=297
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Backreflection"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=322
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)EmissionStarting"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=347
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Connection"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=372
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Failure"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=397
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)LaserEnabled"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=422
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)ModulesEnabled"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=447
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)PowerSupply"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=497
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Control"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=522
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)Keyswitch"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+composite {
+	object {
+		x=258
+		y=148
+		width=100
+		height=73
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=266
+				y=168
+				width=84
+				height=25
+			}
+			control {
+				chan="$(P)$(R)SetDiodeCurrent"
+				clr=14
+				bclr=25
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=273
+				y=148
+				width=70
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Percent"
+		}
+		composite {
+			object {
+				x=258
+				y=195
+				width=100
+				height=26
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=258
+						y=195
+						width=20
+						height=25
+					}
+					control {
+						chan="$(P)$(R)PowerTweakDown.PROC"
+						clr=14
+						bclr=27
+					}
+					label="<"
+					press_msg="1"
+				}
+				"message button" {
+					object {
+						x=338
+						y=195
+						width=20
+						height=25
+					}
+					control {
+						chan="$(P)$(R)PowerTweakUp.PROC"
+						clr=14
+						bclr=27
+					}
+					label=">"
+					press_msg="1"
+				}
+				"text entry" {
+					object {
+						x=279
+						y=196
+						width=60
+						height=25
+					}
+					control {
+						chan="$(P)$(R)PowerTweak.VAL"
+						clr=14
+						bclr=27
+					}
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=383
+		y=148
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Amps"
+}
+"text update" {
+	object {
+		x=373
+		y=170
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)DiodeCurrent"
+		clr=53
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+composite {
+	object {
+		x=241
+		y=622
+		width=226
+		height=20
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=330
+				y=622
+				width=137
+				height=20
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=330
+						y=622
+						width=67
+						height=20
+					}
+					control {
+						chan="$(P)$(R)AimOn.PROC"
+						clr=14
+						bclr=51
+					}
+					label="On"
+					press_msg="1"
+				}
+				"message button" {
+					object {
+						x=400
+						y=622
+						width=67
+						height=20
+					}
+					control {
+						chan="$(P)$(R)AimOff.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Off"
+					press_msg="1"
+				}
+			}
+		}
+		"text update" {
+			object {
+				x=241
+				y=622
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)AimingBeam"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=35
+		y=597
+		width=200
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Aiming beam control:"
+}
+text {
+	object {
+		x=125
+		y=472
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Collimator:"
+}
+"text update" {
+	object {
+		x=241
+		y=472
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)CollimatorConnected"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=125
+		y=547
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Modulation:"
+}
+text {
+	object {
+		x=15
+		y=247
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power filter time (s):"
+}
+composite {
+	object {
+		x=241
+		y=547
+		width=225
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=241
+				y=547
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)Modulation"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+		composite {
+			object {
+				x=329
+				y=547
+				width=137
+				height=20
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=329
+						y=547
+						width=67
+						height=20
+					}
+					control {
+						chan="$(P)$(R)EnableModulation.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Enable"
+					press_msg="1"
+				}
+				"message button" {
+					object {
+						x=399
+						y=547
+						width=67
+						height=20
+					}
+					control {
+						chan="$(P)$(R)DisableModulation.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Disable"
+					press_msg="1"
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P)$(R)Keyswitch"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=241
+		y=572
+		width=226
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=241
+				y=572
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)AnalogControlMode"
+				clr=53
+				bclr=4
+			}
+			clrmod="alarm"
+			format="string"
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=330
+				y=572
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)EnableAnalogControl.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Enable"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=400
+				y=572
+				width=67
+				height=20
+			}
+			control {
+				chan="$(P)$(R)DisableAnalogControl.PROC"
+				clr=14
+				bclr=51
+			}
+			label="Disable"
+			press_msg="1"
+		}
+	}
+}
+"text update" {
+	object {
+		x=241
+		y=597
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(R)AimingBeamControl"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=400
+		y=597
+		width=67
+		height=20
+	}
+	control {
+		chan="$(P)$(R)DisableExternalAimingControl.PROC"
+		clr=14
+		bclr=51
+	}
+	label="RS-232"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=330
+		y=597
+		width=67
+		height=20
+	}
+	control {
+		chan="$(P)$(R)EnableExternalAimingControl.PROC"
+		clr=14
+		bclr=51
+	}
+	label="TTL"
+	press_msg="1"
+}
+composite {
+	object {
+		x=243
+		y=247
+		width=176
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=243
+				y=247
+				width=50
+				height=20
+			}
+			control {
+				chan="$(P)$(R)SetPowerFilterTime"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=299
+				y=247
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)PowerFilterTime"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=119
+		y=76
+		width=242
+		height=25
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=119
+				y=76
+				width=120
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Power (W):"
+		}
+		"text update" {
+			object {
+				x=241
+				y=76
+				width=120
+				height=25
+			}
+			monitor {
+				chan="$(P)$(R)OutputPower"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=85
+		y=722
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Communications:"
+}
+text {
+	object {
+		x=241
+		y=722
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)$(R)ReadStatus.STAT"
+	}
+	textix="OK"
+}
+text {
+	object {
+		x=241
+		y=722
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(R)ReadStatus.STAT"
+	}
+	textix="Failure"
+}
+"related display" {
+	object {
+		x=427
+		y=750
+		width=40
+		height=19
+	}
+	display[0] {
+		label="Serial 14"
+		name="asynOctet.adl"
+		args="P=13IDD:, R=serial14"
+	}
+	display[1] {
+		args="P=13IDD:, R=serial10"
+	}
+	display[2] {
+		args="P=13IDD:, R=serial11"
+	}
+	display[3] {
+		args="P=13IDD:, R=serial12"
+	}
+	display[4] {
+		args="P=13IDD:, R=serial13"
+	}
+	display[5] {
+		args="P=13IDD:, R=serial14"
+	}
+	display[6] {
+		args="P=13IDD:, R=serial15"
+	}
+	display[7] {
+		args="P=13IDD:, R=serial16"
+	}
+	clr=0
+	bclr=14
+	label="-more"
+}
+text {
+	object {
+		x=162
+		y=36
+		width=155
+		height=26
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(P)$(R)"
+	align="horiz. centered"
+}
