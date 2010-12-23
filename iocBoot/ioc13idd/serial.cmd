@@ -13,7 +13,7 @@ tyGSAsynInit("serial12", "UART1", 3, 19200,'N',1,8,'N',"\r","\r")   /* Keithley 
 tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r")   /* Pelco CM6700 video switch */
 tyGSAsynInit("serial14", "UART1", 5, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
 tyGSAsynInit("serial15", "UART1", 6, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
-tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r","\r")   /* Unused */
+tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r\n","\r\n")   /* BNC 505 Pulse Generator */
 
 # Set up port on Digi box
 #drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
@@ -47,4 +47,12 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM5,PORT=seri
 
 # Serial 13 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
+
+# Serial 16 is the BNC 505 pulse generator
+dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505.db", "P=13IDD:,R=BNC1:,PORT=serial16")
+dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=1")
+dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=2")
+
+# Tell StreamDevice where to find protocol files
+epicsEnvSet("STREAM_PROTOCOL_PATH", "/corvette/home/epics/support/delaygen/1-0-3/delaygenApp/Db")
 
