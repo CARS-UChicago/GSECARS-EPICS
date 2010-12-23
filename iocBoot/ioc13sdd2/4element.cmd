@@ -32,6 +32,9 @@ dbLoadTemplate("4element.template")
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13SDD2:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
 
+#var "debug_saveData" 2
+#var "debug_saveDataMsg" 2
+
 iocInit
 
 seq dxpMED, "P=13SDD2:, DXP=dxp, MCA=mca, N_DETECTORS=4"
