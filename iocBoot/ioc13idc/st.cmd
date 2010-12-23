@@ -22,7 +22,7 @@ mcaRecordDebug = 0
 drvSTR7201Debug = 0
 devSTR7201Debug = 0
 save_restoreDebug = 0
-devXPSC8Debug = 0
+devXSC8Debug = 0
 drvXPSC8Debug = 0
 # Asyn XPS driver debug variable 0-5
 asynXPSC8Debug = 0
@@ -55,7 +55,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@
 icbConfig("icbAdc1", 0x6e6, 5, 0)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
 #icbConfig("icbAmp1", 0x6e6, 3, 1)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,PORT=icbAmp1")
+#dbLoadRecords"$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,PORT=icbAmp1")
 #icbConfig("icbHvps1", 0x6e6, 2, 2)
 #dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
  
@@ -81,7 +81,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13IDC:")
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
 
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDC:,MAXPTS1=1000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDC:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -152,9 +152,9 @@ XPSSetup(2)
 
 # Setup the XPS for the Rotation
 # card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
- XPSConfig(0, "164.54.160.55", 5001, 6, 10, 500)
+XPSConfig(0, "164.54.160.55", 5001, 6, 10, 500)
 # asyn port, driver name, controller index, max. axes)
- drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
+drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
 
 # Setup the XPS for the Base and X, Y and Z
 # card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
@@ -162,11 +162,10 @@ XPSConfig(1, "164.54.160.56", 5001, 8, 10, 500)
 # asyn port, driver name, controller index, max. axes)
 drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
 
-
 # Define the group names and the steps per unit.  This must match values defined
 # in the XPS system.ini ([group.names]) and stages.ini (1/EncoderResolution)
-
-# XPS for the Roations
+ 
+# XPS for the Rotations
 # card,  axis, groupName.positionerName, stepsPerUnit
 XPSConfigAxis(0,0,"GROUP.PHI",      1000)
 XPSConfigAxis(0,1,"GROUP.KAPPA",   10000)
@@ -174,17 +173,34 @@ XPSConfigAxis(0,2,"GROUP.OMEGA",   10000)
 XPSConfigAxis(0,3,"GROUP.PSI",      4000)
 XPSConfigAxis(0,4,"GROUP.THETA",   10000)
 XPSConfigAxis(0,5,"GROUP.NU",       4000)
+ 
+# XPS for the Base and X, Y and Z 
+# card,  axis, groupName.positionerName, stepsPerUnit
+# This is the config for the Y1-3 is grouped together in "Y_Base"
+#XPSConfigAxis(1,0,"Y_Base.Y1",     10000)
+#XPSConfigAxis(1,1,"Y_Base.Y2",     10000)
+#XPSConfigAxis(1,2,"Y_Base.Y3",     10000)
+#XPSConfigAxis(1,3,"GROUP4.THETAY",   200)
+#XPSConfigAxis(1,4,"GROUP5.TRX",      200)
+#XPSConfigAxis(1,5,"GROUP6.X",      74627)
+#XPSConfigAxis(1,6,"GROUP7.Y",      74627)
+#XPSConfigAxis(1,7,"GROUP8.Z",     100000)
 
 # XPS for the Base and X, Y and Z 
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSConfigAxis(1,0,"Y_Base.Y1",     10000)
-XPSConfigAxis(1,1,"Y_Base.Y2",     10000)
-XPSConfigAxis(1,2,"Y_Base.Y3",     10000)
-XPSConfigAxis(1,3,"GROUP4.THETAY",   200)
-XPSConfigAxis(1,4,"GROUP5.TRX",      200)
-XPSConfigAxis(1,5,"GROUP6.X",      74627)
-XPSConfigAxis(1,6,"GROUP7.Y",      74627)
-XPSConfigAxis(1,7,"GROUP8.Z",     100000)
+# This is the config for the Y1-3 in single axis groups
+XPSConfigAxis(1,0,"GROUP1.Y1_BASE", 10000)
+XPSConfigAxis(1,1,"GROUP2.Y2_BASE", 10000)
+XPSConfigAxis(1,2,"GROUP3.Y3_BASE", 10000)
+XPSConfigAxis(1,3,"GROUP4.THETAY",    200)
+XPSConfigAxis(1,4,"GROUP5.TRX",       200)
+XPSConfigAxis(1,5,"GROUP6.X",       74627)
+XPSConfigAxis(1,6,"GROUP7.Y",       74627)
+XPSConfigAxis(1,7,"GROUP8.Z",      100000)
+
+
+# Disable setting position from motor record
+XPSEnableSetPosition(0) 
 
 ################################################################################
 
@@ -226,7 +242,7 @@ str=malloc(256)
 strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
 strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
 newport_tableDebug = 1
-seq(&newport_table, str)
+# seq(&newport_table, str)
 
 ### Start the saveData task.
 # saveData_MessagePolicy
@@ -241,7 +257,6 @@ saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(10)
 saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
 #saveData_PrintScanInfo("13IDC:scan1")
-
 
 seq &Keithley2kDMM, "P=13IDC:, Dmm=DMM1"
 
