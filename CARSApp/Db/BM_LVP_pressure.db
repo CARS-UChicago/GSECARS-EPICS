@@ -15,7 +15,7 @@ grecord(asyn, "$(P)$(R)ReadValue") {
 grecord(scalcout,"$(P)$(R)Value") {
         field(INAA,"$(P)$(R)ReadValue.AINP NPP NMS")
         field(CALC,"SSCANF(AA, '%*3c%f')")
-        field(PREC,"1")
+        field(PREC,"3")
         field(FLNK,"$(P)$(R)PID.PROC PP MS")
 }
 
@@ -35,7 +35,7 @@ grecord(epid,"$(P)$(R)PID") {
 # These records are for tweaking the pressure setpoint
 grecord(ao,"$(P)$(R)PID_tweak") {
         field(VAL, "1")
-        field(PREC,"1")
+        field(PREC,"3")
 }
 
 grecord(calcout,"$(P)$(R)PID_tweak_down") {
@@ -88,7 +88,7 @@ grecord(calcout,"$(P)$(R)RampSP") {
 grecord(calcout,"$(P)$(R)RampFinal") {
       field(CALC,"A")
       field(OUT,"$(P)$(R)RampScan.P1EP NPP NMS")
-      field(PREC,"1")
+      field(PREC,"3")
 }
 
 # The scan record that ramps the load
