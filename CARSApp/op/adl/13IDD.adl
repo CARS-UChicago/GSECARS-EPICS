@@ -1,14 +1,14 @@
 
 file {
-	name="J:\epics\support\CARS\1-5\CARSApp\op\adl\13IDD.adl"
-	version=020306
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13IDD.adl"
+	version=030102
 }
 display {
 	object {
-		x=1711
-		y=45
+		x=286
+		y=33
 		width=370
-		height=590
+		height=650
 	}
 	clr=14
 	bclr=4
@@ -126,7 +126,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=80
 		width=60
 		height=25
@@ -149,7 +149,7 @@ text {
 }
 text {
 	object {
-		x=71
+		x=70
 		y=80
 		width=160
 		height=20
@@ -161,7 +161,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=164
 		width=60
 		height=25
@@ -176,7 +176,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=192
 		width=60
 		height=25
@@ -226,7 +226,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=248
 		width=60
 		height=25
@@ -276,7 +276,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=276
 		width=60
 		height=25
@@ -296,7 +296,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=304
 		width=60
 		height=25
@@ -341,7 +341,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=332
 		width=60
 		height=25
@@ -391,7 +391,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=360
 		width=60
 		height=25
@@ -441,7 +441,7 @@ text {
 }
 "related display" {
 	object {
-		x=6
+		x=5
 		y=388
 		width=60
 		height=25
@@ -453,7 +453,7 @@ text {
 	}
 	display[1] {
 		label="Unidig1 Binary I/O"
-		name="ipUnidig.adl"
+		name="IpUnidig.adl"
 		args="P=13IDD:, R=Unidig1"
 	}
 	display[2] {
@@ -473,7 +473,7 @@ text {
 	}
 	display[5] {
 		label="Unidig2"
-		name="ipUnidig.adl"
+		name="IpUnidig.adl"
 		args="P=13IDD:, R=Unidig2"
 	}
 	display[6] {
@@ -486,13 +486,257 @@ text {
 		name="8_DACs.adl"
 		args="P=13IDD:, D=2"
 	}
+	display[8] {
+		label="BNC505 #1"
+		name="BNC_505.adl"
+		args="P=13IDD:, R=BNC1:, N=1"
+	}
+	display[9] {
+		label="BNC505 #1"
+		name="BNC_505.adl"
+		args="P=13IDD:, R=BNC1:, N=1"
+	}
 	clr=14
 	bclr=4
 }
+text {
+	object {
+		x=70
+		y=248
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LVP motors #1"
+}
+text {
+	object {
+		x=70
+		y=276
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LVP motors #2"
+}
+text {
+	object {
+		x=70
+		y=304
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MCA electronics"
+}
+text {
+	object {
+		x=70
+		y=332
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="DAC electronics"
+}
+text {
+	object {
+		x=70
+		y=360
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LVP electronics"
+}
+text {
+	object {
+		x=70
+		y=388
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Other electronics"
+}
+text {
+	object {
+		x=70
+		y=164
+		width=220
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Experiment Information"
+}
 "related display" {
 	object {
-		x=6
-		y=416
+		x=5
+		y=220
+		width=61
+		height=25
+	}
+	display[0] {
+		label="DAC Microscope Stages"
+		name="3motors.adl"
+		args="P=13IDD:, TITLE=DAC_Microscope,  M1=m67, M2=m68, M3=m69"
+	}
+	display[1] {
+		label="DAC X-ray Detectors"
+		name="2motors.adl"
+		args="P=13IDD:, TITLE=DAC_XrayDetector, M1=m7, M2=m8"
+	}
+	display[2] {
+		label="DAC Mirror Positions"
+		name="4motors.adl"
+		args="P=13IDD:,TITLE=DAC_Mirror_Pos, M1=m23,M2=m24,M3=m65,M4=m66"
+	}
+	display[3] {
+		label="DAC WavePlate Motors"
+		name="6motors.adl"
+		args="P=13IDD:,TITLE=DAC_Waveplate_Motors,M1=m70,M2=m71,M3=m13,M4=m72,M5=pm12,M6=pm13"
+	}
+	display[4] {
+		label="DAC PicoMotors"
+		name="picoMotor_9.adl"
+		args="P=13IDD:, S=pico, D=1_"
+	}
+	display[5] {
+		label="DAC filter"
+		name="1motors.adl"
+		args="P=13IDD:, TITLE=DAC_filter, M1=m40"
+	}
+	display[6] {
+		label="BP8000 B"
+		name="8motors.adl"
+		args="P=13IDD:, TITLE=BP8000_B, M1=m73,M2=m74,M3=m75,M4=m76,M5=m77,M6=m78,M7=m79,M8=m80,"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=71
+		y=220
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="DAC Motors #2"
+}
+composite {
+	object {
+		x=70
+		y=192
+		width=289
+		height=23
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=213
+				y=192
+				width=146
+				height=23
+			}
+			display[0] {
+				label="Dac Control"
+				name="13IDD_dac_user.adl"
+			}
+			clr=14
+			bclr=4
+			label=" DAC Control"
+		}
+		text {
+			object {
+				x=70
+				y=193
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="DAC Motors #1"
+		}
+	}
+}
+"shell command" {
+	object {
+		x=5
+		y=108
+		width=60
+		height=25
+	}
+	command[0] {
+		label="Axis 4-channel server"
+		name="start http://13IDD_AXIS.cars.aps.anl.gov"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=70
+		y=108
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Web video"
+}
+"related display" {
+	object {
+		x=5
+		y=136
+		width=60
+		height=25
+	}
+	display[0] {
+		label="Video switch"
+		name="Pelco_CM6700.adl"
+		args="P=13IDD:, R=Pelco1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=70
+		y=136
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Video switch"
+}
+"related display" {
+	object {
+		x=5
+		y=472
 		width=60
 		height=25
 	}
@@ -521,8 +765,8 @@ text {
 }
 "related display" {
 	object {
-		x=6
-		y=444
+		x=5
+		y=500
 		width=60
 		height=25
 	}
@@ -541,8 +785,8 @@ text {
 }
 "related display" {
 	object {
-		x=6
-		y=472
+		x=5
+		y=528
 		width=60
 		height=25
 	}
@@ -591,92 +835,8 @@ text {
 }
 text {
 	object {
-		x=71
-		y=248
-		width=130
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="LVP motors #1"
-}
-text {
-	object {
-		x=71
-		y=276
-		width=130
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="LVP motors #2"
-}
-text {
-	object {
-		x=71
-		y=304
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="MCA electronics"
-}
-text {
-	object {
-		x=71
-		y=332
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="DAC electronics"
-}
-text {
-	object {
-		x=71
-		y=360
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="LVP electronics"
-}
-text {
-	object {
-		x=71
-		y=388
-		width=170
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Other electronics"
-}
-text {
-	object {
-		x=71
-		y=416
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Scan"
-}
-text {
-	object {
-		x=71
-		y=444
+		x=70
+		y=500
 		width=160
 		height=20
 	}
@@ -687,8 +847,8 @@ text {
 }
 text {
 	object {
-		x=71
-		y=472
+		x=70
+		y=528
 		width=130
 		height=20
 	}
@@ -697,22 +857,10 @@ text {
 	}
 	textix="Laser control"
 }
-text {
-	object {
-		x=71
-		y=164
-		width=220
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Experiment Information"
-}
 "related display" {
 	object {
-		x=6
-		y=500
+		x=5
+		y=556
 		width=60
 		height=25
 	}
@@ -761,8 +909,8 @@ text {
 }
 "related display" {
 	object {
-		x=6
-		y=528
+		x=5
+		y=584
 		width=60
 		height=25
 	}
@@ -811,8 +959,8 @@ text {
 }
 text {
 	object {
-		x=71
-		y=500
+		x=70
+		y=556
 		width=180
 		height=20
 	}
@@ -824,8 +972,8 @@ text {
 }
 text {
 	object {
-		x=71
-		y=528
+		x=70
+		y=584
 		width=190
 		height=20
 	}
@@ -837,8 +985,8 @@ text {
 }
 text {
 	object {
-		x=71
-		y=556
+		x=70
+		y=612
 		width=140
 		height=20
 	}
@@ -849,65 +997,8 @@ text {
 }
 "related display" {
 	object {
-		x=6
-		y=220
-		width=61
-		height=25
-	}
-	display[0] {
-		label="DAC Microscope Stages"
-		name="3motors.adl"
-		args="P=13IDD:, TITLE=DAC_Microscope,  M1=m67, M2=m68, M3=m69"
-	}
-	display[1] {
-		label="DAC X-ray Detectors"
-		name="2motors.adl"
-		args="P=13IDD:, TITLE=DAC_XrayDetector, M1=m7, M2=m8"
-	}
-	display[2] {
-		label="DAC Mirror Positions"
-		name="4motors.adl"
-		args="P=13IDD:,TITLE=DAC_Mirror_Pos, M1=m23,M2=m24,M3=m65,M4=m66"
-	}
-	display[3] {
-		label="DAC WavePlate Motors"
-		name="6motors.adl"
-		args="P=13IDD:,TITLE=DAC_Waveplate_Motors,M1=m70,M2=m71,M3=m13,M4=m72,M5=pm12,M6=pm13"
-	}
-	display[4] {
-		label="DAC PicoMotors"
-		name="picoMotor_9.adl"
-		args="P=13IDD:, S=pico, D=1_"
-	}
-	display[5] {
-		label="DAC filter"
-		name="1motors.adl"
-		args="P=13IDD:, TITLE=DAC_filter, M1=m40"
-	}
-	display[6] {
-		label="BP8000 B"
-		name="8motors.adl"
-		args="P=13IDD:, TITLE=BP8000_B, M1=m73,M2=m74,M3=m75,M4=m76,M5=m77,M6=m78,M7=m79,M8=m80,"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=72
-		y=220
-		width=130
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="DAC Motors #2"
-}
-"related display" {
-	object {
-		x=6
-		y=556
+		x=5
+		y=612
 		width=60
 		height=24
 	}
@@ -926,145 +1017,140 @@ text {
 }
 composite {
 	object {
-		x=71
-		y=192
-		width=289
-		height=23
+		x=70
+		y=472
+		width=134
+		height=24
 	}
 	"composite name"=""
 	children {
 		"related display" {
 			object {
-				x=214
-				y=192
-				width=146
-				height=23
+				x=130
+				y=472
+				width=74
+				height=24
 			}
 			display[0] {
-				label="Dac Control"
-				name="13IDD_dac_user.adl"
+				label="DAC 1"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=1"
+			}
+			display[1] {
+				label="DAC 2"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=2"
+			}
+			display[2] {
+				label="DAC 3"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=3"
+			}
+			display[3] {
+				label="DAC 4"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=4"
+			}
+			display[4] {
+				label="DAC 5"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=5"
+			}
+			display[5] {
+				label="DAC 6"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=6"
+			}
+			display[6] {
+				label="DAC 7"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=7"
+			}
+			display[7] {
+				label="DAC 8"
+				name="singleDAC.adl"
+				args="P=13IDD:, D=1, C=8"
 			}
 			clr=14
 			bclr=4
-			label=" DAC Control"
+			label="-IP DAC"
 		}
 		text {
 			object {
-				x=71
-				y=193
-				width=130
+				x=70
+				y=474
+				width=40
 				height=20
 			}
 			"basic attribute" {
 				clr=14
 			}
-			textix="DAC Motors #1"
+			textix="Scan"
 		}
 	}
 }
-"shell command" {
-	object {
-		x=6
-		y=108
-		width=60
-		height=25
-	}
-	command[0] {
-		label="Axis 4-channel server"
-		name="start http://13IDD_AXIS.cars.aps.anl.gov"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=71
-		y=108
-		width=180
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Web video"
-}
 "related display" {
 	object {
-		x=6
-		y=136
+		x=5
+		y=444
 		width=60
 		height=25
 	}
 	display[0] {
-		label="Video switch"
-		name="Pelco_CM6700.adl"
-		args="P=13IDD:, R=Pelco1"
+		label="Roper #1"
+		name="Roper.adl"
+		args="P=13IDDRoper1:, R=cam1:, I=image1:, ROI=ROI1:, F=file1:"
+	}
+	display[1] {
+		label="Roper #2"
+		name="Roper.adl"
+		args="P=13IDDRoper2:, R=cam1:, I=image1:, ROI=ROI1:, F=file1:"
+	}
+	display[2] {
+		label="Prosilica #1"
+		name="ADBase.adl"
+		args="P=13IDDPS1:, R=cam1:, I=image1:, ROI=ROI1:, F=file1:, CC=CC1:"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=71
-		y=136
-		width=128
+		x=70
+		y=444
+		width=130
 		height=20
 	}
 	"basic attribute" {
 		clr=14
-		width=2
 	}
-	textix="Video switch"
+	textix="areaDetectors"
 }
 "related display" {
 	object {
-		x=131
-		y=414
-		width=74
+		x=5
+		y=416
+		width=60
 		height=24
 	}
 	display[0] {
-		label="DAC 1"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=1"
-	}
-	display[1] {
-		label="DAC 2"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=2"
-	}
-	display[2] {
-		label="DAC 3"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=3"
-	}
-	display[3] {
-		label="DAC 4"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=4"
-	}
-	display[4] {
-		label="DAC 5"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=5"
-	}
-	display[5] {
-		label="DAC 6"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=6"
-	}
-	display[6] {
-		label="DAC 7"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=7"
-	}
-	display[7] {
-		label="DAC 8"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=8"
+		label="SoftGlue"
+		name="softGlueMenu.adl"
+		args="P=13IDD:,H=softGlue:,PORT=SOFTGLUE,IPORT=SGI1,OPORT=SGO1"
 	}
 	clr=14
 	bclr=4
-	label="-IP DAC"
+}
+text {
+	object {
+		x=70
+		y=416
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="SoftGlue"
 }

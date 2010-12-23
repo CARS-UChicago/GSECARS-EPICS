@@ -1,20 +1,20 @@
 
 file {
-	name="/home/epics/synApps5-1/CARS/CARSApp/op/adl/13BMD_xasstat.adl"
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13BMD_xasstat.adl"
 	version=030000
 }
 display {
 	object {
-		x=498
-		y=680
+		x=1015
+		y=100
 		width=580
-		height=75
+		height=100
 	}
 	clr=12
 	bclr=0
 	cmap=""
 	gridSpacing=8
-	gridOn=1
+	gridOn=0
 	snapToGrid=1
 }
 "color map" {
@@ -582,4 +582,33 @@ text {
 		width=2
 	}
 	textix="% Dead Time"
+}
+text {
+	object {
+		x=8
+		y=78
+		width=60
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Datafile:"
+}
+"text update" {
+	object {
+		x=89
+		y=78
+		width=275
+		height=18
+	}
+	monitor {
+		chan="13BMD:edb:file"
+		clr=54
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
 }

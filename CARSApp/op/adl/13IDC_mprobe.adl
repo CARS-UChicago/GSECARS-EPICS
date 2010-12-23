@@ -1,12 +1,12 @@
 
 file {
 	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13IDC_mprobe.adl"
-	version=030000
+	version=030102
 }
 display {
 	object {
-		x=142
-		y=101
+		x=754
+		y=141
 		width=595
 		height=276
 	}
@@ -135,15 +135,15 @@ rectangle {
 	}
 	display[2] {
 		name="SR570.adl"
-		args="P=13IDC:, A=A3"
+		args="P=13IDC:, A=A8"
 	}
 	display[3] {
-		label="Ipre Left Preamp (A5)"
+		label="Ipre Left Preamp (A3)"
 		name="SR570.adl"
 		args="P=13IDC:, A=A3"
 	}
 	display[4] {
-		label="Ipre Right Preamp (A6)"
+		label="Ipre Right Preamp (A4)"
 		name="SR570.adl"
 		args="P=13IDC:, A=A4"
 	}
@@ -157,9 +157,9 @@ rectangle {
 		name="13IDC_tcouple.adl"
 	}
 	display[7] {
-		label="A4"
+		label="Ifoil Preamp (B4)"
 		name="SR570.adl"
-		args="P=13IDC:, A=A4"
+		args="P=13IDC:, A=B4"
 	}
 	clr=54
 	bclr=1
@@ -187,25 +187,20 @@ rectangle {
 		name="table_full.adl"
 		args="P=13IDC:, Q=XAS:T1, T=XAS:t1, M0X=m5,  M0Y=m2, M1Y=m3, M2X=m4, M2Y=m1, M2Z=junk"
 	}
-	display[3] {
-		label="Diagnostic Flag"
-		name="1motors.adl"
-		args="P=13IDA:, TITLE=Diagnostic_Flag, M1=m16"
-	}
-	display[4] {
-		label="Split Ion Chamber"
-		name="1motors.adl"
-		args="P=13IDC:, TITLE=Split_Ion_Chamber, M1=m82"
-	}
 	display[5] {
+		label="Fast Mapping "
+		name="XRM_map.adl"
+		args="P=13XRM:, Q=map"
+	}
+	display[8] {
 		label="Expt Info"
 		name="scanner.adl"
 		args="P=13XRM:, Q=edb"
 	}
-	display[6] {
-		label="OLD TT Slits"
-		name="4motors.adl"
-		args="P=13IDC:, TITLE=OLD_Slits, M1=m9, M2=m10, M3=m11, M4=m12"
+	display[9] {
+		label="Microscope Motors ()"
+		name="13IDC_mprobe_uscope.adl"
+		args="P=13IDC:, TITLE=Microscope, M1=m16, M2=m7, M3=m8"
 	}
 	clr=54
 	bclr=1
@@ -224,14 +219,13 @@ rectangle {
 		args="P=13XRM:, XF=m1, YF=m2, TH=m3, XC=m4, ZC=m5, YC=m6"
 	}
 	display[1] {
-		label="Sample Stage (tomo)"
 		name="SampleXYZ_full.adl"
 		args="P=13IDC:, X=m13, Y=m16, Z=m15, IN=pm6, UP=pm5, TH=m14"
 	}
 	display[2] {
 		label="Table Top Slits"
 		name="TableSlits.adl"
-		args="P=13IDC:, V=TTVSlit, H=TTHSlit, mYp=m86, mYn=m85, mXn=m88, mXp=m87, SLIT=Table_Top_Slits"
+		args="P=13IDC:, V=TTVSlit, H=TTHSlit, mYp=m85, mYn=m84, mXn=m87, mXp=m86, SLIT=Table_Top_Slits"
 	}
 	display[3] {
 		label="Vertical KB Mirror"
@@ -250,13 +244,22 @@ rectangle {
 	}
 	display[6] {
 		label="Microscope motors"
-		name="6motors.adl"
-		args="P=13IDC:, TITLE=Microscope, M1=m41, M2=m81, M3=m82, M4=m13, M5=m14, M6=m82"
+		name="4motors.adl"
+		args="P=13IDC:, TITLE=Microscope, M1=m81, M2=m16, M3=m13, M4=m82"
 	}
-	display[7] {
-		label="XPS Motors"
-		name="6motors.adl"
-		args="P=13XRM:,TITLE=XPSMOTORS, M1=m1,M2=m2,M3=m3,M4=m4,M5=m5"
+	display[8] {
+		label="Extra Motors"
+		name="8motors.adl"
+		args="P=13IDC:, TITLE=XRF_DETECTOR, M1=m15, M2=m16, M3=m48, M4=m7, M5=m8, M6=m42, M7=m43, M8=m83"
+	}
+	display[9] {
+		label="Vortex Stage"
+		name="3motors.adl"
+		args="P=13IDC:, TITLE=Vortex_Stage, M1=m45, M2=m46, M3=m48"
+	}
+	display[10] {
+		name="3motors.adl"
+		args="P=13IDC:, TITLE=WDS_DETECTOR, M1=m7, M2=m8, M3=m16"
 	}
 	clr=54
 	bclr=1
@@ -451,7 +454,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="APS Permit:"
+	textix="APS Permit"
 }
 text {
 	object {
@@ -476,7 +479,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Station Searched:"
+	textix="Stations Searched:"
 }
 oval {
 	object {
@@ -570,17 +573,27 @@ menu {
 		name="00Start.adl"
 	}
 	display[2] {
-		label="Video Switch"
+		label="IDE Video Switch"
+		name="Pelco_CM6700.adl"
+		args="P=13IDC:, R=Pelco2"
+	}
+	display[3] {
+		label="IDC Video Switch"
 		name="Pelco_CM6700.adl"
 		args="P=13IDC:, R=Pelco1"
 	}
-	display[3] {
-		label="More IDC XAS"
-		name="13IDC_xas.adl"
+	display[4] {
+		label="Experiment Info"
+		name="scanner.adl"
+		args="P=13XRM:, Q=edb"
 	}
 	display[5] {
 		label="Main ID Control"
 		name="13ID.adl"
+	}
+	display[6] {
+		label="More IDC XAS"
+		name="13IDC_xas.adl"
 	}
 	clr=14
 	bclr=55
@@ -867,18 +880,18 @@ rectangle {
 	}
 	display[0] {
 		label="Scalers"
-		name="scaler_calcs4.adl"
-		args="P=13IDC:, S=scaler1"
+		name="scaler_calcs8.adl"
+		args="P=13IDC:, S=scaler2"
 	}
 	display[1] {
-		label="Quad Vortex"
-		name="4element_dxp.adl"
-		args="P=dxpXMAP:, D=dxp, M=mca"
+		label="Struck MCA"
+		name="Struck8.adl"
+		args="P=13IDC:str:"
 	}
 	display[2] {
-		label="Single Vortex"
-		name="single_dxp_top.adl"
-		args="P=13XRM:, M=mca1, D=dxp1"
+		label="Quad Vortex"
+		name="xmap4_dxp.adl"
+		args="P=13SDD1:, D=dxp, M=mca"
 	}
 	display[3] {
 		label="Ion Chamber"
@@ -888,19 +901,20 @@ rectangle {
 	display[4] {
 		label="XRF Collector"
 		name="XRF_Collect.adl"
-		args="P=13XRM:, Q=XRF, D=dxpXMAP:"
+		args="P=13XRM:, Q=XRF, D=13SDD1:"
 	}
 	display[5] {
-		label="ccd"
-		name="ccd.adl"
-		args="P=marCCD:, C=dnd1:"
+		label="cc"
 	}
 	display[6] {
-		name="aim_adc.adl"
+		label="Scalers (old)"
+		name="scaler_calcs8.adl"
+		args="P=13IDC:, S=scaler1"
 	}
-	display[7] {
-		name="16element.adl"
-		args="P=13GE1:med:"
+	display[9] {
+		label="Single Vortex"
+		name="single_dxp_top.adl"
+		args="P=13XRM:, M=mca1, D=dxp1"
 	}
 	clr=54
 	bclr=1
@@ -1092,7 +1106,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="$(FD):Acquiring"
+		chan="13SDD1:Acquiring"
 	}
 	textix="Done"
 }
@@ -1120,7 +1134,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(FD):ElapsedReal"
+		chan="13SDD1:ElapsedReal"
 		clr=54
 		bclr=0
 	}
@@ -1136,7 +1150,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(FD):PresetReal"
+		chan="13SDD1:PresetReal"
 		clr=14
 		bclr=0
 	}
@@ -1163,7 +1177,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(FD):DeadTime"
+		chan="13SDD1:DeadTime"
 		clr=54
 		bclr=0
 	}

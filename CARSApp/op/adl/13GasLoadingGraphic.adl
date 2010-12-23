@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/CARS/1-6beta/CARSApp/op/adl/13GasLoadingGraphic.adl"
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13GasLoadingGraphic.adl"
 	version=030000
 }
 display {
 	object {
-		x=229
-		y=157
+		x=307
+		y=82
 		width=900
 		height=990
 	}
@@ -2355,102 +2355,130 @@ composite {
 		}
 	}
 }
+"text update" {
+	object {
+		x=788
+		y=400
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Cell_Up"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=788
+		y=420
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Cell_Down"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=716
+		y=400
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cell up:"
+}
+text {
+	object {
+		x=698
+		y=420
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cell down:"
+}
+text {
+	object {
+		x=698
+		y=460
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Press. OK:"
+}
+"text update" {
+	object {
+		x=788
+		y=460
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Pressurize_OK_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=716
+		y=440
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Load OK:"
+}
+"text update" {
+	object {
+		x=788
+		y=440
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Load_OK_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
 composite {
 	object {
-		x=682
-		y=400
-		width=170
-		height=95
+		x=734
+		y=480
+		width=134
+		height=15
 	}
 	"composite name"=""
 	children {
-		"text update" {
-			object {
-				x=772
-				y=400
-				width=80
-				height=15
-			}
-			monitor {
-				chan="$(P)Cell_Up"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=772
-				y=420
-				width=80
-				height=15
-			}
-			monitor {
-				chan="$(P)Cell_Down"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
 		text {
 			object {
-				x=700
-				y=400
-				width=72
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Cell up:"
-		}
-		text {
-			object {
-				x=682
-				y=420
-				width=90
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Cell down:"
-		}
-		text {
-			object {
-				x=682
-				y=460
-				width=90
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Press. OK:"
-		}
-		"text update" {
-			object {
-				x=772
-				y=460
-				width=80
-				height=15
-			}
-			monitor {
-				chan="$(P)Pressurize_OK_Switch"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=718
+				x=734
 				y=480
 				width=54
 				height=15
@@ -2463,7 +2491,7 @@ composite {
 		}
 		"text update" {
 			object {
-				x=772
+				x=788
 				y=480
 				width=80
 				height=15
@@ -2477,33 +2505,112 @@ composite {
 			limits {
 			}
 		}
-		text {
-			object {
-				x=700
-				y=440
-				width=72
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Load OK:"
-		}
+	}
+}
+text {
+	object {
+		x=734
+		y=500
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Comp. press.:"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=788
+		y=500
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(P)Low_Press_Switch"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+menu {
+	object {
+		x=107
+		y=200
+		width=125
+		height=20
+	}
+	control {
+		chan="13GasLoad:GasValvesOut"
+		clr=14
+		bclr=4
+	}
+}
+composite {
+	object {
+		x=100
+		y=225
+		width=139
+		height=15
+	}
+	"composite name"=""
+	children {
 		"text update" {
 			object {
-				x=772
-				y=440
-				width=80
+				x=100
+				y=225
+				width=60
 				height=15
 			}
 			monitor {
-				chan="$(P)Load_OK_Switch"
-				clr=14
-				bclr=11
+				chan="13GasLoad:SupplyValveIn"
+				clr=53
+				bclr=4
 			}
-			clrmod="alarm"
 			limits {
 			}
 		}
+		"text update" {
+			object {
+				x=179
+				y=225
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13GasLoad:LectureValveIn"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=165
+				y=225
+				width=9
+				height=15
+			}
+			"basic attribute" {
+				clr=52
+			}
+			textix="/"
+		}
 	}
+}
+text {
+	object {
+		x=8
+		y=210
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Gas supply"
 }

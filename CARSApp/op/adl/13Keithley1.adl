@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/CARS/1-5/CARSApp/op/adl/13Keithley1.adl"
-	version=030000
+	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13Keithley1.adl"
+	version=030102
 }
 display {
 	object {
-		x=443
-		y=30
+		x=465
+		y=26
 		width=391
 		height=240
 	}
@@ -97,22 +97,22 @@ display {
 	display[0] {
 		label="Scan 1"
 		name="scan_more.adl"
-		args="P=13Keithley1:, S=scan1, N=1"
+		args="P=$(P), S=scan1, N=1"
 	}
 	display[1] {
 		label="Scan 2"
 		name="scan_more.adl"
-		args="P=13Keithley1:, S=scan2, N=2"
+		args="P=$(P), S=scan2, N=2"
 	}
 	display[2] {
 		label="Scan 3"
 		name="scan_more.adl"
-		args="P=13Keithley1:, S=scan3, N=2"
+		args="P=$(P), S=scan3, N=2"
 	}
 	display[3] {
 		label="Scan 4"
 		name="scan_more.adl"
-		args="P=13Keithley1:, S=scan4, N=2"
+		args="P=$(P), S=scan4, N=2"
 	}
 	clr=14
 	bclr=4
@@ -140,27 +140,7 @@ text {
 	display[0] {
 		label="Serial 1"
 		name="asynOctet.adl"
-		args="P=13Keithley1:, R=serial1"
-	}
-	display[1] {
-		label="Serial 2"
-		name="asynOctet.adl"
-		args="P=13Keithley1:, R=serial2"
-	}
-	display[2] {
-		label="Serial 3"
-		name="asynOctet.adl"
-		args="P=13Keithley1:, R=serial3"
-	}
-	display[3] {
-		label="Serial 4"
-		name="asynOctet.adl"
-		args="P=13Keithley1:, R=serial4"
-	}
-	display[4] {
-		label="asynTest"
-		name="asynRecord.adl"
-		args="P=13Keithley1:, R=asynTest"
+		args="P=$(P), R=serial1"
 	}
 	clr=14
 	bclr=4
@@ -199,7 +179,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="GeoCARS Keithley #1"
+	textix="$(P)"
 	align="horiz. centered"
 }
 "related display" {
@@ -212,7 +192,12 @@ text {
 	display[0] {
 		label="Keithley 2700 DMM #1"
 		name="Keithley2kDMM_mf.adl"
-		args="P=13Keithley1:, Dmm=DMM1"
+		args="P=$(P), Dmm=DMM1"
+	}
+	display[1] {
+		label="PID #1"
+		name="pid_control.adl"
+		args="P=$(P), TITLE=$(P)PID1, PID=PID1"
 	}
 	clr=14
 	bclr=4
@@ -240,12 +225,12 @@ text {
 	display[0] {
 		label="User transforms"
 		name="userTrans10.adl"
-		args="P=13Keithley1:"
+		args="P=$(P)"
 	}
 	display[1] {
 		label="User sCalcOut1"
 		name="yysCalcoutRecord.adl"
-		args="P=13Keithley1:, C=userStringCalc1"
+		args="P=$(P), C=userStringCalc1"
 	}
 	clr=14
 	bclr=4

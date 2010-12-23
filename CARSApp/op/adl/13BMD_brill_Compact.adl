@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=78
-		y=369
+		x=27
+		y=129
 		width=1391
 		height=750
 	}
@@ -356,12 +356,12 @@ composite {
 "text update" {
 	object {
 		x=372
-		y=135
+		y=133
 		width=55
 		height=14
 	}
 	monitor {
-		chan="13BMD:m67.RBV"
+		chan="13BMD:pm13.RBV"
 		clr=50
 		bclr=39
 	}
@@ -376,7 +376,7 @@ composite {
 		height=31
 	}
 	control {
-		chan="13BMD:m67.VAL"
+		chan="13BMD:pm13.VAL"
 		clr=14
 		bclr=40
 	}
@@ -392,7 +392,7 @@ composite {
 		height=30
 	}
 	control {
-		chan="13BMD:m67.TWV"
+		chan="13BMD:pm13.TWV"
 		clr=14
 		bclr=41
 	}
@@ -407,7 +407,7 @@ composite {
 		height=26
 	}
 	control {
-		chan="13BMD:m67.TWR"
+		chan="13BMD:pm13.TWR"
 		clr=14
 		bclr=42
 	}
@@ -422,7 +422,7 @@ composite {
 		height=26
 	}
 	control {
-		chan="13BMD:m67.TWF"
+		chan="13BMD:pm13.TWF"
 		clr=14
 		bclr=42
 	}
@@ -472,7 +472,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:m67.LVIO"
+		chan="13BMD:pm13.LVIO"
 	}
 	textix="Soft-Limit"
 	align="horiz. centered"
@@ -490,7 +490,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMD:m67.DMOV"
+		chan="13BMD:pm13.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -1652,7 +1652,7 @@ composite {
 		height=16
 	}
 	monitor {
-		chan="13BMD:m51.RBV"
+		chan="13BMD:m91.RBV"
 		clr=50
 		bclr=29
 	}
@@ -4889,7 +4889,7 @@ composite {
 		height=20
 	}
 	monitor {
-		chan="13Keithley1:DMM1Ch1_calc.VAL"
+		chan="13Keithley2:DMM1Ch1_calc.VAL"
 		clr=32
 		bclr=44
 	}
@@ -4973,7 +4973,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="13Keithley1:DMM1Ch2_calc.VAL"
+		chan="13Keithley2:DMM1Ch2_calc.VAL"
 		clr=31
 		bclr=44
 	}
@@ -5166,14 +5166,16 @@ composite {
 		}
 	}
 	"dynamic attribute" {
-		vis="if not zero"
+		vis="calc"
+		calc="A>0&&B>-92&&B<-88"
 		chan="$(P)$(R)Bi0.VAL"
+		chanB="13BMD:m38.RBV"
 	}
 }
 composite {
 	object {
-		x=18
-		y=598
+		x=17
+		y=597
 		width=70
 		height=61
 	}
@@ -5181,8 +5183,8 @@ composite {
 	children {
 		"message button" {
 			object {
-				x=18
-				y=638
+				x=17
+				y=637
 				width=70
 				height=21
 			}
@@ -5196,8 +5198,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=32
-				y=598
+				x=31
+				y=597
 				width=42
 				height=40
 			}
@@ -5207,8 +5209,8 @@ composite {
 		}
 		text {
 			object {
-				x=33
-				y=601
+				x=32
+				y=600
 				width=40
 				height=15
 			}
@@ -5220,8 +5222,8 @@ composite {
 		}
 		text {
 			object {
-				x=33
-				y=616
+				x=32
+				y=615
 				width=40
 				height=15
 			}
@@ -5239,8 +5241,8 @@ composite {
 }
 "related display" {
 	object {
-		x=797
-		y=722
+		x=876
+		y=724
 		width=80
 		height=24
 	}
@@ -5251,8 +5253,8 @@ composite {
 	}
 	display[1] {
 		label="Top Brillouin"
-		name="2motors.adl"
-		args="P=13BMD:, TITLE=Top Brillouin, M1=m75, M2=m76"
+		name="4motors.adl"
+		args="P=13BMD:, TITLE=Top Brillouin, M1=m75, M2=m76, M3=m79, M4=m80"
 	}
 	display[2] {
 		label="Laser feedback"
@@ -5284,8 +5286,8 @@ composite {
 }
 "shell command" {
 	object {
-		x=878
-		y=723
+		x=957
+		y=725
 		width=26
 		height=22
 	}
@@ -5318,8 +5320,8 @@ composite {
 }
 "related display" {
 	object {
-		x=508
-		y=722
+		x=587
+		y=724
 		width=140
 		height=23
 	}
@@ -5341,7 +5343,7 @@ composite {
 	display[3] {
 		label="BMB Slits (individual)"
 		name="2motors.adl"
-		args="P=13BMA:, TITLE=13BMB_Slits, M1=m24, M2=m25"
+		args="P=13BMA:, TITLE=13BMB_Slits, M1=m24, M2=m90"
 	}
 	display[4] {
 		label="BMD Slits (compound)"
@@ -5359,8 +5361,8 @@ composite {
 }
 "related display" {
 	object {
-		x=651
-		y=722
+		x=730
+		y=724
 		width=145
 		height=22
 	}
@@ -5405,8 +5407,8 @@ composite {
 }
 "related display" {
 	object {
-		x=196
-		y=722
+		x=275
+		y=724
 		width=120
 		height=26
 	}
@@ -5420,8 +5422,8 @@ composite {
 }
 "related display" {
 	object {
-		x=316
-		y=721
+		x=395
+		y=723
 		width=90
 		height=25
 	}
@@ -5446,8 +5448,8 @@ composite {
 		args="P=13BMD:, R=Unidig2, D=1, C=Pelco1"
 		policy="replace display"
 	}
-	clr=14
-	bclr=63
+	clr=25
+	bclr=54
 	label="-Brill"
 }
 composite {
@@ -6515,287 +6517,276 @@ composite {
 		chan="13BMD:m27.RBV"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=746
 		y=379
 		width=152
 		height=136
 	}
+	"basic attribute" {
+		clr=25
+		fill="outline"
+		width=2
+	}
+}
+composite {
+	object {
+		x=749
+		y=403
+		width=44
+		height=89
+	}
 	"composite name"=""
 	children {
-		rectangle {
+		text {
 			object {
-				x=746
-				y=379
-				width=152
-				height=136
-			}
-			"basic attribute" {
-				clr=25
-				fill="outline"
-				width=2
-			}
-		}
-		composite {
-			object {
-				x=749
+				x=759
 				y=403
-				width=44
-				height=89
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=759
-						y=403
-						width=22
-						height=37
-					}
-					"basic attribute" {
-						clr=36
-					}
-					textix="-"
-				}
-				polygon {
-					object {
-						x=749
-						y=420
-						width=44
-						height=71
-					}
-					"basic attribute" {
-						clr=36
-					}
-					points {
-						(749,491)
-						(750,462)
-						(754,475)
-						(782,431)
-						(771,431)
-						(793,420)
-						(790,441)
-						(786,432)
-						(758,477)
-						(767,479)
-						(749,491)
-					}
-				}
-				text {
-					object {
-						x=765
-						y=455
-						width=22
-						height=37
-					}
-					"basic attribute" {
-						clr=36
-					}
-					textix="+"
-				}
-			}
-		}
-		"text entry" {
-			object {
-				x=801
-				y=421
-				width=91
-				height=30
-			}
-			control {
-				chan="13BMD:m52.VAL"
-				clr=14
-				bclr=50
-			}
-			clrmod="discrete"
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=818
-				y=448
-				width=58
-				height=30
-			}
-			control {
-				chan="13BMD:m52.TWV"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=802
-				y=450
-				width=17
-				height=28
-			}
-			control {
-				chan="13BMD:m52.TWR"
-				clr=14
-				bclr=52
-			}
-			label="<"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=873
-				y=450
-				width=18
-				height=28
-			}
-			control {
-				chan="13BMD:m52.TWF"
-				clr=14
-				bclr=52
-			}
-			label=">"
-			press_msg="1"
-		}
-		oval {
-			object {
-				x=800
-				y=488
-				width=13
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m52.HLS"
-			}
-		}
-		oval {
-			object {
-				x=883
-				y=489
-				width=13
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m52.LLS"
-			}
-		}
-		text {
-			object {
-				x=814
-				y=491
-				width=69
-				height=13
-			}
-			"basic attribute" {
-				clr=30
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m52.LVIO"
-			}
-			textix="Soft-Limit"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=814
-				y=491
-				width=65
-				height=20
-			}
-			"basic attribute" {
-				clr=20
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMD:m52.DMOV"
-			}
-			textix="Moving"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=798
-				y=402
-				width=99
-				height=20
+				width=22
+				height=37
 			}
 			"basic attribute" {
 				clr=36
 			}
-			"dynamic attribute" {
-				chan="X"
-			}
-			textix="horisontal"
+			textix="-"
 		}
-		"text update" {
+		polygon {
 			object {
-				x=800
-				y=388
-				width=55
-				height=14
+				x=749
+				y=420
+				width=44
+				height=71
 			}
-			monitor {
-				chan="13BMD:m52.RBV"
-				clr=50
-				bclr=44
+			"basic attribute" {
+				clr=36
 			}
-			limits {
+			points {
+				(749,491)
+				(750,462)
+				(754,475)
+				(782,431)
+				(771,431)
+				(793,420)
+				(790,441)
+				(786,432)
+				(758,477)
+				(767,479)
+				(749,491)
 			}
 		}
 		text {
 			object {
-				x=864
-				y=383
-				width=30
-				height=20
+				x=765
+				y=455
+				width=22
+				height=37
 			}
 			"basic attribute" {
-				clr=0
+				clr=36
 			}
-			textix="m52"
-		}
-		"message button" {
-			object {
-				x=818
-				y=478
-				width=25
-				height=15
-			}
-			control {
-				chan="13BMD:m52.TWV"
-				clr=0
-				bclr=49
-			}
-			label=".01"
-			press_msg=".01"
-		}
-		"message button" {
-			object {
-				x=848
-				y=478
-				width=25
-				height=15
-			}
-			control {
-				chan="13BMD:m52.TWV"
-				clr=0
-				bclr=49
-			}
-			label=".1"
-			press_msg=".1"
+			textix="+"
 		}
 	}
+}
+"text entry" {
+	object {
+		x=801
+		y=421
+		width=91
+		height=30
+	}
+	control {
+		chan="13BMD:m89.VAL"
+		clr=14
+		bclr=50
+	}
+	clrmod="discrete"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=818
+		y=448
+		width=58
+		height=30
+	}
+	control {
+		chan="13BMD:m89.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=802
+		y=450
+		width=17
+		height=28
+	}
+	control {
+		chan="13BMD:m89.TWR"
+		clr=14
+		bclr=52
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=873
+		y=450
+		width=18
+		height=28
+	}
+	control {
+		chan="13BMD:m89.TWF"
+		clr=14
+		bclr=52
+	}
+	label=">"
+	press_msg="1"
+}
+oval {
+	object {
+		x=800
+		y=488
+		width=13
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m89.HLS"
+	}
+}
+oval {
+	object {
+		x=883
+		y=489
+		width=13
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m89.LLS"
+	}
+}
+text {
+	object {
+		x=814
+		y=491
+		width=69
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m89.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=814
+		y=491
+		width=65
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:m89.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=798
+		y=402
+		width=99
+		height=20
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="horisontal"
+}
+"text update" {
+	object {
+		x=800
+		y=388
+		width=55
+		height=14
+	}
+	monitor {
+		chan="13BMD:m89.RBV"
+		clr=50
+		bclr=44
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=864
+		y=383
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="m89"
+}
+"message button" {
+	object {
+		x=818
+		y=478
+		width=25
+		height=15
+	}
+	control {
+		chan="13BMD:m89.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=848
+		y=478
+		width=25
+		height=15
+	}
+	control {
+		chan="13BMD:m89.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".1"
+	press_msg=".1"
 }
 composite {
 	object {
@@ -7100,7 +7091,7 @@ polygon {
 		height=14
 	}
 	monitor {
-		chan="13BMD:m66.RBV"
+		chan="13BMD:pm15.RBV"
 		clr=50
 		bclr=49
 	}
@@ -7115,7 +7106,7 @@ polygon {
 		height=31
 	}
 	control {
-		chan="13BMD:m66.VAL"
+		chan="13BMD:pm15.VAL"
 		clr=14
 		bclr=40
 	}
@@ -7131,7 +7122,7 @@ polygon {
 		height=30
 	}
 	control {
-		chan="13BMD:m66.TWV"
+		chan="13BMD:pm15.TWV"
 		clr=14
 		bclr=41
 	}
@@ -7146,7 +7137,7 @@ polygon {
 		height=26
 	}
 	control {
-		chan="13BMD:m66.TWR"
+		chan="13BMD:pm15.TWR"
 		clr=14
 		bclr=42
 	}
@@ -7161,7 +7152,7 @@ polygon {
 		height=26
 	}
 	control {
-		chan="13BMD:m66.TWF"
+		chan="13BMD:pm15.TWF"
 		clr=14
 		bclr=42
 	}
@@ -7211,7 +7202,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:m66.LVIO"
+		chan="13BMD:pm15.LVIO"
 	}
 	textix="Soft-Limit"
 	align="horiz. centered"
@@ -7229,7 +7220,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMD:m66.DMOV"
+		chan="13BMD:pm15.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -7850,266 +7841,244 @@ composite {
 	label=".003"
 	press_msg=".003"
 }
-composite {
+text {
+	object {
+		x=788
+		y=545
+		width=64
+		height=20
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="vertical"
+}
+"text entry" {
+	object {
+		x=786
+		y=563
+		width=81
+		height=28
+	}
+	control {
+		chan="13BMD:m90.VAL"
+		clr=14
+		bclr=50
+	}
+	clrmod="discrete"
+	limits {
+	}
+}
+oval {
+	object {
+		x=780
+		y=649
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m90.HLS"
+	}
+}
+oval {
+	object {
+		x=861
+		y=649
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m90.LLS"
+	}
+}
+text {
+	object {
+		x=793
+		y=651
+		width=75
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m90.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=793
+		y=652
+		width=71
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:m90.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=841
+		y=528
+		width=36
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="m90"
+}
+"text update" {
+	object {
+		x=780
+		y=535
+		width=55
+		height=14
+	}
+	monitor {
+		chan="13BMD:m90.RBV"
+		clr=50
+		bclr=44
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=787
+		y=617
+		width=51
+		height=17
+	}
+	control {
+		chan="13BMD:m90.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=788
+		y=636
+		width=49
+		height=17
+	}
+	control {
+		chan="13BMD:m90.TWR"
+		clr=14
+		bclr=52
+	}
+	label="\/"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=787
+		y=601
+		width=51
+		height=16
+	}
+	control {
+		chan="13BMD:m90.TWF"
+		clr=14
+		bclr=52
+	}
+	label="/\"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=840
+		y=611
+		width=33
+		height=15
+	}
+	control {
+		chan="13BMD:m90.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=840
+		y=628
+		width=33
+		height=15
+	}
+	control {
+		chan="13BMD:m90.TWV"
+		clr=0
+		bclr=49
+	}
+	label=".1"
+	press_msg=".1"
+}
+polygon {
+	object {
+		x=758
+		y=550
+		width=19
+		height=99
+	}
+	"basic attribute" {
+		clr=33
+	}
+	points {
+		(767,550)
+		(758,567)
+		(765,565)
+		(765,633)
+		(759,627)
+		(767,649)
+		(777,628)
+		(769,633)
+		(769,566)
+		(777,567)
+		(769,553)
+		(767,550)
+	}
+}
+rectangle {
 	object {
 		x=748
 		y=520
 		width=141
 		height=154
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=788
-				y=545
-				width=64
-				height=20
-			}
-			"basic attribute" {
-				clr=60
-			}
-			"dynamic attribute" {
-				chan="X"
-			}
-			textix="vertical"
-		}
-		"text entry" {
-			object {
-				x=786
-				y=563
-				width=81
-				height=28
-			}
-			control {
-				chan="13BMD:m25.VAL"
-				clr=14
-				bclr=50
-			}
-			clrmod="discrete"
-			limits {
-			}
-		}
-		oval {
-			object {
-				x=780
-				y=649
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m25.HLS"
-			}
-		}
-		oval {
-			object {
-				x=861
-				y=649
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m25.LLS"
-			}
-		}
-		text {
-			object {
-				x=793
-				y=651
-				width=75
-				height=13
-			}
-			"basic attribute" {
-				clr=30
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m25.LVIO"
-			}
-			textix="Soft-Limit"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=793
-				y=652
-				width=71
-				height=20
-			}
-			"basic attribute" {
-				clr=20
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMD:m25.DMOV"
-			}
-			textix="Moving"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=841
-				y=528
-				width=36
-				height=20
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="m25"
-		}
-		"text update" {
-			object {
-				x=780
-				y=535
-				width=55
-				height=14
-			}
-			monitor {
-				chan="13BMD:m25.RBV"
-				clr=50
-				bclr=44
-			}
-			limits {
-			}
-		}
-		composite {
-			object {
-				x=787
-				y=601
-				width=51
-				height=52
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=787
-						y=617
-						width=51
-						height=17
-					}
-					control {
-						chan="13BMD:m25.TWV"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				"message button" {
-					object {
-						x=788
-						y=636
-						width=49
-						height=17
-					}
-					control {
-						chan="13BMD:m25.TWR"
-						clr=14
-						bclr=52
-					}
-					label="\/"
-					press_msg="1"
-				}
-				"message button" {
-					object {
-						x=787
-						y=601
-						width=51
-						height=16
-					}
-					control {
-						chan="13BMD:m25.TWF"
-						clr=14
-						bclr=52
-					}
-					label="/\"
-					press_msg="1"
-				}
-			}
-		}
-		"message button" {
-			object {
-				x=840
-				y=611
-				width=33
-				height=15
-			}
-			control {
-				chan="13BMD:m25.TWV"
-				clr=0
-				bclr=49
-			}
-			label=".01"
-			press_msg=".01"
-		}
-		"message button" {
-			object {
-				x=840
-				y=628
-				width=33
-				height=15
-			}
-			control {
-				chan="13BMD:m25.TWV"
-				clr=0
-				bclr=49
-			}
-			label=".1"
-			press_msg=".1"
-		}
-		polygon {
-			object {
-				x=758
-				y=550
-				width=19
-				height=99
-			}
-			"basic attribute" {
-				clr=33
-			}
-			points {
-				(767,550)
-				(758,567)
-				(765,565)
-				(765,633)
-				(759,627)
-				(767,649)
-				(777,628)
-				(769,633)
-				(769,566)
-				(777,567)
-				(769,553)
-				(767,550)
-			}
-		}
-		rectangle {
-			object {
-				x=748
-				y=520
-				width=141
-				height=154
-			}
-			"basic attribute" {
-				clr=25
-				fill="outline"
-				width=2
-			}
-			"dynamic attribute" {
-				chan="13BMD:m25.RBV"
-			}
-		}
+	"basic attribute" {
+		clr=25
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		chan="13BMD:m90.RBV"
 	}
 }
 text {
@@ -8156,7 +8125,7 @@ text {
 composite {
 	object {
 		x=508
-		y=461
+		y=452
 		width=60
 		height=50
 	}
@@ -8165,7 +8134,7 @@ composite {
 		text {
 			object {
 				x=517
-				y=461
+				y=452
 				width=47
 				height=19
 			}
@@ -8177,7 +8146,7 @@ composite {
 		text {
 			object {
 				x=514
-				y=477
+				y=468
 				width=54
 				height=18
 			}
@@ -8189,7 +8158,7 @@ composite {
 		text {
 			object {
 				x=508
-				y=494
+				y=485
 				width=58
 				height=17
 			}
@@ -8334,15 +8303,15 @@ text {
 }
 "related display" {
 	object {
-		x=408
-		y=722
+		x=487
+		y=724
 		width=98
 		height=23
 	}
 	display[0] {
 		label="Sample Stage"
 		name="5motors.adl"
-		args="P=13BMD:, TITLE=DAC_Sample_Stage, M1=m36, M2=m25, M3=m38,M4=m39,M5=m40"
+		args="P=13BMD:, TITLE=DAC_Sample_Stage, M1=m36, M2=m90, M3=m38,M4=m39,M5=m40"
 	}
 	display[1] {
 		label="Vertical Focusing K/B Mirror"
@@ -8748,8 +8717,8 @@ composite {
 }
 "related display" {
 	object {
-		x=910
-		y=725
+		x=989
+		y=727
 		width=79
 		height=19
 	}
@@ -8770,7 +8739,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13BMD:m67.TWV"
+		chan="13BMD:pm13.TWV"
 		clr=0
 		bclr=49
 	}
@@ -8785,7 +8754,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13BMD:m67.TWV"
+		chan="13BMD:pm13.TWV"
 		clr=0
 		bclr=49
 	}
@@ -8800,7 +8769,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13BMD:m66.TWV"
+		chan="13BMD:pm15.TWV"
 		clr=0
 		bclr=49
 	}
@@ -8815,7 +8784,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13BMD:m66.TWV"
+		chan="13BMD:pm15.TWV"
 		clr=0
 		bclr=49
 	}
@@ -8968,42 +8937,21 @@ composite {
 			press_msg=".003"
 		}
 	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-2"
-		chan="13BMD:m23.RBV"
-	}
 }
-composite {
+"message button" {
 	object {
 		x=537
 		y=386
 		width=33
 		height=30
 	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=537
-				y=386
-				width=33
-				height=30
-			}
-			control {
-				chan="13BMD:m23.VAL"
-				clr=14
-				bclr=55
-			}
-			label="Out"
-			press_msg="-85."
-		}
+	control {
+		chan="13BMD:m23.VAL"
+		clr=14
+		bclr=55
 	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>5"
-		chan="13BMD:m68.RBV"
-	}
+	label="Out"
+	press_msg="-85."
 }
 oval {
 	object {
@@ -9486,5 +9434,169 @@ composite {
 	}
 	align="horiz. centered"
 	limits {
+	}
+}
+"related display" {
+	object {
+		x=371
+		y=168
+		width=60
+		height=16
+	}
+	display[0] {
+		label="Laser horisontal"
+		name="2motors.adl"
+		args="P=13BMD:, TITLE=Laser_horisontal, M1=m79, M2=m67"
+	}
+	clr=14
+	bclr=8
+	label="-more"
+}
+"related display" {
+	object {
+		x=926
+		y=167
+		width=60
+		height=16
+	}
+	display[0] {
+		label="Signal horisontal"
+		name="2motors.adl"
+		args="P=13BMD:, TITLE=Signal_horisontal, M1=m80, M2=m66"
+	}
+	clr=14
+	bclr=8
+	label="-more"
+}
+"message button" {
+	object {
+		x=643
+		y=130
+		width=33
+		height=15
+	}
+	control {
+		chan="$(P)$(R)Bo6.VAL"
+		clr=14
+		bclr=34
+	}
+	label="In"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=685
+		y=130
+		width=36
+		height=14
+	}
+	control {
+		chan="$(P)$(R)Bo6.VAL"
+		clr=14
+		bclr=30
+	}
+	label="Out"
+	press_msg="1"
+}
+text {
+	object {
+		x=633
+		y=147
+		width=113
+		height=20
+	}
+	"basic attribute" {
+		clr=52
+	}
+	textix="Back_Raman"
+}
+text {
+	object {
+		x=665
+		y=168
+		width=45
+		height=26
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:Unidig2Bi6.VAL"
+	}
+	textix="ON"
+}
+text {
+	object {
+		x=665
+		y=167
+		width=45
+		height=26
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bi6.VAL"
+	}
+	textix="OFF"
+}
+"related display" {
+	object {
+		x=197
+		y=722
+		width=74
+		height=27
+	}
+	display[0] {
+		label="Full Original Brillouin Window"
+		name="13BMD_radio.adl"
+		args="C=Pelco1, P=13BMD:"
+		policy="replace display"
+	}
+	clr=14
+	bclr=63
+	label="-Radio"
+}
+valuator {
+	object {
+		x=496
+		y=501
+		width=121
+		height=25
+	}
+	control {
+		chan="13BMD:DAC1_7.VAL"
+		clr=0
+		bclr=31
+	}
+	dPrecision=1.000000
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=50
+	}
+}
+polygon {
+	object {
+		x=614
+		y=436
+		width=36
+		height=43
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:DAC1_7.VAL"
+	}
+	points {
+		(615,450)
+		(650,436)
+		(650,479)
+		(614,465)
+		(615,450)
 	}
 }

@@ -1,14 +1,14 @@
 
 file {
 	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13Laser.adl"
-	version=030000
+	version=030102
 }
 display {
 	object {
 		x=543
 		y=39
 		width=370
-		height=200
+		height=255
 	}
 	clr=14
 	bclr=4
@@ -100,8 +100,8 @@ rectangle {
 }
 "related display" {
 	object {
-		x=13
-		y=141
+		x=11
+		y=195
 		width=74
 		height=24
 	}
@@ -120,8 +120,8 @@ rectangle {
 }
 text {
 	object {
-		x=92
-		y=141
+		x=90
+		y=195
 		width=40
 		height=20
 	}
@@ -133,8 +133,8 @@ text {
 }
 "related display" {
 	object {
-		x=13
-		y=114
+		x=11
+		y=168
 		width=74
 		height=24
 	}
@@ -148,13 +148,23 @@ text {
 		name="asynOctet.adl"
 		args="P=13Laser:, R=serial2"
 	}
+	display[2] {
+		label="Serial 3"
+		name="asynOctet.adl"
+		args="P=13Laser:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynOctet.adl"
+		args="P=13Laser:, R=serial4"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=92
-		y=114
+		x=90
+		y=168
 		width=180
 		height=20
 	}
@@ -166,7 +176,7 @@ text {
 }
 text {
 	object {
-		x=92
+		x=90
 		y=60
 		width=60
 		height=20
@@ -179,7 +189,7 @@ text {
 }
 "related display" {
 	object {
-		x=13
+		x=11
 		y=60
 		width=74
 		height=24
@@ -199,8 +209,8 @@ text {
 }
 "related display" {
 	object {
-		x=13
-		y=87
+		x=11
+		y=141
 		width=74
 		height=24
 	}
@@ -219,8 +229,8 @@ text {
 }
 text {
 	object {
-		x=92
-		y=87
+		x=90
+		y=141
 		width=220
 		height=20
 	}
@@ -232,8 +242,8 @@ text {
 }
 "related display" {
 	object {
-		x=13
-		y=168
+		x=11
+		y=222
 		width=75
 		height=24
 	}
@@ -247,8 +257,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=168
+		x=91
+		y=222
 		width=100
 		height=20
 	}
@@ -269,4 +279,60 @@ text {
 	}
 	textix="GSECARS Laser Lab"
 	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=11
+		y=87
+		width=74
+		height=24
+	}
+	display[0] {
+		label="IPG YLR LASER"
+		name="IPG_YLR_laser.adl"
+		args="P=13Laser:, R=Laser1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=87
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Laser"
+}
+"related display" {
+	object {
+		x=11
+		y=114
+		width=74
+		height=24
+	}
+	display[0] {
+		label="BNC-505 Pulse Generator"
+		name="BNC_505.adl"
+		args="P=13Laser:, R=BNC1:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=114
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="BNC-505 pulse generator"
 }

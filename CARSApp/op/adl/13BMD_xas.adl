@@ -1,14 +1,14 @@
 
 file {
 	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13BMD_xas.adl"
-	version=030000
+	version=030102
 }
 display {
 	object {
-		x=98
-		y=470
-		width=460
-		height=125
+		x=181
+		y=421
+		width=480
+		height=600
 	}
 	clr=12
 	bclr=1
@@ -184,7 +184,7 @@ display {
 	display[0] {
 		label="Sample Stage"
 		name="SampleXYZTheta.adl"
-		args="P=13BMD:, X=m34, Y=m33, Z=m35, TH=m40, CHI=m39"
+		args="P=13BMD:, X=m82, Y=m81, Z=m83, TH=m33, CHI=m34"
 	}
 	display[1] {
 		label="BM D Slits"
@@ -197,9 +197,9 @@ display {
 		args="P=13BMA:, SLIT=Slit2V"
 	}
 	display[3] {
-		label="Table Top Slits"
-		name="4motors.adl"
-		args="P=13IDC:, TITLE=Table_Top_Slit, M1=m9, M2=m10, M3=m11, M4=m12"
+		label="DAC Sample Stage"
+		name="5motors.adl"
+		args="P=13BMD:, TITLE=DAC_Sample_Stage, M1=m36, M2=m25, M3=m38, M4=m39, M5=m40"
 	}
 	display[4] {
 		label="Lift Table (simple)"
@@ -211,15 +211,15 @@ display {
 		name="6motors.adl"
 		args="P=13BMD:, TITLE=Horizontal_Mirror, M1=m45, M2=m46, M3=m47, M4=m48, M5=pm5, M6=pm6"
 	}
-	display[6] {
-		label="Lift Table (compound)"
-		name="table_full.adl"
-		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m21, M2Y=m17, M2Z=junk"
-	}
 	display[7] {
-		label="Other Motors"
-		name="4motors.adl"
-		args="P=13BMD:, M1=m80, M2=m35, M3=m39, M4=m72, TITLE=OTHER"
+		label="Extra Motors"
+		name="6motors.adl"
+		args="P=13BMD:, M1=m84, M2=m81, M3=m82, M4=m83, M5=m84, TITLE=Other_Motors"
+	}
+	display[8] {
+		label="Microscope Motors"
+		name="6motors.adl"
+		args="P=13BMD:, M1=m84, M2=m33, M3=m34, M4=m35, M5=m36, M6=m80, TITLE=uSCOPE"
 	}
 	clr=14
 	bclr=2
@@ -265,20 +265,6 @@ display {
 	clr=14
 	bclr=2
 	label="-Mono"
-}
-text {
-	object {
-		x=502
-		y=146
-		width=1
-		height=19
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		chan="$(P1)$(EN):SET"
-	}
 }
 "message button" {
 	object {
@@ -406,6 +392,11 @@ rectangle {
 		label="GSE Main Menu "
 		name="00Start.adl"
 	}
+	display[4] {
+		label="BMD Table Compound"
+		name="table_full.adl"
+		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m21, M2Y=m17, M2Z=junk"
+	}
 	clr=14
 	bclr=2
 	label="-Front End "
@@ -432,6 +423,11 @@ rectangle {
 		name="16element_dxp.adl"
 		args="P=13GE2:med:, D=dxp, M=mca"
 	}
+	display[3] {
+		label="Vortex / Mercury"
+		name="16element_dxp_dxp3.adl"
+		args="P=dxpMercury:, D=dxp, M=mca"
+	}
 	display[4] {
 		label="Video Switch"
 		name="Pelco_CM6700.adl"
@@ -445,7 +441,7 @@ rectangle {
 	display[6] {
 		label="MAR 345"
 		name="MAR345_Collect.adl"
-		args="P=13XRM:, Q=MAR345"
+		args="P=13MARIP:"
 	}
 	clr=14
 	bclr=2
@@ -639,4 +635,273 @@ menu {
 	clr=54
 	bclr=1
 	label="-Ring Current"
+}
+"strip chart" {
+	object {
+		x=5
+		y=255
+		width=460
+		height=300
+	}
+	plotcom {
+		title="I0 SetPoint and Current Value"
+		clr=14
+		bclr=1
+	}
+	period=30.000000
+	pen[0] {
+		chan="13BMA:mono_pid1.VAL"
+		clr=23
+		limits {
+			loprSrc="default"
+			hoprSrc="default"
+			hoprDefault=100
+		}
+	}
+	pen[1] {
+		chan="13BMA:mono_pid1.CVAL"
+		clr=54
+		limits {
+			loprSrc="default"
+			hoprSrc="default"
+			hoprDefault=100
+		}
+	}
+}
+text {
+	object {
+		x=20
+		y=140
+		width=54
+		height=20
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Energy"
+}
+"text update" {
+	object {
+		x=100
+		y=139
+		width=90
+		height=20
+	}
+	monitor {
+		chan="13BMA:E:E_RBV"
+		clr=54
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=315
+		y=135
+		width=25
+		height=25
+	}
+	control {
+		chan="13BMA:E:tweak.A"
+		clr=54
+		bclr=2
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=415
+		y=135
+		width=25
+		height=25
+	}
+	control {
+		chan="13BMA:E:tweak.B"
+		clr=54
+		bclr=2
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=337
+		y=135
+		width=80
+		height=25
+	}
+	control {
+		chan="13BMA:E:tweakval"
+		clr=14
+		bclr=1
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=210
+		y=135
+		width=100
+		height=25
+	}
+	control {
+		chan="13BMA:E:Energy"
+		clr=14
+		bclr=1
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=120
+		y=200
+		width=80
+		height=25
+	}
+	control {
+		chan="13BMA:mono_pid1.VAL"
+		clr=23
+		bclr=1
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=20
+		y=200
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="I0 Target"
+}
+text {
+	object {
+		x=20
+		y=225
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="I0 Actual"
+}
+"text update" {
+	object {
+		x=120
+		y=225
+		width=75
+		height=20
+	}
+	monitor {
+		chan="13BMA:mono_pid1.CVAL"
+		clr=54
+		bclr=1
+	}
+	limits {
+	}
+}
+menu {
+	object {
+		x=135
+		y=175
+		width=60
+		height=20
+	}
+	control {
+		chan="13BMA:mono_pid1.FBON"
+		clr=14
+		bclr=2
+	}
+}
+text {
+	object {
+		x=230
+		y=175
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="I0 Fine Adjust"
+}
+valuator {
+	object {
+		x=230
+		y=200
+		width=150
+		height=25
+	}
+	control {
+		chan="13BMA:DAC1_3.VAL"
+		clr=14
+		bclr=1
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=170
+		width=460
+		height=80
+	}
+	"basic attribute" {
+		clr=59
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=20
+		y=175
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+		width=2
+	}
+	textix="I0 Feedback"
+}
+text {
+	object {
+		x=20
+		y=570
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Microscope Light:"
+}
+valuator {
+	object {
+		x=200
+		y=565
+		width=200
+		height=25
+	}
+	control {
+		chan="13BMD:DAC1_6.VAL"
+		clr=14
+		bclr=1
+	}
+	dPrecision=1.000000
+	limits {
+	}
 }
