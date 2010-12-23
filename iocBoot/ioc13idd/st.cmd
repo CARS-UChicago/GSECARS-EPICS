@@ -40,7 +40,11 @@ XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)
 XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
 XPSConfigAxis(0,3,"GROUP4.POSITIONER",  1000)  
 # XPSConfigAxis(0,4,"GROUP5.POSITIONER",  2000)  
-# XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000)  
+# XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000) 
+
+# Disable setting position from motor record
+XPSEnableSetPosition(0)
+ 
 ##=====================================================
 
 dbLoadTemplate("motors.template")
@@ -83,7 +87,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_88.db","P=13IDD:")
 
 # Laser PID control
 # This is for the old YLF laser using a photodiode with slow and fast feedback records, not used any more
-#dbLoadTemplate("laser_pid.template")
+dbLoadTemplate("laser_pid.template")
 
 # Simple laser heating database
 dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
