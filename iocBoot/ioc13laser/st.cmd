@@ -1,26 +1,51 @@
 errlogInit(5000)
 < envPaths
+
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delayGenApp/Db)
+
+cd $(TOP)/iocBoot/$(IOC)
+
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARS.dbd")
-CARSLinux_registerRecordDeviceDriver(pdbbase)
+CARS_registerRecordDeviceDriver(pdbbase)
 
-# Set up 2 serial ports on Moxa box
+# Set up serial ports on Moxa box
 drvAsynIPPortConfigure("serial1", "gsets3:4001", 0, 0)
 drvAsynIPPortConfigure("serial2", "gsets3:4002", 0, 0)
+drvAsynIPPortConfigure("serial3", "gsets3:4003", 0, 0)
+drvAsynIPPortConfigure("serial4", "gsets3:4004", 0, 0)
+
 # Make these ports available from the iocsh command line
 asynOctetConnect("serial1", "serial1", 0, 1, 80)
 asynOctetConnect("serial2", "serial2", 0, 1, 80)
+asynOctetConnect("serial3", "serial3", 0, 1, 80)
+asynOctetConnect("serial4", "serial4", 0, 1, 80)
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
 asynOctetSetOutputEos("serial2",0,"\r")
+asynOctetSetInputEos("serial3",0,"\r")
+asynOctetSetOutputEos("serial3",0,"\r")
+asynOctetSetInputEos("serial4",0,"\r\n")
+asynOctetSetOutputEos("serial4",0,"\r\n")
+
+#asynSetTraceIOMask("serial1", 0, 2)
+#asynSetTraceIOMask("serial2", 0, 2)
+#asynSetTraceMask("serial1", 0, 255)
+#asynSetTraceMask("serial2", 0, 255)
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
 
 ### Motors
 dbLoadTemplate  "motors.template"
+
+# IPG laser
+dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial3")
+
+# BNC-505 Pulse/Delay Generator
+dbLoadTemplate("BNC_505.substitutions")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
