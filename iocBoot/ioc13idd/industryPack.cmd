@@ -87,3 +87,5 @@ dbLoadTemplate("Ip330_ADC.template")
 initIpUnidig("Unidig1", 0, 2, 100, 116, 0xffffff, 0xffffff)
 initIpUnidig("Unidig2", 1, 1, 100, 117, 0xffffff, 0xffffff)
 dbLoadTemplate("ipUnidig.substitutions")
+
+< softGlue.cmd
