@@ -1,15 +1,3 @@
-rem This batch file starts the software for controlling Roper detectors from EPICS
-
-rem Comment out the following line if you don't want the batch file to start WinView.
-rem Edit it if WinSpec rather than WinView should be started
-rem start WinView
-
-rem Start the Roper server
-start J:\epics\support\ccd\1-7beta\bin\win32-x86\roperServer.exe
-
-rem Start MEDM
-start medm -x -macro "P=13IDDMicroMax2:, C=det1:" ccd.adl
-
-rem Start IOC
-J:\epics\support\ccd\1-7beta\bin\win32-x86\roperCCDApp.exe st.cmd
+start medm -x -macro "P=13IDDMicroMax2:, R=cam1:, I=image1:, ROI=ROI1:, NETCDF=netCDF1:, TIFF=TIFF1:, JPEG=JPEG1:, NEXUS=Nexus1:" Roper.adl
+J:\epics\support\areaDetector\1-5\bin\win32-x86\roperApp st.cmd
 
