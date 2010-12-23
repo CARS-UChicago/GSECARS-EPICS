@@ -1,7 +1,7 @@
 # This file contains the motor definitions for motors in 13IDD.
 # Here is the correspondence of motor numbers, cards and patch panel positions
 # Motors   Card    Patch panel  Common use
-#  1-8       0        R         DAC sample (1-6), DAC X-ray Detector (7-8) 
+#  1-8       0        R         DAC sample (1-6), DAC X-ray Detector (7-8), m6 gear box
 #  9-16      1        P         DAC slits (9-12), Open (13-14), DAC Table (15-16)
 #  17-24     2        N         DAC Table (17-19), DAC clean-up (20-22), Carbon Mirror (23-24)
 #  25-32     3        T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
@@ -25,8 +25,9 @@ pattern
 {13IDD:,  m2,    "OMS VME58",   0,    1, "Z (along beam) stage",   mm,        Neg,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      25.,    0}
 {13IDD:,  m3,    "OMS VME58",   0,    2, "Y (vertical) stage",     mm,        Pos,   0.2,   0.03,  .5,    0,      1,     .2,     400,    -.02,    3,      40.,     0}
 {13IDD:,  m4,    "OMS VME58",   0,    3, "Omega",                  deg,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     400,     4.,     3,      360,    -360}
+#change m5 and m6 to microsteper card M32,current set to 0.5A
 {13IDD:,  m5,    "OMS VME58",   0,    4, "Sample-X1",              mm,        Pos,   0.15,  .01,   .2,    0.02,      1,     .2,     480,    .03546,  3,      24.,    0}
-{13IDD:,  m6,    "OMS VME58",   0,    5, "Sample-X2",              mm,        Pos,   0.15,  .01,   .2,    0.02,      1,     .2,     480,    .03546,  3,      24.,    0}
+{13IDD:,  m6,    "OMS VME58",   0,    5, "Gear box",               mm,        Pos,   0.15,  .01,   .2,    0.02,      1,     .2,     480,    .03546,  3,      24.,    0}
 #
 #13IDD DAC Detector
 #{13IDD:, m8,    "OMS VME58",   0,    6, "Detector X",             mm,       Neg,   5.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      25,     0}
@@ -72,10 +73,10 @@ pattern
 {13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
 
 # LVP CCD camera stage
-{13IDD:,  m27,   "OMS VME58",   3,    2, "Phosphor X",                mm,     Neg,   0.5,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
-{13IDD:,  m28,   "OMS VME58",   3,    3, "Stage X",                   mm,     Neg,   0.5,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
-{13IDD:,  m29,   "OMS VME58",   3,    4, "Stage Y",                   mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,     70,     0}
-{13IDD:,  m30,   "OMS VME58",   3,    5, "Stage Z",                   mm,     Pos,   2.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     70,     0}
+{13IDD:,  m27,   "OMS VME58",   3,    2, "Phosphor X",                mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
+{13IDD:,  m28,   "OMS VME58",   3,    3, "Stage X",                   mm,     Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
+{13IDD:,  m29,   "OMS VME58",   3,    4, "Stage Y",                   mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,     70,     0}
+{13IDD:,  m30,   "OMS VME58",   3,    5, "Stage Z",                   mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     70,     0}
 
 # 
 #Laser stage X is installed, TU 5/28/02
@@ -83,21 +84,21 @@ pattern
 {13IDD:,  m32,   "OMS VME58",   3,    7, "Laser stage X",            mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,      70,    0}
 
 # Detector X: 100:1 gear reducer, 5 threads/inch leadscrew, UREV = 25.4/(100*5) = .0508
-{13IDD:,  m33,   "OMS VME58",   4,    0, "Detector X",             mm,        Pos,    1.,   .01,   .5,   .2,     1.,     .5,     400,     .0508, 3,      100,    0}
+{13IDD:,  m33,   "OMS VME58",   4,    0, "Detector X",             mm,        Pos,    0.5,   .01,   .5,   .2,     1.,     .5,     400,     .0508, 3,      100,    0}
 # Detector Y: 10:1 and 36:1 gear reducers, 5 thread/inch pitch leadscrew, UREV = 25.4/(10*36*5) = .01411111
 # Det Y changed to 6:1 and 36:1 gear reducers, UREV - 25.4/(6*36*5) = 0.0235185 - YBW, 5/20/2000.
 # Det Y changed to 1:2 and 36:1 gear reducers, UREV - 25.4/(.5*36*5) = 0.2822222 - MLR, 10/26/2001.
-{13IDD:,  m34,   "OMS VME58",   4,    1, "Detector Y",             mm,        Neg,    2.4,   .1,   .2,   .2,     2.4,     .1,     400,  .28222222, 3,      100,    0}
+{13IDD:,  m34,   "OMS VME58",   4,    1, "Detector Y",             mm,        Neg,    0.5,   .01,   .5,   .2,     2.4,     .1,     400,  .28222222, 3,      100,    0}
 # Detector Z: 100:1 gear reducer, 5 thread/inch leadscrew, UREV = 25.4/(100*5) = .0508
-{13IDD:,  m35,   "OMS VME58",   4,    2, "Detector Z",             mm,        Pos,    1.,   .01,   .5,   .2,     1.,     .5,     400,    -.0508, 3,      100,    0}
+{13IDD:,  m35,   "OMS VME58",   4,    2, "Detector Z",             mm,        Pos,    0.5,   .01,   .5,   .2,     1.,     .5,     400,    -.0508, 3,      100,    0}
 # Detector AY: 500:1 gear reducer, 80 mm lever arm, full rotation of shaft = 2*PI*80mm motion at end of arm, UREV = 502.655/(500) = 1.00531
 {13IDD:,  m36,   "OMS VME58",   4,    3, "Detector base AY",       mm,        Pos,    .5,   .01,   .5,   .2,     .5,     .5,     400,   1.00531, 3,      100,    0}
 # Detector AX : 100:1 gear reducer, 20:1 jack, 5 threads/inch leadscrew, UREV = 25.4/(100*20*5) = .00254
 {13IDD:,  m37,   "OMS VME58",   4,    4, "Detector base AX",       mm,        Pos,    .1,   .01,   .5,    0,     .1,     .5,     400,    .00254, 3,      100,    0}
 # Detector theta: 1800:1 total gear reducer, UREV=360/1800. = .2
-{13IDD:,  m38,   "OMS VME58",   4,    5, "Gimbal AY/AX",           degrees,     Pos,    2.,   .01,   .5,    0,     2.,     .5,     400,     .20,   3,      360,    -360}
+{13IDD:,  m38,   "OMS VME58",   4,    5, "Gimbal AY/AX",           degrees,     Pos,    2.,   .01,   .5,    -0.05,     2.,     .5,     400,     .20,   3,      360,    -360}
 # Detector tilt: 2000:1 total gear reducer, UREV=360/2000. = .18
-{13IDD:,  m39,   "OMS VME58",   4,    6, "Gimbal AZ",              degrees,     Pos,    2.,   .01,   .5,    0,     2.,     .5,     400,     .18,   3,      92,   -2}
+{13IDD:,  m39,   "OMS VME58",   4,    6, "Gimbal AZ",              degrees,     Pos,    2.,   .01,   .5,    -0.01,     2.,     .5,     400,     .18,   3,      92,   -2}
 # used for DAC rotary stage, 8.6.2005, vitali
 {13IDD:,  m40,   "OMS VME58",   4,    7, "beam filter for DAC",     deg,       Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
 #{13IDD:,  m40,   "OMS VME58",   4,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
@@ -133,14 +134,16 @@ pattern
 #Replace ThorLab 4-jaw with Peter's new design, YW, Feb-21-05
 #Slit position motors: 48 steps/turn w/ 43:1 gear = 2064 steps/rev; screw pitch: 0.25 mm/turn. Motor res = 0.121 microns/step.
 #Slit width motors: 48 steps/turn w/ 43:1 gear = 2064 steps/rev; screw pitch: 80 threads/inch=>0.3175 mm/turn for each blade. Equiv. pitch for width=0.635 mm, Motor res=0.308microns/step.
-{13IDD:,  m57,   "OMS VME58",   7,    0,  "Vertical position",       mm,       Neg,    .250,   .100,    2.0,    0,      1,     .2,   2064,    .250,    3,    10.00, -.100}
-{13IDD:,  m58,   "OMS VME58",   7,    1,  "Veritcal width",          mm,       Pos,    .600,   .100,    2.0,    0,      1,     .2,   2064,    .635,    3,   10.100, -.100}
-{13IDD:,  m59,   "OMS VME58",   7,    2,  "Horizontal position",     mm,       Pos,    .250,   .100,    2.0,    0,      1,     .2,   2064,    .250,    3,    5.100, -.100}
-{13IDD:,  m60,   "OMS VME58",   7,    3,  "Horizontal width",        mm,       Pos,    .600,   .100,    2.0,    0,      1,     .2,   2064,    .635,    3,   10.100, -.100}
-{13IDD:,  m61,   "OMS VME58",   7,    4,  "Horizontal position",     mm,       Pos,    .200,   .100,    1.0,    0,      1,     .2,   2064,   -.250,    6,    5.100, -.100}
-{13IDD:,  m62,   "OMS VME58",   7,    5,  "Horizontal width",        mm,       Pos,    .400,   .100,    1.0,    0,      1,     .2,   2064,   -.635,    6,   10.100, -.100}
-{13IDD:,  m63,   "OMS VME58",   7,    6,  "Vertical position",       mm,       Pos,    .200,   .100,    1.0,    0,      1,     .2,   2064,   -.250,    6,    5.100, -.100}
-{13IDD:,  m64,   "OMS VME58",   7,    7,  "Vertical width",          mm,       Pos,    .400,   .100,    1.0,    0,      1,     .2,   2064,   -.635,    6,   10.100, -.100}
+#Channels for vertical slit position and width are bad, swapped channels by renaming them - Nov. 20,2010.
+{13IDD:,  m63,   "OMS VME58",   7,    0,  "Vertical position",       mm,       Neg,    .250,   .100,    2.0,    0,      1,     .2,   2064,    .250,    3,    10.00, -.100}
+{13IDD:,  m64,   "OMS VME58",   7,    1,  "Veritcal width",          mm,       Pos,    .600,   .100,    2.0,    0,      1,     .2,   2064,    .635,    3,   10.100, -.100}
+#Channels for horizontal slit position and width are bad, swapped channels by renaming them - Nov. 19,2010.
+{13IDD:,  m61,   "OMS VME58",   7,    2,  "Horizontal position",     mm,       Pos,    .250,   .100,    2.0,    0,      1,     .2,   2064,    .250,    3,    5.100, -.100}
+{13IDD:,  m62,   "OMS VME58",   7,    3,  "Horizontal width",        mm,       Pos,    .600,   .100,    2.0,    0,      1,     .2,   2064,    .635,    3,   10.100, -.100}
+{13IDD:,  m59,   "OMS VME58",   7,    4,  "Horizontal position",     mm,       Pos,    .200,   .100,    1.0,    0,      1,     .2,   2064,   -.250,    6,    5.100, -.100}
+{13IDD:,  m60,   "OMS VME58",   7,    5,  "Horizontal width",        mm,       Neg,    .400,   .100,    1.0,    0,      1,     .2,   2064,   -.635,    6,   10.100, -.100}
+{13IDD:,  m57,   "OMS VME58",   7,    6,  "Vertical position",       mm,       Neg,    .250,   .100,    1.0,    0,      1,     .2,   2064,    .250,    3,   10.100, -.100}
+{13IDD:,  m58,   "OMS VME58",   7,    7,  "Vertical width",          mm,       Pos,    .600,   .100,    1.0,    0,      1,     .2,   2064,    .635,    3,   10.100, -.100}
 #{13IDD:,  m57,   "OMS VME58",   7,    0,  "Horizontal position",     mm,       Pos,    .200,   .100,    .2,    0,      1,     .2,   2571,   -.350,    3,    5.100, -.100}
 #{13IDD:,  m58,   "OMS VME58",   7,    1,  "Horizontal width",        mm,       Pos,    .400,   .100,    .2,    0,      1,     .2,   2571,   -.700,    3,   10.100, -.100}
 #{13IDD:,  m59,   "OMS VME58",   7,    2,  "Vertical position",       mm,       Neg,    .200,   .100,    .2,    0,      1,     .2,   2571,   -.350,    3,    5.100, -.100}
