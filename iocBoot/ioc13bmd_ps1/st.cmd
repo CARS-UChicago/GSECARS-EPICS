@@ -20,10 +20,23 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=13BMDPS1:,R=i
 # Load the database to use with Stephen Mudie's IDL code
 #dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/EPICS_AD_Viewer.template", "P=13BMDPS1:, R=image1:")
 
-# Create a file saving plugin
-NDFileNetCDFConfigure("PS1File", 5, 0, "PS1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMDPS1:,R=file1:,PORT=PS1File,ADDR=0,TIMEOUT=1,NDARRAY_PORT=PS1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMDPS1:,R=file1:,PORT=PS1File,ADDR=0,TIMEOUT=1")
+# Create a netCDF file saving plugin
+NDFileNetCDFConfigure("PS1FileNetCDF", 5, 0, "PS1", 0)
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMDPS1:,R=netCDF1:,PORT=PS1FileNetCDF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=PS1,NDARRAY_ADDR=0")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMDPS1:,R=netCDF1:,PORT=PS1FileNetCDF,ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileNetCDF.template","P=13BMDPS1:,R=netCDF1:,PORT=PS1FileNetCDF,ADDR=0,TIMEOUT=1")
+
+# Create a TIFF file saving plugin
+NDFileTIFFConfigure("PS1FileTIFF", 5, 0, "PS1", 0)
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMDPS1:,R=TIFF1:,PORT=PS1FileTIFF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=PS1,NDARRAY_ADDR=0")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMDPS1:,R=TIFF1:,PORT=PS1FileTIFF,ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileTIFF.template",  "P=13BMDPS1:,R=TIFF1:,PORT=PS1FileTIFF,ADDR=0,TIMEOUT=1")
+
+# Create a JPEG file saving plugin
+NDFileJPEGConfigure("PS1FileJPEG", 5, 0, "PS1", 0)
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMDPS1:,R=JPEG1:,PORT=PS1FileJPEG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=PS1,NDARRAY_ADDR=0")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMDPS1:,R=JPEG1:,PORT=PS1FileJPEG,ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileJPEG.template",  "P=13BMDPS1:,R=JPEG1:,PORT=PS1FileJPEG,ADDR=0,TIMEOUT=1")
 
 # Create an ROI plugin
 NDROIConfigure("PS1ROI", 5, 0, "PS1", 0, 10, 20, -1)
