@@ -80,26 +80,27 @@ CARSApp_vxWorks_LIBS += dxp handel
 CARSApp_vxWorks_LIBS += oms
 CARSApp_vxWorks_LIBS += TyGSOctal Ipac
 CARSApp_vxWorks_LIBS += vxStats
+CARSApp_vxWorks_LIBS += softGlue
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 CARSApp_SYS_LIBS_Linux    += net pcap
 CARSApp_SYS_LIBS_Linux    += usb
-CARSApp_Linux_LIBS        += tiff jpeg z
-CARSApp_Linux_LIBS        += PvAPI ImageLib
-CARSApp_Linux_LIBS        += NeXus mfhdf df hdf5 mxml
+#CARSApp_Linux_LIBS        += tiff jpeg z
+#CARSApp_Linux_LIBS        += PvAPI ImageLib
+#CARSApp_Linux_LIBS        += NeXus mfhdf df hdf5 mxml
 
 CARSApp_WIN32_LIBS        += DLPORTIO PlxApi
 CARSApp_SYS_LIBS_WIN32    += setupapi
 CARSApp_WIN32_LIBS        += wpcap Packet
-CARSApp_WIN32_LIBS        += PvAPI ImageLib
-CARSApp_WIN32_LIBS        += libtiff jpeg libNeXus.dll
+#CARSApp_WIN32_LIBS        += PvAPI ImageLib
+#CARSApp_WIN32_LIBS        += libtiff jpeg libNeXus.dll
 
 CARSApp_SYS_LIBS_cygwin32 += DLPORTIO PlxApi
 CARSApp_SYS_LIBS_cygwin32 += setupapi
 CARSApp_SYS_LIBS_cygwin32 += wpcap Packet
-CARSApp_SYS_LIBS_cygwin32 += rpc
-CARSApp_cygwin32_LIBS     += libtiff jpeg libNeXus.dll
+CARSApp_SYS_LIBS_cygwin32 += $(CYGWIN_RPC_LIB)
+#CARSApp_cygwin32_LIBS     += libtiff jpeg libNeXus.dll
 
 CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)
 CARSApp_LIBS_vxWorks  = $(CARSApp_Common_LIBS)   $(CARSApp_vxWorks_LIBS)
