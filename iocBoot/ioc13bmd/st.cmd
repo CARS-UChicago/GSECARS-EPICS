@@ -32,6 +32,27 @@ strcpy(str,"P=13BMD:,R=MAR345,IN=13BMD:Unidig1Bi13,")
 strcat(str,"OUT=13BMD:filter1sendCommand.VAL")
 dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter_serial.db",str)
 
+
+##==== XPS Motors    ==================================
+XPSSetup(1)
+#    card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+XPSConfig(0, "164.54.160.83", 5001, 8, 10, 200)
+
+# asyn port, driver name, controller index, max. axes)
+drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
+ XPSInterpose("XPS1")
+
+# configure axes
+#card, axis, groupName.positionerName, steps/rev
+XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
+XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
+XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
+
+# Disable setting position from motor record
+XPSEnableSetPosition(0)
+ 
+##=====================================================
+
 # Acromag Ip330 ADC
 dbLoadTemplate "Ip330_ADC.template"
 
@@ -40,6 +61,9 @@ dbLoadTemplate "ipUnidig.substitutions"
 
 # CCD synchronization for tomo.exe Visual Basic program
 dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
+
+# Struck MCS as 32-channel multi-element detector
+< SIS3820_32.cmd
 
 # Multichannel analyzer stuff
 # AIMConfig(portName, card, ethernet_address, port, maxChans,
@@ -87,7 +111,7 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_80.db","P=13BMD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=1000,MAXPTS2=200,MAXPTS3=4,MAXPTS4=3,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=4,MAXPTS4=3,MAXPTSH=10")
 
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13BMD:,Q=edb")
 
