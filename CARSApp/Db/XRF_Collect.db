@@ -3,6 +3,7 @@
 
 grecord(mbbo,"$(P)$(Q):Status") {
 	field(DESC,"Read State")
+	field(VAL, "0")
         field(ZRVL,"0")
         field(ZRST,"Done")
         field(ONVL,"1")
@@ -15,7 +16,8 @@ grecord(mbbo,"$(P)$(Q):Status") {
 }
 
 grecord(mbbo,"$(P)$(Q):Mode") {
-	field(DESC,"Automatic/Manual Collection Mode")
+	field(DESC,"Auto/Manual Mode")
+	field(VAL, "0")
         field(ZRVL,"0")
         field(ZRST,"Manual")
         field(ONVL,"1")
@@ -28,8 +30,9 @@ grecord(ao,"$(P)$(Q):CountTime") {
 	field(VAL,"1.0")
 }
 
-grecord(mbbo,"$(P)$(Q):Start") {
-	field(DESC,"Cliect Requests Collection")
+grecord(mbbo,"$(P)$(Q):Request") {
+	field(DESC,"Client Requests Collection")
+	field(VAL, "0")
         field(ZRVL,"0")
         field(ZRST,"Stop")
         field(ONVL,"1")
@@ -38,39 +41,96 @@ grecord(mbbo,"$(P)$(Q):Start") {
         field(TWST,"Pause")
         field(THVL,"3")
         field(THST,"Resume")
+        field(THVL,"4")
+        field(THST,"Init")
 }
 
-grecord(stringin,"$(P)$(Q):host") {
+#         field(FLNK,"$(P)$(Q):SetRequestBusy")
+# grecord(bo,"$(P)$(Q):SetRequestBusy") {
+#         field(VAL,"1")
+#         field(OUT,"$(P)$(Q):RequestBusy PP MS")
+# }
+# 
+# record(busy,"$(P)$(Q):RequestBusy") {
+# }
+
+
+grecord(waveform,"$(P)$(Q):host") {
         field(DTYP,"Soft Channel") 
+        field(NELM,"128")
+        field(FTVL,"CHAR")
 	field(DESC, "file host")
-	field(VAL,  "")
+##	field(VAL,  "/cars5/Data")
 }
 
-grecord(stringin,"$(P)$(Q):dir") {
+grecord(waveform,"$(P)$(Q):dir") {
         field(DTYP,"Soft Channel") 
 	field(DESC, "file directory")
-	field(VAL,  "")
+##	field(VAL,  "xas_user                      ")
+        field(NELM,"128")
+        field(FTVL,"CHAR")
 }
 
-grecord(stringin,"$(P)$(Q):filebase") {
+grecord(waveform,"$(P)$(Q):subdir") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file subdirectory")
+##	field(VAL,  "2008                                                  ")
+        field(NELM,"128")
+        field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):filebase") {
         field(DTYP,"Soft Channel") 
 	field(DESC, "file base name")
-	field(VAL,  "")
+##	field(VAL,  "                "   )  
+        field(NELM,"128")
+        field(FTVL,"CHAR")
 }
 
 grecord(stringin,"$(P)$(Q):format") {
         field(DTYP,"Soft Channel") 
 	field(DESC, "file format string")
-	field(VAL,  "%s_xrf.%3i")
+##	field(VAL,  "%s_xrf.%.3i")
 }
 
 
-grecord(stringin,"$(P)$(Q):fileext") {
+grecord(stringin, "$(P)$(Q):fileext") {
         field(DTYP,"Soft Channel") 
 	field(DESC, "file extesion")
-	field(VAL,  "")
+	field(VAL,  "001")
 }
 
+grecord(waveform,"$(P)$(Q):MSG")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"status message")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+
+grecord(stringin,"$(P)$(Q):TSTAMP") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  "Starting")
+}
+
+grecord(longout,"$(P)$(Q):UNIXTS") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  0)
+}
+
+grecord(stringin,"$(P)$(Q):det") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "detector")
+	field(VAL,  "13SDD1:")
+}
+
+grecord(ao,"$(P)$(Q):nelem") {
+	field(DESC,"number of detector elements")
+        field(PREC,"0")
+	field(VAL,"4")
+}
 
 grecord(waveform,"$(P)$(Q):arg01")  {
        field(DTYP,"Soft Channel")
@@ -78,6 +138,7 @@ grecord(waveform,"$(P)$(Q):arg01")  {
        field(NELM,"128")
        field(FTVL,"CHAR")
 }
+
 grecord(waveform,"$(P)$(Q):arg02")  {
        field(DTYP,"Soft Channel")
        field(DESC,"user arg 02")
