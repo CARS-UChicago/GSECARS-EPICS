@@ -1,0 +1,39 @@
+#MN 
+# will "zero" the fine motion scanning motors
+# would be nice if this compensate with the other motors!!
+#
+grecord(ao,"$(P)$(DEV):home") { 
+    field(FLNK, "$(P)$(DEV)Zero") 
+}
+
+grecord(ao,"$(P)$(DEV)XSIGN") {
+        field(DESC,"sign")
+        field(PREC,"1")
+	field(VAL,"-1")
+}
+
+grecord(ao,"$(P)$(DEV)YSIGN") {
+	field(DESC,"y sign")
+        field(PREC,"1")
+	field(VAL,"1")
+}
+
+grecord(transform,"$(P)$(DEV)Zero") {
+	field(INPA,"$(M1) NPP NMS")
+	field(INPB,"$(M2) NPP NMS")
+	field(INPC,"$(M3) NPP NMS")
+	field(INPD,"$(M4) NPP NMS")
+	field(INPE,"$(P)$(DEV)XSIGN NPP NMS")
+	field(INPF,"$(P)$(DEV)YSIGN NPP NMS")
+        field(CLCG,"C-A*E")
+        field(OUTG,"$(M3) PP MS")
+	field(CLCH,"D-B*F")
+        field(OUTH,"$(M4) PP MS")
+	field(CLCI,"0")
+        field(OUTI,"$(M1) PP MS")
+	field(CLCJ,"0")
+        field(OUTJ,"$(M2) PP MS")
+}
+
+
+

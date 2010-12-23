@@ -1,0 +1,185 @@
+# This database contains fields used to allow
+# communication between scan saving clients
+# and server
+
+grecord(mbbo,"$(P)$(Q):status") {
+	field(DESC,"Mapping State")
+        field(ZRVL,"0")
+        field(ZRST,"IDLE")
+        field(ONVL,"1")
+        field(ONST,"Starting")
+        field(TWVL,"2")
+        field(TWST,"Collecting")
+        field(THVL,"3")
+        field(THST,"Finishing")
+        field(FRVL,"4")
+        field(FRST,"Aborting")
+        field(FVVL,"5")
+        field(FVST,"Unknown")
+}
+ 
+grecord(mbbo,"$(P)$(Q):Start") {
+	field(DESC,"Client Start")
+        field(ZRVL,"0")
+        field(ZRST,"Stop")
+        field(ONVL,"1")
+        field(ONST,"Start")
+        field(TWVL,"2")
+        field(TWST,"Pause")
+        field(THVL,"3")
+        field(THST,"Resume")
+}
+
+grecord(mbbo,"$(P)$(Q):Abort") {
+	field(DESC,"Client Abort")
+        field(ZRVL,"0")
+        field(ZRST,"Cancel")
+        field(ONVL,"1")
+        field(ONST,"Abort")
+}
+
+grecord(ao,"$(P)$(Q):nrow") {
+	field(DESC, "Row index of last written row")
+	field(VAL,  "0")
+}
+
+grecord(ao,"$(P)$(Q):maxrow") {
+	field(DESC, "Rows defined in map")
+	field(VAL,  "0")
+}
+
+grecord(ao,"$(P)$(Q):npts") {
+	field(DESC, "npts in this row")
+	field(VAL,  "0")
+}
+
+grecord(stringin,"$(P)$(Q):TSTAMP") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  "Starting")
+}
+
+grecord(longout,"$(P)$(Q):UNIXTS") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  0)
+}
+
+grecord(waveform,"$(P)$(Q):basedir")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"base directory")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):workdir")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"working directory")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):filename")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"file name")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(stringin,"$(P)$(Q):format") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file format string")
+	field(VAL,  "%s.%.3i")
+}
+
+grecord(stringin, "$(P)$(Q):fileext") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file extesion")
+	field(VAL,  "001")
+}
+
+grecord(waveform,"$(P)$(Q):scanfile")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan file name")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):info")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"info string")
+       field(NELM,"256")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):message")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"message string")
+       field(NELM,"256")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):mca")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"mca")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+
+grecord(waveform,"$(P)$(Q):energy")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"mca energy")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+
+grecord(waveform,"$(P)$(Q):trace1")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace1")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace2")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace2")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace3")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace3")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace4")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace4")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace5")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace5")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace6")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace6")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace7")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace7")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+grecord(waveform,"$(P)$(Q):trace8")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scan trace8")
+       field(NELM,"2048")
+       field(FTVL,"LONG")
+}
+
+
