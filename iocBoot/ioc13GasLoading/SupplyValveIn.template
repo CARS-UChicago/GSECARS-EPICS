@@ -1,0 +1,24 @@
+# This database handles the gas valves.  It only allows sensible combinations
+# of valve positions
+# The following are the bit masks for the supply valve positions
+# 0x10  Ne
+# 0x20  Vent
+# 0x40  He
+# 0x80  User
+
+record(mbbi,"$(P)$(R)") {
+    field(DTYP,"asynUInt32Digital")
+    field(INP, "@asynMask($(PORT) $(OFFSET) $(MASK))")
+    field(NOBT,"4")
+    field(SCAN,"I/O Intr")
+    field(ZRST,"Moving")
+    field(ZRVL,"0x0")
+    field(ONST,"Neon")
+    field(ONVL,"0x1")
+    field(TWST,"Vent")
+    field(TWVL,"0x2")
+    field(THST,"Helium")
+    field(THVL,"0x4")
+    field(FRST,"User")
+    field(FRVL,"0x8")
+}
