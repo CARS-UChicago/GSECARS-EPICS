@@ -21,6 +21,9 @@ asynOctetSetOutputEos("serial2",0,"\r")
 #asynOctetConnect("serial1", "serial1")
 asynOctetConnect("serial2", "serial2")
 
+asynSetTraceIOMask("serial2",0,2)
+#asynSetTraceMask("serial2",0,255)
+
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
 
