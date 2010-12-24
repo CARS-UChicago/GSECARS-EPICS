@@ -21,6 +21,9 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Keithley1:")
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Keithley1:")
 
+#PID slow
+dbLoadTemplate "pid_slow.substitutions"
+
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Keithley1:")
 
