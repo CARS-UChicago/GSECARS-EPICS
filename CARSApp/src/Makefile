@@ -50,7 +50,6 @@ CARSApp_Common_LIBS += CARS
 CARSApp_Common_LIBS += busy
 CARSApp_Common_LIBS += mca 
 CARSApp_Common_LIBS += mcaCanberra
-CARSApp_Common_LIBS += dxp handel
 CARSApp_Common_LIBS += calc
 CARSApp_Common_LIBS += sscan
 CARSApp_Common_LIBS += autosave
@@ -64,7 +63,6 @@ CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motor
 CARSApp_Common_LIBS += stream streamSynApps
 CARSApp_Common_LIBS += modbus
 CARSApp_Common_LIBS += asyn
-CARSApp_Common_LIBS += ADBase NDPlugin netCDF
 
 CARSApp_Common_LIBS += seq pv
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -86,21 +84,11 @@ CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 CARSApp_SYS_LIBS_Linux    += net pcap
 CARSApp_SYS_LIBS_Linux    += usb
-#CARSApp_Linux_LIBS        += tiff jpeg z
-#CARSApp_Linux_LIBS        += PvAPI ImageLib
-#CARSApp_Linux_LIBS        += NeXus mfhdf df hdf5 mxml
 
-CARSApp_WIN32_LIBS        += DLPORTIO PlxApi
-CARSApp_SYS_LIBS_WIN32    += setupapi
 CARSApp_WIN32_LIBS        += wpcap Packet
-#CARSApp_WIN32_LIBS        += PvAPI ImageLib
-#CARSApp_WIN32_LIBS        += libtiff jpeg libNeXus.dll
 
-CARSApp_SYS_LIBS_cygwin32 += DLPORTIO PlxApi
-CARSApp_SYS_LIBS_cygwin32 += setupapi
 CARSApp_SYS_LIBS_cygwin32 += wpcap Packet
 CARSApp_SYS_LIBS_cygwin32 += $(CYGWIN_RPC_LIB)
-#CARSApp_cygwin32_LIBS     += libtiff jpeg libNeXus.dll
 
 CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)
 CARSApp_LIBS_vxWorks  = $(CARSApp_Common_LIBS)   $(CARSApp_vxWorks_LIBS)
@@ -108,7 +96,6 @@ CARSApp_LIBS_Linux    = $(CARSApp_Common_LIBS)   $(CARSApp_Linux_LIBS)
 CARSApp_LIBS_cygwin32 = $(CARSApp_Common_LIBS)   $(CARSApp_cygwin32_LIBS) 
 CARSApp_LIBS_WIN32    = $(CARSApp_Common_LIBS)   $(CARSApp_WIN32_LIBS)
 
-BIN_INSTALLS_vxWorks += printf_test.o
 
 include $(TOP)/configure/RULES
 #----------------------------------------
