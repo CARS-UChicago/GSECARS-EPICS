@@ -54,5 +54,5 @@ dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT
 dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=2")
 
 # Tell StreamDevice where to find protocol files
-epicsEnvSet("STREAM_PROTOCOL_PATH", "/corvette/home/epics/support/delaygen/1-0-3/delaygenApp/Db")
+iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db)")
 
