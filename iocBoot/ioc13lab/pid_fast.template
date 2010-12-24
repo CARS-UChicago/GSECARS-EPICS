@@ -1,8 +1,8 @@
 file "$(STD)/stdApp/Db/fast_pid_control.db"
 {
 pattern
-{P,      PID,   INPUT,  ICHAN, OUTPUT, OCHAN,    LOPR,     HOPR,  DRVL,  DRVH,  PREC,   KP,    KI,  KD,   DT,        SCAN}
-{13LAB:, PID2, Ip330_1,     0,   DAC1,     0,       0,    65535,     0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
-{13LAB:, PID3, quadEM1,     8,   DAC1,     2,  -32767,    32767,     0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
-{13LAB:, PID4, quadEM1,     9,   DAC1,     3,  -32767,    32767,  2048,  3072,     3,  .02,  100.,  0., .001, ".1 second"}
+{P,      PID,   INPUT,  INPUT_DATA, INPUT_INTERVAL, ICHAN, OUTPUT, OCHAN,  OUTPUT_DATA,    LOPR,     HOPR,  DRVL,  DRVH,  PREC,   KP,    KI,  KD,   DT,        SCAN}
+{13LAB:, PID2, Ip330_1,  DATA,      SCAN_PERIOD,      0,     DAC1,     0,  DOUBLE_DATA        0,    65535,     0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
+{13LAB:, PID3, quadEM1,  DATA,      SCAN_PERIOD       8,     DAC1,     2,  DOUBLE_DATA,  -32767,    32767,     0,  4095,     3,  .02,  100.,  0., .001, ".1 second"}
+{13LAB:, PID4, quadEM1,  DATA,      SCAN_PERIOD       9,     DAC1,     3,  DOUBLE_DATA,  -32767,    32767,  2048,  3072,     3,  .02,  100.,  0., .001, ".1 second"}
 }
