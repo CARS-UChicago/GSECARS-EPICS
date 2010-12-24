@@ -79,11 +79,6 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMC:,AMP=amp1,PORT=icbAmp1")
 # crate.
 dbLoadTemplate "scanParms.template"
 
-### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in std/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db","P=13BMC:")
-
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
@@ -120,9 +115,9 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 # The required command string is longer than the vxWorks command line, 
 # must use malloc and strcpy, strcat. Some of the macros don't apply
 
-str = malloc(500)
-strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
-strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
+#str = malloc(500)
+#strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
+#strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
 #dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
 ################################################################################
 
@@ -202,6 +197,10 @@ XPSConfigAxis(1,4,"GROUP5.THETA-Y_BASE", 200)
 XPSConfigAxis(1,5,"GROUP6.X_SAMPLE",    3816)
 XPSConfigAxis(1,6,"GROUP7.Y_SAMPLE",    3816)
 XPSConfigAxis(1,7,"GROUP8.Z_SAMPLE",    3816)
+
+# Disable setting position from motor record
+XPSEnableSetPosition(0)
+
 ################################################################################
 
 # dbrestore setup
@@ -241,10 +240,12 @@ saveData_Init("saveDataExtraPVs.req", "P=13BMC:")
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
 
 # Trajectory scanning with XPS
-str = malloc(500)
-strcpy(str, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,")
-strcat(str, "PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
+#str = malloc(500)
+#strcpy(str, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,")
+#strcat(str, "PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
 #seq(&XPS_trajectoryScan, str)
+
+#dbpf("13BMC:traj1DebugLevel","1")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13BMC:m33.NTM","0")
@@ -261,6 +262,9 @@ dbpf("13BMC:m43.NTM","0")
 dbpf("13BMC:m44.NTM","0")
 dbpf("13BMC:m45.NTM","0")
 dbpf("13BMC:m46.NTM","0")
+
+# Initialize the motorUtil software
+motorUtilInit("13BMC:")
 
 # Free memory allocated at top
 free(mem)
