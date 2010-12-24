@@ -67,6 +67,8 @@ dbLoadTemplate "DAC.template"
 # intVec        Interrupt vector
 initIp330("Ip330_1",0,2,"D","-10to10",0,15,120)
 
+#asynSetTraceMask "Ip330_1",0,0x11
+
 # int configIp330(
 #   const char *portName,
 #   int scanMode, const char *triggerString,
@@ -100,3 +102,4 @@ configIp330("Ip330_1", 3,"Input",1000,0)
 initFastSweep("Ip330Sweep1","Ip330_1", 4, 2048)
 dbLoadTemplate "Ip330_ADC.template"
 
+< softGlue.cmd
