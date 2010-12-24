@@ -104,3 +104,4 @@ initIpUnidig("Unidig1", 0, 3, 100, 116, 0xffffff, 0xffffff)
 initIpUnidig("Unidig2", 1, 0, 1000, 117, 0xffffff, 0xffffff)
 dbLoadTemplate("ipUnidig.substitutions")
 
+< softGlue.cmd
