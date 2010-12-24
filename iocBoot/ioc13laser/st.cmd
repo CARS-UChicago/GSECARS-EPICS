@@ -8,7 +8,7 @@ cd $(TOP)/iocBoot/$(IOC)
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARS.dbd")
-CARS_registerRecordDeviceDriver(pdbbase)
+CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 # Set up serial ports on Moxa box
 drvAsynIPPortConfigure("serial1", "gsets3:4001", 0, 0)
