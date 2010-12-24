@@ -9,6 +9,10 @@ modbusInterposeConfig("Koyo",0,0)
 # Read 32 bits (X0-X37).  Function code=2.
 drvModbusAsynConfigure("K1_Xn_Bit",      "Koyo", 2,  04000, 040,    0,  100, "Koyo")
 
+# The DL205 has bit access to the Xn words at Modbus offset 40400 (octal)
+# Access the same 32 bits (X0-X37) as word inputs.  Function code=4.
+drvModbusAsynConfigure("K1_Xn_In_Word",  "Koyo", 4,  040400, 02,   0,  100,  "Koyo")
+
 # The DL205 has bit access to the Yn outputs at Modbus offset 4000 (octal)
 # Read 32 bits (Y0-Y37).  Function code=1.
 drvModbusAsynConfigure("K1_Yn_In_Bit",   "Koyo", 1,  04000, 040,    0,  100, "Koyo")
@@ -24,9 +28,21 @@ drvModbusAsynConfigure("K1_Cn_In_Bit",   "Koyo", 1,  06000, 0400,   0,  100, "Ko
 # Access the same 256 bits (C0-C377) as outputs.  Function code=5.
 drvModbusAsynConfigure("K1_Cn_Out_Bit",  "Koyo", 5,  06000, 0400,   0,  1,  "Koyo")
 
+# The DL205 has bit access to the Cn words at Modbus offset 40600 (octal)
+# Access 256 bits (C0-C377) as inputs.  Function code=3.
+drvModbusAsynConfigure("K1_Cn_In_Word",   "Koyo", 3,  040600, 020,   0,  100, "Koyo")
+
+# Access the same 256 bits (C0-C377) as outputs.  Function code=6.
+drvModbusAsynConfigure("K1_Cn_Out_Word",  "Koyo", 6,  040600, 020,   0,  1,  "Koyo")
+
 # Hex trace format on TCP server
 asynSetTraceIOMask("Koyo",0,4)
 # Turn on asynError and asynTraceIODriver on TCP server
 #asynSetTraceMask("Koyo",0,9)
+
+#asynSetTraceIOMask("K1_Cn_Out_Word",0,4)
+#asynSetTraceMask("K1_Cn_Out_Word",0,255)
+#asynSetTraceIOMask("K1_Cn_Out_Word",1,4)
+#asynSetTraceMask("K1_Cn_Out_Word",1,255)
 
 dbLoadTemplate("Koyo.substitutions")

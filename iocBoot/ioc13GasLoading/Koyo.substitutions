@@ -26,6 +26,14 @@ file "$(MODBUS)/db/bi_bit.template" { pattern
 {13GasLoad:,    Load_OK_Switch,       K1_Xn_Bit,   020,         Open,      OK,     MINOR, NO_ALARM,  "I/O Intr"}
 {13GasLoad:,    Pressurize_OK_Switch, K1_Xn_Bit,   021,         Open,      OK,     MINOR, NO_ALARM,  "I/O Intr"}
 {13GasLoad:,    Laser_Expert_Switch,  K1_Xn_Bit,   022,         User,  Expert,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Lecture_V_R1,         K1_Xn_Bit,   030,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Lecture_V_R2,         K1_Xn_Bit,   031,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Lecture_V_R3,         K1_Xn_Bit,   032,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Lecture_V_R4,         K1_Xn_Bit,   033,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Supply_V_R1,          K1_Xn_Bit,   034,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Supply_V_R2,          K1_Xn_Bit,   035,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Supply_V_R3,          K1_Xn_Bit,   036,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13GasLoad:,    Supply_V_R4,          K1_Xn_Bit,   037,       Closed,    Open,  NO_ALARM,    MINOR,  "I/O Intr"}
 }
 file "$(MODBUS)/db/asynRecord.template" { pattern
 {P,           R,       PORT,          ADDR,     TMOD,  IFACE}
@@ -97,21 +105,21 @@ file "$(MODBUS)/db/poll_delay.template" { pattern
 {13GasLoad:,  CnInBPollDelay, K1_Cn_In_Bit}
 }
 
-# These are the Cn outputs done with bit access.  C300-C317 
+# These are the Cn outputs done with bit access.  C300-C337 
 file "$(MODBUS)/db/bo_bit.template" { pattern
-{P,             R,               PORT,           OFFSET,        ZNAM,    ONAM}
-{13GasLoad:,    V1_Request,      K1_Cn_Out_Bit,    0300,       Close,    Open}
-{13GasLoad:,    V2_Request,      K1_Cn_Out_Bit,    0301,        Open,   Close}
-{13GasLoad:,    V3_Request,      K1_Cn_Out_Bit,    0302,        Open,   Close}
-{13GasLoad:,    V4_Request,      K1_Cn_Out_Bit,    0303,        Open,   Close}
-{13GasLoad:,    V5_Request,      K1_Cn_Out_Bit,    0304,        Open,   Close}
-{13GasLoad:,    V6_Request,      K1_Cn_Out_Bit,    0305,        Open,   Close}
-{13GasLoad:,    V7_Request,      K1_Cn_Out_Bit,    0306,       Close,    Open}
-{13GasLoad:,    Comp_Request,    K1_Cn_Out_Bit,    0307,         Off,      On}
-{13GasLoad:,    Vacuum_Request,  K1_Cn_Out_Bit,    0310,         Off,      On}
-{13GasLoad:,    Laser_Request,   K1_Cn_Out_Bit,    0311,     Disable,  Enable}
-{13GasLoad:,    Filter1_Request, K1_Cn_Out_Bit,    0312,         Out,      In}
-{13GasLoad:,    Filter2_Request, K1_Cn_Out_Bit,    0313,         Out,      In}
+{P,             R,                  PORT,           OFFSET,        ZNAM,    ONAM}
+{13GasLoad:,    V1_Request,         K1_Cn_Out_Bit,    0300,       Close,    Open}
+{13GasLoad:,    V2_Request,         K1_Cn_Out_Bit,    0301,        Open,   Close}
+{13GasLoad:,    V3_Request,         K1_Cn_Out_Bit,    0302,        Open,   Close}
+{13GasLoad:,    V4_Request,         K1_Cn_Out_Bit,    0303,        Open,   Close}
+{13GasLoad:,    V5_Request,         K1_Cn_Out_Bit,    0304,        Open,   Close}
+{13GasLoad:,    V6_Request,         K1_Cn_Out_Bit,    0305,        Open,   Close}
+{13GasLoad:,    V7_Request,         K1_Cn_Out_Bit,    0306,       Close,    Open}
+{13GasLoad:,    Comp_Request,       K1_Cn_Out_Bit,    0307,         Off,      On}
+{13GasLoad:,    Vacuum_Request,     K1_Cn_Out_Bit,    0310,         Off,      On}
+{13GasLoad:,    Laser_Request,      K1_Cn_Out_Bit,    0311,     Disable,  Enable}
+{13GasLoad:,    Filter1_Request,    K1_Cn_Out_Bit,    0312,         Out,      In}
+{13GasLoad:,    Filter2_Request,    K1_Cn_Out_Bit,    0313,         Out,      In}
 }
 file "$(MODBUS)/db/asynRecord.template" { pattern
 {P,           R,          PORT,              ADDR,     TMOD,  IFACE}
@@ -120,4 +128,23 @@ file "$(MODBUS)/db/asynRecord.template" { pattern
 file "$(MODBUS)/db/statistics.template" { pattern
 {P,           R,          PORT,           SCAN}
 {13GasLoad:,    CnOutB,     K1_Cn_Out_Bit,  "10 second"}
+}
+
+# These are the Xn inputs with word access.  X0-X37
+# We are accessing X30-X37, which is offset 01 in words
+file "SupplyValveIn.template" { pattern
+{P,             R,                  PORT,           OFFSET,     MASK}
+{13GasLoad:,    SupplyValveIn,      K1_Xn_In_Word,     01,    0xF000}
+}
+file "LectureValveIn.template" { pattern
+{P,             R,                  PORT,           OFFSET,     MASK}
+{13GasLoad:,    LectureValveIn,     K1_Xn_In_Word,     01,    0x0F00}
+}
+
+
+# These are the Cn outputs with word access.  C300-C337
+file "GasValvesOut.template" { pattern
+{P,             R,                  PORT,           OFFSET,     MASK}
+# We are accessing C330-C337, which is offset 015 in words
+{13GasLoad:,    GasValvesOut,       K1_Cn_Out_Word,    015,   0xFF00}
 }
