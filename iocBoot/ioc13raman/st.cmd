@@ -32,9 +32,6 @@ dbLoadTemplate  "motors.template"
 # crate.
 dbLoadTemplate "scanParms.template"
 
-# Roper CCD detector database
-dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Raman:, C=ccd1")
-
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
