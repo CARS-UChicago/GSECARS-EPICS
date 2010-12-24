@@ -45,13 +45,6 @@ asynOctetConnect("gpib1:3", "gpib1", 3, 1, 80)
 # Load asynRecord records on all ports
 dbLoadTemplate("asynRecord.template")
 
-# Serial 1 is for SMART
-# SMART detector database
-str=malloc(256)
-strcpy(str,"P=13LAB:,R=smart1,PORT=serial1,")
-strcat(str,"FSHUT=UnidigBo0,TRIG=UnidigBo1,SSHUT=UnidigBo2")
-dbLoadRecords("$(CCD)/ccdApp/Db/smartControl.db", str)
-
 # Serial 2 has Newport LAE500 Laser Autocollimator
 #dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
 
