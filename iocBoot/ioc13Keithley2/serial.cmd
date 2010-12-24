@@ -5,6 +5,7 @@
 #drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
 #                        noProcessEos)
 drvAsynIPPortConfigure("serial1", "164.54.160.156:1394", 0, 0, 0)
+#drvAsynIPPortConfigure("serial1", "164.54.160.154:2001", 0, 0, 0)
 asynOctetConnect("serial1", "serial1")
 
 # Load asynRecord records on all ports
