@@ -1,0 +1,40 @@
+# Load a single database that all database fragments supporting single-register
+# components can use to show which signals are connected together.  This
+# database is not needed for the functioning of the components, it's purely
+# for the user interface.
+file "$(SOFTGLUE)/db/softGlue_SignalShow.db"
+{
+pattern
+{P,       H,          PORT,       READEVENT}
+{13IDE:,  softGlue:,  SOFTGLUE,          10}
+}
+
+# Load a set of database fragments for each single-register component.
+file "$(SOFTGLUE)/db/softGlue_FPGAContent.db"
+{
+pattern
+{P,       H,          PORT,       READEVENT}
+{13IDE:,  softGlue:,  SOFTGLUE,          10}
+}
+
+#file "$(SOFTGLUE)/db/softGlue_FPGAContent_octupole.db"
+#{
+#pattern
+#{P,       H,          PORT,       READEVENT}
+#{13IDE:,  softGlue:,  SOFTGLUE,          10}
+#}
+
+file "$(SOFTGLUE)/db/softGlue_FPGAInt.db"
+{
+pattern
+{P,       H,           PORT1,     ADDR1,   PORT2,     ADDR2,  PORT3,      ADDR3}
+{13IDE:,  softGlue:,  SGIO_1,  0x800000,  SGIO_2,  0x800010,  SGIO_3,  0x800020}
+}
+
+# Some stuff just to make working easier
+file "$(SOFTGLUE)/db/softGlue_convenience.db"
+{
+pattern
+{P,       H        }
+{13IDE:,  softGlue:}
+}

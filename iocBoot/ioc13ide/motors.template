@@ -1,0 +1,159 @@
+#
+# motor template file for 13-ID-C
+#
+#  OMS Card             Patch Panel 
+#  0                    Patch Panel G:  User Motors  (black cables)
+#  1: unused (had been old XRM TT slits / J patch panel)
+#  2                    XAS Table Top KB Mirrors
+#  3			Patch Panel H:  XAS Table
+#
+# step-pak conventions:
+#  Motor  Motor        VME  VME     VME          Motor        sStepPak
+#  Number Name         Slot Channel Cable        Cable        Volt Amp
+#  m1     Table Y Up    0   0       ID-MC-CB-01  ID-MD-AD-01    4    4
+#  m2     Table Y In    0   1       ID-MC-CB-02  ID-MD-AD-02    4    4
+#  m3     Table Y Down  0   2       ID-MC-CB-03  ID-MD-AD-03    4    4
+#  m4     Table X Up    0   3       ID-MC-CB-04  ID-MD-AD-04    4    2
+#  m5     Table X Down  0   4       ID-MC-CB-05  ID-MD-AD-05    4    2
+#  m6     Table Y Base  0   5       ID-MC-CB-06  ID-MD-AD-06    8    6
+#  m7     Table unus    0   6       ID-MC-CB-07  ID-MD-AD-07    -    -
+#  m8     Table Mono    0   7       ID-MC-CB-08  ID-MD-AD-08    4    3
+
+# Note: all motors must be defined for 'motors_all_done' to work
+
+file "$(CARS)/CARSApp/Db/motor.db"
+{
+pattern
+{P,       M,    DTYP,      C,  S,  DESC,              EGU,     DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM}
+# XRM Table
+{13IDE:,  m1, "OMS VME58", 3, 0, "Upstream Y",     mm,       Pos,   .2,  .005,  1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
+{13IDE:,  m2, "OMS VME58", 3, 1, "Inboard Y",      mm,       Pos,   .2,  .005,  1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
+{13IDE:,  m3, "OMS VME58", 3, 2, "Outboard Y",     mm,       Pos,   .2,  .005,  1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
+{13IDE:,  m4, "OMS VME58", 3, 3, "Upstream X",     mm,       Pos,   .5,  .005,  .5,  0,   1, .2, 400, -0.035278, 4,   79,  -52}
+{13IDE:,  m5, "OMS VME58", 3, 4, "Downstream X",   mm,       Pos,   .5,  .005,  .5,  0,   1, .2, 400,  0.035278, 4,   30,  -75}
+{13IDE:,  m6, "OMS VME58", 3, 5, "Base Y",         mm,       Pos,   .5,  .05,   1., .05,.05, .5, 400, -0.10583,  4,  200,    0}
+{13IDE:,  m7, "OMS VME58", 3, 6, "unused 32m",     mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+{13IDE:,  m8, "OMS VME58", 3, 7, "unused 32m",     mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+
+# Old slits -not connected!
+{13IDE:,  m9, "OMS VME58", 1, 0, "Hor. slit pos.",     microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7500,   0}
+{13IDE:, m10, "OMS VME58", 1, 1, "Hor. slit width",    microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7000,   0}
+{13IDE:, m11, "OMS VME58", 1, 2, "Vert. slit pos.",    microns,  Neg,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7500,   0}
+{13IDE:, m12, "OMS VME58", 1, 3, "Vert. slit width",   microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  8000,   0}
+
+#
+# IDE G step-pak
+{13IDE:, m13, "OMS VME58", 0, 0, "Split Ion Chamber X",   mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
+{13IDE:, m14, "OMS VME58", 0, 1, "unused 6U",             mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  20,   0.10,  4,  95,  5}
+{13IDE:, m15, "OMS VME58", 0, 2, "unused 6U",             mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  25,  0}
+# Vertical Jack
+{13IDE:, m16, "OMS VME58", 0, 3, "Microscope Y",          mm, Pos,  1.0,  0.1, .5, 0, 1, .2,  400, -.710,  4,  10,  0}
+# 32m:
+{13IDE:, m45, "OMS VME58", 0, 4, "Vortex X",              mm, Neg,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+{13IDE:, m46, "OMS VME58", 0, 5, "Vortex Y",              mm, Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+{13IDE:, m47, "OMS VME58", 0, 6, "NoStepPak",             mm, Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+{13IDE:, m48, "OMS VME58", 0, 7, "Vortex Z",              mm, Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+
+
+#P,      M,    DTYP,       C, S,     DESC,               EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
+#{13IDE:, m17, "OMS VME58", 2, 1, "Vert. mirror Y pos.",      microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+#{13IDE:, m18, "OMS VME58", 2, 0, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+#{13IDE:, m19, "OMS VME58", 2, 2, "Vert. force UpStream.",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+#{13IDE:, m20, "OMS VME58", 2, 3, "Vert. force DownStream.",  microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+########################################################################
+# PJE 2/9/2009 Changed UREV for vert kb to match the MFA stages (gear head is 1:43)
+#<< MN 2010-Mar-03  cabling problem led to switching internal connectors forX and Theta
+## WAS:
+{13IDE:, m17, "OMS VME58", 2, 1, "Vert. mirror Y pos.",      microns,  Pos,  250.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
+{13IDE:, m18, "OMS VME58", 2, 0, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+## NOW
+##{13IDE:, m17, "OMS VME58", 2, 0, "Vert. mirror Y pos.",      microns,  Pos,  250.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
+##{13IDE:, m18, "OMS VME58", 2, 1, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+##
+#>>
+{13IDE:, m19, "OMS VME58", 2, 2, "Vert. force UpStream.",    microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
+{13IDE:, m20, "OMS VME58", 2, 3, "Vert. force DownStream.",  microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
+########################################################################
+{13IDE:, m21, "OMS VME58", 2, 5, "Hor. mirror X pos",        microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDE:, m22, "OMS VME58", 2, 4, "Hor. mirror rotation",     mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+{13IDE:, m23, "OMS VME58", 2, 6, "Hor. force UpStream",      microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+{13IDE:, m24, "OMS VME58", 2, 7, "Hor. force DownStream",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
+
+
+#PJE swapped with Brucker Shutter 3-27-2010
+#{13IDE:, m45, "OMS VME58", 0, 4, "XRM Motor 1",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
+#{13IDE:, m46, "OMS VME58", 0, 5, "XRM Motor 2",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
+#{13IDE:, m47, "OMS VME58", 0, 6, "XRM Motor 3",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
+#{13IDE:, m45, "OMS VME58", 0, 4, "Film Gap",          microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, -3.546,   1,    8e3,    0}
+#{13IDE:, m46, "OMS VME58", 0, 5, "Shutter X",         microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, 3.546,   1,    8e3,    0}
+#{13IDE:, m47, "OMS VME58", 0, 7, "Shutter Y",         mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  50,  -50}  
+# Note swithced oms 0 ch 7 with ch 6
+#{13IDE:, m48, "OMS VME58", 0, 6, "NoStepPak",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
+
+
+file "$(CARS)/CARSApp/Db/motor.db"
+{
+pattern
+{P,       M,       DTYP,       C,  S, DESC,                           EGU,  DIR,  VELO, VBAS,  ACCL, BDST,    BVEL,  BACC,    SREV,     UREV, PREC,   DHLM,   DLLM}
+#MN 01-Dec-2004 use vme58  card 8 for extra BP8000:
+# ADC Slits, July2008
+#P,      M,    DTYP,       C, S,     DESC,          EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
+{13IDE:, m81, "OMS VME58",  8, 0, "Microscope X", microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
+{13IDE:, m82, "OMS VME58",  8, 1, "Beamstop X",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
+{13IDE:, m83, "OMS VME58",  8, 2, "Unused CMA",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
+{13IDE:, m84, "OMS VME58",  8, 3, "TT Slit Bot",  mm, Neg,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
+{13IDE:, m85, "OMS VME58",  8, 4, "TT Slit Top",  mm, Neg,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
+{13IDE:, m86, "OMS VME58",  8, 5, "TT Slit Out",  mm, Pos,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
+{13IDE:, m87, "OMS VME58",  8, 6, "TT Slit In",   mm, Pos,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
+## {13IDE:, m88, "OMS VME58",  8, 7, "dead channel",   mm, Pos,  1.0,  0.1,  0.5,, 0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
+
+
+# XAS table using generic table-record
+file "$(OPTICS)/opticsApp/Db/table.db"
+{
+pattern
+{P,         Q,     T, M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
+{13IDE:, XAS:T1, XAS:t1, m5,   m2,   m3,   m4,   m1,  junk,  SRI}
+}
+
+# Psuedo-motors
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+{13IDE:,  pm1, "13IDE:KBH:Done NPP NMS", "13IDE:pm1DVAL.VAL PP MS", "13IDE:KBH:Readback.G NPP NMS", "13IDE:KBH:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDE:,  pm2, "13IDE:KBH:Done NPP NMS", "13IDE:pm2DVAL.VAL PP MS", "13IDE:KBH:Readback.H NPP NMS", "13IDE:KBH:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDE:,  pm3, "13IDE:KBV:Done NPP NMS", "13IDE:pm3DVAL.VAL PP MS", "13IDE:KBV:Readback.G NPP NMS", "13IDE:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDE:,  pm4, "13IDE:KBV:Done NPP NMS", "13IDE:pm4DVAL.VAL PP MS", "13IDE:KBV:Readback.H NPP NMS", "13IDE:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDE:,  pm5, "13IDE:XYZ:Done NPP NMS", "13IDE:pm5DVAL.VAL PP MS", "13IDE:XYZ:Readback.G NPP NMS", "13IDE:XYZ:Stop PP MS",    "Sample Z",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  4,    10000, -10000}
+{13IDE:,  pm6, "13IDE:XYZ:Done NPP NMS", "13IDE:pm6DVAL.VAL PP MS", "13IDE:XYZ:Readback.H NPP NMS", "13IDE:XYZ:Stop PP MS",    "Sample X",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  4,    10000, -10000}
+}
+
+#
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDE:, KBH:,  pm1, pm2,    m23.VAL,  m23.RBV,  m24.VAL, m24.RBV, m23.STOP, m23.DMOV, m24.STOP, m24.DMOV, 1}
+{13IDE:, KBV:,  pm3, pm4,    m19.VAL,  m19.RBV,  m20.VAL, m20.RBV, m19.STOP, m19.DMOV, m20.STOP, m20.DMOV, 1}
+}
+
+#
+file "$(CARS)/CARSApp/Db/Analyzer.db" 
+{
+pattern
+{P,       ANAL,     DESC     , EGU, PREC}
+{13IDE:,  ANAL,   "Analyzer" ,  mm,  4}
+}
+
+#
+file "$(SSCAN)/sscanApp/Db/scanParms.db"
+{
+{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
+{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
+{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1Z,POS=XAS:t1.Z,RDBK=XAS:t1.ZRB}
+{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1AX,POS=XAS:t1.AX,RDBK=XAS:t1.AXRB}
+{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1AY,POS=XAS:t1.AY,RDBK=XAS:t1.AYRB}
+{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
+{}
+
