@@ -75,6 +75,7 @@ CARSApp_vxWorks_LIBS += dac128V
 CARSApp_vxWorks_LIBS += quadEM
 CARSApp_vxWorks_LIBS += camac devCamac
 CARSApp_vxWorks_LIBS += dxp handel
+CARSApp_vxWorks_LIBS += ADBase
 CARSApp_vxWorks_LIBS += oms
 CARSApp_vxWorks_LIBS += TyGSOctal Ipac
 CARSApp_vxWorks_LIBS += vxStats
