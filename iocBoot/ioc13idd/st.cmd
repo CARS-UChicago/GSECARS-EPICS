@@ -17,38 +17,14 @@ cd startup
 < industryPack.cmd
 < serial.cmd
 
-# Load database
+# Joerger VSC setup parameters: 
+#     (1)cards, (2)base address(ext, 256-byte boundary), 
+#     (3)interrupt vector (0=disable or  64 - 255)
+VSCSetup(1, 0xB0000000, 200)
 dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDD:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 # MAR345 shutter
 dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
-
-
-##==== XPS Motors    ==================================
-XPSSetup(1)
-#    card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.34", 5001, 8, 10, 200)
-
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
- XPSInterpose("XPS1")
-
-# configure axes
-#card, axis, groupName.positionerName, steps/rev
-XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
-XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
-XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
-XPSConfigAxis(0,3,"GROUP4.POSITIONER",  1000)  
-# XPSConfigAxis(0,4,"GROUP5.POSITIONER",  2000)  
-# XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000) 
-
-# Disable setting position from motor record
-XPSEnableSetPosition(0)
- 
-##=====================================================
-
-dbLoadTemplate("motors.template")
-
 
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
@@ -75,15 +51,8 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x3ed, 2, 2)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
-
-### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in share/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_88.db","P=13IDD:")
+# Struck MCS as 32-channel multi-element detector
+< SIS3820_8.cmd
 
 # Laser PID control
 # This is for the old YLF laser using a photodiode with slow and fast feedback records, not used any more
@@ -104,6 +73,40 @@ dbLoadRecords("$(CARS)/CARSApp/Db/RampScan.db","P=13IDD:,R=Theta1_,DRV=LVP:PID1.
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
+
+##==== XPS Motors    ==================================
+XPSSetup(1)
+#    card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
+XPSConfig(0, "164.54.160.34", 5001, 8, 10, 200)
+
+# asyn port, driver name, controller index, max. axes)
+drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
+ XPSInterpose("XPS1")
+
+# configure axes
+#card, axis, groupName.positionerName, steps/rev
+XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
+XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
+XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
+XPSConfigAxis(0,3,"GROUP4.POSITIONER",  1000)  
+# XPSConfigAxis(0,4,"GROUP5.POSITIONER",  2000)  
+# XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000) 
+
+# Disable setting position from motor record
+XPSEnableSetPosition(0)
+ 
+# OMS VME58 driver setup parameters:
+#     (1)cards, (2)base address(short, 4k boundary),
+#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
+#     (5)motor task polling rate (min=1Hz,max=60Hz)
+oms58Setup(10, 0x4000, 190, 5, 10)
+
+dbLoadTemplate("motors.template")
+
+### Allstop, alldone
+# This database must agree with the motors you've actually loaded.
+# Several versions (e.g., all_com_32.db) are in share/stdApp/Db
+dbLoadRecords("$(STD)/stdApp/Db/all_com_88.db","P=13IDD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -129,23 +132,6 @@ dbLoadTemplate("vxStats.substitutions")
 save_restoreSet_status_prefix("13IDD:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDD:")
 
-################################################################################
-# Setup device/driver support addresses, interrupt vectors, etc.
-
-# OMS VME58 driver setup parameters:
-#     (1)cards, (2)base address(short, 4k boundary),
-#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
-#     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(10, 0x4000, 190, 5, 10)
-
-# Joerger VSC setup parameters: 
-#     (1)cards, (2)base address(ext, 256-byte boundary), 
-#     (3)interrupt vector (0=disable or  64 - 255)
-VSCSetup(1, 0xB0000000, 200)
-
-# Struck MCS as 32-channel multi-element detector
-< SIS3820_32.cmd
- 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 
