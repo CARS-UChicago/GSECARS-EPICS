@@ -22,6 +22,7 @@ tyGSOctalModuleInit("UART1", "232", 0x81, 0, 3)
 # carrier     = IPAC carrier number (0, 1, etc.)
 # slot        = IPAC slot (0,1,2,3, etc.)
 initDAC128V("DAC1",1,0)
+dbLoadTemplate "DAC.template"
 
 # Initialize Acromag IP-330 ADC
 # Ip330 *initIp330(
@@ -64,6 +65,7 @@ initIp330("Ip330_1",0,1,"D","-5to5",0,15,120)
 #               If zero then there will be no periodic calibration, but
 #               one calibration will still be done at initialization.
 configIp330("Ip330_1", 3,"Input",500,0)
+dbLoadTemplate "Ip330_ADC.template"
 
 # int initFastSweep(char *portName, char *inputName,
 #                   int maxSignals, int maxPoints)
@@ -73,6 +75,10 @@ configIp330("Ip330_1", 3,"Input",500,0)
 # maxPoints  = maximum number of points in a sweep.  The amount of memory
 #              allocated will be maxPoints*maxSignals*4 bytes
 initFastSweep("Ip330Sweep1", "Ip330_1", 4, 2048)
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *portName,
@@ -93,3 +99,5 @@ initFastSweep("Ip330Sweep1", "Ip330_1", 4, 2048)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 2, 100, 116, 0xffffff, 0xffffff)
 initIpUnidig("Unidig2", 1, 1, 100, 117, 0xffffff, 0xffffff)
+dbLoadTemplate "ipUnidig.substitutions"
+
