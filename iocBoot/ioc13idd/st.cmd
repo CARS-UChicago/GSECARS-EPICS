@@ -142,6 +142,9 @@ oms58Setup(10, 0x4000, 190, 5, 10)
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
 VSCSetup(1, 0xB0000000, 200)
+
+# Struck MCS as 32-channel multi-element detector
+< SIS3820_32.cmd
  
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
