@@ -1,12 +1,10 @@
 # vxWorks startup file
-mem = malloc(1024*1024*96)
 
 < cdCommands
 
 < ../nfsCommandsGSE
 
 cd topbin
-# ld < CARS167.munch
 ld < CARSApp.munch
 # ld < ../../../motor/bin/vxWorks-ppc604/XPSGathering.munch
 cd startup
@@ -266,5 +264,3 @@ dbpf("13BMC:m46.NTM","0")
 # Initialize the motorUtil software
 motorUtilInit("13BMC:")
 
-# Free memory allocated at top
-free(mem)
