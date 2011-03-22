@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program Energy("PRE=XXIDA:, ID=IDXX:, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, SH=eps_mbbi4, FB=mono_pid1")
+program Energy("PRE=XXIDA:, ID=IDXX:,  SH=eps_mbbi4, FB=mono_pid1")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -18,6 +18,8 @@ program Energy("PRE=XXIDA:, ID=IDXX:, EXPTAB_Z=XXIDC:m6, EXPTAB2=XXIDC:m7, SH=ep
  *  Feb 17, 2008   MN: add check for 'undulator busy' before trying to 
  *                     move the undulator: if it is busy, poke {ID}Stop.VAL 
  *                     before trying to move again
+ *  Jan 18, 2011   MN: removed EXPTAB tracking -- never used, relied on IDC crate
+ *
  */
 %%#include <math.h>
 %%#include <epicsThread.h>
@@ -77,20 +79,6 @@ int    xt_track;  assign xt_track  to "{PRE}E:xt_track.VAL";  monitor xt_track;
 int    xt2_track; assign xt2_track to "{PRE}E:xt2_track.VAL"; monitor xt2_track;
 double y2_off;    assign y2_off    to "{PRE}E:y2_off.VAL";    monitor y2_off;
 
-double xt_off;    assign xt_off    to "{PRE}E:xt_off.VAL";    monitor xt_off;
-double xt_sign;   assign xt_sign   to "{PRE}E:xt_sign.VAL";   monitor xt_sign;
-double xt_mvmin;  assign xt_mvmin  to "{PRE}E:xt_mvmin.VAL";  monitor xt_mvmin;
-double xt_ht;     assign xt_ht     to "{EXPTAB_Z}";        monitor xt_ht;
-int    xt_done;   assign xt_done   to "{EXPTAB_Z}.DMOV";   monitor xt_done;
-
-/* second table for large kb mirror */
-double xt2_off;    assign xt2_off    to "{PRE}E:xt2_off.VAL";    monitor xt2_off;
-double xt2_sign;   assign xt2_sign   to "{PRE}E:xt2_sign.VAL";   monitor xt2_sign;
-double xt2_mvmin;  assign xt2_mvmin  to "{PRE}E:xt2_mvmin.VAL";  monitor xt2_mvmin;
-double xt2_ht;     assign xt2_ht     to "{EXPTAB2}";          monitor xt2_ht;
-int    xt2_done;   assign xt2_done   to "{EXPTAB2}.DMOV";     monitor xt2_done;
-
-
 
 /* Event Flags */
 evflag ef_en;        sync en         ef_en;
@@ -113,12 +101,6 @@ double en_min;
 double en_max;
 double th_min;
 double th_max;
-double xt_diff;
-double xt_old;
-double xt_new;
-double xt2_diff;
-double xt2_old;
-double xt2_new;
 float  d_time;
 double tiny;
 double z2_sign;
@@ -165,12 +147,8 @@ ss Energy {
       en     = en_rbv;
       pvPut(en);   pvPut(en_rbv);
       if (verbose) { printf("   E(init)> mono angle, energy = %12.6f %12.6f\n", th_rbv,en_rbv); }
-      /* initialize Experimental Table offset */
-      xt_off    = xt_ht -  xt_sign * 2 * width * cos(th * d2r);
-      pvPut(xt_off);
 
-      xt2_off    = xt2_ht -  xt2_sign * 2 * width * cos(th * d2r);
-      pvPut(xt2_off);
+      /* initialize Experimental Table offset */
 
       /* initialize undulator offset */
       if (use_id) {
@@ -284,54 +262,26 @@ ss Energy {
 	}
 	/*move Experimental Table to compensate for _NOT_ tracking y2 */
 	if (xt_track) {
-	  xt_old  = xt_ht; 
-	  pvGet(width);
-	  xt_new  = xt_off + 2 * xt_sign * width * cos(th * d2r);;
-	  xt_diff = (xt_old *10000.0  - xt_new * 10000.0 ) / 10000.0 ;
-	  if (xt_diff < 0.0) xt_diff = - xt_diff;
-	  if (verbose) {
-	    printf("  E(move)> exptab: from %12.6f to %12.6f \n", xt_old, xt_new);
-	  }
- 	  if (xt_diff > xt_mvmin) { 
-	    xt_ht = xt_new;
-	    pvPut (xt_ht);  
-	    if (verbose) { printf("  E(move)> XAS Table Z -> %12.6f\n",xt_ht);}
-	  }
+	  if (verbose) { printf("  E(move)> XAS Table Z tracking disabled\n");}
 	} 
 	if (xt2_track) {
-	  xt2_old  = xt2_ht; 
-	  pvGet(width);
-	  xt2_new  = xt2_off + 2 * xt2_sign * width * cos(th * d2r);;
-	  xt2_diff = (xt2_old *10000.0  - xt2_new * 10000.0 ) / 10000.0 ;
-	  if (xt2_diff < 0.0) xt2_diff = - xt2_diff;
-	  if (verbose) {
-	    printf("  E(move)> exptab2: from %12.6f to %12.6f \n", xt2_old, xt2_new);
-	  }
- 	  if (xt2_diff > xt2_mvmin) { 
-	    xt2_ht = xt2_new;
-	    pvPut (xt2_ht);  
-	    if (verbose) { printf("  E(move)> EXP Table2 -> %12.6f\n",xt2_ht);}
-	  }
+	  if (verbose) { printf("  E(move)> EXP Table2 tracking disabled\n");}
 	} 
 
-	/*
-	  wait for undulator, mono, 2nd xtal to finish 
+	/* wait for undulator, mono, 2nd xtal to finish 
 	  this gets tricky as we're waiting for things that 
-	  may or may not be moving
-	*/
+	  may or may not be moving */
 	d_time = 0.03; 
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
           still_busy = ((y2_track||z2_track) && (z2_done == 0)) ||
-                        (xt_track  && (xt_done == 0)) ||
-                        (xt2_track && (xt2_done == 0)) ||
                         (th_done == 0) || id_busy;
 	  if (verbose) { printf("  E feedback? > %i %i %i\n", wait_count, fb_use, fb_locked);}
 	  if (fb_is_on && fb_use) {   still_busy = still_busy || (fb_locked == 0);
 	  }
           if (verbose) {
-            printf("[%i%i%i%i]", id_busy, th_done, z2_done, xt_done);
+            printf("[%i%i%i]", id_busy, th_done, z2_done);
             if (!(wait_count % 8)) printf("\n");
           }
         }
@@ -384,35 +334,10 @@ ss Energy {
 
       /*move Experimental Table to compensate for _NOT_ tracking y2 */
       if (xt_track) {
-	xt_old  = xt_ht; 
-	pvGet(width);
-	xt_new  = xt_off + 2 * xt_sign * width * cos(th * d2r);;
-	xt_diff = (xt_old *10000.0  - xt_new * 10000.0 ) / 10000.0 ;
-	if (xt_diff < 0.0) xt_diff = - xt_diff;
-	if (verbose) {
-	  printf("  E(move)> exptab: from %12.6f to %12.6f \n", xt_old, xt_new);
-	}
-	if (xt_diff > xt_mvmin) { 
-	  xt_ht = xt_new;
-	  pvPut (xt_ht);  
-	  if (verbose) { printf("  E(move)> XAS Table Z -> %12.6f\n",xt_ht);}
-	}
-      } 
-      
+	  if (verbose) { printf("  E(move)> XAS Table Z tracking disabled\n");}
+      }       
       if (xt2_track) {
-	xt2_old  = xt2_ht; 
-	pvGet(width);
-	xt2_new  = xt2_off + 2 * xt2_sign * width * cos(th * d2r);;
-	xt2_diff = (xt2_old *10000.0  - xt2_new * 10000.0 ) / 10000.0 ;
-	if (xt2_diff < 0.0) xt2_diff = - xt2_diff;
-	if (verbose) {
-	  printf("  E(move)> exptab2: from %12.6f to %12.6f \n", xt2_old, xt2_new);
-	}
-	if (xt2_diff > xt2_mvmin) { 
-	  xt2_ht = xt2_new;
-	  pvPut (xt2_ht);  
-	  if (verbose) { printf("  E(move)> EXP Table2 -> %12.6f\n",xt2_ht);}
-	  }
+	if (verbose) { printf("  E(move)> EXP Table2 tracking disabled\n");}
       } 
 
 
@@ -453,12 +378,10 @@ ss Energy {
 	/* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
-	  still_busy = ((xt_track  && (xt_done == 0)) || 
-			(xt2_track && (xt2_done == 0)) ||
-			(th_done == 0) || id_busy);
+	  still_busy = ((th_done == 0) || id_busy);
 	  if (fb_is_on && fb_use) {  still_busy = still_busy || (fb_locked == 0); }
           if (verbose) {
-            printf("E(mono) [%i%i%i%i]", id_busy, th_done, xt_done,wait_count);
+            printf("E(mono) [%i%i%i]", id_busy, th_done, wait_count);
             if (!(wait_count % 8)) printf("\n");
           }
         }
@@ -485,19 +408,11 @@ ss Energy {
     } state monitor_changes
     /*  experimental table tracking : reset offset if switched to on */
     when( efTestAndClear(ef_xt_track) ) {
-      if (xt_track) {
-	xt_off = xt_ht - 2 * width * xt_sign * cos(th * d2r);
-	pvPut(xt_off);
-	if (verbose) {printf("  E(xt_track)> changed table offset => %12.6f\n",xt_off);}
-      }
+      if (verbose) { printf("  E(move)> XAS Table Z tracking disabled\n");}
     } state monitor_changes
 
     when( efTestAndClear(ef_xt2_track) ) {
-      if (xt2_track) {
-	xt2_off = xt2_ht - 2 * width * xt2_sign * cos(th * d2r);
-	pvPut(xt2_off);
-	if (verbose) {printf("  E(xt2_track)> changed table offset => %12.6f\n",xt2_off);}
-      }
+      if (verbose) { printf("  E(move)> EXP Table2 tracking disabled\n");}
     } state monitor_changes
 
 	/*  xtal Z tracking : reset offset if switched to on */
