@@ -24,10 +24,11 @@ save_restoreDebug = 0
 asynXPSC8Debug = 0
 
 
-#dbLoadTemplate("motors.template")
+dbLoadTemplate("motors.template")
 
 # SIS3820 MCS as 32-channel multi-element detector and scaler
 <SIS3820_32.cmd
+#<SIS3820_2.cmd
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -35,6 +36,9 @@ asynXPSC8Debug = 0
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
+
+### Allstop, alldone
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDE:")
 
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDE:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 
@@ -57,6 +61,15 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
 
+# Auto-Shutter 
+dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
+
+# Free-standing user string/number calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13IDE:")
+
+# Free-standing user transforms (transform records)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13IDE:")
+
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
@@ -71,9 +84,8 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDE:")
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(9, 0x4000, 190, 5, 10)
+oms58Setup(5, 0x4000, 190, 5, 10)
 ################################################################################
-
 
 ################################################################################
 
@@ -106,9 +118,24 @@ create_monitor_set("auto_settings.req",30,"P=13IDE:")
 # 3: if specified time has passed, wait for space in queue, then send message
 # else: don't send message
 #debug_saveData = 2
-saveData_MessagePolicy = 2
-saveData_SetCptWait_ms(10)
-saveData_Init("saveDataExtraPVs.req", "P=13IDE:")
-#saveData_PrintScanInfo("13IDE:scan1")
+# saveData_MessagePolicy = 2
+# saveData_SetCptWait_ms(10)
+# saveData_Init("saveDataExtraPVs.req", "P=13IDE:")
+# saveData_PrintScanInfo("13IDE:scan1")
 
 seq &Keithley2kDMM, "P=13IDE:, Dmm=DMM1"
+# # set scale for sum/diff for TT slits
+# dbpf("13IDE:sm1C1","0.50")
+# dbpf("13IDE:sm1C2","0.50")
+# dbpf("13IDE:sm2C1","1.00")
+# dbpf("13IDE:sm2C2","1.00")
+# 
+# dbpf("13IDE:sm4C1","0.50")
+# dbpf("13IDE:sm4C2","0.50")
+# dbpf("13IDE:sm3C1","1.00")
+# dbpf("13IDE:sm3C2","1.00")
+
+dbpf("13IDE:userTranEnable","1")
+dbpf("13IDE:ShutterA:EnableShutter","1")
+
+motorUtilInit("13IDE:")
