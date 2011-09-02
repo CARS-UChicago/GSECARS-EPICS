@@ -1,5 +1,0 @@
-STR7201Setup(1,0xA0000000,220,6)
-# STR7201Config(card, maxSignals, maxChans, ch1RefEnable)
-STR7201Config(0, 8, 2048, 1)
-dbLoadRecords("share/mcaApp/Db/Struck8.db","P=13LAB:str:", mca)
-dbLoadTemplate("Struck8.template")
