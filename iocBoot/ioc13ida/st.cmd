@@ -50,9 +50,7 @@ dbLoadTemplate("mono_pid.template")
 dbLoadTemplate("mirror_pid.template")
 
 ### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in std/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_16.db","P=13IDA:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -190,5 +188,7 @@ saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
 saveData_Init("saveDataExtraPVs.req", "P=13IDA:")
 #saveData_PrintScanInfo("13IDA:scan1")
+
+motorUtilInit("13IDA:")
 
 
