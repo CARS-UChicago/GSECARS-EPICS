@@ -1,4 +1,11 @@
-ipacAddVIPC616_01("0x3000,0xa0000000")
+# The first carrier in our system is a TEWS TVME200
+# The argument to ipacAddTVME200 is the values of the 6 switches on the board
+# In thise case 30 = base address 3000
+#                2 = interrupt mapping 4, 5, 2, 1, 4, 5, 2, 1
+#                F = A32 address space, 8MB per slot
+#               A0 = A0000000 base address in A32 space
+ipacAddTVME200("302FA0") 
+#ipacAddVIPC616_01("0x3000,0xa0000000")
 ipacAddVIPC616_01("0x3400,0xa2000000")
 
 # Initialize Octal UART stuff
