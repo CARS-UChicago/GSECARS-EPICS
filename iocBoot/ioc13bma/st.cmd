@@ -43,10 +43,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTO
 dbLoadTemplate "mono_pid.template"
  
 ### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in "$(STD)/stdApp/Db
-# NOTE: this must exist for slit databases to work
-dbLoadRecords("$(STD)/stdApp/Db/all_com_24.db","P=13BMA:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMA:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -114,3 +111,7 @@ seq &BM13_Energy, "E=13BMA:E, MONO=13BMA:m17, EXPTAB_Z=13BMD:m22, YXTAL=13BMA:MO
 # Mn 20/Mar/02  see note in ioc13ida st.cmd
 #  this reduces the readback following error for the McLennan mono controller.
 (double) drvPM304ReadbackDelay = 0.25
+
+
+motorUtilInit("13BMA:")
+
