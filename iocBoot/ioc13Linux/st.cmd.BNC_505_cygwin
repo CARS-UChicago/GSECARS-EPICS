@@ -1,0 +1,25 @@
+< envPaths
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(DELAYGEN)/delaygenApp/Db)
+
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARS_registerRecordDeviceDriver(pdbbase)
+
+#drvAsynIPPortConfigure("serial1", "gsets5.cars.aps.anl.gov:2001", 0,0,0)
+drvAsynSerialPortConfigure("serial1", "/dev/ttyS0")
+asynOctetSetInputEos("serial1", 0, "\r\n")
+asynOctetSetOutputEos("serial1",0, "\r\n")
+asynSetOption("serial1", 0, "baud", "9600")
+asynSetTraceIOMask(serial1, 0, 2)
+#asynSetTraceMask(serial1, 0, 9)
+
+# For some reason the first read from this device returns some garbage
+# Do a read from the iocsh so record does not get bad data in iocInit
+asynOctetConnect serial1 serial1
+asynOctetWriteRead serial1 *IDN?
+
+dbLoadTemplate("BNC_505.substitutions")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13Linux:,R=asyn1,PORT=serial1,ADDR=0,OMAX=256,IMAX=256")
+
+iocInit

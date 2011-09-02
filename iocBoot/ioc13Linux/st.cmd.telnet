@@ -1,0 +1,20 @@
+
+< envPaths
+
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+drvAsynIPPortConfigure("p1", "gsets1.cars.aps.anl.gov:23", 0, 0, 0)
+
+
+asynSetTraceMask(p1,0,255)
+asynSetTraceIOMask(p1,0,2)
+asynOctetConnect(p1, p1)
+
+asynOctetWrite(p1, "test")
+asynOctetRead(p1)
+
+iocInit
+
+asynOctetWrite(p1, "test")
+asynOctetRead(p1)

@@ -1,0 +1,21 @@
+< envPaths
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(DELAYGEN)/delaygenApp/Db)
+
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+drvAsynSerialPortConfigure("serial1", "/dev/ttyS0")
+asynOctetSetInputEos("serial1", 0, "\r")
+asynOctetSetOutputEos("serial1",0, "\r")
+asynSetOption("serial1", 0, "baud", "9600")
+asynSetTraceIOMask(serial1, 0, 2)
+#asynSetTraceMask(serial1, 0, 9)
+
+initScaler974("scaler1", "serial1", 0, 50)
+
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13Linux:,S=scaler1,FREQ=10,DTYP=Asyn Scaler,OUT=@asyn(scaler1 0)")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13Linux:,R=asyn1,PORT=serial1,ADDR=0,OMAX=256,IMAX=256")
+
+iocInit

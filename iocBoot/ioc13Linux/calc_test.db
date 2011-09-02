@@ -1,0 +1,23 @@
+record(ao, "test:ao") {
+    field(FLNK, "test:calcLSW.PROC")
+}
+
+record(calcout, "test:calcLSW") {
+    field(INPA, "test:ao.VAL  NPP NMS")
+    field(CALC, "A&65535")
+    field(OUT, "test:aoLSW")
+    field(FLNK, "test:calcMSW.PROC")
+}
+
+record(calcout, "test:calcMSW") {
+    field(INPA, "test:ao.VAL  NPP NMS")
+    field(CALC, "(A>>16)&65535")
+    field(OUT, "test:aoMSW")
+}
+
+record(ao, "test:aoLSW") {
+}
+
+record(ao, "test:aoMSW") {
+}
+
