@@ -5,13 +5,13 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+ld < CARSAppMini.munch
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARSApp
-dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
-CARSVX_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("$(CARS)/dbd/CARSMini.dbd")
+CARSMini_registerRecordDeviceDriver(pdbbase)
 
 < industryPack.cmd
 < serial.cmd
@@ -27,8 +27,8 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
 # Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
 dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
 
-# Acromag Ip330 ADC
-#dbLoadTemplate "Ip330_ADC.template"
+# SIS3801 MCS
+iocsh "SIS3801.iocsh"
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -56,12 +56,6 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13LAB2:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13LAB2:")
-
-# vme test record
-dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB2:,Q=vme1")
-
-# Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13LAB2:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
@@ -96,3 +90,4 @@ create_monitor_set("auto_positions.req",5,"P=13LAB2:")
 create_monitor_set("auto_settings.req",30,"P=13LAB2:")
 
 seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
+seq(&SIS38XX_SNL, "P=13LAB2:SIS3801:, R=mca, NUM_SIGNALS=8, FIELD=READ")
