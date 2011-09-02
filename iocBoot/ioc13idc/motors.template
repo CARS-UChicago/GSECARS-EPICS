@@ -1,102 +1,55 @@
 #
-# motor template file for 13-ID-C
+# motor template file for 13-ID-C: modified 2011-Jan-18
 #
-#  OMS Card             Patch Panel 
-#  0                    Patch Panel G:  User Motors  (black cables)
-#  1: unused (had been old XRM TT slits / J patch panel)
-#  2                    XAS Table Top KB Mirrors
-#  3			Patch Panel H:  XAS Table
+# This IOC controls 4 OMS VME58 and 2 Newport XPS sets of motors:
 #
-# step-pak conventions:
-#  Motor  Motor        VME  VME     VME          Motor        sStepPak
-#  Number Name         Slot Channel Cable        Cable        Volt Amp
-#  m1     Table Y Up    0   0       ID-MC-CB-01  ID-MD-AD-01    4    4
-#  m2     Table Y In    0   1       ID-MC-CB-02  ID-MD-AD-02    4    4
-#  m3     Table Y Down  0   2       ID-MC-CB-03  ID-MD-AD-03    4    4
-#  m4     Table X Up    0   3       ID-MC-CB-04  ID-MD-AD-04    4    2
-#  m5     Table X Down  0   4       ID-MC-CB-05  ID-MD-AD-05    4    2
-#  m6     Table Y Base  0   5       ID-MC-CB-06  ID-MD-AD-06    8    6
-#  m7     Table unus    0   6       ID-MC-CB-07  ID-MD-AD-07    -    -
-#  m8     Table Mono    0   7       ID-MC-CB-08  ID-MD-AD-08    4    3
-
+# Motor Numbers     Type         Card   Driver Type
+# -------------   ----------   -------  -----------
+#   1-8           OMS VME58       0     BP8000
+#   9-16          OMS VME58       1     Step Pak, Patch Panel K
+#  17-24          OMS VME58       2     BP8000
+#  25-32          Newport-XPS   XPS1
+#  33-40          Newport-XPS   XPS2
+#  41-48          OMS-VME58       3     BP8000
+# -------------   ----------   -------  -----------
+#
 # Note: all motors must be defined for 'motors_all_done' to work
 
 file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,    DTYP,      C,  S,  DESC,              EGU,     DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM}
-# XRM Table
-{13IDC:,  m1, "OMS VME58", 3, 0, "Upstream Y",     mm,       Pos,   .2,  .005,  1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
-{13IDC:,  m2, "OMS VME58", 3, 1, "Inboard Y",      mm,       Pos,   .2,  .005,  1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
-{13IDC:,  m3, "OMS VME58", 3, 2, "Outboard Y",     mm,       Pos,   .2,  .005,  1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
-{13IDC:,  m4, "OMS VME58", 3, 3, "Upstream X",     mm,       Pos,   .5,  .005,  .5,  0,   1, .2, 400, -0.035278, 4,   79,  -52}
-{13IDC:,  m5, "OMS VME58", 3, 4, "Downstream X",   mm,       Pos,   .5,  .005,  .5,  0,   1, .2, 400,  0.035278, 4,   30,  -75}
-{13IDC:,  m6, "OMS VME58", 3, 5, "Base Y",         mm,       Pos,   .5,  .05,   1., .05,.05, .5, 400, -0.10583,  4,  200,    0}
-{13IDC:,  m7, "OMS VME58", 3, 6, "unused 32m",     mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-{13IDC:,  m8, "OMS VME58", 3, 7, "unused 32m",     mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
+# BP-8000 #1, Diffractometer bench slits	
+{13IDC:,  m1, "OMS VME58", 0, 0, "Hp UpStream",      microns, Pos, 250,  100, 2., 20,  200,  .2,  2064,   250,   1,   5100, -100}
+{13IDC:,  m2, "OMS VME58", 0, 1, "Hw UpStream",      microns, Pos, 200,  100, 2., 20,  100,  .2,  2064,   635,   1,  10100, -100}
+{13IDC:,  m3, "OMS VME58", 0, 2, "Vp UpStream",      microns, Neg, 250,  100, 2.,  0,  200,  .2,  2064,   250,   1,   5100, -100}
+{13IDC:,  m4, "OMS VME58", 0, 3, "Vw UpStream",      microns, Pos, 300,  100, 2.,  0,  100,  .2,  2064,   635,   1,  10100, -100}
+{13IDC:,  m5, "OMS VME58", 0, 4, "Hw DownStream",    microns, Pos, 200,  100, .2,  0,  100,  .2,  2571,  -700,   0,   5100, -100}
+{13IDC:,  m6, "OMS VME58", 0, 5, "Hp DownStream",    microns, Pos, 100,  100, .2,  0,  100,  .2,  2571,  -350,   0,  10100, -100}
+{13IDC:,  m7, "OMS VME58", 0, 6, "Vw DownStream",    microns, Pos, 200,  100, .2,  0,  100,  .2,  2571,  -700,   0,   5100, -100}
+{13IDC:,  m8, "OMS VME58", 0, 7, "Vp DownStream",    microns, Neg, 100,  100, .2,  0,  100,  .2,  2571,  -350,   0,  10100, -100}
 
-# Old slits -not connected!
-{13IDC:,  m9, "OMS VME58", 1, 0, "Hor. slit pos.",     microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7500,   0}
-{13IDC:, m10, "OMS VME58", 1, 1, "Hor. slit width",    microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7000,   0}
-{13IDC:, m11, "OMS VME58", 1, 2, "Vert. slit pos.",    microns,  Neg,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  7500,   0}
-{13IDC:, m12, "OMS VME58", 1, 3, "Vert. slit width",   microns,  Pos,  500, 100,  .2,  0,  1, .2,  64,   3.817,  0,  8000,   0}
+# P,      M,    DTYP,       C, S,     DESC,              EGU, DIR,  VELO, VBAS, ACCL, BDST, BVEL, BACC, SREV,  UREV, PREC, DHLM, DLLM
+# Patch Panel K
+{13IDC:,  m9, "OMS VME58", 1, 0, "Shutter X",        microns, Pos, 200.0,   10,   .2,    0,    1,   .2,   48, 3.546,    1,  8e3,    0}
+{13IDC:, m10, "OMS VME58", 1, 1, "Shutter Y",        microns, Neg, 200.0,   10,   .2,    0,    1,   .2,   48, 3.546,    1,  8e3,    0}
+{13IDC:, m11, "OMS VME58", 1, 2, "Film Gap",         microns, Neg, 200.0,   10,   .2,    0,    1,   .2,   48, 3.546,    1,  8e3,    0}
+{13IDC:, m12, "OMS VME58", 1, 3, "K 4",                   mm, Pos,   500,  100,   .2,    0,    1,   .2,   64, 3.817,    1, 8000,    0}
+{13IDC:, m13, "OMS VME58", 1, 4, "K 5",                   mm, Pos,   1.0,  0.1,   .5,    0,    1,   .2,  200,  0.10,    4,   95,    5}
+{13IDC:, m14, "OMS VME58", 1, 5, "K 6",                   mm, Pos,   1.0,  0.1,   .5,    0,    1,   .2,   20,  0.10,    4,   95,    5}
+{13IDC:, m15, "OMS VME58", 1, 6, "K 7",                   mm, Pos,   1.0,  0.1,   .5,    0,    1,   .2,  200,  0.10,    4,   25,    0}
+{13IDC:, m16, "OMS VME58", 1, 7, "K 8",                   mm, Pos,   1.0,  0.1,   .5,    0,    1,   .2,  400, -.710,    4,   10,    0}
 
-#
-# IDE G step-pak
-{13IDC:, m13, "OMS VME58", 0, 0, "Split Ion Chamber X",   mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  5}
-{13IDC:, m14, "OMS VME58", 0, 1, "unused 6U",             mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  20,   0.10,  4,  95,  5}
-{13IDC:, m15, "OMS VME58", 0, 2, "unused 6U",             mm, Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  25,  0}
-# Vertical Jack
-{13IDC:, m16, "OMS VME58", 0, 3, "Microscope Y",          mm, Pos,  1.0,  0.1, .5, 0, 1, .2,  400, -.710,  4,  10,  0}
-# 32m:
-{13IDC:, m45, "OMS VME58", 0, 4, "Vortex X",              mm, Neg,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-{13IDC:, m46, "OMS VME58", 0, 5, "Vortex Y",              mm, Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-{13IDC:, m47, "OMS VME58", 0, 6, "NoStepPak",             mm, Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-{13IDC:, m48, "OMS VME58", 0, 7, "Vortex Z",              mm, Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-
-
-#P,      M,    DTYP,       C, S,     DESC,               EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
-#{13IDC:, m17, "OMS VME58", 2, 1, "Vert. mirror Y pos.",      microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-#{13IDC:, m18, "OMS VME58", 2, 0, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
-#{13IDC:, m19, "OMS VME58", 2, 2, "Vert. force UpStream.",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-#{13IDC:, m20, "OMS VME58", 2, 3, "Vert. force DownStream.",  microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-########################################################################
-# PJE 2/9/2009 Changed UREV for vert kb to match the MFA stages (gear head is 1:43)
-#<< MN 2010-Mar-03  cabling problem led to switching internal connectors forX and Theta
-## WAS:
-{13IDC:, m17, "OMS VME58", 2, 1, "Vert. mirror Y pos.",      microns,  Pos,  250.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
-{13IDC:, m18, "OMS VME58", 2, 0, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
-## NOW
-##{13IDC:, m17, "OMS VME58", 2, 0, "Vert. mirror Y pos.",      microns,  Pos,  250.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
-##{13IDC:, m18, "OMS VME58", 2, 1, "Vert. mirror rotation",    mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
-##
-#>>
-{13IDC:, m19, "OMS VME58", 2, 2, "Vert. force UpStream.",    microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
-{13IDC:, m20, "OMS VME58", 2, 3, "Vert. force DownStream.",  microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
-########################################################################
-{13IDC:, m21, "OMS VME58", 2, 5, "Hor. mirror X pos",        microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-{13IDC:, m22, "OMS VME58", 2, 4, "Hor. mirror rotation",     mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
-{13IDC:, m23, "OMS VME58", 2, 6, "Hor. force UpStream",      microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-{13IDC:, m24, "OMS VME58", 2, 7, "Hor. force DownStream",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
-
-
-#{13IDC:, m25, "MM4000",    0, 0, "Phi",             degrees,  Neg,  4.0,  .1,   .25, 0,  1,  .2,  1,  .001,    3,   180, -180}
-#{13IDC:, m26, "MM4000",    0, 1, "Kappa",           degrees,  Neg,  6.0,  .1,   .88, 0,  1,  .2,  1,  .0001,   4,   180, -180}
-#{13IDC:, m27, "MM4000",    0, 2, "Omega",           degrees,  Neg,  7.0,  .1,   1.5, 0,  1,  .2,  1,  .0001,   4,   180, -180}
-#{13IDC:, m28, "MM4000",    0, 3, "Psi",             degrees,  Neg,  4.0,  .1,   0.5, 0,  1,  .2,  1,  .00025,  4,   190, -190}
-#{13IDC:, m29, "MM4000",    0, 4, "2-theta",         degrees,  Neg,  6.0,  .1,   1.0, 0,  1,  .2,  1,  .0001,   4,   196,  -17}
-#{13IDC:, m30, "MM4000",    0, 5, "Nu",              degrees,  Neg,  4.0,  .1,   0.5, 0,  1,  .2,  1,  .00025,  4,   190, -190}
-#{13IDC:, m31, "MM4000",    0, 6, "Motor 31",        degrees,  Pos,  4.0,  .1,   1.0, 0,  1,  .2,  1,  1.0,     1,   1e6, -1e6}
-#{13IDC:, m32, "MM4000",    0, 7, "Motor 32",        degrees,  Pos,  4.0,  .1,   1.0, 0,  1,  .2,  1,  1.0,     1,   1e6, -1e6}
-	       					      	   	 	     	    	     			    
-#{13IDC:, m33, "MM4000",    1, 0, "Y1-mBY",          mm,       Pos,  0.2, .01,   0.67,  0,  1,  .2,  1,     .0001,  4,    60, -115}
-#{13IDC:, m34, "MM4000",    1, 1, "Y2-mAY",          mm,       Pos,  0.2, .01,   0.67,  0,  1,  .2,  1,     .0001,  4,    60, -115}
-#{13IDC:, m35, "MM4000",    1, 2, "Y3-mCY",          mm,       Pos,  0.2, .01,   0.67,  0,  1,  .2,  1,     .0001,  4,    60, -115}
-#{13IDC:, m36, "MM4000",    1, 3, "RotAY-mBZ",       mm,       Pos,  20., .01,    2.0,  0,  1,  .2,  1,      .005,  4,    24,  -24}
-#{13IDC:, m37, "MM4000",    1, 4, "XTrans-mAX",      mm,       Neg,  20., .01,    2.0,  0,  1,  .2,  1,      .005,  4,    50,  -50}
-#{13IDC:, m38, "MM4000",    1, 5, "Sample X",        mm,       Pos,  .07, .01,    .07,  0,  1,  .2,  1,  .0000134,  4,    28,    0}
-#{13IDC:, m39, "MM4000",    1, 6, "Sample Y",        mm,       Pos,  .07, .01,    .07, .1,  1,  .2,  1,  .0000134,  4,     3,   -3}
-#{13IDC:, m40, "MM4000",    1, 7, "Sample Z",        mm,       Pos,  .07, .01,    .07, .1,  1,  .2,  1,    .00001,  4,     3,   -3}
+# P,      M,    DTYP,       C, S,     DESC,               EGU,  DIR,VELO, VBAS,ACCL,BDST,BVEL,BACC,SREV,  UREV, PREC,  DHLM, DLLM
+# BP-8000 #2, Diffractometer detector slits
+{13IDC:, m17, "OMS VME58", 2, 0, "Hp UpStream",       microns,  Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m18, "OMS VME58", 2, 1, "Hw UpStream",       microns,  Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m19, "OMS VME58", 2, 2, "Vp UpStream",       microns,  Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m20, "OMS VME58", 2, 3, "Vw UpStream",       microns,  Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m21, "OMS VME58", 2, 4, "Hp DownStream",     microns,  Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m22, "OMS VME58", 2, 5, "Hw DownStream",     microns,  Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
+{13IDC:, m23, "OMS VME58", 2, 6, "Vp DownStream",     microns,  Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
+{13IDC:, m24, "OMS VME58", 2, 7, "Vw DownStream",     microns,  Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
 }
 
 file "$(CARS)/CARSApp/Db/asynMotor.db"
@@ -110,8 +63,8 @@ pattern
 {13IDC:, m28, "asynMotor",  XPS1,  3, "Psi",          degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
 {13IDC:, m29, "asynMotor",  XPS1,  4, "2theta",       degrees,  Neg,    4.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
 {13IDC:, m30, "asynMotor",  XPS1,  5, "Nu",           degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
-#{13IDC:, m31, "asynMotor",  XPS1,  6, "Dummy7",       degrees,  Neg,    6.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
-#{13IDC:, m32, "asynMotor",  XPS1,  7, "Dummy8",       degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
+#{13IDC:, m31, "asynMotor",  XPS1,  6, "Dummy7",      degrees,  Neg,    6.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
+#{13IDC:, m32, "asynMotor",  XPS1,  7, "Dummy8",      degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
  
 # Base motors
 {13IDC:, m33, "asynMotor",  XPS2,  0, "Y1-mBY",            mm,  Pos,    0.2,   .01, 0.67,    0,    1,  .25,      1,        .0001,    4,     60,   -115}
@@ -127,103 +80,27 @@ pattern
 file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
-{P,       M,       DTYP,       C,  S, DESC,                           EGU,  DIR,  VELO, VBAS,  ACCL, BDST,    BVEL,  BACC,    SREV,     UREV, PREC,   DHLM,   DLLM}
-{13IDC:, m41, "OMS VME58", 1, 4, "unused"        mm, Pos,  1.0, 0.1, .5, 0, 1, .2, 400, -.710,  4,  10,  0}
-{13IDC:, m42, "OMS VME58", 1, 5, "unused",     deg, Neg,  0.5, .05, .2, 0, 1, .2, 400,  -0.05, 6, 270, 250}
-{13IDC:, m43, "OMS VME58", 1, 6, "unused",  microns, Pos,  200.0,  10  .2,  0  10,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m44, "OMS VME58", 1, 7, "unused",        mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  50,  -50}
+{P,       M,    DTYP,       C,  S, DESC,   EGU,  DIR,  VELO, VBAS,  ACCL, BDST,    BVEL,  BACC,    SREV,     UREV, PREC,   DHLM,   DLLM}
+# BP8000 #3 (IXS Detector motors)
+{13IDC:, m41, "OMS VME58",  3, 0,  "Element 1 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m42, "OMS VME58",  3, 1,  "Element 1 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m43, "OMS VME58",  3, 2,  "Element 2 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m44, "OMS VME58",  3, 3,  "Element 2 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m45, "OMS VME58",  3, 4,  "Element 3 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m46, "OMS VME58",  3, 5,  "Element 3 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m47, "OMS VME58",  3, 6,  "Element 4 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
+{13IDC:, m48, "OMS VME58",  3, 7,  "Element 4 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
 
-#PJE swapped with Brucker Shutter 3-27-2010
-#{13IDC:, m45, "OMS VME58", 0, 4, "XRM Motor 1",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
-#{13IDC:, m46, "OMS VME58", 0, 5, "XRM Motor 2",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
-#{13IDC:, m47, "OMS VME58", 0, 6, "XRM Motor 3",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
-#{13IDC:, m45, "OMS VME58", 0, 4, "Film Gap",          microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, -3.546,   1,    8e3,    0}
-#{13IDC:, m46, "OMS VME58", 0, 5, "Shutter X",         microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, 3.546,   1,    8e3,    0}
-#{13IDC:, m47, "OMS VME58", 0, 7, "Shutter Y",         mm,       Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  50,  -50}  
-# Note swithced oms 0 ch 7 with ch 6
-#{13IDC:, m48, "OMS VME58", 0, 6, "NoStepPak",   mm, Pos, 1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  200,  -200}
+# Or was it this ---   PJE setup for inelastic scattering:
+# {13IDC:, m41, "OMS VME58",  3, 0,  "Element 5 Pitch",  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
+# {13IDC:, m42, "OMS VME58",  3, 1,  "Element 5 Yaw"  ,  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
+# {13IDC:, m43, "OMS VME58",  3, 2,  "Element 6 Pitch",  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
+# {13IDC:, m44, "OMS VME58",  3, 3,  "Element 6 Yaw"  ,  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
+# {13IDC:, m45, "OMS VME58",  3, 4,  "IXS Slit Y"     ,  microns, Neg,  200.0,  10, .2,  0,  1,  .2,     48, -3.546, 1,      8e3,     0} 
+# {13IDC:, m46, "OMS VME58",  3, 5,  "IXS Slit Z"     ,  microns, Pos,  200.0,  10, .2,  0,  1,  .2,     48, -3.546, 1,      8e3,     0}
+# {13IDC:, m47, "OMS VME58",  3, 6,  "Microscope Z"   ,  microns, Neg,  200.0,  10, .2,  0, 10,  .2,     48, -3.546, 1,    10000,-10000}
+# {13IDC:, m48, "OMS VME58",  3, 7,  "YAG Focus"      ,  microns, Pos,  200.0,  10  .2,  0, 10,  .2,  10240,  500,   1,    27000,  -150}
 
-
-#P,      M,    DTYP,       C, S,     DESC,               EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
-# Diffractometer detector slits
-{13IDC:, m49, "OMS VME58", 4, 0, "Hp UpStream",      microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
-{13IDC:, m50, "OMS VME58", 4, 1, "Hw UpStream",      microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
-{13IDC:, m51, "OMS VME58", 4, 2, "Vp UpStream",      microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
-{13IDC:, m52, "OMS VME58", 4, 3, "Vw UpStream",      microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
-{13IDC:, m53, "OMS VME58", 4, 4, "Hp DownStream",    microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
-{13IDC:, m54, "OMS VME58", 4, 5, "Hw DownStream",    microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
-{13IDC:, m55, "OMS VME58", 4, 6, "Vp DownStream",    microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
-{13IDC:, m56, "OMS VME58", 4, 7, "Vw DownStream",    microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,  10100, -100}
- 	     		      	
-# Diffractometer bench slits		       		  	      	     	   	       
-{13IDC:, m57, "OMS VME58", 5, 0, "Hp UpStream",      microns, Pos, 250,  100, 2., 20,  200,  .2,  2064,   250,   1,   5100, -100}
-{13IDC:, m58, "OMS VME58", 5, 1, "Hw UpStream",      microns, Pos, 200,  100, 2., 20,  100,  .2,  2064,   635,   1,  10100, -100}
-{13IDC:, m59, "OMS VME58", 5, 2, "Vp UpStream",      microns, Neg, 250,  100, 2., 0,  200,  .2,  2064,   250,   1,   5100, -100}
-{13IDC:, m60, "OMS VME58", 5, 3, "Vw UpStream",      microns, Pos, 300,  100, 2., 0,  100,  .2,  2064,   635,   1,  10100, -100}
-{13IDC:, m61, "OMS VME58", 5, 4, "Hw DownStream",    microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,   5100, -100}
-{13IDC:, m62, "OMS VME58", 5, 5, "Hp DownStream",    microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,  10100, -100}
-{13IDC:, m63, "OMS VME58", 5, 6, "Vw DownStream",    microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,  -700,   0,   5100, -100}
-{13IDC:, m64, "OMS VME58", 5, 7, "Vp DownStream",    microns, Neg, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,  10100, -100}
-}
-
-file "$(CARS)/CARSApp/Db/motor.db"
-{
-pattern
-{P,       M,       DTYP,       C,  S, DESC,                           EGU,  DIR,  VELO, VBAS,  ACCL, BDST,    BVEL,  BACC,    SREV,     UREV, PREC,   DHLM,   DLLM}
-{13IDC:, m65, "OMS VME58", 6, 0, "Shutter X",         microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, 3.546,   1,    8e3,    0}
-{13IDC:, m66, "OMS VME58", 6, 1, "Shutter Y",         microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, 3.546,   1,    8e3,    0}
-{13IDC:, m67, "OMS VME58", 6, 2, "Hp DownStream",    microns, Pos, 100,  100, .2, 0,  100,  .2,  2571,  -350,   0,   5100, -100}
-{13IDC:, m68, "OMS VME58", 6, 3, "Film Gap",          microns, Pos, 200.0,   10, .2, 0,  1,  .2,    48, -3.546,   1,    8e3,    0}
-{13IDC:, m69, "OMS VME58", 6, 4, "Microscope X",           mm, Pos,   2.0,  0.1, .5, 0,  1,  .2,   200, 0.01,   4,     95,    5}
-{13IDC:, m70, "OMS VME58", 6, 5, "Microscope Y",           mm, Pos,   3.0,  0.1, .5, 0,  1,  .2,   200,  0.1,   4,     95,    5}
-{13IDC:, m71, "OMS VME58", 6, 6, "Microscope Z",           mm, Neg,   1.0,  0.1, .5, 0,  1,  .2,   200,  0.1,   4,     95,    5}
-{13IDC:, m72, "OMS VME58", 6, 7, "Hw DownStream",    microns, Pos, 200,  100, .2, 0,  100,  .2,  2571,   700,   0,  10100, -100}
-
-#IXS Detector Motors
-{13IDC:, m73, "OMS VME58",  7, 0,  "Element 1 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m74, "OMS VME58",  7, 1,  "Element 1 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m75, "OMS VME58",  7, 2,  "Element 2 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m76, "OMS VME58",  7, 3,  "Element 2 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m77, "OMS VME58",  7, 4,  "Element 3 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m78, "OMS VME58",  7, 5,  "Element 3 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m79, "OMS VME58",  7, 6,  "Element 4 Pitch",  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-{13IDC:, m80, "OMS VME58",  7, 7,  "Element 4 Yaw"  ,  microns, Pos,  200.0,  10 , .2,  50,  200,  .2,  10240,  500,   1,    27000,  -150}
-}
-
-file "$(CARS)/CARSApp/Db/motor.db"
-{
-pattern
-{P,       M,       DTYP,       C,  S, DESC,                           EGU,  DIR,  VELO, VBAS,  ACCL, BDST,    BVEL,  BACC,    SREV,     UREV, PREC,   DHLM,   DLLM}
-#MN 01-Dec-2004 use vme58  card 8 for extra BP8000:
-# ADC Slits, July2008
-#P,      M,    DTYP,       C, S,     DESC,          EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
-{13IDC:, m81, "OMS VME58",  8, 0, "Microscope X", microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
-{13IDC:, m82, "OMS VME58",  8, 1, "Beamstop X",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
-{13IDC:, m83, "OMS VME58",  8, 2, "Unused CMA",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
-{13IDC:, m84, "OMS VME58",  8, 3, "TT Slit Bot",  mm, Neg,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
-{13IDC:, m85, "OMS VME58",  8, 4, "TT Slit Top",  mm, Neg,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
-{13IDC:, m86, "OMS VME58",  8, 5, "TT Slit Out",  mm, Pos,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
-{13IDC:, m87, "OMS VME58",  8, 6, "TT Slit In",   mm, Pos,  1.0,  0.1,  0.5,  0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
-## {13IDC:, m88, "OMS VME58",  8, 7, "dead channel",   mm, Pos,  1.0,  0.1,  0.5,, 0.01, 1.0, 1,  100,  0.10,  3,  7,  -7}
-
-# PJE setup for inelastic scattering:
-# {13IDC:, m81, "OMS VME58",  8, 0,  "Element 5 Pitch",  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
-# {13IDC:, m82, "OMS VME58",  8, 1,  "Element 5 Yaw"  ,  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
-# {13IDC:, m83, "OMS VME58",  8, 2,  "Element 6 Pitch",  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
-# {13IDC:, m84, "OMS VME58",  8, 3,  "Element 6 Yaw"  ,  microns, Pos,  200.0,  10, .2,  50  200,  .2,  10240,  500,   1,    27000,  -150}
-# {13IDC:, m85, "OMS VME58",  8, 4,  "IXS Slit Y"     ,  microns, Neg,  200.0,  10, .2,  0,  1,  .2,     48, -3.546, 1,      8e3,     0} 
-# {13IDC:, m86, "OMS VME58",  8, 5,  "IXS Slit Z"     ,  microns, Pos,  200.0,  10, .2,  0,  1,  .2,     48, -3.546, 1,      8e3,     0}
-# {13IDC:, m87, "OMS VME58",  8, 6,  "Microscope Z"   ,  microns, Neg,  200.0,  10, .2,  0, 10,  .2,     48, -3.546, 1,    10000,-10000}
-# {13IDC:, m88, "OMS VME58",  8, 7,  "YAG Focus"      ,  microns, Pos,  200.0,  10  .2,  0, 10,  .2,  10240,  500,   1,    27000,  -150}
-}
-
-
-# XAS table using generic table-record
-file "$(OPTICS)/opticsApp/Db/table.db"
-{
-pattern
-{P,         Q,     T, M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
-{13IDC:, XAS:T1, XAS:t1, m5,   m2,   m3,   m4,   m1,  junk,  SRI}
 }
 
 # Newport table using generic table-record
@@ -240,12 +117,6 @@ file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
-{13IDC:,  pm1, "13IDC:KBH:Done NPP NMS", "13IDC:pm1DVAL.VAL PP MS", "13IDC:KBH:Readback.G NPP NMS", "13IDC:KBH:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
-{13IDC:,  pm2, "13IDC:KBH:Done NPP NMS", "13IDC:pm2DVAL.VAL PP MS", "13IDC:KBH:Readback.H NPP NMS", "13IDC:KBH:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
-{13IDC:,  pm3, "13IDC:KBV:Done NPP NMS", "13IDC:pm3DVAL.VAL PP MS", "13IDC:KBV:Readback.G NPP NMS", "13IDC:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
-{13IDC:,  pm4, "13IDC:KBV:Done NPP NMS", "13IDC:pm4DVAL.VAL PP MS", "13IDC:KBV:Readback.H NPP NMS", "13IDC:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
-{13IDC:,  pm5, "13IDC:XYZ:Done NPP NMS", "13IDC:pm5DVAL.VAL PP MS", "13IDC:XYZ:Readback.G NPP NMS", "13IDC:XYZ:Stop PP MS",    "Sample Z",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  4,    10000, -10000}
-{13IDC:,  pm6, "13IDC:XYZ:Done NPP NMS", "13IDC:pm6DVAL.VAL PP MS", "13IDC:XYZ:Readback.H NPP NMS", "13IDC:XYZ:Stop PP MS",    "Sample X",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  4,    10000, -10000}
 # newport table psuedo-motors
 {13IDC:,  pm7,  "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm7:Move PP MS",  "13IDC:pm7:Readback  NPP NMS",  "13IDC:NewTab1:M_Stop PP MS",   "AX",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
 {13IDC:,  pm8,  "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm8:Move PP MS",  "13IDC:pm8:Readback  NPP NMS",  "13IDC:NewTab1:M_Stop PP MS",   "AY",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
@@ -269,68 +140,14 @@ pattern
 }
 
 #
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
-{
-pattern
-{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13IDC:, KBH:,  pm1, pm2,    m23.VAL,  m23.RBV,  m24.VAL, m24.RBV, m23.STOP, m23.DMOV, m24.STOP, m24.DMOV, 1}
-{13IDC:, KBV:,  pm3, pm4,    m19.VAL,  m19.RBV,  m20.VAL, m20.RBV, m19.STOP, m19.DMOV, m20.STOP, m20.DMOV, 1}
-}
-
-# # #
-# file "$(CARS)/CARSApp/Db/rot_2D.db"
-# {
-# pattern
-# {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-# {13IDC:, XYZ:,  pm5, pm6,    m13.VAL,  m13.RBV,  m15.VAL, m15.RBV, m13.STOP, m13.DMOV, m15.STOP, m15.DMOV, 5}
-# }
-
-# file "$(CARS)/CARSApp/Db/SampleXYZ.db"
-# {
-# pattern
-# {P,      XYZ,  X,  Y,  Z}
-# {13IDC:, XYZ,  m13, m16, m15}
-# }
-
-# 
-# file "$(CARS)/CARSApp/Db/Energy_CC.db"
-# {
-# pattern
-# {P,       EN,       DESC,     EGU,  PREC, SCANREC,      TWEAK}
-# {13IDC:,  Energy,  "Energy",   eV,    4,  13IDC:scan1,  1.00}
-# }
-
-#
-file "$(CARS)/CARSApp/Db/Analyzer.db" 
-{
-pattern
-{P,       ANAL,     DESC     , EGU, PREC}
-{13IDC:,  ANAL,   "Analyzer" ,  mm,  4}
-}
-
-#
 file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {
-{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
-{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
-{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1Z,POS=XAS:t1.Z,RDBK=XAS:t1.ZRB}
-{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1AX,POS=XAS:t1.AX,RDBK=XAS:t1.AXRB}
-{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1AY,POS=XAS:t1.AY,RDBK=XAS:t1.AYRB}
-{P=13IDC:,SCANREC=13IDC:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1X,POS=DIF:t1.X,RDBK=DIF:t1.XRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1Y,POS=DIF:t1.Y,RDBK=DIF:t1.YRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1Z,POS=DIF:t1.Z,RDBK=DIF:t1.ZRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1AX,POS=DIF:t1.AX,RDBK=DIF:t1.AXRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1AY,POS=DIF:t1.AY,RDBK=DIF:t1.AYRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1AZ,POS=DIF:t1.AZ,RDBK=DIF:t1.AZRB}
-}
-
-file "$(OPTICS)/opticsApp/Db/2slit.db"
-{
-pattern
-{P,      SLIT,    mXp,  mXn}
-{13IDC:, TTVSlit,   m85,   m84}
-{13IDC:, TTHSlit,   m86,   m87}
 }
 
 
