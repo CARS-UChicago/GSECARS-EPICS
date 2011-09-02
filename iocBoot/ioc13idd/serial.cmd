@@ -52,6 +52,8 @@ dbLoadTemplate("Pelco_CM6700.substitutions")
 dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505.db", "P=13IDD:,R=BNC1:,PORT=serial16")
 dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=1")
 dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=2")
+dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=3")
+dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=4")
 
 # Tell StreamDevice where to find protocol files
 iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db)")
