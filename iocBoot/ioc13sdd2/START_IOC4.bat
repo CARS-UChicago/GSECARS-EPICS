@@ -5,5 +5,6 @@ REM Note that we must use the Windows "start" command or medm won't find X11 dll
 start medm -x -macro "P=13SDD2:, D=dxp, M=mca" 4element_dxp.adl
 REM Put Cygwin in the path so the EPICS application can find cygwin1.dll
 PATH=c:\cygwin\bin
-J:\epics\support\dxp\2-10\bin\cygwin-x86\dxpApp.exe 4element.cmd
+REM J:\epics\support\dxp\2-10\bin\cygwin-x86\dxpApp.exe 4element.cmd
+J:\epics\support\dxp\bin\win32-x86\dxpApp.exe 4element.cmd
 pause
