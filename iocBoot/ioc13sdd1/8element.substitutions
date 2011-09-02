@@ -1,0 +1,73 @@
+file "$(DXP)/dxpApp/Db/dxpSystem.template" {
+{P=13SDD1:, IO="@asyn(DXP1,0)"}
+}
+
+file "$(DXP)/dxpApp/Db/dxpMED.template" {
+{P=13SDD1:, MCAALL=mcaAll, DET0="@asyn(DXP1,0,1)", DETALL="@asyn(DXP1,8,1)"} 
+}
+
+file "$(DXP)/dxpApp/Db/dxpXMAP.template" {
+{P=13SDD1:, IO="@asyn(DXP1,0)"}
+}
+
+# DXP parameters
+file "$(DXP)/dxpApp/Db/dxpHighLevel.template"
+{
+pattern
+{       P,       R,           IO}
+{13SDD1:,    dxp1:,  "@asyn(DXP1,0,1)"}
+{13SDD1:,    dxp2:,  "@asyn(DXP1,1,1)"}
+{13SDD1:,    dxp3:,  "@asyn(DXP1,2,1)"}
+{13SDD1:,    dxp4:,  "@asyn(DXP1,3,1)"}
+{13SDD1:,    dxp5:,  "@asyn(DXP1,4,1)"}
+{13SDD1:,    dxp6:,  "@asyn(DXP1,5,1)"}
+{13SDD1:,    dxp7:,  "@asyn(DXP1,6,1)"}
+{13SDD1:,    dxp8:,  "@asyn(DXP1,7,1)"}
+}
+
+# Low-level parameters
+file "$(DXP)/dxpApp/Db/dxpLowLevel.template"
+{
+pattern
+{       P,       R,        IO}
+{13SDD1:,    dxp1:,  "@asyn(DXP1,0,1)"}
+{13SDD1:,    dxp2:,  "@asyn(DXP1,1,1)"}
+{13SDD1:,    dxp3:,  "@asyn(DXP1,2,1)"}
+{13SDD1:,    dxp4:,  "@asyn(DXP1,3,1)"}
+{13SDD1:,    dxp5:,  "@asyn(DXP1,4,1)"}
+{13SDD1:,    dxp6:,  "@asyn(DXP1,5,1)"}
+{13SDD1:,    dxp7:,  "@asyn(DXP1,6,1)"}
+{13SDD1:,    dxp8:,  "@asyn(DXP1,7,1)"}
+}
+
+# SCA parameters
+file "$(DXP)/dxpApp/Db/dxpSCA_16.template"
+{
+pattern
+{       P,       R,          IO}
+{13SDD1:,    dxp1:,  "@asyn(DXP1,0,1)"}
+{13SDD1:,    dxp2:,  "@asyn(DXP1,1,1)"}
+{13SDD1:,    dxp3:,  "@asyn(DXP1,2,1)"}
+{13SDD1:,    dxp4:,  "@asyn(DXP1,3,1)"}
+{13SDD1:,    dxp5:,  "@asyn(DXP1,4,1)"}
+{13SDD1:,    dxp6:,  "@asyn(DXP1,5,1)"}
+{13SDD1:,    dxp7:,  "@asyn(DXP1,6,1)"}
+{13SDD1:,    dxp8:,  "@asyn(DXP1,7,1)"}
+}
+
+
+file "$(MCA)/mcaApp/Db/simple_mca.db"
+{
+pattern
+{       P,      M,       DTYP,               INP,  PREC,    CHANS}
+{13SDD1:,   mca1,  "asynMCA",   "@asyn(DXP1,0)",     2,     2048}
+{13SDD1:,   mca2,  "asynMCA",   "@asyn(DXP1,1)",     2,     2048}
+{13SDD1:,   mca3,  "asynMCA",   "@asyn(DXP1,2)",     2,     2048}
+{13SDD1:,   mca4,  "asynMCA",   "@asyn(DXP1,3)",     2,     2048}
+{13SDD1:,   mca5,  "asynMCA",   "@asyn(DXP1,4)",     2,     2048}
+{13SDD1:,   mca6,  "asynMCA",   "@asyn(DXP1,5)",     2,     2048}
+{13SDD1:,   mca7,  "asynMCA",   "@asyn(DXP1,6)",     2,     2048}
+{13SDD1:,   mca8,  "asynMCA",   "@asyn(DXP1,7)",     2,     2048}
+{13SDD1:, mcaAll,  "asynMCA",   "@asyn(DXP1,8)",     2,     2048}
+}
+
