@@ -44,9 +44,9 @@ camacLibInit
 # Load the DXP stuff
 #< 1element.cmd
 #< 4element.cmd
-< 8element.cmd
+#< 8element.cmd
 #< 12element.cmd
-#< 16element.cmd
+< 16element.cmd
 
 # Generic CAMAC record
 dbLoadRecords("$(CAMAC)/camacApp/Db/generic_camac.db","P=13GE2:,R=camac1,SIZE=2048")
