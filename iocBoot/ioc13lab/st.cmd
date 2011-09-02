@@ -134,23 +134,15 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,POR
 #icbConfig("icbDsp1", 0x8058, 0, 4)
 #dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
 
-# Struck MCS as 32-channel multi-element detector
-<Struck32.cmd
-<SIS3820_32.cmd
+# SIS 3801 and SIS3820
+#<SIS3801.cmd
+<SIS3820.cmd
 
 ### Scalers: Joerger VSC8/16
 dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
-### Scalers: Struck/SIS as simple scaler 
-# Don't execute the next 2 lines if Struck8.cmd is loaded above
-#STR7201Setup(1,0xA0000000,220,6)
-#STR7201Config(0, 16, 100)
-dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db", "P=13LAB:,S=scaler2,C=0")
-
 ### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13LAB:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db", "P=13LAB:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -302,6 +294,10 @@ seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=22, model=2700, stack=10000"
 #seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
 #seq &seq_test, "pv1=13LAB:m1, pv2=13LAB:m2"
 
+seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=32, FIELD=READ")
+
+seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=8, FIELD=READ")
+
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message
@@ -322,4 +318,6 @@ saveData_Init("saveDataExtraPVs.req", "P=13LAB:")
 #dbpf "13LAB:UnidigBi0.TPRO","1"
 #dbpf "13LAB:UnidigBi5.TPRO","1"
 #asynSetTraceMask("Unidig1",0,8)
+
+motorUtilInit("13LAB:")
 
