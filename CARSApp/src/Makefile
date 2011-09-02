@@ -11,9 +11,6 @@ include $(TOP)/configure/CONFIG
 LIBRARY_IOC += CARS
 
 # The following are compiled and added to the Support library
-#CARS_SRCS += devLib.c
-#CARS_SRCS += iVecShow.c
-#CARS_SRCS += ppcveclist.c
 CARS_SRCS += coordTrans2D.st
 CARS_SRCS += BMD_LVP_Detector.st
 CARS_SRCS += IDD_LVP_Detector.st
@@ -31,6 +28,7 @@ CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # <name>.dbd will be created from <name>Include.dbd
 DBD += CARS.dbd
+DBD += CARSMini.dbd
 DBD += CARSVX.dbd
 DBD += CARSLinux.dbd
 DBD += CARSWin32.dbd
@@ -39,12 +37,15 @@ DBD += CARSWin32.dbd
 # build an ioc application
 
 PROD_IOC = CARSApp
+PROD_IOC_vxWorks = CARSAppMini
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 CARSApp_SRCS_DEFAULT += CARS_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_Linux   += CARSLinux_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_WIN32   += CARSWin32_registerRecordDeviceDriver.cpp CARSMain.cpp
 CARSApp_SRCS_vxWorks += CARSVX_registerRecordDeviceDriver.cpp
+
+CARSAppMini_SRCS += CARSMini_registerRecordDeviceDriver.cpp
 
 CARSApp_Common_LIBS += CARS
 CARSApp_Common_LIBS += busy
@@ -68,14 +69,13 @@ CARSApp_Common_LIBS += seq pv
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 CARSApp_vxWorks_LIBS += allenBradley
-CARSApp_vxWorks_LIBS += mcaSIS
+CARSApp_vxWorks_LIBS += SIS38XX
 CARSApp_vxWorks_LIBS += ip330
 CARSApp_vxWorks_LIBS += ipUnidig
 CARSApp_vxWorks_LIBS += dac128V
 CARSApp_vxWorks_LIBS += quadEM
 CARSApp_vxWorks_LIBS += camac devCamac
 CARSApp_vxWorks_LIBS += dxp handel
-CARSApp_vxWorks_LIBS += ADBase
 CARSApp_vxWorks_LIBS += oms
 CARSApp_vxWorks_LIBS += TyGSOctal Ipac
 CARSApp_vxWorks_LIBS += vxStats
@@ -96,6 +96,25 @@ CARSApp_LIBS_vxWorks  = $(CARSApp_Common_LIBS)   $(CARSApp_vxWorks_LIBS)
 CARSApp_LIBS_Linux    = $(CARSApp_Common_LIBS)   $(CARSApp_Linux_LIBS)    
 CARSApp_LIBS_cygwin32 = $(CARSApp_Common_LIBS)   $(CARSApp_cygwin32_LIBS) 
 CARSApp_LIBS_WIN32    = $(CARSApp_Common_LIBS)   $(CARSApp_WIN32_LIBS)
+
+CARSAppMini_LIBS += busy
+CARSAppMini_LIBS += mca 
+CARSAppMini_LIBS += SIS38XX
+CARSAppMini_LIBS += calc
+CARSAppMini_LIBS += sscan
+CARSAppMini_LIBS += autosave
+CARSAppMini_LIBS += optics
+CARSAppMini_LIBS += std
+CARSAppMini_LIBS += busy
+CARSAppMini_LIBS += ip
+CARSAppMini_LIBS += oms softMotor motor
+CARSAppMini_LIBS += asyn
+CARSAppMini_LIBS += seq pv
+CARSAppMini_LIBS += TyGSOctal Ipac
+CARSAppMini_LIBS += vxStats
+CARSAppMini_LIBS += $(EPICS_BASE_IOC_LIBS)
+#The following adds support from base/src/vxWorks
+CARSAppMini_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 
 include $(TOP)/configure/RULES
