@@ -42,4 +42,5 @@ dbLoadTemplate "DAC.template"
 # enable interrupts on one edge of the pulses, so we don't need to do it here.  All other
 # inputs generate interrupts on both rising and falling edge
 initIpUnidig("Unidig1", 0, 2, 2000, 116, 0xfffffe, 0xfffffe)
+#asynSetTraceMask("Unidig1",0,255)
 dbLoadTemplate "ipUnidig.substitutions"
