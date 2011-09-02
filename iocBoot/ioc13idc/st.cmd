@@ -29,7 +29,7 @@ asynXPSC8Debug = 0
 
 
 # Load database
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+# dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 dbLoadTemplate("motors.template")
 
@@ -59,20 +59,14 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
 #icbConfig("icbHvps1", 0x6e6, 2, 2)
 #dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
  
+# Struck MCS as 32-channel multi-element detector
+##<SIS3820_8.cmd
+
 # Struck MCS as 8-channel multi-element detector
 <Struck8.cmd
 
-### Scalers: Struck/SIS as simple scaler 
-# Don't execute the next 2 lines if Struck8.cmd is loaded above
-#STR7201Setup(1,0xA0000000,220,6)
-#STR7201Config(0, 16, 100, 1, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13IDC:,S=scaler2,C=0")
-
-
 ### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_56.db","P=13IDC:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDC:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -119,14 +113,14 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDC:")
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(9, 0x4000, 190, 5, 10)
+oms58Setup(4, 0x4000, 190, 5, 10)
 ################################################################################
 
 ################################################################################
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
-VSCSetup(1, 0xB0000000, 200)
+# VSCSetup(1, 0xB0000000, 200)
 ################################################################################
 
 ################################################################################
@@ -281,4 +275,7 @@ dbpf("13IDC:m37.NTM","0")
 dbpf("13IDC:m38.NTM","0")
 dbpf("13IDC:m39.NTM","0")
 dbpf("13IDC:m40.NTM","0")
+
+motorUtilInit("13IDC:")
+
 
