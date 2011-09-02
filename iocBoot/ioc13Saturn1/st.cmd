@@ -2,8 +2,10 @@
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from dxpApp
-dbLoadDatabase("../../dbd/CARS.dbd")
-CARS_registerRecordDeviceDriver(pdbbase)
+#dbLoadDatabase("../../dbd/CARS.dbd")
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+#CARS_registerRecordDeviceDriver(pdbbase)
+CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 # Initialize the XIA software
 # Set logging level (1=ERROR, 2=WARNING, 3=XXX, 4=DEBUG)
