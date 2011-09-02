@@ -1,0 +1,77 @@
+# This database contains fields used to allow
+# communication between detector
+
+ 
+grecord(ao,"$(P)$(Q):CountTime") {
+	field(DESC,"Collect Time")
+        field(PREC,"2")
+	field(VAL,"1.0")
+}
+
+grecord(longin,"$(P)$(Q):NFrames") {
+	field(DESC,"Number of Frames")
+	field(VAL,"1")
+}
+
+grecord(mbbo,"$(P)$(Q):Request") {
+	field(DESC,"Client Requests Collection")
+	field(VAL, "0")
+        field(ZRVL,"0")
+        field(ZRST,"Stop")
+        field(ONVL,"1")
+        field(ONST,"Start")
+        field(TWVL,"2")
+        field(TWST,"Not Ready")
+        field(THVL,"4")
+        field(THST,"Init")
+}
+
+grecord(stringin,"$(P)$(Q):host") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file host")
+	field(VAL,  "/cars5/Data/bmc_user")
+}
+
+grecord(stringin,"$(P)$(Q):dir") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file directory")
+	field(VAL,  "/2008/Tomo")
+}
+
+grecord(stringin,"$(P)$(Q):subdir") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file subdirectory")
+	field(VAL,  "Frame1")
+}
+
+grecord(stringin,"$(P)$(Q):filebase") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file base name")
+	field(VAL,  "frame")
+}
+
+
+grecord(stringin,"$(P)$(Q):format") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file format string")
+	field(VAL,  "%s.%.3i")
+}
+
+grecord(stringin, "$(P)$(Q):fileext") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "file extesion")
+	field(VAL,  "001")
+}
+
+grecord(stringin,"$(P)$(Q):TSTAMP") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  "Starting")
+}
+
+grecord(longout,"$(P)$(Q):UNIXTS") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  0)
+}
+
