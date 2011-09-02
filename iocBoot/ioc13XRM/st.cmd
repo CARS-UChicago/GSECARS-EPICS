@@ -9,28 +9,22 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 dbLoadTemplate  "motors.template"
 
 # cards (total controllers)
-# XPSSetup(2)
 XPSSetup(1)
 
 # card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
 XPSConfig(0, "164.54.160.180", 5001, 6, 20, 500)
-# XPSConfig(1, "164.54.160.14", 5001, 8, 10, 500)
 
 # asyn port, driver name, controller index, max. axes)
 drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
-# drvAsynMotorConfigure("XPS2", "motorXPS", 1, 3)
 
 # card,  axis, groupName.positionerName, stepsPerUnit
 XPSConfigAxis(0,0,"FINE.X",             100000) # VP-25XL
 XPSConfigAxis(0,1,"FINE.Y",              50000) # VP-5ZA
-XPSConfigAxis(0,2,"FINE.THETA",           2000) # URS75CC
-XPSConfigAxis(0,3,"STAGEX.POSITIONER",    2000) # ILS200CC
-XPSConfigAxis(0,4,"STAGEY.POSITIONER",    2000) # ILS200CC
-XPSConfigAxis(0,5,"STAGEZ.POSITIONER",    5000) # IMS300CC
+XPSConfigAxis(0,2,"THETA.POSITIONER",     2000) # URS75CC
+XPSConfigAxis(0,3,"COARSEX.POSITIONER",   2000) # ILS200CC
+XPSConfigAxis(0,4,"COARSEY.POSITIONER",   2000) # ILS200CC
+XPSConfigAxis(0,5,"COARSEZ.POSITIONER",   5000) # IMS300CC
 
-# XPSConfigAxis(1,0,"GROUP1.POSITIONER",  1000) # UTS100PP
-# XPSConfigAxis(1,1,"GROUP2.POSITIONER",  1000) # UTS100PP
-# XPSConfigAxis(1,2,"GROUP3.POSITIONER",  1000) # UTS100PP
 
 /* Disable setting position */
 XPSEnableSetPosition(0)
@@ -84,7 +78,6 @@ dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13XRM:,Q=ION")
 dbLoadRecords("$(CARS)/CARSApp/Db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
 
 asynSetTraceIOMask("XPS1",0,2)
-#asynSetTraceMask("XPS1",0,0x3)
 asynSetTraceIOTruncateSize("XPS1",0,200)
 
 iocInit
