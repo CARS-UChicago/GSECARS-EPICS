@@ -12,22 +12,8 @@ pattern
 {13LAB2:,   m8,  "OMS VME58",  0,  7, "Motor8",             mm,  Neg,    10,     .0,    .5,     0,     .0,    .0,   400,        .5,    3,   100,  -10}
 }
 
-#file "$(STD)/stdApp/Db/table.db"
-#{
-#pattern
-#{P,            Q,      T,  M0X,  M1X,    M2X,  M0Y,   M1Y,    M2Y,    M2Z,  GEOM}
-#{13LAB2:, MON:T1, MON:t1, junk, junk,   junk,   m6,    m7,     m5,   junk,   SRI}
-#}
 
-#file "$(STD)/stdApp/Db/table.db"
-#{
-#pattern
-#{P,            Q,      T,  M0X,  M1X,    M2X,  M0Y,   M1Y,    M2Y,    M2Z,  GEOM}
-#{13LAB2:, MIR:T1, MIR:t1, junk, junk,   junk,   m4,  junk,     m3,   junk,   SRI}
-#}
-
-
-file "$(CARS)/CARSApp/Db/pseudoMotor.db"
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -37,9 +23,9 @@ pattern
 "Pitch (Diff)",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  3,    10000, -10000}
 }
 
-file "$(CARS)/CARSApp/Db/sumDiff2D.db"
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
 pattern
-{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13LAB2:, KBH:,  pm1, pm2,    m3.VAL,  m3.RBV,  m4.VAL, m4.RBV, m3.STOP, m3.DMOV, m4.STOP, m4.DMOV, 3}
+{P,       T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13LAB2:, KBH:,  pm1, pm2,     m3.VAL,   m3.RBV,  m4.VAL,  m4.RBV,  m3.STOP,  m3.DMOV,  m4.STOP,  m4.DMOV, 3}
 }
