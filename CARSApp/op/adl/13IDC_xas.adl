@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/1-5/CARSApp/op/adl/13IDC_xas.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC_xas.adl"
 	version=030102
 }
 display {
 	object {
-		x=183
-		y=104
+		x=641
+		y=318
 		width=590
 		height=450
 	}
@@ -315,17 +315,17 @@ text {
 		name="diff_motors.adl"
 		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m40"
 	}
-	display[5] {
-		label="Detector Slits"
-		name="8motors.adl"
-		args="P=13IDC:, TITLE=Detector_Slits, M1=m49, M2=m50, M3=m51, M4=m52, M5=m53, M6=m54, M7=m55,M8=m56"
-	}
-	display[6] {
+	display[3] {
 		label="Entrance Slits"
 		name="8motors.adl"
-		args="P=13IDC:, TITLE=Entrance_Slits, M1=m57, M2=m58, M3=m59, M4=m60, M5=m61, M6=m62, M7=m63,M8=m64"
+		args="P=13IDC:, TITLE=Entrance_Slits, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m7,M8=m8"
 	}
-	display[7] {
+	display[4] {
+		label="Detector Slits"
+		name="8motors.adl"
+		args="P=13IDC:, TITLE=Detector_Slits, M1=m17, M2=m18, M3=m19, M4=m20, M5=m21, M6=m22, M7=m23,M8=m24"
+	}
+	display[5] {
 		label="More"
 		name="newport_kappa_more.adl"
 	}
@@ -927,7 +927,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="PA:13ID:Q01:02.VAL"
+		chan="PA:13ID:STA_C_SRCHD_TO_B.VAL"
 	}
 }
 oval {
@@ -942,7 +942,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="PA:13ID:Q01:02.VAL"
+		chan="PA:13ID:STA_C_SRCHD_TO_B.VAL"
 	}
 }
 "related display" {

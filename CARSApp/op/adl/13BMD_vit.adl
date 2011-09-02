@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\CARS\1-5\CARSApp\op\adl\13BMD_vit.adl"
-	version=020306
+	name="J:\epics\support\CARS-1-6\CARSApp\op\adl\13BMD_vit.adl"
+	version=030102
 }
 display {
 	object {
-		x=169
-		y=191
+		x=28
+		y=172
 		width=1377
 		height=695
 	}
@@ -566,7 +566,7 @@ menu {
 		height=26
 	}
 	control {
-		chan="13BMD:A3sens_num.VAL"
+		chan="13BMD:A1sens_num.VAL"
 		clr=0
 		bclr=27
 	}
@@ -579,7 +579,7 @@ menu {
 		height=26
 	}
 	control {
-		chan="13BMD:A3sens_unit.VAL"
+		chan="13BMD:A1sens_unit.VAL"
 		clr=0
 		bclr=27
 	}
@@ -1242,7 +1242,7 @@ text {
 }
 "text entry" {
 	object {
-		x=906
+		x=907
 		y=239
 		width=61
 		height=29
@@ -2682,7 +2682,7 @@ composite {
 				height=85
 			}
 			control {
-				chan="13BMD:allstop.PROC"
+				chan="13BMD:allstop"
 				clr=30
 				bclr=20
 			}
@@ -3075,10 +3075,10 @@ composite {
 }
 text {
 	object {
-		x=4
-		y=232
-		width=126
-		height=26
+		x=6
+		y=230
+		width=50
+		height=17
 	}
 	"basic attribute" {
 		clr=30
@@ -3646,58 +3646,6 @@ composite {
 		vis="calc"
 		calc="A<-84"
 		chan="13BMD:m23.RBV"
-	}
-}
-composite {
-	object {
-		x=327
-		y=189
-		width=60
-		height=51
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=336
-				y=189
-				width=47
-				height=19
-			}
-			"basic attribute" {
-				clr=41
-			}
-			textix="check"
-		}
-		text {
-			object {
-				x=333
-				y=205
-				width=54
-				height=18
-			}
-			"basic attribute" {
-				clr=41
-			}
-			textix="sample"
-		}
-		text {
-			object {
-				x=327
-				y=223
-				width=58
-				height=17
-			}
-			"basic attribute" {
-				clr=41
-			}
-			textix="position"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<-95ORA>-85&&A<85ORA>95"
-		chan="13BMD:m38.RBV"
 	}
 }
 composite {
@@ -4385,7 +4333,7 @@ text {
 	display[3] {
 		label="CCD radio camera"
 		name="3motors.adl"
-		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m33, M2=m34, M3=m81"
+		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m33, M2=m34, M3=m35"
 	}
 	display[4] {
 		label="Microscope"
@@ -4428,37 +4376,6 @@ text {
 	}
 	textix="Moving"
 	align="horiz. centered"
-}
-composite {
-	object {
-		x=340
-		y=190
-		width=34
-		height=31
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=340
-				y=190
-				width=34
-				height=31
-			}
-			control {
-				chan="13BMD:m23.VAL"
-				clr=14
-				bclr=35
-			}
-			label="In"
-			press_msg="0."
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<-85&&A>-95ORA<95&&A>85"
-		chan="13BMD:m38.RBV"
-	}
 }
 composite {
 	object {
@@ -4585,7 +4502,7 @@ text {
 "text update" {
 	object {
 		x=5
-		y=258
+		y=245
 		width=83
 		height=14
 	}
@@ -5270,21 +5187,6 @@ composite {
 	}
 	limits {
 	}
-}
-"message button" {
-	object {
-		x=340
-		y=157
-		width=33
-		height=30
-	}
-	control {
-		chan="13BMD:m23.VAL"
-		clr=14
-		bclr=55
-	}
-	label="Out"
-	press_msg="-85."
 }
 text {
 	object {
@@ -6203,8 +6105,11 @@ composite {
 		}
 	}
 	"dynamic attribute" {
-		vis="if not zero"
+		vis="calc"
+		calc="B>50&&C<-50&&(A<0ORA>0)"
 		chan="13BMD:Unidig2Bo0.VAL"
+		chanB="13BMD:m68.RBV"
+		chanC="13BMD:m23.RBV"
 	}
 }
 text {
@@ -6351,4 +6256,194 @@ composite {
 	clr=14
 	bclr=4
 	label="-move"
+}
+composite {
+	object {
+		x=340
+		y=157
+		width=33
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=340
+				y=157
+				width=33
+				height=30
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=55
+			}
+			label="Out"
+			press_msg="-85."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A<-85&&A>-95ORA<95&&A>85)&&(B>10)"
+		chan="13BMD:m38.RBV"
+		chanB="13BMD:m68.RBV"
+	}
+}
+composite {
+	object {
+		x=338
+		y=190
+		width=37
+		height=31
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=338
+				y=190
+				width=37
+				height=31
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=35
+			}
+			label="In"
+			press_msg="0."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A<-85&&A>-95ORA<95&&A>85)&&B>10"
+		chan="13BMD:m38.RBV"
+		chanB="13BMD:m68.RBV"
+	}
+}
+composite {
+	object {
+		x=315
+		y=189
+		width=80
+		height=63
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=335
+				y=189
+				width=52
+				height=19
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="Check"
+		}
+		text {
+			object {
+				x=335
+				y=205
+				width=60
+				height=18
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="sample"
+		}
+		text {
+			object {
+				x=328
+				y=235
+				width=64
+				height=17
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="position"
+		}
+		text {
+			object {
+				x=315
+				y=219
+				width=78
+				height=17
+			}
+			"basic attribute" {
+				clr=41
+			}
+			textix="and Brillouin"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-85&&A<-95ORA>95&&A<85&&B<10"
+		chan="13BMD:m38.RBV"
+		chanB="13BMD:m68.RBV"
+	}
+}
+composite {
+	object {
+		x=9
+		y=270
+		width=55
+		height=210
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=9
+				y=460
+				width=30
+				height=20
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=9
+						y=460
+						width=30
+						height=20
+					}
+					control {
+						chan="13BMD:m70.VAL"
+						clr=17
+						bclr=54
+					}
+					label="CCD"
+					press_msg="330"
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A<-75"
+				chan="13BMD:m34.RBV"
+			}
+		}
+		"message button" {
+			object {
+				x=9
+				y=270
+				width=55
+				height=20
+			}
+			control {
+				chan="13BMD:m70.VAL"
+				clr=17
+				bclr=54
+			}
+			label="MAR3450"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bi10.VAL"
+	}
 }

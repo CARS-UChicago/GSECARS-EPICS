@@ -1,7 +1,7 @@
 
 file {
-	name="j:\epics\support\CARS\1-5\CARSApp\op\adl\13BMD_brill.adl"
-	version=020306
+	name="J:\epics\support\CARS-1-6\CARSApp\op\adl\13BMD_brill.adl"
+	version=030102
 }
 display {
 	object {
@@ -2906,7 +2906,7 @@ composite {
 				height=81
 			}
 			control {
-				chan="13BMD:allstop.PROC"
+				chan="13BMD:allstop"
 				clr=30
 				bclr=20
 			}
@@ -7019,21 +7019,6 @@ composite {
 		chan="13BMD:m38.RBV"
 	}
 }
-"message button" {
-	object {
-		x=209
-		y=238
-		width=33
-		height=30
-	}
-	control {
-		chan="13BMD:m23.VAL"
-		clr=14
-		bclr=55
-	}
-	label="Out"
-	press_msg="-85."
-}
 composite {
 	object {
 		x=203
@@ -7139,8 +7124,9 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A<-85&&A>-95ORA<95&&A>85"
+		calc="(A<-85&&A>-95ORA<95&&A>85)&&B>10"
 		chan="13BMD:m38.RBV"
+		chanB="13BMD:m68.RBV"
 	}
 }
 composite {
@@ -7264,4 +7250,35 @@ text {
 	}
 	textix="Moving"
 	align="horiz. centered"
+}
+composite {
+	object {
+		x=209
+		y=238
+		width=33
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=209
+				y=238
+				width=33
+				height=30
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=55
+			}
+			label="Out"
+			press_msg="-85."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>10"
+		chan="13BMD:m68.RBV"
+	}
 }
