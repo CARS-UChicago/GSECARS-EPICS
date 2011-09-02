@@ -6,26 +6,26 @@
 # serial 1 connected to Keithley2K DMM at 19200 baud
 #drvAsynSerialPortConfigure("portName","ttyName",priority,noAutoConnect,
 #                            noProcessEos)
-#drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
-#asynSetOption(serial1,0,baud,19200)
-#asynOctetSetInputEos(const char *portName, int addr,
-#                     const char *eosin,const char *drvInfo)
-#asynOctetSetInputEos("serial1",0,"\r\n")
-# asynOctetSetOutputEos(const char *portName, int addr,
-#                       const char *eosin,const char *drvInfo)
-#asynOctetSetOutputEos("serial1",0,"\r")
+drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
 # Make port available from the iocsh command line
 #asynOctetConnect(const char *entry, const char *port, int addr,
 #                 int timeout, int buffer_len, const char *drvInfo)
-#asynOctetConnect("serial1", "serial1")
+asynOctetConnect("serial1", "serial1")
+asynSetOption(serial1,0,baud,19200)
+#asynOctetSetInputEos(const char *portName, int addr,
+#                     const char *eosin,const char *drvInfo)
+asynOctetSetInputEos("serial1",0,"\r\n")
+#asynOctetSetOutputEos(const char *portName, int addr,
+#                       const char *eosin,const char *drvInfo)
+asynOctetSetOutputEos("serial1",0,"\r")
 
 # serial 2 connected to Newport MM4000 at 38400 baud
 # Move this connection to Port 2 on the Moxa
-#drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
-#asynSetOption(serial2,0,baud,38400)
-#asynOctetConnect("serial2", "serial2")
-#asynOctetSetInputEos("serial2",0,"\r")
-#asynOctetSetOutputEos("serial2",0,"\r")
+drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
+asynOctetConnect("serial2", "serial2")
+asynSetOption(serial2,0,baud,38400)
+asynOctetSetInputEos("serial2",0,"\r")
+asynOctetSetOutputEos("serial2",0,"\r")
 
 # Set up ports 1 and 2 on Moxa box
 
