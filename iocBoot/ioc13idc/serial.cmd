@@ -15,7 +15,7 @@ tyGSAsynInit("serial11","UART1", 2,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
 tyGSAsynInit("serial12","UART1", 3,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
 tyGSAsynInit("serial13","UART1", 4, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
 tyGSAsynInit("serial14","UART1", 5, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
-tyGSAsynInit("serial15","UART1", 6,  9600,'N',2,8,'N',"\r","\r") /* Pelco CM6700 */
+tyGSAsynInit("serial15","UART1", 6,  9600,'N',2,8,'N',"\r","\r") /* Unused */
 tyGSAsynInit("serial16","UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 
 # Load asyn records on all serial ports
