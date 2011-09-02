@@ -81,7 +81,8 @@ XPSConfig(0, "164.54.160.34", 5001, 8, 10, 200)
 
 # asyn port, driver name, controller index, max. axes)
 drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
- XPSInterpose("XPS1")
+#asynSetTraceMask("XPS1",0,255)
+XPSInterpose("XPS1")
 
 # configure axes
 #card, axis, groupName.positionerName, steps/rev
@@ -103,10 +104,8 @@ oms58Setup(10, 0x4000, 190, 5, 10)
 
 dbLoadTemplate("motors.template")
 
-### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in share/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_88.db","P=13IDD:")
+### motorUtil - for allstop, moving, etc.
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -171,3 +170,5 @@ saveData_Init("saveDataExtraPVs.req", "P=13IDD:")
 dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
 # The scale factor from LPC power reading to actual laser watts
 dbpf "13IDD:LPC1_power_scale.B","1.0"
+
+motorUtilInit("13IDD:")
