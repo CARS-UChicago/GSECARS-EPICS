@@ -31,7 +31,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Keithley2:")
 iocInit
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5, "P=13Keithley2:")
+#create_monitor_set("auto_positions.req", 5, "P=13Keithley2:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=13Keithley2:")
 
