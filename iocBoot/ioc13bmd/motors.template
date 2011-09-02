@@ -17,7 +17,7 @@
 #  41-48     5        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
 #  49-56     6        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
 #  57-64     7        F         LVP CCD stage (57-59), D-DIA diff. rams (60: bottom; 61: top), LVP Ion Chamber (62), High-P Tomo Rot. (63: top; 64: bott; both bipolar), 
-#  65-72     8	      X	        DAC Brill (65-68), 69 free, Detector position(70), microscope zoom(71), LVP slit laser (72) 
+#  65-72     8	    X	        DAC Brill (65-68), 69 free, Detector position(70), microscope zoom(71), LVP slit laser (72) 
 #  73-80     9        NA        3rd CARS BP8000  
 #  81-88    10        CC        bipolar microstep stepPack (BM-C rack on roof, front of XAS lift table)
 
@@ -56,7 +56,7 @@ pattern
 #changed by Vitali 11.14.05 for CDW experiment, !!!current 4A!!!
 {13BMD:,  m11, "OMS VME58",  1,  2, "horisontal X1",     mm,    Pos,   0.2,   .1,    .25,   0.02,   1,     .2,     400,    .1,  3,      6,     -6}
 #Claim back m14 (E6) for LVP phorphos Y, Oct 15, 07
-{13BMD:,  m14, "OMS VME58",  1,  5, "Phosphor Y",        mm,    Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,      70,     0}
+{13BMD:,  m14, "OMS VME58",  1,  5, "Phosph. pos.",        mm,    Neg,   2.,   .2,    .5,    0.1,     2,     .2,     200,    -0.20,  3,      70,     0}
 
 #changed by Vitali 11.14.05 for CDW experiment, !!!current 4A!!!
 {13BMD:,  m15, "OMS VME58",  1,  6, "horisontal X2",     mm,    Pos,   0.2,   .1,    .25,   0.02,   1,     .2,     400,    .1,  3,      6,     -6}
@@ -127,10 +127,10 @@ pattern
 {13BMD:,  m38, "OMS VME58",   4,  5, "Sample Omega",       deg,     Pos,    3.,   0.0,    .5,     0,      1,     .2,    200,    -0.50,    3,     360, -360}
 #temproray used for DAC bril setup - sept., 2004
 #{13BMD:, m39, "OMS VME58",   4,  6, "Sample tilt",      deg,     Pos,    5.,   .1,    .5,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
-#MN 5-Nov-2004 for Laue analyzer: m39 /m40 (A07 / A08) set for klinger stages
+#MN 3.4.2011 change to drive CCD stage
 #{13BMD:,  m39, "OMS VME58",   4,  6, "bril. motor",     mm,       Neg,    2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 #{13BMD:,  m40, "OMS VME58",   4,  7, "Sample Z",         mm,      Neg,    20.,   .1,    1,     0,      1,     .2,    200,      -.1,      3,     360,   -360}
-{13BMD:,  m39, "OMS VME58",   4,  6, "Analyzer X",       mm,      Neg,    20.,   .1,    1,     0,      1,     .2,    200,    -.1,      3,     360,   -360}
+{13BMD:,  m39, "OMS VME58",   4,  6, "CCD Z",            mm,      Neg,    20.,   .1,    1,     0,      1,     .2,    200,    -.01,      3,     50,   -50}
 {13BMD:,  m40, "OMS VME58",   4,  7, "Analyzer Y",       mm,      Neg,    20.,   .1,    1,     0,      1,     .2,    200,    -.1,      3,     360,   -360}
 
 
@@ -167,9 +167,9 @@ pattern
 # LVP CCD camera stage 15-Sept-2003 TU
 # DDIA diff RAMS, 17-Nov-2003 YW
 # Hi-P Tomo Rotations, 19-Jul-2004 YW
-{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
-{13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio
 # Added planetary gear heads, gear ratio 10:1, UREV(new) = UREV(old)/10, 08-June-2004 YBW
 {13BMD:,  m60, "OMS VME58",  7,  3, "DIFF RAM Bot",     mm,    Pos,   0.1,  0,  1.0,    0,   1,   .2,   400,   -0.006047619,  3,  150,    0}
@@ -248,14 +248,14 @@ file "$(CARS)/CARSApp/Db/asynMotor.db"
 {
 pattern
 {P,      N,   M,     DTYP,   PORT, ADDR, DESC,       EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV,UREV, PREC,  DHLM,     DLLM}
-{13BMD:, 1, m89, "asynMotor", XPS1, 0, "Horiz X",     mm,  Neg,  5.,   1,   0.5,   0, 1, .2,      10000, 1,    3,    12.45,  -12.45}
-{13BMD:, 2, m90, "asynMotor", XPS1, 1, "Focus Z",     mm,  Neg,  5.,   1,   0.5,   0, 1, .2,      10000, 1,    3,    12.45,  -12.45}
-{13BMD:, 3, m91, "asynMotor", XPS1, 2, "Vert Y",      mm,  Pos,  5.,   1,   0.5,   0, 1, .2,      50000, 1,    3,     2.45,   -2.45}
-{13BMD:, 4, m92, "asynMotor", XPS1, 3, "unused",      mm,  Pos,  2.,   1,   5.0,   0, 1, .5,       1000, 1,    3,    50.0,    -50.0}
-{13BMD:, 5, m93, "asynMotor", XPS1, 4, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
-{13BMD:, 6, m94, "asynMotor", XPS1, 5, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
-{13BMD:, 7, m95, "asynMotor", XPS1, 6, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
-{13BMD:, 8, m96, "asynMotor", XPS1, 7, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+{13BMD:, 1, m91, "asynMotor", XPS1, 0, "Focus X",     mm,  Pos,  5.,   1,   0.5,   0, 1, .2,      10000, 1,    3,    12.45,  -12.45}
+{13BMD:, 2, m90, "asynMotor", XPS1, 1, "Vert Z",     mm,  Pos,  5.,   1,   0.5,   0, 1, .2,      10000, 1,    3,    12.45,  -12.45}
+{13BMD:, 3, m89, "asynMotor", XPS1, 2, "Horiz Y",      mm,  Neg,  5.,   1,   0.5,   0, 1, .2,      50000, 1,    3,     2.45,   -2.45}
+# {13BMD:, 4, m92, "asynMotor", XPS1, 3, "unused",      mm,  Pos,  2.,   1,   5.0,   0, 1, .5,       1000, 1,    3,    50.0,    -50.0}
+# {13BMD:, 5, m93, "asynMotor", XPS1, 4, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+# {13BMD:, 6, m94, "asynMotor", XPS1, 5, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+# {13BMD:, 7, m95, "asynMotor", XPS1, 6, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+# {13BMD:, 8, m96, "asynMotor", XPS1, 7, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
 }
 
 file "$(MOTOR)/motorApp/Db/XPS_extra.db"
@@ -386,8 +386,8 @@ file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,                        DESC,           EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,  RRES,   PREC, DHLM, DLLM}
 
-{13BMD:,  pm9,  "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm9DVAL.VAL PP MS",  "13BMD:LVPtomo:Readback.G NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Tomo Mode, deg.",     deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .000173,   1.0,  3,    10000, -10000}
-{13BMD:,  pm10, "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm10DVAL.VAL PP MS", "13BMD:LVPtomo:Readback.H NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Twist Mode, deg.",    deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .000173,   1.0,  3,    10000, -10000}
+{13BMD:,  pm9,  "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm9DVAL.VAL PP MS",  "13BMD:LVPtomo:Readback.G NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Tomo Mode, deg.",     deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001730775,   1.0,  8,    10000, -10000}
+{13BMD:,  pm10, "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm10DVAL.VAL PP MS", "13BMD:LVPtomo:Readback.H NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Twist Mode, deg.",    deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001730775,   1.0,  8,    10000, -10000}
 }
 file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
