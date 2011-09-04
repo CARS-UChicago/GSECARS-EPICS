@@ -59,11 +59,11 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
 #icbConfig("icbHvps1", 0x6e6, 2, 2)
 #dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
  
-# Struck MCS as 32-channel multi-element detector
+# SIS3820 MCS
 ##<SIS3820_8.cmd
 
-# Struck MCS as 8-channel multi-element detector
-<Struck8.cmd
+# SIS3801 MCS
+iocsh "SIS3801_8.cmd"
 
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDC:")
@@ -218,9 +218,6 @@ create_monitor_set("auto_positions.req",5,"P=13IDC:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDC:")
 
-#mn 16-sep-1999
-## seq(&Keithley2kDMM, "P=13IDC:, Dmm=DMM1, stack=10000")
-
 #{MN 15-Feb-00 : energy sequencer for channel-cut crystal
 ## seq(&Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1.Y")
 
@@ -253,6 +250,9 @@ saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
 #saveData_PrintScanInfo("13IDC:scan1")
 
 seq &Keithley2kDMM, "P=13IDC:, Dmm=DMM1"
+
+# For SISXX MCS
+seq(&SIS38XX_SNL, "P=13IDC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
 # Trajectory scanning with XPS
 # str = malloc(500)
