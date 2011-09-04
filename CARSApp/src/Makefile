@@ -63,9 +63,9 @@ CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motor
 CARSApp_Common_LIBS += stream streamSynApps
 CARSApp_Common_LIBS += modbus
 CARSApp_Common_LIBS += asyn
+CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 CARSApp_Common_LIBS += seq pv
-CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 CARSApp_vxWorks_LIBS += allenBradley
 CARSApp_vxWorks_LIBS += SIS38XX
@@ -91,11 +91,11 @@ CARSApp_WIN32_LIBS        += wpcap Packet
 CARSApp_SYS_LIBS_cygwin32 += wpcap Packet
 CARSApp_SYS_LIBS_cygwin32 += $(CYGWIN_RPC_LIB)
 
-CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)
-CARSApp_LIBS_vxWorks  = $(CARSApp_Common_LIBS)   $(CARSApp_vxWorks_LIBS)
-CARSApp_LIBS_Linux    = $(CARSApp_Common_LIBS)   $(CARSApp_Linux_LIBS)    
-CARSApp_LIBS_cygwin32 = $(CARSApp_Common_LIBS)   $(CARSApp_cygwin32_LIBS) 
-CARSApp_LIBS_WIN32    = $(CARSApp_Common_LIBS)   $(CARSApp_WIN32_LIBS)
+CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)                            
+CARSApp_LIBS_vxWorks  = $(CARSApp_vxWorks_LIBS)  $(CARSApp_Common_LIBS)
+CARSApp_LIBS_Linux    = $(CARSApp_Linux_LIBS)    $(CARSApp_Common_LIBS)
+CARSApp_LIBS_cygwin32 = $(CARSApp_cygwin32_LIBS) $(CARSApp_Common_LIBS)
+CARSApp_LIBS_WIN32    = $(CARSApp_WIN32_LIBS)    $(CARSApp_Common_LIBS)
 
 CARSAppMini_LIBS += busy
 CARSAppMini_LIBS += mca 
