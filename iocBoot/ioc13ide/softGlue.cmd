@@ -12,8 +12,8 @@ slot = 0
 # you must power cycle the ioc.
 # initIP_EP200_FPGA(ushort_t carrier, ushort_t slot, char *filename)
 
-# Standard softGlue 2.1
-initIP_EP200_FPGA(card, slot, "$(SOFTGLUE)/softGlueApp/Db/SoftGlue_2_1.hex")
+# Standard softGlue 2.2
+initIP_EP200_FPGA(card, slot, "$(SOFTGLUE)/softGlueApp/Db/SoftGlue_2_2.hex")
 # SoftGlue 2.0 with octupole additions (shift registers)
 #initIP_EP200_FPGA(card, slot, "$(SOFTGLUE)/softGlueApp/Db/SoftGlue_2_0_1_Octupole_0_0.hex")
 
