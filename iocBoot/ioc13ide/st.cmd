@@ -27,8 +27,7 @@ asynXPSC8Debug = 0
 dbLoadTemplate("motors.template")
 
 # SIS3820 MCS as 32-channel multi-element detector and scaler
-<SIS3820_32.cmd
-#<SIS3820_2.cmd
+iocsh "SIS3820_32.cmd"
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -62,7 +61,7 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
 
 # Auto-Shutter 
-dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
+#dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13IDE:")
@@ -124,6 +123,9 @@ create_monitor_set("auto_settings.req",30,"P=13IDE:")
 # saveData_PrintScanInfo("13IDE:scan1")
 
 seq &Keithley2kDMM, "P=13IDE:, Dmm=DMM1"
+
+seq(&SIS38XX_SNL, "P=13IDE:SIS1:, R=mca, NUM_SIGNALS=32, FIELD=READ")
+
 # # set scale for sum/diff for TT slits
 # dbpf("13IDE:sm1C1","0.50")
 # dbpf("13IDE:sm1C2","0.50")
