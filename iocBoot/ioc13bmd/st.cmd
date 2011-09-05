@@ -62,7 +62,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1
 dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
 
 # Struck MCS as 32-channel multi-element detector
-< SIS3820_32.cmd
+iocsh "SIS3820_32.cmd"
 
 ##==== XPS Motors    ==================================
 XPSSetup(1)
@@ -169,6 +169,8 @@ seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM2, stack=15000"
 seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM3, stack=15000"
 seq &Keithley2kDMM, "P=13BMD:, Dmm=DMM4, stack=15000"
 seq &BMD_LVP_Detector, "P=13BMD:,PMT=pm4,PMR=pm3,X=m9,Y=m16,Z=m10,TV=m12,TH=m13"
+
+seq(&SIS38XX_SNL, "P=13BMD:SIS1:, R=mca, NUM_SIGNALS=32, FIELD=READ")
 
 # Force the DAC to be 0 volts.  The hardware does this automatically on VME 
 # reset but the the software display is not correct
