@@ -32,6 +32,12 @@ grecord(epid,"$(P)$(R)PID") {
         field(DRVH,"100")
         field(PREC,"3")
 }
+# This record is not used, but it needed for the standard save/restore file
+grecord(transform,"$(P)$(R)PID_incalc") {
+        field(DESC,"PID input calculation")
+        field(PREC,"$(PREC)")
+}
+
 # These records are for tweaking the pressure setpoint
 grecord(ao,"$(P)$(R)PID_tweak") {
         field(VAL, "1")
