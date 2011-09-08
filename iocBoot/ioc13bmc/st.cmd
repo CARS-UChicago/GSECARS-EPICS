@@ -39,8 +39,8 @@ asynXPSC8Debug = 0
 ### Motors
 dbLoadTemplate  "motors.template"
 
-# Struck MCS as 8-channel multi-element detector
-<Struck8.cmd
+# SIS3801 MCS
+iocsh "SIS3801_8.cmd"
 
 # CCD synchronization for tomo.exe Visual Basic program
 dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMC:,C=CCD1")
@@ -236,6 +236,9 @@ saveData_Init("saveDataExtraPVs.req", "P=13BMC:")
 #saveData_PrintScanInfo("13BMC:scan1")
 
 seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
+
+# For SISXX MCS
+seq(&SIS38XX_SNL, "P=13BMC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
 # Trajectory scanning with XPS
 #str = malloc(500)
