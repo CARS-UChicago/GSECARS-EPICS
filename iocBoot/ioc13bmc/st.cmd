@@ -157,57 +157,9 @@ MAXvConfig(1, configStep)
 oms58Setup(5, 0x4000, 190, 5, 10)
 ################################################################################
 
-################################################################################
-# XPS Setup
-#drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
-#asynOctetSetInputEos("tcp1",0,"")
-#asynOctetSetOutputEos("tcp1",0,"")
-#drvAsynIPPortConfigure("tcp2","164.54.160.131:5001 tcp", 0, 0, 1)
-#asynOctetSetInputEos("tcp2",0,"")
-#asynOctetSetOutputEos("tcp2",0,"")
-
-# cards (total controllers)
-XPSSetup(2)
-
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.124", 5001, 6, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(1, "164.54.160.131", 5001, 8, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
-
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSConfigAxis(0,0,"GROUP1.PHI",     1000)
-XPSConfigAxis(0,1,"GROUP1.KAPPA",   5000)
-XPSConfigAxis(0,2,"GROUP1.OMEGA",   5000)
-XPSConfigAxis(0,3,"GROUP1.PSI",     4000)
-XPSConfigAxis(0,4,"GROUP1.2THETA", 10000)
-XPSConfigAxis(0,5,"GROUP1.NU",      4000)
-
-# card,  axis, groupnumber, groupsize,axis in group, group, positioner
-XPSConfigAxis(1,0,"GROUP1.Y1_BASE",    10000)
-XPSConfigAxis(1,1,"GROUP2.Y2_BASE",    10000)
-XPSConfigAxis(1,2,"GROUP3.Y3_BASE",    10000)
-XPSConfigAxis(1,3,"GROUP4.TRX_BASE",     200)
-XPSConfigAxis(1,4,"GROUP5.THETA-Y_BASE", 200)
-XPSConfigAxis(1,5,"GROUP6.X_SAMPLE",    3816)
-XPSConfigAxis(1,6,"GROUP7.Y_SAMPLE",    3816)
-XPSConfigAxis(1,7,"GROUP8.Z_SAMPLE",    3816)
-
-# Disable setting position from motor record
-XPSEnableSetPosition(0)
-
-################################################################################
-
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
-
-# Turn on debugging for the Omega axis
-#asynSetTraceMask("XPS1",2,255)
-#asynSetTraceIOMask("XPS1",2,2)
 
 iocInit
 
@@ -239,30 +191,6 @@ seq &Keithley2kDMM, "P=13BMC:, Dmm=DMM1, stack=10000"
 
 # For SISXX MCS
 seq(&SIS38XX_SNL, "P=13BMC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
-
-# Trajectory scanning with XPS
-#str = malloc(500)
-#strcpy(str, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,")
-#strcat(str, "PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
-#seq(&XPS_trajectoryScan, str)
-
-#dbpf("13BMC:traj1DebugLevel","1")
-
-# Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
-dbpf("13BMC:m33.NTM","0")
-dbpf("13BMC:m34.NTM","0")
-dbpf("13BMC:m35.NTM","0")
-dbpf("13BMC:m36.NTM","0")
-dbpf("13BMC:m37.NTM","0")
-dbpf("13BMC:m38.NTM","0")
-dbpf("13BMC:m39.NTM","0")
-dbpf("13BMC:m40.NTM","0")
-dbpf("13BMC:m41.NTM","0")
-dbpf("13BMC:m42.NTM","0")
-dbpf("13BMC:m43.NTM","0")
-dbpf("13BMC:m44.NTM","0")
-dbpf("13BMC:m45.NTM","0")
-dbpf("13BMC:m46.NTM","0")
 
 # Initialize the motorUtil software
 motorUtilInit("13BMC:")
