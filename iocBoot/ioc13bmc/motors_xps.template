@@ -1,13 +1,13 @@
 file "$(CARS)/CARSApp/Db/asynMotor.db"
 {
 pattern
-{P,       M,      DTYP,    PORT, ADDR, DESC,                           EGU,  DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC,   SREV,         UREV, PREC,   DHLM,   DLLM}
+{P,       M,      DTYP,    PORT, ADDR, DESC,                          EGU,  DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC,   SREV,         UREV, PREC,   DHLM,   DLLM}
 # Diffractometer motors
 {13BMC:, m33, "asynMotor",  XPS1,  0, "Phi",                      degrees,  Pos,   15.9,   0.1,    1,    0,    1,   .2,      1,         .001,    5,    180,   -180}
 {13BMC:, m34, "asynMotor",  XPS1,  1, "Kappa",                    degrees,  Pos,   15.9,   0.1,    1,    0,    1,   .2,      1,        .0002,    5,    180,   -180}
 {13BMC:, m35, "asynMotor",  XPS1,  2, "Omega",                    degrees,  Pos,   15.9,   0.1,    1,    0,    1,   .2,      1,        .0002,    5,    360,   -180}
 {13BMC:, m36, "asynMotor",  XPS1,  3, "Psi",                      degrees,  Pos,    3.9,   0.1,   .5,    0,    1,   .2,      1,       .00025,    5,    230,   -230}
-{13BMC:, m37, "asynMotor",  XPS1,  4, "2theta",                   degrees,  Pos,    7.9,   0.1,    1,    0,    1,   .2,      1,        .0001,    5,    190,    -10}
+{13BMC:, m37, "asynMotor",  XPS1,  4, "2theta",                   degrees,  Pos,    4.0,   0.1,    1,    0,    1,   .2,      1,        .0001,    5,    190,    -10}
 {13BMC:, m38, "asynMotor",  XPS1,  5, "Nu",                       degrees,  Pos,    3.9,   0.1,   .5,    0,    1,   .2,      1,       .00025,    5,    230,   -230}
 
 # Base motors
@@ -16,8 +16,23 @@ pattern
 {13BMC:, m41, "asynMotor",  XPS2,  2, "Y3-mCY",                        mm,  Pos,   0.19,   .01, 0.25,    0,    1,  .25,      1,        .0001,    4,     60,   -115}
 {13BMC:, m43, "asynMotor",  XPS2,  3, "XTrans-mAX",                    mm,  Neg,    4.9,   .01, 0.25,    0,    1,  .25,      1,         .005,    4,     50,    -50}
 {13BMC:, m42, "asynMotor",  XPS2,  4, "RotAY-mBZ",                     mm,  Pos,    4.9,   .01, 0.25,    0,    1,  .25,      1,         .005,    4,     24,    -24}
-{13BMC:, m44, "asynMotor",  XPS2,  5, "Sample X"                       mm,  Pos,   0.49,   .01, 0.25,    0,    1,  .25,      1,  .0002620545,    4,     28,      0}
+{13BMC:, m44, "asynMotor",  XPS2,  5, "Sample X",                      mm,  Pos,   0.49,   .01, 0.25,    0,    1,  .25,      1,  .0002620545,    4,     28,      0}
 {13BMC:, m45, "asynMotor",  XPS2,  6, "Sample Y",                      mm,  Pos,   0.49,   .01, 0.25,    0,    1,  .25,      1,  .0002620545,    4,      3,     -3}
 {13BMC:, m46, "asynMotor",  XPS2,  7, "Sample Z",                      mm,  Pos,   0.49,   .01, 0.25,   .1,    1,  .25,      1,  .0002620545,    4,    7.5,   -7.5}
 }
 
+# Newport table using generic table-record
+file "$(OPTICS)/opticsApp/Db/table.db"
+{
+pattern
+{P,          Q,      T,  M0X,   M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13BMC:, DIF:T1, DIF:t1, m42,   m39,  m41, junk,  m40,  m43, NEWPORT}
+}
+
+# Utility to stop all motors, etc.
+file "$(MOTOR)/motorApp/Db/motorUtil.db"
+{
+pattern
+{P     }
+{13BMC:}
+}
