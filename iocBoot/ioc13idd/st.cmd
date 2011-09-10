@@ -51,8 +51,8 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x3ed, 2, 2)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
-# Struck MCS as 32-channel multi-element detector
-< SIS3820_8.cmd
+# Struck MCS
+iocsh "SIS3820_32.cmd"
 
 # Laser PID control
 # This is for the old YLF laser using a photodiode with slow and fast feedback records, not used any more
@@ -151,6 +151,9 @@ seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM3, stack=10000"
 seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM4, stack=10000"
 
 seq &IDD_LVP_Detector, "P=13IDD:,PMR=pm9,PMT=pm10,PMC=pm11,X=m33,Y=m34,Z=m35,TX=m38,TZ=m39"
+
+# For SISXX MCS
+seq(&SIS38XX_SNL, "P=13IDD:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
