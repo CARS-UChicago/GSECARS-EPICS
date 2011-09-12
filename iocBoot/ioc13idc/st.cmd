@@ -124,79 +124,6 @@ oms58Setup(4, 0x4000, 190, 5, 10)
 ################################################################################
 
 ################################################################################
-# XPS trajectoryScan records
-
-# Database for trajectory scanning with the XPS
-# The required command string is longer than the vxWorks command line, 
-# must use malloc and strcpy, strcat. Some of the macros don't apply
-
-# str = malloc(500)
-# strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
-# strcat(str, ",DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-# dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
-################################################################################
-
-################################################################################
-# XPS Setup
-drvAsynIPPortConfigure("tcp1","164.54.160.55:5001 tcp", 0, 0, 1)
-drvAsynIPPortConfigure("tcp2","164.54.160.56:5001 tcp", 0, 0, 1)
-
-# cards (total controllers)
-XPSSetup(2)
-
-# Setup the XPS for the Rotation
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.55", 5001, 6, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
-
-# Setup the XPS for the Base and X, Y and Z
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(1, "164.54.160.56", 5001, 8, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
-
-# Define the group names and the steps per unit.  This must match values defined
-# in the XPS system.ini ([group.names]) and stages.ini (1/EncoderResolution)
- 
-# XPS for the Rotations
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSConfigAxis(0,0,"GROUP.PHI",      1000)
-XPSConfigAxis(0,1,"GROUP.KAPPA",   10000)
-XPSConfigAxis(0,2,"GROUP.OMEGA",   10000)
-XPSConfigAxis(0,3,"GROUP.PSI",      4000)
-XPSConfigAxis(0,4,"GROUP.THETA",   10000)
-XPSConfigAxis(0,5,"GROUP.NU",       4000)
- 
-# XPS for the Base and X, Y and Z 
-# card,  axis, groupName.positionerName, stepsPerUnit
-# This is the config for the Y1-3 is grouped together in "Y_Base"
-#XPSConfigAxis(1,0,"Y_Base.Y1",     10000)
-#XPSConfigAxis(1,1,"Y_Base.Y2",     10000)
-#XPSConfigAxis(1,2,"Y_Base.Y3",     10000)
-#XPSConfigAxis(1,3,"GROUP4.THETAY",   200)
-#XPSConfigAxis(1,4,"GROUP5.TRX",      200)
-#XPSConfigAxis(1,5,"GROUP6.X",      74627)
-#XPSConfigAxis(1,6,"GROUP7.Y",      74627)
-#XPSConfigAxis(1,7,"GROUP8.Z",     100000)
-
-# XPS for the Base and X, Y and Z 
-# card,  axis, groupName.positionerName, stepsPerUnit
-# This is the config for the Y1-3 in single axis groups
-XPSConfigAxis(1,0,"GROUP1.Y1_BASE", 10000)
-XPSConfigAxis(1,1,"GROUP2.Y2_BASE", 10000)
-XPSConfigAxis(1,2,"GROUP3.Y3_BASE", 10000)
-XPSConfigAxis(1,3,"GROUP4.THETAY",    200)
-XPSConfigAxis(1,4,"GROUP5.TRX",       200)
-XPSConfigAxis(1,5,"GROUP6.X",       74627)
-XPSConfigAxis(1,6,"GROUP7.Y",       74627)
-XPSConfigAxis(1,7,"GROUP8.Z",      100000)
-
-
-# Disable setting position from motor record
-XPSEnableSetPosition(0) 
-
-################################################################################
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -254,27 +181,6 @@ seq &Keithley2kDMM, "P=13IDC:, Dmm=DMM1"
 # For SISXX MCS
 seq(&SIS38XX_SNL, "P=13IDC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
-# Trajectory scanning with XPS
-# str = malloc(500)
-# strcpy(str, "P=13IDC:,R=traj1,M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,IPADDR=164.54.160.55,")
-# strcat(str, "PORT=5001,GROUP=GROUP,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=THETA,P6=NU")
-# seq(&XPS_trajectoryScan, str)
-
-# Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
-dbpf("13IDC:m25.NTM","0")
-dbpf("13IDC:m26.NTM","0")
-dbpf("13IDC:m27.NTM","0")
-dbpf("13IDC:m28.NTM","0")
-dbpf("13IDC:m29.NTM","0")
-dbpf("13IDC:m30.NTM","0")
-dbpf("13IDC:m33.NTM","0")
-dbpf("13IDC:m34.NTM","0")
-dbpf("13IDC:m35.NTM","0")
-dbpf("13IDC:m36.NTM","0")
-dbpf("13IDC:m37.NTM","0")
-dbpf("13IDC:m38.NTM","0")
-dbpf("13IDC:m39.NTM","0")
-dbpf("13IDC:m40.NTM","0")
 
 motorUtilInit("13IDC:")
 
