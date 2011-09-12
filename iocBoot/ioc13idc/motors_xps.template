@@ -1,0 +1,61 @@
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,       M,      DTYP,    PORT, ADDR, DESC,              EGU,  DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC,   SREV,         UREV, PREC,   DHLM,   DLLM}
+# Diffractometer motors
+{13IDC:, m25, "asynMotor",  XPS1,  0, "Phi",          degrees,  Neg,    4.0,   0.1,  .25,    0,    1,   .2,      1,         .001,    3,    180,   -180}
+{13IDC:, m26, "asynMotor",  XPS1,  1, "Kappa",        degrees,  Neg,    6.0,   0.1,  .88,    0,    1,   .2,      1,        .0001,    4,    180,   -180}
+{13IDC:, m27, "asynMotor",  XPS1,  2, "Omega",        degrees,  Neg,    7.0,   0.1,  1.5,    0,    1,   .2,      1,        .0001,    4,    360,   -180}
+{13IDC:, m28, "asynMotor",  XPS1,  3, "Psi",          degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
+{13IDC:, m29, "asynMotor",  XPS1,  4, "2theta",       degrees,  Neg,    4.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
+{13IDC:, m30, "asynMotor",  XPS1,  5, "Nu",           degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
+#{13IDC:, m31, "asynMotor",  XPS1,  6, "Dummy7",      degrees,  Neg,    6.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
+#{13IDC:, m32, "asynMotor",  XPS1,  7, "Dummy8",      degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
+ 
+# Base motors
+{13IDC:, m33, "asynMotor",  XPS2,  0, "Y1-mBY",            mm,  Pos,    0.2,   .01, 0.67,    0,    1,  .25,      1,        .0001,    4,     60,   -115}
+{13IDC:, m34, "asynMotor",  XPS2,  1, "Y2-mAY",            mm,  Pos,    0.2,   .01, 0.67,    0,    1,  .25,      1,        .0001,    4,     60,   -115}
+{13IDC:, m35, "asynMotor",  XPS2,  2, "Y3-mCY",            mm,  Pos,    0.2,   .01, 0.67,    0,    1,  .25,      1,        .0001,    4,     60,   -115}
+{13IDC:, m36, "asynMotor",  XPS2,  3, "RotAY-mBZ",         mm,  Neg,    2.,   .01,  1.0,    0,    1,  .25,      1,         .005,    4,     24,    -24}
+{13IDC:, m37, "asynMotor",  XPS2,  4, "XTrans-mAX",        mm,  Neg,    2.,   .01,  1.0,    0,    1,  .25,      1,         .005,    4,     50,    -50}
+{13IDC:, m38, "asynMotor",  XPS2,  5, "Sample X",          mm,  Pos,   0.04,   .01, 0.04,   .1,  .07,  .07,      1,     .0000134,    4,      3,     -3}
+{13IDC:, m39, "asynMotor",  XPS2,  6, "Sample Y",          mm,  Pos,   0.04,   .01, 0.04,   .1,  .07,  .07,      1,     .0000134,    4,      3,     -3}
+{13IDC:, m40, "asynMotor",  XPS2,  7, "Sample Z",          mm,  Pos,   0.07,   .01, 0.07,   .1,  .07,  .07,      1,       .00001,    4,     29,      0}
+}
+
+# Newport table using generic table-record
+file "$(OPTICS)/opticsApp/Db/table.db"
+{
+pattern
+{P,          Q,      T,  M0X,   M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13IDC:, DIF:T1, DIF:t1, m36,   m33,  m35, junk,  m34,  m37, NEWPORT}
+}
+
+
+# Pseudo-motors
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+# newport table psuedo-motors
+{13IDC:,  pm7,  "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm7:Move PP MS",  "13IDC:pm7:Readback  NPP NMS",  "13IDC:NewTab1:M_Stop PP MS",   "AX",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
+{13IDC:,  pm8,  "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm8:Move PP MS",  "13IDC:pm8:Readback  NPP NMS",  "13IDC:NewTab1:M_Stop PP MS",   "AY",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
+{13IDC:,  pm9,  "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm9:Move PP MS",  "13IDC:pm9:Readback  NPP NMS",  "13IDC:NewTab1:M_Stop PP MS",   "AZ",    deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,     20,  -20}
+{13IDC:,  pm10, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm10:Move PP MS", "13IDC:pm10:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_X",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e5, -1e5}
+{13IDC:,  pm11, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm11:Move PP MS", "13IDC:pm11:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_Y",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e5, -1e5}
+{13IDC:,  pm12, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm12:Move PP MS", "13IDC:pm12:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_Z",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e5, -1e5}
+{13IDC:,  pm13, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm13:Move PP MS", "13IDC:pm13:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_AX",  deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,      30, -30}
+{13IDC:,  pm14, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm14:Move PP MS", "13IDC:pm14:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_AY",  deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,      30, -30}
+
+
+#
+}
+
+# Newport table db for newport table snl
+file "$(CARS)/CARSApp/Db/newport_table.db"
+{
+pattern
+{P,         T,     M1,  M2,   M3,   M4,   M5,  PM1, PM2, PM3, PM4, PM5, PM6, PM7, PM8 }
+{13IDC:, NewTab1:, m34, m33,  m35,  m36,  m37, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14 }
+}
+
