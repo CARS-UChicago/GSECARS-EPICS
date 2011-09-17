@@ -15,23 +15,11 @@ dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
 # Set debugging flags
-devMM4000debug = 0
-drvMM4000debug = 0
 mcaRecordDebug = 0
 aimDebug = 0
-drvSTR7201Debug = 0
-devSTR7201Debug = 0
 scalerRecordDebug=0
-devScalerSTR7201Debug=0
-devScalerCamacDebug=0
-devE500Debug=0
-drvE500Debug=0
 icbDebug=0
 motorRecordDebug = 0
-devXPSC8Debug = 0
-drvXPSC8Debug = 0
-# Asyn XPS driver debug variable 0-5
-asynXPSC8Debug = 0
 
 < industryPack.cmd
 < serial.cmd
@@ -44,12 +32,6 @@ iocsh "SIS3801_8.cmd"
 
 # CCD synchronization for tomo.exe Visual Basic program
 dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMC:,C=CCD1")
-
-### Scalers: Struck/SIS as simple scaler
-# Don't execute the next 2 lines if Struck8.cmd is loaded above
-#STR7201Setup(1,0xA0000000,220,6)
-#STR7201Config(0, 16, 100)
-dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13BMC:,S=scaler1,C=0")
 
 # Multichannel analyzer stuff
 # Multichannel analyzer stuff
