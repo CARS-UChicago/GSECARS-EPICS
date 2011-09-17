@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC_Diff.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/13BMC_Diff.adl"
 	version=030102
 }
 display {
@@ -260,8 +260,8 @@ oval {
 	}
 	display[0] {
 		label="Trajectory Scan"
-		name="trajectoryScan.adl"
-		args="P=13BMC:, R=traj1, TITLE=Trajectory Scans, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m25,M8=m26"
+		name="profileMove.adl"
+		args="P=13BMC:, R=Prof1:, TITLE=Trajectory Scans, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m25,M8=m26"
 	}
 	clr=14
 	bclr=4
@@ -281,8 +281,8 @@ oval {
 	}
 	display[1] {
 		label="SIS MCS"
-		name="Struck8.adl"
-		args="P=13BMC:str:"
+		name="SIS38XX.adl"
+		args="P=13BMC:SIS1:"
 	}
 	display[2] {
 		label="Stanford #1"
@@ -308,27 +308,32 @@ oval {
 	display[0] {
 		label="Pilatus #1"
 		name="pilatusDetector.adl"
-		args="P=GSE-PILATUS1:, R=cam1:,ROI=ROI1:,I=image1:"
+		args="P=GSE-PIL1:, R=cam1:,ROI=ROI1:,I=image1:"
 	}
 	display[1] {
 		label="Pilatus #2"
 		name="pilatusDetector.adl"
-		args="P=GSE-PILATUS2:, R=cam1:,ROI=ROI1:,I=image1:"
+		args="P=GSE-PIL2:, R=cam1:,ROI=ROI1:,I=image1:"
 	}
 	display[2] {
 		label="MAR-CCD #1"
-		name="ccd.adl"
-		args="P=13MARCCD1:, C=det1:"
+		name="marCCD.adl"
+		args="P=13MARCCD1:, R=cam1:"
 	}
 	display[3] {
 		label="MAR-CCD #2"
-		name="ccd.adl"
-		args="P=13MARCCD2:, C=det1:"
+		name="marCCD.adl"
+		args="P=13MARCCD2:, R=cam1:"
 	}
 	display[4] {
-		label="Mar345 Image Plate"
-		name="MAR345_Collect.adl"
-		args="P=13MARIP:"
+		label="Mar345 Image Plate #1"
+		name="mar345.adl"
+		args="P=13MAR345_1:, R=cam1:"
+	}
+	display[5] {
+		label="Mar345 Image Plate #2"
+		name="mar345.adl"
+		args="P=13MAR345_2:, R=cam1:"
 	}
 	clr=14
 	bclr=4
