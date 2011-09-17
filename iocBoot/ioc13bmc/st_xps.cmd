@@ -8,61 +8,51 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 ################################################################################
 # XPS Setup
-#drvAsynIPPortConfigure("tcp1","164.54.160.124:5001 tcp", 0, 0, 1)
-#asynOctetSetInputEos("tcp1",0,"")
-#asynOctetSetOutputEos("tcp1",0,"")
-#drvAsynIPPortConfigure("tcp2","164.54.160.131:5001 tcp", 0, 0, 1)
-#asynOctetSetInputEos("tcp2",0,"")
-#asynOctetSetOutputEos("tcp2",0,"")
 
-# cards (total controllers)
-XPSSetup(2)
+# asyn port, IP address, IP port, number of axes, 
+# active poll period (ms), idle poll period (ms), 
+# enable set position, set position settling time (ms)
+XPSCreateController("XPS1", "164.54.160.124", 5001, 6, 10, 500, 0, 500)
+asynSetTraceIOMask("XPS1", 0, 2)
+#asynSetTraceMask("XPS1", 0, 255)
+XPSCreateController("XPS2", "164.54.160.131", 5001, 8, 10, 500, 0, 500)
+asynSetTraceIOMask("XPS2", 0, 2)
+#asynSetTraceMask("XPS2", 0, 255)
 
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.124", 5001, 6, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(1, "164.54.160.131", 5001, 8, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
+# asynPort, IP address, IP port, poll period (ms)
+XPSAuxConfig("XPS_AUX1", "164.54.160.124", 5001, 50)
+#asynSetTraceIOMask("XPS_AUX1", 0, 2)
+#asynSetTraceMask("XPS_AUX1", 0, 255)
+XPSAuxConfig("XPS_AUX2", "164.54.160.131", 5001, 50)
+#asynSetTraceIOMask("XPS_AUX1", 0, 2)
+#asynSetTraceMask("XPS_AUX1", 0, 255)
 
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSConfigAxis(0,0,"GROUP1.PHI",     1000)
-XPSConfigAxis(0,1,"GROUP1.KAPPA",   5000)
-XPSConfigAxis(0,2,"GROUP1.OMEGA",   5000)
-XPSConfigAxis(0,3,"GROUP1.PSI",     4000)
-XPSConfigAxis(0,4,"GROUP1.2THETA", 10000)
-XPSConfigAxis(0,5,"GROUP1.NU",      4000)
+# XPS asyn port,  axis, groupName.positionerName, stepSize
+XPSCreateAxis("XPS1",0,"GROUP1.PHI",      "1000")
+XPSCreateAxis("XPS1",1,"GROUP1.KAPPA",    "5000")
+XPSCreateAxis("XPS1",2,"GROUP1.OMEGA",    "5000")
+XPSCreateAxis("XPS1",3,"GROUP1.PSI",      "4000")
+XPSCreateAxis("XPS1",4,"GROUP1.2THETA",  "10000")
+XPSCreateAxis("XPS1",5,"GROUP1.NU",       "4000")
 
-# card,  axis, groupnumber, groupsize,axis in group, group, positioner
-XPSConfigAxis(1,0,"GROUP1.Y1_BASE",    10000)
-XPSConfigAxis(1,1,"GROUP2.Y2_BASE",    10000)
-XPSConfigAxis(1,2,"GROUP3.Y3_BASE",    10000)
-XPSConfigAxis(1,3,"GROUP4.TRX_BASE",     200)
-XPSConfigAxis(1,4,"GROUP5.THETA-Y_BASE", 200)
-XPSConfigAxis(1,5,"GROUP6.X_SAMPLE",    3816)
-XPSConfigAxis(1,6,"GROUP7.Y_SAMPLE",    3816)
-XPSConfigAxis(1,7,"GROUP8.Z_SAMPLE",    3816)
+XPSCreateAxis("XPS2",0,"GROUP1.Y1_BASE",    "10000")
+XPSCreateAxis("XPS2",1,"GROUP2.Y2_BASE",    "10000")
+XPSCreateAxis("XPS2",2,"GROUP3.Y3_BASE",    "10000")
+XPSCreateAxis("XPS2",3,"GROUP4.TRX_BASE",     "200")
+XPSCreateAxis("XPS2",4,"GROUP5.THETA-Y_BASE", "200")
+XPSCreateAxis("XPS2",5,"GROUP6.X_SAMPLE",    "3816")
+XPSCreateAxis("XPS2",6,"GROUP7.Y_SAMPLE",    "3816")
+XPSCreateAxis("XPS2",7,"GROUP8.Z_SAMPLE",    "3816")
 
-# Disable setting position from motor record
-XPSEnableSetPosition(0)
 
-# Turn on debugging for the Omega axis
-#asynSetTraceMask("XPS1",2,255)
-#asynSetTraceIOMask("XPS1",2,2)
+# XPS asyn port,  max points, FTP username, FTP password
+# Note: this must be done after configuring axes
+XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 
 ################################################################################
 
 # Motor records
 dbLoadTemplate("motors_xps.template")
-
-################################################################################
-# XPS trajectoryScan records
-
-# Database for trajectory scanning with the XPS
-
-dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001,DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
 
 # asyn record for debugging
 drvAsynIPPortConfigure("xps", "164.54.160.124:5001", 0, 0, 0)
@@ -134,15 +124,6 @@ create_monitor_set("auto_positions_xps.req",5,"P=13BMC:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings_xps.req",30,"P=13BMC:")
 
-dbpf("13BMC:traj1DebugLevel","1")
-
-# Trajectory scanning with XPS
-seq(XPS_trajectoryScan, "P=13BMC:,R=traj1,M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,IPADDR=164.54.160.124,PORT=5001,GROUP=GROUP1,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=2THETA,P6=NU")
-
-dbpf("13BMC:trajAsyn1.IFMT","Binary")
-dbpf("13BMC:trajAsyn1.OFMT","Binary")
-
-epicsThreadSleep(2)
 asynSetTraceIOMask(164.54.160.124:5001:0,0,2)
 asynSetTraceIOMask(164.54.160.124:5001:1,0,2)
 asynSetTraceIOMask(164.54.160.124:5001:2,0,2)
