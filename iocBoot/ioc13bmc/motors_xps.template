@@ -21,6 +21,57 @@ pattern
 {13BMC:, m46, "asynMotor",  XPS2,  7, "Sample Z",                      mm,  Pos,   0.49,   .01, 0.25,   .1,    1,  .25,      1,  .0002620545,    4,    7.5,   -7.5}
 }
 
+file "$(TOP)/db/XPS_extra.db"
+{
+pattern
+{P,        R,  PORT,  ADDR}
+{13BMC:,  m33, XPS1,  0}
+{13BMC:,  m34, XPS1   1}
+{13BMC:,  m35, XPS1   2}
+{13BMC:,  m36, XPS1   3}
+{13BMC:,  m37, XPS1   4}
+{13BMC:,  m38, XPS1   5}
+}
+
+
+file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+{
+pattern
+{P,     R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13BMC:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13BMC:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
+{13BMC:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13BMC:m33,   3,       1}
+{13BMC:,  Prof1:, 2,  XPS1,    1,   2000,      2000, 13BMC:m34,   4,       1}
+{13BMC:,  Prof1:, 3,  XPS1,    2,   2000,      2000, 13BMC:m35,   4,       1}
+{13BMC:,  Prof1:, 4,  XPS1,    3,   2000,      2000, 13BMC:m36,   4,       1}
+{13BMC:,  Prof1:, 5,  XPS1,    4,   2000,      2000, 13BMC:m37,   4,       1}
+{13BMC:,  Prof1:, 6,  XPS1,    5,   2000,      2000, 13BMC:m38,   4,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
+{13BMC:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    3,       1}
+{13BMC:,  Prof1:, 2,  XPS1,    1,   2000,      2000,    4,       1}
+{13BMC:,  Prof1:, 3,  XPS1,    2,   2000,      2000,    4,       1}
+{13BMC:,  Prof1:, 4,  XPS1,    3,   2000,      2000,    4,       1}
+{13BMC:,  Prof1:, 5,  XPS1,    4,   2000,      2000,    4,       1}
+{13BMC:,  Prof1:, 6,  XPS1,    5,   2000,      2000,    4,       1}
+}
+
 # Newport table using generic table-record
 file "$(OPTICS)/opticsApp/Db/table.db"
 {
