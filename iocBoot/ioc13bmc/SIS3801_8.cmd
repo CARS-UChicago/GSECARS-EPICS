@@ -35,5 +35,5 @@ dbLoadRecords("$(MCA)/mcaApp/Db/simple_mca.db", "P=$(PREFIX), M=$(RNAME)6,  DTYP
 dbLoadRecords("$(MCA)/mcaApp/Db/simple_mca.db", "P=$(PREFIX), M=$(RNAME)7,  DTYP=asynMCA, INP=@asyn($(PORT) 6),  PREC=3, CHANS=$(MAX_CHANS)")
 dbLoadRecords("$(MCA)/mcaApp/Db/simple_mca.db", "P=$(PREFIX), M=$(RNAME)8,  DTYP=asynMCA, INP=@asyn($(PORT) 7),  PREC=3, CHANS=$(MAX_CHANS)")
 
-asynSetTraceIOMask($(PORT),0,2)
-#asynSetTraceMask("$(PORT)",0,0xff)
+asynSetTraceIOMask($(PORT),0,4)
+#asynSetTraceMask("$(PORT)",0,0x19)
