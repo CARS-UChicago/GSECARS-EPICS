@@ -142,6 +142,13 @@ create_monitor_set("auto_settings_xps.req",30,"P=13IDC:")
 
 dbpf("13IDC:traj1DebugLevel","1")
 
+# newport table sequencer
+str=malloc(256)
+strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
+strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
+newport_tableDebug = 1
+# seq(&newport_table, str)
+
 # Trajectory scanning with XPS
 seq(XPS_trajectoryScan, "P=13IDC:,R=traj1,M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,IPADDR=164.54.160.55,PORT=5001,GROUP=GROUP,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=THETA,P6=NU")
 
