@@ -1,4 +1,4 @@
-;StageDataBase V2.5.0
+;StageDataBase V2.6.0
 
 [BGM@BGM50CC@XPS-DRV01]
 ;--- Unit = deg
@@ -3834,16 +3834,16 @@ HomeSearchTimeOut = 7 ;--- s
 CorrectorType = PIDFFVelocity
 ClosedLoopStatus = Closed
 FatalFollowingError = 1 ;--- units
-KP = 234
-KI = 8790
-KD = 0
+KP = 100
+KI = 5000
+KD = 0.1
 KS = 0.8
 GKP = 0
 GKD = 0
 GKI = 0
 KForm = 0 ;--- units
 IntegrationTime = 1e99 ;--- s
-DerivativeFilterCutOffFrequency = 0 ;--- Hz
+DerivativeFilterCutOffFrequency = 500 ;--- Hz
 DeadBandThreshold = 0 ;--- units
 KFeedForwardVelocity = 1
 NotchFrequency1 = 0 ;--- Hz
@@ -3921,16 +3921,16 @@ HomeSearchTimeOut = 10 ;--- s
 CorrectorType = PIDFFVelocity
 ClosedLoopStatus = Closed
 FatalFollowingError = 1 ;--- units
-KP = 234
-KI = 8790
-KD = 0
+KP = 100
+KI = 5000
+KD = 0.1
 KS = 0.8
 GKP = 0
 GKD = 0
 GKI = 0
 KForm = 0 ;--- units
 IntegrationTime = 1e99 ;--- s
-DerivativeFilterCutOffFrequency = 0 ;--- Hz
+DerivativeFilterCutOffFrequency = 500 ;--- Hz
 DeadBandThreshold = 0 ;--- units
 KFeedForwardVelocity = 1
 NotchFrequency1 = 0 ;--- Hz
@@ -4008,16 +4008,16 @@ HomeSearchTimeOut = 14 ;--- s
 CorrectorType = PIDFFVelocity
 ClosedLoopStatus = Closed
 FatalFollowingError = 1 ;--- units
-KP = 234
-KI = 8790
-KD = 0
+KP = 100
+KI = 5000
+KD = 0.1
 KS = 0.8
 GKP = 0
 GKD = 0
 GKI = 0
 KForm = 0 ;--- units
 IntegrationTime = 1e99 ;--- s
-DerivativeFilterCutOffFrequency = 0 ;--- Hz
+DerivativeFilterCutOffFrequency = 500 ;--- Hz
 DeadBandThreshold = 0 ;--- units
 KFeedForwardVelocity = 1
 NotchFrequency1 = 0 ;--- Hz
@@ -4095,16 +4095,16 @@ HomeSearchTimeOut = 18 ;--- s
 CorrectorType = PIDFFVelocity
 ClosedLoopStatus = Closed
 FatalFollowingError = 1 ;--- units
-KP = 234
-KI = 8790
-KD = 0
+KP = 100
+KI = 5000
+KD = 0.1
 KS = 0.8
 GKP = 0
 GKD = 0
 GKI = 0
 KForm = 0 ;--- units
 IntegrationTime = 1e99 ;--- s
-DerivativeFilterCutOffFrequency = 0 ;--- Hz
+DerivativeFilterCutOffFrequency = 500 ;--- Hz
 DeadBandThreshold = 0 ;--- units
 KFeedForwardVelocity = 1
 NotchFrequency1 = 0 ;--- Hz
@@ -4182,16 +4182,16 @@ HomeSearchTimeOut = 22 ;--- s
 CorrectorType = PIDFFVelocity
 ClosedLoopStatus = Closed
 FatalFollowingError = 1 ;--- units
-KP = 234
-KI = 8790
-KD = 0
+KP = 100
+KI = 5000
+KD = 0.1
 KS = 0.8
 GKP = 0
 GKD = 0
 GKI = 0
 KForm = 0 ;--- units
 IntegrationTime = 1e99 ;--- s
-DerivativeFilterCutOffFrequency = 0 ;--- Hz
+DerivativeFilterCutOffFrequency = 500 ;--- Hz
 DeadBandThreshold = 0 ;--- units
 KFeedForwardVelocity = 1
 NotchFrequency1 = 0 ;--- Hz
@@ -7022,6 +7022,87 @@ MotionDoneMode = Theoretical
 
 
 
+[LTA@LTA-HXP100@XPS-DRV03]
+;--- Unit = mm
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = LTA-HXP100
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV03
+DriverMaximumRMSCurrent = 0.15 ;--- A
+DriverRMSIntegrationTime = 3 ;--- s
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 5 ;--- A
+CurrentLimit = 0.213 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 48 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.000005898864 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -1.6 ;--- units
+MaximumTargetPosition = 24.4 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 1 ;--- units / s
+MaximumAcceleration = 5 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MinusEndOfRunHomeSearch
+HomeSearchMaximumVelocity = 0.5 ;--- units / s
+HomeSearchMaximumAcceleration = 1 ;--- units / s²
+HomeSearchTimeOut = 100 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 1 ;--- units
+KP = 29799.17
+KI = 993305.66
+KD = 29.8
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 1 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 5000 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 13.91
+KFeedForwardAcceleration = 0
+KFeedForwardVelocityOpenLoop = 13.91
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
 [MFA@MFA-PPD@XPS-DRV01]
 ;--- Unit = mm
 ;--- Configuration_Comment = 
@@ -7242,7 +7323,7 @@ MotionDoneMode = Theoretical
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
-SmartStageName = MFA-CC
+SmartStageName = MFA-CCV6
 
 ;--- Motor driver model parameters
 DriverName = XPS-DRV01
@@ -7322,7 +7403,7 @@ MotionDoneMode = Theoretical
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
-SmartStageName = MFA-CC
+SmartStageName = MFA-CCV6
 
 ;--- Motor driver model parameters
 DriverName = XPS-DRV03
@@ -14974,6 +15055,60 @@ MotionDoneMode = Theoretical
 
 
 
+[NSA@NSA12@XPS-DRV01]
+;--- Unit = mm
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = NSA12
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV01
+DriverPWMFrequency = 50 ;--- kHz
+DriverStepperWinding = Full
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogStepperPosition
+ScalingCurrent = 3 ;--- A
+DisplacementPerFullStep = 0.006384880603 ;--- units
+PeakCurrentPerPhase = 0.2 ;--- A
+StandbyPeakCurrentPerPhase = 0.1 ;--- A
+BaseVelocity = 0 ;--- units / s
+
+;--- Position encoder interface parameters
+EncoderType = NoEncoder
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = 0 ;--- units
+MaximumTargetPosition = 11.9 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 2 ;--- units / s
+MaximumAcceleration = 8 ;--- units / s²
+EmergencyDecelerationMultiplier = 1
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MinusEndOfRunHomeSearch
+HomeSearchMaximumVelocity = 1 ;--- units / s
+HomeSearchMaximumAcceleration = 4 ;--- units / s²
+HomeSearchTimeOut = 126 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = NoEncoderPosition
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
 [PR@PR50CC@XPS-DRV01]
 ;--- Unit = deg
 ;--- Configuration_Comment = 
@@ -15245,7 +15380,7 @@ MotionDoneMode = Theoretical
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
-SmartStageName = 
+SmartStageName = RGV100
 
 ;--- Motor driver model parameters
 DriverName = XPS-DRVM4
@@ -15323,7 +15458,7 @@ MotionDoneMode = Theoretical
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
-SmartStageName = 
+SmartStageName = RGV100
 
 ;--- Motor driver model parameters
 DriverName = XPS-DRVM4
@@ -15400,7 +15535,7 @@ MotionDoneMode = Theoretical
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
-SmartStageName = 
+SmartStageName = RGV100
 
 ;--- Motor driver model parameters
 DriverName = XPS-DRV03
@@ -15483,7 +15618,7 @@ MotionDoneMode = Theoretical
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
-SmartStageName = 
+SmartStageName = RGV100
 
 ;--- Motor driver model parameters
 DriverName = XPS-DRV03
@@ -27139,16 +27274,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27313,16 +27448,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27400,16 +27535,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27487,16 +27622,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27574,16 +27709,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27661,16 +27796,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27748,16 +27883,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 80 ;--- units / s
-MaximumAcceleration = 320 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27835,16 +27970,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -27922,16 +28057,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -28009,16 +28144,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -28096,16 +28231,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -28183,16 +28318,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -28270,16 +28405,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -28357,16 +28492,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -28444,16 +28579,16 @@ PositionerMappingFileName =
 PositionerMappingLineNumber = 
 PositionerMappingMaxPositionError =  ;--- units
 
-;--- Limit sensor input plug parameters
-ServitudesType = StandardEORDriverPlug
-MinimumTargetPosition = -170 ;--- units
-MaximumTargetPosition = 170 ;--- units
-HomePreset = 0 ;--- units
-MaximumVelocity = 16 ;--- units / s
-MaximumAcceleration = 64 ;--- units / s²
-EmergencyDecelerationMultiplier = 4
-MinimumJerkTime = 0.005 ;--- s
-MaximumJerkTime = 0.05 ;--- s
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 16 ;--- units / s
+MaximumAcceleration = 64 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
 TrackingCutOffFrequency = 25 ;--- Hz
 
 ;--- Home search process parameters
@@ -29187,7 +29322,7 @@ MotionDoneMode = Theoretical
 
 [TRA@TRA6CC@XPS-DRV03]
 ;--- Unit = mm
-;--- Configuration_Comment = 0.3 A because of current ripple
+;--- Configuration_Comment = 
 
 ;--- Smart stage name
 SmartStageName = TRA6CC
@@ -29348,7 +29483,7 @@ MotionDoneMode = Theoretical
 
 [TRA@TRA25CC@XPS-DRV03]
 ;--- Unit = mm
-;--- Configuration_Comment = 0.3 A because of current ripple
+;--- Configuration_Comment = 
 
 ;--- Smart stage name
 SmartStageName = TRA25CC
@@ -29774,6 +29909,9 @@ CorrectorType = NoEncoderPosition
 MotionDoneMode = Theoretical
 
 
+
+
+
 [TRA@TRA12CC@XPS-DRV01]
 ;--- Unit = mm
 ;--- Configuration_Comment = 
@@ -29908,8 +30046,250 @@ MotionDoneMode = Theoretical
 
 
 
+[TRA@TRA12CC@XPS-DRV03]
+;--- Unit = mm
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = TRA12CC
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV03
+DriverMaximumRMSCurrent = 0.15 ;--- A
+DriverRMSIntegrationTime = 3 ;--- s
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 5 ;--- A
+CurrentLimit = 0.3 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 25 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.000030517578 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -0.0001 ;--- units
+MaximumTargetPosition = 12 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 0.4 ;--- units / s
+MaximumAcceleration = 1.6 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MinusEndOfRunHomeSearch
+HomeSearchMaximumVelocity = 0.2 ;--- units / s
+HomeSearchMaximumAcceleration = 0.8 ;--- units / s²
+HomeSearchTimeOut = 100 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 0.01 ;--- units
+KP = 11330
+KI = 451000
+KD = 81.2
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 0 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 5000 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 30.72
+KFeedForwardAcceleration = 8.37e-5
+KFeedForwardVelocityOpenLoop = 30.72
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URB@URB100CC@XPS-DRV03]
+;--- Unit = deg
+;--- Configuration_Comment = No load
+
+;--- Smart stage name
+SmartStageName = URB100CC
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV03
+DriverMaximumRMSCurrent = 0.965490277 ;--- A
+DriverRMSIntegrationTime = 3 ;--- s
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 5 ;--- A
+CurrentLimit = 1.930980554 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 14.56771355 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.01 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -170 ;--- units
+MaximumTargetPosition = 170 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 720 ;--- units / s
+MaximumAcceleration = 2000 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroAndIndexHomeSearch
+HomeSearchMaximumVelocity = 360 ;--- units / s
+HomeSearchMaximumAcceleration = 1000 ;--- units / s²
+HomeSearchTimeOut = 30 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 1 ;--- units
+KP = 10
+KI = 100
+KD = 0.25
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 0 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 50 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 0.025
+KFeedForwardAcceleration = 0.003
+KFeedForwardVelocityOpenLoop = 0.025
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URB@URB100CC@XPS-DRV03-Spindle]
+;--- Unit = deg
+;--- Configuration_Comment = No load
+
+;--- Smart stage name
+SmartStageName = URB100CC
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV03
+DriverMaximumRMSCurrent = 0.965490277 ;--- A
+DriverRMSIntegrationTime = 3 ;--- s
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 5 ;--- A
+CurrentLimit = 1.930980554 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 14.56771355 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.01 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = Spindle
+HomePreset = 0 ;--- units
+SpindlePeriod = 360 ;--- units
+MaximumVelocity = 720 ;--- units / s
+MaximumAcceleration = 2000 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroAndIndexHomeSearch
+HomeSearchMaximumVelocity = 360 ;--- units / s
+HomeSearchMaximumAcceleration = 1000 ;--- units / s²
+HomeSearchTimeOut = 30 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 1 ;--- units
+KP = 10
+KI = 100
+KD = 0.25
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 0 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 50 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 0.025
+KFeedForwardAcceleration = 0.003
+KFeedForwardVelocityOpenLoop = 0.025
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
 [URM@URM100ACC@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -29989,7 +30369,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100CC@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30069,7 +30449,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80ACC@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30149,7 +30529,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80CC@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30229,7 +30609,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100ACC@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30308,7 +30688,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100CC@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30387,7 +30767,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80ACC@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30466,7 +30846,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80CC@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30545,7 +30925,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100APE@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30616,7 +30996,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100APEV6@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30687,7 +31067,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100APP@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30758,7 +31138,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100PE@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30829,7 +31209,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100PEV6@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30900,7 +31280,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100PP@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -30971,7 +31351,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM150PP@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31042,7 +31422,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80APE@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31113,7 +31493,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80APEV6@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31184,7 +31564,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80APP@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31255,7 +31635,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80PE@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31326,7 +31706,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80PEV6@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31397,7 +31777,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80PP@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31468,7 +31848,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100APE@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31538,7 +31918,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100APEV6@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31678,7 +32058,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100PE@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31748,7 +32128,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100PEV6@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31818,7 +32198,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100PP@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31888,7 +32268,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM150PP@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -31958,7 +32338,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80APE@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32028,7 +32408,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80APEV6@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32098,7 +32478,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80APP@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32168,7 +32548,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80PE@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32308,7 +32688,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80PP@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32378,7 +32758,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100ACCHL@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32457,7 +32837,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100CCHL@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32536,7 +32916,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM150CCHL@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32615,7 +32995,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80ACCHL@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32694,7 +33074,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80CCHL@XPS-DRV01]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32773,7 +33153,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100ACCHL@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32851,7 +33231,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM100CCHL@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -32929,7 +33309,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM150CCHL@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -33007,7 +33387,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80ACCHL@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -33085,7 +33465,7 @@ MotionDoneMode = Theoretical
 
 
 [URM@URM80CCHL@XPS-DRV01-Spindle]
-;--- Unit = 
+;--- Unit = deg
 ;--- Configuration_Comment = 
 
 ;--- Smart stage name
@@ -35340,6 +35720,354 @@ NotchGain1 = 0
 NotchFrequency2 = 0 ;--- Hz
 NotchBandwidth2 = 0 ;--- Hz
 NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URS@URS50BCC@XPS-DRV01-Spindle]
+;--- Unit = deg
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = URS50BCC
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV01
+DriverPWMFrequency = 104 ;--- kHz
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 3 ;--- A
+CurrentLimit = 0.150 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 24 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.000159269253883136 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -180 ;--- units
+MaximumTargetPosition = 180 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 20 ;--- units / s
+MaximumAcceleration = 80 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroHomeSearch
+HomeSearchMaximumVelocity = 10 ;--- units / s
+HomeSearchMaximumAcceleration = 40 ;--- units / s²
+HomeSearchTimeOut = 40 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 0.05 ;--- units
+KP = 500
+KI = 10000
+KD = 1
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 0 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 100 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 0.508
+KFeedForwardAcceleration = 0
+KFeedForwardVelocityOpenLoop = 0.508
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URS@URS50BCC@XPS-DRV01]
+;--- Unit = deg
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = URS50BCC
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV01
+DriverPWMFrequency = 104 ;--- kHz
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 3 ;--- A
+CurrentLimit = 0.150 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 24 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.000159269253883136 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -180 ;--- units
+MaximumTargetPosition = 180 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 20 ;--- units / s
+MaximumAcceleration = 80 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroHomeSearch
+HomeSearchMaximumVelocity = 10 ;--- units / s
+HomeSearchMaximumAcceleration = 40 ;--- units / s²
+HomeSearchTimeOut = 40 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 0.05 ;--- units
+KP = 500
+KI = 10000
+KD = 1
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 0 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 100 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 0.508
+KFeedForwardAcceleration = 0
+KFeedForwardVelocityOpenLoop = 0.508
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URS@@XPS-DRV01]
+;--- Unit = deg
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = URS100CC
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV01
+DriverPWMFrequency = 50 ;--- kHz
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogVoltage
+ScalingCurrent = 3 ;--- A
+CurrentLimit = 1.8 ;--- A
+ScalingVoltage = 48 ;--- V
+VoltageLimit = 48 ;--- V
+
+;--- Position encoder interface parameters
+EncoderType = AquadB
+EncoderResolution = 0.0005 ;--- units
+LinearEncoderCorrection = 0 ;--- ppm
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+PositionerMappingFileName = 
+PositionerMappingLineNumber = 
+PositionerMappingMaxPositionError =  ;--- units
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -165 ;--- units
+MaximumTargetPosition = 165 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 80 ;--- units / s
+MaximumAcceleration = 320 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroAndIndexHomeSearch
+HomeSearchMaximumVelocity = 40 ;--- units / s
+HomeSearchMaximumAcceleration = 160 ;--- units / s²
+HomeSearchTimeOut = 19 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = PIDDualFFVoltage
+ClosedLoopStatus = Closed
+FatalFollowingError = 1 ;--- units
+KP = 292.97
+KI = 7324.22
+KD = 0.21
+KS = 0.8
+GKP = 0
+GKD = 0
+GKI = 0
+KForm = 0 ;--- units
+IntegrationTime = 1E+99 ;--- s
+DerivativeFilterCutOffFrequency = 5000 ;--- Hz
+DeadBandThreshold = 0 ;--- units
+KFeedForwardVelocity = 0.25
+KFeedForwardAcceleration = 0
+KFeedForwardVelocityOpenLoop = 0.25
+Friction = 0 ;--- V
+NotchFrequency1 = 0 ;--- Hz
+NotchBandwidth1 = 0 ;--- Hz
+NotchGain1 = 0
+NotchFrequency2 = 0 ;--- Hz
+NotchBandwidth2 = 0 ;--- Hz
+NotchGain2 = 0
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URS@URS50BPP@XPS-DRV01]
+;--- Unit = deg
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = URS50BPP
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV01
+DriverPWMFrequency = 50 ;--- kHz
+DriverStepperWinding = Full
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogStepperPosition
+ScalingCurrent = 3 ;--- A
+DisplacementPerFullStep = 0.0225 ;--- units
+PeakCurrentPerPhase = 1 ;--- A
+StandbyPeakCurrentPerPhase = 0.5 ;--- A
+BaseVelocity = 0 ;--- units / s
+
+;--- Position encoder interface parameters
+EncoderType = NoEncoder
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -180 ;--- units
+MaximumTargetPosition = 180 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 40 ;--- units / s
+MaximumAcceleration = 160 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroHomeSearch
+HomeSearchMaximumVelocity = 20 ;--- units / s
+HomeSearchMaximumAcceleration = 80 ;--- units / s²
+HomeSearchTimeOut = 40 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = NoEncoderPosition
+
+;--- Motion done condition mode parameters
+MotionDoneMode = Theoretical
+
+
+
+
+
+[URS@URS50BPP@XPS-DRV01-Spindle]
+;--- Unit = deg
+;--- Configuration_Comment = 
+
+;--- Smart stage name
+SmartStageName = URS50BPP
+
+;--- Motor driver model parameters
+DriverName = XPS-DRV01
+DriverPWMFrequency = 50 ;--- kHz
+DriverStepperWinding = Full
+
+;--- Driver command interface parameters
+MotorDriverInterface = AnalogStepperPosition
+ScalingCurrent = 3 ;--- A
+DisplacementPerFullStep = 0.0225 ;--- units
+PeakCurrentPerPhase = 1 ;--- A
+StandbyPeakCurrentPerPhase = 0.5 ;--- A
+BaseVelocity = 0 ;--- units / s
+
+;--- Position encoder interface parameters
+EncoderType = NoEncoder
+Backlash = 0 ;--- units
+CurrentVelocityCutOffFrequency = 100 ;--- Hz
+CurrentAccelerationCutOffFrequency = 100 ;--- Hz
+
+;--- Limit sensor input plug parameters
+ServitudesType = StandardEORDriverPlug
+MinimumTargetPosition = -180 ;--- units
+MaximumTargetPosition = 180 ;--- units
+HomePreset = 0 ;--- units
+MaximumVelocity = 40 ;--- units / s
+MaximumAcceleration = 160 ;--- units / s²
+EmergencyDecelerationMultiplier = 4
+MinimumJerkTime = 0.005 ;--- s
+MaximumJerkTime = 0.05 ;--- s
+TrackingCutOffFrequency = 25 ;--- Hz
+
+;--- Home search process parameters
+HomeSearchSequenceType = MechanicalZeroHomeSearch
+HomeSearchMaximumVelocity = 20 ;--- units / s
+HomeSearchMaximumAcceleration = 80 ;--- units / s²
+HomeSearchTimeOut = 40 ;--- s
+
+;--- Position servo loop type parameters
+CorrectorType = NoEncoderPosition
 
 ;--- Motion done condition mode parameters
 MotionDoneMode = Theoretical
@@ -46778,8 +47506,8 @@ DriverGearRatio = 2 ;--- revolution/units
 
 ;--- Driver command interface parameters
 MotorDriverInterface = AnalogVelocity
-ScalingVelocity = 37.5 ;--- units / s
-VelocityLimit = 37.5 ;--- units / s
+ScalingVelocity = 38 ;--- units / s
+VelocityLimit = 38 ;--- units / s
 ScalingCurrent = 5 ;--- A
 CurrentLimit = 0.74 ;--- A
 
@@ -47105,8 +47833,8 @@ DriverGearRatio = 2 ;--- revolution/units
 
 ;--- Driver command interface parameters
 MotorDriverInterface = AnalogVelocity
-ScalingVelocity = 133 ;--- units / s
-VelocityLimit = 133 ;--- units / s
+ScalingVelocity = 38 ;--- units / s
+VelocityLimit = 38 ;--- units / s
 ScalingCurrent = 5 ;--- A
 CurrentLimit = 0.84 ;--- A
 
@@ -47192,8 +47920,8 @@ DriverGearRatio = 2 ;--- revolution/units
 
 ;--- Driver command interface parameters
 MotorDriverInterface = AnalogVelocity
-ScalingVelocity = 133 ;--- units / s
-VelocityLimit = 133 ;--- units / s
+ScalingVelocity = 38 ;--- units / s
+VelocityLimit = 38 ;--- units / s
 ScalingCurrent = 5 ;--- A
 CurrentLimit = 0.84 ;--- A
 
@@ -47279,8 +48007,8 @@ DriverGearRatio = 10 ;--- revolution/units
 
 ;--- Driver command interface parameters
 MotorDriverInterface = AnalogVelocity
-ScalingVelocity = 27 ;--- units / s
-VelocityLimit = 27 ;--- units / s
+ScalingVelocity = 8 ;--- units / s
+VelocityLimit = 8 ;--- units / s
 ScalingCurrent = 5 ;--- A
 CurrentLimit = 0.84 ;--- A
 
