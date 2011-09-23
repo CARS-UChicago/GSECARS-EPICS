@@ -1,0 +1,279 @@
+# Database for EPICS PVS corresponding to inputs in TOMO_COLLECT program
+# Daniel Citron
+# 12/9/2010
+
+# EPICS PVs Names
+
+record(stringout, "$(P)$(R)CameraPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)RotationMotorPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)HorizMotorPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)VertMotorPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)BeamReadyPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)CCDTriggerPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)CCDReadyPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)OTFScalerPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+# Experiment info
+
+record(stringout, "$(P)$(R)SampleName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Title")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Comments1")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Comments2")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Comments3")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Comments4")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Comments5")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Operator")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Camera")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)XPixelSize")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)YPixelSize")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)Energy")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)DarkCurrent")
+{
+   field(VAL,  "Unknown")
+}
+
+# Scan variables
+
+record(ao, "$(P)$(R)RotationStart")
+{
+   field(PREC,  "6")
+}
+
+record(ao, "$(P)$(R)RotationStop")
+{
+   field(PREC,  "6")
+}
+
+record(ao, "$(P)$(R)RotationStep")
+{
+   field(PREC,  "6")
+}
+
+record(longout, "$(P)$(R)NumAngles")
+{
+}
+
+record(longout, "$(P)$(R)NumPasses")
+{
+}
+
+record(mbbo, "$(P)$(R)FlatFieldAxis")
+{
+   field(ZRVL, "0")
+   field(ZRST, "xAxis")
+   field(ONVL, "1")
+   field(ONST, "yAxis")
+   field(TWVL, "2")
+   field(TWST, "BothAxes")
+}
+
+record(longout, "$(P)$(R)FlatFieldIncrement")
+{
+}
+
+record(longout, "$(P)$(R)NumFlatFields")
+{
+}
+
+record(ao, "$(P)$(R)SampleXIn")
+{
+   field(PREC,  "6")
+}
+
+record(ao, "$(P)$(R)SampleXOut")
+{
+   field(PREC,  "6")
+}
+
+record(ao, "$(P)$(R)SampleYIn")
+{
+   field(PREC,  "6")
+}
+
+record(ao, "$(P)$(R)SampleYOut")
+{
+   field(PREC,  "6")
+}
+
+record(mbbo, "$(P)$(R)DataCollectionMode")
+{
+   field(ZRVL, "0")
+   field(ZRST, "Slow Scan")
+   field(ONVL, "1")
+   field(ONST, "Fast Scan")
+   field(TWVL, "2")
+   field(TWST, "OTF Scan")
+}
+
+record(bo, "$(P)$(R)CollectDarkCurrent")
+{
+   field(ZNAM, "Off")
+   field(ONAM, "On")
+}
+
+record(bo, "$(P)$(R)CancelMotorReset")
+{
+   field(ZNAM, "Off")
+   field(ONAM, "On")
+}
+
+record(waveform, "$(P)$(R)FileName")
+{
+   field(FTVL, "UCHAR")
+   field(NELM, "256")
+}
+
+record(waveform, "$(P)$(R)PSAttributesFileName")
+{
+   field(FTVL, "UCHAR")
+   field(NELM, "256")
+}
+
+record(longin,"$(P)$(R)OTFGroups") {
+}
+
+record(waveform,"$(P)$(R)ScanStatus") 
+{
+   field(FTVL, "UCHAR")
+   field(NELM, "256")
+}
+
+record(stringout,"$(P)$(R)ScanPoint")
+{
+}
+
+record(stringout, "$(P)$(R)ElapsedTime")
+{
+}
+
+record(stringout, "$(P)$(R)EstRemainingTime")
+{
+}
+
+record(ao, "$(P)$(R)OTFMotorSpeed")
+{
+   field(PREC,  "6")
+}
+
+# Trigger and status variables
+
+record(bo, "$(P)$(R)MoveSampleIn")
+{
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
+   field(VAL, "0")
+}
+
+record(bo, "$(P)$(R)MoveSampleOut")
+{
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
+   field(VAL, "0")
+}
+
+record(bo,"$(P)$(R)StartScan")
+{
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
+   field(VAL, "0")
+}
+
+record(bo,"$(P)$(R)AbortScan")
+{
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
+   field(VAL, "0")
+}
+
+record(bo,"$(P)$(R)TCReady")
+{
+   field(ZNAM, "NotReady")
+   field(ONAM, "Ready")
+   field(VAL, "0")
+}
+
+record(bo,"$(P)$(R)InputTCPVS")
+{
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
+   field(VAL, "0")
+}
