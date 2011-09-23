@@ -8,59 +8,47 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 ################################################################################
 # XPS Setup
-drvAsynIPPortConfigure("tcp1","164.54.160.55:5001 tcp", 0, 0, 1)
-drvAsynIPPortConfigure("tcp2","164.54.160.56:5001 tcp", 0, 0, 1)
 
-# cards (total controllers)
-XPSSetup(2)
+# asyn port, IP address, IP port, number of axes, 
+# active poll period (ms), idle poll period (ms), 
+# enable set position, set position settling time (ms)
+XPSCreateController("XPS1", "164.54.160.55", 5001, 6, 10, 500, 0, 500)
+asynSetTraceIOMask("XPS1", 0, 2)
+#asynSetTraceMask("XPS1", 0, 255)
+XPSCreateController("XPS2", "164.54.160.56", 5001, 8, 10, 500, 0, 500)
+asynSetTraceIOMask("XPS2", 0, 2)
+#asynSetTraceMask("XPS2", 0, 255)
 
-# Setup the XPS for the Rotation
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.55", 5001, 6, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 6)
+# asynPort, IP address, IP port, poll period (ms)
+XPSAuxConfig("XPS_AUX1", "164.54.160.55", 5001, 50)
+#asynSetTraceIOMask("XPS_AUX1", 0, 2)
+#asynSetTraceMask("XPS_AUX1", 0, 255)
+XPSAuxConfig("XPS_AUX2", "164.54.160.56", 5001, 50)
+#asynSetTraceIOMask("XPS_AUX1", 0, 2)
+#asynSetTraceMask("XPS_AUX1", 0, 255)
 
-# Setup the XPS for the Base and X, Y and Z
-# card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(1, "164.54.160.56", 5001, 8, 10, 500)
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS2", "motorXPS", 1, 8)
 
-# Define the group names and the steps per unit.  This must match values defined
-# in the XPS system.ini ([group.names]) and stages.ini (1/EncoderResolution)
- 
 # XPS for the Rotations
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSConfigAxis(0,0,"GROUP.PHI",      1000)
-XPSConfigAxis(0,1,"GROUP.KAPPA",   10000)
-XPSConfigAxis(0,2,"GROUP.OMEGA",   10000)
-XPSConfigAxis(0,3,"GROUP.PSI",      4000)
-XPSConfigAxis(0,4,"GROUP.THETA",   10000)
-XPSConfigAxis(0,5,"GROUP.NU",       4000)
- 
-# XPS for the Base and X, Y and Z 
-# card,  axis, groupName.positionerName, stepsPerUnit
-# This is the config for the Y1-3 is grouped together in "Y_Base"
-#XPSConfigAxis(1,0,"Y_Base.Y1",     10000)
-#XPSConfigAxis(1,1,"Y_Base.Y2",     10000)
-#XPSConfigAxis(1,2,"Y_Base.Y3",     10000)
-#XPSConfigAxis(1,3,"GROUP4.THETAY",   200)
-#XPSConfigAxis(1,4,"GROUP5.TRX",      200)
-#XPSConfigAxis(1,5,"GROUP6.X",      74627)
-#XPSConfigAxis(1,6,"GROUP7.Y",      74627)
-#XPSConfigAxis(1,7,"GROUP8.Z",     100000)
+# XPS asyn port,  axis, groupName.positionerName, stepSize
+XPSCreateAxis("XPS1",0,"GROUP1.PHI",      "1000")
+XPSCreateAxis("XPS1",1,"GROUP1.KAPPA",   "10000")
+XPSCreateAxis("XPS1",2,"GROUP1.OMEGA",   "10000")
+XPSCreateAxis("XPS1",3,"GROUP1.PSI",      "4000")
+XPSCreateAxis("XPS1",4,"GROUP1.2THETA",  "10000")
+XPSCreateAxis("XPS1",5,"GROUP1.NU",       "4000")
 
-# XPS for the Base and X, Y and Z 
-# card,  axis, groupName.positionerName, stepsPerUnit
-# This is the config for the Y1-3 in single axis groups
-XPSConfigAxis(1,0,"GROUP1.Y1_BASE", 10000)
-XPSConfigAxis(1,1,"GROUP2.Y2_BASE", 10000)
-XPSConfigAxis(1,2,"GROUP3.Y3_BASE", 10000)
-XPSConfigAxis(1,3,"GROUP4.THETAY",    200)
-XPSConfigAxis(1,4,"GROUP5.TRX",       200)
-XPSConfigAxis(1,5,"GROUP6.X",       74627)
-XPSConfigAxis(1,6,"GROUP7.Y",       74627)
-XPSConfigAxis(1,7,"GROUP8.Z",      100000)
+XPSCreateAxis("XPS2",0,"GROUP1.Y1_BASE",    "10000")
+XPSCreateAxis("XPS2",1,"GROUP2.Y2_BASE",    "10000")
+XPSCreateAxis("XPS2",2,"GROUP3.Y3_BASE",    "10000")
+XPSCreateAxis("XPS2",3,"GROUP4.THETAY",       "200")
+XPSCreateAxis("XPS2",4,"GROUP5.TRX",          "200")
+XPSCreateAxis("XPS2",5,"GROUP6.X",          "74627")
+XPSCreateAxis("XPS2",6,"GROUP7.Y",          "74627")
+XPSCreateAxis("XPS2",7,"GROUP8.Z",         "100000")
+
+# XPS asyn port,  max points, FTP username, FTP password
+# Note: this must be done after configuring axes
+XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 
 # Disable setting position from motor record
 XPSEnableSetPosition(0) 
@@ -69,12 +57,11 @@ XPSEnableSetPosition(0)
 # Motor records
 dbLoadTemplate("motors_xps.template")
 
-################################################################################
-# XPS trajectoryScan records
-
-# Database for trajectory scanning with the XPS
-
-dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
+# asyn record for debugging
+drvAsynIPPortConfigure("xps", "164.54.160.124:5001", 0, 0, 0)
+asynSetTraceIOMask("xps",0,2)
+asynSetTraceMask("xps",0,9)
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
 
 # Debug-output level
 save_restoreSet_Debug(0)
@@ -140,17 +127,9 @@ create_monitor_set("auto_positions_xps.req",5,"P=13IDC:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings_xps.req",30,"P=13IDC:")
 
-dbpf("13IDC:traj1DebugLevel","1")
-
 # newport table sequencer
-str=malloc(256)
-strcpy(str,"P=13IDC:,T=NewTab1:, M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,")
-strcat(str,"PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
-newport_tableDebug = 1
-# seq(&newport_table, str)
-
-# Trajectory scanning with XPS
-seq(XPS_trajectoryScan, "P=13IDC:,R=traj1,M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30,IPADDR=164.54.160.55,PORT=5001,GROUP=GROUP,P1=PHI,P2=KAPPA,P3=OMEGA,P4=PSI,P5=THETA,P6=NU")
+#var newport_tableDebug=1
+# seq(&newport_table, "P=13IDC:,T=NewTab1:,M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13IDC:m25.NTM","0")
@@ -168,4 +147,4 @@ dbpf("13IDC:m38.NTM","0")
 dbpf("13IDC:m39.NTM","0")
 dbpf("13IDC:m40.NTM","0")
 
-motorUtilInit("13IDC_XPS:")
+#motorUtilInit("13IDC_XPS:")
