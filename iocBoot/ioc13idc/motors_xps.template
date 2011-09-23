@@ -9,8 +9,6 @@ pattern
 {13IDC:, m28, "asynMotor",  XPS1,  3, "Psi",          degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
 {13IDC:, m29, "asynMotor",  XPS1,  4, "2theta",       degrees,  Neg,    4.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
 {13IDC:, m30, "asynMotor",  XPS1,  5, "Nu",           degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
-#{13IDC:, m31, "asynMotor",  XPS1,  6, "Dummy7",      degrees,  Neg,    6.0,   0.1,  1.0,    0,    1,   .2,      1,        .0001,    4,    196,    -17}
-#{13IDC:, m32, "asynMotor",  XPS1,  7, "Dummy8",      degrees,  Neg,    4.0,   0.1,   .5,    0,    1,   .2,      1,       .00025,    4,    190,   -190}
  
 # Base motors
 {13IDC:, m33, "asynMotor",  XPS2,  0, "Y1-mBY",            mm,  Pos,    0.2,   .01, 0.67,    0,    1,  .25,      1,        .0001,    4,     60,   -115}
@@ -31,6 +29,45 @@ pattern
 {13IDC:, DIF:T1, DIF:t1, m36,   m33,  m35, junk,  m34,  m37, NEWPORT}
 }
 
+file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+{
+pattern
+{P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13IDC:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13IDC:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
+{13IDC:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13IDC:m25,   3,       1}
+{13IDC:,  Prof1:, 2,  XPS1,    1,   2000,      2000, 13IDC:m26,   4,       1}
+{13IDC:,  Prof1:, 3,  XPS1,    2,   2000,      2000, 13IDC:m27,   4,       1}
+{13IDC:,  Prof1:, 4,  XPS1,    3,   2000,      2000, 13IDC:m28,   4,       1}
+{13IDC:,  Prof1:, 5,  XPS1,    4,   2000,      2000, 13IDC:m29,   4,       1}
+{13IDC:,  Prof1:, 6,  XPS1,    5,   2000,      2000, 13IDC:m30,   4,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
+{13IDC:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    3,       1}
+{13IDC:,  Prof1:, 2,  XPS1,    1,   2000,      2000,    4,       1}
+{13IDC:,  Prof1:, 3,  XPS1,    2,   2000,      2000,    4,       1}
+{13IDC:,  Prof1:, 4,  XPS1,    3,   2000,      2000,    4,       1}
+{13IDC:,  Prof1:, 5,  XPS1,    4,   2000,      2000,    4,       1}
+{13IDC:,  Prof1:, 6,  XPS1,    5,   2000,      2000,    4,       1}
+}
+
+
 
 # Pseudo-motors
 file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
@@ -46,9 +83,6 @@ pattern
 {13IDC:,  pm12, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm12:Move PP MS", "13IDC:pm12:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_Z",    mm, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,    1e5, -1e5}
 {13IDC:,  pm13, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm13:Move PP MS", "13IDC:pm13:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_AX",  deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,      30, -30}
 {13IDC:,  pm14, "13IDC:NewTab1:M_Done NPP NMS", "13IDC:pm14:Move PP MS", "13IDC:pm14:Readback  NPP NMS", "13IDC:NewTab1:M_Stop PP MS",   "R_AY",  deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  4,      30, -30}
-
-
-#
 }
 
 # Newport table db for newport table snl
