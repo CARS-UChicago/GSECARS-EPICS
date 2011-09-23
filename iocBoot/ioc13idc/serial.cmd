@@ -13,8 +13,8 @@ tyGSAsynInit("serial9", "UART1", 0,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
 tyGSAsynInit("serial10","UART1", 1,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
 tyGSAsynInit("serial11","UART1", 2,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
 tyGSAsynInit("serial12","UART1", 3,  9600,'N',2,8,'N',"\r","\r") /* SRS570 */
-tyGSAsynInit("serial13","UART1", 4, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
-tyGSAsynInit("serial14","UART1", 5, 38400,'N',1,8,'N',"\r","\r") /* MM4000 */
+tyGSAsynInit("serial13","UART1", 4,  9600,'N',1,8,'N',"\r","\r") /* Unused */
+tyGSAsynInit("serial14","UART1", 5,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 tyGSAsynInit("serial15","UART1", 6,  9600,'N',2,8,'N',"\r","\r") /* Unused */
 tyGSAsynInit("serial16","UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 
@@ -40,30 +40,4 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B1,PORT=serial9")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B2,PORT=serial10")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B3,PORT=serial11")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B4,PORT=serial12")
-
-# Serial 13 and 14 are for MM4005s
-# MM4000 driver setup parameters:
-#     (1) maximum # of controllers,
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-# MM4000Setup(2, 8, 10)
-
-# MM4000 driver configuration parameters:
-#     (1) controller
-#     (2) asyn port name (e.g. serial1 or gpib1)
-#     (3) GPIB address (0 for serial)
-# MM4000Config(0, "serial13", 0)
-# MM4000Config(1, "serial14", 0)
-
-# Database for trajectory scanning with the MM4005/GPD
-# The required command string is longer than the vxWorks command line, must use malloc and strcpy, strcat
-# str = malloc(300)
-# strcpy(str, "P=13IDC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,")
-# strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-# dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
-# strcpy(str, "P=13IDC:,R=traj2,NAXES=8,NELM=2000,NPULSE=2000,")
-# strcat(str, "DONPV=13IDC:str:EraseStart,DONV=1,DOFFPV=13IDC:str:StopAll,DOFFV=1")
-# dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
-
-# Serial port 16 is unused
 
