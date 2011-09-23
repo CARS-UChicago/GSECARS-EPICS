@@ -35,3 +35,41 @@ pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
 {13XRM:, PM:,  pm1, pm2,    m4.VAL,  m4.RBV,  m5.VAL, m5.RBV, m4.STOP, m4.DMOV, m5.STOP, m5.DMOV, 4}
 }
+
+file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+{
+pattern
+{P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13XRM:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13XRM:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
+{13XRM:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13XRM:m1,   5,       1}
+{13XRM:,  Prof1:, 2,  XPS1,    1,   2000,      2000, 13XRM:m2,   5,       1}
+{13XRM:,  Prof1:, 3,  XPS1,    2,   2000,      2000, 13XRM:m3,   4,       1}
+{13XRM:,  Prof1:, 4,  XPS1,    3,   2000,      2000, 13XRM:m4,   4,       1}
+{13XRM:,  Prof1:, 5,  XPS1,    4,   2000,      2000, 13XRM:m5,   4,       1}
+{13XRM:,  Prof1:, 6,  XPS1,    5,   2000,      2000, 13XRM:m6,   4,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
+{13XRM:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    5,       1}
+{13XRM:,  Prof1:, 2,  XPS1,    1,   2000,      2000,    5,       1}
+{13XRM:,  Prof1:, 3,  XPS1,    2,   2000,      2000,    4,       1}
+{13XRM:,  Prof1:, 4,  XPS1,    3,   2000,      2000,    4,       1}
+{13XRM:,  Prof1:, 5,  XPS1,    4,   2000,      2000,    4,       1}
+{13XRM:,  Prof1:, 6,  XPS1,    5,   2000,      2000,    4,       1}
+}
