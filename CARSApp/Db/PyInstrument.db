@@ -21,12 +21,8 @@ record(mbbo,"$(P)$(Q):ExecCommand") {
         field(ONST,"Go")
 }
  
-record(mbbo,"$(P)$(Q):Move") {
+record(busy,"$(P)$(Q):Move") {
 	field(DESC,"Client Move Request")
-        field(ZRVL,"0")
-        field(ZRST,"Stop")
-        field(ONVL,"1")
-        field(ONST,"Go")
 }
 
 record(stringin,"$(P)$(Q):InstName") {
@@ -41,28 +37,24 @@ record(stringin,"$(P)$(Q):PosName") {
 	field(VAL,  "")
 }
 
+
 record(bo,"$(P)$(Q):InstOK") {
-   feld(DTYP, "bo")
-   field(DESC,"Instrument found")
    field(VAL,  "0")
 }
 
 
 record(bo,"$(P)$(Q):PosOK") {
-   feld(DTYP, "bo")
-   field(DESC,"Position found")
    field(VAL,  "0")
 }
 
 record(stringin,"$(P)$(Q):CommandName") {
-        field(DTYP,"Soft Channel") 
-	field(DESC, "command name")
-	field(VAL,  "")
+  field(DTYP,"Soft Channel") 
+  field(DESC, "command name")
+  field(VAL,  "")
 }
 
 
 record(bo,"$(P)$(Q):CommandOK") {
-   feld(DTYP, "bo")
    field(DESC,"Command found")
    field(VAL,  "0")
 }
