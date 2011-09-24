@@ -19,35 +19,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=13BMCRP1:,R=i
 # Load the database to use with Stephen Mudie's IDL code
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/EPICS_AD_Viewer.template", "P=13BMCRP1:, R=image1:")
 
-# Create a netCDF file saving plugin
-NDFileNetCDFConfigure("ROPER1FileNetCDF", 450, 0, "ROPER1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMCRP1:,R=netCDF1:,PORT=ROPER1FileNetCDF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROPER1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMCRP1:,R=netCDF1:,PORT=ROPER1FileNetCDF,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileNetCDF.template","P=13BMCRP1:,R=netCDF1:,PORT=ROPER1FileNetCDF,ADDR=0,TIMEOUT=1")
-
-# Create a TIFF file saving plugin
-NDFileTIFFConfigure("ROPER1FileTIFF", 20, 0, "ROPER1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMCRP1:,R=TIFF1:,PORT=ROPER1FileTIFF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROPER1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMCRP1:,R=TIFF1:,PORT=ROPER1FileTIFF,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileTIFF.template",  "P=13BMCRP1:,R=TIFF1:,PORT=ROPER1FileTIFF,ADDR=0,TIMEOUT=1")
-
-# Create a JPEG file saving plugin
-NDFileJPEGConfigure("ROPER1FileJPEG", 20, 0, "ROPER1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMCRP1:,R=JPEG1:,PORT=ROPER1FileJPEG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROPER1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13BMCRP1:,R=JPEG1:,PORT=ROPER1FileJPEG,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileJPEG.template",  "P=13BMCRP1:,R=JPEG1:,PORT=ROPER1FileJPEG,ADDR=0,TIMEOUT=1")
-
-# Create an ROI plugin
-NDROIConfigure("ROPER1ROI", 5, 0, "ROPER1", 0, 10, 20, -1)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13BMCRP1:,R=ROI1:,  PORT=ROPER1ROI,ADDR=0,TIMEOUT=1,NDARRAY_PORT=ROPER1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDROI.template",       "P=13BMCRP1:,R=ROI1:,  PORT=ROPER1ROI,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDROIN.template",      "P=13BMCRP1:,R=ROI1:0:,PORT=ROPER1ROI,ADDR=0,TIMEOUT=1,HIST_SIZE=256")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDROIN.template",      "P=13BMCRP1:,R=ROI1:1:,PORT=ROPER1ROI,ADDR=1,TIMEOUT=1,HIST_SIZE=256")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDROIN.template",      "P=13BMCRP1:,R=ROI1:2:,PORT=ROPER1ROI,ADDR=2,TIMEOUT=1,HIST_SIZE=256")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDROIN.template",      "P=13BMCRP1:,R=ROI1:3:,PORT=ROPER1ROI,ADDR=3,TIMEOUT=1,HIST_SIZE=256")
-
-# Load scan records
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13BMCRP1:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+< $(AREA_DETECT0R)/iocBoot/commonPluginCommands.cmd
 
 set_requestfile_path("./")
 set_savefile_path("./autosave")

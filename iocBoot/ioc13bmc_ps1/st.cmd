@@ -28,7 +28,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",   "P=$(PREFIX),R=cam1
 # Note that prosilica.template must be loaded after NDFile.template to replace the file format correctly
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/prosilica.template","P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/TomoCollect.template",   "P=$(PREFIX),R=TC:")
+dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template",   "P=$(PREFIX),R=TC:")
 
 # Create a standard arrays plugin, set it to get data from first Prosilica driver.
 NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, -1)
@@ -44,7 +44,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=i
 #dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,TYPE=Int16,FTVL=SHORT,NELEMENTS=4177920")
 
 # Load all other plugins using commonPlugins.cmd
-< ../commonPlugins.cmd
+< $(AREA_DETECTOR)/iocBoot/commonPlugins.cmd
 
 iocInit()
 
