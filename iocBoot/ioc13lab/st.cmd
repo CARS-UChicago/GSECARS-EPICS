@@ -71,7 +71,10 @@ dbLoadTemplate "pid_slow.template"
 
 #PID fast
 dbLoadTemplate "pid_fast.template"
- 
+
+# Tomography data collection
+dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13LAB:,R=TC:")
+
 ### Motors
 dbLoadTemplate  "motors.template"
 # -----------------------------------------------------
