@@ -30,8 +30,8 @@ dbLoadTemplate  "motors.template"
 # SIS3801 MCS
 iocsh "SIS3801_8.cmd"
 
-# CCD synchronization for tomo.exe Visual Basic program
-dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMC:,C=CCD1")
+# Tomography data collection
+dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMC:,R=TC:")
 
 # Multichannel analyzer stuff
 # Multichannel analyzer stuff

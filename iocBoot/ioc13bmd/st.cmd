@@ -58,8 +58,8 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x9ce, 2, 2)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
-# CCD synchronization for tomo.exe Visual Basic program
-dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
+# Tomography data collection
+dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMD:,R=TC:")
 
 # Struck MCS as 32-channel multi-element detector
 iocsh "SIS3820_32.cmd"
