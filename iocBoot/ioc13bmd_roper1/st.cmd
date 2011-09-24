@@ -18,7 +18,6 @@ asynSetTraceIOMask("$(PORT)",0,2)
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/ADBase.template",   "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",   "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/roper.template",    "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/TomoCollect.template", "P=$(PREFIX), R=TC:")
 
 # Create a standard arrays plugin, set it to get data from the Roper driver.
 NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, -1)
