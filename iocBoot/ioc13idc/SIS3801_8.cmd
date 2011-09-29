@@ -3,7 +3,7 @@
 epicsEnvSet("PREFIX",                   "13IDC:SIS1:")
 epicsEnvSet("RNAME",                    "mca")
 epicsEnvSet("MAX_SIGNALS",              "8")
-epicsEnvSet("MAX_CHANS",                "2048")
+epicsEnvSet("MAX_CHANS",                "10100")
 epicsEnvSet("PORT",                     "SIS3801/1")
 # For MCA records FIELD=READ, for waveform records FIELD=PROC
 epicsEnvSet("FIELD",                    "READ")
