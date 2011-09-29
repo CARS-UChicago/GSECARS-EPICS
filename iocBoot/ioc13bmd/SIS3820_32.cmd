@@ -14,7 +14,7 @@ epicsEnvSet("FIELD",                    "READ")
 #                  signals,
 #                  use DMA
 #                  fifoBufferWords)
-drvSIS3820Config($(PORT), 0x94000000, 224, 6, $(MAX_CHANS), $(MAX_SIGNALS), 1, 0x20000)
+drvSIS3820Config($(PORT), 0xA8000000, 224, 6, $(MAX_CHANS), $(MAX_SIGNALS), 1, 0x20000)
 
 # This loads the scaler record and supporting records
 dbLoadRecords("$(STD)/stdApp/Db/scaler32.db", "P=13BMD:, S=scaler2, DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=50000000")
