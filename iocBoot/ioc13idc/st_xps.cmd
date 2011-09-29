@@ -48,7 +48,7 @@ XPSCreateAxis("XPS2",7,"GROUP8.Z",         "100000")
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
-XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
+XPSCreateProfile("XPS1", 10010, "Administrator", "Administrator")
 
 # Disable setting position from motor record
 XPSEnableSetPosition(0) 
