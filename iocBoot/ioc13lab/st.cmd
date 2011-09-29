@@ -1,6 +1,3 @@
-# Allocate 480MB of memory so we load everything else into low memory
-#mem = malloc(1024*1024*480)
-
 # vxWorks startup file
 < cdCommands
 
@@ -130,8 +127,8 @@ icbConfig("icbAdc1", 0x59e, 5, 0)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x59e, 3, 1)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
-icbConfig("icbHvps1", 0x59e, 2, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+#icbConfig("icbHvps1", 0x59e, 2, 2)
+#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 icbConfig("icbTca1", 0x59e, 8, 3)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTca1")
 #icbConfig("icbDsp1", 0x8058, 0, 4)
