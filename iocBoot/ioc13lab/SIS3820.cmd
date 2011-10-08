@@ -6,7 +6,7 @@ epicsEnvSet("PREFIX",                   "13LAB:SIS3820:")
 epicsEnvSet("RNAME",                    "mca")
 epicsEnvSet("MAX_SIGNALS",              "8")
 epicsEnvSet("MAX_CHANS",                "2048")
-epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "2048")
+#epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "2000000")
 epicsEnvSet("PORT",                     "SIS3820/1")
 # For MCA records FIELD=READ, for waveform records FIELD=PROC
 epicsEnvSet("FIELD",                    "READ")
