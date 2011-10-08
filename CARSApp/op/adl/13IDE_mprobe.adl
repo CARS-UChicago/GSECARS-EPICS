@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDE_mprobe.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDE_mprobe.adl"
 	version=030105
 }
 display {
@@ -252,23 +252,13 @@ rectangle {
 	}
 	display[6] {
 		label="Microscope motors"
-		name="4motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m7, M2=m33, M3=m8, M4=m34"
+		name="6motors.adl"
+		args="P=13IDE:, TITLE=Microscope, M1=m7, M2=m33, M3=m8, M4=m34, M5=m12, M6=m35"
 	}
 	display[7] {
 		label="Vortex Stage"
 		name="3motors.adl"
 		args="P=13IDE:, TITLE=Vortex_Detector_Stages, M1=m9, M2=m10, M3=m11"
-	}
-	display[8] {
-		label="Extra Motors"
-		name="4motors.adl"
-		args="P=13IDE:, TITLE=IDE_Extra_Motors, M1=m34, M2=m35, M3=m36, M4=m12"
-	}
-	display[9] {
-		label="I1 Ion Chamber Motor"
-		name="1motors.adl"
-		args="P=13XRM:, TITLE=I1_Motor, M1=m7"
 	}
 	display[10] {
 		label="Profile moves"
@@ -885,8 +875,8 @@ rectangle {
 	}
 	display[2] {
 		label="Quad Vortex"
-		name="xmap4_dxp.adl"
-		args="P=13SDD1:, D=dxp, M=mca"
+		name="4element_dxp.adl"
+		args="P=dxpMercury:, D=dxp, M=mca"
 	}
 	display[3] {
 		label="Ion Chamber"
@@ -905,6 +895,11 @@ rectangle {
 		label="Scalers (old)"
 		name="scaler_calcs8.adl"
 		args="P=13IDE:, S=scaler1"
+	}
+	display[7] {
+		label="Quad Vortex (SDD1)"
+		name="4element_dxp.adl"
+		args="P=13SDD1:, D=dxp, M=mca"
 	}
 	display[9] {
 		label="Single Vortex"
@@ -1101,7 +1096,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13SDD1:Acquiring"
+		chan="$(FD):Acquiring"
 	}
 	textix="Done"
 }
@@ -1129,7 +1124,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="13SDD1:ElapsedReal"
+		chan="$(FD):ElapsedReal"
 		clr=54
 		bclr=0
 	}
@@ -1145,7 +1140,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13SDD1:PresetReal"
+		chan="$(FD):PresetReal"
 		clr=14
 		bclr=0
 	}
@@ -1172,7 +1167,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="13SDD1:DeadTime"
+		chan="$(FD):DeadTime"
 		clr=54
 		bclr=0
 	}
