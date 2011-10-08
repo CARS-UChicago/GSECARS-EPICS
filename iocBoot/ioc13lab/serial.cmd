@@ -60,7 +60,7 @@ MCB4BSetup(1, 10)
 # MCB-4B driver configuration parameters:
 #     (1) controller
 #     (2) asyn port name (e.g. serial1)
-#MCB4BConfig(0, "serial4")
+MCB4BConfig(0, "serial4")
 
 # Serial 5, 6 Keithley Multimeter
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,PORT=serial5")
