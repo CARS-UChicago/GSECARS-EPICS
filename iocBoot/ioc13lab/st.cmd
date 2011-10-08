@@ -184,8 +184,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
 #     (5)interrupt level (1 - 6).
 #     (6)motor task polling rate (min=1Hz,max=60Hz).
 
-# PJE 6/2/2010
-## MAXvSetup(1, 16, 0x6000, 190, 5, 10)
+MAXvSetup(1, 16, 0x5000, 190, 5, 10)
 
 drvMAXvdebug=0
 
@@ -206,15 +205,15 @@ drvMAXvdebug=0
 # Set all to active low limits for ThorLabs micrometers.  Set all to servo.  First channel normal limits!
 #config0="AX LH PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
 
-#PJE 6/2/2010
-## config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-## MAXvConfig(0, config0)
+# Set all axes to open-loop stepper and active high limits
+config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+MAXvConfig(0, config0)
 
 # OMS VME58 driver setup parameters: 
 #     (1)cards, (2)base address(short, 4k boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(2, 0x4000, 190, 5, 10)
+oms58Setup(1, 0x4000, 190, 5, 10)
 
 #{{{ MN May 7, 2007 -- comment out XPS controller
 # # cards (total controllers)
@@ -294,7 +293,7 @@ seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=22, model=2700, stack=10000"
 #seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
 #seq &seq_test, "pv1=13LAB:m1, pv2=13LAB:m2"
 
-seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=32, FIELD=READ")
+#seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=32, FIELD=READ")
 
 seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
