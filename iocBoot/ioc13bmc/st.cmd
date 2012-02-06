@@ -141,6 +141,9 @@ MAXvConfig(1, configStep)
 oms58Setup(5, 0x4000, 190, 5, 10)
 ################################################################################
 
+# Auto-shutter logic
+dbLoadTemplate("auto_shutter.substitutions")
+
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
@@ -178,4 +181,8 @@ seq(&SIS38XX_SNL, "P=13BMC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
 # Initialize the motorUtil software
 motorUtilInit("13BMC:")
+
+# Enable UserstringCALs
+dbpf("13BMC:userStringCalcEnable.VAL","Enable")
+
 
