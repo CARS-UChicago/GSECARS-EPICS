@@ -1,0 +1,41 @@
+# These record control auto-opening the shutter
+grecord(bo,"$(P)$(SHUT)EnableShutter") {
+        field(ZNAM,"Disable")
+        field(ONAM,"Enable")
+}
+
+grecord(stringin,"$(P)$(SHUT)ClientID") {
+	field(DESC,"Client ID")
+	field(VAL,  "")
+}
+
+grecord(ao,"$(P)$(SHUT)TimeStamp") {
+	field(DESC, "last update time")
+	field(VAL,  0)
+}
+
+grecord(ao,"$(P)$(SHUT)ForceOpenTime") {
+	field(DESC, "timeout to force open")
+	field(VAL,  60.0)
+}
+
+grecord(ao,"$(P)$(SHUT)OpenDelay") {
+	field(DESC, "Delay before open")
+	field(VAL,  5.0)
+}
+
+grecord(ao,"$(P)$(SHUT)OpenRetries") {
+	field(DESC, "retry count for open")
+	field(VAL,  5)
+}
+grecord(calcout,"$(P)$(SHUT)OpenShutter") {
+        field(SCAN, "10 second")
+        field(DISV,"0")
+        field(SDIS,"$(P)$(SHUT)EnableShutter NPP NMS")
+        field(INPA,"$(SHUT_STATUS)")
+        field(CALC, "A")
+        field(OOPT, "When Zero")
+        field(DOPT, "Use OCAL")
+        field(OCAL, "1")
+        field(OUT, "$(SHUT_CONTROL).PROC PP MS")
+}
