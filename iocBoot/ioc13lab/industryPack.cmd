@@ -36,9 +36,7 @@ tyGSOctalModuleInit("UART1", "232", 0x81, 1, 2)
 #              int msecPoll,
 #              int intVec, 
 #              int risingMask, 
-#              int fallingMask,
-#              int biMask,
-#              int maxClients)
+#              int fallingMask)
 # portName  = name to give this asyn port
 # carrier     = IPAC carrier number (0, 1, etc.)
 # slot        = IPAC slot (0,1,2,3, etc.)
