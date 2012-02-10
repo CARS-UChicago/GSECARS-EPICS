@@ -45,6 +45,8 @@ devMCA_softDebug = 0
 
 ifShow
 
+pwd 
+ll
 < industryPack.cmd
 < serial.cmd
 
@@ -237,8 +239,8 @@ oms58Setup(1, 0x4000, 190, 5, 10)
 # XPSConfigAxis(0,2,"GROUP2.POSITIONER2",20480)
 #}}}}  
 # initQuadEM(quadEMName, baseAddress, fiberChannel, microSecondsPerScan, 
-#            maxClients, unidigName, unidigChan)
-#  quadEMName  = name of quadEM object created 
+#            maxClients, unidigName, unidigChan, unidigDrvInfo)
+#  quadEMName  = name of quadEM asyn port driver created 
 #  baseAddress = base address of VME card
 #  channel     = 0-3, fiber channel number
 #  microSecondsPerScan = microseconds to integrate.  When used with ipUnidig
@@ -247,7 +249,10 @@ oms58Setup(1, 0x4000, 190, 5, 10)
 #                Set to 0 if there is no IP-Unidig being used, in which
 #                case the quadEM will be read at 60Hz.
 #  unidigChan  = IP-Unidig channel connected to quadEM pulse output
-initQuadEM("quadEM1", 0xf000, 0, 1000, "Unidig1", 2)
+#  unidigDrvInfo = drvInfo string for digital input parameter
+initQuadEM("quadEM1", 0xf000, 0, 1000, "Unidig1", 2, "DIGITAL_INPUT")
+# Use this line for 60Hz
+#initQuadEM("quadEM1", 0xf000, 0, 1000, 0, 0)
 
 # initFastSweep(portName, inputName, maxSignals, maxPoints)
 #  portName = asyn port name for this new port (string)
