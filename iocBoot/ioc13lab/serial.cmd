@@ -1,11 +1,11 @@
 # int tyGSAsynInit(char *port, int uart, int channel, int baud, char parity, int sbits,
 #                 int dbits, char handshake, char *inputEos, char *outputEos)
-tyGSAsynInit("serial1",  "UART0", 0, 9600,'N',1,8,'N',"\r","\r")  /* SMART PC */
+tyGSAsynInit("serial1",  "UART0", 0, 9600,'N',1,8,'N',"\r","\r")  /* Pelco */
 tyGSAsynInit("serial2",  "UART0", 1, 9600,'N',1,8,'N',"\r","\r")  /* LAE 500 */
 tyGSAsynInit("serial3",  "UART0", 2,19200,'E',1,8,'N',"\r","\r")  /* MKS */
 #tyGSAsynInit("serial3", "UART0", 2,19200,'N',1,8,'N',"\r","\r")  /* RSF715 */
 tyGSAsynInit("serial4",  "UART0", 3,19200,'N',1,8,'N',"\r","\r")  /* ACS MCB4B */
-tyGSAsynInit("serial5",  "UART0", 4,19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
+tyGSAsynInit("serial5",  "UART0", 4, 9600,'N',1,8,'N',"\r","\r")  /* Pelco */
 tyGSAsynInit("serial6",  "UART0", 5,19200,'N',1,8,'N',"\n","\r")  /* Keithley 2000 */
 tyGSAsynInit("serial7",  "UART0", 6,38400,'N',1,8,'N',"\r","\r")  /* MM4000 */
 tyGSAsynInit("serial8",  "UART0", 7,19200,'N',1,8,'N',"\r\n","\r\n")  /* Verdi Laser */
@@ -96,7 +96,7 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=seri
 # Serial 8 XIA filter rack
 #dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13LAB:,S=filter1,ADDRESS=1,PORT=serial8")
 
-# Serial 9 Pelco CM6700 video switch
+# Serial 5 Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
 # Serial 10 SR630 thermocouple reader
