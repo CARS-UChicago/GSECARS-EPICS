@@ -1,0 +1,84 @@
+# Database for Laser Quantum Excel laser
+
+record(bo,"$(P)$(R)On") {
+    field(DTYP, "stream")
+    field(OUT, "@LQExcel.proto On $(PORT)")
+}
+
+record(bo,"$(P)$(R)Off") {
+    field(DTYP, "stream")
+    field(OUT, "@LQExcel.proto Off $(PORT)")
+}
+
+record(longout,"$(P)$(R)PowerOut") {
+    field(DTYP, "stream")
+    field(OUT, "@LQExcel.proto PowerOut $(PORT)")
+}
+
+record(bo,"$(P)$(R)Read") {
+    field(SCAN, "1 second")
+    field(FLNK, "$(P)$(R)PowerIn")
+}
+
+record(longin,"$(P)$(R)PowerIn") {
+    field(DTYP, "stream")
+    field(INP, "@LQExcel.proto PowerIn $(PORT)")
+    field(FLNK, "$(P)$(R)LaserTemp")
+}
+
+record(ai,"$(P)$(R)LaserTemp") {
+    field(DTYP, "stream")
+    field(INP, "@LQExcel.proto LaserTemp $(PORT)")
+    field(FLNK, "$(P)$(R)PSUTemp")
+    field(PREC, "3")
+}
+
+record(ai,"$(P)$(R)PSUTemp") {
+    field(DTYP, "stream")
+    field(INP, "@LQExcel.proto PSUTemp $(PORT)")
+    field(FLNK, "$(P)$(R)Status")
+    field(PREC, "3")
+}
+
+record(stringin,"$(P)$(R)Status") {
+    field(DTYP, "stream")
+    field(INP, "@LQExcel.proto Status $(PORT)")
+    field(FLNK, "$(P)$(R)PSUTime")
+}
+
+record(ai,"$(P)$(R)PSUTime") {
+    field(DTYP, "stream")
+    field(INP, "@LQExcel.proto PSUTime($(P)$(R)LETime,$(P)$(R)LOTime) $(PORT)")
+    field(PREC, "1")
+    field(FLNK, "$(P)$(R)LETime")
+}
+
+record(ai,"$(P)$(R)LETime") {
+    field(PREC, "1")
+    field(FLNK, "$(P)$(R)LOTime")
+}
+
+record(ai,"$(P)$(R)LOTime") {
+    field(PREC, "1")
+}
+
+# These records are for tweaking the power
+record(ao,"$(P)$(R)PowerTweak") {
+        field(VAL, "1")
+        field(PREC,"0")
+}
+
+record(calcout,"$(P)$(R)PowerTweakDown") {
+        field(INPA,"$(P)$(R)PowerTweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)PowerOut NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(R)PowerOut PP NMS")
+}
+
+record(calcout,"$(P)$(R)PowerTweakUp") {
+        field(INPA,"$(P)$(R)PowerTweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)PowerOut NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(R)PowerOut PP NMS")
+}
+

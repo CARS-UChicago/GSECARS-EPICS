@@ -1,0 +1,49 @@
+# LQExcel.proto
+
+# stream protocol file for Omega DP41 series meters
+
+# Mark Rivers
+# May 4, 2007
+
+On {
+   out "ON";
+   in "";
+}
+
+Off {
+   out "OFF";
+   in "";
+}
+
+PowerOut {
+   out "POWER=%d";
+   in "";
+   @init {out "POWER?"; in "%dmW";}
+}
+
+PowerIn {
+   out "POWER?";
+   in "%dmW";
+}
+
+LaserTemp {
+   out "LASTEMP?";
+   in "%fC";
+}
+
+PSUTemp {
+   out "PSUTEMP?";
+   in "%fC";
+}
+
+Status {
+   out "STATUS?";
+   in "%s";
+}
+
+PSUTime {
+   out "TIMERS?";
+   in "PSU Time             =  %f Hours";
+   in "Laser Enabled Time   =  %(\$1)f Hours";
+   in "Laser Operation Time =  %(\$2)f Hours";
+}
