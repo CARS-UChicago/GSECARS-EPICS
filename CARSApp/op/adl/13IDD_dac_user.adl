@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS-1-6\CARSApp\op\adl\13IDD_dac_user.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
 	version=030102
 }
 display {
 	object {
-		x=211
-		y=191
+		x=261
+		y=195
 		width=1435
 		height=770
 	}
@@ -1033,8 +1033,8 @@ text {
 }
 text {
 	object {
-		x=679
-		y=406
+		x=685
+		y=420
 		width=36
 		height=20
 	}
@@ -5516,20 +5516,20 @@ text {
 	object {
 		x=642
 		y=420
-		width=71
-		height=19
+		width=45
+		height=20
 	}
 	"basic attribute" {
 		clr=60
 	}
-	textix="vertical"
+	textix="Vert"
 }
 "text update" {
 	object {
-		x=643
-		y=410
-		width=40
-		height=13
+		x=645
+		y=400
+		width=53
+		height=17
 	}
 	monitor {
 		chan="13IDD:m83.RBV"
@@ -6363,7 +6363,7 @@ composite {
 	object {
 		x=271
 		y=111
-		width=249
+		width=250
 		height=399
 	}
 	"composite name"=""
@@ -6922,7 +6922,7 @@ composite {
 			object {
 				x=359
 				y=267
-				width=159
+				width=160
 				height=3
 			}
 			"basic attribute" {
@@ -6931,7 +6931,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=517
+				x=518
 				y=197
 				width=3
 				height=72
@@ -8303,19 +8303,19 @@ text {
 }
 composite {
 	object {
-		x=475
+		x=470
 		y=405
-		width=173
-		height=18
+		width=169
+		height=14
 	}
 	"composite name"=""
 	children {
 		"message button" {
 			object {
-				x=475
+				x=470
 				y=405
-				width=30
-				height=18
+				width=29
+				height=14
 			}
 			control {
 				chan="13IDD:m4.VAL"
@@ -8327,10 +8327,10 @@ composite {
 		}
 		"message button" {
 			object {
-				x=620
+				x=612
 				y=405
-				width=28
-				height=18
+				width=27
+				height=14
 			}
 			control {
 				chan="13IDD:m4.VAL"
@@ -8347,5 +8347,35 @@ composite {
 		chan="13IDD:m23.RBV"
 		chanB="13IDD:m24.RBV"
 		chanC="13IDD:m4"
+	}
+}
+composite {
+	object {
+		x=505
+		y=430
+		width=108
+		height=79
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=505
+				y=430
+				width=108
+				height=79
+			}
+			control {
+				chan="13IDD_XPS:allstop"
+				clr=30
+				bclr=20
+			}
+			label="STOP"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD_XPS:alldone"
 	}
 }

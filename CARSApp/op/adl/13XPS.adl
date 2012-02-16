@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/CARS/1-5/CARSApp/op/adl/13XPS.adl"
-	version=030000
+	name="/home/epics/support/CARS/CARSApp/op/adl/13XPS.adl"
+	version=030105
 }
 display {
 	object {
@@ -121,12 +121,12 @@ text {
 	display[0] {
 		label="Scan 1"
 		name="scan_more.adl"
-		args="P=13xps3:, S=scan1, N=1"
+		args="P=13XPS:, S=scan1, N=1"
 	}
 	display[1] {
 		label="Scan 2"
 		name="scan_more.adl"
-		args="P=13xps3:, S=scan2, N=2"
+		args="P=13XPS:, S=scan2, N=2"
 	}
 	clr=14
 	bclr=4
@@ -166,8 +166,13 @@ text {
 	}
 	display[0] {
 		label="Test motors"
-		name="2motors.adl"
-		args="P=13xps3:, TITLE=XPS_Test, M1=m1, M2=m2"
+		name="3motors.adl"
+		args="P=13XPS:, TITLE=XPS_Test, M1=m1, M2=m2, M3=m3"
+	}
+	display[1] {
+		label="Profile moves"
+		name="profileMove.adl"
+		args="P=13XPS:, R=Prof1:, TITLE=Profile_Move,M1=m1,M2=m2,M3=m3"
 	}
 	clr=14
 	bclr=4
@@ -182,7 +187,7 @@ text {
 	display[0] {
 		label="asyn record"
 		name="asynRecord.adl"
-		args="P=13xps3:, R=asyn1"
+		args="P=13XPS:, R=asyn1"
 	}
 	clr=14
 	bclr=4
@@ -209,7 +214,7 @@ text {
 	display[0] {
 		label="Save/restore status"
 		name="save_restoreStatus_more.adl"
-		args="P=13xps3:"
+		args="P=13XPS:"
 	}
 	clr=14
 	bclr=4
