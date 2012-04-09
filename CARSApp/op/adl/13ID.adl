@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=657
-		y=52
-		width=350
-		height=520
+		x=172
+		y=60
+		width=700
+		height=550
 	}
 	clr=14
 	bclr=4
@@ -89,471 +89,16 @@ display {
 }
 text {
 	object {
-		x=87
-		y=191
-		width=140
-		height=20
+		x=49
+		y=10
+		width=603
+		height=30
 	}
 	"basic attribute" {
-		clr=14
-		width=2
+		clr=54
 	}
-	textix="Vacuum and EPS"
-}
-"related display" {
-	object {
-		x=7
-		y=191
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Vacuum and EPS"
-		name="13ID_EPS.adl"
-	}
-	clr=14
-	bclr=4
-}
-rectangle {
-	object {
-		x=20
-		y=15
-		width=310
-		height=80
-	}
-	"basic attribute" {
-		clr=50
-	}
-}
-text {
-	object {
-		x=42
-		y=27
-		width=276
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="GSECARS Sector 13"
+	textix="GSECARS Sector 13 Undulator Beamline"
 	align="horiz. centered"
-}
-text {
-	object {
-		x=34
-		y=62
-		width=291
-		height=22
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Undulator Beamline"
-	align="horiz. centered"
-}
-"related display" {
-	object {
-		x=7
-		y=218
-		width=75
-		height=24
-	}
-	display[0] {
-		label="FOE Slits"
-		name="4motors.adl"
-		args="P=13IDA:, TITLE=FOE_slits, M1=m1, M2=m2, M3=m3, M4=m4"
-	}
-	display[1] {
-		label="Pinhole assembly"
-		name="5motors.adl"
-		args="P=13IDA:, TITLE=Pinhole, M1=m5, M2=m6, M3=m7, M4=m8, M5=m9"
-	}
-	display[2] {
-		label="Diagnostic Flag"
-		name="4motors.adl"
-		args="P=13IDA:, TITLE=FOE_Flags,  M1=m15, M2=m16"
-	}
-	display[3] {
-		label="IDB Slits (individual)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=ID-B_Slits, M1=m24, M2=m25"
-	}
-	display[4] {
-		label="IDB Slits (compound)"
-		name="2slit.adl"
-		args="P=13IDA:, SLIT=Slit2V"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=218
-		width=200
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Slits, Pinhole, Flag"
-}
-text {
-	object {
-		x=86
-		y=110
-		width=250
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Ring Status/Beam Position"
-}
-"related display" {
-	object {
-		x=7
-		y=110
-		width=74
-		height=24
-	}
-	display[0] {
-		label="Storage Ring Status"
-		name="SR_Status.adl"
-	}
-	display[1] {
-		label="Beam Position Monitors"
-		name="IDxbpm.adl"
-		args="sector=13,sector0=13,sectorPlusOne=14"
-	}
-	display[4] {
-		label="13-ID Status and BPM"
-		name="MRD_ID.adl"
-		args="xx=13, ID1=13"
-	}
-	display[5] {
-		label="13-ID BPM Detail"
-		name="MRD_IDbpm.adl"
-		args="xx=13, ID1=13"
-	}
-	display[7] {
-		label="OLD 13-ID Beam Pos"
-		name="IDBPM.adl"
-		args="xx=13"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=164
-		width=90
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Web Pages"
-}
-"shell command" {
-	object {
-		x=7
-		y=164
-		width=75
-		height=24
-	}
-	command[0] {
-		label="Storage Ring Status"
-		name="start http://www.aps.anl.gov/asd/operations/gifplots/statgif.html"
-	}
-	command[1] {
-		label="APS Home Page"
-		name="start http://www.aps.anl.gov"
-	}
-	command[2] {
-		label="CARS Home Page"
-		name="start http://cars.uchicago.edu"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=86
-		y=137
-		width=210
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Undulator Gap Control"
-}
-"related display" {
-	object {
-		x=7
-		y=137
-		width=74
-		height=24
-	}
-	display[0] {
-		label="Undulator Gap"
-		name="ID_NewCtl.adl"
-		args="xx=13ds"
-	}
-	display[1] {
-		label="Tapered Undulator Gap"
-		name="UndulatorTprCtl.adl"
-		args="xx=13ds"
-	}
-	clr=14
-	bclr=4
-}
-"related display" {
-	object {
-		x=7
-		y=326
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Mono Keithley 2000"
-		name="Keithley2kDMM_mf.adl"
-		args="P=13IDA:, Dmm=DMM1"
-	}
-	display[1] {
-		label="DAC #1"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=1"
-	}
-	display[2] {
-		label="DAC #2"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=2"
-	}
-	display[3] {
-		label="DAC #3"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=3"
-	}
-	display[5] {
-		label="Mirror Keithley 2000"
-		name="Keithley2kDMM_mf.adl"
-		args="P=13IDA:, Dmm=DMM2"
-	}
-	display[6] {
-		label="ipUnidig"
-		name="IpUnidig.adl"
-		args="P=13IDA:, R=Unidig1"
-	}
-	display[7] {
-		label="quadEM"
-		name="quadEM.adl"
-		args="P=13IDA:, EM=EM1"
-	}
-	display[8] {
-		label="Ion Pump 6 (Mirror)"
-		name="MPC.adl"
-		args="P=13IDA:, PUMP=ip6"
-	}
-	display[9] {
-		label="Ion Pump 7 (Mirror)"
-		name="MPC.adl"
-		args="P=13IDA:, PUMP=ip7"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=326
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="FOE electronics"
-}
-"related display" {
-	object {
-		x=7
-		y=245
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Energy"
-		name="Energy.adl"
-		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
-	}
-	display[1] {
-		label="Crystal cage"
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
-	}
-	display[2] {
-		label="Crystal Cage Table"
-		name="table.adl"
-		args="P=13IDA:,  Q=MON:T1, T=MON:t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
-	}
-	display[3] {
-		label="2nd Crystal Feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=mono_pid1, TITLE=ID_Mono_feedback"
-	}
-	display[4] {
-		label="Rotation Axis"
-		name="1motors.adl"
-		args="P=13IDA:, TITLE=VG_mono, M1=m17"
-	}
-	display[5] {
-		label="Fast pitch feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_pitch_pid, TITLE=Mono_Pitch_feedback"
-	}
-	display[6] {
-		label="Fast roll feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_roll_pid, TITLE=Mono_Roll_feedback"
-	}
-	display[7] {
-		label="Cryo & Vacuum Status"
-		name="13ID_mono_cryovac.adl"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=245
-		width=130
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Monochromator"
-}
-text {
-	object {
-		x=87
-		y=299
-		width=170
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Horizontal Mirror"
-}
-"related display" {
-	object {
-		x=7
-		y=299
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Horizontal Mirror"
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror, M1=m26, M2=m27, M3=pm3, M4=pm4, M5=pm7, M6=pm8"
-	}
-	display[1] {
-		label="Horizontal Pitch (simple)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror_Pitch_Simple, M1=m28, M2=m29"
-	}
-	display[2] {
-		label="Horizontal Base (simple)"
-		name="3motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror_Base, M1=m30, M2=m31, M3=m32"
-	}
-	display[3] {
-		label="Horizontal Base (compound)"
-		name="table.adl"
-		args="P=13IDA:, Q=HMIR:T1, T=HMIR:t1, M0X=junk, M0Y=m30, M1Y=m31, M2X=junk, M2Y=m32, M2Z=junk"
-	}
-	display[4] {
-		label="Horizontal Pitch Setup"
-		name="MirrorTiltSetup.adl"
-		args="P=13IDA:,PMR=pm8"
-	}
-	display[5] {
-		label="Horizontal Temperature"
-		name="MirrorTemps.adl"
-		args="P=13IDA:,TITLE=Horiz_Temperature,CH1=DMM2Ch2, CH2=DMM2Ch4, CH3=DMM2Ch3"
-	}
-	clr=14
-	bclr=4
-}
-"related display" {
-	object {
-		x=7
-		y=272
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Vertical Mirror"
-		name="8motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror, M1=m18, M2=m19, M3=pm1, M4=pm2, M5=pm5, M6=pm6, M7=pm9, M8=pm10"
-	}
-	display[1] {
-		label="Vertical Pitch (simple)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror_Pitch_Simple, M1=m20, M2=m21"
-	}
-	display[2] {
-		label="Vertical Base (simple)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror_Base, M1=m22, M2=m23"
-	}
-	display[3] {
-		label="Vertical Base Setup"
-		name="MirrorTiltSetup.adl"
-		args="P=13IDA:,PMR=pm10"
-	}
-	display[4] {
-		label="Vertical Pitch Setup"
-		name="MirrorTiltSetup.adl"
-		args="P=13IDA:,PMR=pm6"
-	}
-	display[5] {
-		label="Vertical Temperature"
-		name="MirrorTemps.adl"
-		args="P=13IDA:,TITLE=Vert_Temperature,CH1=DMM2Ch7, CH2=DMM2Ch6, CH3=DMM2Ch8"
-	}
-	display[6] {
-		label="Vertical PZT"
-		name="singleDAC.adl"
-		args="P=13IDA:,D=1,C=5"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=272
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Vertical Mirror"
 }
 "related display" {
 	object {
@@ -583,76 +128,99 @@ text {
 	}
 	textix="Scans"
 }
+text {
+	object {
+		x=304
+		y=60
+		width=72
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Common"
+}
+rectangle {
+	object {
+		x=10
+		y=50
+		width=680
+		height=175
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
 "related display" {
 	object {
-		x=7
-		y=407
+		x=381
+		y=95
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
-		label="BPM Motors"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=BPM Motors, M1=m33, M2=m15"
+		label="Mono Keithley 2000"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13IDA:, Dmm=DMM1"
 	}
 	display[1] {
-		label="13ID BPM Control"
-		name="BPM_Foil.adl"
-		args="P=13IDA:, TITLE=BPM_Foil_Control, M1=m33, M2=m15, EN=E"
+		label="DAC #1"
+		name="singleDAC.adl"
+		args="P=13IDA:, D=1, C=1"
 	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=87
-		y=407
-		width=30
-		height=20
+	display[2] {
+		label="DAC #2"
+		name="singleDAC.adl"
+		args="P=13IDA:, D=1, C=2"
 	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="BPM"
-}
-"related display" {
-	object {
-		x=7
-		y=434
-		width=75
-		height=24
-	}
-	display[0] {
-		label="quadEM MCAs"
-		name="quadEM_med.adl"
-		args="P=13IDA:quadEM:, P_FFT=13IDA:quadEM_FFT:, T13=Vertical_BPM, T24=Horizontal_BPM"
+	display[3] {
+		label="DAC #3"
+		name="singleDAC.adl"
+		args="P=13IDA:, D=1, C=3"
 	}
 	display[4] {
-		name="l"
+		label="IP-330 ADC"
+		name="Ip330Scan.adl"
+		args="P=13IDA:, R=IP330_"
+	}
+	display[5] {
+		label="Mirror Keithley 2000"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13IDA:, Dmm=DMM2"
+	}
+	display[6] {
+		label="ipUnidig"
+		name="IpUnidig.adl"
+		args="P=13IDA:, R=Unidig1"
+	}
+	display[7] {
+		label="quadEM"
+		name="quadEM.adl"
+		args="P=13IDA:, EM=EM1"
 	}
 	clr=14
-	bclr=4
+	bclr=51
 }
 text {
 	object {
-		x=87
-		y=434
-		width=110
+		x=461
+		y=95
+		width=150
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="quadEM MCAs"
+	textix="Other electronics"
 }
 "related display" {
 	object {
-		x=7
-		y=353
+		x=381
+		y=120
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
 		label="Serial 1"
@@ -694,13 +262,53 @@ text {
 		name="asynOctet.adl"
 		args="P=13IDA:, R=serial8"
 	}
+	display[8] {
+		label="Serial 9"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial9"
+	}
+	display[9] {
+		label="Serial 10"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial10"
+	}
+	display[10] {
+		label="Serial 11"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial11"
+	}
+	display[11] {
+		label="Serial 12"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial12"
+	}
+	display[12] {
+		label="Serial 13"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial13"
+	}
+	display[13] {
+		label="Serial 14"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial14"
+	}
+	display[14] {
+		label="Serial 15"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial15"
+	}
+	display[15] {
+		label="Serial 16"
+		name="asynOctet.adl"
+		args="P=13IDA:, R=serial16"
+	}
 	clr=14
-	bclr=4
+	bclr=51
 }
 text {
 	object {
-		x=87
-		y=353
+		x=461
+		y=120
 		width=180
 		height=20
 	}
@@ -708,62 +316,62 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Generic serial 1-8"
+	textix="asyn serial 1-16"
 }
 "related display" {
 	object {
-		x=7
-		y=380
+		x=381
+		y=145
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
-		label="Serial 9"
+		label="Serial 17"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial9"
+		args="P=13IDA:, R=serial17"
 	}
 	display[1] {
-		label="Serial 10"
+		label="Serial 18"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial10"
+		args="P=13IDA:, R=serial18"
 	}
 	display[2] {
-		label="Serial 11"
+		label="Serial 19"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial11"
+		args="P=13IDA:, R=serial19"
 	}
 	display[3] {
-		label="Serial 12"
+		label="Serial 20"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial12"
+		args="P=13IDA:, R=serial20"
 	}
 	display[4] {
-		label="Serial 13"
+		label="Serial 21"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial13"
+		args="P=13IDA:, R=serial21"
 	}
 	display[5] {
-		label="Serial 14"
+		label="Serial 22"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial14"
+		args="P=13IDA:, R=serial22"
 	}
 	display[6] {
-		label="Serial 15"
+		label="Serial 23"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial15"
+		args="P=13IDA:, R=serial23"
 	}
 	display[7] {
-		label="Serial 16"
+		label="Serial 24"
 		name="asynOctet.adl"
-		args="P=13IDA:, R=serial16"
+		args="P=13IDA:, R=serial24"
 	}
 	clr=14
-	bclr=4
+	bclr=51
 }
 text {
 	object {
-		x=87
-		y=380
+		x=461
+		y=145
 		width=190
 		height=20
 	}
@@ -771,14 +379,443 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Generic serial 9-16"
+	textix="asyn serial 17-24"
 }
 "related display" {
 	object {
-		x=7
-		y=461
+		x=381
+		y=170
 		width=75
-		height=24
+		height=20
+	}
+	display[0] {
+		label="vxWorks statistics"
+		name="IOC_Status.adl"
+		args="P=13IDA:"
+	}
+	display[1] {
+		label="Save/restore status"
+		name="save_restoreStatus_more.adl"
+		args="P=13IDA:"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=170
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IOC statistics"
+}
+composite {
+	object {
+		x=31
+		y=170
+		width=230
+		height=20
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=31
+				y=170
+				width=75
+				height=20
+			}
+			display[0] {
+				label="Ion Pump 6 (Mirror)"
+				name="MPC.adl"
+				args="P=13IDA:, PUMP=ip6"
+			}
+			display[1] {
+				label="Ion Pump 7 (Mirror)"
+				name="MPC.adl"
+				args="P=13IDA:, PUMP=ip7"
+			}
+			clr=14
+			bclr=51
+		}
+		text {
+			object {
+				x=111
+				y=170
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Vacuum electronics"
+		}
+	}
+}
+composite {
+	object {
+		x=31
+		y=95
+		width=329
+		height=20
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=31
+				y=95
+				width=74
+				height=20
+			}
+			display[0] {
+				label="Storage Ring Status"
+				name="SR_Status.adl"
+			}
+			display[1] {
+				label="Beam Position Monitors"
+				name="IDxbpm.adl"
+				args="sector=13,sector0=13,sectorPlusOne=14"
+			}
+			display[4] {
+				label="13-ID Status and BPM"
+				name="MRD_ID.adl"
+				args="xx=13, ID1=13"
+			}
+			display[5] {
+				label="13-ID BPM Detail"
+				name="MRD_IDbpm.adl"
+				args="xx=13, ID1=13"
+			}
+			display[7] {
+				label="OLD 13-ID Beam Pos"
+				name="IDBPM.adl"
+				args="xx=13"
+			}
+			clr=14
+			bclr=51
+		}
+		text {
+			object {
+				x=110
+				y=95
+				width=250
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Ring Status/Beam Position"
+		}
+	}
+}
+composite {
+	object {
+		x=31
+		y=120
+		width=170
+		height=20
+	}
+	"composite name"=""
+	children {
+		"shell command" {
+			object {
+				x=31
+				y=120
+				width=75
+				height=20
+			}
+			command[0] {
+				label="Storage Ring Status"
+				name="start http://www.aps.anl.gov/asd/operations/gifplots/statgif.html"
+			}
+			command[1] {
+				label="APS Home Page"
+				name="start http://www.aps.anl.gov"
+			}
+			command[2] {
+				label="CARS Home Page"
+				name="start http://cars.uchicago.edu"
+			}
+			clr=14
+			bclr=51
+		}
+		text {
+			object {
+				x=111
+				y=120
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Web Pages"
+		}
+	}
+}
+composite {
+	object {
+		x=31
+		y=145
+		width=220
+		height=20
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=111
+				y=145
+				width=140
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Vacuum and EPS"
+		}
+		"related display" {
+			object {
+				x=31
+				y=145
+				width=75
+				height=20
+			}
+			display[0] {
+				label="Vacuum and EPS"
+				name="13ID_EPS.adl"
+			}
+			clr=14
+			bclr=51
+		}
+	}
+}
+text {
+	object {
+		x=121
+		y=240
+		width=108
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="13-ID-C/D"
+}
+rectangle {
+	object {
+		x=10
+		y=230
+		width=330
+		height=280
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=111
+		y=325
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Monochromator"
+}
+"related display" {
+	object {
+		x=31
+		y=325
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-C/D Energy"
+		name="Energy.adl"
+		args="P1=13IDA:, TITLE=ID-C/D_Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+	}
+	display[1] {
+		label="ID-C/D Crystal cage"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Crystal_Cage, M1=m58, M2=m59, M3=m60"
+	}
+	display[2] {
+		label="ID-C/D Rotation Axis"
+		name="1motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Mono_Theta, M1=m57"
+	}
+	display[3] {
+		label="ID-C/D 2nd Crystal Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=mono_pid1, TITLE=ID-C/D_Mono_feedback"
+	}
+	display[4] {
+		label="ID-C/D Fast pitch feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=fast_PITCH_pid, TITLE=ID-C/D_Mono_Roll_feedback"
+	}
+	display[5] {
+		label="ID-C/D Fast roll feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=fast_roll_pid, TITLE=ID-C/D_Mono_Pitch_feedback"
+	}
+	display[6] {
+		label="ID-C/D Cryo & Vacuum Status"
+		name="13ID_mono_cryovac.adl"
+	}
+	clr=14
+	bclr=51
+}
+"related display" {
+	object {
+		x=31
+		y=275
+		width=74
+		height=20
+	}
+	display[0] {
+		label="Undulator Gap"
+		name="ID_NewCtl.adl"
+		args="xx=13ds"
+	}
+	display[1] {
+		label="Tapered Undulator Gap"
+		name="UndulatorTprCtl.adl"
+		args="xx=13ds"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=110
+		y=275
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Undulator Gap Control"
+}
+"related display" {
+	object {
+		x=31
+		y=300
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-C/D FOE Slits"
+		name="4motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_FOE_slits, M1=m1, M2=m2, M3=m3, M4=m4"
+	}
+	display[1] {
+		label="ID-C/D Pinhole assembly"
+		name="5motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Pinhole, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=111
+		y=300
+		width=200
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Slits, Pinhole"
+}
+"related display" {
+	object {
+		x=31
+		y=400
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-C/D BPM Motors"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_BPM, M1=m33, M2=m15"
+	}
+	display[1] {
+		label="ID-C/D BPM Control"
+		name="BPM_Foil.adl"
+		args="P=13IDA:, TITLE=ID-C/D_BPM_Foils, M1=m33, M2=m15, EN=E"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=111
+		y=400
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Quad BPM"
+}
+"related display" {
+	object {
+		x=31
+		y=425
+		width=75
+		height=20
+	}
+	display[0] {
+		label="quadEM MCAs"
+		name="quadEM_med.adl"
+		args="P=13IDA:quadEM:, P_FFT=13IDA:quadEM_FFT:, T13=Vertical_BPM, T24=Horizontal_BPM"
+	}
+	display[4] {
+		name="l"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=111
+		y=425
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Quad BPM MCAs"
+}
+"related display" {
+	object {
+		x=31
+		y=450
+		width=75
+		height=20
 	}
 	display[0] {
 		label="Scan 1"
@@ -801,12 +838,12 @@ text {
 		args="P=13IDA:, S=scan4, N=4, DW=Dwait4, PW=Pwait4"
 	}
 	clr=14
-	bclr=4
+	bclr=51
 }
 text {
 	object {
-		x=87
-		y=461
+		x=111
+		y=450
 		width=40
 		height=20
 	}
@@ -817,33 +854,504 @@ text {
 }
 "related display" {
 	object {
-		x=7
-		y=488
+		x=31
+		y=350
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
-		label="vxWorks statistics"
-		name="IOC_Status.adl"
-		args="P=13IDA:"
+		label="ID-C/D Vertical Mirror"
+		name="8motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Vertical_Mirror, M1=m41, M2=m42, M3=pm1, M4=pm2, M5=pm5, M6=pm6, M7=pm9, M8=pm10"
 	}
 	display[1] {
-		label="Save/restore status"
-		name="save_restoreStatus_more.adl"
-		args="P=13IDA:"
+		label="ID-C/D Vertical Pitch (simple)"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Vertical_Mirror_Pitch_Simple, M1=m43, M2=m44"
+	}
+	display[2] {
+		label="ID-C/D Vertical Base (simple)"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Vertical_Mirror_Base, M1=m45, M2=m46"
+	}
+	display[3] {
+		label="ID-C/D Vertical Base Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13IDA:,PMR=pm10"
+	}
+	display[4] {
+		label="ID-C/D Vertical Pitch Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13IDA:,PMR=pm6"
+	}
+	display[5] {
+		label="ID-C/D Vertical Temperature"
+		name="MirrorTemps.adl"
+		args="P=13IDA:,TITLE=ID-C/D_Vert_Temperature,CH1=DMM2Ch7, CH2=DMM2Ch6, CH3=DMM2Ch8"
+	}
+	display[6] {
+		label="ID-C/D Vertical PZT"
+		name="singleDAC.adl"
+		args="P=13IDA:,D=1,C=5"
 	}
 	clr=14
-	bclr=4
+	bclr=51
 }
 text {
 	object {
-		x=87
-		y=488
-		width=180
+		x=111
+		y=350
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Vertical Mirror"
+}
+"related display" {
+	object {
+		x=31
+		y=375
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-C/D Horizontal Mirror"
+		name="6motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Horizontal_Mirror, M1=m49, M2=m50, M3=pm3, M4=pm4, M5=pm7, M6=pm8"
+	}
+	display[1] {
+		label="ID-C/D Horizontal Pitch (simple)"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Horizontal_Mirror_Pitch_Simple, M1=m51, M2=m52"
+	}
+	display[2] {
+		label="ID-C/D Horizontal Base (simple)"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Horizontal_Mirror_Base, M1=m53, M2=m54, M3=m55"
+	}
+	display[3] {
+		label="ID-C/D Horizontal Base (compound)"
+		name="table.adl"
+		args="P=13IDA:, Q=HMIR:T1, T=HMIR:t1, M0X=junk, M0Y=m53, M1Y=m54, M2X=junk, M2Y=m55, M2Z=junk"
+	}
+	display[4] {
+		label="ID-C/D Horizontal Pitch Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13IDA:,PMR=pm8"
+	}
+	display[5] {
+		label="ID-C/D Horizontal Temperature"
+		name="MirrorTemps.adl"
+		args="P=13IDA:,TITLE=ID-C/D_Horiz_Temperature,CH1=DMM2Ch2, CH2=DMM2Ch4, CH3=DMM2Ch3"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=111
+		y=375
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Horizontal Mirror"
+}
+text {
+	object {
+		x=483
+		y=240
+		width=84
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="13-ID-E"
+}
+rectangle {
+	object {
+		x=360
+		y=230
+		width=330
+		height=280
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=461
+		y=325
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Monochromator"
+}
+"related display" {
+	object {
+		x=381
+		y=275
+		width=74
+		height=20
+	}
+	display[0] {
+		label="Undulator Gap"
+		name="ID_NewCtl.adl"
+		args="xx=13us"
+	}
+	display[1] {
+		label="Tapered Undulator Gap"
+		name="UndulatorTprCtl.adl"
+		args="xx=13us"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=460
+		y=275
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Undulator Gap Control"
+}
+"related display" {
+	object {
+		x=381
+		y=300
+		width=75
+		height=20
+	}
+	display[0] {
+		label="E FOE Slits"
+		name="4motors.adl"
+		args="P=13IDA:, TITLE=E_FOE_slits, M1=m5, M2=m6, M3=m7, M4=m8"
+	}
+	display[1] {
+		label="E beam viewer"
+		name="1motors.adl"
+		args="P=13IDA:, TITLE=Beam_Viewer,  M1=m9"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=300
+		width=200
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Slits, Beam viewer"
+}
+"related display" {
+	object {
+		x=381
+		y=400
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-E BPM Motors"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=ID-E_BPM Motors, M1=m33, M2=m15"
+	}
+	display[1] {
+		label="ID-E BPM Control"
+		name="BPM_Foil.adl"
+		args="P=13IDA:, TITLE=ID-E_BPM_Foil_Control, M1=m33, M2=m15, EN=E"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=400
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Quad BPM"
+}
+"related display" {
+	object {
+		x=381
+		y=425
+		width=75
+		height=20
+	}
+	display[0] {
+		label="quadEM MCAs"
+		name="quadEM_med.adl"
+		args="P=13IDA:quadEM:, P_FFT=13IDA:quadEM_FFT:, T13=Vertical_BPM, T24=Horizontal_BPM"
+	}
+	display[4] {
+		name="l"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=425
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Quad BPM MCAs"
+}
+"related display" {
+	object {
+		x=381
+		y=450
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
+	}
+	display[2] {
+		label="Scan 3"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan3, N=3, DW=Dwait3, PW=Pwait3"
+	}
+	display[3] {
+		label="Scan 4"
+		name="scan_more.adl"
+		args="P=13IDA:, S=scan4, N=4, DW=Dwait4, PW=Pwait4"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=450
+		width=40
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="IOC statistics"
+	textix="Scan"
+}
+text {
+	object {
+		x=461
+		y=350
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Horizontal Mirror #1"
+}
+"related display" {
+	object {
+		x=381
+		y=350
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Vertical Mirror"
+		name="8motors.adl"
+		args="P=13IDA:, TITLE=Vertical_Mirror, M1=m18, M2=m19, M3=pm1, M4=pm2, M5=pm5, M6=pm6, M7=pm9, M8=pm10"
+	}
+	display[1] {
+		label="Vertical Pitch (simple)"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=Vertical_Mirror_Pitch_Simple, M1=m20, M2=m21"
+	}
+	display[2] {
+		label="Vertical Base (simple)"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=Vertical_Mirror_Base, M1=m22, M2=m23"
+	}
+	display[3] {
+		label="Vertical Base Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13IDA:,PMR=pm10"
+	}
+	display[4] {
+		label="Vertical Pitch Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13IDA:,PMR=pm6"
+	}
+	display[5] {
+		label="Vertical Temperature"
+		name="MirrorTemps.adl"
+		args="P=13IDA:,TITLE=Vert_Temperature,CH1=DMM2Ch7, CH2=DMM2Ch6, CH3=DMM2Ch8"
+	}
+	display[6] {
+		label="Vertical PZT"
+		name="singleDAC.adl"
+		args="P=13IDA:,D=1,C=5"
+	}
+	clr=14
+	bclr=51
+}
+"related display" {
+	object {
+		x=381
+		y=375
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Horizontal Mirror"
+		name="6motors.adl"
+		args="P=13IDA:, TITLE=Horizontal_Mirror, M1=m26, M2=m27, M3=pm3, M4=pm4, M5=pm7, M6=pm8"
+	}
+	display[1] {
+		label="Horizontal Pitch (simple)"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=Horizontal_Mirror_Pitch_Simple, M1=m28, M2=m29"
+	}
+	display[2] {
+		label="Horizontal Base (simple)"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=Horizontal_Mirror_Base, M1=m30, M2=m31, M3=m32"
+	}
+	display[3] {
+		label="Horizontal Base (compound)"
+		name="table.adl"
+		args="P=13IDA:, Q=HMIR:T1, T=HMIR:t1, M0X=junk, M0Y=m30, M1Y=m31, M2X=junk, M2Y=m32, M2Z=junk"
+	}
+	display[4] {
+		label="Horizontal Pitch Setup"
+		name="MirrorTiltSetup.adl"
+		args="P=13IDA:,PMR=pm8"
+	}
+	display[5] {
+		label="Horizontal Temperature"
+		name="MirrorTemps.adl"
+		args="P=13IDA:,TITLE=Horiz_Temperature,CH1=DMM2Ch2, CH2=DMM2Ch4, CH3=DMM2Ch3"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=375
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Horizontal Mirror #2"
+}
+"related display" {
+	object {
+		x=31
+		y=195
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Pinhole BPM and viewer"
+		name="4motors.adl"
+		args="P=13IDA:, TITLE=Pinhole_Tank_BPM_Viewer,M1=m21,M2=m22,M3=m23,M4=m24"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=111
+		y=195
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Pinhole Tank BPM & Viewer"
+}
+"related display" {
+	object {
+		x=381
+		y=325
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Energy"
+		name="Energy.adl"
+		args="P1=13IDA:, TITLE=_ID-E_Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+	}
+	display[1] {
+		label="Crystal cage"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=ID-E_Crystal_Cage, M1=m58, M2=m59, M3=m60"
+	}
+	display[2] {
+		label="Rotation Axis"
+		name="1motors.adl"
+		args="P=13IDA:, TITLE=ID-E_Mono_Theta, M1=m57"
+	}
+	display[3] {
+		label="2nd Crystal Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=mono_pid1, TITLE=ID-E_Mono_feedback"
+	}
+	display[4] {
+		label="Fast pitch feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=fast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
+	}
+	display[5] {
+		label="Fast roll feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=fast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+	}
+	display[6] {
+		label="Cryo & Vacuum Status"
+		name="13ID_mono_cryovac.adl"
+	}
+	clr=14
+	bclr=51
 }
