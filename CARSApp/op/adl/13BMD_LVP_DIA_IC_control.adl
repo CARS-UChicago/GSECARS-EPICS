@@ -1,0 +1,357 @@
+
+file {
+	name="c:\temp\DIA_IC_control.adl"
+	version=020306
+}
+display {
+	object {
+		x=1896
+		y=364
+		width=400
+		height=300
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=145
+		y=80
+		width=100
+		height=150
+	}
+	"basic attribute" {
+		clr=53
+	}
+}
+polygon {
+	object {
+		x=4
+		y=131
+		width=391
+		height=42
+	}
+	"basic attribute" {
+		clr=20
+		style="dash"
+	}
+	"dynamic attribute" {
+		chan="13BMD:Unidig2Bo14"
+	}
+	points {
+		(28,165)
+		(395,165)
+		(395,140)
+		(28,140)
+		(28,131)
+		(4,151)
+		(28,173)
+		(28,165)
+	}
+}
+text {
+	object {
+		x=136
+		y=143
+		width=132
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Beam Direction"
+}
+rectangle {
+	object {
+		x=45
+		y=128
+		width=68
+		height=48
+	}
+	"basic attribute" {
+		clr=19
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bi14.VAL"
+	}
+}
+text {
+	object {
+		x=67
+		y=139
+		width=33
+		height=26
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bi14.VAL"
+	}
+	textix="IN"
+}
+rectangle {
+	object {
+		x=45
+		y=55
+		width=68
+		height=48
+	}
+	"basic attribute" {
+		clr=34
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:Unidig2Bi14.VAL"
+	}
+}
+text {
+	object {
+		x=53
+		y=67
+		width=33
+		height=26
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:Unidig2Bi14.VAL"
+	}
+	textix="OUT"
+}
+rectangle {
+	object {
+		x=277
+		y=129
+		width=68
+		height=48
+	}
+	"basic attribute" {
+		clr=19
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bi13.VAL"
+	}
+}
+text {
+	object {
+		x=299
+		y=140
+		width=33
+		height=26
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:Unidig2Bi13.VAL"
+	}
+	textix="IN"
+}
+rectangle {
+	object {
+		x=277
+		y=56
+		width=68
+		height=48
+	}
+	"basic attribute" {
+		clr=34
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:Unidig2Bi13.VAL"
+	}
+}
+text {
+	object {
+		x=285
+		y=68
+		width=33
+		height=26
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMD:Unidig2Bi13.VAL"
+	}
+	textix="OUT"
+}
+text {
+	object {
+		x=165
+		y=86
+		width=56
+		height=40
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="DIA"
+}
+text {
+	object {
+		x=28
+		y=264
+		width=342
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Downstream          Upstream"
+}
+"message button" {
+	object {
+		x=18
+		y=178
+		width=121
+		height=24
+	}
+	control {
+		chan="13BMD:Unidig2Bo14"
+		clr=14
+		bclr=4
+	}
+	label="Move IC In"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=18
+		y=30
+		width=121
+		height=24
+	}
+	control {
+		chan="13BMD:Unidig2Bo14"
+		clr=14
+		bclr=4
+	}
+	label="Move IC Out"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=247
+		y=30
+		width=121
+		height=24
+	}
+	control {
+		chan="13BMD:Unidig2Bo13"
+		clr=14
+		bclr=4
+	}
+	label="Move IC Out"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=252
+		y=179
+		width=121
+		height=24
+	}
+	control {
+		chan="13BMD:Unidig2Bo13"
+		clr=14
+		bclr=4
+	}
+	label="Move IC In"
+	press_msg="1"
+}
+text {
+	object {
+		x=74
+		y=223
+		width=130
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="I                  Io            "
+}
