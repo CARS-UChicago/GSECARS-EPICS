@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS-1-6\CARSApp\op\adl\13BMD_brill_Compact.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BMD_brill_Compact.adl"
 	version=030102
 }
 display {
@@ -8628,8 +8628,8 @@ text {
 		policy="replace display"
 	}
 	clr=9
-	bclr=14
-	label="-Diffraction"
+	bclr=0
+	label="-XRD MAR345"
 }
 "related display" {
 	object {
@@ -9696,4 +9696,21 @@ composite {
 		vis="if not zero"
 		chan="13BMD:Unidig2Bo0.VAL"
 	}
+}
+"related display" {
+	object {
+		x=198
+		y=687
+		width=160
+		height=28
+	}
+	display[0] {
+		label="Full Original Brillouin Window"
+		name="13BMD_DAC.adl"
+		args="P=13BMD:, R=Unidig2, D=1, C=Pelco1"
+		policy="replace display"
+	}
+	clr=9
+	bclr=14
+	label="-XRD PerkinElmer"
 }
