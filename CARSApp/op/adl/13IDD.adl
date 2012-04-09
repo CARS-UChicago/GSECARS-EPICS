@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13IDD.adl"
-	version=030102
+	version=030105
 }
 display {
 	object {
@@ -267,9 +267,14 @@ text {
 		args="P=13IDD:, PMR=pm9, PMT=pm10"
 	}
 	display[7] {
-		label="Detector slits"
+		label="Detector slits simple"
 		name="4motors.adl"
-		args="P=13IDD:, TITLE=LVP_DetectorSlits,  M1=m57, M2=m58, M3=m59, M4=m60"
+		args="P=13IDD:, TITLE=LVP_DetectorSlits,  M1=m85, M2=m86, M3=m87, M4=m88"
+	}
+	display[8] {
+		label="Detector slits compound"
+		name="4slitGraphic.adl"
+		args="P=13IDD:, V=DetSlitV, H=DetSlitH, mYp=m88, mYn=m87, mXn=m85, mXp=m86, SLIT=LVP_Det"
 	}
 	clr=14
 	bclr=4
