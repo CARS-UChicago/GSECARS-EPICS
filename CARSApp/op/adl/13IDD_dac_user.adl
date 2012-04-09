@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
+	name="j:\epics\support\cars\CARSApp\op\adl\13IDD_dac_user.adl"
 	version=030102
 }
 display {
 	object {
-		x=261
-		y=195
+		x=353
+		y=208
 		width=1435
 		height=770
 	}
@@ -3275,6 +3275,7 @@ rectangle {
 		bclr=19
 	}
 	align="horiz. centered"
+	format="truncated"
 	limits {
 	}
 }
@@ -8377,5 +8378,35 @@ composite {
 	"dynamic attribute" {
 		vis="if zero"
 		chan="13IDD_XPS:alldone"
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=85
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDD:dn_t_int"
+		clr=34
+		bclr=19
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=690
+		y=85
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDD:up_t_int"
+		clr=34
+		bclr=19
+	}
+	limits {
 	}
 }
