@@ -99,6 +99,29 @@ devAvmeMRDConfig(0xB0000200, 0xA0, 5)
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(4, 0x4000, 190, 5, 10)
 
+################################################################################
+# OMS MAXv driver setup parameters:
+#     (1)number of cards in array.
+#     (2)VME Address Type (16,24,32).
+#     (3)Base Address on 4K (0x1000) boundary.
+#     (4)interrupt vector (0=disable or  64 - 255).
+#     (5)interrupt level (1 - 6).
+#     (6)motor task polling rate (min=1Hz,max=60Hz).
+MAXvSetup(3, 16, 0x8000, 190, 5, 10)
+drvMAXvdebug=0
+# OMS MAXv configuration string:
+#     (1) number of card being configured (0-14).
+#     (2) configuration string; axis type (PSO/PSE/PSM) MUST be set here.
+#         For example, set which TTL signal level defines
+#         an active limit switch.  Set X,Y,Z,T to active low and set U,V,R,S
+#         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
+#         User's Manual for LL/LH and PSO/PSE/PSM commands.
+# Set all axes to open-loop stepper and active high limits
+configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+MAXvConfig(0, configStep)
+MAXvConfig(1, configStep)
+MAXvConfig(2, configStep)
+
 # initQuadEM(baseAddress, fiberChannel, microSecondsPerScan, maxClients,
 #            unidigName, unidigChan)
 #  quadEMName  = name of quadEM object created
