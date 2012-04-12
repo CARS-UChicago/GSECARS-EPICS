@@ -3,7 +3,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 #
-dbLoadDatabase("../../dbd/CARSLinux.dbd")
+dbLoadDatabase("../../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 
@@ -37,7 +37,7 @@ XPSEnableSetPosition(0)
 
 ################################################################################
 # Motor records
-dbLoadTemplate("motors_xps.template")
+dbLoadTemplate("motors.template")
 
 # Auxillary I/O records
 dbLoadTemplate("XPSAux.substitutions")
@@ -68,9 +68,9 @@ set_savefile_path(".", "autosave")
 # specify what save files should be restored.  Note these files must be
 # in the directory specified in set_savefile_path(), or, if that function
 # has not been called, from the directory current when iocInit is invoked
-set_pass0_restoreFile("auto_positions_xps.sav")
-set_pass0_restoreFile("auto_settings_xps.sav")
-set_pass1_restoreFile("auto_settings_xps.sav")
+set_pass0_restoreFile("auto_positions.sav")
+set_pass0_restoreFile("auto_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
 
 ###
 # specify directories in which to to search for included request files
@@ -91,16 +91,16 @@ set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
 set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
-save_restoreSet_status_prefix("13BMD_XPS:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD_XPS:")
+save_restoreSet_status_prefix("13IDA_XPS1:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_XPS1:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
-dbLoadTemplate "scanParms_xps.template"
+dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMD_XPS:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_XPS1:")
 
 iocInit
 
@@ -110,9 +110,9 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions_xps.req",5,"P=13IDA:")
+create_monitor_set("auto_positions.req",5,"P=13IDA:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings_xps.req",30,"P=13IDA:")
+create_monitor_set("auto_settings.req",30,"P=13IDA:")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13IDA:m57.NTM","0")
