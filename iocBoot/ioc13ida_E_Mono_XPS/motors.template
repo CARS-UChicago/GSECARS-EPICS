@@ -1,0 +1,26 @@
+# XPS Stages
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,      N,   M,     DTYP,    PORT, ADDR, DESC,       EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,  UREV,      PREC,  DHLM,   DLLM}
+{13IDA:, 1, m61, "asynMotor", XPS1, 0,   "Theta",     deg,  Pos,  1.0,   0,   0.5,   0,   1, .2,    1,   0.0001,        4,   40,      -5}
+# 200 full steps/rev, 25:1 gear box, 1mm lead screw pitch = 1mm/200/25= .0002
+{13IDA:, 2, m62, "asynMotor", XPS1, 1,   "Height",     mm,  Pos,  0.3,   0,   0.5,   0,   1, .2,    1,   0.0002,        4,    8,       0}
+# 200 full steps/rev, 28:1 gear box, 1mm lead screw pitch = 1mm/200/28= 0.0001785714
+{13IDA:, 3, m63, "asynMotor", XPS1, 2,   "Pitch",      mm,  Pos,  0.3,   0,   0.5,   0,   1, .2,    1,   0.0001785714,  4,    4,       0}
+# 200 full steps/rev, 28:1 gear box, 1mm lead screw pitch = 1mm/200/28= 0.0001785714
+{13IDA:, 4, m64, "asynMotor", XPS1, 3,   "Roll",       mm,  Pos,  0.3,   0,   0.5,   0,   1, .2,    1,   0.0001785714,  4,    4,       0}
+}
+
+file "$(MOTOR)/motorApp/Db/XPS_extra.db"
+{
+pattern
+{P,     R,  PORT,  ADDR}
+{13IDA:,  m61, XPS1,  0}
+{13IDA:,  m62, XPS1,  1}
+{13IDA:,  m63, XPS1,  2}
+{13IDA:,  m64, XPS1,  3}
+}
+
+
+
