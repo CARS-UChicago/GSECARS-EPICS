@@ -1,6 +1,14 @@
+# Serial devices
+file "MPC_settings.req",                P=$(P), PUMP=ip2:
+file "MPC_settings.req",                P=$(P), PUMP=ip8:
+file "MPC_settings.req",                P=$(P), PUMP=ip9:
+file "TSP_settings.req",                P=$(P), TSP=tsp1:
 file "Keithley2kDMM_mf10_settings.req", P=$(P), Dmm=DMM1
 file "Keithley2kDMM_mf10_settings.req", P=$(P), Dmm=DMM2
-file "table_settings.req",              P=$(P), T=HMIR:t1, Q=HMIR:T1
+file "SR570preamp_settings.req",        P=$(P), A=A1
+file "SR570preamp_settings.req",        P=$(P), A=A2
+
+# Other electronics
 file "pid_control_settings.req",        P=$(P), PID=mono_pid1
 file "pid_control_settings.req",        P=$(P), PID=mono_pid2
 file "fast_pid_control_settings.req",   P=$(P), PID=fast_pitch_pid
@@ -12,14 +20,15 @@ file "Energy_settings.req",             P=$(P), EN=E
 file "singleDAC_settings.req",          P=$(P), D=1, N=1
 file "singleDAC_settings.req",          P=$(P), D=1, N=2
 file "singleDAC_settings.req",          P=$(P), D=1, N=3
-file "MPC_settings.req",                P=$(P), PUMP=ip2:
-file "MPC_settings.req",                P=$(P), PUMP=ip6:
-file "MPC_settings.req",                P=$(P), PUMP=ip7:
-file "TSP_settings.req",                P=$(P), TSP=tsp1:
+
+# Scans
 file "scan_settings.req",               P=$(P), S=scan1
 file "scan_settings.req",               P=$(P), S=scan2
 file "scan_settings.req",               P=$(P), S=scan3
 file "scan_settings.req",               P=$(P), S=scan4
+
+#Motors
+file "table_settings.req",              P=$(P), T=HMIR:t1, Q=HMIR:T1
 file "pseudoMotor_settings.req",        P=$(P), M=pm1
 file "pseudoMotor_settings.req",        P=$(P), M=pm2
 file "pseudoMotor_settings.req",        P=$(P), M=pm3
