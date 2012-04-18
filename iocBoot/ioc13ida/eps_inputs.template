@@ -2,89 +2,125 @@ file "$(CARS)/CARSApp/Db/eps_inputs.db"
 {
 pattern
 {P,        N,   DESC,                           A,  C,  S, ZNAM,              ZSV,        ONAM,                OSV}
+
+# PLC status
 {13IDA:,   1,   "DCM user status",              0,  0, 11, "Reboot needed",   "MAJOR",    "Ok",                "NO_ALARM"}
 {13IDA:,   2,   "DCM status",                   0,  0,  8, "Ok",              "NO_ALARM", "PLC not RUNning",   "MAJOR"}
-{13IDA:,   4,   "13-ID shutter",                0,  2,  1, "Closed",          "MAJOR",    "Open",              "NO_ALARM"}
-{13IDA:,   5,   "EPS status",                   0,  2,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
 {13IDA:,   6,   "PLC run mode",                 0,  2,  3, "Ok",              "NO_ALARM", "PLC not running",   "MAJOR"}
 {13IDA:,   7,   "PLC keyswitch",                0,  2,  4, "Remote",          "NO_ALARM", "Local",             "NO_ALARM"}
 {13IDA:,   8,   "PLC overrides",                0,  2,  5, "Ok",              "NO_ALARM", "Overrides on",      "MAJOR"}
 {13IDA:,   9,   "PLC forces present",           0,  2,  6, "Ok",              "NO_ALARM", "Forces exist",      "NO_ALARM"}
 {13IDA:,  10,   "PLC battery low",              0,  2,  7, "Ok",              "NO_ALARM", "Battery low",       "MAJOR"}
 {13IDA:,  11,   "Remote inputs",                0,  2,  8, "Ok",              "NO_ALARM", "Comm fault",        "MAJOR"}
-{13IDA:,  12,   "Low power mode",               0,  2,  9, "Normal",          "NO_ALARM", "Low power",         "NO_ALARM"}
-{13IDA:,  15,   "Be windows (ID-B) water",      0,  4,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  16,   "Be windows water (lat)",       0,  4,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  17,   "Horizontal slit (ID-A) water", 0,  4,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  18,   "Horizontal slits water (lat)", 0,  4,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  19,   "Vertical slit (ID-A) water",   0,  4,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  20,   "Vertical slits water (latch)", 0,  4,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  21,   "Slit tank (ID-A) vacuum (CC)", 0,  8,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  22,   "Slit tank vacuum (CC) (lat)",  0,  8,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  23,   "Slit tank (ID-A) vacuum (PG)", 0,  8,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  24,   "Slit tank vacuum (PG) (lat)",  0,  8,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  25,   "Diagnostic tank vacuum (CC)",  0,  8,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  26,   "Diagnostic tank vacuum (CC)l", 0,  8,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  27,   "Diagnostic tank vacuum (PG)",  0,  8,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  28,   "Diagnostic tank vacuum (PG)l", 0,  8,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  29,   "Transport pipe vacuum (CC)",   0,  8,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  30,   "Transport vacuum (CC) (lat)",  0,  8,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  31,   "Transport pipe vacuum (PG)",   0,  8, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  32,   "Transport vacuum (PG) (lat)",  0,  8, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  33,   "Valve V2 (ID-A) position",     0, 12,  0, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  34,   "Valve V2 position (latched)",  0, 12,  1, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  35,   "Valve V3 (ID-A) position",     0, 12,  2, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  36,   "Valve V3 position (latched)",  0, 12,  3, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  37,   "Valve V4 (ID-A) position",     0, 12,  4, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  38,   "Valve V4 position (latched)",  0, 12,  5, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  39,   "Beamstop (ID-A) position",     0, 12, 10, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  40,   "Beamstop position (latched)",  0, 12, 11, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  57,   "Front end valve (APS)",        0, 12, 12, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
-{13IDA:,  58,   "Front end valve (latched)",    0, 12, 13, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
-#2001-oct-30 removed from EPS
-# {13IDA:,  59,   "ID-C station water #1",        0,  4,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-# {13IDA:,  60,   "ID-C station water #1 (lat)",  0,  4,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  61,   "Backstop (ID-D) water",        0,  4, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  62,   "Backstop (ID-D) water (lat)",  0,  4, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  63,   "Monochromator (ID-C) water",   0,  4, 12, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  64,   "Mono (ID-C) water (latch)",    0,  4, 13, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-#2001-oct-30 removed from EPS
-#{13IDA:,  65,   "Be window (ID-B) helium",      0,  4, 14, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-#{13IDA:,  66,   "Be window (ID-B) he (latch)",  0,  4, 15, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  67,   "He gas farm pressure (left)"   0,  2, 10, "Ok",              "NO_ALARM", "<200 psig",         "MAJOR"}
-{13IDA:,  68,   "He gas farm pressure (right)"  0,  2, 11, "Ok",              "NO_ALARM", "<200 psig"          "MAJOR"}
-{13IDA:,  69,   "400W pinhole V water",         0,  6,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  70,   "400W pinhole V water (latch)", 0,  6,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  71,   "400W pinhole H water",         0,  6,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  72,   "400W pinhole H water (latch)", 0,  6,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  73,   "100W pinhole&beamstop water",  0,  6,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  74,   "100W pinhole&beamstop(latch)", 0,  6,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  75,   "Valve V1 (ID-A) position",     0, 12,  6, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  76,   "Valve V1 position (latched)",  0, 12,  7, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  77,   "Monochromator vacuum (CC)",    0,  8,  12, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  78,   "Monochromator (CC) (lat)",     0,  8,  13, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  79,   "Monochromator vacuum (PG)",    0,  8,  14, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  80,   "Monochromator (PG) (lat)",     0,  8,  15, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  81,   "Vacuum status",                0,  2,   0, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  82,   "Backstop (ID-C) water",        0,  4,   0, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  83,   "Backstop (ID-C) water (lat)",  0,  4,   1, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-#2001-oct-30 removed from EPS
-# {13IDA:,  84,   "ID-C station water #2",        0,  6,   6, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-# {13IDA:,  85,   "ID-C station water #2 (lat)",  0,  6,   7, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  86,   "Mirror tanks vacuum (CC)",     0, 10,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  87,   "Mirror tanks (CC) (lat)",      0, 10,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  88,   "Mirror tanks vacuum (PG)",     0, 10,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  89,   "Mirror vacuum (PG) (lat)",     0, 10,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  90,   "ID-C pipe vacuum (PG)",        0, 10,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  91,   "ID-C pipe vacuum (PG) (lat)",  0, 10,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  92,   "Vertical mirror water",        0,  6,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  93,   "Vertical mirror water (lat)",  0,  6,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  94,   "Horiz. mirror water",          0,  6, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  95,   "Horiz. mirror water (lat)",    0,  6, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  96,   "Mirror masks water",           0,  6, 12, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  97,   "Mirror masks water (lat)",     0,  6, 13, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  98,   "Valve V5 (ID-B) position",     0, 12,  8, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:,  99,   "Valve V5 position (latched)",  0, 12,  9, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:, 100,   "Valve V6 (ID-B) position",     0, 12, 14, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
-{13IDA:, 101,   "Valve V6 position (latched)",  0, 12, 15, "Open",            "NO_ALARM", "Fault",             "MAJOR"}
+
+# Water status 1
+{13IDA:,  32,   "C/D horiz. slits water",       0,  4,  0, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  33,   "C/D horiz. slits water (lat)", 0,  4,  1, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  34,   "C/D vert. slits water",        0,  4,  2, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  35,   "C/D vert. slits water (lat)",  0,  4,  3, "Ok",             "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  36,   "E horiz. slits water",         0,  4,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  37,   "E horiz. slits water (lat)",   0,  4,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  38,   "E vert. slits water",          0,  4,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  39,   "E vert. slits water (lat)",    0,  4,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  40,   "E WBS water",                  0,  4,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  41,   "E WBS water (latch)",          0,  4,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  42,   "E viewer water",               0,  4, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  43,   "E viewer water (latch)",       0,  4, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  44,   "100W horiz. water",            0,  4, 12, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  45,   "100W horiz. water (latch)",    0,  4, 13, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  46,   "100W vert. water",             0,  4, 14, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  47,   "100W vert. water (latch)",     0,  4, 15, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Water status 2
+{13IDA:,  48,   "C/D WBS water",                0,  6,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  49,   "C/D WBS water (latch)",        0,  6,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  50,   "C/D viewer water",             0,  6,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  51,   "C/D viewer water (latch)",     0,  6,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  52,   "IDC Be window water",          0,  6,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  53,   "IDC Be window water (latch)",  0,  6,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  54,   "IDC horiz. mirror water",      0,  6,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  55,   "IDC horiz. mirror water (lat)",0,  6,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  56,   "IDC backstop water",           0,  6,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  57,   "IDC backstop water (latch)",   0,  6,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  58,   "IDD backstop water",           0,  6, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  59,   "IDD backstop water (latch)",   0,  6, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Vacuum status 1
+{13IDA:,  64,   "Slit tank vacuum (CC1)",       0,  8,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  65,   "Slit tank vacuum (CC1) (lat)", 0,  8,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  66,   "Slit tank vacuum (PG1)",       0,  8,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  67,   "Slit tank vacuum (PG1) (lat)", 0,  8,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  68,   "C/D mono vacuum (CC2)",        0,  8,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  69,   "C/D mono vacuum (CC2) (lat)",  0,  8,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  70,   "C/D mono vacuum (PG2)",        0,  8,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  71,   "C/D mono vacuum (PG2) (lat)",  0,  8,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  72,   "E mono vacuum (CC3)",          0,  8,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  73,   "E mono vacuum (CC3) (lat)",    0,  8,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  74,   "E mono vacuum (PG3)",          0,  8, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  75,   "E mono vacuum (PG3) (lat)",    0,  8, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  76,   "E mirror vacuum (CC4)",        0,  8, 12, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  77,   "E mirror vacuum (CC4) (lat)",  0,  8, 13, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  78,   "E mirror vacuum (PG4)",        0,  8, 14, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  79,   "E mirror vacuum (PG4) (lat)",  0,  8, 15, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Vacuum status 2
+{13IDA:,  80,   "SSA tank vacuum (CC5)",        0, 10,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  81,   "SSA tank vacuum (CC5) (lat)",  0, 10,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  82,   "SSA tank vacuum (PG5)",        0, 10,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  83,   "SSA tank vacuum (PG5) (lat)",  0, 10,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  84,   "C/D vert. mirror (CC6)",       0, 10,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  85,   "C/D vert. mirror (CC6) (lat)", 0, 10,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  86,   "C/D vert. mirror (PG6)",       0, 10,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  87,   "C/D vert. mirror (PG6) (lat)", 0, 10,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  88,   "E shutter vacuum (CC7)",       0, 10,  8, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  89,   "E shutter vacuum (CC7) (lat)", 0, 10,  9, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  90,   "E shutter vacuum (PG7)",       0, 10, 10, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  91,   "E shutter vacuum (PG7) (lat)", 0, 10, 11, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  92,   "E transport vac. (CC8)",       0, 10, 12, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  92,   "E transport vac. (CC8) (lat)", 0, 10, 13, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  94,   "E transport vac. (PG8)",       0, 10, 14, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  95,   "E transport vac. (PG8) (lat)", 0, 10, 15, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Vacuum status 3
+{13IDA:,  96,   "C/D horiz. mirror (CC9)",      0, 12,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  97,   "C/D horiz. mirror (CC9)(lat)", 0, 12,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  98,   "C/D horiz. mirror (PG9)",      0, 12,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:,  99,   "C/D horiz. mirror (PG9) (lat)",0, 12,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 100,   "C/D trans. vac. (CC10)",       0, 12,  4, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 101,   "C/D trans. vac. (CC10) (lat)", 0, 12,  5, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 102,   "C/D trans. vac. (PG10)",       0, 12,  6, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 103,   "C/D trans. vac. (PG10) (lat)", 0, 12,  7, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Valve status
+{13IDA:, 112,   "Valve V2 position",            0, 14,  0, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 113,   "Valve V2 position (latched)",  0, 14,  1, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 114,   "Valve V3 position",            0, 14,  2, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 115,   "Valve V3 position (latched)",  0, 14,  3, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 116,   "Valve V4 position",            0, 14,  4, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 117,   "Valve V4 position (latched)",  0, 14,  5, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 118,   "Valve V5 position",            0, 14,  6, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 119,   "Valve V5 position (latched)",  0, 14,  7, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 120,   "Valve V6 position",            0, 14,  8, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 121,   "Valve V6 position (latched)",  0, 14,  9, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 122,   "Valve V7 position",            0, 14, 10, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 123,   "Valve V7 position (latched)",  0, 14, 11, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 124,   "Valve V8 position",            0, 14, 12, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 125,   "Valve V8 position (latched)",  0, 14, 13, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 126,   "Front end valve position",     0, 14, 14, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 127,   "Front end valve pos. (lat)",   0, 14, 15, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+
+# Shutter status
+{13IDA:, 176,   "Front end shutter"             1,  6,  0, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:, 177,   "C/D shutter"                   1,  6,  1, "Open",            "NO_ALARM", "Closed"             "MAJOR"}
+{13IDA:, 178,   "E shutter",                    1,  6,  2, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+
+# Other status
+{13IDA:, 192,   "FOE EPS status",               1,  8,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 193,   "C/D EPS status",               1,  8,  1, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 194,   "E EPS status",                 1,  8,  2, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 195,   "Vacuum status",                1,  8,  3, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{13IDA:, 196,   "Low power mode",               1,  8,  4, "Normal",          "NO_ALARM", "Low power",         "MAJOR"}
+{13IDA:, 197,   "He gas farm pressure (left)"   1,  8,  5, "Ok",              "NO_ALARM", "<200 psig",         "MAJOR"}
+{13IDA:, 198,   "He gas farm pressure (right)"  1,  8,  6, "Ok",              "NO_ALARM", "<200 psig"          "MAJOR"}
+
 }
