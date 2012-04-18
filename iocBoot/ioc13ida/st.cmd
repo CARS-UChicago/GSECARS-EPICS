@@ -14,14 +14,11 @@ errlogInit(20000)
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
-# This IOC loads the MPF server code locally
 cd startup
 < industryPack.cmd
 < serial.cmd
 
 # Debugging flags
-devPM304Debug=0
-drvPM304Debug=0
 devA32VmeDebug=0
 
 # Set up the Allen-Bradley 6008 scanner
