@@ -23,7 +23,7 @@ XPSAuxConfig("XPS_AUX1", "newport-xps5", 5001, 50)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.THETA",  "10000")  
+XPSCreateAxis("XPS1",0,"GROUP1.THETA",  "87266.5")  
 XPSCreateAxis("XPS1",1,"GROUP2.HEIGHT", "5000")  
 XPSCreateAxis("XPS1",2,"GROUP3.PITCH",  "5600")  
 XPSCreateAxis("XPS1",3,"GROUP4.ROLL",   "5600")  
