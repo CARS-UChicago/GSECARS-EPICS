@@ -74,33 +74,23 @@ dbLoadRecords("$(CARS)/CARSApp/Db/RampScan.db","P=13IDD:,R=Theta1_,DRV=LVP:PID1.
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
 
-##==== XPS Motors    ==================================
-XPSSetup(1)
-#    card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.34", 5001, 8, 10, 200)
-
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 8)
-#asynSetTraceMask("XPS1",0,255)
-XPSInterpose("XPS1")
-
-# configure axes
-#card, axis, groupName.positionerName, steps/rev
-XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
-XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
-XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
-XPSConfigAxis(0,3,"GROUP4.POSITIONER",  1000)  
-# XPSConfigAxis(0,4,"GROUP5.POSITIONER",  2000)  
-# XPSConfigAxis(0,5,"GROUP6.POSITIONER",  5000) 
-
-# Disable setting position from motor record
-XPSEnableSetPosition(0)
- 
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(10, 0x4000, 190, 5, 10)
+
+# MCB-4B driver setup parameters:
+#     (1) maximum # of controllers,
+#     (2) maximum # axis per controller
+#     (3) motor task polling rate (min=1Hz, max=60Hz)
+MCB4BSetup(2, 4, 10)
+
+# MCB-4B driver configuration parameters:
+#     (1) controller
+#     (2) asyn port name (e.g. serial1)
+MCB4BConfig(0, "serial17")
+MCB4BConfig(1, "serial18")
 
 dbLoadTemplate("motors.template")
 
