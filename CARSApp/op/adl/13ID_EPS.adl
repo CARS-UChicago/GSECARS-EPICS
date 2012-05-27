@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=239
-		y=44
+		x=240
+		y=46
 		width=1230
 		height=1075
 	}
@@ -169,7 +169,7 @@ rectangle {
 	object {
 		x=154
 		y=385
-		width=920
+		width=850
 		height=350
 	}
 	"basic attribute" {
@@ -292,7 +292,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi95"
+		chan="13IDA:eps_mbbi93"
 	}
 }
 text {
@@ -333,7 +333,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi94"
+		chan="13IDA:eps_mbbi92"
 	}
 }
 polyline {
@@ -974,7 +974,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 6"
 	align="horiz. centered"
 }
 text {
@@ -1035,7 +1035,7 @@ rectangle {
 	object {
 		x=972
 		y=588
-		width=110
+		width=40
 		height=24
 	}
 	"basic attribute" {
@@ -1404,7 +1404,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 7"
 	align="horiz. centered"
 }
 text {
@@ -1697,163 +1697,152 @@ rectangle {
 		fill="outline"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=493
 		y=642
 		width=127
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=493
-				y=642
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=557
-				y=665
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip8:VOLT"
-				clr=0
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=557
-				y=683
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip8:CUR"
-				clr=0
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=557
-				y=701
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip8:PRES"
-				clr=0
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=514
-				y=646
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=518
-				y=665
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=504
-				y=683
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=497
-				y=701
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=493
-				y=663
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(493,663)
-				(620,663)
-			}
-		}
-		"related display" {
-			object {
-				x=576
-				y=644
-				width=40
-				height=18
-			}
-			display[0] {
-				label="MPC Full"
-				name="MPC.adl"
-				args="P=13IDA:, PUMP=ip8"
-			}
-			clr=13
-			bclr=52
-			label="More"
-		}
+	"basic attribute" {
+		clr=46
 	}
+}
+"text update" {
+	object {
+		x=557
+		y=665
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip8:VOLT"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=557
+		y=683
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip8:CUR"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=557
+		y=701
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip8:PRES"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=509
+		y=646
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 8"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=518
+		y=665
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=504
+		y=683
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=497
+		y=701
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=493
+		y=663
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(493,663)
+		(620,663)
+	}
+}
+"related display" {
+	object {
+		x=576
+		y=644
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Full"
+		name="MPC.adl"
+		args="P=13IDA:, PUMP=ip8"
+	}
+	clr=13
+	bclr=52
+	label="More"
 }
 rectangle {
 	object {
@@ -2881,7 +2870,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi103"
+		chan="13IDA:eps_mbbi99"
 	}
 }
 text {
@@ -2922,7 +2911,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi102"
+		chan="13IDA:eps_mbbi98"
 	}
 }
 polyline {
@@ -3072,7 +3061,7 @@ rectangle {
 }
 text {
 	object {
-		x=884
+		x=877
 		y=977
 		width=56
 		height=14
@@ -3080,7 +3069,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 11"
 	align="horiz. centered"
 }
 text {
@@ -3383,7 +3372,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi99"
+		chan="13IDA:eps_mbbi97"
 	}
 }
 "text update" {
@@ -3473,7 +3462,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi98"
+		chan="13IDA:eps_mbbi96"
 	}
 }
 polyline {
@@ -3518,7 +3507,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi97"
+		chan="13IDA:eps_mbbi95"
 	}
 }
 oval {
@@ -3533,7 +3522,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="13IDA:eps_mbbi96"
+		chan="13IDA:eps_mbbi94"
 	}
 }
 rectangle {
@@ -3584,378 +3573,334 @@ rectangle {
 		fill="outline"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=340
-		y=586
+		y=642
 		width=127
-		height=141
+		height=85
 	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=340
-				y=642
-				width=127
-				height=85
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=340
-						y=642
-						width=127
-						height=85
-					}
-					"basic attribute" {
-						clr=46
-					}
-				}
-				"text update" {
-					object {
-						x=404
-						y=665
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13IDA:ip10:VOLT"
-						clr=0
-						bclr=12
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=404
-						y=683
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13IDA:ip10:CUR"
-						clr=0
-						bclr=12
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					format="exponential"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=404
-						y=701
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13IDA:ip10:PRES"
-						clr=0
-						bclr=12
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					format="exponential"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=361
-						y=646
-						width=56
-						height=14
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Ion Pump"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=365
-						y=665
-						width=35
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Volts"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=351
-						y=683
-						width=49
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Current"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=344
-						y=701
-						width=56
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Pressure"
-					align="horiz. centered"
-				}
-				polyline {
-					object {
-						x=340
-						y=663
-						width=127
-						height=0
-					}
-					"basic attribute" {
-						clr=14
-					}
-					points {
-						(340,663)
-						(467,663)
-					}
-				}
-				"related display" {
-					object {
-						x=423
-						y=644
-						width=40
-						height=18
-					}
-					display[0] {
-						label="MPC Full"
-						name="MPC.adl"
-						args="P=13IDA:, PUMP=ip10"
-					}
-					clr=13
-					bclr=52
-					label="More"
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=396
-				y=621
-				width=15
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=396
-				y=586
-				width=15
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=46
 	}
 }
-composite {
+"text update" {
+	object {
+		x=404
+		y=665
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip10:VOLT"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=404
+		y=683
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip10:CUR"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=404
+		y=701
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip10:PRES"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=354
+		y=646
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 10"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=365
+		y=665
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=351
+		y=683
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=344
+		y=701
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=340
+		y=663
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(340,663)
+		(467,663)
+	}
+}
+"related display" {
+	object {
+		x=423
+		y=644
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Full"
+		name="MPC.adl"
+		args="P=13IDA:, PUMP=ip10"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+rectangle {
+	object {
+		x=396
+		y=621
+		width=15
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=396
+		y=586
+		width=15
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
 	object {
 		x=180
-		y=621
+		y=642
 		width=127
-		height=106
+		height=85
 	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=180
-				y=642
-				width=127
-				height=85
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=180
-						y=642
-						width=127
-						height=85
-					}
-					"basic attribute" {
-						clr=46
-					}
-				}
-				"text update" {
-					object {
-						x=244
-						y=665
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13IDA:ip9:VOLT"
-						clr=0
-						bclr=12
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=244
-						y=683
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13IDA:ip9:CUR"
-						clr=0
-						bclr=12
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					format="exponential"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=244
-						y=701
-						width=60
-						height=15
-					}
-					monitor {
-						chan="13IDA:ip9:PRES"
-						clr=0
-						bclr=12
-					}
-					clrmod="alarm"
-					align="horiz. centered"
-					format="exponential"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=201
-						y=646
-						width=56
-						height=14
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Ion Pump"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=205
-						y=665
-						width=35
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Volts"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=191
-						y=683
-						width=49
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Current"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=184
-						y=701
-						width=56
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Pressure"
-					align="horiz. centered"
-				}
-				polyline {
-					object {
-						x=180
-						y=663
-						width=127
-						height=0
-					}
-					"basic attribute" {
-						clr=14
-					}
-					points {
-						(180,663)
-						(307,663)
-					}
-				}
-				"related display" {
-					object {
-						x=263
-						y=644
-						width=40
-						height=18
-					}
-					display[0] {
-						label="MPC Full"
-						name="MPC.adl"
-						args="P=13IDA:, PUMP=ip9"
-					}
-					clr=13
-					bclr=52
-					label="More"
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=235
-				y=621
-				width=15
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=244
+		y=665
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip9:VOLT"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=244
+		y=683
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip9:CUR"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=244
+		y=701
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip9:PRES"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=196
+		y=646
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 9"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=205
+		y=665
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=191
+		y=683
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=184
+		y=701
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=180
+		y=663
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(180,663)
+		(307,663)
+	}
+}
+"related display" {
+	object {
+		x=263
+		y=644
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Full"
+		name="MPC.adl"
+		args="P=13IDA:, PUMP=ip9"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+rectangle {
+	object {
+		x=235
+		y=621
+		width=15
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
 oval {
@@ -5045,7 +4990,7 @@ rectangle {
 }
 text {
 	object {
-		x=691
+		x=686
 		y=288
 		width=56
 		height=14
@@ -5053,7 +4998,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 2"
 	align="horiz. centered"
 }
 text {
@@ -5765,146 +5710,135 @@ oval {
 		chan="13IDA:eps_mbbi64"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=848
 		y=284
 		width=127
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=848
-				y=284
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=912
-				y=307
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip1_Volts"
-				clr=0
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=912
-				y=325
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip1_Current"
-				clr=0
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=912
-				y=343
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip1_Pressure"
-				clr=0
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=883
-				y=288
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=873
-				y=307
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=859
-				y=325
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=852
-				y=343
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=848
-				y=305
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(848,305)
-				(975,305)
-			}
-		}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=912
+		y=307
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip1_Volts"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=912
+		y=325
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip1_Current"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=912
+		y=343
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip1_Pressure"
+		clr=0
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=883
+		y=288
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=873
+		y=307
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=859
+		y=325
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=852
+		y=343
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=848
+		y=305
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(848,305)
+		(975,305)
 	}
 }
 composite {
@@ -6344,7 +6278,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 3"
 	align="horiz. centered"
 }
 text {
@@ -6867,7 +6801,7 @@ rectangle {
 }
 text {
 	object {
-		x=343
+		x=338
 		y=288
 		width=56
 		height=14
@@ -6875,7 +6809,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 4"
 	align="horiz. centered"
 }
 text {
@@ -7516,7 +7450,7 @@ text {
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump"
+	textix="Ion Pump 5"
 	align="horiz. centered"
 }
 text {
@@ -8017,194 +7951,6 @@ oval {
 		chan="13IDA:eps_mbbi42"
 	}
 }
-rectangle {
-	object {
-		x=786
-		y=526
-		width=80
-		height=30
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-composite {
-	object {
-		x=790
-		y=534
-		width=72
-		height=15
-	}
-	"composite name"=""
-	children {
-		oval {
-			object {
-				x=847
-				y=534
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13IDA:eps_mbbi62"
-			}
-		}
-		oval {
-			object {
-				x=850
-				y=537
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13IDA:eps_mbbi61"
-			}
-		}
-		text {
-			object {
-				x=790
-				y=535
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BPM Out"
-			align="horiz. centered"
-		}
-	}
-}
-rectangle {
-	object {
-		x=1036
-		y=759
-		width=150
-		height=90
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-text {
-	object {
-		x=1080
-		y=766
-		width=63
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Utilities"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=1036
-		y=784
-		width=150
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(1036,784)
-		(1186,784)
-	}
-}
-oval {
-	object {
-		x=1167
-		y=794
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13BMA:eps_mbbi72"
-	}
-}
-text {
-	object {
-		x=1046
-		y=795
-		width=119
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="Water Resistivity"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=1167
-		y=812
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi197"
-	}
-}
-text {
-	object {
-		x=1046
-		y=813
-		width=119
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="He Tank Farm Right"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=1167
-		y=830
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi198"
-	}
-}
-text {
-	object {
-		x=1039
-		y=831
-		width=126
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="He Tank Farm Left"
-	align="horiz. centered"
-}
 composite {
 	object {
 		x=21
@@ -8372,5 +8118,476 @@ composite {
 			clr=14
 			bclr=4
 		}
+	}
+}
+rectangle {
+	object {
+		x=1036
+		y=386
+		width=160
+		height=400
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=1097
+		y=428
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="E Vertical"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1175
+		y=427
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi200"
+	}
+}
+text {
+	object {
+		x=1050
+		y=403
+		width=133
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="FOE slits low power"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1083
+		y=448
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="E Horizontal"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1175
+		y=447
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi201"
+	}
+}
+text {
+	object {
+		x=1083
+		y=468
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="C/D Vertical"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1175
+		y=467
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi202"
+	}
+}
+text {
+	object {
+		x=1069
+		y=488
+		width=98
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="C/D Horizontal"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1175
+		y=487
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi203"
+	}
+}
+polyline {
+	object {
+		x=1036
+		y=421
+		width=160
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1036,421)
+		(1196,421)
+	}
+}
+text {
+	object {
+		x=1071
+		y=547
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Inboard"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1057
+		y=520
+		width=119
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="C/D Mono Position"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1123
+		y=546
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi204"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=1078
+		y=566
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Center"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1123
+		y=565
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi206"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=1064
+		y=586
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Outboard"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1123
+		y=585
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi205"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=1036
+		y=538
+		width=160
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1036,538)
+		(1196,538)
+	}
+}
+text {
+	object {
+		x=1085
+		y=717
+		width=63
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Utilities"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1175
+		y=742
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi210"
+	}
+}
+text {
+	object {
+		x=1041
+		y=743
+		width=126
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="He Tank Farm Right"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=1175
+		y=760
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi211"
+	}
+}
+text {
+	object {
+		x=1048
+		y=761
+		width=119
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="He Tank Farm Left"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=1036
+		y=735
+		width=160
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1036,735)
+		(1196,735)
+	}
+}
+text {
+	object {
+		x=1085
+		y=649
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="E FOE"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1057
+		y=622
+		width=119
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Beam Viewer Positions"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1123
+		y=648
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi207"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=1071
+		y=668
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="C/D FOE"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1123
+		y=667
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi208"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=1085
+		y=688
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="E SSA"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1123
+		y=687
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi209"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=1036
+		y=640
+		width=160
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1036,640)
+		(1196,640)
 	}
 }
