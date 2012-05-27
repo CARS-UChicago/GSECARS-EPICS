@@ -167,11 +167,9 @@ strcpy(str,"PRE=13IDA:,ID=ID13ds:,EXPTAB_Z=13IDC:m6,")
 strcat(str,"EXPTAB2=13IDA:pm5,SH=eps_mbbi4,FB=mono_pid1")
 seq &Energy, str
 
-# For the bypass valves swap the severity of the open and closed states
-dbpf "13IDA:V5_status.ONSV","MAJOR"
-dbpf "13IDA:V5_status.TWSV","NO_ALARM"
-dbpf "13IDA:V6_status.ONSV","MAJOR"
-dbpf "13IDA:V6_status.TWSV","NO_ALARM"
+# For the bypass valve swap the severity of the open and closed states
+dbpf "13IDA:V8_status.ONSV","MAJOR"
+dbpf "13IDA:V8_status.TWSV","NO_ALARM"
 
 
 #
