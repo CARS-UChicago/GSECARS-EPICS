@@ -49,7 +49,7 @@ tyGSAsynInit("serial14",  "UART1", 5, 9600,'N',1,8,'N',"\r","\r") /* Oxford ILM 
 dbLoadRecords("$(CARS)/CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200_2,PORT=serial14")
 
 tyGSAsynInit("serial15",  "UART1", 6,19200,'E',1,8,'N',"\r","\r") /* MKS; PR9, CC9, PR10 */
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,PORT=serial5,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,PORT=serial15,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
 
 tyGSAsynInit("serial16",  "UART1", 7, 9600,'N',1,8,'N',"\r","\r") /* SR-570; E WBS/BPM blade current */
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDA:,A=A1,PORT=serial16")

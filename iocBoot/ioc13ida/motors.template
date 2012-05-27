@@ -1,85 +1,121 @@
 file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
-{P,        M,   DTYP,          C,  S,   DESC,              EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
-{13IDA:,   m1,  "OMS VME58",   0,  0, "C/D hor. position",  mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400,   .222222,    4,    10,    -10}
-{13IDA:,   m2,  "OMS VME58",   0,  1, "C/D hor. width",     mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,    1.0,       4,    10,    -10}
-{13IDA:,   m3,  "OMS VME58",   0,  2, "C/D vert. position", mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400,   .222222,    4,    10,    -10}
-{13IDA:,   m4,  "OMS VME58",   0,  3, "C/D vert. width",    mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,    1.0,       4,    10,    -10}
-{13IDA:,   m5,  "OMS VME58",   0,  4, "E hor. position",    mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400,   .1563,      4,    10,    -10}
-{13IDA:,   m6,  "OMS VME58",   0,  5, "E hor. width",       mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,   .1080,      4,    10,    -10}
-{13IDA:,   m7,  "OMS VME58",   0   6, "E vert. position",   mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400,   .1563,      4,    10,    -10}
-{13IDA:,   m8,  "OMS VME58",   0,  7, "E vert. width",      mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,   .1080,      4,    10,    -10}
+{P,        M,   DTYP,          C,  S,   DESC,              EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,   SREV,    UREV,   PREC,   DHLM,   DLLM}
+{13IDA:,   m1,  "OMS VME58",   0,  0, "C/D hor. position",  mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400, .222222,      4,     10,    -10}
+{13IDA:,   m2,  "OMS VME58",   0,  1, "C/D hor. width",     mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,     1.0,      4,     10,    -10}
+{13IDA:,   m3,  "OMS VME58",   0,  2, "C/D vert. position", mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400, .222222,      4,     10,    -10}
+{13IDA:,   m4,  "OMS VME58",   0,  3, "C/D vert. width",    mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,     1.0,      4,     10,    -10}
+{13IDA:,   m5,  "OMS VME58",   0,  4, "E hor. position",    mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400,   .1563,      4,     10,    -10}
+{13IDA:,   m6,  "OMS VME58",   0,  5, "E hor. width",       mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,   .1080,      4,     10,    -10}
+{13IDA:,   m7,  "OMS VME58",   0   6, "E vert. position",   mm,       Pos,   .3,  .01,    1.,     0,     0,      0,     400,   .1563,      4,     10,    -10}
+{13IDA:,   m8,  "OMS VME58",   0,  7, "E vert. width",      mm,       Pos,   .2,  .01,    1.,     0,     0,      0,     400,   .1080,      4,     10,    -10}
                                                          
-# E mirror
-{13IDA:,   m9,  "OMS VME58",   1,  0, "E screen pos.",            mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m10,  "OMS VME58",   1,  1, "E mirrors upstream",       mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m11,  "OMS VME58",   1,  2, "E mirrors downstream",     mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m12,  "OMS VME58",   1,  3, "E mirrors inboard",        mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m13,  "OMS VME58",   1,  4, "Mir. 1 upstream pitch",    mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m14,  "OMS VME58",   1,  5, "Mir. 1 downstream pitch",  mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m15,  "OMS VME58",   1,  6, "Mir. 2 upstream pitch",    mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400         1,  3,    10,  -10}
-{13IDA:,  m16,  "OMS VME58",   1,  7, "Mir. 2 downstream pitch",  mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400,        1,  3,    10,  -10}
+# E mirrors
+{13IDA:,   m9,  "OMS VME58",   1,  0, "E screen pos.",      mm,       Neg,  1.0,  .05,    .2,     0,     1,     .2,   16000,       5,      4,     10,    -10}
+{13IDA:,  m10,  "OMS VME58",   1,  1, "Jack up",            mm,       Pos, 0.05,  0.0,  0.50,  0.00,  0.05,   0.50,    1600,    0.10,      4,  49.65,   0.00}
+{13IDA:,  m11,  "OMS VME58",   1,  2, "Jack out",           mm,       Pos, 0.05,  0.0,  0.50,  0.00,  0.05,   0.50,    1600,    0.10,      4,  49.65,   0.00}
+{13IDA:,  m12,  "OMS VME58",   1,  3, "Jack in",            mm,       Pos, 0.05,  0.0,  0.50,  0.00,  0.05,   0.50,    1600,    0.10,      4,  49.65,   0.00}
 
-# SSA in 13-ID-B
-{13IDA:,  m17,  "OMS VME58",   2,  0, "Mir. 1 upstream moment",   mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m18,  "OMS VME58",   2,  1, "Mir. 1 downstream moment", mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m19,  "OMS VME58",   2,  2, "Mir. 2 upstream moment ",  mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m20,  "OMS VME58",   2,  3, "Mir. 2 downstream moment", mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m21,  "OMS VME58",   2,  4, "BPM translation",          mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m22,  "OMS VME58",   2,  5, "Beam viewer X pos.",       mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m23,  "OMS VME58",   2,  6, "Beam viewer Y pos.",       mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400         1,  3,    10,  -10}
-{13IDA:,  m24,  "OMS VME58",   2,  7, "Beam viewer Z pos.",       mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400,        1,  3,    10,  -10}
+{13IDA:,  m13,  "OMS VME58",   1,  4, "M1 up pitch",        mm,       Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m14,  "OMS VME58",   1,  5, "M1 dn pitch",        mm,       Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m15,  "OMS VME58",   1,  6, "M2 up pitch",        mm,       Pos,   .5,  .01,    .2,    0.,     1,     .2,     400        1,      3,     10,    -10}
+{13IDA:,  m16,  "OMS VME58",   1,  7, "M2 dn pitch",        mm,       Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,      3,     10,    -10}
 
+# E mirrors, BeamViewer in Pinhole tank
+{13IDA:,  m17,  "OMS VME58",   2,  0, "M1 up moment",       mm,       Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m18,  "OMS VME58",   2,  1, "M1 dn moment",       mm,       Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m19,  "OMS VME58",   2,  2, "M2 up moment",       mm,       Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m20,  "OMS VME58",   2,  3, "M2 dn moment",       mm,       Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m21,  "OMS VME58",   2,  4, "BPM translation",    mm,       Neg,  1.0,  .05,    .2,     0,     1,     .2,   16000,       5,      3,     10,    -10}
+{13IDA:,  m22,  "OMS VME58",   2,  5, "Beam viewer X pos.", mm,       Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m23,  "OMS VME58",   2,  6, "Beam viewer Y pos.", mm,       Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,      3,     10,    -10}
+{13IDA:,  m24,  "OMS VME58",   2,  7, "Beam viewer Z pos.", mm,       Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,      3,     10,    -10}
+
+# Pinhole
 # The Y motors have belts with 2:1 gear reduction (15 teeth on motor, 30 teeth on drive shaft)
 #     Drive shaft thread is 0.5mm (NOTE it might be 48 threads/inch, rather than 0.5 threads/mm, must check), 
 #     so one rev of motor = .250 mm of travel
 # The X motors have 10:1 gear boxes and 24 thread per inch leadscrews, so one rev of motor is 25.4/24/10 = .1058333 mmm
-{13IDA:,  m25,  "OMS VME58",   3,  0, "Pinhole upstream Y",   mm,   Pos,   .5,   .1,    .2,     0,     1,     .2,    400,    -.250,  3,   109,  104}
-{13IDA:,  m26,  "OMS VME58",   3,  1, "Pinhole inboard Y",    mm,   Pos,   .5,   .1,    .2,     0,     1,     .2,    400,    -.250,  3,   106,  102}
-{13IDA:,  m27,  "OMS VME58",   3,  2, "Pinhole outboard Y",   mm,   Pos,   .5,   .1,    .2,     0,     1,     .2,    400,    -.250,  3,   109,  105}
-{13IDA:,  m28,  "OMS VME58",   3,  3, "Pinhole upstream X",   mm,   Neg,   .1,  .05,    .2,     0,     1,     .2,    400, .1058333,  3,     1,   -1}
-{13IDA:,  m29,  "OMS VME58",   3,  4, "Pinhole downstream X", mm,   Neg,   .1,  .05,    .2,     0,     1,     .2,    400, .1058333,  3,    73,   69}
-{13IDA:,  m30,  "OMS VME58",   3,  5, "Unused",               mm,   Neg,   .5,  .0,    1.5,     0.,  .05,    1.5,    400,  .347368,  4,    10,    0}
-{13IDA:,  m31,  "OMS VME58",   3,  6, "Unused",               mm,   Pos,   .5,  .0,    1.5,     0.,  .05,    1.5,   2000,  .347368,  4,    10,    0}
-{13IDA:,  m32,  "OMS VME58",   3,  7, "Unused",               mm,   Neg,   .5,  .0,    1.5,     0.,  .05,    1.5,   2000,  .882353,  4,    10,    0}
+{13IDA:,  m25,  "OMS VME58",   3,  0, "Pinhole upstream Y", mm,       Pos,   .5,   .1,    .2,     0,     1,     .2,     400,   -.250,     3,     109,   104}
+{13IDA:,  m26,  "OMS VME58",   3,  1, "Pinhole inboard Y",  mm,       Pos,   .5,   .1,    .2,     0,     1,     .2,     400,   -.250,     3,     106,   102}
+{13IDA:,  m27,  "OMS VME58",   3,  2, "Pinhole outboard Y", mm,       Pos,   .5,   .1,    .2,     0,     1,     .2,     400,   -.250,     3,     109,   105}
+{13IDA:,  m28,  "OMS VME58",   3,  3, "Pinhole upstream X", mm,       Neg,   .1,  .05,    .2,     0,     1,     .2,     400, .1058333,    3,       1,    -1}
+{13IDA:,  m29,  "OMS VME58",   3,  4, "Pinhole downstream X", mm,     Neg,   .1,  .05,    .2,     0,     1,     .2,     400, .1058333,    3,      73,    69}
+{13IDA:,  m30,  "OMS VME58",   3,  5, "Unused",             mm,       Neg,   .5,   .0,   1.5,    0.,   .05,    1.5,     400, .347368,     4,      10,     0}
+{13IDA:,  m31,  "OMS VME58",   3,  6, "Unused",             mm,       Pos,   .5,   .0,   1.5,    0.,   .05,    1.5,    2000, .347368,     4,      10,     0}
+{13IDA:,  m32,  "OMS VME58",   3,  7, "Unused",             mm,       Neg,   .5,   .0,   1.5,    0.,   .05,    1.5,    2000, .882353,     4,      10,     0}
 
 # SSA in 13-ID-B
-{13IDA:,  m33,  "OMS MAXv",   0,  0, "E QBPM hor. pos.",     mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m34,  "OMS MAXv",   0,  1, "C/D QBPM hor. pos.",   mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m35,  "OMS MAXv",   0,  2, "C/D QBPM hor. pos.",   mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m36,  "OMS MAXv",   0,  3, "E BPM viewer pos.",    mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m37,  "OMS MAXv",   0,  4, "SSA bottom slit",      mm,   Pos,   .5,  .01,    .2,     0,     1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m38,  "OMS MAXv",   0,  5, "SSA top slit",         mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400,        1,  3,    10,  -10}
-{13IDA:,  m39,  "OMS MAXv",   0,  6, "SSA inboard slit",     mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400         1,  3,    10,  -10}
-{13IDA:,  m40,  "OMS MAXv",   0,  7, "SSA outboard slit",    mm,   Pos,   .5,  .01,    .2,     0.,    1,     .2,    400,        1,  3,    10,  -10}
+{13IDA:,  m33,  "OMS MAXv",   0,  0, "E QBPM hor. pos.",     mm,      Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,     3,      10,   -10}
+{13IDA:,  m34,  "OMS MAXv",   0,  1, "C/D QBPM hor. pos.",   mm,      Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,     3,      10,   -10}
+{13IDA:,  m35,  "OMS MAXv",   0,  2, "C/D QBPM hor. pos.",   mm,      Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,     3,      10,   -10}
+{13IDA:,  m36,  "OMS MAXv",   0,  3, "E BPM viewer pos.",    mm,      Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,     3,      10,   -10}
+{13IDA:,  m37,  "OMS MAXv",   0,  4, "SSA bottom slit",      mm,      Pos,   .5,  .01,    .2,     0,     1,     .2,     400,       1,     3,      10,   -10}
+{13IDA:,  m38,  "OMS MAXv",   0,  5, "SSA top slit",         mm,      Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,     3,      10,   -10}
+{13IDA:,  m39,  "OMS MAXv",   0,  6, "SSA inboard slit",     mm,      Pos,   .5,  .01,    .2,    0.,     1,     .2,     400        1,     3,      10,   -10}
+{13IDA:,  m40,  "OMS MAXv",   0,  7, "SSA outboard slit",    mm,      Pos,   .5,  .01,    .2,    0.,     1,     .2,     400,       1,     3,      10,   -10}
 
 # Vertical mirror in 13-ID-B
-{13IDA:,  m41,  "OMS MAXv",   1,  0, "Upstream moment",      mm,   Pos,   1.0,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
-{13IDA:,  m42,  "OMS MAXv",   1,  1, "Downstream moment",    mm,   Pos,   1.0,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
-{13IDA:,  m43,  "OMS MAXv",   1,  2, "Upstream Pitch",       mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,   400,   .016071,  4,   100,    0}
-{13IDA:,  m44,  "OMS MAXv",   1,  3, "Downstream Pitch",     mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,   400,   .016071,  4,   100,    0}
-{13IDA:,  m45,  "OMS MAXv",   1,  4, "Upstream Translation", mm,   Pos,     1,    0,   .5,    0,     0,      0,    400,    0.02,   3,   1e6, -1e6}
-{13IDA:,  m46,  "OMS MAXv",   1,  5, "Downstream Trans.",    mm,   Pos,     1,    0,   .5,    0,     0,      0,    400,    0.02,   3,   1e6, -1e6}
-{13IDA:,  m47,  "OMS MAXv",   1,  6, "Unused",               mm,   Neg,     1,    0,   .5,    0,     0,      0,    400,     .5,    3,   100,  -10}
-{13IDA:,  m48,  "OMS MAXv",   1,  7, "Unused",               mm,   Neg,     1,    0,   .5,    0,     0,      0,    400,     .5,    3,   100,  -10}
-
+{13IDA:,  m41,  "OMS MAXv",   1,  0, "Upstream moment",      mm,      Pos,  1.0,  .01,    1,      0,    .0,     .0,    2000,  -.34737,    4,      40,     0}
+{13IDA:,  m42,  "OMS MAXv",   1,  1, "Downstream moment",    mm,      Pos,  1.0,  .01,    1,      0,    .0,     .0,    2000,  -.34737,    4,      40,     0}
+{13IDA:,  m43,  "OMS MAXv",   1,  2, "Upstream Pitch",       mm,      Neg,  0.5,  .01,   2.,      0,    .0,     .0,     400,  .016071,    4,     100,     0}
+{13IDA:,  m44,  "OMS MAXv",   1,  3, "Downstream Pitch",     mm,      Neg,  0.5,  .01,   2.,      0,    .0,     .0,     400,  .016071,    4,     100,     0}
+{13IDA:,  m45,  "OMS MAXv",   1,  4, "Upstream Translation", mm,      Pos,    1,    0,   .5,      0,     0,      0,     400,     0.02,    3,     1e6,  -1e6}
+{13IDA:,  m46,  "OMS MAXv",   1,  5, "Downstream Trans.",    mm,      Pos,    1,    0,   .5,      0,     0,      0,     400,     0.02,    3,     1e6,  -1e6}
+{13IDA:,  m47,  "OMS MAXv",   1,  6, "Unused",               mm,      Neg,    1,    0,   .5,      0,     0,      0,     400,       .5,    3,     100,   -10}
+{13IDA:,  m48,  "OMS MAXv",   1,  7, "Unused",               mm,      Neg,    1,    0,   .5,      0,     0,      0,     400,       .5,    3,     100,   -10}
+  
 # Horizontal mirror in 13-ID-C
-{13IDA:,  m49,  "OMS MAXv",   2,  0, "Upstream moment",      mm,   Pos,   0.2,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
-{13IDA:,  m50,  "OMS MAXv",   2,  1, "Downstream moment",    mm,   Pos,   0.2,  .01,    1,    0,    .0,     .0,   2000,  -.34737,  4,    40,    0}
-{13IDA:,  m51,  "OMS MAXv",   2,  2, "Upstream Pitch",       mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,    400,  .016071,  4,   100,    0}
-{13IDA:,  m52,  "OMS MAXv",   2,  3, "Downstream Pitch",     mm,   Neg,   0.5,  .01,    2.,   0,    .0,     .0,    400,  .016071,  4,   100,    0}
-{13IDA:,  m53,  "OMS MAXv",   2,  4, "Upstream jack",        mm,   Pos,   1.0,  .05,   .5,    0,    .0,     .0,    400,     .254,  3,   101,   -1}
-{13IDA:,  m54,  "OMS MAXv",   2,  5, "Inboard jack",         mm,   Pos,   1.0,  .05,   .5,    0,    .0,     .0,    400,     .254,  3,   101,   -1}
-{13IDA:,  m55,  "OMS MAXv",   2,  6, "Outbord jack",         mm,   Pos,   1.0,  .05,   .5,    0,    .0,     .0,    400,     .254,  3,   101,   -1}
-{13IDA:,  m56,  "OMS MAXv",   2,  7, "Unused",              deg,   Pos,  50.0,   10,   .2,    0,    .0,     .0,    400,      360,  3,   1e6,   -1e6}
+{13IDA:,  m49,  "OMS MAXv",   2,  0, "Upstream moment",      mm,      Pos,  0.2,  .01,    1,      0,    .0,     .0,    2000,  -.34737,    4,      40,     0}
+{13IDA:,  m50,  "OMS MAXv",   2,  1, "Downstream moment",    mm,      Pos,  0.2,  .01,    1,      0,    .0,     .0,    2000,  -.34737,    4,      40,     0}
+{13IDA:,  m51,  "OMS MAXv",   2,  2, "Upstream Pitch",       mm,      Neg,  0.5,  .01,   2.,      0,    .0,     .0,     400,  .016071,    4,     100,     0}
+{13IDA:,  m52,  "OMS MAXv",   2,  3, "Downstream Pitch",     mm,      Neg,  0.5,  .01,   2.,      0,    .0,     .0,     400,  .016071,    4,     100,     0}
+{13IDA:,  m53,  "OMS MAXv",   2,  4, "Upstream jack",        mm,      Pos,  1.0,  .05,   .5,      0,    .0,     .0,     400,     .254,    3,     101,    -1}
+{13IDA:,  m54,  "OMS MAXv",   2,  5, "Inboard jack",         mm,      Pos,  1.0,  .05,   .5,      0,    .0,     .0,     400,     .254,    3,     101,    -1}
+{13IDA:,  m55,  "OMS MAXv",   2,  6, "Outbord jack",         mm,      Pos,  1.0,  .05,   .5,      0,    .0,     .0,     400,     .254,    3,     101,    -1}
+{13IDA:,  m56,  "OMS MAXv",   2,  7, "Unused",              deg,      Pos, 50.0,   10,   .2,      0,    .0,     .0,     400,      360,    3,     1e6,  -1e6}
 }
+
+# Pinhole Table, SRI Geom (MN 18-Apr-2012):
+# M0 = Inboard, M1 = Outboard, M2 = Upstream
+#
+#  13IDA:PINHOLE:t.
+#  RX, RY, RZ = 0,0,0 puts origin at M1 (downstream, outboard actuator)
+#  YANG = 180
+#  SX, SY, SZ = 115.50, 34.00, 94.50 mm puts S point at aperture
+#  
+file "$(OPTICS)/opticsApp/Db/table.db"
+{
+pattern
+{P,          Q,     T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13IDA:, PINHOLE:T, PINHOLE:t,  m29,  m26,  m27,  m28,  m25,  junk,  SRI}
+}
+
+
+# HMirror Base Jack Table, GeoCARS Geom (MN 26-Apr-2012):
+# M0 = Upstream, M1 = Inboard, M2 = Outboard
+#
+#  13IDA:HMIR:t.
+#  RX, RY, RZ = 0,0,0 puts origin at (see weird GEOCARS picture)
+#  YANG = 90
+#  Lx', Lz'  = 1000, 550 mm
+#  SX, SY, SZ = 524.3, 275, 486 mm 
 
 file "$(OPTICS)/opticsApp/Db/table.db"
 {
 pattern
-{P,            Q,      T,   M0X,  M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
-{13IDA:, HMIR:T1,HMIR:t1,  junk,  m53,    m54,   junk,   m55,  junk, GEOCARS}
+{P,           Q,      T,   M0X,  M0Y,   M1Y,   M2X,   M2Y,   M2Z,  GEOM}
+{13IDA:, EMIR:T, EMIR:t,  junk,  m10,   m12,  junk,   m11,  junk,  GEOCARS}
+}
+
+
+# C/D Horizontal Mirror
+file "$(OPTICS)/opticsApp/Db/table.db"
+{
+pattern
+{P,            Q,      T,   M0X,   M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
+{13IDA:, HMIR:T1, HMIR:t1,  junk,  m53,    m54,   junk,   m55,  junk, GEOCARS}
 }
 
 
