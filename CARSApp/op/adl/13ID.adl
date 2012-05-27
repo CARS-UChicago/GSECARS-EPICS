@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=136
-		y=335
+		x=469
+		y=114
 		width=700
 		height=550
 	}
@@ -693,13 +693,18 @@ text {
 		height=20
 	}
 	display[0] {
-		label="Undulator Gap"
-		name="ID_NewCtl.adl"
+		label="Undulator Control"
+		name="UndulatorCtl.adl"
 		args="xx=13ds"
 	}
 	display[1] {
-		label="Tapered Undulator Gap"
+		label="Tapered Undulator Control"
 		name="UndulatorTprCtl.adl"
+		args="xx=13ds"
+	}
+	display[2] {
+		label="Sync Undulator Control"
+		name="UndulatorSyncCtl.adl"
 		args="xx=13ds"
 	}
 	clr=14
@@ -734,6 +739,11 @@ text {
 		label="ID-C/D Pinhole assembly"
 		name="5motors.adl"
 		args="P=13IDA:, TITLE=ID-C/D_Pinhole, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29"
+	}
+	display[2] {
+		label="ID-C/D Pinhole Table"
+		name="table.adl"
+		args="P=13IDA:,Q=PINHOLE:T, T=PINHOLE:t, M0X=m29, M0Y=m26, M1Y=m27, M2X=m28, M2Y=m25, M2Z=junk"
 	}
 	clr=14
 	bclr=51
@@ -1005,26 +1015,6 @@ text {
 	}
 	textix="Monochromator"
 }
-"related display" {
-	object {
-		x=381
-		y=275
-		width=74
-		height=20
-	}
-	display[0] {
-		label="Undulator Gap"
-		name="ID_NewCtl.adl"
-		args="xx=13us"
-	}
-	display[1] {
-		label="Tapered Undulator Gap"
-		name="UndulatorTprCtl.adl"
-		args="xx=13us"
-	}
-	clr=14
-	bclr=51
-}
 text {
 	object {
 		x=460
@@ -1188,7 +1178,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Horizontal Mirror #1"
+	textix="Horizontal Mirrors"
 }
 "related display" {
 	object {
@@ -1198,95 +1188,42 @@ text {
 		height=20
 	}
 	display[0] {
-		label="Vertical Mirror"
-		name="8motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror, M1=m18, M2=m19, M3=pm1, M4=pm2, M5=pm5, M6=pm6, M7=pm9, M8=pm10"
+		label="Mirror Setup"
+		name="13ID_EMirrors.adl"
+		args="P=13IDA:, M1P=pm16, M1H=pm15, M2P=pm18, M2H=pm17, M1C=pm11, M1E=pm12, M2C=pm13, M2E=pm14"
 	}
 	display[1] {
-		label="Vertical Pitch (simple)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror_Pitch_Simple, M1=m20, M2=m21"
+		label="Mirror Base (simple)"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=Horizontal_Mirrors_Jacks, M1=m10, M2=m11, M3=m12"
 	}
 	display[2] {
-		label="Vertical Base (simple)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror_Base, M1=m22, M2=m23"
+		label="Mirror Pitches and Moments"
+		name="8motors.adl"
+		args="P=13IDA:, TITLE=Horizontal_Mirrors, M1=m13, M2=m14, M3=m15, M4=m16, M5=m17, M6=m18, M7=m19, M8=m20"
 	}
 	display[3] {
-		label="Vertical Base Setup"
+		label="Mirror 1 Pitch Setup"
 		name="MirrorTiltSetup.adl"
-		args="P=13IDA:,PMR=pm10"
+		args="P=13IDA:,PMR=pm16"
 	}
 	display[4] {
-		label="Vertical Pitch Setup"
+		label="Mirror 2 Pitch Setup"
 		name="MirrorTiltSetup.adl"
-		args="P=13IDA:,PMR=pm6"
+		args="P=13IDA:,PMR=pm18"
 	}
 	display[5] {
-		label="Vertical Temperature"
+		label="Mirror Temperatures"
 		name="MirrorTemps.adl"
-		args="P=13IDA:,TITLE=Vert_Temperature,CH1=DMM2Ch7, CH2=DMM2Ch6, CH3=DMM2Ch8"
+		args="P=13IDA:,TITLE=Horizontal_Mirror_Temperature,CH1=DMM2Ch7, CH2=DMM2Ch6, CH3=DMM2Ch8"
 	}
 	display[6] {
-		label="Vertical PZT"
-		name="singleDAC.adl"
-		args="P=13IDA:,D=1,C=5"
+		label="Mirror Base (Table)"
+		name="table_full.adl"
+		args="P=13IDA:, TITLE=HMIR_Jack_Table, Q=EMIR:T, T=EMIR:t, M0Y=m12, M1Y=m11, M2Y=m10"
 	}
 	clr=14
 	bclr=51
-}
-"related display" {
-	object {
-		x=381
-		y=375
-		width=75
-		height=20
-	}
-	display[0] {
-		label="Horizontal Mirror"
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror, M1=m26, M2=m27, M3=pm3, M4=pm4, M5=pm7, M6=pm8"
-	}
-	display[1] {
-		label="Horizontal Pitch (simple)"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror_Pitch_Simple, M1=m28, M2=m29"
-	}
-	display[2] {
-		label="Horizontal Base (simple)"
-		name="3motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror_Base, M1=m30, M2=m31, M3=m32"
-	}
-	display[3] {
-		label="Horizontal Base (compound)"
-		name="table.adl"
-		args="P=13IDA:, Q=HMIR:T1, T=HMIR:t1, M0X=junk, M0Y=m30, M1Y=m31, M2X=junk, M2Y=m32, M2Z=junk"
-	}
-	display[4] {
-		label="Horizontal Pitch Setup"
-		name="MirrorTiltSetup.adl"
-		args="P=13IDA:,PMR=pm8"
-	}
-	display[5] {
-		label="Horizontal Temperature"
-		name="MirrorTemps.adl"
-		args="P=13IDA:,TITLE=Horiz_Temperature,CH1=DMM2Ch2, CH2=DMM2Ch4, CH3=DMM2Ch3"
-	}
-	clr=14
-	bclr=51
-}
-text {
-	object {
-		x=461
-		y=375
-		width=170
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Horizontal Mirror #2"
 }
 "related display" {
 	object {
@@ -1361,6 +1298,31 @@ text {
 		label="XPS Auxillary I/O"
 		name="XPSAux.adl"
 		args="P=13IDA:, R=XPS2Aux"
+	}
+	clr=14
+	bclr=51
+}
+"related display" {
+	object {
+		x=381
+		y=275
+		width=74
+		height=20
+	}
+	display[0] {
+		label="Undulator Control"
+		name="UndulatorCtl.adl"
+		args="xx=13us"
+	}
+	display[1] {
+		label="Tapered Undulator Control"
+		name="UndulatorTprCtl.adl"
+		args="xx=13us"
+	}
+	display[2] {
+		label="Sync Undulator Control"
+		name="UndulatorSyncCtl.adl"
+		args="xx=13us"
 	}
 	clr=14
 	bclr=51
