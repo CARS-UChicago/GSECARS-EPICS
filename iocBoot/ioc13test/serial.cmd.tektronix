@@ -1,0 +1,14 @@
+# BEGIN serial.cmd ------------------------------------------------------------
+
+# Set up port on Digi box
+
+#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
+#                        noProcessEos)
+drvAsynSerialPortConfigure("serial1", "COM1", 0, 0, 0)
+asynOctetSetInputEos("serial1",0,"\r")
+asynOctetSetOutputEos("serial1",0,"\r")
+
+# Load asynRecord records on all ports
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=13TEST:,R=asyn1,PORT=serial1,ADDR=0,OMAX=80,IMAX=5000")
+
+# END serial.cmd --------------------------------------------------------------
