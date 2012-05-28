@@ -72,7 +72,7 @@ dbLoadTemplate "DAC.template"
 #               0 to 15 (differential)
 # lastChan    = last channel to be digitized
 # intVec        Interrupt vector
-initIp330("Ip330_1",0,2,"D","-5to5",0,15,120)
+initIp330("Ip330_1",1,0,"D","-5to5",0,15,120)
 
 #asynSetTraceIOMask "Ip330_1",0,0x2
 #asynSetTraceMask "Ip330_1",0,0x9
