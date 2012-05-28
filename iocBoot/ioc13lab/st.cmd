@@ -5,7 +5,7 @@
 #loginUserAdd "epics","SzeSebbzRR"
 
 cd topbin
-ld < CARSApp.munch
+load("CARSApp.munch")
 
 cd startup
 
@@ -19,12 +19,6 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 #iocsh
 
 errlogInit(50000)
-
-# Currently, the only thing we do in initHooks is call reboot_restore(), which
-# restores positions and settings saved ~continuously while EPICS is alive.
-# See calls to "create_monitor_set()" at the end of this file.  To disable
-# autorestore, comment out the following line.
-#ld < initHooks.o
 
 # Set debugging flags
 save_restoreDebug=0
@@ -300,7 +294,7 @@ seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=22, model=2700, stack=10000"
 
 #seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=32, FIELD=READ")
 
-seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=8, FIELD=READ")
+seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=2, FIELD=READ")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
