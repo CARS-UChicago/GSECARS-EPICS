@@ -5,7 +5,7 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSAppMini.munch
+load("CARSAppMini.munch")
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
