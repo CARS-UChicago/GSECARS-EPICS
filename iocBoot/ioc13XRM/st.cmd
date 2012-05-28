@@ -62,6 +62,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XRM:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XRM:")
+dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XRM:")
@@ -91,6 +92,8 @@ dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13XRM:,Q=Inst")
 dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13XRM:,Q=ION")
 
 dbLoadRecords("pydebug.db", "P=Py:")
+
+dbLoadRecords("py_exapp.db", "P=Py:,Q=EXT")
 
 #dbLoadRecords("$(CARS)/CARSApp/Db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
 
