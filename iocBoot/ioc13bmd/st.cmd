@@ -66,24 +66,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMDRP1:,R=TC:")
 # Struck MCS as 32-channel multi-element detector
 iocsh "SIS3820_32.cmd"
 
-##==== XPS Motors    ==================================
-XPSSetup(1)
-#    card, IP, PORT, number of axes, active poll period (ms), idle poll period (ms)
-XPSConfig(0, "164.54.160.83", 5001, 8, 10, 200)
-
-# asyn port, driver name, controller index, max. axes)
-drvAsynMotorConfigure("XPS1", "motorXPS", 0, 3)
-XPSInterpose("XPS1")
-
-# configure axes
-#card, axis, groupName.positionerName, steps/rev
-XPSConfigAxis(0,0,"GROUP1.POSITIONER",  10000)  
-XPSConfigAxis(0,1,"GROUP2.POSITIONER",  10000)  
-XPSConfigAxis(0,2,"GROUP3.POSITIONER",  50000)  
-
-# Disable setting position from motor record
-XPSEnableSetPosition(0)
-
+################################################################################
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
