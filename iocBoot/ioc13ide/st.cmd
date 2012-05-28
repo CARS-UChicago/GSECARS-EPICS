@@ -3,7 +3,7 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+load("CARSApp.munch")
 
 # Increase size of errlog buffer
 errlogInit(20000)
@@ -61,7 +61,7 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
 
 # Auto-Shutter 
-# dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
+dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13IDE:")
