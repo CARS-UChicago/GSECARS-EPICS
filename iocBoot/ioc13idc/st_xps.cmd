@@ -57,6 +57,9 @@ XPSEnableSetPosition(0)
 # Motor records
 dbLoadTemplate("motors_xps.template")
 
+# Auxillary I/O records
+dbLoadTemplate("XPSAux.substitutions")
+
 # asyn record for debugging
 drvAsynIPPortConfigure("xps", "164.54.160.124:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
