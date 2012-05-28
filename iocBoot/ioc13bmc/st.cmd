@@ -5,8 +5,7 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
-# ld < ../../../motor/bin/vxWorks-ppc604/XPSGathering.munch
+load("CARSApp.munch")
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,
