@@ -1,0 +1,18 @@
+errlogInit(5000)
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+drvAsynIPPortConfigure("XPS1", "164.54.160.41:5001", 0,0,0)
+asynSetTraceIOMask("XPS1", 0, 2)
+asynSetTraceMask("XPS1", 0, 9)
+
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XPS:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
+
+iocInit
+
+dbpf("13XPS:asyn1.AOUT", "FirmwareVersionGet(char *)")
+dbpf("13XPS:asyn1.SCAN", "1 second")
+
