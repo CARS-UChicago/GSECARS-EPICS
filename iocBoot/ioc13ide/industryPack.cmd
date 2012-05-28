@@ -4,8 +4,8 @@
 #                2 = interrupt mapping 4, 5, 2, 1, 4, 5, 2, 1
 #                F = A32 address space, 8MB per slot
 #               A0 = A0000000 base address in A32 space
-#ipacAddTVME200("302FA0") 
-ipacAddVIPC616_01("0x3000,0xa0000000")
+ipacAddTVME200("302FA0") 
+#ipacAddVIPC616_01("0x3000,0xa0000000")
 
 
 # TEWS200 card 1
