@@ -8,17 +8,29 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 ### Motors
 dbLoadTemplate  "motors.template"
 
-drvAsynIPPortConfigure("xps3","164.54.160.34:5001 tcp", 0, 0, 1)
+################################################################################
+# XPS Setup
 
-# cards (total controllers), scan rate
-XPSC8Setup(1, 60)
+# asyn port, IP address, IP port, number of axes, 
+# active poll period (ms), idle poll period (ms), 
+# enable set position, set position settling time (ms)
+XPSCreateController("XPS1", "164.54.160.41", 5001, 3, 10, 200, 0, 500)
+asynSetTraceIOMask("XPS1", 0, 2)
+#asynSetTraceMask("XPS1", 0, 255)
 
-# card, IP, PORT, number of axes
-XPSC8Config(0,"xps3",0,2)
+# asynPort, IP address, IP port, poll period (ms)
+#XPSAuxConfig("XPS_AUX1", "164.54.160.41", 5001, 50)
+#asynSetTraceIOMask("XPS_AUX1", 0, 2)
+#asynSetTraceMask("XPS_AUX1", 0, 255)
 
-# card,  axis, groupnumber, groupsize,axis in group, group, positioner
-XPSC8NameConfig(0,0,0,1,0,"GROUP1","GROUP1.POSITIONER")
-XPSC8NameConfig(0,1,1,1,0,"GROUP2","GROUP2.POSITIONER")
+# XPS asyn port,  axis, groupName.positionerName, stepSize
+XPSCreateAxis("XPS1",0,"Group1.Pos1",  "10000")  
+XPSCreateAxis("XPS1",1,"Group1.Pos2",  "10000")  
+XPSCreateAxis("XPS1",2,"Group1.Pos3",  "10000")  
+
+# XPS asyn port,  max points, FTP username, FTP password
+# Note: this must be done after configuring axes
+XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -26,9 +38,7 @@ XPSC8NameConfig(0,1,1,1,0,"GROUP2","GROUP2.POSITIONER")
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-# This database must agree with the motors you've actually loaded.
-# Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13xps3:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XPS:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -36,30 +46,30 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13xps3:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13xps3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13XPS:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13xps3:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XPS:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13xps3:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XPS:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13xps3:")
+dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XPS:")
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("13xps3:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13xps3:")
+save_restoreSet_status_prefix("13XPS:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13XPS:")
 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13xps3:,R=asyn1,PORT=xps3,ADDR=0,IMAX=256,OMAX=256")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XPS:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 
-asynSetTraceIOMask("xps3",0,2)
-asynSetTraceMask("xps3",0,0x3)
-asynSetTraceIOTruncateSize("xps3",0,200)
+asynSetTraceIOMask("XPS1",0,2)
+#asynSetTraceMask("XPS1",0,255)
+asynSetTraceIOTruncateSize("XPS1",0,200)
 iocInit
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5, "P=13xps3:")
+create_monitor_set("auto_positions.req", 5, "P=13XPS:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "P=13xps3:")
+create_monitor_set("auto_settings.req", 30, "P=13XPS:")
 
