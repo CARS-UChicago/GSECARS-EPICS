@@ -21,8 +21,8 @@ dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip6,PORT=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13IDA:,PUMP=ip7,PORT=serial6")
 
 tyGSAsynInit("serial7",   "UART0", 6, 9600,'N',1,8,'N',"\r","\r") /* MPC; IP2, IP4 */
-dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip2,PORT=serial7,PA=0,PN=1")
-dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip4,PORT=serial7,PA=0,PN=2")
+dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip2,PORT=serial7,PA=0,PN=2")
+dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip4,PORT=serial7,PA=0,PN=1")
 
 tyGSAsynInit("serial8",   "UART0", 7, 9600,'N',1,8,'N',"\r","\r") /* MPC; IP9, IP10 */
 dbLoadRecords("$(IP)/ipApp/Db/MPC.db","P=13IDA:,PUMP=ip9,PORT=serial8,PA=0,PN=1")
