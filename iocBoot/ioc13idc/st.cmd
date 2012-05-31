@@ -3,7 +3,7 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+load("CARSApp.munch")
 
 # Increase size of errlog buffer
 errlogInit(20000)
@@ -26,7 +26,6 @@ devXSC8Debug = 0
 drvXPSC8Debug = 0
 # Asyn XPS driver debug variable 0-5
 asynXPSC8Debug = 0
-
 
 # Load database
 # dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")

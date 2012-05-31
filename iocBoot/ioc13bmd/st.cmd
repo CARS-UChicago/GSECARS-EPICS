@@ -3,7 +3,7 @@
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+load("CARSApp.munch")
 
 # Increase size of errlog buffer
 errlogInit(20000)
