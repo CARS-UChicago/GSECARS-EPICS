@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=469
-		y=114
+		x=266
+		y=376
 		width=700
 		height=550
 	}
@@ -457,63 +457,57 @@ composite {
 		}
 	}
 }
-composite {
+"related display" {
 	object {
 		x=31
 		y=95
-		width=329
+		width=74
 		height=20
 	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=31
-				y=95
-				width=74
-				height=20
-			}
-			display[0] {
-				label="Storage Ring Status"
-				name="SR_Status.adl"
-			}
-			display[1] {
-				label="Beam Position Monitors"
-				name="IDxbpm.adl"
-				args="sector=13,sector0=13,sectorPlusOne=14"
-			}
-			display[4] {
-				label="13-ID Status and BPM"
-				name="MRD_ID.adl"
-				args="xx=13, ID1=13"
-			}
-			display[5] {
-				label="13-ID BPM Detail"
-				name="MRD_IDbpm.adl"
-				args="xx=13, ID1=13"
-			}
-			display[7] {
-				label="OLD 13-ID Beam Pos"
-				name="IDBPM.adl"
-				args="xx=13"
-			}
-			clr=14
-			bclr=51
-		}
-		text {
-			object {
-				x=110
-				y=95
-				width=250
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="Ring Status/Beam Position"
-		}
+	display[0] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
 	}
+	display[2] {
+		label="Beamline status"
+		name="Beamline_Status.adl"
+		args="a=13, b=ID"
+	}
+	display[3] {
+		label="Front-end status"
+		name="front-end-protection.adl"
+		args="a=13, b=ID"
+	}
+	display[4] {
+		label="PSS status"
+		name="Main_13ID.adl"
+		args="xx=13, yy=ID"
+	}
+	display[8] {
+		label="X-ray BPM (Upstream)"
+		name="IDxbpmCantedUS.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[9] {
+		label="X-ray BPM (Downstream)"
+		name="IDxbpmCantedDS.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=110
+		y=95
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Ring Status/Beam Position"
 }
 composite {
 	object {
@@ -659,28 +653,23 @@ text {
 		args="P=13IDA:, TITLE=ID-C/D_Mono_Theta, M1=m57"
 	}
 	display[3] {
-		label="ID-C/D 2nd Crystal Feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=mono_pid1, TITLE=ID-C/D_Mono_feedback"
+		label="ID-C/D Mono Feedback"
+		name="13ID_mono_feedback.adl"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2"
 	}
 	display[4] {
-		label="ID-C/D Fast pitch feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_PITCH_pid, TITLE=ID-C/D_Mono_Roll_feedback"
-	}
-	display[5] {
-		label="ID-C/D Fast roll feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_roll_pid, TITLE=ID-C/D_Mono_Pitch_feedback"
-	}
-	display[6] {
 		label="ID-C/D Cryo & Vacuum Status"
 		name="13ID_mono_cryovac.adl"
 	}
-	display[7] {
+	display[5] {
 		label="XPS Auxillary I/O"
 		name="XPSAux.adl"
 		args="P=13IDA:, R=XPS1Aux"
+	}
+	display[6] {
+		label="ID-C/D Mono full"
+		name="13ID_mono_full.adl"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2,ID=13ds:,EN=E"
 	}
 	clr=14
 	bclr=51
@@ -694,18 +683,13 @@ text {
 	}
 	display[0] {
 		label="Undulator Control"
-		name="UndulatorCtl.adl"
-		args="xx=13ds"
+		name="IDControl.adl"
+		args="ID=13ds"
 	}
 	display[1] {
-		label="Tapered Undulator Control"
-		name="UndulatorTprCtl.adl"
-		args="xx=13ds"
-	}
-	display[2] {
 		label="Sync Undulator Control"
-		name="UndulatorSyncCtl.adl"
-		args="xx=13ds"
+		name="IDSyncScan.adl"
+		args="ID=13ds"
 	}
 	clr=14
 	bclr=51

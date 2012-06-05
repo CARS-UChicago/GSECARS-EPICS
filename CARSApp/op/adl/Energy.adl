@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/src/../op/adl/Energy.adl"
-	version=030000
+	name="/home/epics/support/CARS/CARSApp/op/adl/Energy.adl"
+	version=030105
 }
 display {
 	object {
-		x=529
-		y=25
+		x=2096
+		y=187
 		width=650
-		height=470
+		height=331
 	}
 	clr=24
 	bclr=45
@@ -86,18 +86,6 @@ display {
 		289315,
 		1a7309,
 	}
-}
-text {
-	object {
-		x=10
-		y=305
-		width=162
-		height=15
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="Undulator Settings"
 }
 "text entry" {
 	object {
@@ -243,42 +231,6 @@ oval {
 		chan="$(P1)$(MONO).LLS"
 	}
 }
-text {
-	object {
-		x=15
-		y=400
-		width=60
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Harmonic"
-}
-text {
-	object {
-		x=15
-		y=370
-		width=72
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Deadband"
-}
-text {
-	object {
-		x=255
-		y=370
-		width=63
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="microns"
-}
 "message button" {
 	object {
 		x=285
@@ -386,52 +338,12 @@ polyline {
 text {
 	object {
 		x=10
-		y=160
-		width=100
-		height=10
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="2nd XTAL Z"
-}
-"text update" {
-	object {
-		x=100
-		y=340
-		width=80
-		height=15
-	}
-	monitor {
-		chan="$(ID)Energy.VAL"
-		clr=54
-		bclr=45
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=10
 		y=35
 		width=54
 		height=15
 	}
 	"basic attribute" {
 		clr=23
-	}
-	textix="Energy"
-}
-text {
-	object {
-		x=15
-		y=340
-		width=54
-		height=15
-	}
-	"basic attribute" {
-		clr=54
 	}
 	textix="Energy"
 }
@@ -448,327 +360,6 @@ text {
 		bclr=45
 	}
 	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=255
-		y=340
-		width=27
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="KeV"
-}
-"text entry" {
-	object {
-		x=175
-		y=190
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P1)$(Z).VAL"
-		clr=14
-		bclr=2
-	}
-	limits {
-	}
-}
-"choice button" {
-	object {
-		x=400
-		y=170
-		width=50
-		height=40
-	}
-	control {
-		chan="$(P1)$(Z).SET"
-		clr=54
-		bclr=33
-	}
-}
-"text update" {
-	object {
-		x=10
-		y=195
-		width=150
-		height=15
-	}
-	monitor {
-		chan="$(P1)$(Z).RBV"
-		clr=54
-		bclr=45
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"related display" {
-	object {
-		x=570
-		y=165
-		width=60
-		height=20
-	}
-	display[0] {
-		label="All"
-		name="motorx_all.adl"
-		args="P=$(P1), M=$(Z)"
-	}
-	display[1] {
-		label="Scan parameters"
-		name="scanParms.adl"
-		args="P=$(P1), Q=$(Z), PV=$(Z)"
-	}
-	clr=54
-	bclr=33
-	label="More"
-}
-rectangle {
-	object {
-		x=170
-		y=170
-		width=110
-		height=45
-	}
-	"basic attribute" {
-		clr=31
-		width=9
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P1)$(Z).SET"
-	}
-}
-oval {
-	object {
-		x=70
-		y=175
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=21
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P1)$(Z).HLS"
-	}
-}
-text {
-	object {
-		x=85
-		y=175
-		width=70
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P1)$(Z).LVIO"
-	}
-	textix="Soft-Limit"
-}
-oval {
-	object {
-		x=155
-		y=175
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=21
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P1)$(Z).LLS"
-	}
-}
-"message button" {
-	object {
-		x=285
-		y=192
-		width=15
-		height=20
-	}
-	control {
-		chan="$(P1)$(Z).TWR"
-		clr=54
-		bclr=33
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=380
-		y=192
-		width=15
-		height=20
-	}
-	control {
-		chan="$(P1)$(Z).TWF"
-		clr=54
-		bclr=33
-	}
-	label=">"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=300
-		y=192
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P1)$(Z).TWV"
-		clr=14
-		bclr=2
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=170
-		y=170
-		width=110
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P1)$(Z).SET"
-	}
-	textix="SET"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=303
-		y=175
-		width=45
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Tweak"
-}
-"choice button" {
-	object {
-		x=455
-		y=170
-		width=100
-		height=40
-	}
-	control {
-		chan="$(P1)$(Z).SPMG"
-		clr=31
-		bclr=21
-	}
-	stacking="row column"
-}
-polyline {
-	object {
-		x=-5
-		y=290
-		width=651
-		height=3
-	}
-	"basic attribute" {
-		clr=58
-		width=3
-	}
-	points {
-		(-4,291)
-		(644,291)
-	}
-}
-"text update" {
-	object {
-		x=100
-		y=370
-		width=80
-		height=15
-	}
-	monitor {
-		chan="$(ID)DeadbandGap"
-		clr=54
-		bclr=45
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=100
-		y=400
-		width=80
-		height=15
-	}
-	monitor {
-		chan="$(ID)HarmonicValue"
-		clr=54
-		bclr=45
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=190
-		y=365
-		width=60
-		height=20
-	}
-	control {
-		chan="$(ID)DeadbandGap"
-		clr=14
-		bclr=2
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=190
-		y=395
-		width=60
-		height=20
-	}
-	control {
-		chan="$(ID)HarmonicValue"
-		clr=14
-		bclr=2
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=190
-		y=335
-		width=60
-		height=20
-	}
-	control {
-		chan="$(ID)ScanEnergy.VAL"
-		clr=14
-		bclr=2
-	}
 	limits {
 	}
 }
@@ -931,22 +522,6 @@ text {
 	bclr=33
 	label="More"
 }
-polyline {
-	object {
-		x=340
-		y=290
-		width=3
-		height=179
-	}
-	"basic attribute" {
-		clr=58
-		width=3
-	}
-	points {
-		(341,291)
-		(341,467)
-	}
-}
 text {
 	object {
 		x=303
@@ -983,70 +558,6 @@ text {
 	}
 	textix="$(TITLE)"
 }
-"choice button" {
-	object {
-		x=510
-		y=310
-		width=100
-		height=25
-	}
-	control {
-		chan="$(P1)$(EN):id_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=375
-		y=320
-		width=100
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Undulator"
-}
-"choice button" {
-	object {
-		x=510
-		y=435
-		width=100
-		height=25
-	}
-	control {
-		chan="$(P1)$(EN):xt_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=370
-		y=440
-		width=120
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Table Height"
-}
-text {
-	object {
-		x=360
-		y=300
-		width=120
-		height=15
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="Auto-Tracking"
-}
 rectangle {
 	object {
 		x=455
@@ -1080,97 +591,63 @@ text {
 	textix="Moving"
 	align="horiz. centered"
 }
-polyline {
-	object {
-		x=-5
-		y=215
-		width=651
-		height=3
-	}
-	"basic attribute" {
-		clr=58
-		width=3
-	}
-	points {
-		(-4,216)
-		(644,216)
-	}
-}
-"choice button" {
-	object {
-		x=510
-		y=345
-		width=100
-		height=25
-	}
-	control {
-		chan="$(P1)$(EN):z2_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=375
-		y=350
-		width=100
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="2nd XTAL Z"
-}
 text {
 	object {
 		x=10
-		y=225
-		width=150
+		y=167
+		width=162
 		height=15
 	}
 	"basic attribute" {
 		clr=24
 	}
-	textix="Table Height"
+	textix="Undulator Settings"
 }
-"text entry" {
+text {
 	object {
-		x=175
-		y=260
-		width=100
-		height=20
+		x=15
+		y=262
+		width=60
+		height=14
 	}
-	control {
-		chan="$(P2)$(EXPTAB).VAL"
-		clr=14
-		bclr=2
-	}
-	limits {
-	}
-}
-"choice button" {
-	object {
-		x=400
-		y=240
-		width=50
-		height=40
-	}
-	control {
-		chan="$(P2)$(EXPTAB).SET"
+	"basic attribute" {
 		clr=54
-		bclr=33
 	}
+	textix="Harmonic"
+}
+text {
+	object {
+		x=15
+		y=232
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Deadband"
+}
+text {
+	object {
+		x=255
+		y=232
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="microns"
 }
 "text update" {
 	object {
-		x=10
-		y=265
-		width=150
+		x=100
+		y=202
+		width=80
 		height=15
 	}
 	monitor {
-		chan="$(P2)$(EXPTAB).RBV"
+		chan="$(ID)Energy.VAL"
 		clr=54
 		bclr=45
 	}
@@ -1178,234 +655,139 @@ text {
 	limits {
 	}
 }
-"related display" {
+text {
 	object {
-		x=570
-		y=235
-		width=60
-		height=20
-	}
-	display[0] {
-		label="All"
-		name="motorx_all.adl"
-		args="P=$(P2), M=$(EXPTAB)"
-	}
-	display[1] {
-		label="Scan parameters"
-		name="scanParms.adl"
-		args="P=$(P2), Q=$(EXPTAB), PV=$(EXPTAB)"
-	}
-	clr=54
-	bclr=33
-	label="More"
-}
-rectangle {
-	object {
-		x=170
-		y=240
-		width=110
-		height=45
+		x=15
+		y=202
+		width=54
+		height=15
 	}
 	"basic attribute" {
-		clr=31
-		width=9
+		clr=54
 	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P2)$(EXPTAB).SET"
-	}
-}
-oval {
-	object {
-		x=70
-		y=245
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=21
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P2)$(EXPTAB).HLS"
-	}
+	textix="Energy"
 }
 text {
 	object {
-		x=85
-		y=245
-		width=70
-		height=13
+		x=255
+		y=202
+		width=27
+		height=15
 	}
 	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P2)$(EXPTAB).LVIO"
-	}
-	textix="Soft-Limit"
-}
-oval {
-	object {
-		x=155
-		y=245
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=21
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P2)$(EXPTAB).LLS"
-	}
-}
-"message button" {
-	object {
-		x=285
-		y=262
-		width=15
-		height=20
-	}
-	control {
-		chan="$(P2)$(EXPTAB).TWR"
 		clr=54
-		bclr=33
 	}
-	label="<"
-	press_msg="1"
+	textix="KeV"
 }
-"message button" {
+"text update" {
 	object {
-		x=380
-		y=262
-		width=15
-		height=20
+		x=100
+		y=232
+		width=80
+		height=15
 	}
-	control {
-		chan="$(P2)$(EXPTAB).TWF"
+	monitor {
+		chan="$(ID)DeadbandGap"
 		clr=54
-		bclr=33
+		bclr=45
 	}
-	label=">"
-	press_msg="1"
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=100
+		y=262
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)HarmonicValue"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
 }
 "text entry" {
 	object {
-		x=300
-		y=262
-		width=80
+		x=190
+		y=227
+		width=60
 		height=20
 	}
 	control {
-		chan="$(P2)$(EXPTAB).TWV"
+		chan="$(ID)DeadbandGap"
 		clr=14
 		bclr=2
 	}
 	limits {
 	}
 }
-text {
+"text entry" {
 	object {
-		x=170
-		y=240
-		width=110
-		height=15
+		x=190
+		y=257
+		width=60
+		height=20
 	}
-	"basic attribute" {
+	control {
+		chan="$(ID)HarmonicValue"
 		clr=14
+		bclr=2
 	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P2)$(EXPTAB).SET"
+	limits {
 	}
-	textix="SET"
-	align="horiz. centered"
 }
-text {
+"text entry" {
 	object {
-		x=303
-		y=245
-		width=45
-		height=15
+		x=190
+		y=197
+		width=60
+		height=20
 	}
-	"basic attribute" {
+	control {
+		chan="$(ID)ScanEnergy.VAL"
 		clr=14
+		bclr=2
 	}
-	textix="Tweak"
+	limits {
+	}
 }
-"choice button" {
+polyline {
 	object {
-		x=455
-		y=240
-		width=100
-		height=40
+		x=340
+		y=152
+		width=3
+		height=179
 	}
-	control {
-		chan="$(P2)$(EXPTAB).SPMG"
-		clr=31
-		bclr=21
+	"basic attribute" {
+		clr=58
+		width=3
 	}
-	stacking="row column"
-}
-"choice button" {
-	object {
-		x=510
-		y=405
-		width=100
-		height=25
+	points {
+		(341,153)
+		(341,329)
 	}
-	control {
-		chan="$(P1)$(EN):xt2_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
 }
 text {
 	object {
-		x=375
-		y=410
-		width=100
+		x=360
+		y=162
+		width=120
 		height=15
 	}
 	"basic attribute" {
-		clr=54
+		clr=24
 	}
-	textix="Mirror Height"
-}
-text {
-	object {
-		x=375
-		y=380
-		width=100
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Fixed Offset"
-}
-"choice button" {
-	object {
-		x=510
-		y=375
-		width=100
-		height=25
-	}
-	control {
-		chan="$(P1)$(EN):y2_track"
-		clr=54
-		bclr=33
-	}
-	stacking="column"
+	textix="Auto-Tracking"
 }
 "choice button" {
 	object {
 		x=195
-		y=425
+		y=287
 		width=100
 		height=25
 	}
@@ -1419,7 +801,7 @@ text {
 text {
 	object {
 		x=20
-		y=430
+		y=292
 		width=100
 		height=15
 	}
@@ -1427,4 +809,115 @@ text {
 		clr=54
 	}
 	textix="Wait for Feedback"
+}
+composite {
+	object {
+		x=375
+		y=202
+		width=235
+		height=25
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=375
+				y=207
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Fixed Offset"
+		}
+		"choice button" {
+			object {
+				x=510
+				y=202
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P1)$(EN):y2_track"
+				clr=54
+				bclr=33
+			}
+			stacking="column"
+		}
+	}
+}
+composite {
+	object {
+		x=375
+		y=232
+		width=235
+		height=25
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=510
+				y=232
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P1)$(EN):xt2_track"
+				clr=54
+				bclr=33
+			}
+			stacking="column"
+		}
+		text {
+			object {
+				x=375
+				y=237
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Mirror Height"
+		}
+	}
+}
+composite {
+	object {
+		x=375
+		y=172
+		width=235
+		height=25
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=510
+				y=172
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P1)$(EN):id_track"
+				clr=54
+				bclr=33
+			}
+			stacking="column"
+		}
+		text {
+			object {
+				x=375
+				y=182
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Undulator"
+		}
+	}
 }

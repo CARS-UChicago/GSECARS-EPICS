@@ -1,13 +1,13 @@
 
 file {
-	name="/home/epics/synApps5-1beta2/CARS/CARSApp/op/adl/13ID_mono_feedback.adl"
-	version=030000
+	name="/home/epics/support/CARS/CARSApp/op/adl/13ID_mono_feedback.adl"
+	version=030105
 }
 display {
 	object {
-		x=165
-		y=31
-		width=630
+		x=175
+		y=72
+		width=632
 		height=410
 	}
 	clr=14
@@ -90,12 +90,12 @@ display {
 "text update" {
 	object {
 		x=5
-		y=73
+		y=72
 		width=70
 		height=18
 	}
 	monitor {
-		chan="$(P)$(M1).DESC"
+		chan="$(P)$(THETA_MOTOR).DESC"
 		clr=14
 		bclr=45
 	}
@@ -117,12 +117,12 @@ rectangle {
 "text update" {
 	object {
 		x=85
-		y=70
+		y=72
 		width=65
 		height=18
 	}
 	monitor {
-		chan="$(P)$(M1).RBV"
+		chan="$(P)$(THETA_MOTOR).RBV"
 		clr=54
 		bclr=3
 	}
@@ -132,12 +132,12 @@ rectangle {
 "message button" {
 	object {
 		x=235
-		y=70
+		y=71
 		width=15
 		height=20
 	}
 	control {
-		chan="$(P)$(M1).TWF"
+		chan="$(P)$(THETA_MOTOR).TWF"
 		clr=14
 		bclr=55
 	}
@@ -147,12 +147,12 @@ rectangle {
 "message button" {
 	object {
 		x=160
-		y=70
+		y=71
 		width=15
 		height=20
 	}
 	control {
-		chan="$(P)$(M1).TWR"
+		chan="$(P)$(THETA_MOTOR).TWR"
 		clr=14
 		bclr=55
 	}
@@ -162,12 +162,12 @@ rectangle {
 "text entry" {
 	object {
 		x=175
-		y=70
+		y=71
 		width=60
 		height=20
 	}
 	control {
-		chan="$(P)$(M1).TWV"
+		chan="$(P)$(THETA_MOTOR).TWV"
 		clr=14
 		bclr=55
 	}
@@ -218,12 +218,12 @@ text {
 "text update" {
 	object {
 		x=5
-		y=120
+		y=119
 		width=70
 		height=18
 	}
 	monitor {
-		chan="$(P)$(M2).DESC"
+		chan="$(P)$(HEIGHT_MOTOR).DESC"
 		clr=14
 		bclr=45
 	}
@@ -233,12 +233,12 @@ text {
 "text update" {
 	object {
 		x=85
-		y=120
+		y=119
 		width=65
 		height=18
 	}
 	monitor {
-		chan="$(P)$(M2).RBV"
+		chan="$(P)$(HEIGHT_MOTOR).RBV"
 		clr=54
 		bclr=3
 	}
@@ -248,12 +248,12 @@ text {
 "message button" {
 	object {
 		x=160
-		y=120
+		y=118
 		width=15
 		height=20
 	}
 	control {
-		chan="$(P)$(M2).TWR"
+		chan="$(P)$(HEIGHT_MOTOR).TWR"
 		clr=14
 		bclr=55
 	}
@@ -263,12 +263,12 @@ text {
 "text entry" {
 	object {
 		x=175
-		y=120
+		y=118
 		width=60
 		height=20
 	}
 	control {
-		chan="$(P)$(M2).TWV"
+		chan="$(P)$(HEIGHT_MOTOR).TWV"
 		clr=14
 		bclr=55
 	}
@@ -292,12 +292,12 @@ text {
 "text update" {
 	object {
 		x=261
-		y=70
+		y=71
 		width=90
 		height=20
 	}
 	monitor {
-		chan="$(P)$(PID1).OVAL"
+		chan="$(P)$(FAST_PITCH_PID).OVAL"
 		clr=14
 		bclr=1
 	}
@@ -321,12 +321,12 @@ text {
 "text update" {
 	object {
 		x=261
-		y=120
+		y=118
 		width=90
 		height=20
 	}
 	monitor {
-		chan="$(P)$(PID2).OVAL"
+		chan="$(P)$(FAST_ROLL_PID).OVAL"
 		clr=14
 		bclr=1
 	}
@@ -337,12 +337,12 @@ text {
 "text update" {
 	object {
 		x=377
-		y=70
+		y=71
 		width=70
 		height=20
 	}
 	monitor {
-		chan="$(P)$(PID1).ERR"
+		chan="$(P)$(FAST_PITCH_PID).ERR"
 		clr=14
 		bclr=1
 	}
@@ -353,12 +353,12 @@ text {
 "text update" {
 	object {
 		x=377
-		y=120
+		y=118
 		width=70
 		height=20
 	}
 	monitor {
-		chan="$(P)$(PID2).ERR"
+		chan="$(P)$(FAST_ROLL_PID).ERR"
 		clr=14
 		bclr=1
 	}
@@ -382,12 +382,12 @@ text {
 menu {
 	object {
 		x=470
-		y=70
+		y=71
 		width=50
 		height=20
 	}
 	control {
-		chan="$(P)$(PID1).FBON"
+		chan="$(P)$(FAST_PITCH_PID).FBON"
 		clr=14
 		bclr=51
 	}
@@ -395,12 +395,12 @@ menu {
 menu {
 	object {
 		x=470
-		y=120
+		y=118
 		width=50
 		height=20
 	}
 	control {
-		chan="$(P)$(PID2).FBON"
+		chan="$(P)$(FAST_ROLL_PID).FBON"
 		clr=14
 		bclr=51
 	}
@@ -446,24 +446,24 @@ text {
 "related display" {
 	object {
 		x=575
-		y=70
+		y=69
 		width=45
 		height=25
 	}
 	display[0] {
-		label="Feedback lock"
+		label="Feedback calcs"
 		name="userTransform_full.adl"
-		args="P=13IDA:, T=fast_pitch_pid_incalc, TITLE=Mono_Pitch_feedback"
+		args="P=13IDA:, T=$(FAST_PITCH_PID)_incalc, TITLE=Mono_Pitch_feedback"
 	}
 	display[1] {
 		label="Fast PID setup"
 		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_pitch_pid, TITLE=Mono_Pitch_feedback"
+		args="P=13IDA:, PID=$(FAST_PITCH_PID), TITLE=Mono_Pitch_feedback"
 	}
 	display[2] {
 		label="Plot"
 		name="pid_plot_readback.adl"
-		args="P=13IDA:, PID=fast_pitch_pid"
+		args="P=13IDA:, PID=$(FAST_PITCH_PID)"
 	}
 	clr=54
 	bclr=2
@@ -472,24 +472,24 @@ text {
 "related display" {
 	object {
 		x=575
-		y=115
+		y=116
 		width=45
 		height=25
 	}
 	display[0] {
-		label="Feedback lock"
+		label="Feedback calcs"
 		name="userTransform_full.adl"
-		args="P=13IDA:, T=fast_roll_pid_incalc"
+		args="P=13IDA:, T=$(FAST_ROLL_PID)_incalc"
 	}
 	display[1] {
 		label="Fast PID setup"
 		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_roll_pid, TITLE=Mono_Roll_feedback"
+		args="P=13IDA:, PID=$(FAST_ROLL_PID), TITLE=Mono_Roll_feedback"
 	}
 	display[2] {
 		label="Plot"
 		name="pid_plot_readback.adl"
-		args="P=13IDA:, PID=fast_roll_pid"
+		args="P=13IDA:, PID=$(FAST_ROLL_PID)"
 	}
 	clr=54
 	bclr=2
@@ -498,24 +498,24 @@ text {
 "related display" {
 	object {
 		x=535
-		y=180
+		y=178
 		width=45
 		height=25
 	}
 	display[1] {
 		label="PID Control"
 		name="pid_control.adl"
-		args="P=$(P), PID=mono_pid1, TITLE=Mono_Pitch_Feedback"
+		args="P=$(P), PID=$(SLOW_PITCH_PID), TITLE=Mono_Pitch_Feedback"
 	}
 	display[2] {
 		label="Plot"
 		name="pid_plot_readback.adl"
-		args="P=13IDA:, PID=mono_pid1"
+		args="P=$(P), PID=(SLOW_PITCH_PID)"
 	}
 	display[4] {
 		label="PID Calculation"
 		name="userTransform_full.adl"
-		args="P=$(P), T=mono_pid1_incalc"
+		args="P=$(P), T=$(SLOW_PITCH_PID)_incalc"
 	}
 	display[5] {
 		label="Mono DTheta Piezo"
@@ -525,7 +525,7 @@ text {
 	display[6] {
 		label="Mono DTheta Motor"
 		name="1motors.adl"
-		args="P=13IDA:, M1=m12, TITLE=Mono_Dtheta"
+		args="P=$(P), M1=$(SLOW_PITCH), TITLE=Mono_Dtheta"
 	}
 	clr=54
 	bclr=2
@@ -539,7 +539,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)mono_pid1.VAL"
+		chan="$(P)$(SLOW_PITCH_PID).VAL"
 		clr=14
 		bclr=55
 	}
@@ -549,7 +549,7 @@ text {
 text {
 	object {
 		x=10
-		y=180
+		y=183
 		width=40
 		height=15
 	}
@@ -566,7 +566,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="$(P)mono_pid1.CVAL"
+		chan="$(P)$(SLOW_PITCH_PID).CVAL"
 		clr=14
 		bclr=1
 	}
@@ -582,7 +582,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="$(P)mono_pid1.FBON"
+		chan="$(P)$(SLOW_PITCH_PID).FBON"
 		clr=14
 		bclr=51
 	}
@@ -595,7 +595,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="$(P)mono_pid1EnableReset"
+		chan="$(P)$(SLOW_PITCH_PID)EnableReset"
 		clr=14
 		bclr=51
 	}
@@ -603,7 +603,7 @@ menu {
 text {
 	object {
 		x=390
-		y=155
+		y=156
 		width=50
 		height=18
 	}
@@ -615,7 +615,7 @@ text {
 text {
 	object {
 		x=170
-		y=180
+		y=183
 		width=40
 		height=15
 	}
@@ -627,7 +627,7 @@ text {
 text {
 	object {
 		x=3
-		y=156
+		y=155
 		width=253
 		height=20
 	}
@@ -640,7 +640,7 @@ text {
 oval {
 	object {
 		x=340
-		y=180
+		y=183
 		width=15
 		height=15
 	}
@@ -649,13 +649,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(P)mono_pid1Locked"
+		chan="$(P)$(SLOW_PITCH_PID)Locked"
 	}
 }
 text {
 	object {
 		x=320
-		y=155
+		y=156
 		width=50
 		height=18
 	}
@@ -680,24 +680,24 @@ rectangle {
 "related display" {
 	object {
 		x=535
-		y=300
+		y=304
 		width=45
 		height=25
 	}
 	display[1] {
 		label="PID Control"
 		name="pid_control.adl"
-		args="P=$(P), PID=mono_pid2, TITLE=Mono_Roll_Feedback"
+		args="P=$(P), PID=$(SLOW_ROLL_PID), TITLE=Mono_Roll_Feedback"
 	}
 	display[2] {
 		label="Plot"
 		name="pid_plot_readback.adl"
-		args="P=13IDA:, PID=mono_pid2"
+		args="P=$(P), PID=$(SLOW_ROLL_PID)"
 	}
 	display[4] {
 		label="PID Calculation"
 		name="userTransform_full.adl"
-		args="P=$(P), T=mono_pid2_incalc"
+		args="P=$(P), T=$(SLOW_ROLL_PID)_incalc"
 	}
 	display[5] {
 		label="Mono DChi Piezo"
@@ -707,7 +707,7 @@ rectangle {
 	display[6] {
 		label="Mono DChi Motor"
 		name="1motors.adl"
-		args="P=13IDA:, M1=m11, TITLE=MONO_Dchi"
+		args="P=$(P), M1=$(SLOW_ROLL_MOTOR), TITLE=MONO_Dchi"
 	}
 	clr=54
 	bclr=2
@@ -716,12 +716,12 @@ rectangle {
 "text entry" {
 	object {
 		x=85
-		y=305
+		y=306
 		width=75
 		height=20
 	}
 	control {
-		chan="$(P)mono_pid2.VAL"
+		chan="$(P)$(SLOW_ROLL_PID).VAL"
 		clr=14
 		bclr=55
 	}
@@ -731,7 +731,7 @@ rectangle {
 text {
 	object {
 		x=10
-		y=310
+		y=309
 		width=40
 		height=15
 	}
@@ -743,12 +743,12 @@ text {
 "text update" {
 	object {
 		x=235
-		y=305
+		y=306
 		width=70
 		height=20
 	}
 	monitor {
-		chan="$(P)mono_pid2.CVAL"
+		chan="$(P)$(SLOW_ROLL_PID).CVAL"
 		clr=14
 		bclr=1
 	}
@@ -759,12 +759,12 @@ text {
 menu {
 	object {
 		x=475
-		y=305
+		y=306
 		width=50
 		height=20
 	}
 	control {
-		chan="$(P)mono_pid2.FBON"
+		chan="$(P)$(SLOW_ROLL_PID).FBON"
 		clr=14
 		bclr=51
 	}
@@ -772,21 +772,21 @@ menu {
 menu {
 	object {
 		x=390
-		y=305
+		y=306
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P)mono_pid2EnableReset"
+		chan="$(P)$(SLOW_ROLL_PID)EnableReset"
 		clr=14
 		bclr=51
 	}
 }
 text {
 	object {
-		x=390
-		y=285
-		width=50
+		x=425
+		y=286
+		width=55
 		height=18
 	}
 	"basic attribute" {
@@ -797,7 +797,7 @@ text {
 text {
 	object {
 		x=170
-		y=310
+		y=309
 		width=40
 		height=15
 	}
@@ -809,7 +809,7 @@ text {
 oval {
 	object {
 		x=340
-		y=305
+		y=309
 		width=15
 		height=15
 	}
@@ -818,14 +818,14 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(P)mono_pid2Locked"
+		chan="$(P)$(SLOW_ROLL_PID)Locked"
 	}
 }
 text {
 	object {
-		x=320
-		y=285
-		width=50
+		x=349
+		y=286
+		width=55
 		height=18
 	}
 	"basic attribute" {
@@ -837,8 +837,8 @@ text {
 text {
 	object {
 		x=5
-		y=286
-		width=253
+		y=285
+		width=276
 		height=20
 	}
 	"basic attribute" {
@@ -862,12 +862,12 @@ rectangle {
 "text entry" {
 	object {
 		x=160
-		y=210
+		y=207
 		width=70
 		height=20
 	}
 	control {
-		chan="13IDA:m12.VAL"
+		chan="$(P)$(PITCH_MOTOR).VAL"
 		clr=14
 		bclr=55
 	}
@@ -877,7 +877,7 @@ rectangle {
 text {
 	object {
 		x=9
-		y=206
+		y=208
 		width=100
 		height=18
 	}
@@ -889,12 +889,12 @@ text {
 "message button" {
 	object {
 		x=265
-		y=205
+		y=207
 		width=20
 		height=20
 	}
 	control {
-		chan="13IDA:m12.TWR"
+		chan="$(P)$(PITCH_MOTOR).TWR"
 		clr=54
 		bclr=56
 	}
@@ -904,12 +904,12 @@ text {
 "message button" {
 	object {
 		x=344
-		y=206
+		y=207
 		width=20
 		height=20
 	}
 	control {
-		chan="13IDA:m12.TWF"
+		chan="$(P)$(PITCH_MOTOR).TWF"
 		clr=54
 		bclr=56
 	}
@@ -919,12 +919,12 @@ text {
 "text entry" {
 	object {
 		x=285
-		y=205
+		y=207
 		width=60
 		height=20
 	}
 	control {
-		chan="13IDA:m12.TWV"
+		chan="$(P)$(PITCH_MOTOR).TWV"
 		clr=14
 		bclr=55
 	}
@@ -934,12 +934,12 @@ text {
 "text update" {
 	object {
 		x=85
-		y=210
+		y=207
 		width=70
 		height=20
 	}
 	monitor {
-		chan="13IDA:m12.RBV"
+		chan="$(P)$(PITCH_MOTOR).RBV"
 		clr=54
 		bclr=3
 	}
@@ -955,7 +955,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_3_tweak.A"
+		chan="$(P)$(PITCH_DAC)_tweak.A"
 		clr=54
 		bclr=56
 	}
@@ -970,7 +970,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_3_tweak.B"
+		chan="$(P)$(PITCH_DAC)_tweak.B"
 		clr=54
 		bclr=56
 	}
@@ -985,7 +985,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_3_tweakVal"
+		chan="$(P)$(PITCH_DAC)_tweakVal"
 		clr=14
 		bclr=55
 	}
@@ -1000,7 +1000,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_3.VAL"
+		chan="$(P)$(PITCH_DAC).VAL"
 		clr=14
 		bclr=55
 	}
@@ -1011,12 +1011,12 @@ valuator {
 "text entry" {
 	object {
 		x=81
-		y=241
+		y=240
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_3.VAL"
+		chan="$(P)$(PITCH_DAC).VAL"
 		clr=14
 		bclr=55
 	}
@@ -1026,12 +1026,12 @@ valuator {
 "message button" {
 	object {
 		x=235
-		y=120
+		y=118
 		width=15
 		height=20
 	}
 	control {
-		chan="$(P)$(M2).TWF"
+		chan="$(P)$(HEIGHT_MOTOR).TWF"
 		clr=14
 		bclr=55
 	}
@@ -1041,7 +1041,7 @@ valuator {
 text {
 	object {
 		x=12
-		y=239
+		y=241
 		width=60
 		height=18
 	}
@@ -1053,12 +1053,12 @@ text {
 "text entry" {
 	object {
 		x=160
-		y=340
+		y=338
 		width=70
 		height=20
 	}
 	control {
-		chan="13IDA:m11.VAL"
+		chan="$(P)$(ROLL_MOTOR).VAL"
 		clr=14
 		bclr=55
 	}
@@ -1068,7 +1068,7 @@ text {
 text {
 	object {
 		x=9
-		y=337
+		y=339
 		width=100
 		height=18
 	}
@@ -1080,12 +1080,12 @@ text {
 "message button" {
 	object {
 		x=265
-		y=340
+		y=338
 		width=20
 		height=20
 	}
 	control {
-		chan="13IDA:m11.TWR"
+		chan="$(P)$(ROLL_MOTOR).TWR"
 		clr=54
 		bclr=56
 	}
@@ -1095,12 +1095,12 @@ text {
 "message button" {
 	object {
 		x=350
-		y=340
+		y=338
 		width=20
 		height=20
 	}
 	control {
-		chan="13IDA:m11.TWF"
+		chan="$(P)$(ROLL_MOTOR).TWF"
 		clr=54
 		bclr=56
 	}
@@ -1110,12 +1110,12 @@ text {
 "text entry" {
 	object {
 		x=285
-		y=340
+		y=338
 		width=65
 		height=20
 	}
 	control {
-		chan="13IDA:m11.TWV"
+		chan="$(P)$(ROLL_MOTOR).TWV"
 		clr=14
 		bclr=55
 	}
@@ -1125,12 +1125,12 @@ text {
 "text update" {
 	object {
 		x=85
-		y=340
+		y=338
 		width=70
 		height=20
 	}
 	monitor {
-		chan="13IDA:m11.RBV"
+		chan="$(P)$(ROLL_MOTOR).RBV"
 		clr=54
 		bclr=3
 	}
@@ -1146,7 +1146,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_2_tweak.A"
+		chan="$(P)$(ROLL_DAC)_tweak.A"
 		clr=54
 		bclr=56
 	}
@@ -1161,7 +1161,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_2_tweak.B"
+		chan="$(P)$(ROLL_DAC)_tweak.B"
 		clr=54
 		bclr=56
 	}
@@ -1176,7 +1176,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_2_tweakVal"
+		chan="$(P)$(ROLL_DAC)_tweakVal"
 		clr=14
 		bclr=55
 	}
@@ -1191,7 +1191,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_2.VAL"
+		chan="$(P)$(ROLL_DAC).VAL"
 		clr=14
 		bclr=55
 	}
@@ -1207,7 +1207,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="$(P)DAC1_2.VAL"
+		chan="$(P)$(ROLL_DAC).VAL"
 		clr=14
 		bclr=55
 	}
@@ -1217,7 +1217,7 @@ valuator {
 text {
 	object {
 		x=12
-		y=370
+		y=371
 		width=60
 		height=18
 	}
@@ -1229,7 +1229,7 @@ text {
 oval {
 	object {
 		x=540
-		y=73
+		y=74
 		width=15
 		height=15
 	}
@@ -1238,7 +1238,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(P)fast_pitch_pidLocked"
+		chan="$(P)$(FAST_PITCH_PID)Locked"
 	}
 }
 oval {
@@ -1253,6 +1253,6 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(P)fast_roll_pidLocked"
+		chan="$(P)$(FAST_ROLL_PID)Locked"
 	}
 }
