@@ -163,7 +163,7 @@ seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM1, stack=10000"
 seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
 
 str=malloc(256)
-strcpy(str,"PRE=13IDA:,ID=ID13ds:,EXPTAB_Z=13IDC:m6,")
+strcpy(str,"PRE=13IDA:,ID=ID13ds:,")
 strcat(str,"EXPTAB2=13IDA:pm5,SH=eps_mbbi4,FB=mono_pid1")
 seq &Energy, str
 
