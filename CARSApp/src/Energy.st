@@ -20,21 +20,22 @@ program Energy("PRE=XXIDA:, ID=IDXX:,  SH=eps_mbbi4, FB=mono_pid1")
  *                     before trying to move again
  *  Jan 18, 2011   MN: removed EXPTAB tracking -- never used, relied on IDC crate
  *
+ *  Jun  4, 2012  MLR: Removed Z2 for new mono
+ *
  */
 %%#include <math.h>
 %%#include <epicsThread.h>
 
 /* 2nd crystal table PVs  */
-double z2;        assign z2        to "{PRE}m14.VAL";         monitor z2;
-double y2;        assign y2        to "{PRE}m10.VAL";         monitor y2;
+double y2;        assign y2        to "{PRE}m58.VAL";         monitor y2;
 double y2_mvmin;  assign y2_mvmin  to "{PRE}E:y2_mvmin.VAL";  monitor y2_mvmin;
-int    z2_done;   assign z2_done   to "{PRE}m14.DMOV";        monitor z2_done;
+int    y2_done;   assign y2_done   to "{PRE}m58.DMOV";        monitor y2_done;
 
-/* Mono Angle PV */		
-double th;        assign th        to "{PRE}m17";            monitor th;
-double th_rbv;    assign th_rbv    to "{PRE}m17.RBV";        monitor th_rbv;
-int    th_set;    assign th_set    to "{PRE}m17.SET";
-int    th_done;   assign th_done   to "{PRE}m17.DMOV";       monitor th_done;
+/* Mono Angle PV */        
+double th;        assign th        to "{PRE}m57";            monitor th;
+double th_rbv;    assign th_rbv    to "{PRE}m57.RBV";        monitor th_rbv;
+int    th_set;    assign th_set    to "{PRE}m57.SET";
+int    th_done;   assign th_done   to "{PRE}m57.DMOV";       monitor th_done;
 
 /* undulator PVs  (from {ID}) */
 double id_val;    assign id_val    to "{ID}ScanEnergy.VAL"; monitor id_val;
@@ -68,15 +69,10 @@ int    fb_locked;   assign fb_locked to "{PRE}{FB}Locked";    monitor fb_locked;
 int    id_track;   assign id_track  to "{PRE}E:id_track.VAL"; monitor id_track;
 double id_offset;  assign id_offset to "{PRE}E:id_off.VAL";monitor id_offset;
 
-/* tracking and offsets for y2, z2, and xt:
+/* tracking and offsets for y2
      y2 : 2nd crystal y (height above 1st crystal)
-     z2 : 2nd crystal z (translation along rail)
-     xt : experimental table used for non-fixed offset mode
 */
 int    y2_track;  assign y2_track  to "{PRE}E:y2_track.VAL";  monitor y2_track;
-int    z2_track;  assign z2_track  to "{PRE}E:z2_track.VAL";  monitor z2_track;
-int    xt_track;  assign xt_track  to "{PRE}E:xt_track.VAL";  monitor xt_track;
-int    xt2_track; assign xt2_track to "{PRE}E:xt2_track.VAL"; monitor xt2_track;
 double y2_off;    assign y2_off    to "{PRE}E:y2_off.VAL";    monitor y2_off;
 
 
@@ -84,8 +80,6 @@ double y2_off;    assign y2_off    to "{PRE}E:y2_off.VAL";    monitor y2_off;
 evflag ef_en;        sync en         ef_en;
 evflag ef_id_track;  sync id_track   ef_id_track;
 evflag ef_y2_track;  sync y2_track   ef_y2_track;
-evflag ef_xt_track;  sync xt_track   ef_xt_track;
-evflag ef_xt2_track; sync xt2_track  ef_xt2_track;
 evflag ef_width;     sync width      ef_width;
 evflag ef_dspace;    sync dspace     ef_dspace;
 evflag ef_th;        sync th         ef_th;
@@ -103,7 +97,6 @@ double th_min;
 double th_max;
 float  d_time;
 double tiny;
-double z2_sign;
 double y2_diff; double y2_old; 
 int still_busy;
 int wait_count;
@@ -115,7 +108,7 @@ ss Energy {
       printf("   Energy > Energy State Set initializing \n");
       en_busy = 1;  pvPut(en_busy);      /* tell EPICS we're busy */
       if ((dspace < 0.001) || (dspace > 1000.)) {
-	dspace  = 3.13555;                  /* Si (111)  d spacing*/
+        dspace  = 3.13555;                  /* Si (111)  d spacing*/
         pvPut(dspace);
       }
       r2d     = 57.29577951;   d2r    = 1./r2d;   mil    = 0.001;
@@ -125,7 +118,6 @@ ss Energy {
       en_max  = 100 * omega ;             /* maximum energy  */
       th_min  = r2d * asin(omega/en_max); /* minimum mono angle in degrees */
       th_max  = r2d * asin(omega/en_min); /* maximum mono angle in degrees */
-      z2_sign =   1;  /* note: xtal2 table record is at 180 degrees */      
       tiny    = 2.e-6;
 
       /* set up undulator info (if using undulator, that is!)*/
@@ -133,9 +125,9 @@ ss Energy {
       id_track = 0;     id_offset = 0; fb_use=0;
       id_factor = 1;
       if (use_id) {
-	printf( "   Energy with undulator\n");
+        printf( "   Energy with undulator\n");
       } else {
-	printf( "   Energy without undulator\n");
+        printf( "   Energy without undulator\n");
       }
 
       /* get current mono angle, update energy readback */
@@ -152,37 +144,37 @@ ss Energy {
 
       /* initialize undulator offset */
       if (use_id) {
-	pvGet(id_rbv);
-	/*pvGet(id_harm);*/
-	/*pvGet(id_factor);*/
-	id_offset = id_rbv - (en * mil * id_factor);
-	if (id_offset > 5000.)  id_offset = 50.0;
-	pvPut(id_offset);
-	if (verbose) { printf("   E(init)> ID energy, offset = %12.6f %12.6f\n", id_rbv, id_offset); }
-	efClear(ef_id_track);
+        pvGet(id_rbv);
+        /*pvGet(id_harm);*/
+        /*pvGet(id_factor);*/
+        id_offset = id_rbv - (en * mil * id_factor);
+        if (id_offset > 5000.)  id_offset = 50.0;
+        pvPut(id_offset);
+        if (verbose) { printf("   E(init)> ID energy, offset = %12.6f %12.6f\n", id_rbv, id_offset); }
+        efClear(ef_id_track);
       }
       efClear(ef_en);    
       en_busy = 0;  pvPut(en_busy);      /* tell EPICS we're not busy */
       if (verbose) { printf("   E(init)> done initializing\n");}
       efClear(ef_th);
     } state monitor_changes
-	}
+  }
 
 /*------------------------------------------------------------------*/
   state monitor_changes {
     when(efTestAndClear(ef_en)) {
       /* when energy changes: move mono angle, undulator, table Y and L
-	 strategy:
-	 -> set "energy busy"
-	 -> check that energy is a reasonable number, convert if needed
-	 if "set energy" then:
+      strategy:
+      -> set "energy busy"
+      -> check that energy is a reasonable number, convert if needed
+      if "set energy" then:
             -> set new mono angle th based on new energy value
             -> let the ev_th handle the rest
          else (normal energy move) then:
             -> start move of undulator
             -> move th
-	    -> move table y and l
-	    -> wait for undulator to finish
+        -> move table y and l
+        -> wait for undulator to finish
         end if
         -> unset "energy busy"
       */
@@ -195,93 +187,81 @@ ss Energy {
       if (en < en_min)  en =  en_min;     /* force minimum energy */
       if (en > en_max)  en =  en_max;     /* force maximum energy */
       if (en_set) {      /*  ENERGY SET  */
-	if (verbose) { printf("   E(set)> mono energy -> %12.6f\n", en);}
-	pvPut(en);
-	th     = asin(omega / en) * r2d;  /* mono angle */
-	th_set = 1;  pvPut(th_set);       /* change mono to SET mode */
-	pvPut(th);                        /* put  the new value */
-	th_set = 0;  pvPut(th_set);       /* change mono to USE mode */
-	if (verbose) { printf("   E(set)> mono angle  -> %12.6f\n", th);}
+        if (verbose) { printf("   E(set)> mono energy -> %12.6f\n", en);}
+        pvPut(en);
+        th     = asin(omega / en) * r2d;  /* mono angle */
+        th_set = 1;  pvPut(th_set);       /* change mono to SET mode */
+        pvPut(th);                        /* put  the new value */
+        th_set = 0;  pvPut(th_set);       /* change mono to USE mode */
+        if (verbose) { printf("   E(set)> mono angle  -> %12.6f\n", th);}
       } else {           /*  ENERGY MOVE  */
-	if (verbose) { printf("  E(move)> mono energy -> %12.6f\n", en);}
-	/* start undulator move */
-	if (use_id && id_track) {
-	  /* pvGet(id_harm);*/
-	  /*pvGet(id_factor);*/
-	  pvGet(shutter_pv);
-	  if (shutter_pv == 1) { /* only move undulator if shutter is open */
-	    /*id_val  = (id_offset + en * mil * id_factor)*id_harm; */
-	    id_val  = (id_offset + en * mil * id_factor) ;  
-	    if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+        if (verbose) { printf("  E(move)> mono energy -> %12.6f\n", en);}
+        /* start undulator move */
+        if (use_id && id_track) {
+          /* pvGet(id_harm);*/
+          /*pvGet(id_factor);*/
+          pvGet(shutter_pv);
+          if (shutter_pv == 1) { /* only move undulator if shutter is open */
+            /*id_val  = (id_offset + en * mil * id_factor)*id_harm; */
+            id_val  = (id_offset + en * mil * id_factor) ;  
+            if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
 
-	    /* if the undulator is still busy (from a previous move?? stuck??), stop the undulator now */	    
-	    if (id_busy) {
-	      if (verbose) { printf("  E(move)> clear busy ID!\n");}
-	      id_stop = 1; 
-	      pvPut(id_stop);
-	    }
-	    /* put id value*/
-	    pvPut(id_val);
-	    if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_val);}
-	  } else {
-	    if (verbose) { printf("  E(move) cancelled: shutter closed\n");}
-	  }
-	}
-	/*move mono angle */
-	/* note that we're off by a tiny amount at this point */
-	th   =  (asin(omega / en) * r2d) - tiny;
-	if (th < th_min) th = th_min;
-	if (verbose) { printf("  E(move)> mono angle -> %12.6f \n", th);}
-	pvPut(th);
-	/*move 2nd xtal Z to keep beam on the same place on xtal */
-	if (z2_track) {
-	  z2  = z2_sign * height * en / (2 * omega);
-	  pvPut(z2);
-	  if (verbose) { printf("  E(move)> 2nd Xtal Z -> %12.6f\n",z2);}
-	}
-	/*move 2nd xtal Y to keep beam offset fixed */
-	if (y2_track) {
-	  width  =  height / (2 * cos(th * d2r));
-	  pvPut(width);
-	  pvGet(y2); y2_old = y2;
-	  y2  = y2_off + width;
-	  y2_diff = fabs(y2 - y2_old);
-	  if (verbose) { printf("  E(y2track: old, width, new, diff  %12.6f  %12.6f  %12.6f %12.6f\n",
-				y2_old, width, y2, y2_diff);}
+            /* if the undulator is still busy (from a previous move?? stuck??), stop the undulator now */        
+            if (id_busy) {
+              if (verbose) { printf("  E(move)> clear busy ID!\n");}
+              id_stop = 1; 
+              pvPut(id_stop);
+            }
+            /* put id value*/
+            pvPut(id_val);
+            if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_val);}
+          } else {
+            if (verbose) { printf("  E(move) cancelled: shutter closed\n");}
+          }
+        }
+        /*move mono angle */
+        /* note that we're off by a tiny amount at this point */
+        th   =  (asin(omega / en) * r2d) - tiny;
+        if (th < th_min) th = th_min;
+        if (verbose) { printf("  E(move)> mono angle -> %12.6f \n", th);}
+        pvPut(th);
+        /*move 2nd xtal Y to keep beam offset fixed */
+        if (y2_track) {
+          width  =  height / (2 * cos(th * d2r));
+          pvPut(width);
+          pvGet(y2); y2_old = y2;
+          y2  = y2_off + width;
+          y2_diff = fabs(y2 - y2_old);
+          if (verbose) { printf("  E(y2track: old, width, new, diff  %12.6f  %12.6f  %12.6f %12.6f\n",
+                    y2_old, width, y2, y2_diff);}
 
-	  if (y2_diff > y2_mvmin) {  pvPut(y2);  }
+          if (y2_diff > y2_mvmin) {  pvPut(y2);  }
 
-	  if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
-				y2, width, height);}
-	} else {
-	  /* 
-	     width  =  height / (2 * cos(th * d2r));
-	     pvPut(width);
-	     if (verbose) { printf("  E(move)> Channel width -> %12.6f\n",width);}
-	  */
-	}
-	/*move Experimental Table to compensate for _NOT_ tracking y2 */
-	if (xt_track) {
-	  if (verbose) { printf("  E(move)> XAS Table Z tracking disabled\n");}
-	} 
-	if (xt2_track) {
-	  if (verbose) { printf("  E(move)> EXP Table2 tracking disabled\n");}
-	} 
+          if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
+                    y2, width, height);}
+        } else {
+          /* 
+             width  =  height / (2 * cos(th * d2r));
+             pvPut(width);
+             if (verbose) { printf("  E(move)> Channel width -> %12.6f\n",width);}
+          */
+        }
 
-	/* wait for undulator, mono, 2nd xtal to finish 
-	  this gets tricky as we're waiting for things that 
-	  may or may not be moving */
-	d_time = 0.03; 
-	/* tweak mono theta and wait */
+        /* wait for undulator, mono, 2nd xtal to finish 
+          this gets tricky as we're waiting for things that 
+          may or may not be moving */
+        d_time = 0.03; 
+        /* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
-          still_busy = ((y2_track||z2_track) && (z2_done == 0)) ||
+          still_busy = ((y2_track) && (y2_done == 0)) ||
                         (th_done == 0) || id_busy;
-	  if (verbose) { printf("  E feedback? > %i %i %i\n", wait_count, fb_use, fb_locked);}
-	  if (fb_is_on && fb_use) {   still_busy = still_busy || (fb_locked == 0);
-	  }
+          if (verbose) { printf("  E feedback? > %i %i %i\n", wait_count, fb_use, fb_locked);}
+          if (fb_is_on && fb_use) {
+            still_busy = still_busy || (fb_locked == 0);
+          }
           if (verbose) {
-            printf("[%i%i%i]", id_busy, th_done, z2_done);
+            printf("[%i%i%i]", id_busy, th_done, y2_done);
             if (!(wait_count % 8)) printf("\n");
           }
         }
@@ -301,21 +281,21 @@ ss Energy {
 
       if (use_id){ efClear(ef_id_track);}
       if (verbose) {printf("  E(move)> done ID = %12.6f, mono theta = %12.6f, E = %12.6f\n",
-			   id_rbv, th_rbv,en_rbv); }
+               id_rbv, th_rbv,en_rbv); }
     } state monitor_changes
-	
+    
 /*-------------------------------------------------------------------*/
 /* 
-   Other Events :
-   when table or undulator change by themsleves, do nothing 
-   when th changes by itself, change energy, and let
-   the table and undulator stay where they are
+     Other Events :
+     when table or undulator change by themsleves, do nothing 
+     when th changes by itself, change energy, and let
+     the table and undulator stay where they are
 */
    /* mono angle changed */
     when( efTestAndClear(ef_th) ) { 
       if (verbose) {printf("  E(mono)> Mono angle changed: %12.6f\n", th); }
       if (th < th_min)  {
-	th = th_min;
+        th = th_min;
       }
       en  = omega / sin(th * d2r) ;
 
@@ -332,54 +312,39 @@ ss Energy {
       efClear(ef_en); 
       efClear(ef_th);
 
-      /*move Experimental Table to compensate for _NOT_ tracking y2 */
-      if (xt_track) {
-	  if (verbose) { printf("  E(move)> XAS Table Z tracking disabled\n");}
-      }       
-      if (xt2_track) {
-	if (verbose) { printf("  E(move)> EXP Table2 tracking disabled\n");}
-      } 
-
-
-	/*move 2nd xtal Z to keep beam on the same place on xtal */
-      if (z2_track) {
-	z2  = z2_sign * height * en / (2 * omega);
-	pvPut(z2);
-	if (verbose) { printf("  E(move)> 2nd Xtal Z -> %12.6f\n",z2);}
-      }
-	/*move 2nd xtal Y to keep beam offset fixed */
+      /*move 2nd xtal Y to keep beam offset fixed */
       if (y2_track) {
-	width  =  height / (2 * cos(th * d2r));
-	pvPut(width);
-	pvGet(y2); y2_old = y2;
-	y2  = y2_off + width;
-	y2_diff = fabs(y2 - y2_old);
-	if (verbose) { printf("  E(y2track: old, width, new, diff  %12.6f  %12.6f  %12.6f %12.6f\n",
-			      y2_old, width, y2, y2_diff);}
-	
-	if (y2_diff > y2_mvmin) {  pvPut(y2);  }
-	if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
-			      y2, width, height);}
+        width  =  height / (2 * cos(th * d2r));
+        pvPut(width);
+        pvGet(y2); y2_old = y2;
+        y2  = y2_off + width;
+        y2_diff = fabs(y2 - y2_old);
+        if (verbose) { printf("  E(y2track: old, width, new, diff  %12.6f  %12.6f  %12.6f %12.6f\n",
+                      y2_old, width, y2, y2_diff);}
+
+        if (y2_diff > y2_mvmin) {  pvPut(y2);  }
+        if (verbose) { printf("  E(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
+                      y2, width, height);}
       } 
 
       /* track undulator    */
       if (use_id && id_track) {
-	pvGet(shutter_pv);
-	if (shutter_pv == 1) { /* only move undulator if shutter is open */
-	  id_val  = (id_offset + en * mil * id_factor) ;  
-	  if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
-	  pvPut(id_val);
-	  if (verbose) { printf("  E(mono)> ID energy -> %12.6f\n",id_val);}
-	} else {
-	  if (verbose) { printf("  E(mono) cancelled: shutter closed\n");}
-	}
-	/* wait for undulator */
-	d_time = 0.03; 
-	/* tweak mono theta and wait */
+        pvGet(shutter_pv);
+        if (shutter_pv == 1) { /* only move undulator if shutter is open */
+          id_val  = (id_offset + en * mil * id_factor) ;  
+          if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+          pvPut(id_val);
+          if (verbose) { printf("  E(mono)> ID energy -> %12.6f\n",id_val);}
+        } else {
+          if (verbose) { printf("  E(mono) cancelled: shutter closed\n");}
+        }
+        /* wait for undulator */
+        d_time = 0.03; 
+        /* tweak mono theta and wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
-	  still_busy = ((th_done == 0) || id_busy);
-	  if (fb_is_on && fb_use) {  still_busy = still_busy || (fb_locked == 0); }
+          still_busy = ((th_done == 0) || id_busy);
+          if (fb_is_on && fb_use) {  still_busy = still_busy || (fb_locked == 0); }
           if (verbose) {
             printf("E(mono) [%i%i%i]", id_busy, th_done, wait_count);
             if (!(wait_count % 8)) printf("\n");
@@ -402,35 +367,20 @@ ss Energy {
       en_rbv =  omega / sin(th_rbv * d2r);
       pvPut(en_rbv);
       if (verbose) {printf("  E(th_rbv)> Readback angle, energy set to %12.6f %12.6f\n", 
-			   th_rbv, en_rbv);}
+               th_rbv, en_rbv);}
       efClear(ef_en); 
       efClear(ef_th);
     } state monitor_changes
-    /*  experimental table tracking : reset offset if switched to on */
-    when( efTestAndClear(ef_xt_track) ) {
-      if (verbose) { printf("  E(move)> XAS Table Z tracking disabled\n");}
-    } state monitor_changes
 
-    when( efTestAndClear(ef_xt2_track) ) {
-      if (verbose) { printf("  E(move)> EXP Table2 tracking disabled\n");}
-    } state monitor_changes
-
-	/*  xtal Z tracking : reset offset if switched to on */
-	/* when( efTestAndClear(ef_z2_track) ) {
-	   if (z2_track) {
-	   if (verbose) {printf("  E(z2_track)> changed 2nd XTAL Z offset to off\n");}
-	   }
-	   } state monitor_changes
-	*/
-   /* undulator tracking : reset offset if switched to on */
-   when( efTestAndClear(ef_id_track)) {
+    /* undulator tracking : reset offset if switched to on */
+    when( efTestAndClear(ef_id_track)) {
       if (id_track) {
-	/* pvGet(id_harm); */
-	/*pvGet(id_factor);*/
-	/* id_offset = (id_rbv/id_harm) - en * mil * id_factor; */
-	id_offset = id_rbv - en * mil * id_factor;
-	pvPut(id_offset);
-	if (verbose) {printf("  E(id_track)> changed ID off => %12.6f\n",id_offset);}
+        /* pvGet(id_harm); */
+        /*pvGet(id_factor);*/
+        /* id_offset = (id_rbv/id_harm) - en * mil * id_factor; */
+        id_offset = id_rbv - en * mil * id_factor;
+        pvPut(id_offset);
+        if (verbose) {printf("  E(id_track)> changed ID off => %12.6f\n",id_offset);}
       }
     } state monitor_changes
 
@@ -449,13 +399,13 @@ ss Energy {
       if (verbose) {printf("  E(dspace) => %12.6f\n",dspace);}
     } state monitor_changes
 
-   /* channel width redefined */
-   when( efTestAndClear(ef_width)) {
+    /* channel width redefined */
+    when( efTestAndClear(ef_width)) {
       if (width < 0.0)  width = -width;       /* force positive */
       if (width >80.0)  width = 80.0; 
       if (width < 5. )  width =  5.0;
       pvPut(width);
       if (verbose) {printf("  E(width) => %12.6f\n",width);}
     } state monitor_changes
-	}
+  }
 }
