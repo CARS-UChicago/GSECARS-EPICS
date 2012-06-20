@@ -1,31 +1,37 @@
-# These record control auto-opening the shutter
-grecord(bo,"$(P)$(SHUT)EnableShutter") {
-        field(ZNAM,"Disable")
-        field(ONAM,"Enable")
+# This record controls auto-opening the shutter
+# AutoOpenOnceEnable controls whether to open once when first allowed to do so.
+# AutoOpenEnable controls whether to continually try to open, every $(PERIOD) seconds
+
+record(mbbo,"$(P)$(SHUT)AutoOpenMode") {
+    field(ZRST, "Disable")
+    field(ONST, "Once")
+    field(TWST, "Periodic")
+    field(ZRVL, "0")
+    field(ONVL, "1")
+    field(TWVL, "2")
 }
 
-grecord(stringin,"$(P)$(SHUT)ClientID") {
-	field(DESC,"Client ID")
-	field(VAL,  "")
+record(calc,"$(P)$(SHUT)AutoOpenIsPeriodic") {
+    field(INPA, "$(P)$(SHUT)AutoOpenMode CP MS")
+    field(CALC, "A=2")
 }
 
-grecord(ao,"$(P)$(SHUT)TimeStamp") {
-	field(DESC, "last update time")
-	field(VAL,  0)
+record(seq,"$(P)$(SHUT)AutoOpenPeriod") {
+    field(SCAN, "1 second")
+    field(SDIS, "$(P)$(SHUT)AutoOpenIsPeriodic NPP NMS")
+    field(DISV, "0")
+    field(DLY1, "$(PERIOD)")
+    field(DOL1, "1")
+    field(LNK1, "$(P)$(SHUT)AutoOpen.PROC")
 }
 
-grecord(ao,"$(P)$(SHUT)ForceOpenTime") {
-	field(DESC, "timeout to force open")
-	field(VAL,  60.0)
+record(calcout,"$(P)$(SHUT)AutoOpen") {
+    field(INPA, "$(P)$(SHUT)AutoOpenMode CP MS")
+    field(INPB, "$(BEAM_READY) CP MS")
+    field(INPC, "$(SHUT_STATUS)")
+    field(CALC, "(A!=0)&&(B!=0)&&(C=0)")
+    field(OOPT, "When Non-zero")
+    field(OUT,  "$(SHUT_CONTROL) PP MS")
+    field(DOPT, "Use OCAL")
+    field(OCAL, "1")
 }
-
-grecord(ao,"$(P)$(SHUT)OpenDelay") {
-	field(DESC, "Delay before open")
-	field(VAL,  5.0)
-}
-
-grecord(ao,"$(P)$(SHUT)OpenRetries") {
-	field(DESC, "retry count for open")
-	field(VAL,  5)
-}
-
