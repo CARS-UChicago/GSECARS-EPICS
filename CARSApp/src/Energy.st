@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program Energy("PRE=XXIDA:, ID=IDXX:,  SH=eps_mbbi4, FB=mono_pid1")
+program Energy("PRE=XXIDA:, ID=IDXX:, FB=mono_pid1")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -21,6 +21,7 @@ program Energy("PRE=XXIDA:, ID=IDXX:,  SH=eps_mbbi4, FB=mono_pid1")
  *  Jan 18, 2011   MN: removed EXPTAB tracking -- never used, relied on IDC crate
  *
  *  Jun  4, 2012  MLR: Removed Z2 for new mono
+ *  Jun 29, 2012  MN:  updated hc, d spacing for Si 111
  *
  */
 %%#include <math.h>
@@ -43,8 +44,6 @@ double id_rbv;    assign id_rbv    to "{ID}Energy.VAL";
 double id_harm;   assign id_harm   to "{ID}HarmonicValue.VAL";   
 int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
 int    id_stop;   assign id_stop   to "{ID}Stop.VAL";
-
-int    shutter_pv;  assign shutter_pv to "{PRE}{SH}";
 
 /* Energy PVs (from {EN} and Energy.db) */
 int    use_id;    assign use_id    to "{PRE}E:use_id.VAL";    monitor use_id;
@@ -108,11 +107,11 @@ ss Energy {
       printf("   Energy > Energy State Set initializing \n");
       en_busy = 1;  pvPut(en_busy);      /* tell EPICS we're busy */
       if ((dspace < 0.001) || (dspace > 1000.)) {
-        dspace  = 3.13555;                  /* Si (111)  d spacing*/
+        dspace  = 3.135485;                /* Si (111)  d spacing*/
         pvPut(dspace);
       }
       r2d     = 57.29577951;   d2r    = 1./r2d;   mil    = 0.001;
-      hc      = 12398.61;                 /* in eV*Ang */
+      hc      = 12398.42;                 /* in eV*Ang */
       omega   = hc/(2 * dspace);          /* (hc / 2d) in eV */
       en_min  = 3000.000 ;                /* minimum energy  */
       en_max  = 100 * omega ;             /* maximum energy  */
@@ -200,24 +199,19 @@ ss Energy {
         if (use_id && id_track) {
           /* pvGet(id_harm);*/
           /*pvGet(id_factor);*/
-          pvGet(shutter_pv);
-          if (shutter_pv == 1) { /* only move undulator if shutter is open */
-            /*id_val  = (id_offset + en * mil * id_factor)*id_harm; */
-            id_val  = (id_offset + en * mil * id_factor) ;  
-            if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+          /*id_val  = (id_offset + en * mil * id_factor)*id_harm; */
+          id_val  = (id_offset + en * mil * id_factor) ;  
+          if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
 
-            /* if the undulator is still busy (from a previous move?? stuck??), stop the undulator now */        
-            if (id_busy) {
-              if (verbose) { printf("  E(move)> clear busy ID!\n");}
-              id_stop = 1; 
-              pvPut(id_stop);
-            }
-            /* put id value*/
-            pvPut(id_val);
-            if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_val);}
-          } else {
-            if (verbose) { printf("  E(move) cancelled: shutter closed\n");}
+          /* if the undulator is still busy (from a previous move?? stuck??), stop the undulator now */        
+          if (id_busy) {
+            if (verbose) { printf("  E(move)> clear busy ID!\n");}
+            id_stop = 1; 
+            pvPut(id_stop);
           }
+          /* put id value*/
+          pvPut(id_val);
+          if (verbose) { printf("  E(move)> ID energy -> %12.6f\n",id_val);}
         }
         /*move mono angle */
         /* note that we're off by a tiny amount at this point */
@@ -329,15 +323,11 @@ ss Energy {
 
       /* track undulator    */
       if (use_id && id_track) {
-        pvGet(shutter_pv);
-        if (shutter_pv == 1) { /* only move undulator if shutter is open */
-          id_val  = (id_offset + en * mil * id_factor) ;  
-          if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
-          pvPut(id_val);
-          if (verbose) { printf("  E(mono)> ID energy -> %12.6f\n",id_val);}
-        } else {
-          if (verbose) { printf("  E(mono) cancelled: shutter closed\n");}
-        }
+        id_val  = (id_offset + en * mil * id_factor) ;  
+        if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+        pvPut(id_val);
+        if (verbose) { printf("  E(mono)> ID energy -> %12.6f\n",id_val);}
+
         /* wait for undulator */
         d_time = 0.03; 
         /* tweak mono theta and wait */
