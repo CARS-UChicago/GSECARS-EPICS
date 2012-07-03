@@ -1,0 +1,1683 @@
+
+file {
+	name="/net/epics/Public/asd/diagnostics/xbpmDisplays/rev3/releasedVersion/IDxbpmCantedDSBrief.adl"
+	version=030003
+}
+display {
+	object {
+		x=54
+		y=105
+		width=841
+		height=300
+	}
+	clr=14
+	bclr=0
+	cmap=""
+	gridSpacing=5
+	gridOn=1
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+image {
+	object {
+		x=2
+		y=28
+		width=800
+		height=160
+	}
+	type="gif"
+	"image name"="cantedGeom.gif"
+}
+rectangle {
+	object {
+		x=125
+		y=37
+		width=37
+		height=24
+	}
+	"basic attribute" {
+		clr=0
+	}
+}
+rectangle {
+	object {
+		x=713
+		y=26
+		width=99
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)B:P0:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=546
+		y=26
+		width=90
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)C:P0:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=378
+		y=26
+		width=90
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sectorPlusOne)A:P0:ms:x:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=97
+		y=26
+		width=90
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)ID:P1:ms:x:BadBO"
+	}
+}
+text {
+	object {
+		x=251
+		y=26
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HORZ."
+	align="horiz. right"
+}
+text {
+	object {
+		x=480
+		y=3
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RFBPMs"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=131
+		y=4
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ID:P1:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=750
+		y=4
+		width=24
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)B:P0:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=580
+		y=4
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)C:P0:ms:x:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=412
+		y=4
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sectorPlusOne)A:P0:ms:x:InUseBO"
+	}
+}
+text {
+	object {
+		x=198
+		y=3
+		width=250
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Sector $(sector) Downstream"
+}
+"text update" {
+	object {
+		x=104
+		y=31
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=385
+		y=31
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=553
+		y=31
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)C:P0:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=721
+		y=31
+		width=83
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:mswAve:x:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=3
+		y=31
+		width=81
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Adj. Rdbk"
+	align="horiz. right"
+}
+text {
+	object {
+		x=812
+		y=31
+		width=22
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=11
+		y=3
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Photon BPM"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=714
+		y=191
+		width=99
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)B:P0:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=547
+		y=191
+		width=90
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)C:P0:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=379
+		y=191
+		width=90
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sectorPlusOne)A:P0:ms:y:BadBO"
+	}
+}
+rectangle {
+	object {
+		x=100
+		y=191
+		width=86
+		height=25
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="S$(sector)ID:P1:ms:y:BadBO"
+	}
+}
+text {
+	object {
+		x=252
+		y=191
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VERT."
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=132
+		y=219
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ID:P1:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=751
+		y=219
+		width=24
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)B:P0:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=581
+		y=219
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)C:P0:ms:y:InUseBO"
+	}
+}
+rectangle {
+	object {
+		x=413
+		y=219
+		width=22
+		height=18
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sectorPlusOne)A:P0:ms:y:InUseBO"
+	}
+}
+"text update" {
+	object {
+		x=105
+		y=196
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ID:P1:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=386
+		y=196
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sectorPlusOne)A:P0:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=554
+		y=196
+		width=76
+		height=15
+	}
+	monitor {
+		chan="S$(sector)C:P0:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=722
+		y=196
+		width=83
+		height=15
+	}
+	monitor {
+		chan="S$(sector)B:P0:mswAve:y:AdjustedCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=4
+		y=196
+		width=81
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Adj. Rdbk"
+	align="horiz. right"
+}
+text {
+	object {
+		x=814
+		y=196
+		width=22
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+composite {
+	object {
+		x=789
+		y=220
+		width=44
+		height=20
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=818
+				y=225
+				width=8
+				height=13
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=823
+						y=235
+						width=5
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(828,235)
+						(823,238)
+					}
+				}
+				polyline {
+					object {
+						x=818
+						y=235
+						width=5
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(818,235)
+						(823,238)
+					}
+				}
+				polyline {
+					object {
+						x=823
+						y=225
+						width=0
+						height=13
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(823,225)
+						(823,238)
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=800
+				y=222
+				width=22
+				height=5
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=800
+						y=225
+						width=6
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(806,228)
+						(800,225)
+					}
+				}
+				polyline {
+					object {
+						x=800
+						y=222
+						width=6
+						height=3
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(806,222)
+						(800,225)
+					}
+				}
+				polyline {
+					object {
+						x=800
+						y=225
+						width=22
+						height=0
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(822,225)
+						(800,225)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=789
+				y=220
+				width=4
+				height=7
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="S"
+		}
+		text {
+			object {
+				x=829
+				y=233
+				width=4
+				height=7
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="X"
+		}
+	}
+}
+text {
+	object {
+		x=719
+		y=274
+		width=102
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="G. Decker 2/28/05"
+}
+"text update" {
+	object {
+		x=309
+		y=241
+		width=80
+		height=20
+	}
+	monitor {
+		chan="S35DCCT:currentCC"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=93
+		y=241
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Storage Ring Current:"
+}
+text {
+	object {
+		x=394
+		y=243
+		width=18
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mA"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=433
+		y=241
+		width=225
+		height=20
+	}
+	monitor {
+		chan="S:IOC:timeOfDayForm1SI"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=242
+		y=57
+		width=11
+		height=9
+	}
+	"basic attribute" {
+		clr=61
+		width=3
+	}
+}
+text {
+	object {
+		x=263
+		y=56
+		width=36
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="In Use"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=242
+		y=77
+		width=11
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+}
+text {
+	object {
+		x=265
+		y=76
+		width=60
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not In Use"
+	align="horiz. right"
+}
+polyline {
+	object {
+		x=229
+		y=50
+		width=107
+		height=79
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="S$(sector)ID:P2:mswAve:x:ErrorCC"
+	}
+	points {
+		(230,51)
+		(230,127)
+		(334,127)
+		(334,51)
+		(230,51)
+		(230,51)
+	}
+}
+rectangle {
+	object {
+		x=234
+		y=91
+		width=44
+		height=16
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+}
+text {
+	object {
+		x=283
+		y=93
+		width=42
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Suspect"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=239
+		y=95
+		width=34
+		height=8
+	}
+	"basic attribute" {
+		clr=5
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=233
+		y=108
+		width=44
+		height=16
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+}
+text {
+	object {
+		x=295
+		y=110
+		width=18
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Bad"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=238
+		y=112
+		width=34
+		height=8
+	}
+	"basic attribute" {
+		clr=5
+		width=3
+	}
+}
+text {
+	object {
+		x=177
+		y=78
+		width=48
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Legend"
+	align="horiz. right"
+}
+text {
+	object {
+		x=257
+		y=148
+		width=42
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Error ="
+}
+text {
+	object {
+		x=222
+		y=164
+		width=132
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="(Adj. Rdbk - Setpoint)"
+}
+composite {
+	object {
+		x=317
+		y=31
+		width=43
+		height=15
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=317
+				y=38
+				width=43
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(317,38)
+				(360,38)
+			}
+		}
+		polyline {
+			object {
+				x=345
+				y=31
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(359,37)
+				(345,31)
+			}
+		}
+		polyline {
+			object {
+				x=346
+				y=40
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(360,40)
+				(346,46)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=319
+		y=196
+		width=43
+		height=15
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=319
+				y=203
+				width=43
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(319,203)
+				(362,203)
+			}
+		}
+		polyline {
+			object {
+				x=347
+				y=196
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(361,202)
+				(347,196)
+			}
+		}
+		polyline {
+			object {
+				x=348
+				y=205
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(362,205)
+				(348,211)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=199
+		y=31
+		width=43
+		height=15
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=199
+				y=38
+				width=43
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(242,38)
+				(199,38)
+			}
+		}
+		polyline {
+			object {
+				x=200
+				y=31
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(200,37)
+				(214,31)
+			}
+		}
+		polyline {
+			object {
+				x=199
+				y=40
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(199,40)
+				(213,46)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=201
+		y=196
+		width=43
+		height=15
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=201
+				y=203
+				width=43
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(244,203)
+				(201,203)
+			}
+		}
+		polyline {
+			object {
+				x=202
+				y=196
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(202,202)
+				(216,196)
+			}
+		}
+		polyline {
+			object {
+				x=201
+				y=205
+				width=14
+				height=6
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(201,205)
+				(215,211)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=93
+		y=270
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status:"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=172
+		y=270
+		width=400
+		height=20
+	}
+	monitor {
+		chan="IDstatus:message$(sector)"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=585
+		y=163
+		width=31
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+}
+rectangle {
+	object {
+		x=446
+		y=62
+		width=70
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ds:ID:SrcPt:xPositionM.VAL"
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=65
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ds:ID:SrcPt:xAngleM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=463
+		y=52
+		width=36
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HAngle"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=520
+		y=62
+		width=70
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ds:ID:SrcPt:xPositionM.VAL"
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=65
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ds:ID:SrcPt:xPositionM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=528
+		y=52
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HPosition"
+	align="horiz. right"
+}
+text {
+	object {
+		x=549
+		y=82
+		width=12
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+	align="horiz. right"
+}
+text {
+	object {
+		x=454
+		y=82
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="microrad."
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=446
+		y=158
+		width=70
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ds:ID:SrcPt:yPositionM.VAL"
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=161
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ds:ID:SrcPt:yAngleM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=463
+		y=148
+		width=36
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VAngle"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=520
+		y=158
+		width=70
+		height=21
+	}
+	"basic attribute" {
+		clr=13
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="S$(sector)ds:ID:SrcPt:yPositionM.VAL"
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=161
+		width=60
+		height=15
+	}
+	monitor {
+		chan="S$(sector)ds:ID:SrcPt:yPositionM"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=528
+		y=148
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VPosition"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=664
+		y=80
+		width=40
+		height=15
+	}
+	monitor {
+		chan="ID$(sector0)us:Gap.VAL"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=630
+		y=80
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Gap"
+	align="horiz. right"
+}
+text {
+	object {
+		x=645
+		y=97
+		width=9
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="E"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=662
+		y=97
+		width=40
+		height=15
+	}
+	monitor {
+		chan="ID$(sector0)us:Energy.VAL"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=706
+		y=80
+		width=18
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=703
+		y=97
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="keV"
+}
+"text update" {
+	object {
+		x=477
+		y=94
+		width=40
+		height=15
+	}
+	monitor {
+		chan="ID$(sector0)ds:Gap.VAL"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=443
+		y=94
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Gap"
+	align="horiz. right"
+}
+text {
+	object {
+		x=523
+		y=94
+		width=9
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="E"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=537
+		y=94
+		width=40
+		height=15
+	}
+	monitor {
+		chan="ID$(sector0)ds:Energy.VAL"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=485
+		y=108
+		width=18
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+}
+text {
+	object {
+		x=541
+		y=108
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="keV"
+}
+text {
+	object {
+		x=549
+		y=180
+		width=12
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mm"
+	align="horiz. right"
+}
+text {
+	object {
+		x=454
+		y=179
+		width=54
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="microrad."
+	align="horiz. right"
+}
+text {
+	object {
+		x=597
+		y=161
+		width=34
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="0.1 m"
+	align="horiz. right"
+}
