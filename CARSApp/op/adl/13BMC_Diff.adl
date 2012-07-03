@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=374
-		y=95
-		width=142
-		height=435
+		x=333
+		y=89
+		width=160
+		height=500
 	}
 	clr=14
 	bclr=4
@@ -87,122 +87,10 @@ display {
 		1a7309,
 	}
 }
-text {
-	object {
-		x=45
-		y=9
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="13BMC"
-}
-"message button" {
-	object {
-		x=7
-		y=74
-		width=50
-		height=25
-	}
-	control {
-		chan="13BMA:OpenBMCShutter.PROC"
-		clr=14
-		bclr=15
-	}
-	label="Open"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=85
-		y=74
-		width=50
-		height=25
-	}
-	control {
-		chan="13BMA:CloseBMCShutter.PROC"
-		clr=14
-		bclr=20
-	}
-	label="Close"
-	press_msg="1"
-}
-"text update" {
-	object {
-		x=79
-		y=54
-		width=55
-		height=15
-	}
-	monitor {
-		chan="13BMA:eps_mbbi100"
-		clr=14
-		bclr=0
-	}
-	clrmod="alarm"
-	limits {
-	}
-}
-text {
-	object {
-		x=7
-		y=54
-		width=60
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Shutter"
-}
-text {
-	object {
-		x=7
-		y=34
-		width=72
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Searched"
-}
-oval {
-	object {
-		x=106
-		y=34
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13BM:Q01:02.VAL"
-	}
-}
-oval {
-	object {
-		x=106
-		y=34
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="PA:13BM:Q01:02.VAL"
-	}
-}
 composite {
 	object {
-		x=8
-		y=152
+		x=10
+		y=185
 		width=130
 		height=273
 	}
@@ -210,8 +98,8 @@ composite {
 	children {
 		"related display" {
 			object {
-				x=8
-				y=169
+				x=10
+				y=202
 				width=128
 				height=24
 			}
@@ -256,8 +144,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=198
+				x=10
+				y=231
 				width=128
 				height=24
 			}
@@ -277,8 +165,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=227
+				x=10
+				y=260
 				width=128
 				height=24
 			}
@@ -293,8 +181,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=256
+				x=10
+				y=289
 				width=128
 				height=24
 			}
@@ -324,8 +212,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=285
+				x=10
+				y=318
 				width=128
 				height=24
 			}
@@ -365,8 +253,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=314
+				x=10
+				y=347
 				width=128
 				height=24
 			}
@@ -381,8 +269,8 @@ composite {
 		}
 		"text update" {
 			object {
-				x=74
-				y=152
+				x=76
+				y=185
 				width=45
 				height=15
 			}
@@ -396,8 +284,8 @@ composite {
 		}
 		text {
 			object {
-				x=8
-				y=152
+				x=10
+				y=185
 				width=45
 				height=15
 			}
@@ -408,8 +296,8 @@ composite {
 		}
 		text {
 			object {
-				x=121
-				y=152
+				x=123
+				y=185
 				width=17
 				height=15
 			}
@@ -420,8 +308,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=401
+				x=10
+				y=434
 				width=128
 				height=24
 			}
@@ -435,8 +323,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=343
+				x=10
+				y=376
 				width=128
 				height=24
 			}
@@ -456,8 +344,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=8
-				y=372
+				x=10
+				y=405
 				width=128
 				height=24
 			}
@@ -482,22 +370,9 @@ composite {
 		}
 	}
 }
-menu {
-	object {
-		x=16
-		y=127
-		width=80
-		height=20
-	}
-	control {
-		chan="13BMC:BMCEnableShutter"
-		clr=14
-		bclr=51
-	}
-}
 text {
 	object {
-		x=16
+		x=45
 		y=107
 		width=81
 		height=15
@@ -506,4 +381,202 @@ text {
 		clr=14
 	}
 	textix="Auto-open"
+}
+rectangle {
+	object {
+		x=5
+		y=105
+		width=150
+		height=75
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=10
+		y=127
+		width=135
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=28
+				y=130
+				width=36
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Mode"
+		}
+		text {
+			object {
+				x=10
+				y=155
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Period"
+		}
+		menu {
+			object {
+				x=70
+				y=127
+				width=75
+				height=20
+			}
+			control {
+				chan="13BMA:BMCAutoOpenMode"
+				clr=14
+				bclr=51
+			}
+		}
+		"text entry" {
+			object {
+				x=70
+				y=152
+				width=75
+				height=20
+			}
+			control {
+				chan="13BMA:BMCAutoOpenPeriod.DLY1"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=16
+		y=9
+		width=128
+		height=90
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=54
+				y=9
+				width=50
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="13BMC"
+		}
+		"message button" {
+			object {
+				x=16
+				y=74
+				width=50
+				height=25
+			}
+			control {
+				chan="13BMA:OpenBMCShutter.PROC"
+				clr=14
+				bclr=15
+			}
+			label="Open"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=94
+				y=74
+				width=50
+				height=25
+			}
+			control {
+				chan="13BMA:CloseBMCShutter.PROC"
+				clr=14
+				bclr=20
+			}
+			label="Close"
+			press_msg="1"
+		}
+		"text update" {
+			object {
+				x=88
+				y=54
+				width=55
+				height=15
+			}
+			monitor {
+				chan="13BMA:eps_mbbi100"
+				clr=14
+				bclr=0
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=16
+				y=54
+				width=60
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Shutter"
+		}
+		text {
+			object {
+				x=16
+				y=34
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Searched"
+		}
+		oval {
+			object {
+				x=115
+				y=34
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="PA:13BM:Q01:02.VAL"
+			}
+		}
+		oval {
+			object {
+				x=115
+				y=34
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="PA:13BM:Q01:02.VAL"
+			}
+		}
+	}
 }
