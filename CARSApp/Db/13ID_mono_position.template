@@ -2,52 +2,62 @@
 
 record(ao, "$(P)$(EN)Mono111DSpace")
 {
-    field(VAL, "3.13479")
+    field(VAL,  "3.13479")
+    field(PREC, "5")
 }
 
 record(ao, "$(P)$(EN)Mono311DSpace")
 {
-    field(VAL, "1.63673")
+    field(VAL,  "1.63673")
+    field(PREC, "5")
 }
 
 record(ao, "$(P)$(EN)Mono111ThetaOffset")
 {
-    field(VAL, "0.32394")
+    field(VAL,  "0.32394")
+    field(PREC, "5")
 }
 
 record(ao, "$(P)$(EN)Mono311ThetaOffset")
 {
-    field(VAL, "0.10969")
+    field(VAL,  "0.10969")
+    field(PREC, "5")
 }
 
 record(ao, "$(P)$(EN)Mono111HeightOffset")
 {
-    field(VAL, "5.2260")
+    field(VAL,  "5.2260")
+    field(PREC, "5")
 }
 
 record(ao, "$(P)$(EN)Mono311HeightOffset")
 {
-    field(VAL, "5.6766")
+    field(VAL,  "5.6766")
+    field(PREC, "5")
 }
 
 record(ao, "$(P)$(EN)Mono111Pitch")
 {
-    field(VAL, "-.8111")
+    field(VAL,  "-.8111")
+    field(PREC, "4")
 }
 
 record(ao, "$(P)$(EN)Mono311Pitch")
 {
-    field(VAL, "-.3321")
+    field(VAL,  "-.3321")
+    field(PREC, "4")
 }
 
 record(ao, "$(P)$(EN)Mono111Roll")
 {
-    field(VAL, "-.4211")
+    field(VAL,  "-.4211")
+    field(PREC, "4")
 }
 
 record(ao, "$(P)$(EN)Mono311Roll")
 {
-    field(VAL, "-.3711")
+    field(VAL,  "-.3711")
+    field(PREC, "4")
 }
 
 
@@ -66,7 +76,7 @@ record(mbbo, "$(P)$(EN)MonoPosition")
 record(calcout, "$(P)$(EN)MoveTo111")
 {
     # Disable record if we are already on Si 111
-    field(SDIS, "$(EPS_INPUT)")
+    field(SDIS, "$(EPS_111)")
     field(DISV, "1")
     field(INPA, "$(P)$(EN)MonoPosition CP MS")
     field(CALC, "A==0")
@@ -101,7 +111,7 @@ record(seq,"$(P)$(EN)Sequence111") {
 record(calcout, "$(P)$(EN)MoveToWhite")
 {
     # Disable record if we are already on white
-    field(SDIS, "$(EPS_INPUT)")
+    field(SDIS, "$(EPS_WHITE)")
     field(DISV, "1")
     field(INPA, "$(P)$(EN)MonoPosition CP MS")
     field(CALC, "A==1")
@@ -126,7 +136,7 @@ record(seq,"$(P)$(EN)SequenceWhite") {
 record(calcout, "$(P)$(EN)MoveTo311")
 {
     # Disable record if we are already on Si 311
-    field(SDIS, "$(EPS_INPUT)")
+    field(SDIS, "$(EPS_311)")
     field(DISV, "1")
     field(INPA, "$(P)$(EN)MonoPosition CP MS")
     field(CALC, "A==2")
