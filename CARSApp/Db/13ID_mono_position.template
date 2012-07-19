@@ -1,7 +1,60 @@
 # This database switches the 13-ID mono between the 111, 311, and white beam positions
 
-record(mbbo, "$(P)MonoPosition")
+record(ao, "$(P)$(EN)Mono111DSpace")
 {
+    field(VAL, "3.13479")
+}
+
+record(ao, "$(P)$(EN)Mono311DSpace")
+{
+    field(VAL, "1.63673")
+}
+
+record(ao, "$(P)$(EN)Mono111ThetaOffset")
+{
+    field(VAL, "0.32394")
+}
+
+record(ao, "$(P)$(EN)Mono311ThetaOffset")
+{
+    field(VAL, "0.10969")
+}
+
+record(ao, "$(P)$(EN)Mono111HeightOffset")
+{
+    field(VAL, "5.2260")
+}
+
+record(ao, "$(P)$(EN)Mono311HeightOffset")
+{
+    field(VAL, "5.6766")
+}
+
+record(ao, "$(P)$(EN)Mono111Pitch")
+{
+    field(VAL, "-.8111")
+}
+
+record(ao, "$(P)$(EN)Mono311Pitch")
+{
+    field(VAL, "-.3321")
+}
+
+record(ao, "$(P)$(EN)Mono111Roll")
+{
+    field(VAL, "-.4211")
+}
+
+record(ao, "$(P)$(EN)Mono311Roll")
+{
+    field(VAL, "-.3711")
+}
+
+
+
+record(mbbo, "$(P)$(EN)MonoPosition")
+{
+    field(PINI, "YES")
     field(ZRVL, "0")
     field(ZRST, "Si 111")
     field(ONVL, "1")
@@ -10,72 +63,92 @@ record(mbbo, "$(P)MonoPosition")
     field(TWST, "Si 311")
 }
 
-record(calcout, "$(P)MoveTo111")
+record(calcout, "$(P)$(EN)MoveTo111")
 {
     # Disable record if we are already on Si 111
-    field(SDIS, "$(P)eps_mbbi204")
+    field(SDIS, "$(EPS_INPUT)")
     field(DISV, "1")
-    field(INPA, "$(P)MonoPosition CP MS")
+    field(INPA, "$(P)$(EN)MonoPosition CP MS")
     field(CALC, "A==0")
-    field(OUT,  "$(P)Sequence111.PROC PP MS")
+    field(OUT,  "$(P)$(EN)Sequence111.PROC PP MS")
     field(OCAL, "1")
     field(OOPT, "When Non-zero")
     field(DOPT, "Use OCAL")
 }
     
-record(seq,"$(P)Sequence111") {
+record(seq,"$(P)$(EN)Sequence111") {
     field(DLY1,"0")
     field(DOL1,"1")
-    field(LNK1,"$(P)MoveMono311.PROC PP MS")
+    field(LNK1,"$(P)$(EN)MoveMono311.PROC PP MS")
     field(DLY2,"3")
     field(DOL2,"1")
-    field(LNK2,"$(P)MoveMonoStopOut.PROC PP MS")
+    field(LNK2,"$(P)$(EN)MoveMonoStopOut.PROC PP MS")
     field(DLY3,"1")
     field(DOL3,"1")
-    field(LNK3,"$(P)MoveMono111.PROC PP MS")
+    field(LNK3,"$(P)$(EN)MoveMono111.PROC PP MS")
+    field(DOL4,"$(P)$(EN)Mono111DSpace NPP NMS")
+    field(LNK4,"$(P)$(EN):dspace.VAL PP MS")
+    field(DOL5,"$(P)$(EN)Mono111ThetaOffset NPP NMS")
+    field(LNK5,"$(THETA_MOTOR).OFF PP MS")
+    field(DOL6,"$(P)$(EN)Mono111HeightOffset NPP NMS")
+    field(LNK6,"$(HEIGHT_MOTOR).OFF PP MS")
+    field(DOL7,"$(P)$(EN)Mono111Pitch NPP NMS")
+    field(LNK7,"$(PITCH_MOTOR).VAL PP MS")
+    field(DOL8,"$(P)$(EN)Mono111Roll NPP NMS")
+    field(LNK8,"$(ROLL_MOTOR).VAL PP MS")
 }
 
-record(calcout, "$(P)MoveToWhite")
+record(calcout, "$(P)$(EN)MoveToWhite")
 {
     # Disable record if we are already on white
-    field(SDIS, "$(P)eps_mbbi206")
+    field(SDIS, "$(EPS_INPUT)")
     field(DISV, "1")
-    field(INPA, "$(P)MonoPosition CP MS")
+    field(INPA, "$(P)$(EN)MonoPosition CP MS")
     field(CALC, "A==1")
-    field(OUT,  "$(P)SequenceWhite.PROC PP MS")
+    field(OUT,  "$(P)$(EN)SequenceWhite.PROC PP MS")
     field(OCAL, "1")
     field(OOPT, "When Non-zero")
     field(DOPT, "Use OCAL")
 }
     
-record(seq,"$(P)SequenceWhite") {
+record(seq,"$(P)$(EN)SequenceWhite") {
     field(DLY1,"0")
     field(DOL1,"1")
-    field(LNK1,"$(P)MoveMono311.PROC PP MS")
+    field(LNK1,"$(P)$(EN)MoveMono311.PROC PP MS")
     field(DLY2,"3")
     field(DOL2,"1")
-    field(LNK2,"$(P)MoveMonoStopIn.PROC PP MS")
+    field(LNK2,"$(P)$(EN)MoveMonoStopIn.PROC PP MS")
     field(DLY3,"1")
     field(DOL3,"1")
-    field(LNK3,"$(P)MoveMono111.PROC PP MS")
+    field(LNK3,"$(P)$(EN)MoveMono111.PROC PP MS")
 }
 
-record(calcout, "$(P)MoveTo311")
+record(calcout, "$(P)$(EN)MoveTo311")
 {
     # Disable record if we are already on Si 311
-    field(SDIS, "$(P)eps_mbbi205")
+    field(SDIS, "$(EPS_INPUT)")
     field(DISV, "1")
-    field(INPA, "$(P)MonoPosition CP MS")
+    field(INPA, "$(P)$(EN)MonoPosition CP MS")
     field(CALC, "A==2")
-    field(OUT,  "$(P)Sequence311.PROC PP MS")
+    field(OUT,  "$(P)$(EN)Sequence311.PROC PP MS")
     field(OCAL, "1")
     field(OOPT, "When Non-zero")
     field(DOPT, "Use OCAL")
 }
     
-record(seq,"$(P)Sequence311") {
+record(seq,"$(P)$(EN)Sequence311") {
 	  field(DLY1,"0")
     field(DOL1,"1")
-    field(LNK1,"$(P)MoveMono311.PROC PP MS")
+    field(LNK1,"$(P)$(EN)MoveMono311.PROC PP MS")
+    field(DOL2,"$(P)$(EN)Mono311DSpace NPP NMS")
+    field(LNK2,"$(P)$(EN):dspace.VAL PP MS")
+    field(DOL3,"$(P)$(EN)Mono311ThetaOffset")
+    field(LNK3,"$(THETA_MOTOR).OFF PP MS")
+    field(DOL4,"$(P)$(EN)Mono311HeightOffset NPP NMS")
+    field(LNK4,"$(HEIGHT_MOTOR).OFF PP MS")
+    field(DOL5,"$(P)$(EN)Mono311Pitch NPP NMS")
+    field(LNK5,"$(PITCH_MOTOR).VAL PP MS")
+    field(DOL6,"$(P)$(EN)Mono311Roll NPP NMS")
+    field(LNK6,"$(ROLL_MOTOR).VAL PP MS")
 }
 
