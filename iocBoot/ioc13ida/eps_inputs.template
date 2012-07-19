@@ -14,9 +14,9 @@ pattern
 {13IDA:,  11,   "Remote inputs",                0,  2,  8, "Ok",              "NO_ALARM", "Comm fault",        "MAJOR"}
 
 # Shutter status
-{13IDA:,  25,   "Front end shutter"             0,  2,  9, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
-{13IDA:,  26,   "C/D shutter"                   0,  2, 10, "Open",            "NO_ALARM", "Closed"             "MAJOR"}
-{13IDA:,  27,   "E shutter",                    0,  2, 11, "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{13IDA:,  25,   "Front end shutter"             0,  2,  9, "Closed",          "MAJOR",    "Open",              "NO_ALARM"}
+{13IDA:,  26,   "C/D shutter"                   0,  2, 10, "Closed",          "MAJOR",    "Open"               "NO_ALARM"}
+{13IDA:,  27,   "E shutter",                    0,  2, 11, "Closed",          "MAJOR",    "Open",              "NO_ALARM"}
 
 # Water status 1
 {13IDA:,  32,   "C/D horiz. slits water",       0,  4,  0, "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
@@ -122,13 +122,14 @@ pattern
 {13IDA:, 201,   "E horiz. low power",           1,  8,  9, "Normal",          "NO_ALARM", "Low power",         "MINOR"}
 {13IDA:, 202,   "C/D vert. low power",          1,  8, 10, "Normal",          "NO_ALARM", "Low power",         "MINOR"}
 {13IDA:, 203,   "C/D horiz. low power",         1,  8, 11, "Normal",          "NO_ALARM", "Low power",         "MINOR"}
-{13IDA:, 204,   "Mono inboard position",        1,  8, 12, "In",              "NO_ALARM", "Out",               "MINOR"}
-{13IDA:, 205,   "Mono outboard position",       1,  8, 13, "In",              "NO_ALARM", "Out",               "MINOR"}
-{13IDA:, 206,   "Mono center position",         1,  8, 14, "In",                 "MAJOR", "Out",            "NO_ALARM"}
+{13IDA:, 204,   "Mono 111 position",            1,  8, 12, "Out",             "NO_ALARM", "In",                "MINOR"}
+{13IDA:, 205,   "Mono 311 position",            1,  8, 13, "Out",             "NO_ALARM", "In",                "MINOR"}
+{13IDA:, 206,   "Mono center position",         1,  8, 14, "Out",             "NO_ALARM", "In",                "MINOR"}
 {13IDA:, 207,   "E viewer position",            1,  8, 15, "In",                 "MAJOR", "Out",            "NO_ALARM"}
 {13IDA:, 208,   "C/D viewer position",          1, 10,  0, "In",                 "MAJOR", "Out",            "NO_ALARM"}
 {13IDA:, 209,   "SSA viewer position",          1, 10,  1, "In",                 "MAJOR", "Out",            "NO_ALARM"}
 {13IDA:, 210,   "He gas farm pressure (left)"   1, 10,  2, "Ok",              "NO_ALARM", "<200 psig",         "MAJOR"}
-{13IDA:, 211,   "He gas farm pressure (right)"  1, 10, 13, "Ok",              "NO_ALARM", "<200 psig"          "MAJOR"}
+{13IDA:, 211,   "He gas farm pressure (right)"  1, 10,  3, "Ok",              "NO_ALARM", "<200 psig"          "MAJOR"}
+{13IDA:, 212,   "C/D QBPM position",            1, 10,  4, "In",                 "MAJOR", "Out",            "NO_ALARM"}
 
 }
