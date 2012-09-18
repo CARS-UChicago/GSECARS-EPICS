@@ -41,7 +41,10 @@ dbLoadRecords("$(CARS)/CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTO
 
 # Monochromator PID
 dbLoadTemplate "mono_pid.template"
- 
+
+# Auto-shutters
+dbLoadTemplate("auto_shutter.substitutions")
+
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMA:")
 
@@ -81,7 +84,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMA:")
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(4, 0x4000, 190, 5, 10)
+oms58Setup(3, 0x4000, 190, 5, 10)
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
