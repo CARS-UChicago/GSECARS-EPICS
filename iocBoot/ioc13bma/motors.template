@@ -27,8 +27,6 @@ pattern
 {13BMA:,  m23,  "OMS VME58",   2,    5, "Downstream Translation", mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,   2,    101,     -1}
 {13BMA:,  m24,  "OMS VME58",   2,    6, "BMB top slit",           mm,   Neg,     1.,  .1,    .5,    0,      .1,   1.5,     400,     0.50,   3,     50,      0}
 {13BMA:,  m25,  "OMS VME58",   2,    7, "BMB bottom slit",        mm,   Neg,     1.,  .1,    .5,    0,      .1,   1.5,     400,     0.50,   3,     50,      0}
-#{13BMA:,  m26,  "OMS VME58",   3,    0, "BMC inboard slit",       mm,   Pos,    1.,  .1,    .5,    0,    0.05,   1.5,     400,    -0.50,   3,     50,      0}
-#{13BMA:,  m27,  "OMS VME58",   3,    1, "BMC outboard slit",      mm,   Pos,    1.,  .1,    .5,    0,    0.05,   1.5,     400,    -0.50,   3,     50,      0}
 }
 
 file "$(OPTICS)/opticsApp/Db/2slit.db"
@@ -91,8 +89,8 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 file "$(CARS)/CARSApp/Db/Energy.db"
 {
 pattern
-{P,      EN,   DESC,     EGU,  PREC,  SCANREC,       USEID,  TWEAK}
-{13BMA:,  E,  "Energy",   eV,    4,   13BMA:scan1,       0,   1.00}
+{P,      EN,   DESC,     EGU,  PREC,  SCANREC,       USEID,  ID,      TWEAK}
+{13BMA:,  E,  "Energy",   eV,    4,   13BMA:scan1,       0,  Dummy,    1.00}
 }
 
 file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
