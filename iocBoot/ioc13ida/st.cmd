@@ -15,8 +15,6 @@ dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
 cd startup
-< industryPack.cmd
-< serial.cmd
 
 # Debugging flags
 devA32VmeDebug=0
@@ -34,17 +32,50 @@ dbLoadTemplate("eps_valves.template")
 
 dbLoadTemplate("motors.template")
 
-#Quad electrometer
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.db", "P=13IDA:, EM=EM1, CARD=0, PORT=quadEM1")
+< industryPack.cmd
+< serial.cmd
 
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med.db", "P=13IDA:quadEM:,NCHAN=2048,PORT=quadEMSweep")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med_FFT.db", "P=13IDA:quadEM_FFT:,NCHAN=1024")
+# Quad electrometer
+# -----------------------------------------------------
+# drvAPS_EMConfigure(const char *portName, unsigned short *baseAddr, int fiberChannel,
+#                    const char *unidigName, int unidigChan, char *unidigDrvInfo)
+#  portName     = name of APS_EM asyn port driver created 
+#  baseAddress = base address of VME card
+#  channel     = 0-3, fiber channel number
+#  unidigName  = name of ipInidig server if it is used for interrupts.
+#                Set to 0 if there is no IP-Unidig being used, in which
+#                case the quadEM will be read at 60Hz.
+#  unidigChan  = IP-Unidig channel connected to quadEM pulse output
+#  unidigDrvInfo = drvInfo string for digital input parameter
+drvAPS_EMConfigure("APS_EM", 0xf000, 0, "Unidig1", 0, "DIGITAL_INPUT")
+dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.template", "P=13IDA:, R=QE1:, PORT=APS_EM")
+dbLoadRecords("$(QUADEM)/quadEMApp/Db/APS_EM.template", "P=13IDA:, R=QE1:, PORT=APS_EM")
+
+# initFastSweep(portName, inputName, maxSignals, maxPoints)
+#  portName = asyn port name for this new port (string)
+#  inputName = name of asynPort providing data
+#  maxSignals  = maximum number of signals (spectra)
+#  maxPoints  = maximum number of channels per spectrum
+#  dataString  = drvInfo string for current and position data
+#  intervalString  = drvInfo string for time interval per point
+initFastSweep("QE1TS", "APS_EM", 11, 2048, "QE_INT_ARRAY_DATA", "QE_SAMPLE_TIME")
+dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_TimeSeries.template", "P=13IDA:,R=QE1:,NUM_TS=2048,NUM_FREQ=1024,PORT=QE1TS")
+
+
+# Monochromator positions
+dbLoadTemplate("mono_position.template")
+
+# Quad BPM foils
+dbLoadTemplate("13ID_BPM_Foil.substitutions")
 
 # Monochromator PID
 dbLoadTemplate("mono_pid.template")
 
 # Large KB Mirror PID
 dbLoadTemplate("mirror_pid.template")
+
+# Auto-shutters
+dbLoadTemplate("auto_shutter.substitutions")
 
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA:")
@@ -104,7 +135,7 @@ oms58Setup(4, 0x4000, 190, 5, 10)
 #     (4)interrupt vector (0=disable or  64 - 255).
 #     (5)interrupt level (1 - 6).
 #     (6)motor task polling rate (min=1Hz,max=60Hz).
-MAXvSetup(3, 16, 0x8000, 190, 5, 10)
+MAXvSetup(3, 16, 0x8000, 192, 5, 10)
 drvMAXvdebug=0
 # OMS MAXv configuration string:
 #     (1) number of card being configured (0-14).
@@ -118,30 +149,6 @@ configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR
 MAXvConfig(0, configStep)
 MAXvConfig(1, configStep)
 MAXvConfig(2, configStep)
-
-# initQuadEM(baseAddress, fiberChannel, microSecondsPerScan, maxClients,
-#            unidigName, unidigChan)
-#  quadEMName  = name of quadEM object created
-#  baseAddress = base address of VME card
-#  channel     = 0-3, fiber channel number
-#  microSecondsPerScan = microseconds to integrate.  When used with ipUnidig
-#                interrupts the unit is also read at this rate.
-#  unidigName  = name of ipInidig server if it is used for interrupts.
-#                Set to 0 if there is no IP-Unidig being used, in which
-#                case the quadEM will be read at 60Hz.
-#  unidigChan  = IP-Unidig channel connected to quadEM pulse output
-
-# Use this line for 60Hz polling
-#initQuadEM("quadEM1", 0xf000, 0, 1000, 0, 0)
-# Use this line for interrupts on channel 0 of IpUnidig
-initQuadEM("quadEM1", 0xf000, 0, 1000, "Unidig1", 0)
-
-# initFastSweep(portName, inputName, maxSignals, maxPoints)
-#  portName = asyn port name for this new port (string)
-#  inputName = name of asynPort providing data
-#  maxSignals  = maximum number of signals (spectra)
-#  maxPoints  = maximum number of channels per spectrum
-initFastSweep("quadEMSweep", "quadEM1", 10, 2048)
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
@@ -164,8 +171,10 @@ seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
 
 str=malloc(256)
 strcpy(str,"PRE=13IDA:,ID=ID13ds:,")
-strcat(str,"EXPTAB2=13IDA:pm5,SH=eps_mbbi4,FB=mono_pid1")
+strcat(str,"FB=mono_pid1")
 seq &Energy, str
+
+seq(&quadEM_SNL, "P=13IDA:, R=QE1:, NUM_CHANNELS=2048")
 
 # For the bypass valve swap the severity of the open and closed states
 dbpf "13IDA:V8_status.ONSV","MAJOR"
