@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=266
-		y=376
+		x=99
+		y=150
 		width=700
 		height=550
 	}
@@ -468,6 +468,10 @@ composite {
 		label="Storage Ring Status"
 		name="SR_Status.adl"
 	}
+	display[1] {
+		label="Top up status"
+		name="TopUp.adl"
+	}
 	display[2] {
 		label="Beamline status"
 		name="Beamline_Status.adl"
@@ -640,7 +644,7 @@ text {
 	display[0] {
 		label="ID-C/D Energy"
 		name="Energy.adl"
-		args="P1=13IDA:, TITLE=ID-C/D_Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+		args="P=13IDA:, TITLE=ID-C/D_Energy, EN=E, ID=ID13ds:, THETA_MOTOR=m57"
 	}
 	display[1] {
 		label="ID-C/D Crystal cage"
@@ -755,12 +759,22 @@ text {
 	display[0] {
 		label="ID-C/D BPM Motors"
 		name="2motors.adl"
-		args="P=13IDA:, TITLE=ID-C/D_BPM, M1=m33, M2=m15"
+		args="P=13IDA:, TITLE=ID-C/D_BPM, M1=m34, M2=m61"
 	}
 	display[1] {
-		label="ID-C/D BPM Control"
+		label="ID-C/D BPM Foil"
 		name="BPM_Foil.adl"
-		args="P=13IDA:, TITLE=ID-C/D_BPM_Foils, M1=m33, M2=m15, EN=E"
+		args="P=13IDA:, TITLE=ID-C/D_BPM_Foils, M1=m34, M2=m61, EN=E, BPM=CD_BPM"
+	}
+	display[2] {
+		label="ID-C/D BPM Electronics"
+		name="quadEM.adl"
+		args="P=13IDA:, R=QE1:"
+	}
+	display[3] {
+		label="ID-C/D BPM Time Series"
+		name="quadEM_TimeSeries.adl"
+		args="P=13IDA:QE1:,T12=Vertical_BPM, T34=Horizontal_BPM"
 	}
 	clr=14
 	bclr=51
@@ -782,37 +796,6 @@ text {
 	object {
 		x=31
 		y=425
-		width=75
-		height=20
-	}
-	display[0] {
-		label="quadEM MCAs"
-		name="quadEM_med.adl"
-		args="P=13IDA:quadEM:, P_FFT=13IDA:quadEM_FFT:, T13=Vertical_BPM, T24=Horizontal_BPM"
-	}
-	display[4] {
-		name="l"
-	}
-	clr=14
-	bclr=51
-}
-text {
-	object {
-		x=111
-		y=425
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Quad BPM MCAs"
-}
-"related display" {
-	object {
-		x=31
-		y=450
 		width=75
 		height=20
 	}
@@ -842,7 +825,7 @@ text {
 text {
 	object {
 		x=111
-		y=450
+		y=425
 		width=40
 		height=20
 	}
@@ -1048,70 +1031,6 @@ text {
 "related display" {
 	object {
 		x=381
-		y=400
-		width=75
-		height=20
-	}
-	display[0] {
-		label="ID-E BPM Motors"
-		name="2motors.adl"
-		args="P=13IDA:, TITLE=ID-E_BPM Motors, M1=m33, M2=m15"
-	}
-	display[1] {
-		label="ID-E BPM Control"
-		name="BPM_Foil.adl"
-		args="P=13IDA:, TITLE=ID-E_BPM_Foil_Control, M1=m33, M2=m15, EN=E"
-	}
-	clr=14
-	bclr=51
-}
-text {
-	object {
-		x=461
-		y=400
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Quad BPM"
-}
-"related display" {
-	object {
-		x=381
-		y=425
-		width=75
-		height=20
-	}
-	display[0] {
-		label="quadEM MCAs"
-		name="quadEM_med.adl"
-		args="P=13IDA:quadEM:, P_FFT=13IDA:quadEM_FFT:, T13=Vertical_BPM, T24=Horizontal_BPM"
-	}
-	display[4] {
-		name="l"
-	}
-	clr=14
-	bclr=51
-}
-text {
-	object {
-		x=461
-		y=425
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Quad BPM MCAs"
-}
-"related display" {
-	object {
-		x=381
 		y=450
 		width=75
 		height=20
@@ -1172,7 +1091,7 @@ text {
 		height=20
 	}
 	display[0] {
-		label="Mirror Setup"
+		label="Mirror Control"
 		name="13ID_EMirrors.adl"
 		args="P=13IDA:, M1P=pm16, M1H=pm15, M2P=pm18, M2H=pm17, M1C=pm11, M1E=pm12, M2C=pm13, M2E=pm14"
 	}
@@ -1310,4 +1229,81 @@ text {
 	}
 	clr=14
 	bclr=51
+}
+composite {
+	object {
+		x=381
+		y=400
+		width=110
+		height=20
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=381
+				y=400
+				width=75
+				height=20
+			}
+			display[0] {
+				label="ID-E BPM Motors"
+				name="2motors.adl"
+				args="P=13IDA:, TITLE=ID-E_BPM Motors, M1=m33, M2=m15"
+			}
+			display[1] {
+				label="ID-E BPM Control"
+				name="BPM_Foil.adl"
+				args="P=13IDA:, TITLE=ID-E_BPM_Foil_Control, M1=m33, M2=m15, EN=E"
+			}
+			clr=14
+			bclr=51
+		}
+		text {
+			object {
+				x=461
+				y=400
+				width=30
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Quad BPM"
+		}
+	}
+}
+"related display" {
+	object {
+		x=381
+		y=375
+		width=75
+		height=20
+	}
+	display[0] {
+		label="SSA"
+		name="4motors.adl"
+		args="P=13IDA:, TITLE=ID-E_SSA Motors, M1=m65, M2=m66, M3=m67, M4=m68"
+	}
+	display[1] {
+		label="SSA beam viewer"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=ID-E_SSA_BeamViewer, M1=m39, M2=m40"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=375
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="SSA"
 }
