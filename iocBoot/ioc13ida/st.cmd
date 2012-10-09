@@ -166,7 +166,7 @@ create_monitor_set("auto_positions.req",5,"P=13IDA:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDA:")
 
-seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM1, stack=10000"
+seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM1, channels=22, model=2700, stack=10000"
 seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
 
 str=malloc(256)
