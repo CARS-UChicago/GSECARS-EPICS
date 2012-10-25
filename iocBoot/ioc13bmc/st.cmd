@@ -140,9 +140,6 @@ MAXvConfig(1, configStep)
 oms58Setup(5, 0x4000, 190, 5, 10)
 ################################################################################
 
-# Auto-shutter logic
-dbLoadTemplate("auto_shutter.substitutions")
-
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
