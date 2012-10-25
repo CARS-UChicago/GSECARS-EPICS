@@ -16,21 +16,29 @@ pattern
 {13IDA:,  12,   "Mono 311 position",        0,  7,  1, "Done",           "NO_ALARM",  "Move",             "MAJOR"}
 {13IDA:,  13,   "Mono stop in",             0,  7,  2, "Done",           "NO_ALARM",  "Move",             "MAJOR"}
 {13IDA:,  14,   "Mono stop out",            0,  7,  3, "Done",           "NO_ALARM",  "Move",             "MAJOR"}
+{13IDA:,  15,   "C/D pump request",         0,  7,  4, "Off",            "MAJOR",     "On",               "NO_ALARM"}
+{13IDA:,  16,   "C/D vent request",         0,  7,  5, "Close",          "NO_ALARM",  "Open",             "MAJOR"}
+{13IDA:,  17,   "E pump request",           0,  7,  6, "Off",            "MAJOR",     "On",               "NO_ALARM"}
+{13IDA:,  18,   "E vent request",           0,  7,  7, "Close",          "NO_ALARM",  "Open",             "MAJOR"}
 } 
 
 file "$(CARS)/CARSApp/Db/eps_pulse.db"
 {
 pattern
-{P,        R,               N,   DESC             }
-{13IDA:,   OpenFEShutter,   3,  "Open FE shutter"  }
-{13IDA:,   CloseFEShutter,  4,  "Close FE shutter" }
-{13IDA:,   OpenCDShutter,   5,  "Open CD shutter"  }
-{13IDA:,   CloseCDShutter,  6,  "Close CD shutter" }
-{13IDA:,   OpenEShutter,    7,  "Open E shutter"  }
-{13IDA:,   CloseEShutter,   8,  "Close E shutter" }
+{P,        R,                 N,   DESC             }
+{13IDA:,   OpenFEShutter,     3,  "Open FE shutter"  }
+{13IDA:,   CloseFEShutter,    4,  "Close FE shutter" }
+{13IDA:,   OpenCDShutter,     5,  "Open CD shutter"  }
+{13IDA:,   CloseCDShutter,    6,  "Close CD shutter" }
+{13IDA:,   OpenEShutter,      7,  "Open E shutter"  }
+{13IDA:,   CloseEShutter,     8,  "Close E shutter" }
 {13IDA:,   EMoveMono111,    11,  "Move mono 111" }
 {13IDA:,   EMoveMono311,    12,  "Move mono 311" }
 {13IDA:,   EMoveMonoStopIn, 13,  "Move mono stop in" }
-{13IDA:,   EMoveMonoStopOut,14,  "Move mono stop in" }
+{13IDA:,   EMoveMonoStopOut,14,  "Move mono stop out" }
+{13IDA:,   CDPumpRequest,    15,  "C/D pump request" }
+{13IDA:,   CDVentRequest,    16,  "C/D vent request" }
+{13IDA:,   EPumpRequest,     17,  "E pump request" }
+{13IDA:,   EVentRequest,     18,  "E vent request" }
 }
 
