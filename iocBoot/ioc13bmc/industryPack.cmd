@@ -61,7 +61,7 @@ initIp330("Ip330_1",0,1,"D","-5to5",0,15,120)
 # secondsBetweenCalibrate = number of seconds between calibration cycles.
 #               If zero then there will be no periodic calibration, but
 #               one calibration will still be done at initialization.
-configIp330("Ip330_1", 3,"Input",500,0)
+configIp330("Ip330_1", 3,"Input",1000,0)
 
 # int initFastSweep(char *portName, char *inputName,
 #                   int maxSignals, int maxPoints)
