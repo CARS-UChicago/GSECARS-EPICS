@@ -118,6 +118,8 @@ create_monitor_set("auto_positions.req",5,"P=13IDA:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDA:")
 
+seq(&GSE_MonoEnergy, "PRE=13IDA:, MONO=CD, ID=ID13ds:, MTH=m57, MY=m58, FB=mono_pid1")
+
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13IDA:m57.NTM","0")
 dbpf("13IDA:m58.NTM","0")
