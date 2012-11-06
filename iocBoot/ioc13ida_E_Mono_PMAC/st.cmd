@@ -39,7 +39,7 @@ dbLoadTemplate  "motors.template"
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_PMAC1:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_EMONO:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -47,32 +47,46 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_PMAC1:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13IDA_PMAC1:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13IDA_EMONO:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_PMAC1:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_EMONO:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_PMAC1:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_EMONO:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13IDA_PMAC1:")
+dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13IDA_EMONO:")
+
+
+# Monochromator positions
+# dbLoadTemplate("mono_position.template")
+
 
 < ../../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("13IDA_PMAC1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_PMAC1:")
+save_restoreSet_status_prefix("13IDA_EMONO:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA:")
 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA_PMAC1:,R=asyn1,PORT=PMAC_IP,ADDR=0,OMAX=256,IMAX=256")
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA_PMAC1:,R=asyn2,PORT=PMAC1,ADDR=0,OMAX=256,IMAX=256")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA_EMONO:,R=asyn1,PORT=PMAC_IP,ADDR=0,OMAX=256,IMAX=256")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA_EMONO:,R=asyn2,PORT=PMAC1,ADDR=0,OMAX=256,IMAX=256")
+
+
+dbLoadTemplate  "mono_energy.template"
 
 iocInit
+# MN Oct-29-2012  comment out running state program
+seq(&GSE_MonoEnergy, "PRE=13IDA:, MONO=E, ID=ID13us:, MTH=m81, MY=m66, FB=mono_pid2")
+
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
 # (See also, 'initHooks' above, which is the means by which the values that
 # will be saved by the task we're starting here are going to be restored.
-#
+
+
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5, "P=13IDA:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=13IDA:")
+
+dbpf("13IDA_EMONO:userTranEnable","1")
