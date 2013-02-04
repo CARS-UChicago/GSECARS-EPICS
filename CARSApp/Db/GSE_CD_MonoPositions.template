@@ -1,64 +1,66 @@
-# This database is used to switch the 13-ID-C/D mono between the 111, 311 positions
+# This database switches the 13-ID-C/D mono between the 111, 311, and white beam positions
 
 record(ao, "$(P)$(MONO):Mono111DSpace")
 {
-    field(VAL,  "3.13490")
+    field(VAL,  "3.13479")
     field(PREC, "5")
 }
 
 record(ao, "$(P)$(MONO):Mono311DSpace")
 {
-    field(VAL,  "1.63716")
+    field(VAL,  "1.63673")
     field(PREC, "5")
 }
 
 record(ao, "$(P)$(MONO):Mono111ThetaOffset")
 {
-    field(VAL,  "1.77924")
+    field(VAL,  "0.32394")
     field(PREC, "5")
 }
 
 record(ao, "$(P)$(MONO):Mono311ThetaOffset")
 {
-    field(VAL,  "2.01171")
+    field(VAL,  "0.10969")
     field(PREC, "5")
 }
 
 record(ao, "$(P)$(MONO):Mono111HeightOffset")
 {
-    field(VAL,  "0.1000")
+    field(VAL,  "5.2260")
     field(PREC, "5")
 }
 
 record(ao, "$(P)$(MONO):Mono311HeightOffset")
 {
-    field(VAL,  "0.830000")
+    field(VAL,  "5.6766")
     field(PREC, "5")
 }
 
 record(ao, "$(P)$(MONO):Mono111Pitch")
 {
-    field(VAL,  "0.7390")
+    field(VAL,  "-.8111")
     field(PREC, "4")
 }
 
 record(ao, "$(P)$(MONO):Mono311Pitch")
 {
-    field(VAL,  "1.4150")
+    field(VAL,  "-.3321")
     field(PREC, "4")
 }
 
 record(ao, "$(P)$(MONO):Mono111Roll")
 {
-    field(VAL,  "0.9000")
+    field(VAL,  "-.4211")
     field(PREC, "4")
 }
 
 record(ao, "$(P)$(MONO):Mono311Roll")
 {
-    field(VAL,  "0.6200")
+    field(VAL,  "-.3711")
     field(PREC, "4")
 }
+
+
 
 record(mbbo, "$(P)$(MONO):MonoPosition")
 {
@@ -86,23 +88,25 @@ record(calcout, "$(P)$(MONO):MoveTo111")
     
 record(seq,"$(P)$(MONO):Sequence111") {
     field(DLY1,"0")
-    field(DOL1,"0.1")
+    field(DOL1,"1")
+#   Don't close shutter, affects other beamline
+#   field(LNK1,"$(P)CloseFEShutter.PROC PP MS")
     field(LNK1,"")
-    field(DLY2,"0.1")
+    field(DLY2,"1")
     field(DOL2,"1")
     field(LNK2,"$(P)$(MONO):MoveMono311.PROC PP MS")
-    field(DLY3,"0.1")
+    field(DLY3,"3")
     field(DOL3,"1")
     field(LNK3,"$(P)$(MONO):MoveMonoStopOut.PROC PP MS")
     field(DLY4,"1")
     field(DOL4,"1")
     field(LNK4,"$(P)$(MONO):MoveMono111.PROC PP MS")
     field(DOL5,"$(P)$(MONO):Mono111DSpace NPP NMS")
-    field(LNK5,"$(P)$(MONO)::dspace.VAL PP MS")
+    field(LNK5,"$(P)$(MONO):dspace.VAL PP MS")
     field(DOL6,"$(P)$(MONO):Mono111ThetaOffset NPP NMS")
     field(LNK6,"$(THETA_MOTOR).OFF PP MS")
     field(DOL7,"$(P)$(MONO):Mono111HeightOffset NPP NMS")
-    field(LNK7,"$(HEIGHT).OFF PP MS")
+    field(LNK7,"$(HEIGHT_MOTOR).OFF PP MS")
     field(DOL8,"$(P)$(MONO):Mono111Pitch NPP NMS")
     field(LNK8,"$(PITCH_MOTOR).VAL PP MS")
     field(DOL9,"$(P)$(MONO):Mono111Roll NPP NMS")
@@ -125,7 +129,8 @@ record(calcout, "$(P)$(MONO):MoveToWhite")
 record(seq,"$(P)$(MONO):SequenceWhite") {
     field(DLY1,"0")
     field(DOL1,"1")
-#    field(LNK1,"$(P)$(Q)CloseFEShutter.PROC PP MS")
+#   Don't close shutter, affects other beamline
+#   field(LNK1,"$(P)CloseFEShutter.PROC PP MS")
     field(DLY2,"1")
     field(DOL2,"1")
     field(LNK2,"$(P)$(MONO):MoveMono311.PROC PP MS")
@@ -154,13 +159,13 @@ record(seq,"$(P)$(MONO):Sequence311") {
     field(DLY1,"0")
     field(DOL1,"1")
 #   Don't close shutter, affects other beamline
-#   field(LNK1,"$(P)$(Q)CloseFEShutter.PROC PP MS")
+#   field(LNK1,"$(P)CloseFEShutter.PROC PP MS")
     field(LNK1,"")
-	  field(DLY2,"1")
+    field(DLY2,"1")
     field(DOL2,"1")
     field(LNK2,"$(P)$(MONO):MoveMono311.PROC PP MS")
     field(DOL3,"$(P)$(MONO):Mono311DSpace NPP NMS")
-    field(LNK3,"$(P)$(MONO)::dspace.VAL PP MS")
+    field(LNK3,"$(P)$(MONO):dspace.VAL PP MS")
     field(DOL4,"$(P)$(MONO):Mono311ThetaOffset")
     field(LNK4,"$(THETA_MOTOR).OFF PP MS")
     field(DOL5,"$(P)$(MONO):Mono311HeightOffset NPP NMS")
