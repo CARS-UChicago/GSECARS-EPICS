@@ -1,4 +1,4 @@
-# This database is used to switch the 13-ID-E mono between the 111, 311 positions
+# This database is used to switch the 13-ID-C/D mono between the 111, 311 positions
 
 record(ao, "$(P)$(MONO):Mono111DSpace")
 {
@@ -60,26 +60,15 @@ record(ao, "$(P)$(MONO):Mono311Roll")
     field(PREC, "4")
 }
 
-record(ao, "$(P)$(MONO):Mono111X")
-{
-    field(VAL,  "4.00")
-    field(PREC, "4")
-}
-
-record(ao, "$(P)$(MONO):Mono311X")
-{
-    field(VAL,  "-0.200")
-    field(PREC, "4")
-}
-
-
 record(mbbo, "$(P)$(MONO):MonoPosition")
 {
     field(PINI, "YES")
     field(ZRVL, "0")
     field(ZRST, "Si 111")
     field(ONVL, "1")
-    field(ONST, "Si 311")
+    field(ONST, "White")
+    field(TWVL, "2")
+    field(TWST, "Si 311")
 }
 
 record(calcout, "$(P)$(MONO):MoveTo111")
@@ -136,7 +125,7 @@ record(calcout, "$(P)$(MONO):MoveToWhite")
 record(seq,"$(P)$(MONO):SequenceWhite") {
     field(DLY1,"0")
     field(DOL1,"1")
-    field(LNK1,"$(P)$(Q)CloseFEShutter.PROC PP MS")
+#    field(LNK1,"$(P)$(Q)CloseFEShutter.PROC PP MS")
     field(DLY2,"1")
     field(DOL2,"1")
     field(LNK2,"$(P)$(MONO):MoveMono311.PROC PP MS")
