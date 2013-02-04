@@ -1,125 +1,157 @@
-grecord(ao,"$(P)$(EN):Energy") {
+record(ao,"$(P)$(EN):Energy") {
         field(DESC, "Energy")
 	field(PREC, "$(PREC)")
 	field(EGU, "$(EGU)")
 }
-#MN 02/17/2004:  took out this line from the end of Energy record above
-#  it was causing 'Moving' to go to 1 even when Energy was driven to
-#  its current position.  Energy.st now sets and unsets 'Moving' field.
-#	field(FLNK,"$(P)$(EN):PutMoving.PROC  PP MS")
 
-grecord(ao,"$(P)$(EN):E_RBV") {
+record(ao,"$(P)$(EN):E_RBV") {
         field(DESC, "Energy Readback")
 	field(PREC, "$(PREC)")
 	field(EGU, "$(EGU)")
 }
 
-grecord(busy,"$(P)$(EN):Moving") {
+record(busy,"$(P)$(EN):Moving") {
 	field(DESC,"Energy moving (SNL control)")
 }
 
-grecord(bo,"$(P)$(EN):PutMoving") {
+record(bo,"$(P)$(EN):PutMoving") {
 	field(DOL,"1")
 	field(OUT,"$(P)$(EN):Moving.VAL  PP MS")
 }
 
 
-grecord(bo,"$(P)$(EN):SET") {
+record(bo,"$(P)$(EN):SET") {
 	field(DESC, "Set Energy")
 	field(ONAM, "Set")
 	field(ZNAM, "Use")
 }
 
-grecord(ao,"$(P)$(EN):width") {
+record(ao,"$(P)$(EN):width") {
 	field(DESC, "channel width")
 	field(VAL,  "25.0")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
-grecord(ao,"$(P)$(EN):dspace") {
+record(ao,"$(P)$(EN):dspace") {
 	field(DESC, "lattice spacing")
 	field(VAL,  "3.13555")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(ao,"$(P)$(EN):height") {
+record(ao,"$(P)$(EN):height") {
 	field(DESC, "beam offset height")
 	field(VAL,  "50.0")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(ao,"$(P)$(EN):id_off") {
+record(ao,"$(P)$(EN):id_off") {
 	field(DESC, "(Und - Mono) Energy")
 	field(VAL,  "0.000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(ao,"$(P)$(EN):id_factor") {
+record(ao,"$(P)$(EN):id_factor") {
 	field(DESC, "Und tracking factor")
 	field(VAL,  "1.000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):id_abort") {
+record(bo,"$(P)$(EN):id_abort") {
 	field(DESC, "Undulator Abort Move")
 	field(VAL,  "0")
 	field(ONAM, "Abort")
 	field(ZNAM, "Resume")
 }
 
-grecord(bo,"$(P)$(EN):id_track") {
+record(bo,"$(P)$(EN):id_track") {
 	field(DESC, "Undulator Tracking")
 	field(VAL,  "1")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(bo,"$(P)$(EN):z2_track") {
+record(ao,"$(P)$(EN):UndEnergyTweakVal") {
+	field(DESC, "Undulator energy tweak value")
+	field(VAL,  ".1")
+	field(PREC, "3")
+	field(EGU,  "keV")
+}
+
+record(transform,"$(P)$(EN):UndEnergyTweak") {
+	field(DESC, "Tweak undulator energy")
+	field(CLCD,"a?c-e:b?c+e:c")
+	field(INPC,"$(ID)EnergySet.VAL  NPP NMS")
+	field(INPE,"$(P)$(EN):UndEnergyTweakVal NPP NMS")
+	field(OUTD,"$(ID)ScanEnergy.VAL  PP MS")
+	field(OUTF,"$(P)$(EN):UndEnergyTweak.A  NPP NMS")
+	field(OUTG,"$(P)$(EN):UndEnergyTweak.B  NPP NMS")
+	field(PREC,"$(PREC)")
+}
+
+record(ao,"$(P)$(EN):UndGapTweakValIN") {
+	field(DESC, "Undulator gap tweak value")
+	field(VAL,  ".1")
+	field(PREC, "3")
+	field(EGU,  "mm")
+}
+
+record(transform,"$(P)$(EN):UndGapTweak") {
+	field(DESC, "Tweak undulator gap")
+	field(CLCD,"a?c-e:b?c+e:c")
+	field(INPC,"$(ID)GapSet.VAL  NPP NMS")
+	field(INPE,"$(P)$(EN):UndGapTweakVal NPP NMS")
+	field(OUTD,"$(ID)ScanGap.VAL  PP MS")
+	field(OUTF,"$(P)$(EN):UndGapTweak.A  NPP NMS")
+	field(OUTG,"$(P)$(EN):UndGapTweak.B  NPP NMS")
+	field(PREC,"$(PREC)")
+}
+
+record(bo,"$(P)$(EN):z2_track") {
 	field(DESC, "2nd Xtal Z Tracking")
 	field(VAL,  "1")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(ao,"$(P)$(EN):z2_off") {
+record(ao,"$(P)$(EN):z2_off") {
 	field(DESC, "2nd Xtal Z Offset")
 	field(VAL,  "0.000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):y2_track") {
+record(bo,"$(P)$(EN):y2_track") {
 	field(DESC, "2nd Xtal Height Tracking")
 	field(VAL,  "1")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(ao,"$(P)$(EN):y2_off") {
+record(ao,"$(P)$(EN):y2_off") {
 	field(DESC, "2nd Xtal Height Offset")
 	field(VAL,  "0.000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):xt_track") {
+record(bo,"$(P)$(EN):xt_track") {
 	field(DESC, "Expt Table Tracking")
 	field(VAL,  "0")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(ao,"$(P)$(EN):xt_sign") {
+record(ao,"$(P)$(EN):xt_sign") {
 	field(DESC, "sign of Expt Table Motion")
 	field(VAL,  "1.0000")
 	field(PREC, "$(PREC)")
 }
 
-grecord(ao,"$(P)$(EN):xt_mvmin") {
+record(ao,"$(P)$(EN):xt_mvmin") {
 	field(DESC, "Min. Expt Table Move (mm)")
 	field(VAL,  "0.0030")
 	field(PREC, "5")
@@ -127,79 +159,76 @@ grecord(ao,"$(P)$(EN):xt_mvmin") {
 }
 
 
-grecord(ao,"$(P)$(EN):xt_off") {
+record(ao,"$(P)$(EN):xt_off") {
 	field(DESC, "Expt Table Offset")
 	field(VAL,  "0.000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):xt2_track") {
+record(bo,"$(P)$(EN):xt2_track") {
 	field(DESC, "Expt Table2 Tracking")
 	field(VAL,  "0")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(ao,"$(P)$(EN):xt2_sign") {
+record(ao,"$(P)$(EN):xt2_sign") {
 	field(DESC, "sign of Expt Table2 Motion")
 	field(VAL,  "1.0000")
 	field(PREC, "$(PREC)")
 }
 
-grecord(ao,"$(P)$(EN):xt2_mvmin") {
+record(ao,"$(P)$(EN):xt2_mvmin") {
 	field(DESC, "Min. Expt Table2 Move (mm)")
 	field(VAL,  "0.0030")
 	field(PREC, "5")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(ao,"$(P)$(EN):xt2_off") {
+record(ao,"$(P)$(EN):xt2_off") {
 	field(DESC, "Expt Table2 Offset")
 	field(VAL,  "0.000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(ao,"$(P)$(EN):y2_mvmin") {
+record(ao,"$(P)$(EN):y2_mvmin") {
 	field(DESC, "Min. 2nd XTAL Y Move (mm)")
 	field(VAL,  "0.0030")
 	field(PREC, "5")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):use_feedback") {
+record(bo,"$(P)$(EN):use_feedback") {
 	field(DESC, "Flag to wait for Feedback")
 	field(VAL,  "0")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(bo,"$(P)$(EN):verbose") {
+record(bo,"$(P)$(EN):verbose") {
 	field(DESC, "Print Mono Debugging Info")
 	field(VAL,  "0")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(ao,"$(P)$(EN):tweakval") {
+record(ao,"$(P)$(EN):tweakval") {
 	field(DESC, "energy tweak value")
 	field(VAL,  "$(TWEAK)")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):use_id") {
+record(bo,"$(P)$(EN):use_id") {
 	field(DESC, "Use Undulator")
 	field(VAL,  "$(USEID)")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-
-# Mark Rivers removed APP and BPP from the transform record, fields deleted
-# in R3.13.1.1 version of record
-grecord(transform,"$(P)$(EN):tweak") {
+record(transform,"$(P)$(EN):tweak") {
 	field(DESC, "Tweak Energy")
 	field(CLCD,"a?c-e:b?c+e:c")
 	field(INPC,"$(P)$(EN):Energy  NPP NMS")
@@ -209,7 +238,8 @@ grecord(transform,"$(P)$(EN):tweak") {
 	field(OUTG,"$(P)$(EN):tweak.B  NPP NMS")
 	field(PREC,"$(PREC)")
 }
-grecord(scanparm,"$(P)$(EN):scanParms") {
+
+record(scanparm,"$(P)$(EN):scanParms") {
 	field(PREC,"6")
 	field(PRE,"4")
 	field(OPRE,"$(SCANREC).CMND PP MS")
@@ -231,42 +261,42 @@ grecord(scanparm,"$(P)$(EN):scanParms") {
 	field(IMP,"$(SCANREC).MPTS NPP NMS")
 	field(IACT,"$(SCANREC).EXSC NPP NMS")
 }
-grecord(seq,"$(P)$(EN):scanpSEQ")
+record(seq,"$(P)$(EN):scanpSEQ")
 {
 	field(DLY1,"0.2")
 	field(LNK1,"$(SCANREC).EXSC NPP NMS")
 }
 
 
-grecord(ao,"$(P)$(EN):DummyUND:EnSet") {
+record(ao,"$(P)$(EN):DummyUND:EnSet") {
 	field(DESC, "Dummy UND Energy")
 	field(VAL,  "10.0000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(ao,"$(P)$(EN):DummyUND:Energy") {
+record(ao,"$(P)$(EN):DummyUND:Energy") {
 	field(DESC, "Dummy UND Energy")
 	field(VAL,  "10.0000")
 	field(PREC, "$(PREC)")
 	field(EGU,  "$(EGU)")
 }
 
-grecord(bo,"$(P)$(EN):DummyUND:Start") {
+record(bo,"$(P)$(EN):DummyUND:Start") {
 	field(DESC, "Dummy UND Start")
 	field(VAL,  "0")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(bo,"$(P)$(EN):DummyUND:Busy") {
+record(bo,"$(P)$(EN):DummyUND:Busy") {
 	field(DESC, "Dummy UND Busy")
 	field(VAL,  "0")
 	field(ONAM, "Yes")
 	field(ZNAM, "No")
 }
 
-grecord(motor,"$(P)$(EN):m1")
+record(motor,"$(P)$(EN):m1")
 {
 	field(DESC,"Energy pseudo motor")
 	field(DTYP,"Soft Channel")
