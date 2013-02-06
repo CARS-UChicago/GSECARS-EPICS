@@ -16,10 +16,13 @@ CARS_SRCS += BMD_LVP_Detector.st
 CARS_SRCS += IDD_LVP_Detector.st
 CARS_SRCS += Energy_CC.st
 CARS_SRCS += Energy.st
+CARS_SRCS += GSE_MonoEnergy.st
+CARS_SRCS += GSE_MonoSupport.cpp
 CARS_SRCS += BM13_Energy.st
 CARS_SRCS += Analyzer.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
+CARS_SRCS += splint.c
 
 CARS_LIBS += asyn seq pv
 CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -37,6 +40,12 @@ DBD += CARSWin32.dbd
 # build an ioc application
 
 PROD_IOC = CARSApp
+PROD_IOC_Linux = test_splint
+test_splint_SRCS += test_splint.c
+test_splint_LIBS += CARS
+PROD_IOC_Linux = test_GSEMonoSupport
+test_GSEMonoSupport_SRCS += test_GSEMonoSupport.c
+test_GSEMonoSupport_LIBS += CARS ADBase
 PROD_IOC_vxWorks = CARSAppMini
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
@@ -60,10 +69,11 @@ CARSApp_Common_LIBS += busy
 CARSApp_Common_LIBS += love
 CARSApp_Common_LIBS += ip
 CARSApp_Common_LIBS += quadEM
-#CARSApp_Common_LIBS += pmacAsynMotor pmacAsynIPPort
+CARSApp_Common_LIBS += pmacAsynMotorPort pmacAsynIPPort
 CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport ACRMotor motor
 CARSApp_Common_LIBS += stream streamSynApps
 CARSApp_Common_LIBS += modbus
+CARSApp_Common_LIBS += ADBase
 CARSApp_Common_LIBS += asyn
 CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 
