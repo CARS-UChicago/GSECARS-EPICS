@@ -97,6 +97,43 @@ record(bo,"$(P)$(MONO):id_set_off") {
 	field(ZNAM, "No")
 }
 
+record(longout,"$(P)$(MONO):id_harmonic") {
+	field(DESC, "Und harmonic to use")
+	field(VAL,  "1")
+}
+
+record(mbbo,"$(P)$(MONO):id_control_mode") {
+	field(DESC, "Undulator control mode")
+	field(ZRVL, "0")
+	field(ZRST, "Energy")
+	field(ONVL, "1")
+	field(ONST, "Gap")
+}
+
+record(bo,"$(P)$(MONO):compute_mono_positions") {
+	field(DESC, "Compute mono positions")
+	field(VAL,  "0")
+	field(ONAM, "Done")
+	field(ZNAM, "Compute")
+}
+
+record(longout,"$(P)$(MONO):num_mono_positions") {
+	field(DESC, "Number of mono positions")
+	field(VAL,  "1000")
+}
+
+record(waveform,"$(P)$(MONO):mono_angles") {
+	field(DESC, "Mono angle array")
+	field(FTVL, "DOUBLE")
+	field(NELM, "10000")
+}
+
+record(waveform,"$(P)$(MONO):mono_heights") {
+	field(DESC, "Mono height array")
+	field(FTVL, "DOUBLE")
+	field(NELM, "10000")
+}
+
 record(ao,"$(P)$(MONO):UndEnergyTweakVal") {
 	field(DESC, "Undulator energy tweak value")
 	field(VAL,  ".1")
@@ -115,7 +152,7 @@ record(transform,"$(P)$(MONO):UndEnergyTweak") {
 	field(PREC,"$(PREC)")
 }
 
-record(ao,"$(P)$(MONO):UndGapTweakValIN") {
+record(ao,"$(P)$(MONO):UndGapTweakVal") {
 	field(DESC, "Undulator gap tweak value")
 	field(VAL,  ".1")
 	field(PREC, "3")
@@ -209,7 +246,7 @@ record(scanparm,"$(P)$(MONO):scanParms") {
 	field(ONP,"$(SCANREC).NPTS PP MS")
 	field(SC,"1")
 	field(AR,"1")
-        field(AFT,"2")
+  field(AFT,"2")
 	field(NP,"10")
 	field(OSC,"$(P)$(MONO):scanpSEQ.DO1 PP MS")
 	field(IMP,"$(SCANREC).MPTS NPP NMS")
