@@ -1,5 +1,5 @@
 /*   -*-c-*-   (this starts emacs in c-mode) */
-program Energy("PRE=XXIDA:, ID=IDXX:, FB=mono_pid1")
+program Energy("PRE=XXIDA:, ID=IDXX:, MTH=m57, MY=m58, FB=mono_pid1")
 
 /*
  *  implements monitoring, movement, and synchronization of virtual
@@ -22,21 +22,22 @@ program Energy("PRE=XXIDA:, ID=IDXX:, FB=mono_pid1")
  *
  *  Jun  4, 2012  MLR: Removed Z2 for new mono
  *  Jun 29, 2012  MN:  updated hc, d spacing for Si 111
+ *  Oct 18, 2012  MN:  added args for MTH, MY to generalize for C/D and E mono
  *
  */
 %%#include <math.h>
 %%#include <epicsThread.h>
 
 /* 2nd crystal table PVs  */
-double y2;        assign y2        to "{PRE}m58.VAL";         monitor y2;
+double y2;        assign y2        to "{PRE}{MY}.VAL";         monitor y2;
 double y2_mvmin;  assign y2_mvmin  to "{PRE}E:y2_mvmin.VAL";  monitor y2_mvmin;
-int    y2_done;   assign y2_done   to "{PRE}m58.DMOV";        monitor y2_done;
+int    y2_done;   assign y2_done   to "{PRE}{MY}.DMOV";        monitor y2_done;
 
 /* Mono Angle PV */        
-double th;        assign th        to "{PRE}m57";            monitor th;
-double th_rbv;    assign th_rbv    to "{PRE}m57.RBV";        monitor th_rbv;
-int    th_set;    assign th_set    to "{PRE}m57.SET";
-int    th_done;   assign th_done   to "{PRE}m57.DMOV";       monitor th_done;
+double th;        assign th        to "{PRE}{MTH}.VAL";            monitor th;
+double th_rbv;    assign th_rbv    to "{PRE}{MTH}.RBV";        monitor th_rbv;
+int    th_set;    assign th_set    to "{PRE}{MTH}.SET";
+int    th_done;   assign th_done   to "{PRE}{MTH}.DMOV";       monitor th_done;
 
 /* undulator PVs  (from {ID}) */
 double id_val;    assign id_val    to "{ID}ScanEnergy.VAL"; monitor id_val;
@@ -45,7 +46,7 @@ double id_harm;   assign id_harm   to "{ID}HarmonicValue.VAL";
 int    id_busy;   assign id_busy   to "{ID}Busy.VAL";      monitor id_busy;
 int    id_stop;   assign id_stop   to "{ID}Stop.VAL";
 
-/* Energy PVs (from {EN} and Energy.db) */
+/* Energy PVs (from {PRE} and Energy.db) */
 int    use_id;    assign use_id    to "{PRE}E:use_id.VAL";    monitor use_id;
 double en;        assign en        to "{PRE}E:Energy.VAL";    monitor en;
 double en_rbv;    assign en_rbv    to "{PRE}E:E_RBV";     
@@ -178,7 +179,7 @@ ss Energy {
         -> unset "energy busy"
       */
 
-      if (verbose) { printf("energy event: put en_busy to 1\n"); }
+      if (verbose) { printf("energy event: put en_busy to 1, was %d\n", en_busy); }
       en_busy = 1;  pvPut(en_busy);
       /* check that energy is in the allowable range */
       if (en <    0.0)  en = -en;         /* force positive */
