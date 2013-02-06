@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
-	version=030105
+	name="j:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
+	version=030107
 }
 display {
 	object {
-		x=521
-		y=37
+		x=915
+		y=218
 		width=399
 		height=275
 	}
@@ -330,6 +330,10 @@ text {
 		name="13BNC505.adl"
 		args="P=13BMC1:"
 	}
+	display[6] {
+		label="Pace 5000"
+		name="13PACE5000.adl"
+	}
 	clr=14
 	bclr=4
 	label="- Other IOCs"
@@ -468,6 +472,11 @@ text {
 		name="PerkinElmer.adl"
 		args="P=13PE1:, R=cam1:"
 	}
+	display[7] {
+		label="HP Pilatus 1M"
+		name="pilatusDetector.adl"
+		args="P=HP1M-PIL1:, R=cam1:"
+	}
 	clr=14
 	bclr=4
 	label="- XRD Detectors"
@@ -495,30 +504,51 @@ text {
 		args="P=13BMCPS1:, R=cam1:"
 	}
 	display[3] {
-		label="13IDC Prosilica 1"
-		name="prosilica.adl"
-		args="P=13IDCPS1:, R=cam1:"
-	}
-	display[4] {
 		label="13IDD Prosilica 1"
 		name="prosilica.adl"
 		args="P=13IDDPS1:"
 	}
-	display[5] {
+	display[4] {
 		label="13Lab Prosilica 1"
 		name="prosilica.adl"
 		args="P=13LABPS1:, R=cam1:"
 	}
-	display[6] {
+	display[5] {
 		label="13IDA Prosilica 1 (IDC/D Beam Viewer)"
 		name="prosilica.adl"
 		args="P=13IDAPS1:, R=cam1:"
 	}
-	display[7] {
+	display[6] {
 		label="13IDA Prosilica 2 (IDE Viewer)"
 		name="prosilica.adl"
 		args="P=13IDAPS2:, R=cam1:"
 	}
+	display[7] {
+		label="13IDB Prosiila (SSA Viewer)"
+		name="prosilica.adl"
+		args="P=13IDBPS1:, R=cam1:"
+	}
+	display[8] {
+		label="13IDE Prosilica (Sample)"
+		name="prosilica.adl"
+		args="P=13IDEPS1:, R=cam1:"
+	}
+	display[9] {
+		label="IDA, IDB, IDE Prosilicas"
+		name="prosilica4.adl"
+		args="P1=13IDAPS1:, P2=13IDAPS2:, P3=13IDBPS1:, P4=13IDEPS1:"
+	}
+	display[10] {
+		label="13IDC Prosilica 1"
+		name="prosilica.adl"
+		args="P=13IDC_PS1:, R=cam1:"
+	}
+	display[11] {
+		label="13IDC Prosilica 2"
+		name="prosilica.adl"
+		args="P=13IDC_PS2:,R=cam1:"
+	}
+	
 	clr=14
 	bclr=4
 	label="-Imaging detectors"

@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=229
-		y=137
+		x=482
+		y=123
 		width=726
-		height=354
+		height=400
 	}
 	clr=46
 	bclr=1
@@ -118,13 +118,13 @@ rectangle {
 	}
 	display[1] {
 		label="Crystal cage"
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m58, M2=m59, M3=m60"
 	}
 	display[2] {
 		label="More Mono Parameters"
 		name="monoParms.adl"
-		args="P=13IDA:, P1=$(P1), P2=$(P2), EN=$(EN), MONO=$(MONO)"
+		args="P=13IDA:,EN=$(EN), THETA_MOTOR=$(THETA_MOTOR)"
 	}
 	display[4] {
 		label="Mono Piezos"
@@ -136,9 +136,7 @@ rectangle {
 		name="13ID_mono_cryovac.adl"
 	}
 	display[7] {
-		label="McLennan Serial Port "
-		name="13ID_mono_serial.adl"
-		args="P=13IDA:, R=serial8"
+		label=" "
 	}
 	clr=14
 	bclr=55
@@ -435,68 +433,6 @@ oval {
 }
 text {
 	object {
-		x=10
-		y=226
-		width=25
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="1st"
-}
-"text update" {
-	object {
-		x=45
-		y=226
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:DMM1Ch2_raw.VAL"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-		precSrc="default"
-		precDefault=1
-	}
-}
-"text update" {
-	object {
-		x=185
-		y=226
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:DMM1Ch3_raw.VAL"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-		precSrc="default"
-		precDefault=1
-	}
-}
-text {
-	object {
-		x=255
-		y=226
-		width=10
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="C"
-}
-text {
-	object {
 		x=5
 		y=65
 		width=54
@@ -533,32 +469,6 @@ text {
 	}
 	textix="Wait for Feedback"
 }
-rectangle {
-	object {
-		x=5
-		y=191
-		width=290
-		height=55
-	}
-	"basic attribute" {
-		clr=47
-		fill="outline"
-		width=2
-	}
-}
-text {
-	object {
-		x=140
-		y=226
-		width=25
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="2nd"
-}
 "related display" {
 	object {
 		x=440
@@ -566,15 +476,15 @@ text {
 		width=120
 		height=25
 	}
+	display[0] {
+		label="Full Feedback"
+		name="13ID_mono_feedback.adl"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2"
+	}
 	display[1] {
 		label="XAS Feedback "
 		name="13ID_mono_fb_xas.adl"
 		args="P=13IDA:, M1=m12, M2=m11"
-	}
-	display[2] {
-		label="Full Feedback"
-		name="13ID_mono_feedback.adl"
-		args="P=13IDA:, M1=m12, M2=m11, PID1=fast_pitch_pid, PID2=fast_roll_pid"
 	}
 	clr=24
 	bclr=55
@@ -728,21 +638,6 @@ text {
 }
 "related display" {
 	object {
-		x=10
-		y=196
-		width=190
-		height=25
-	}
-	display[1] {
-		label="mono cryo /vac"
-		name="13ID_mono_cryovac.adl"
-	}
-	clr=24
-	bclr=55
-	label="-Crystal Temperatures"
-}
-"related display" {
-	object {
 		x=435
 		y=130
 		width=45
@@ -788,285 +683,10 @@ text {
 	bclr=55
 	label="-Mir Mono FB"
 }
-text {
-	object {
-		x=10
-		y=144
-		width=120
-		height=18
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="Auto-Tracking"
-}
-rectangle {
-	object {
-		x=5
-		y=139
-		width=400
-		height=50
-	}
-	"basic attribute" {
-		clr=47
-		fill="outline"
-		width=2
-	}
-}
-"choice button" {
-	object {
-		x=103
-		y=164
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)$(EN):id_track"
-		clr=54
-		bclr=55
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=15
-		y=167
-		width=81
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Undulator"
-}
-"choice button" {
-	object {
-		x=298
-		y=164
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)$(EN):y2_track"
-		clr=54
-		bclr=55
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=185
-		y=167
-		width=108
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Fixed Offset"
-}
-composite {
-	object {
-		x=5
-		y=250
-		width=290
-		height=100
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=5
-				y=250
-				width=290
-				height=100
-			}
-			"basic attribute" {
-				clr=47
-				fill="outline"
-				width=2
-			}
-		}
-		text {
-			object {
-				x=20
-				y=310
-				width=60
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Harmonic"
-		}
-		"text update" {
-			object {
-				x=90
-				y=290
-				width=80
-				height=15
-			}
-			monitor {
-				chan="ID$(ID)Energy.VAL"
-				clr=54
-				bclr=1
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=20
-				y=290
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Energy"
-		}
-		"text update" {
-			object {
-				x=90
-				y=310
-				width=80
-				height=15
-			}
-			monitor {
-				chan="ID$(ID)HarmonicValue"
-				clr=54
-				bclr=1
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=175
-				y=305
-				width=60
-				height=20
-			}
-			control {
-				chan="ID$(ID)HarmonicValue"
-				clr=14
-				bclr=0
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=175
-				y=285
-				width=60
-				height=20
-			}
-			control {
-				chan="ID$(ID)ScanEnergy.VAL"
-				clr=14
-				bclr=0
-			}
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=10
-				y=255
-				width=130
-				height=25
-			}
-			display[0] {
-				label="Undulator Control"
-				name="IDControl.adl"
-				args="xx=$(ID)"
-			}
-			display[1] {
-				label="Undulator Scan Control"
-				name="IDSyncScan.adl"
-				args="xx=$(ID)"
-			}
-			clr=24
-			bclr=55
-			label="-Undulator "
-		}
-		text {
-			object {
-				x=240
-				y=290
-				width=27
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="keV"
-		}
-		text {
-			object {
-				x=20
-				y=330
-				width=72
-				height=15
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Deadband"
-		}
-		"text update" {
-			object {
-				x=90
-				y=330
-				width=80
-				height=15
-			}
-			monitor {
-				chan="ID$(ID)DeadbandGap"
-				clr=54
-				bclr=1
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=175
-				y=325
-				width=60
-				height=20
-			}
-			control {
-				chan="ID$(ID)DeadbandGap"
-				clr=14
-				bclr=0
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=235
-				y=330
-				width=27
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="microns"
-		}
-	}
-}
 "message button" {
 	object {
 		x=660
-		y=225
+		y=224
 		width=55
 		height=22
 	}
@@ -1082,7 +702,7 @@ composite {
 "message button" {
 	object {
 		x=605
-		y=225
+		y=224
 		width=55
 		height=22
 	}
@@ -1095,23 +715,10 @@ composite {
 	press_msg="1"
 	release_msg="0"
 }
-menu {
-	object {
-		x=525
-		y=225
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)FOEEnableShutter"
-		clr=14
-		bclr=55
-	}
-}
 text {
 	object {
 		x=440
-		y=225
+		y=226
 		width=80
 		height=18
 	}
@@ -1166,7 +773,7 @@ text {
 "message button" {
 	object {
 		x=660
-		y=290
+		y=289
 		width=55
 		height=22
 	}
@@ -1182,7 +789,7 @@ text {
 "message button" {
 	object {
 		x=605
-		y=290
+		y=289
 		width=55
 		height=22
 	}
@@ -1195,23 +802,10 @@ text {
 	press_msg="1"
 	release_msg="0"
 }
-menu {
-	object {
-		x=525
-		y=290
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)CDEnableShutter"
-		clr=14
-		bclr=55
-	}
-}
 text {
 	object {
 		x=440
-		y=290
+		y=291
 		width=80
 		height=18
 	}
@@ -1304,4 +898,703 @@ text {
 	align="horiz. centered"
 	limits {
 	}
+}
+text {
+	object {
+		x=10
+		y=251
+		width=25
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="1st"
+}
+"text update" {
+	object {
+		x=45
+		y=251
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:DMM1Ch2_raw.VAL"
+		clr=54
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=185
+		y=251
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:DMM1Ch3_raw.VAL"
+		clr=54
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=255
+		y=251
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="C"
+}
+rectangle {
+	object {
+		x=5
+		y=216
+		width=290
+		height=55
+	}
+	"basic attribute" {
+		clr=47
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=140
+		y=251
+		width=25
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="2nd"
+}
+"related display" {
+	object {
+		x=10
+		y=221
+		width=190
+		height=25
+	}
+	display[1] {
+		label="mono cryo /vac"
+		name="13ID_mono_cryovac.adl"
+	}
+	clr=24
+	bclr=55
+	label="-Crystal Temperatures"
+}
+text {
+	object {
+		x=10
+		y=169
+		width=120
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Auto-Tracking"
+}
+rectangle {
+	object {
+		x=5
+		y=164
+		width=400
+		height=50
+	}
+	"basic attribute" {
+		clr=47
+		fill="outline"
+		width=2
+	}
+}
+"choice button" {
+	object {
+		x=103
+		y=189
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):id_track"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=15
+		y=192
+		width=81
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Undulator"
+}
+"choice button" {
+	object {
+		x=298
+		y=189
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):y2_track"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=185
+		y=192
+		width=108
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Fixed Offset"
+}
+rectangle {
+	object {
+		x=5
+		y=275
+		width=420
+		height=110
+	}
+	"basic attribute" {
+		clr=47
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=88
+		y=285
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Energy"
+}
+"related display" {
+	object {
+		x=171
+		y=281
+		width=130
+		height=25
+	}
+	display[0] {
+		label="Undulator Control"
+		name="IDControl.adl"
+		args="xx=$(ID)"
+	}
+	display[1] {
+		label="Undulator Scan Control"
+		name="IDSyncScan.adl"
+		args="xx=$(ID)"
+	}
+	clr=24
+	bclr=55
+	label="-Undulator "
+}
+menu {
+	object {
+		x=92
+		y=135
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDA:EMonoPosition"
+		clr=13
+		bclr=4
+	}
+}
+text {
+	object {
+		x=5
+		y=135
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Crystal"
+}
+menu {
+	object {
+		x=520
+		y=290
+		width=75
+		height=20
+	}
+	control {
+		chan="13IDA:IDEAutoOpenMode"
+		clr=14
+		bclr=51
+	}
+}
+menu {
+	object {
+		x=520
+		y=225
+		width=75
+		height=20
+	}
+	control {
+		chan="13IDA:FOEAutoOpenMode"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=172
+		y=139
+		width=21
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="111"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=196
+		y=138
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi204"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=249
+		y=139
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="White"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=287
+		y=138
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi206"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=340
+		y=139
+		width=21
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="311"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=364
+		y=138
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi205"
+		clr=15
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=325
+		y=285
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Gap"
+}
+composite {
+	object {
+		x=31
+		y=310
+		width=171
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=31
+				y=313
+				width=80
+				height=15
+			}
+			monitor {
+				chan="ID$(ID)Energy.VAL"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=116
+				y=310
+				width=60
+				height=20
+			}
+			control {
+				chan="ID$(ID)ScanEnergy.VAL"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=181
+				y=313
+				width=21
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="keV"
+		}
+	}
+}
+text {
+	object {
+		x=41
+		y=338
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Tweak"
+}
+"message button" {
+	object {
+		x=91
+		y=335
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):UndEnergyTweak.A"
+		clr=14
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=116
+		y=335
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):UndEnergyTweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=181
+		y=335
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):UndEnergyTweak.B"
+		clr=14
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+text {
+	object {
+		x=13
+		y=363
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Harmonic"
+}
+"text update" {
+	object {
+		x=90
+		y=363
+		width=20
+		height=15
+	}
+	monitor {
+		chan="ID$(ID)HarmonicValue"
+		clr=54
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=115
+		y=360
+		width=60
+		height=20
+	}
+	control {
+		chan="ID$(ID)HarmonicValue"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=249
+		y=310
+		width=164
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=249
+				y=313
+				width=80
+				height=15
+			}
+			monitor {
+				chan="ID$(ID)Gap.VAL"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=334
+				y=310
+				width=60
+				height=20
+			}
+			control {
+				chan="ID$(ID)ScanGap.VAL"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=399
+				y=313
+				width=14
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="mm"
+		}
+	}
+}
+"text entry" {
+	object {
+		x=334
+		y=335
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):UndGapTweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=399
+		y=335
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):UndGapTweak.B"
+		clr=14
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=309
+		y=335
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):UndGapTweak.A"
+		clr=14
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+text {
+	object {
+		x=259
+		y=338
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Tweak"
+}
+"text update" {
+	object {
+		x=308
+		y=363
+		width=20
+		height=15
+	}
+	monitor {
+		chan="ID$(ID)DeadbandGap"
+		clr=54
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=333
+		y=360
+		width=60
+		height=20
+	}
+	control {
+		chan="ID$(ID)DeadbandGap"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=398
+		y=363
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="um"
+}
+text {
+	object {
+		x=231
+		y=363
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Deadband"
 }

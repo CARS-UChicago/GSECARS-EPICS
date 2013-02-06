@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=2096
-		y=187
+		x=243
+		y=217
 		width=650
 		height=331
 	}
@@ -95,7 +95,7 @@ display {
 		height=20
 	}
 	control {
-		chan="$(P1)$(MONO).VAL"
+		chan="$(P)$(THETA_MOTOR).VAL"
 		clr=14
 		bclr=2
 	}
@@ -110,7 +110,7 @@ display {
 		height=40
 	}
 	control {
-		chan="$(P1)$(MONO).SET"
+		chan="$(P)$(THETA_MOTOR).SET"
 		clr=54
 		bclr=33
 	}
@@ -123,7 +123,7 @@ display {
 		height=15
 	}
 	monitor {
-		chan="$(P1)$(MONO).RBV"
+		chan="$(P)$(THETA_MOTOR).RBV"
 		clr=54
 		bclr=45
 	}
@@ -141,12 +141,12 @@ display {
 	display[0] {
 		label="All"
 		name="motorx_all.adl"
-		args="P=$(P1), M=$(MONO)"
+		args="P=$(P), M=$(THETA_MOTOR)"
 	}
 	display[1] {
 		label="Scan parameters"
 		name="scanParms.adl"
-		args="P=$(P1), Q=$(MONO), PV=$(MONO)"
+		args="P=$(P), Q=$(THETA_MOTOR), PV=$(THETA_MOTOR)"
 	}
 	clr=54
 	bclr=33
@@ -181,7 +181,7 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(MONO).SET"
+		chan="$(P)$(THETA_MOTOR).SET"
 	}
 }
 oval {
@@ -196,7 +196,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(MONO).HLS"
+		chan="$(P)$(THETA_MOTOR).HLS"
 	}
 }
 text {
@@ -212,7 +212,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(MONO).LVIO"
+		chan="$(P)$(THETA_MOTOR).LVIO"
 	}
 	textix="Soft-Limit"
 }
@@ -228,7 +228,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(MONO).LLS"
+		chan="$(P)$(THETA_MOTOR).LLS"
 	}
 }
 "message button" {
@@ -239,7 +239,7 @@ oval {
 		height=20
 	}
 	control {
-		chan="$(P1)$(MONO).TWR"
+		chan="$(P)$(THETA_MOTOR).TWR"
 		clr=54
 		bclr=33
 	}
@@ -254,7 +254,7 @@ oval {
 		height=20
 	}
 	control {
-		chan="$(P1)$(MONO).TWF"
+		chan="$(P)$(THETA_MOTOR).TWF"
 		clr=54
 		bclr=33
 	}
@@ -269,7 +269,7 @@ oval {
 		height=20
 	}
 	control {
-		chan="$(P1)$(MONO).TWV"
+		chan="$(P)$(THETA_MOTOR).TWV"
 		clr=14
 		bclr=2
 	}
@@ -288,7 +288,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(MONO).SET"
+		chan="$(P)$(THETA_MOTOR).SET"
 	}
 	textix="SET"
 	align="horiz. centered"
@@ -301,7 +301,7 @@ text {
 		height=40
 	}
 	control {
-		chan="$(P1)$(MONO).SPMG"
+		chan="$(P)$(THETA_MOTOR).SPMG"
 		clr=31
 		bclr=21
 	}
@@ -355,7 +355,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(P1)$(EN):E_RBV"
+		chan="$(P)$(EN):E_RBV"
 		clr=54
 		bclr=45
 	}
@@ -403,7 +403,7 @@ polyline {
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):Energy"
+		chan="$(P)$(EN):Energy"
 		clr=14
 		bclr=2
 	}
@@ -418,7 +418,7 @@ polyline {
 		height=40
 	}
 	control {
-		chan="$(P1)$(EN):SET"
+		chan="$(P)$(EN):SET"
 		clr=54
 		bclr=33
 	}
@@ -436,7 +436,7 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(EN):SET"
+		chan="$(P)$(EN):SET"
 	}
 }
 "message button" {
@@ -447,7 +447,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):tweak.A"
+		chan="$(P)$(EN):tweak.A"
 		clr=54
 		bclr=33
 	}
@@ -462,7 +462,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):tweak.B"
+		chan="$(P)$(EN):tweak.B"
 		clr=54
 		bclr=33
 	}
@@ -477,7 +477,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):tweakval"
+		chan="$(P)$(EN):tweakval"
 		clr=14
 		bclr=2
 	}
@@ -496,7 +496,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(EN):SET"
+		chan="$(P)$(EN):SET"
 	}
 	textix="SET"
 	align="horiz. centered"
@@ -511,12 +511,12 @@ text {
 	display[0] {
 		label="Mono parameters"
 		name="monoParms.adl"
-		args="P1=$(P1), EN=$(EN), P2=$(P2), MONO=$(MONO)"
+		args="P=$(P), EN=$(EN), P2=$(P2), THETA_MOTOR=$(THETA_MOTOR)"
 	}
 	display[1] {
 		label="Scan parameters"
 		name="scanParms.adl"
-		args="P=$(P1), Q=$(EN), PV=$(EN)"
+		args="P=$(P), Q=$(EN), PV=$(EN)"
 	}
 	clr=54
 	bclr=33
@@ -571,7 +571,7 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(EN):Moving"
+		chan="$(P)$(EN):Moving"
 	}
 }
 text {
@@ -586,7 +586,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P1)$(EN):Moving"
+		chan="$(P)$(EN):Moving"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -792,7 +792,7 @@ text {
 		height=25
 	}
 	control {
-		chan="$(P1)$(EN):use_feedback"
+		chan="$(P)$(EN):use_feedback"
 		clr=54
 		bclr=33
 	}
@@ -839,48 +839,11 @@ composite {
 				height=25
 			}
 			control {
-				chan="$(P1)$(EN):y2_track"
+				chan="$(P)$(EN):y2_track"
 				clr=54
 				bclr=33
 			}
 			stacking="column"
-		}
-	}
-}
-composite {
-	object {
-		x=375
-		y=232
-		width=235
-		height=25
-	}
-	"composite name"=""
-	children {
-		"choice button" {
-			object {
-				x=510
-				y=232
-				width=100
-				height=25
-			}
-			control {
-				chan="$(P1)$(EN):xt2_track"
-				clr=54
-				bclr=33
-			}
-			stacking="column"
-		}
-		text {
-			object {
-				x=375
-				y=237
-				width=100
-				height=15
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Mirror Height"
 		}
 	}
 }
@@ -901,7 +864,7 @@ composite {
 				height=25
 			}
 			control {
-				chan="$(P1)$(EN):id_track"
+				chan="$(P)$(EN):id_track"
 				clr=54
 				bclr=33
 			}

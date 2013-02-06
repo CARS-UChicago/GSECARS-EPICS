@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\cars\CARSApp\op\adl\13IDD_dac_user.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
 	version=030102
 }
 display {
 	object {
-		x=353
-		y=208
+		x=308
+		y=245
 		width=1435
 		height=770
 	}
@@ -437,10 +437,10 @@ rectangle {
 }
 rectangle {
 	object {
-		x=1213
-		y=14
+		x=1215
+		y=5
 		width=207
-		height=164
+		height=176
 	}
 	"basic attribute" {
 		clr=48
@@ -449,15 +449,15 @@ rectangle {
 }
 text {
 	object {
-		x=1237
-		y=18
+		x=1218
+		y=8
 		width=161
-		height=21
+		height=20
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="13-ID FE Shutter"
+	textix="13ID FE Shutter"
 	align="horiz. centered"
 }
 oval {
@@ -608,8 +608,8 @@ oval {
 }
 "text update" {
 	object {
-		x=1333
-		y=87
+		x=1327
+		y=53
 		width=56
 		height=13
 	}
@@ -624,8 +624,8 @@ oval {
 }
 "text update" {
 	object {
-		x=1325
-		y=102
+		x=1319
+		y=68
 		width=30
 		height=13
 	}
@@ -640,8 +640,8 @@ oval {
 }
 text {
 	object {
-		x=1383
-		y=87
+		x=1377
+		y=53
 		width=42
 		height=13
 	}
@@ -652,8 +652,8 @@ text {
 }
 text {
 	object {
-		x=1362
-		y=102
+		x=1356
+		y=68
 		width=50
 		height=13
 	}
@@ -664,8 +664,8 @@ text {
 }
 "text update" {
 	object {
-		x=1228
-		y=49
+		x=1222
+		y=35
 		width=50
 		height=19
 	}
@@ -674,14 +674,13 @@ text {
 		clr=30
 		bclr=48
 	}
-	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
-		x=1283
-		y=49
+		x=1277
+		y=35
 		width=45
 		height=19
 	}
@@ -2422,64 +2421,6 @@ text {
 	}
 	textix="Down-stream"
 }
-composite {
-	object {
-		x=1338
-		y=49
-		width=70
-		height=35
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1338
-				y=49
-				width=70
-				height=35
-			}
-			control {
-				chan="13IDA:CloseFEShutter.PROC"
-				clr=35
-				bclr=16
-			}
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDA:eps_mbbi4"
-	}
-}
-composite {
-	object {
-		x=1338
-		y=49
-		width=70
-		height=35
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1338
-				y=49
-				width=70
-				height=35
-			}
-			control {
-				chan="13IDA:OpenFEShutter.PROC"
-				clr=17
-				bclr=20
-			}
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDA:eps_mbbi4"
-	}
-}
 "message button" {
 	object {
 		x=1012
@@ -2745,38 +2686,6 @@ composite {
 	clr=14
 	bclr=55
 	label="-electronics"
-}
-"related display" {
-	object {
-		x=321
-		y=718
-		width=50
-		height=19
-	}
-	display[0] {
-		label="Monochromator (full)"
-		name="13IDC_mprobe_mono_all.adl"
-		args="P1=13IDA:, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6, DTH=m12"
-	}
-	display[1] {
-		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
-	}
-	display[2] {
-		label="Feedback"
-		name="13ID_mono_feedback.adl"
-		args="P=13IDA:, M1=m12, M2=m11, PID1=fast_pitch_pid,PID2=fast_roll_pid"
-	}
-	display[3] {
-		label="BPM in IDB"
-		name="13ID_BPM.adl"
-		args="P=13IDA:,TITLE=BPM_Foil_Control,M1=m33,M2=m15,EN=E"
-	}
-	display[4] {
-		args="P=13IDA:, D=1, PID=13IDA:mono_pid1"
-	}
-	clr=14
-	bclr=30
-	label="-Mono"
 }
 "related display" {
 	object {
@@ -3802,7 +3711,7 @@ composite {
 				height=23
 			}
 			control {
-				chan="13IDA:DAC1_3.VAL"
+				chan="13IDA:DAC1_2.VAL"
 				clr=14
 				bclr=8
 			}
@@ -3818,7 +3727,7 @@ composite {
 				height=16
 			}
 			control {
-				chan="13IDA:DAC1_3_tweak.A"
+				chan="13IDA:DAC1_2_tweak.A"
 				clr=0
 				bclr=9
 			}
@@ -3833,7 +3742,7 @@ composite {
 				height=18
 			}
 			control {
-				chan="13IDA:DAC1_3_tweak.B"
+				chan="13IDA:DAC1_2_tweak.B"
 				clr=0
 				bclr=8
 			}
@@ -3924,8 +3833,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1228
-		y=73
+		x=1222
+		y=59
 		width=50
 		height=19
 	}
@@ -3939,8 +3848,8 @@ composite {
 }
 text {
 	object {
-		x=1277
-		y=73
+		x=1271
+		y=59
 		width=45
 		height=19
 	}
@@ -4616,22 +4525,6 @@ text {
 	textix="Moving"
 	align="horiz. centered"
 }
-"text update" {
-	object {
-		x=1357
-		y=186
-		width=45
-		height=14
-	}
-	monitor {
-		chan="13IDD:m40.RBV"
-		clr=50
-		bclr=19
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
 text {
 	object {
 		x=510
@@ -4643,37 +4536,6 @@ text {
 		clr=61
 	}
 	textix="Filter is:"
-}
-composite {
-	object {
-		x=1311
-		y=186
-		width=39
-		height=18
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1311
-				y=186
-				width=39
-				height=18
-			}
-			control {
-				chan="13IDD:m40.VAL"
-				clr=0
-				bclr=14
-			}
-			label="In"
-			press_msg="0."
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>14"
-		chan="13IDD:m40.RBV"
-	}
 }
 "text update" {
 	object {
@@ -4693,8 +4555,8 @@ composite {
 }
 composite {
 	object {
-		x=5
-		y=10
+		x=15
+		y=90
 		width=231
 		height=183
 	}
@@ -4702,8 +4564,8 @@ composite {
 	children {
 		oval {
 			object {
-				x=5
-				y=10
+				x=15
+				y=90
 				width=231
 				height=183
 			}
@@ -4713,8 +4575,8 @@ composite {
 		}
 		menu {
 			object {
-				x=50
-				y=66
+				x=60
+				y=146
 				width=150
 				height=17
 			}
@@ -4726,8 +4588,8 @@ composite {
 		}
 		menu {
 			object {
-				x=50
-				y=90
+				x=60
+				y=170
 				width=150
 				height=19
 			}
@@ -4739,8 +4601,8 @@ composite {
 		}
 		menu {
 			object {
-				x=50
-				y=115
+				x=60
+				y=195
 				width=150
 				height=19
 			}
@@ -4752,8 +4614,8 @@ composite {
 		}
 		menu {
 			object {
-				x=50
-				y=139
+				x=60
+				y=219
 				width=150
 				height=19
 			}
@@ -4765,8 +4627,8 @@ composite {
 		}
 		"related display" {
 			object {
-				x=167
-				y=45
+				x=177
+				y=125
 				width=33
 				height=15
 			}
@@ -4786,8 +4648,8 @@ composite {
 		}
 		text {
 			object {
-				x=32
-				y=65
+				x=42
+				y=145
 				width=10
 				height=19
 			}
@@ -4799,8 +4661,8 @@ composite {
 		}
 		text {
 			object {
-				x=32
-				y=89
+				x=42
+				y=169
 				width=10
 				height=19
 			}
@@ -4812,8 +4674,8 @@ composite {
 		}
 		text {
 			object {
-				x=32
-				y=114
+				x=42
+				y=194
 				width=10
 				height=19
 			}
@@ -4825,8 +4687,8 @@ composite {
 		}
 		text {
 			object {
-				x=32
-				y=138
+				x=42
+				y=218
 				width=10
 				height=19
 			}
@@ -4838,8 +4700,8 @@ composite {
 		}
 		text {
 			object {
-				x=41
-				y=40
+				x=51
+				y=120
 				width=62
 				height=18
 			}
@@ -4850,8 +4712,8 @@ composite {
 		}
 		text {
 			object {
-				x=106
-				y=41
+				x=116
+				y=121
 				width=62
 				height=18
 			}
@@ -4877,21 +4739,6 @@ composite {
 	clr=54
 	bclr=16
 	label="-more"
-}
-oval {
-	object {
-		x=1157
-		y=743
-		width=15
-		height=14
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:mono_pid1Locked"
-	}
 }
 composite {
 	object {
@@ -5294,8 +5141,8 @@ text {
 }
 "text update" {
 	object {
-		x=1228
-		y=94
+		x=1222
+		y=80
 		width=60
 		height=19
 	}
@@ -5309,8 +5156,8 @@ text {
 }
 text {
 	object {
-		x=1286
-		y=95
+		x=1280
+		y=81
 		width=45
 		height=19
 	}
@@ -8408,5 +8255,416 @@ composite {
 		bclr=19
 	}
 	limits {
+	}
+}
+composite {
+	object {
+		x=1380
+		y=87
+		width=35
+		height=35
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1380
+				y=87
+				width=35
+				height=35
+			}
+			control {
+				chan="13IDA:CloseCDShutter.PROC"
+				clr=35
+				bclr=16
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi26"
+	}
+}
+composite {
+	object {
+		x=1380
+		y=87
+		width=35
+		height=35
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1380
+				y=87
+				width=35
+				height=35
+			}
+			control {
+				chan="13IDA:OpenCDShutter.PROC"
+				clr=17
+				bclr=20
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:eps_mbbi26"
+	}
+}
+composite {
+	object {
+		x=1380
+		y=10
+		width=35
+		height=35
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1380
+				y=10
+				width=35
+				height=35
+			}
+			control {
+				chan="13IDA:OpenFEShutter.PROC"
+				clr=17
+				bclr=20
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:eps_mbbi25"
+	}
+}
+text {
+	object {
+		x=1254
+		y=100
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="ID-B Shutter"
+}
+"related display" {
+	object {
+		x=1321
+		y=29
+		width=50
+		height=19
+	}
+	display[0] {
+		label="Vacuum and EPS"
+		name="13ID_EPS.adl"
+	}
+	clr=50
+	bclr=48
+	label="-Vacuum"
+}
+"related display" {
+	object {
+		x=1222
+		y=101
+		width=25
+		height=19
+	}
+	display[0] {
+		label="13 ID"
+		name="13ID.adl"
+	}
+	display[2] {
+		label="X-ray Beam Position (Upstream)"
+		name="IDxbpmCantedUS.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[3] {
+		label="X-ray Beam Position (Downstream)"
+		name="IDxbpmCantedDS.adl"
+		args="sector=13,sector0=13,sectorPlusOne=14"
+	}
+	display[4] {
+		label="Storage Ring Status"
+		name="SR_Status.adl"
+	}
+	clr=54
+	bclr=48
+	label="-ID"
+}
+"related display" {
+	object {
+		x=322
+		y=718
+		width=50
+		height=20
+	}
+	display[0] {
+		label="ID-C/D Energy"
+		name="Energy.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Energy, EN=E, ID=ID13ds:, THETA_MOTOR=m57"
+	}
+	display[1] {
+		label="ID-C/D Crystal cage"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Crystal_Cage, M1=m58, M2=m59, M3=m60"
+	}
+	display[2] {
+		label="ID-C/D Rotation Axis"
+		name="1motors.adl"
+		args="P=13IDA:, TITLE=ID-C/D_Mono_Theta, M1=m57"
+	}
+	display[3] {
+		label="ID-C/D Mono Feedback"
+		name="13ID_mono_feedback.adl"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2"
+	}
+	display[4] {
+		label="ID-C/D Cryo & Vacuum Status"
+		name="13ID_mono_cryovac.adl"
+	}
+	display[5] {
+		label="XPS Auxillary I/O"
+		name="XPSAux.adl"
+		args="P=13IDA:, R=XPS1Aux"
+	}
+	display[6] {
+		label="ID-C/D Mono full"
+		name="13ID_mono_full.adl"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2,ID=13ds:,EN=E"
+	}
+	clr=14
+	bclr=30
+	label="-Mono"
+}
+rectangle {
+	object {
+		x=1380
+		y=10
+		width=35
+		height=35
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi25"
+	}
+}
+composite {
+	object {
+		x=505
+		y=225
+		width=130
+		height=14
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=505
+				y=225
+				width=130
+				height=14
+			}
+			control {
+				chan="13IDD:Unidig2Bo4"
+				clr=14
+				bclr=15
+			}
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:Unidig2Bi4.VAL"
+	}
+}
+composite {
+	object {
+		x=505
+		y=225
+		width=130
+		height=14
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=505
+				y=225
+				width=130
+				height=14
+			}
+			control {
+				chan="13IDD:Unidig2Bo4"
+				clr=14
+				bclr=23
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:Unidig2Bi4.VAL"
+	}
+}
+"related display" {
+	object {
+		x=375
+		y=742
+		width=50
+		height=19
+	}
+	display[0] {
+		label="Expert mode"
+		name="13IDD_dac_user_PE.adl"
+		args="P=13IDD:, D=1, C=Pelco1"
+		policy="replace display"
+	}
+	clr=0
+	bclr=14
+	label="-PE"
+}
+composite {
+	object {
+		x=135
+		y=15
+		width=35
+		height=15
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=135
+				y=15
+				width=35
+				height=15
+			}
+			control {
+				chan="13IDD:Unidig1Bo5"
+				clr=14
+				bclr=15
+			}
+			label="In"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:Unidig1Bi5.VAL"
+	}
+}
+composite {
+	object {
+		x=135
+		y=15
+		width=35
+		height=15
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=135
+				y=15
+				width=35
+				height=15
+			}
+			control {
+				chan="13IDD:Unidig1Bo5"
+				clr=14
+				bclr=20
+			}
+			label="Out"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:Unidig1Bi5.VAL"
+	}
+}
+text {
+	object {
+		x=10
+		y=10
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=35
+	}
+	textix="IR mirror is"
+}
+composite {
+	object {
+		x=10
+		y=35
+		width=235
+		height=24
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=10
+				y=35
+				width=100
+				height=18
+			}
+			control {
+				chan="13IDD:ir_las_trig.VAL"
+				clr=30
+				bclr=39
+			}
+			label="IR T Downstream"
+			press_msg="1"
+		}
+		"text update" {
+			object {
+				x=120
+				y=40
+				width=40
+				height=19
+			}
+			monitor {
+				chan="13IDD:ir_las_trig.VAL"
+				clr=40
+				bclr=19
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=35
+				width=80
+				height=21
+			}
+			monitor {
+				chan="13IDD:ir_las_temp.VAL"
+				clr=35
+				bclr=19
+			}
+			align="horiz. centered"
+			limits {
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:Unidig1Bi5.VAL"
 	}
 }

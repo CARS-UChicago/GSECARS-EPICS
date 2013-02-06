@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=519
-		y=207
+		x=2135
+		y=217
 		width=595
 		height=276
 	}
@@ -89,7 +89,37 @@ display {
 }
 oval {
 	object {
-		x=450
+		x=378
+		y=75
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi195"
+	}
+}
+oval {
+	object {
+		x=378
+		y=75
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:eps_mbbi195"
+	}
+}
+oval {
+	object {
+		x=416
 		y=95
 		width=14
 		height=14
@@ -104,8 +134,8 @@ oval {
 }
 rectangle {
 	object {
-		x=335
-		y=72
+		x=318
+		y=45
 		width=60
 		height=15
 	}
@@ -118,10 +148,10 @@ rectangle {
 }
 "related display" {
 	object {
-		x=220
-		y=41
-		width=105
-		height=25
+		x=225
+		y=70
+		width=70
+		height=20
 	}
 	display[0] {
 		label="Beamline EPS"
@@ -129,7 +159,7 @@ rectangle {
 	}
 	clr=54
 	bclr=1
-	label="-Shutter/EPS"
+	label="-EPS"
 }
 "related display" {
 	object {
@@ -233,32 +263,42 @@ rectangle {
 	display[2] {
 		label="Table Top Slits"
 		name="13IDE_TableSlits.adl"
-		args="P=13IDE:, TITLE=Table_Top_Slits, SM1=sm1, SM2=sm2, SM3=sm3, SM4=sm4, M1=m13, M2=m14, M3=m15, M4=m16"
+		args="P=13IDE:, TITLE=Table_Top_Slits, SM1=sm1, SM2=sm2, SM3=sm3, SM4=sm4, M1=m21, M2=m22, M3=m23, M4=m24"
 	}
 	display[3] {
 		label="Vertical KB Mirror"
-		name="6motors.adl"
-		args="P=13IDE:,TITLE=Vertical_KB_Mirror,  M1=m25, M2=m26, M3=m27, M4=m28, M5=pm1, M6=pm2"
+		name="5motors.adl"
+		args="P=13IDE:,TITLE=Vertical_KB_Mirror,  M1=m7, M2=m8, M3=m9, M4=m10, M5=m11"
 	}
 	display[4] {
 		label="Horizontal KB Mirror"
-		name="6motors.adl"
-		args="P=13IDE:,TITLE=Horizontal_KB_Mirror,  M1=m29, M2=m30, M3=m31, M4=m32, M5=pm3, M6=pm4"
+		name="5motors.adl"
+		args="P=13IDE:,TITLE=Horizontal_KB_Mirror,  M1=m12, M2=m13, M3=m14, M4=m15, M5=m16"
 	}
 	display[5] {
-		label="Lift Table (simple)"
-		name="6motors.adl"
-		args="P=13IDE:, TITLE=Lift_Table, M1=m1,  M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
+		label="KB Mirror Control"
+		name="13IDE_KBMirrors.adl"
+		args="P=13IDE:, M1P=pm4,  M1H=pm3, M1C=pm1, M1E=pm2, M2P=pm8, M2H=pm7, M2C=pm5, M2E=pm6"
 	}
 	display[6] {
 		label="Microscope motors"
-		name="6motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m7, M2=m33, M3=m8, M4=m34, M5=m12, M6=m35"
+		name="4motors.adl"
+		args="P=13IDE:, TITLE=Microscope, M1=m33, M2=m34, M3=m4, M4=m5"
 	}
 	display[7] {
 		label="Vortex Stage"
-		name="3motors.adl"
-		args="P=13IDE:, TITLE=Vortex_Detector_Stages, M1=m9, M2=m10, M3=m11"
+		name="4motors.adl"
+		args="P=13IDE:, TITLE=Vortex_Detector_Stages, M1=m17, M2=m18, M3=m19, M4=m20"
+	}
+	display[8] {
+		label="XPS UTS Stages"
+		name="2motors.adl"
+		args="P=13XRM:, TITLE=XPS_UTS_Stages, M1=m7, M2=m8"
+	}
+	display[9] {
+		label="Lift Table (simple)"
+		name="6motors.adl"
+		args="P=13IDE:, TITLE=Lift_Table, M1=m1,  M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
 	}
 	display[10] {
 		label="Profile moves"
@@ -277,7 +317,7 @@ rectangle {
 		height=26
 	}
 	control {
-		chan="13IDA:eps_bo3"
+		chan="13IDA:OpenEShutter.PROC"
 		clr=14
 		bclr=62
 	}
@@ -293,7 +333,7 @@ rectangle {
 		height=26
 	}
 	control {
-		chan="13IDA:eps_bo4"
+		chan="13IDA:CloseEShutter.PROC"
 		clr=14
 		bclr=20
 	}
@@ -314,7 +354,7 @@ composite {
 }
 rectangle {
 	object {
-		x=215
+		x=216
 		y=5
 		width=375
 		height=112
@@ -327,29 +367,13 @@ rectangle {
 }
 "text update" {
 	object {
-		x=520
+		x=515
 		y=15
 		width=60
 		height=15
 	}
 	monitor {
-		chan="13IDA:eps_mbbi4"
-		clr=14
-		bclr=0
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=335
-		y=46
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:eps_mbbi5"
+		chan="13IDA:eps_mbbi27"
 		clr=14
 		bclr=0
 	}
@@ -367,25 +391,10 @@ rectangle {
 	display[0] {
 		label="FOE Slits"
 		name="4motors.adl"
-		args="P=13IDA:, TITLE=FOE_slits, M1=m1, M2=m2, M3=m3, M4=m4"
-	}
-	display[2] {
-		label="Diagnostic Flag"
-		name="1motors.adl"
-		args="P=13IDA:, TITLE=FOE_Flags,  M1=m16"
+		args="P=13IDA:, TITLE=FOE_slits_E, M1=m5, M2=m6, M3=m6, M4=m8"
 	}
 	display[3] {
 		label=" "
-	}
-	display[4] {
-		label="Large Vertical Mirror"
-		name="8motors.adl"
-		args="P=13IDA:, TITLE=Vertical_Mirror, M1=m18, M2=m19,M3=pm1, M4=pm2, M5=pm5, M6=pm6, M7=pm9, M8=pm10"
-	}
-	display[5] {
-		label="Large Horizontal Mirror"
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=Horizontal_Mirror, M1=m26, M2=m27,M3=pm3, M4=pm4, M5=pm7, M6=pm8"
 	}
 	display[6] {
 		label="BPM in IDB"
@@ -398,7 +407,7 @@ rectangle {
 }
 "text update" {
 	object {
-		x=335
+		x=318
 		y=15
 		width=60
 		height=15
@@ -414,8 +423,8 @@ rectangle {
 }
 text {
 	object {
-		x=335
-		y=72
+		x=318
+		y=45
 		width=60
 		height=15
 	}
@@ -431,8 +440,8 @@ text {
 }
 text {
 	object {
-		x=335
-		y=72
+		x=318
+		y=45
 		width=60
 		height=15
 	}
@@ -449,7 +458,7 @@ text {
 text {
 	object {
 		x=225
-		y=72
+		y=45
 		width=100
 		height=15
 	}
@@ -460,7 +469,7 @@ text {
 }
 text {
 	object {
-		x=400
+		x=383
 		y=15
 		width=30
 		height=15
@@ -473,7 +482,7 @@ text {
 text {
 	object {
 		x=225
-		y=97
+		y=95
 		width=100
 		height=15
 	}
@@ -483,40 +492,10 @@ text {
 	}
 	textix="Searched:"
 }
-oval {
-	object {
-		x=420
-		y=95
-		width=14
-		height=14
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="PA:13ID:STA_C_SRCHD_TO_B.VAL"
-	}
-}
-oval {
-	object {
-		x=420
-		y=95
-		width=14
-		height=14
-	}
-	"basic attribute" {
-		clr=17
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13ID:STA_C_SRCHD_TO_B.VAL"
-	}
-}
 text {
 	object {
-		x=485
-		y=70
+		x=440
+		y=75
 		width=70
 		height=15
 	}
@@ -528,13 +507,13 @@ text {
 }
 menu {
 	object {
-		x=505
-		y=87
-		width=80
+		x=515
+		y=70
+		width=70
 		height=22
 	}
 	control {
-		chan="13IDA:FOEEnableShutter"
+		chan="13IDA:IDEAutoOpenMode"
 		clr=54
 		bclr=1
 	}
@@ -542,9 +521,9 @@ menu {
 "related display" {
 	object {
 		x=220
-		y=10
-		width=105
-		height=25
+		y=14
+		width=95
+		height=20
 	}
 	display[0] {
 		label="APS Info "
@@ -592,7 +571,7 @@ menu {
 		height=18
 	}
 	monitor {
-		chan="13IDA:E:E_RBV"
+		chan="13IDE:En:E_RBV"
 		clr=54
 		bclr=0
 	}
@@ -608,7 +587,7 @@ menu {
 		height=22
 	}
 	control {
-		chan="13IDA:E:tweak.A"
+		chan="13IDE:En:tweak.A"
 		clr=14
 		bclr=0
 	}
@@ -623,7 +602,7 @@ menu {
 		height=22
 	}
 	control {
-		chan="13IDA:E:tweak.B"
+		chan="13IDE:En:tweak.B"
 		clr=14
 		bclr=0
 	}
@@ -638,7 +617,7 @@ menu {
 		height=22
 	}
 	control {
-		chan="13IDA:E:tweakval"
+		chan="13IDE:En:tweakval"
 		clr=14
 		bclr=0
 	}
@@ -653,7 +632,7 @@ menu {
 		height=22
 	}
 	control {
-		chan="13IDA:E:Energy"
+		chan="13IDE:En:Energy"
 		clr=14
 		bclr=0
 	}
@@ -680,7 +659,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="ID13ds:Energy.VAL"
+		chan="ID13us:Energy.VAL"
 		clr=54
 		bclr=0
 	}
@@ -696,7 +675,7 @@ text {
 		height=22
 	}
 	control {
-		chan="ID13ds:ScanEnergy.VAL"
+		chan="ID13us:ScanEnergy.VAL"
 		clr=14
 		bclr=0
 	}
@@ -724,20 +703,8 @@ text {
 	}
 	display[0] {
 		label="Monochomator"
-		name="13ID_mono_full.adl"
-		args="P1=13IDA:, EN=E, P2=13IDE:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
-	}
-	display[4] {
-		name="piezos3.adl"
-		args="P=13IDA:, D=1, PID=13IDA:mono_pid1"
-	}
-	display[5] {
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
-	}
-	display[7] {
-		name="Energy.adl"
-		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDE:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+		name="GSE_MonoEnergy.adl"
+		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
 	clr=54
 	bclr=1
@@ -752,20 +719,8 @@ text {
 	}
 	display[0] {
 		label="Undulator"
-		name="ID_NewCtl.adl"
-		args="xx=13ds"
-	}
-	display[4] {
-		name="piezos3.adl"
-		args="P=13IDA:, D=1, PID=13IDA:mono_pid1"
-	}
-	display[5] {
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
-	}
-	display[7] {
-		name="Energy.adl"
-		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDE:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+		name="UndulatorCtl.adl"
+		args="xx=13us"
 	}
 	clr=54
 	bclr=1
@@ -785,7 +740,7 @@ text {
 }
 oval {
 	object {
-		x=360
+		x=327
 		y=95
 		width=14
 		height=14
@@ -800,7 +755,7 @@ oval {
 }
 oval {
 	object {
-		x=390
+		x=378
 		y=95
 		width=14
 		height=14
@@ -815,7 +770,7 @@ oval {
 }
 oval {
 	object {
-		x=360
+		x=327
 		y=95
 		width=14
 		height=14
@@ -830,7 +785,7 @@ oval {
 }
 oval {
 	object {
-		x=390
+		x=378
 		y=95
 		width=14
 		height=14
@@ -1016,7 +971,7 @@ text {
 }
 text {
 	object {
-		x=440
+		x=435
 		y=15
 		width=80
 		height=18
@@ -1025,7 +980,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Shutter:"
+	textix="E Shutter:"
 }
 text {
 	object {
@@ -1286,7 +1241,7 @@ text {
 }
 oval {
 	object {
-		x=450
+		x=416
 		y=95
 		width=14
 		height=14
@@ -1301,7 +1256,7 @@ oval {
 }
 text {
 	object {
-		x=350
+		x=311
 		y=95
 		width=20
 		height=15
@@ -1314,7 +1269,7 @@ text {
 }
 text {
 	object {
-		x=380
+		x=351
 		y=95
 		width=20
 		height=15
@@ -1327,7 +1282,7 @@ text {
 }
 text {
 	object {
-		x=410
+		x=402
 		y=95
 		width=20
 		height=15
@@ -1336,12 +1291,98 @@ text {
 		clr=14
 		width=2
 	}
-	textix="C"
+	textix="E"
+}
+oval {
+	object {
+		x=327
+		y=75
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi192"
+	}
+}
+oval {
+	object {
+		x=327
+		y=75
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:eps_mbbi192"
+	}
+}
+oval {
+	object {
+		x=416
+		y=75
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi194"
+	}
+}
+oval {
+	object {
+		x=416
+		y=75
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:eps_mbbi194"
+	}
 }
 text {
 	object {
-		x=440
-		y=95
+		x=311
+		y=75
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="A"
+}
+text {
+	object {
+		x=351
+		y=75
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Vac"
+}
+text {
+	object {
+		x=402
+		y=75
 		width=20
 		height=15
 	}

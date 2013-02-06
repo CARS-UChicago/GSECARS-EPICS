@@ -1,14 +1,14 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\monoParms.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/op/adl/monoParms.adl"
+	version=030105
 }
 display {
 	object {
-		x=644
-		y=551
-		width=358
-		height=300
+		x=459
+		y=542
+		width=320
+		height=460
 	}
 	clr=24
 	bclr=55
@@ -107,7 +107,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(P1)$(EN):Energy"
+		chan="$(P)$(EN):Energy"
 		clr=54
 		bclr=1
 	}
@@ -132,13 +132,13 @@ polyline {
 }
 "text update" {
 	object {
-		x=20
-		y=70
+		x=61
+		y=65
 		width=160
 		height=15
 	}
 	monitor {
-		chan="$(P1)$(EN):width.DESC"
+		chan="$(P)$(EN):width.DESC"
 		clr=14
 		bclr=55
 	}
@@ -147,13 +147,13 @@ polyline {
 }
 "text update" {
 	object {
-		x=20
-		y=130
+		x=61
+		y=111
 		width=160
 		height=15
 	}
 	monitor {
-		chan="$(P1)$(EN):dspace.DESC"
+		chan="$(P)$(EN):dspace.DESC"
 		clr=14
 		bclr=55
 	}
@@ -162,13 +162,13 @@ polyline {
 }
 "text entry" {
 	object {
-		x=220
+		x=230
 		y=65
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):width.VAL"
+		chan="$(P)$(EN):width.VAL"
 		clr=14
 		bclr=2
 	}
@@ -177,13 +177,13 @@ polyline {
 }
 "text entry" {
 	object {
-		x=220
-		y=125
+		x=230
+		y=111
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):dspace.VAL"
+		chan="$(P)$(EN):dspace.VAL"
 		clr=14
 		bclr=2
 	}
@@ -210,7 +210,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(P1)$(MONO).RBV"
+		chan="$(P)$(THETA_MOTOR).RBV"
 		clr=54
 		bclr=1
 	}
@@ -229,83 +229,250 @@ text {
 	}
 	textix="Angle"
 }
+"text update" {
+	object {
+		x=31
+		y=134
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(P)$(EN):id_off.DESC"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
 "text entry" {
 	object {
-		x=220
+		x=230
+		y=134
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):id_off.VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=230
+		y=88
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):height.VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=41
+		y=88
+		width=180
+		height=15
+	}
+	monitor {
+		chan="$(P)$(EN):height.DESC"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=69
+		y=430
+		width=242
+		height=20
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=221
+				y=430
+				width=90
+				height=20
+			}
+			control {
+				chan="$(P)$(EN):verbose"
+				clr=54
+				bclr=45
+			}
+			stacking="column"
+		}
+		text {
+			object {
+				x=69
+				y=433
+				width=144
+				height=15
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Print Debug Info"
+		}
+	}
+}
+"text update" {
+	object {
+		x=61
+		y=157
+		width=160
+		height=15
+	}
+	monitor {
+		chan="$(P)$(EN):y2_mvmin.DESC"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=230
+		y=157
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):y2_mvmin"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=230
 		y=180
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):xt_sign"
+		chan="$(P)$(EN)Mono111DSpace"
 		clr=14
 		bclr=2
 	}
 	limits {
 	}
 }
-"choice button" {
+"text entry" {
 	object {
-		x=215
-		y=270
-		width=90
+		x=230
+		y=203
+		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):verbose"
-		clr=54
-		bclr=45
+		chan="$(P)$(EN)Mono311DSpace"
+		clr=14
+		bclr=2
 	}
-	stacking="column"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=230
+		y=226
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN)Mono111ThetaOffset"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=230
+		y=249
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN)Mono311ThetaOffset"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
 }
 text {
 	object {
-		x=25
-		y=275
-		width=130
+		x=77
+		y=180
+		width=144
 		height=15
 	}
 	"basic attribute" {
-		clr=24
+		clr=14
 	}
-	textix="Print Debug Info"
+	textix="Si 111 D spacing"
 }
 text {
 	object {
-		x=20
-		y=185
-		width=130
+		x=77
+		y=203
+		width=144
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Sign of Spect Table Motion"
+	textix="Si 311 D spacing"
 }
-"text update" {
+text {
 	object {
-		x=20
-		y=155
-		width=190
+		x=50
+		y=226
+		width=171
 		height=15
 	}
-	monitor {
-		chan="$(P1)$(EN):id_off.DESC"
+	"basic attribute" {
 		clr=14
-		bclr=55
 	}
-	limits {
+	textix="Si 111 theta offset"
+}
+text {
+	object {
+		x=50
+		y=249
+		width=171
+		height=15
 	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Si 311 theta offset"
 }
 "text entry" {
 	object {
-		x=220
-		y=150
+		x=230
+		y=272
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):id_off.VAL"
+		chan="$(P)$(EN)Mono111HeightOffset"
 		clr=14
 		bclr=2
 	}
@@ -314,13 +481,13 @@ text {
 }
 "text entry" {
 	object {
-		x=220
-		y=210
+		x=230
+		y=295
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):xt_mvmin"
+		chan="$(P)$(EN)Mono311HeightOffset"
 		clr=14
 		bclr=2
 	}
@@ -329,76 +496,133 @@ text {
 }
 "text entry" {
 	object {
-		x=220
-		y=95
+		x=230
+		y=318
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):height.VAL"
+		chan="$(P)$(EN)Mono111Pitch"
 		clr=14
 		bclr=2
 	}
 	limits {
 	}
 }
-"text update" {
+"text entry" {
 	object {
-		x=20
-		y=100
+		x=230
+		y=341
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(EN)Mono311Pitch"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=41
+		y=272
 		width=180
 		height=15
 	}
-	monitor {
-		chan="$(P1)$(EN):height.DESC"
+	"basic attribute" {
 		clr=14
-		bclr=55
 	}
-	limits {
+	textix="Si 111 height offset"
+}
+text {
+	object {
+		x=41
+		y=295
+		width=180
+		height=15
 	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Si 311 height offset"
+}
+text {
+	object {
+		x=113
+		y=318
+		width=108
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Si 111 pitch"
+}
+text {
+	object {
+		x=113
+		y=341
+		width=108
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Si 311 pitch"
 }
 "text entry" {
 	object {
-		x=220
-		y=235
+		x=230
+		y=364
 		width=70
 		height=20
 	}
 	control {
-		chan="$(P1)$(EN):y2_mvmin"
+		chan="$(P)$(EN)Mono111Roll"
 		clr=14
 		bclr=2
 	}
 	limits {
 	}
 }
-"text update" {
+"text entry" {
 	object {
-		x=21
-		y=240
-		width=160
-		height=15
+		x=230
+		y=387
+		width=70
+		height=20
 	}
-	monitor {
-		chan="$(P1)$(EN):y2_mvmin.DESC"
+	control {
+		chan="$(P)$(EN)Mono311Roll"
 		clr=14
-		bclr=55
+		bclr=2
 	}
 	limits {
 	}
 }
-"text update" {
+text {
 	object {
-		x=20
-		y=210
-		width=160
+		x=122
+		y=364
+		width=99
 		height=15
 	}
-	monitor {
-		chan="$(P1)$(EN):xt_mvmin.DESC"
+	"basic attribute" {
 		clr=14
-		bclr=55
 	}
-	limits {
+	textix="Si 111 roll"
+}
+text {
+	object {
+		x=122
+		y=387
+		width=99
+		height=15
 	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Si 311 roll"
 }

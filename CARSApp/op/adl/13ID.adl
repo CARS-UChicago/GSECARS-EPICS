@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=99
-		y=150
+		x=80
+		y=101
 		width=700
 		height=550
 	}
@@ -193,11 +193,6 @@ rectangle {
 		label="ipUnidig"
 		name="IpUnidig.adl"
 		args="P=13IDA:, R=Unidig1"
-	}
-	display[7] {
-		label="quadEM"
-		name="quadEM.adl"
-		args="P=13IDA:, EM=EM1"
 	}
 	clr=14
 	bclr=51
@@ -487,6 +482,16 @@ composite {
 		name="Main_13ID.adl"
 		args="xx=13, yy=ID"
 	}
+	display[5] {
+		label="MRD ID C/D branch"
+		name="MRD_ID.adl"
+		args="xx=13,ID1=13ds,ID2=13us"
+	}
+	display[6] {
+		label="MRD ID E branch"
+		name="MRD_ID.adl"
+		args="xx=13,ID1=13us,ID2=13ds"
+	}
 	display[8] {
 		label="X-ray BPM (Upstream)"
 		name="IDxbpmCantedUS.adl"
@@ -513,51 +518,40 @@ text {
 	}
 	textix="Ring Status/Beam Position"
 }
-composite {
+"shell command" {
 	object {
 		x=31
 		y=120
-		width=170
+		width=75
 		height=20
 	}
-	"composite name"=""
-	children {
-		"shell command" {
-			object {
-				x=31
-				y=120
-				width=75
-				height=20
-			}
-			command[0] {
-				label="Storage Ring Status"
-				name="start http://www.aps.anl.gov/asd/operations/gifplots/statgif.html"
-			}
-			command[1] {
-				label="APS Home Page"
-				name="start http://www.aps.anl.gov"
-			}
-			command[2] {
-				label="CARS Home Page"
-				name="start http://cars.uchicago.edu"
-			}
-			clr=14
-			bclr=51
-		}
-		text {
-			object {
-				x=111
-				y=120
-				width=90
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="Web Pages"
-		}
+	command[0] {
+		label="Storage Ring Status"
+		name="start http://www.aps.anl.gov/Facility/Status/"
 	}
+	command[1] {
+		label="APS Home Page"
+		name="start http://www.aps.anl.gov"
+	}
+	command[2] {
+		label="CARS Home Page"
+		name="start http://cars.uchicago.edu"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=111
+		y=120
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Web Pages"
 }
 composite {
 	object {
@@ -643,8 +637,8 @@ text {
 	}
 	display[0] {
 		label="ID-C/D Energy"
-		name="Energy.adl"
-		args="P=13IDA:, TITLE=ID-C/D_Energy, EN=E, ID=ID13ds:, THETA_MOTOR=m57"
+		name="GSE_MonoEnergy.adl"
+		args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=13ds, TH=m57, MH=m58, MP=m59, MR=m60, MX=m3xx, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
 	}
 	display[1] {
 		label="ID-C/D Crystal cage"
@@ -663,7 +657,7 @@ text {
 	}
 	display[4] {
 		label="ID-C/D Cryo & Vacuum Status"
-		name="13ID_mono_cryovac.adl"
+		name="13ID_CD_mono_cryovac.adl"
 	}
 	display[5] {
 		label="XPS Auxillary I/O"
@@ -769,12 +763,12 @@ text {
 	display[2] {
 		label="ID-C/D BPM Electronics"
 		name="quadEM.adl"
-		args="P=13IDA:, R=QE1:"
+		args="P=13IDA:, R=QE1:,P_TS=13IDA:QE1_TS:,P_FFT=13IDA:QE1_FFT:"
 	}
 	display[3] {
 		label="ID-C/D BPM Time Series"
 		name="quadEM_TimeSeries.adl"
-		args="P=13IDA:QE1:,T12=Vertical_BPM, T34=Horizontal_BPM"
+		args="P=13IDA:QE1_TS:,P_FFT=13IDA:QE1_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
 	}
 	clr=14
 	bclr=51
@@ -1009,8 +1003,8 @@ text {
 	}
 	display[1] {
 		label="E beam viewer"
-		name="1motors.adl"
-		args="P=13IDA:, TITLE=Beam_Viewer,  M1=m9"
+		name="2motors.adl"
+		args="P=13IDA:, TITLE=Beam_Viewer,  M1=m9,M2=m28"
 	}
 	clr=14
 	bclr=51
@@ -1140,6 +1134,11 @@ text {
 		name="4motors.adl"
 		args="P=13IDA:, TITLE=Pinhole_Tank_BPM_Viewer,M1=m21,M2=m22,M3=m23,M4=m24"
 	}
+	display[1] {
+		label="SR570 for photodiode"
+		name="SR570.adl"
+		args="P=13IDA:,A=A2"
+	}
 	clr=14
 	bclr=51
 }
@@ -1165,18 +1164,18 @@ text {
 	}
 	display[0] {
 		label="Energy"
-		name="Energy.adl"
-		args="P1=13IDA:, TITLE=_ID-E_Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+		name="GSE_MonoEnergy.adl"
+		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
 	display[1] {
 		label="Crystal cage"
-		name="3motors.adl"
-		args="P=13IDA:, TITLE=ID-E_Crystal_Cage, M1=m62, M2=m63, M3=m64"
+		name="4motors.adl"
+		args="P=13IDA:, TITLE=ID-E_Crystal_Cage, M1=m66, M2=m67, M3=m68, M4=m32"
 	}
 	display[2] {
 		label="Rotation Axis"
 		name="1motors.adl"
-		args="P=13IDA:, TITLE=ID-E_Mono_Theta, M1=m61"
+		args="P=13IDA:, TITLE=ID-E_Mono_Theta, M1=m65"
 	}
 	display[3] {
 		label="2nd Crystal Feedback"
@@ -1184,23 +1183,43 @@ text {
 		args="P=13IDA:, PID=mono_pid1, TITLE=ID-E_Mono_feedback"
 	}
 	display[4] {
-		label="Fast pitch feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
-	}
-	display[5] {
 		label="Fast roll feedback"
 		name="pid_control.adl"
-		args="P=13IDA:, PID=fast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
+	}
+	display[5] {
+		label="Fast pitch feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
 	}
 	display[6] {
 		label="Cryo & Vacuum Status"
-		name="13ID_mono_cryovac.adl"
+		name="13ID_E_mono_cryovac.adl"
 	}
 	display[7] {
 		label="XPS Auxillary I/O"
 		name="XPSAux.adl"
 		args="P=13IDA:, R=XPS2Aux"
+	}
+	display[8] {
+		label="DAC 2nd XTAL Pitch"
+		name="singleDAC.adl"
+		args="P=13IDA:, D=1, C=7"
+	}
+	display[9] {
+		label="DAC 2nd XTAL Roll"
+		name="singleDAC.adl"
+		args="P=13IDA:, D=1, C=8"
+	}
+	display[10] {
+		label="Energy (Old)"
+		name="Energy.adl"
+		args="P1=13IDA:, TITLE=_ID-E_Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
+	}
+	display[11] {
+		label="asyn record PMAC"
+		name="asynOctet.adl"
+		args="P=13IDA_EMONO:, R=asyn1"
 	}
 	clr=14
 	bclr=51
@@ -1230,49 +1249,18 @@ text {
 	clr=14
 	bclr=51
 }
-composite {
+text {
 	object {
-		x=381
+		x=461
 		y=400
-		width=110
+		width=30
 		height=20
 	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=381
-				y=400
-				width=75
-				height=20
-			}
-			display[0] {
-				label="ID-E BPM Motors"
-				name="2motors.adl"
-				args="P=13IDA:, TITLE=ID-E_BPM Motors, M1=m33, M2=m15"
-			}
-			display[1] {
-				label="ID-E BPM Control"
-				name="BPM_Foil.adl"
-				args="P=13IDA:, TITLE=ID-E_BPM_Foil_Control, M1=m33, M2=m15, EN=E"
-			}
-			clr=14
-			bclr=51
-		}
-		text {
-			object {
-				x=461
-				y=400
-				width=30
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="Quad BPM"
-		}
+	"basic attribute" {
+		clr=14
+		width=2
 	}
+	textix="Quad BPM"
 }
 "related display" {
 	object {
@@ -1284,7 +1272,7 @@ composite {
 	display[0] {
 		label="SSA"
 		name="4motors.adl"
-		args="P=13IDA:, TITLE=ID-E_SSA Motors, M1=m65, M2=m66, M3=m67, M4=m68"
+		args="P=13IDA:, TITLE=ID-E_SSA Motors, M1=m69, M2=m70, M3=m71, M4=m72"
 	}
 	display[1] {
 		label="SSA beam viewer"
@@ -1306,4 +1294,76 @@ text {
 		width=2
 	}
 	textix="SSA"
+}
+"related display" {
+	object {
+		x=381
+		y=400
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-E BPM Motors"
+		name="1motors.adl"
+		args="P=13IDA:, TITLE=ID-E_BPM, M1=m33"
+	}
+	display[1] {
+		label="ID-E BPM Foil"
+		name="BPM_Foil.adl"
+		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM"
+	}
+	display[2] {
+		label="ID-E BPM Electronics"
+		name="quadEM.adl"
+		args="P=13IDA:, R=QE2:,P_TS=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
+	}
+	display[3] {
+		label="ID-E BPM Time Series"
+		name="quadEM_TimeSeries.adl"
+		args="P=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
+	}
+	clr=14
+	bclr=51
+}
+"related display" {
+	object {
+		x=382
+		y=426
+		width=75
+		height=20
+	}
+	display[0] {
+		label="userTrans1 (Mono XTAL)"
+		name="userTransform.adl"
+		args="P=13IDA_EMONO:, T=userTran1"
+	}
+	display[1] {
+		label="userTrans2"
+		name="userTransform.adl"
+		args="P=13IDA_EMONO:, T=userTran2"
+	}
+	display[2] {
+		label="userTran3"
+		name="userTransform.adl"
+		args="P=13IDA_EMONO:, T=userTran3"
+	}
+	display[3] {
+		label="userTran4"
+		name="userTransform.adl"
+		args="P=13IDA_EMONO:, T=userTran4"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=461
+		y=424
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="User Calcs "
 }

@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS-1-6\CARSApp\op\adl\13Laser_user.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13Laser_user.adl"
 	version=030102
 }
 display {
 	object {
-		x=264
-		y=363
+		x=292
+		y=460
 		width=557
 		height=405
 	}
@@ -165,9 +165,9 @@ text {
 text {
 	object {
 		x=49
-		y=167
-		width=23
-		height=38
+		y=174
+		width=12
+		height=14
 	}
 	"basic attribute" {
 		clr=63
@@ -336,38 +336,6 @@ polygon {
 		(464,7)
 	}
 }
-"message button" {
-	object {
-		x=180
-		y=375
-		width=30
-		height=17
-	}
-	control {
-		chan="13Laser:m3.TWV"
-		clr=0
-		bclr=48
-	}
-	label="0.1"
-	press_msg="0.1"
-	clrmod="discrete"
-}
-"message button" {
-	object {
-		x=220
-		y=375
-		width=30
-		height=17
-	}
-	control {
-		chan="13Laser:m3.TWV"
-		clr=0
-		bclr=48
-	}
-	label="0.01"
-	press_msg="0.01"
-	clrmod="discrete"
-}
 image {
 	object {
 		x=144
@@ -491,7 +459,7 @@ text {
 }
 "text entry" {
 	object {
-		x=395
+		x=405
 		y=213
 		width=85
 		height=27
@@ -573,10 +541,10 @@ text {
 }
 text {
 	object {
-		x=388
-		y=171
-		width=30
-		height=22
+		x=465
+		y=245
+		width=20
+		height=15
 	}
 	"basic attribute" {
 		clr=31
@@ -585,9 +553,9 @@ text {
 }
 "text update" {
 	object {
-		x=431
+		x=425
 		y=179
-		width=55
+		width=60
 		height=14
 	}
 	monitor {
@@ -600,32 +568,32 @@ text {
 }
 polygon {
 	object {
-		x=375
+		x=383
 		y=163
-		width=24
+		width=19
 		height=84
 	}
 	"basic attribute" {
 		clr=56
 	}
 	points {
-		(385,163)
-		(375,178)
-		(383,176)
-		(383,233)
-		(377,228)
-		(385,247)
-		(394,229)
-		(387,233)
-		(387,177)
-		(399,180)
-		(386,166)
-		(385,163)
+		(393,163)
+		(383,178)
+		(391,176)
+		(391,233)
+		(385,228)
+		(393,247)
+		(402,229)
+		(395,233)
+		(395,177)
+		(402,180)
+		(394,166)
+		(393,163)
 	}
 }
 "message button" {
 	object {
-		x=315
+		x=305
 		y=144
 		width=30
 		height=17
@@ -641,7 +609,7 @@ polygon {
 }
 "message button" {
 	object {
-		x=347
+		x=338
 		y=144
 		width=30
 		height=17
@@ -669,9 +637,9 @@ text {
 }
 "text update" {
 	object {
-		x=184
+		x=180
 		y=300
-		width=59
+		width=60
 		height=14
 	}
 	monitor {
@@ -749,38 +717,6 @@ text {
 		clr=60
 	}
 	textix="m2"
-}
-"message button" {
-	object {
-		x=22
-		y=118
-		width=30
-		height=17
-	}
-	control {
-		chan="13Laser:m2.TWV"
-		clr=0
-		bclr=48
-	}
-	label="0.1"
-	press_msg="0.1"
-	clrmod="discrete"
-}
-"message button" {
-	object {
-		x=23
-		y=141
-		width=30
-		height=17
-	}
-	control {
-		chan="13Laser:m2.TWV"
-		clr=0
-		bclr=48
-	}
-	label="0.01"
-	press_msg="0.01"
-	clrmod="discrete"
 }
 "text entry" {
 	object {
@@ -904,130 +840,348 @@ composite {
 		}
 	}
 }
-composite {
+"text entry" {
+	object {
+		x=325
+		y=196
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m1.TWV"
+		clr=14
+		bclr=56
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=325
+		y=223
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m1.TWR"
+		clr=14
+		bclr=57
+	}
+	label="\/"
+	press_msg="1"
+}
+"message button" {
 	object {
 		x=325
 		y=170
-		width=45
-		height=75
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m1.TWF"
+		clr=14
+		bclr=57
+	}
+	label="/\"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=68
+		y=181
+		width=60
+		height=14
+	}
+	monitor {
+		chan="13Laser:m2.RBV"
+		clr=14
+		bclr=40
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=64
+		y=127
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m2.TWV"
+		clr=14
+		bclr=61
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=64
+		y=95
+		width=56
+		height=26
+	}
+	control {
+		chan="13Laser:m2.TWR"
+		clr=14
+		bclr=62
+	}
+	label="-->"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=64
+		y=154
+		width=56
+		height=26
+	}
+	control {
+		chan="13Laser:m2.TWF"
+		clr=14
+		bclr=62
+	}
+	label="<--"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=372
+		y=144
+		width=37
+		height=17
+	}
+	control {
+		chan="13Laser:m1.TWV"
+		clr=0
+		bclr=48
+	}
+	label="0.002"
+	press_msg="0.002"
+	clrmod="discrete"
+}
+composite {
+	object {
+		x=160
+		y=378
+		width=105
+		height=17
 	}
 	"composite name"=""
 	children {
-		"text entry" {
+		"message button" {
 			object {
-				x=325
-				y=196
-				width=45
-				height=22
+				x=160
+				y=378
+				width=30
+				height=17
 			}
 			control {
-				chan="13Laser:m1.TWV"
-				clr=14
-				bclr=56
+				chan="13Laser:m3.TWV"
+				clr=0
+				bclr=48
 			}
-			limits {
-			}
+			label="0.1"
+			press_msg="0.1"
+			clrmod="discrete"
 		}
 		"message button" {
 			object {
-				x=325
-				y=223
-				width=45
-				height=22
+				x=193
+				y=378
+				width=30
+				height=17
 			}
 			control {
-				chan="13Laser:m1.TWR"
-				clr=14
-				bclr=57
+				chan="13Laser:m3.TWV"
+				clr=0
+				bclr=48
 			}
-			label="\/"
-			press_msg="1"
+			label="0.01"
+			press_msg="0.01"
+			clrmod="discrete"
 		}
 		"message button" {
 			object {
-				x=325
-				y=170
-				width=45
-				height=22
+				x=228
+				y=378
+				width=37
+				height=17
 			}
 			control {
-				chan="13Laser:m1.TWF"
-				clr=14
-				bclr=57
+				chan="13Laser:m3.TWV"
+				clr=0
+				bclr=48
 			}
-			label="/\"
-			press_msg="1"
+			label="0.002"
+			press_msg="0.002"
+			clrmod="discrete"
 		}
 	}
 }
 composite {
 	object {
-		x=64
-		y=95
-		width=63
-		height=100
+		x=20
+		y=110
+		width=37
+		height=58
 	}
 	"composite name"=""
 	children {
-		"text update" {
+		"message button" {
 			object {
-				x=68
-				y=181
-				width=58
-				height=14
-			}
-			monitor {
-				chan="13Laser:m2.RBV"
-				clr=14
-				bclr=40
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=64
-				y=122
-				width=63
-				height=30
+				x=23
+				y=110
+				width=30
+				height=17
 			}
 			control {
 				chan="13Laser:m2.TWV"
-				clr=14
+				clr=0
+				bclr=48
+			}
+			label="0.1"
+			press_msg="0.1"
+			clrmod="discrete"
+		}
+		"message button" {
+			object {
+				x=24
+				y=130
+				width=30
+				height=17
+			}
+			control {
+				chan="13Laser:m2.TWV"
+				clr=0
+				bclr=48
+			}
+			label="0.01"
+			press_msg="0.01"
+			clrmod="discrete"
+		}
+		"message button" {
+			object {
+				x=20
+				y=151
+				width=37
+				height=17
+			}
+			control {
+				chan="13Laser:m2.TWV"
+				clr=0
+				bclr=48
+			}
+			label="0.002"
+			press_msg="0.002"
+			clrmod="discrete"
+		}
+	}
+}
+text {
+	object {
+		x=340
+		y=287
+		width=80
+		height=21
+	}
+	"basic attribute" {
+		clr=21
+	}
+	textix="Beam Shaper"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=455
+		y=283
+		width=40
+		height=27
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=455
+				y=283
+				width=40
+				height=27
+			}
+			control {
+				chan="13Laser:m4.VAL"
+				clr=0
+				bclr=14
+			}
+			label="Out"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-30"
+		chan="13Laser:m4.RBV"
+	}
+}
+composite {
+	object {
+		x=455
+		y=284
+		width=40
+		height=27
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=455
+				y=284
+				width=40
+				height=27
+			}
+			control {
+				chan="13Laser:m4.VAL"
+				clr=20
 				bclr=61
 			}
-			limits {
-			}
+			label="In"
+			press_msg="-35.0"
 		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-5"
+		chan="13Laser:m4.RBV"
+	}
+}
+composite {
+	object {
+		x=455
+		y=284
+		width=40
+		height=27
+	}
+	"composite name"=""
+	children {
 		"message button" {
 			object {
-				x=74
-				y=95
+				x=455
+				y=284
 				width=40
-				height=26
+				height=27
 			}
 			control {
-				chan="13Laser:m2.TWR"
-				clr=14
-				bclr=62
+				chan="13Laser:m4.VAL"
+				clr=0
+				bclr=14
 			}
-			label="-->"
-			press_msg="1"
+			label="Out"
+			press_msg="0"
 		}
-		"message button" {
-			object {
-				x=74
-				y=154
-				width=40
-				height=26
-			}
-			control {
-				chan="13Laser:m2.TWF"
-				clr=14
-				bclr=62
-			}
-			label="<--"
-			press_msg="1"
-		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-30"
+		chan="13Laser:m4.RBV"
 	}
 }
