@@ -34,6 +34,8 @@ program GSE_MonoEnergy("MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, 
 %%#include "GSE_MonoSupport.h"
 
 #define MAX_POSITIONS 10000
+#define ID_CONTROL_MODE_ENERGY 0
+#define ID_CONTROL_MODE_GAP    1
 
 char *calibrationFile;
 
@@ -49,14 +51,15 @@ int    th_set;    assign th_set    to "{MTH}.SET";
 int    th_done;   assign th_done   to "{MTH}.DMOV";  monitor th_done;
 
 /* undulator PVs  (from {ID}) */
-double id_val;        assign id_val       to "{ID}ScanEnergy.VAL";  monitor id_val;
-double id_rbv;        assign id_rbv       to "{ID}Energy.VAL";      monitor id_rbv;
-double id_val;        assign id_gap       to "{ID}ScanGap.VAL";     monitor id_gap;
-double id_gap_rbv;    assign id_gap_rbv   to "{ID}Gap.VAL";         monitor id_gap_rbv;
-int    id_busy;       assign id_busy      to "{ID}Busy.VAL";        monitor id_busy;
+double id_val;        assign id_val       to "{ID}ScanEnergy.VAL";    monitor id_val;
+double id_rbv;        assign id_rbv       to "{ID}Energy.VAL";        monitor id_rbv;
+double id_gap;        assign id_gap       to "{ID}ScanGap.VAL";       monitor id_gap;
+double id_gap_rbv;    assign id_gap_rbv   to "{ID}Gap.VAL";           monitor id_gap_rbv;
+int    id_harmonic;   assign id_harmonic  to "{ID}HarmonicValue.VAL"; monitor id_harmonic;
+int    id_busy;       assign id_busy      to "{ID}Busy.VAL";          monitor id_busy;
 int    id_stop;       assign id_stop      to "{ID}Stop.VAL";
-int    id_start_gap;  assign id_start_gap to "{ID}SSStartGap.VAL";  monitor id_start_gap;
-int    id_end_gap;    assign id_end_gap   to "{ID}SSEndGap.VAL";    monitor id_end_gap;
+double id_start_gap;  assign id_start_gap to "{ID}SSStartGap.VAL";    monitor id_start_gap;
+double id_end_gap;    assign id_end_gap   to "{ID}SSEndGap.VAL";      monitor id_end_gap;
 
 /* Energy PVs (from , {MONO}, and GSE_MonoEnergy.db) */
 double en;        assign en        to "{MONO}:Energy.VAL";    monitor en;
@@ -67,7 +70,6 @@ double width;     assign width     to "{MONO}:width.VAL";     monitor width;
 int    verbose;   assign verbose   to "{MONO}:verbose.VAL";   monitor verbose;
 int    id_abort;  assign id_abort  to "{MONO}:id_abort.VAL";  
 
-int    id_factor;  assign id_factor  to "{MONO}:id_factor.VAL"; 
 double en_timeout; assign en_timeout to "{MONO}:timeout.VAL";    
 int    en_busy;    assign en_busy    to "{MONO}:Moving.VAL";    monitor en_busy;
 int    en_set;     assign en_set     to "{MONO}:SET.VAL";       monitor en_set;
@@ -82,7 +84,7 @@ int    id_track;        assign id_track        to "{MONO}:id_track.VAL";        
 int    id_wait;         assign id_wait         to "{MONO}:id_wait.VAL";         monitor id_wait;
 double id_offset;       assign id_offset       to "{MONO}:id_off.VAL";          monitor id_offset;
 int    id_set_off;      assign id_set_off      to "{MONO}:id_set_off.VAL";      monitor id_set_off;
-int    id_harmonic;     assign id_harmonic     to "{MONO}:id_harmonic.VAL";     monitor id_harmonic;
+int    id_harm_num;     assign id_harm_num     to "{MONO}:id_harmonic.VAL";     monitor id_harm_num;
 int    id_control_mode; assign id_control_mode to "{MONO}:id_control_mode.VAL"; monitor id_control_mode;
 
 /* mono position arrays for trajectory scans */
@@ -156,15 +158,6 @@ ss GSE_MonoEnergy {
       th_max  = r2d * asin(omega/en_min); /* maximum mono angle in degrees */
       tiny    = 2.e-6;
 
-      /* set up undulator info (if using undulator, that is!)*/
-      id_busy   = 0; 
-      id_val = 0. ;
-      id_rbv=0.;
-      id_track  = 0;   
-      id_offset = 0; 
-      fb_use=0;
-      id_factor = 1;
-
       /* get current mono angle, update energy readback */
       if (th < th_min )  th = th_min;
       en     =  omega / sin(th * d2r);
@@ -175,7 +168,7 @@ ss GSE_MonoEnergy {
       if (verbose) { printf("  En(init)> mono angle, energy = %12.6f %12.6f\n", th_rbv,en_rbv); }
 
       /* initialize undulator offset */
-      id_offset = id_val - (en * mil * id_factor);
+      id_offset = id_val - (en * mil);
       if (id_offset > 5000.)  id_offset = 50.0;
       pvPut(id_offset);
       if (verbose) { printf("   En(init)> ID energy, offset = %12.6f %12.6f\n", id_rbv, id_offset); }
@@ -228,24 +221,47 @@ ss GSE_MonoEnergy {
         pvPut(th);                        /* put  the new value */
         th_set = 0;  pvPut(th_set);       /* change mono to USE mode */
         if (verbose) { printf("   En(set)> mono angle -> %12.6f\n", th);}
-      } else {           /*  ENERGY MOVE  */
+      } 
+      else {           /*  ENERGY MOVE  */
         if (verbose) { printf("  En(move)> monoE->%12.6f", en);}
 
         /* start undulator move */
         if (id_track) {
-          id_val  = (id_offset + en * mil * id_factor) ;  
-          if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+          if (id_control_mode == ID_CONTROL_MODE_ENERGY) {
+            id_val  = (id_offset + en * mil) ;  
+            if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+            /* Copy the ID harmonic from the mono database to the undulator */
+            id_harmonic = id_harm_num;
+            pvPut(id_harmonic);
 
-          /* if the undulator is still busy (from a previous move?? stuck??), 
-           stop the undulator now */        
-          if (id_busy) {
-            if (verbose) { printf(" clear id_busy");}
-            id_stop = 1; 
-            pvPut(id_stop);
+            /* if the undulator is still busy (from a previous move?? stuck??), 
+               stop the undulator now */        
+            if (id_busy) {
+              if (verbose) { printf(" clear id_busy");}
+              id_stop = 1; 
+              pvPut(id_stop);
+            }
+            /* put id value*/
+            pvPut(id_val);
+            if (verbose) { printf(", id_energy->%12.6f",id_val);}
           }
-          /* put id value*/
-          pvPut(id_val);
-          if (verbose) { printf(", id_energy->%12.6f",id_val);}
+          else {
+            /* if the undulator is still busy (from a previous move?? stuck??), 
+               stop the undulator now */        
+            if (id_busy) {
+              if (verbose) { printf(" clear id_busy");}
+              id_stop = 1; 
+              pvPut(id_stop);
+            }
+            status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
+            if (status == 0) {
+              id_gap = id_offset + gap;
+              pvPut(id_gap);
+              if (verbose) { printf(", id_gap->%12.6f",id_gap);}
+            } else {
+              printf("Error calling GSE_monoEnergyToGap for harmonic=%d energy=%f\n", id_harm_num, en);
+            }
+          }
         }
 
         /* move mono angle note that we're off by a tiny amount at this point */
@@ -304,12 +320,11 @@ ss GSE_MonoEnergy {
     
 /*-------------------------------------------------------------------*/
 /* 
-     Other Events :
-     when undulator changes  by itself:  do nothing 
-     when theta changes by itself, change energy, and let
-     the undulator stay where they are
-*/
-   /* mono angle changed */
+    Other Events :
+    when undulator changes  by itself:  do nothing 
+    when theta changes by itself, change energy, and let
+    the undulator stay where they are */
+    /* mono angle changed */
     when( efTestAndClear(ef_th) ) { 
       if (verbose) {printf("  En(mono)> Mono angle changed: %12.6f\n", th); }
       if (th < th_min)  {
@@ -329,12 +344,12 @@ ss GSE_MonoEnergy {
       efClear(ef_en); 
       efClear(ef_th);
 
-      /*move 2nd xtal Y to keep beam offset fixed */
+      /* move 2nd xtal Y to keep beam offset fixed */
       if (y2_track) {
         width  =  height / (2 * cos(th * d2r));
         pvPut(width);
         y2_old = y2;
-        y2  = y2_off + width;
+        y2 = y2_off + width;
         y2_diff = fabs(y2 - y2_old);
         if (y2_diff > y2_mvmin) {  pvPut(y2);  }
         if (verbose) { printf("  En(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
@@ -343,14 +358,30 @@ ss GSE_MonoEnergy {
 
       /* track undulator    */
       if (id_track) {
-        id_val  = (id_offset + en * mil * id_factor) ;  
-        if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
-        pvPut(id_val);
-        if (verbose) { printf("  En(mono)> ID energy -> %12.6f\n",id_val);}
+        if (id_control_mode == ID_CONTROL_MODE_ENERGY) {
+          /* Copy the ID harmonic from the mono database to the undulator */
+          id_harmonic = id_harm_num;
+          pvPut(id_harmonic);
+          id_val  = (id_offset + en * mil) ;  
+          if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+          pvPut(id_val);
+          if (verbose) { printf("  En(mono)> ID energy -> %12.6f\n",id_val);}
+        }
+        else {
+          status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
+          if (status == 0) {
+            id_gap = id_offset + gap;
+            pvPut(id_gap);
+            if (verbose) { printf(", id_gap->%12.6f",id_gap);}
+          } else {
+            printf("Error calling GSE_monoEnergyToGap for harmonic=%d energy=%f\n", id_harm_num, en);
+          }
+        }
       }
+
       if (y2_track||id_track) { /* wait for undulator and/or y2 track */
         d_time = 0.03; 
-        /* tweak mono theta and wait */
+        /* wait */
         for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
           epicsThreadSleep(d_time);
           still_busy = ((th_done == 0) || id_busy);
@@ -398,7 +429,7 @@ ss GSE_MonoEnergy {
     /* undulator tracking : reset offset if switched to on */
     when( efTestAndClear(ef_id_set_off)) {
       if (id_set_off == 1) {
-        id_offset = id_val - en * mil * id_factor;
+        id_offset = id_val - en * mil;
         pvPut(id_offset);
         if (verbose) {printf("  En(id_track)> changed ID off => %12.6f\n",id_offset);}
       }
@@ -438,15 +469,19 @@ ss GSE_MonoEnergy {
         pvPut(num_mono_positions);
       }
       gap_step = (id_end_gap - id_start_gap)/(num_mono_positions-1);
-      for (i=0; i<num_mono_positions; i++) {
+      if (verbose) {printf("  En(compute_mono_positions) gap_start=%f, gap_stop=%f, gap_step=%f\n", id_start_gap, id_end_gap, gap_step);}
+      for (i=0; i<MAX_POSITIONS; i++) {
         mono_angles[i] = 0;
         mono_heights[i] = 0;
+      }
+      for (i=0; i<num_mono_positions; i++) {
         gap = id_start_gap + gap_step*i;
         status = GSE_MonoGapToEnergy(id_harmonic, gap, &energy);
         if (status) {
           printf(" En(compute_mono_positions), error converting gap=%f to energy for harmonic %d\n", gap, id_harmonic);
           energy = 0;
-        }
+        } 
+        if (verbose) {printf("  En(compute_mono_positions) i=%d, gap=%f, energy=%f\n", i, gap, energy);}
         mono_angles[i] = (asin(omega / energy) * r2d);
         if (y2_track) {
           mono_heights[i]  = y2_off + height / (2 * cos(mono_angles[i] * d2r));
