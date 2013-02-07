@@ -37,11 +37,16 @@ program GSE_MonoEnergy("MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, 
 #define ID_CONTROL_MODE_ENERGY 0
 #define ID_CONTROL_MODE_GAP    1
 
+/* These are from the enums for motor .SPMG" */
+#define MOTOR_STOP 0
+#define MOTOR_GO   3
+
 char *calibrationFile;
 
 /* 2nd crystal table PVs  */
 double y2;        assign y2        to "{MY}.VAL";             monitor y2;
 int    y2_done;   assign y2_done   to "{MY}.DMOV";            monitor y2_done;
+int    y2_stop;   assign y2_stop   to "{MY}.SPMG";
 double y2_mvmin;  assign y2_mvmin  to "{MONO}:y2_mvmin.VAL";  monitor y2_mvmin;
 
 /* Mono Angle PV */        
@@ -49,6 +54,7 @@ double th;        assign th        to "{MTH}.VAL";   monitor th;
 double th_rbv;    assign th_rbv    to "{MTH}.RBV";   monitor th_rbv;
 int    th_set;    assign th_set    to "{MTH}.SET";
 int    th_done;   assign th_done   to "{MTH}.DMOV";  monitor th_done;
+int    th_stop;   assign th_stop   to "{MTH}.SPMG";
 
 /* undulator PVs  (from {ID}) */
 double id_val;        assign id_val       to "{ID}ScanEnergy.VAL";    monitor id_val;
@@ -68,7 +74,7 @@ double dspace;    assign dspace    to "{MONO}:dspace.VAL";    monitor dspace;
 double height;    assign height    to "{MONO}:height.VAL";    monitor height;
 double width;     assign width     to "{MONO}:width.VAL";     monitor width;
 int    verbose;   assign verbose   to "{MONO}:verbose.VAL";   monitor verbose;
-int    id_abort;  assign id_abort  to "{MONO}:id_abort.VAL";  
+int    en_abort;  assign en_abort  to "{MONO}:en_abort.VAL";  
 
 double en_timeout; assign en_timeout to "{MONO}:timeout.VAL";    
 int    en_busy;    assign en_busy    to "{MONO}:Moving.VAL";    monitor en_busy;
@@ -125,10 +131,9 @@ double en_min;
 double en_max;
 double th_min;
 double th_max;
-float  d_time;
 double tiny;
 double y2_diff; double y2_old; 
-int still_busy;
+int move_busy;
 int wait_count;
 int timeout_ticks;
 int i;
@@ -282,48 +287,14 @@ ss GSE_MonoEnergy {
         if (verbose) { 
           printf("  En(move)> 2nd XTAL y2->%12.6f, height->%12.6f\n", y2, height);}
         } 
-
-        /* wait for undulator, mono, 2nd xtal to finish 
-           this gets tricky as we're waiting for things that 
-           may or may not be moving */
-        timeout_ticks = (1000.0*en_timeout)+0.5;
-
-        /* Wait */
-        for (wait_count=0, still_busy=1; still_busy; wait_count++) {
-          epicsThreadSleep(0.001);
-          still_busy = ((y2_track) && (y2_done == 0))||(th_done == 0) || (id_busy&&id_wait);
-          if (fb_is_on && fb_use)         { still_busy = still_busy || (fb_locked == 0); }
-          if (wait_count > timeout_ticks) { still_busy = 0;}
-          if (verbose&& (wait_count%100==0)) {
-            printf("  En(wait): count/timeout=%4.4d/%4.4d", wait_count, timeout_ticks);
-            printf(", busy=%d, id_done=%d, th_done=%d, y2_done=%d", still_busy,!(id_busy&&id_wait),
-              th_done, y2_done);
-            if (fb_is_on) {
-              printf(", feedback is on, locked=%d", fb_locked);
-            }
-            printf("\n");
-          }
-        }
       }
-      /* add force rbv update based on th_rbv */
-      en_busy = 0; pvPut(en_busy);
-      efClear(ef_busy);
-      en_rbv =  omega / sin(th_rbv * d2r) ;
-      pvPut(en_rbv);
-      efClear(ef_th);
-      efClear(ef_th_rbv);
-      efClear(ef_width);
-      efClear(ef_busy);
-      en_moving = 0;
-      if (verbose) {printf("  En(move)> done\n");}
-    } state monitor_changes
+    } state wait_done
     
 /*-------------------------------------------------------------------*/
 /* 
     Other Events :
     when undulator changes  by itself:  do nothing 
-    when theta changes by itself, change energy, and let
-    the undulator stay where they are */
+    when theta changes by itself, change energy, and track y2 and undulator */
     /* mono angle changed */
     when( efTestAndClear(ef_th) ) { 
       if (verbose) {printf("  En(mono)> Mono angle changed: %12.6f\n", th); }
@@ -378,29 +349,7 @@ ss GSE_MonoEnergy {
           }
         }
       }
-
-      if (y2_track||id_track) { /* wait for undulator and/or y2 track */
-        d_time = 0.03; 
-        /* wait */
-        for (wait_count=0, still_busy=1; (wait_count<128) && still_busy; wait_count++) {
-          epicsThreadSleep(d_time);
-          still_busy = ((th_done == 0) || id_busy);
-          if (fb_is_on && fb_use) {  still_busy = still_busy || (fb_locked == 0); }
-          if (verbose) {
-            printf("En(mono) [%i%i%i]", id_busy, th_done, wait_count);
-            if (!(wait_count % 8)) printf("\n");
-          }
-        }
-        if ((verbose) && (wait_count % 8)) {printf("\n");}
-      }
-
-      efClear(ef_th_rbv); 
-
-      if (verbose) { printf("end of theta event: put en_busy to 0\n"); }
-      en_busy = 0;   pvPut(en_busy);
-      efClear(ef_busy);
-      en_moving = 0;
-    } state monitor_changes
+    } state wait_done
 
     /* ef_busy: en_busy got set to 1 ... did the mono really move? */
     when(efTestAndClear(ef_busy) ) { 
@@ -494,5 +443,65 @@ ss GSE_MonoEnergy {
       compute_mono_positions = 0;
       pvPut(compute_mono_positions);
     } state monitor_changes
+  }
+  
+  state wait_done {
+    /* We are relying on the fact that +e and +x are the default options
+     * so the entry and exit blocks are not executed when wait_done transitions to itself */
+    entry {
+      move_busy = 1;
+      timeout_ticks = (1000.0*en_timeout)+0.5;
+      wait_count = 0;
+    }
+    
+    when (en_abort) {
+      id_stop = 1;
+      pvPut(id_stop);
+      th_stop = MOTOR_STOP;
+      pvPut(th_stop, SYNC);
+      th_stop = MOTOR_GO;
+      pvPut(th_stop);
+      y2_stop = MOTOR_STOP;
+      pvPut(y2_stop, SYNC);
+      y2_stop = MOTOR_GO;
+      pvPut(y2_stop);
+      en_abort = 0;
+      pvPut(en_abort);      
+    } state monitor_changes
+
+    when( delay(0.001) ) {
+      /* Wait for undulator, mono, 2nd xtal to finish 
+         this gets tricky as we're waiting for things that 
+         may or may not be moving */
+      move_busy = ((y2_track) && (y2_done == 0)) || (th_done == 0) || (id_busy && id_wait);
+      if (fb_is_on && fb_use && (fb_locked == 0)) move_busy = 1;
+      if (wait_count > timeout_ticks) move_busy = 0;
+      if (verbose && (wait_count%100 == 0)) {
+        printf("  En(wait): count/timeout=%4.4d/%4.4d", wait_count, timeout_ticks);
+        printf(", busy=%d, id_done=%d, th_done=%d, y2_done=%d", move_busy, !(id_busy && id_wait),
+          th_done, y2_done);
+        if (fb_is_on) {
+          printf(", feedback is on, locked=%d", fb_locked);
+        }
+        printf("\n");
+      }
+    } state wait_done
+    
+    when (move_busy == 0) {
+    } state monitor_changes
+    
+    exit {
+      /* Add force rbv update based on th_rbv */
+      en_rbv =  omega / sin(th_rbv * d2r) ;
+      pvPut(en_rbv);
+      efClear(ef_th);
+      efClear(ef_th_rbv);
+      efClear(ef_width);
+      efClear(ef_busy);
+      en_moving = 0;
+      if (verbose) {printf("  En(move)> done\n");}
+      en_busy = 0; pvPut(en_busy);
+      efClear(ef_busy);
+    }
   }
 }
