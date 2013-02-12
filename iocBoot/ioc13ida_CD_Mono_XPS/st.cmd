@@ -43,6 +43,9 @@ XPSEnableSetPosition(0)
 # Motor records
 dbLoadTemplate("motors.template")
 
+dbLoadTemplate  "mono_energy.template"
+dbLoadTemplate  "mono_position.template"
+
 # Auxillary I/O records
 dbLoadTemplate("XPSAux.substitutions")
 
@@ -118,7 +121,7 @@ create_monitor_set("auto_positions.req",5,"P=13IDA:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDA:")
 
-seq(&GSE_MonoEnergy, "PRE=13IDA:, MONO=CD, ID=ID13ds:, MTH=m57, MY=m58, FB=mono_pid1")
+seq(&GSE_MonoEnergy, "MONO=13IDA:CDEn, ID=ID13ds:, MTH=13IDA:m57, MY=13IDA:m58, FB=13IDA:mono_pid1")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13IDA:m57.NTM","0")
