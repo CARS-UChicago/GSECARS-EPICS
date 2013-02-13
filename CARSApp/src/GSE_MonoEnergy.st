@@ -87,6 +87,7 @@ int    fb_locked;   assign fb_locked to "{FB}Locked";               monitor fb_l
 
 /* undulator tracking and offset */
 int    id_track;        assign id_track        to "{MONO}:id_track.VAL";        monitor id_track;
+int    theta_track;     assign theta_track     to "{MONO}:theta_track.VAL";     monitor theta_track;
 int    id_wait;         assign id_wait         to "{MONO}:id_wait.VAL";         monitor id_wait;
 double id_offset;       assign id_offset       to "{MONO}:id_off.VAL";          monitor id_offset;
 int    id_set_off;      assign id_set_off      to "{MONO}:id_set_off.VAL";      monitor id_set_off;
@@ -294,9 +295,9 @@ ss GSE_MonoEnergy {
 /* 
     Other Events :
     when undulator changes  by itself:  do nothing 
-    when theta changes by itself, change energy, and track y2 and undulator */
+    when theta changes by itself anf theta_track=1, change energy, and track y2 and undulator */
     /* mono angle changed */
-    when( efTestAndClear(ef_th) ) { 
+    when( efTestAndClear(ef_th) && (theta_track != 0)) { 
       if (verbose) {printf("  En(mono)> Mono angle changed: %12.6f\n", th); }
       if (th < th_min)  {
         th = th_min;

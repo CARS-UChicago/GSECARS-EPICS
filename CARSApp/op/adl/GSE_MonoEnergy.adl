@@ -8,7 +8,7 @@ display {
 		x=100
 		y=100
 		width=726
-		height=470
+		height=500
 	}
 	clr=46
 	bclr=1
@@ -944,7 +944,7 @@ rectangle {
 		x=5
 		y=160
 		width=420
-		height=130
+		height=155
 	}
 	"basic attribute" {
 		clr=47
@@ -963,647 +963,6 @@ rectangle {
 		chan="$(MONO):y2_track"
 		clr=54
 		bclr=55
-	}
-}
-"message button" {
-	object {
-		x=170
-		y=265
-		width=180
-		height=20
-	}
-	control {
-		chan="$(MONO):id_set_off.VAL"
-		clr=14
-		bclr=31
-	}
-	label="Use Current ID offset"
-	press_msg="1"
-	release_msg="1"
-}
-text {
-	object {
-		x=15
-		y=445
-		width=27
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="1st"
-}
-"text update" {
-	object {
-		x=50
-		y=445
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:DMM1$(TC1)_calc.VAL"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-		precSrc="default"
-		precDefault=1
-	}
-}
-"text update" {
-	object {
-		x=190
-		y=445
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:DMM1$(TC2)_calc.VAL"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-		precSrc="default"
-		precDefault=1
-	}
-}
-text {
-	object {
-		x=260
-		y=445
-		width=9
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="C"
-}
-rectangle {
-	object {
-		x=5
-		y=410
-		width=290
-		height=55
-	}
-	"basic attribute" {
-		clr=47
-		fill="outline"
-		width=2
-	}
-}
-text {
-	object {
-		x=145
-		y=445
-		width=27
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="2nd"
-}
-"related display" {
-	object {
-		x=10
-		y=415
-		width=180
-		height=25
-	}
-	display[1] {
-		label="mono cryo /vac"
-		name="13ID_$(Q)_mono_cryovac.adl"
-	}
-	clr=24
-	bclr=55
-	label="-Crystal Temperatures"
-}
-rectangle {
-	object {
-		x=5
-		y=293
-		width=420
-		height=110
-	}
-	"basic attribute" {
-		clr=47
-		fill="outline"
-		width=2
-	}
-}
-text {
-	object {
-		x=120
-		y=305
-		width=54
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Energy"
-}
-"related display" {
-	object {
-		x=10
-		y=300
-		width=89
-		height=25
-	}
-	display[0] {
-		label="Undulator Control"
-		name="UndulatorCtl.adl"
-		args="xx=$(ID)"
-	}
-	display[1] {
-		label="Undulator Sync Control"
-		name="UndulatorSyncCtl.adl"
-		args="xx=$(ID)"
-	}
-	display[2] {
-		label="Undulator Taper Control"
-		name="UndulatorTprCtl.adl"
-		args="xx=$(ID)"
-	}
-	clr=24
-	bclr=55
-	label="-Undulator "
-}
-text {
-	object {
-		x=315
-		y=415
-		width=70
-		height=20
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="Crystal"
-}
-text {
-	object {
-		x=350
-		y=305
-		width=27
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Gap"
-}
-"text update" {
-	object {
-		x=30
-		y=331
-		width=80
-		height=15
-	}
-	monitor {
-		chan="ID$(ID):Energy.VAL"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=115
-		y=328
-		width=60
-		height=20
-	}
-	control {
-		chan="ID$(ID):ScanEnergy.VAL"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=180
-		y=331
-		width=21
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="keV"
-}
-text {
-	object {
-		x=41
-		y=356
-		width=45
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Tweak"
-}
-"message button" {
-	object {
-		x=91
-		y=353
-		width=20
-		height=20
-	}
-	control {
-		chan="$(MONO):UndEnergyTweak.A"
-		clr=14
-		bclr=0
-	}
-	label="<"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=116
-		y=353
-		width=60
-		height=20
-	}
-	control {
-		chan="$(MONO):UndEnergyTweakVal"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=181
-		y=353
-		width=20
-		height=20
-	}
-	control {
-		chan="$(MONO):UndEnergyTweak.B"
-		clr=14
-		bclr=0
-	}
-	label=">"
-	press_msg="1"
-}
-text {
-	object {
-		x=13
-		y=381
-		width=72
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Harmonic"
-}
-"text update" {
-	object {
-		x=90
-		y=381
-		width=20
-		height=15
-	}
-	monitor {
-		chan="ID$(ID):HarmonicValue"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=115
-		y=378
-		width=60
-		height=20
-	}
-	control {
-		chan="$(MONO):id_harmonic"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=249
-		y=331
-		width=80
-		height=15
-	}
-	monitor {
-		chan="ID$(ID):Gap.VAL"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=334
-		y=328
-		width=60
-		height=20
-	}
-	control {
-		chan="ID$(ID):ScanGap.VAL"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=399
-		y=331
-		width=14
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="mm"
-}
-"text entry" {
-	object {
-		x=335
-		y=353
-		width=60
-		height=20
-	}
-	control {
-		chan="$(MONO):UndGapTweakVal"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=399
-		y=353
-		width=20
-		height=20
-	}
-	control {
-		chan="$(MONO):UndGapTweak.B"
-		clr=14
-		bclr=0
-	}
-	label=">"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=309
-		y=353
-		width=20
-		height=20
-	}
-	control {
-		chan="$(MONO):UndGapTweak.A"
-		clr=14
-		bclr=0
-	}
-	label="<"
-	press_msg="1"
-}
-text {
-	object {
-		x=259
-		y=356
-		width=45
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Tweak"
-}
-"text update" {
-	object {
-		x=310
-		y=381
-		width=20
-		height=15
-	}
-	monitor {
-		chan="ID$(ID):DeadbandGap"
-		clr=54
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=333
-		y=378
-		width=60
-		height=20
-	}
-	control {
-		chan="ID$(ID):DeadbandGap"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=398
-		y=381
-		width=14
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="um"
-}
-text {
-	object {
-		x=233
-		y=381
-		width=72
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Deadband"
-}
-"text update" {
-	object {
-		x=315
-		y=440
-		width=60
-		height=20
-	}
-	monitor {
-		chan="$(MONO):MonoPosition"
-		clr=14
-		bclr=1
-	}
-	align="horiz. centered"
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
-		x=176
-		y=193
-		width=162
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="MonoE waits for ID"
-}
-"choice button" {
-	object {
-		x=345
-		y=190
-		width=70
-		height=20
-	}
-	control {
-		chan="$(MONO):id_wait"
-		clr=54
-		bclr=55
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=203
-		y=218
-		width=135
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="ID control mode"
-}
-"choice button" {
-	object {
-		x=345
-		y=165
-		width=70
-		height=20
-	}
-	control {
-		chan="$(MONO):id_track"
-		clr=54
-		bclr=55
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=203
-		y=168
-		width=135
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="ID Tracks MonoE"
-}
-"message button" {
-	object {
-		x=345
-		y=240
-		width=70
-		height=20
-	}
-	control {
-		chan="$(MONO):compute_mono_positions"
-		clr=14
-		bclr=31
-	}
-	label="Compute"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=275
-		y=240
-		width=60
-		height=20
-	}
-	control {
-		chan="$(MONO):num_mono_positions"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=125
-		y=243
-		width=144
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="# mono positions"
-}
-menu {
-	object {
-		x=345
-		y=215
-		width=70
-		height=20
-	}
-	control {
-		chan="$(MONO):id_control_mode"
-		clr=54
-		bclr=55
-	}
-}
-menu {
-	object {
-		x=395
-		y=440
-		width=70
-		height=20
-	}
-	control {
-		chan="$(MONO):MonoPosition"
-		clr=13
-		bclr=4
 	}
 }
 text {
@@ -1632,4 +991,682 @@ text {
 	}
 	label="Stop all motion"
 	press_msg="1"
+}
+composite {
+	object {
+		x=5
+		y=318
+		width=460
+		height=172
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=15
+				y=470
+				width=27
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="1st"
+		}
+		"text update" {
+			object {
+				x=50
+				y=470
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:DMM1$(TC1)_calc.VAL"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=190
+				y=470
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:DMM1$(TC2)_calc.VAL"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		text {
+			object {
+				x=260
+				y=470
+				width=9
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="C"
+		}
+		rectangle {
+			object {
+				x=5
+				y=435
+				width=290
+				height=55
+			}
+			"basic attribute" {
+				clr=47
+				fill="outline"
+				width=2
+			}
+		}
+		text {
+			object {
+				x=145
+				y=470
+				width=27
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="2nd"
+		}
+		"related display" {
+			object {
+				x=10
+				y=440
+				width=180
+				height=25
+			}
+			display[1] {
+				label="mono cryo /vac"
+				name="13ID_$(Q)_mono_cryovac.adl"
+			}
+			clr=24
+			bclr=55
+			label="-Crystal Temperatures"
+		}
+		rectangle {
+			object {
+				x=5
+				y=318
+				width=420
+				height=110
+			}
+			"basic attribute" {
+				clr=47
+				fill="outline"
+				width=2
+			}
+		}
+		text {
+			object {
+				x=120
+				y=330
+				width=54
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Energy"
+		}
+		"related display" {
+			object {
+				x=10
+				y=325
+				width=89
+				height=25
+			}
+			display[0] {
+				label="Undulator Control"
+				name="UndulatorCtl.adl"
+				args="xx=$(ID)"
+			}
+			display[1] {
+				label="Undulator Sync Control"
+				name="UndulatorSyncCtl.adl"
+				args="xx=$(ID)"
+			}
+			display[2] {
+				label="Undulator Taper Control"
+				name="UndulatorTprCtl.adl"
+				args="xx=$(ID)"
+			}
+			clr=24
+			bclr=55
+			label="-Undulator "
+		}
+		text {
+			object {
+				x=315
+				y=440
+				width=70
+				height=20
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Crystal"
+		}
+		text {
+			object {
+				x=350
+				y=330
+				width=27
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Gap"
+		}
+		"text update" {
+			object {
+				x=30
+				y=356
+				width=80
+				height=15
+			}
+			monitor {
+				chan="ID$(ID):Energy.VAL"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=115
+				y=353
+				width=60
+				height=20
+			}
+			control {
+				chan="ID$(ID):ScanEnergy.VAL"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=180
+				y=356
+				width=21
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="keV"
+		}
+		text {
+			object {
+				x=41
+				y=381
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Tweak"
+		}
+		"message button" {
+			object {
+				x=91
+				y=378
+				width=20
+				height=20
+			}
+			control {
+				chan="$(MONO):UndEnergyTweak.A"
+				clr=14
+				bclr=0
+			}
+			label="<"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=116
+				y=378
+				width=60
+				height=20
+			}
+			control {
+				chan="$(MONO):UndEnergyTweakVal"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=181
+				y=378
+				width=20
+				height=20
+			}
+			control {
+				chan="$(MONO):UndEnergyTweak.B"
+				clr=14
+				bclr=0
+			}
+			label=">"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=13
+				y=406
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Harmonic"
+		}
+		"text update" {
+			object {
+				x=90
+				y=406
+				width=20
+				height=15
+			}
+			monitor {
+				chan="ID$(ID):HarmonicValue"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=115
+				y=403
+				width=60
+				height=20
+			}
+			control {
+				chan="$(MONO):id_harmonic"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=249
+				y=356
+				width=80
+				height=15
+			}
+			monitor {
+				chan="ID$(ID):Gap.VAL"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=334
+				y=353
+				width=60
+				height=20
+			}
+			control {
+				chan="ID$(ID):ScanGap.VAL"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=399
+				y=356
+				width=14
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="mm"
+		}
+		"text entry" {
+			object {
+				x=335
+				y=378
+				width=60
+				height=20
+			}
+			control {
+				chan="$(MONO):UndGapTweakVal"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=399
+				y=378
+				width=20
+				height=20
+			}
+			control {
+				chan="$(MONO):UndGapTweak.B"
+				clr=14
+				bclr=0
+			}
+			label=">"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=309
+				y=378
+				width=20
+				height=20
+			}
+			control {
+				chan="$(MONO):UndGapTweak.A"
+				clr=14
+				bclr=0
+			}
+			label="<"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=259
+				y=381
+				width=45
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Tweak"
+		}
+		"text update" {
+			object {
+				x=310
+				y=406
+				width=20
+				height=15
+			}
+			monitor {
+				chan="ID$(ID):DeadbandGap"
+				clr=54
+				bclr=1
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=333
+				y=403
+				width=60
+				height=20
+			}
+			control {
+				chan="ID$(ID):DeadbandGap"
+				clr=14
+				bclr=0
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=398
+				y=406
+				width=14
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="um"
+		}
+		text {
+			object {
+				x=233
+				y=406
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Deadband"
+		}
+		"text update" {
+			object {
+				x=315
+				y=465
+				width=60
+				height=20
+			}
+			monitor {
+				chan="$(MONO):MonoPosition"
+				clr=14
+				bclr=1
+			}
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		menu {
+			object {
+				x=395
+				y=465
+				width=70
+				height=20
+			}
+			control {
+				chan="$(MONO):MonoPosition"
+				clr=13
+				bclr=4
+			}
+		}
+	}
+}
+"message button" {
+	object {
+		x=170
+		y=290
+		width=180
+		height=20
+	}
+	control {
+		chan="$(MONO):id_set_off.VAL"
+		clr=14
+		bclr=31
+	}
+	label="Use Current ID offset"
+	press_msg="1"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=345
+		y=265
+		width=70
+		height=20
+	}
+	control {
+		chan="$(MONO):compute_mono_positions"
+		clr=14
+		bclr=31
+	}
+	label="Compute"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=275
+		y=265
+		width=60
+		height=20
+	}
+	control {
+		chan="$(MONO):num_mono_positions"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=125
+		y=268
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="# mono positions"
+}
+text {
+	object {
+		x=168
+		y=218
+		width=171
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Energy waits for ID"
+}
+"choice button" {
+	object {
+		x=345
+		y=215
+		width=70
+		height=20
+	}
+	control {
+		chan="$(MONO):id_wait"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=204
+		y=243
+		width=135
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="ID control mode"
+}
+menu {
+	object {
+		x=345
+		y=240
+		width=70
+		height=20
+	}
+	control {
+		chan="$(MONO):id_control_mode"
+		clr=54
+		bclr=55
+	}
+}
+"choice button" {
+	object {
+		x=345
+		y=165
+		width=70
+		height=20
+	}
+	control {
+		chan="$(MONO):id_track"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=195
+		y=168
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="ID Tracks Energy"
+}
+"choice button" {
+	object {
+		x=345
+		y=190
+		width=70
+		height=20
+	}
+	control {
+		chan="$(MONO):theta_track"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=168
+		y=193
+		width=171
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Energy tracks theta"
 }
