@@ -13,24 +13,24 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "newport-xps5", 5001, 8, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.14", 5001, 8, 10, 500, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "newport-xps5", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "164.54.160.14", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 XPSCreateAxis("XPS1",0,"GROUP1.THETA",  "87466.6667")  
-XPSCreateAxis("XPS1",1,"GROUP2.HEIGHT", "5000")  
+XPSCreateAxis("XPS1",1,"GROUP1.HEIGHT", "5000")  
 XPSCreateAxis("XPS1",2,"GROUP3.PITCH",  "5600")  
 XPSCreateAxis("XPS1",3,"GROUP4.ROLL",   "5600")  
 XPSCreateAxis("XPS1",4,"GROUP5.HEIGHT", "56500")  
-XPSCreateAxis("XPS1",5,"GROUP6.DUMMY",  "56500")  
-XPSCreateAxis("XPS1",6,"GROUP7.DUMMY",  "56500")  
-XPSCreateAxis("XPS1",7,"GROUP8.DUMMY",  "56500")  
+XPSCreateAxis("XPS1",5,"GROUP6.P",      "56500")  
+XPSCreateAxis("XPS1",6,"GROUP7.P",      "56500")  
+XPSCreateAxis("XPS1",7,"GROUP8.P",      "56500")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -50,7 +50,7 @@ dbLoadTemplate  "mono_position.template"
 dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "newport-xps5:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "164.54.160.14:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
