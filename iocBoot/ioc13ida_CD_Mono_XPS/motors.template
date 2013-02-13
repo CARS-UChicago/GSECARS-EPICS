@@ -35,5 +35,35 @@ pattern
 {13IDA:,  m64, XPS1,  7}
 }
 
+file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+{
+pattern
+{P,       R,       PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13IDA:,  CDProf:, XPS1,     2,   10010,   10010,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,     PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13IDA:,  CDProf:, XPS1,     6,   10010,   10010,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+{
+pattern
+{P,       R,       M,  PORT, ADDR, NPOINTS,  NREADBACK,     MOTOR, PREC, TIMEOUT}
+{13IDA:,  CDProf:, 1,  XPS1,    0,   10010,      10010, 13IDA:m57,    5,       1}
+{13IDA:,  CDProf:, 2,  XPS1,    1,   10010,      10010, 13IDA:m58,    4,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,       M,  PORT, ADDR, NPOINTS,  NREADBACK, PREC, TIMEOUT}
+{13IDA:,  CDProf:, 1,  XPS1,    0,   10010,      10010,    5,       1}
+{13IDA:,  CDProf:, 2,  XPS1,    1,   10010,      10010,    4,       1}
+}
+
 
 
