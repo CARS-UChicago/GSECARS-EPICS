@@ -3,7 +3,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 #
-dbLoadDatabase("../../dbd/CARSLinux.dbd")
+dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 
@@ -13,36 +13,44 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.83", 5001, 3, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.4", 5001, 8, 10, 505, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.83", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "164.54.160.4", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",1,"GROUP2.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",2,"GROUP3.POSITIONER",  "50000")  
+XPSCreateAxis("XPS1",0,"GROUP1.DET_Y",    "10000")  
+XPSCreateAxis("XPS1",1,"GROUP2.PRESS_Y",  "10000")  
+XPSCreateAxis("XPS1",2,"GROUP3.PRESS_X",  "10000")  
+XPSCreateAxis("XPS1",3,"GROUP4.DET_X",    "10000")  
+XPSCreateAxis("XPS1",4,"GROUP5.DET_Z",    "10000")  
+XPSCreateAxis("XPS1",5,"GROUP6.PRESS_Z",  "10000")  
+XPSCreateAxis("XPS1",6,"GROUP7.DET_TILT", "46692")  
+XPSCreateAxis("XPS1",7,"GROUP8.DET_ROT",  "4000")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
 XPSCreateProfile("XPS1", 10010, "Administrator", "Administrator")
 
-# Disable setting position from motor record
-XPSEnableSetPosition(0) 
 
 ################################################################################
 # Motor records
-dbLoadTemplate("motors_xps.template")
+dbLoadTemplate("motors.template")
 
 # Auxillary I/O records
 dbLoadTemplate("XPSAux.substitutions")
 
+# A set of scan parameters for each positioner.  This is a convenience
+# for the user.  It can contain an entry for each scannable thing in the
+# crate.
+dbLoadTemplate "scanParms.template"
+
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.83:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "164.54.160.4:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMD:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
@@ -67,9 +75,9 @@ set_savefile_path(".", "autosave")
 # specify what save files should be restored.  Note these files must be
 # in the directory specified in set_savefile_path(), or, if that function
 # has not been called, from the directory current when iocInit is invoked
-set_pass0_restoreFile("auto_positions_xps.sav")
-set_pass0_restoreFile("auto_settings_xps.sav")
-set_pass1_restoreFile("auto_settings_xps.sav")
+set_pass0_restoreFile("auto_positions.sav")
+set_pass0_restoreFile("auto_settings.sav")
+set_pass1_restoreFile("auto_settings.sav")
 
 ###
 # specify directories in which to to search for included request files
@@ -109,13 +117,13 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions_xps.req",5,"P=13BMD:")
+create_monitor_set("auto_positions.req",5,"P=13BMD:")
 # save other things every thirty seconds
-create_monitor_set("auto_settings_xps.req",30,"P=13BMD:")
+create_monitor_set("auto_settings.req",30,"P=13BMD:")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
-dbpf("13BMD:m89.NTM","0")
-dbpf("13BMD:m90.NTM","0")
-dbpf("13BMD:m91.NTM","0")
+#dbpf("13BMD:m97.NTM","0")
+#dbpf("13BMD:m98.NTM","0")
+#dbpf("13BMD:m99.NTM","0")
 
-motorUtilInit("13BMD_XPS:")
+motorUtilInit("13BMD_LVP_XPS:")
