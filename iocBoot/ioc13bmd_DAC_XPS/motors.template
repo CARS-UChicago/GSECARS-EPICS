@@ -1,0 +1,33 @@
+
+
+# XPS Stages
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,      N,   M,     DTYP,   PORT, ADDR, DESC,       EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV,UREV, PREC,  DHLM,     DLLM}
+{13BMD:, 1, m91, "asynMotor", XPS1, 0, "Focus X",     mm,  Pos,  5.,   1,   0.5,   0, 1, .2,      10000, 1,    3,    12.45,  -12.45}
+{13BMD:, 2, m90, "asynMotor", XPS1, 1, "Vert Z",     mm,  Pos,  5.,   1,   0.5,   0, 1, .2,      10000, 1,    3,    12.45,  -12.45}
+{13BMD:, 3, m89, "asynMotor", XPS1, 2, "Horiz Y",      mm,  Neg,  5.,   1,   0.5,   0, 1, .2,      50000, 1,    3,     2.45,   -2.45}
+# {13BMD:, 4, m92, "asynMotor", XPS1, 3, "unused",      mm,  Pos,  2.,   1,   5.0,   0, 1, .5,       1000, 1,    3,    50.0,    -50.0}
+# {13BMD:, 5, m93, "asynMotor", XPS1, 4, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+# {13BMD:, 6, m94, "asynMotor", XPS1, 5, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+# {13BMD:, 7, m95, "asynMotor", XPS1, 6, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+# {13BMD:, 8, m96, "asynMotor", XPS1, 7, "unused",      mm,  Pos,  5.,   1,   1.0,   0, 1, .5,       5000, 1,    3,   292.0,     -8.0}
+}
+
+file "$(MOTOR)/motorApp/Db/XPS_extra.db"
+{
+pattern
+{P,     R,  PORT,  ADDR}
+{13BMD:,  m89, XPS1,  0}
+{13BMD:,  m90, XPS1,  1}
+{13BMD:,  m91, XPS1,  2}
+#{13BMD:,  m92, XPS1,  3}
+#{13BMD:,  m93, XPS1,  4}
+#{13BMD:,  m94, XPS1,  5}
+#{13BMD:,  m95, XPS1,  6}
+#{13BMD:,  m96, XPS1,  7}
+}
+
+
+
