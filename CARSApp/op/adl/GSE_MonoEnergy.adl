@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=100
-		y=100
+		x=970
+		y=625
 		width=726
 		height=500
 	}
@@ -181,7 +181,7 @@ composite {
 rectangle {
 	object {
 		x=430
-		y=125
+		y=238
 		width=290
 		height=60
 	}
@@ -641,7 +641,7 @@ text {
 "related display" {
 	object {
 		x=435
-		y=130
+		y=243
 		width=45
 		height=25
 	}
@@ -656,7 +656,7 @@ text {
 "text update" {
 	object {
 		x=592
-		y=135
+		y=248
 		width=40
 		height=15
 	}
@@ -688,7 +688,7 @@ text {
 "message button" {
 	object {
 		x=660
-		y=224
+		y=337
 		width=55
 		height=22
 	}
@@ -704,7 +704,7 @@ text {
 "message button" {
 	object {
 		x=605
-		y=224
+		y=337
 		width=55
 		height=22
 	}
@@ -720,7 +720,7 @@ text {
 text {
 	object {
 		x=440
-		y=226
+		y=339
 		width=72
 		height=18
 	}
@@ -732,7 +732,7 @@ text {
 rectangle {
 	object {
 		x=430
-		y=190
+		y=303
 		width=290
 		height=60
 	}
@@ -745,7 +745,7 @@ rectangle {
 "text update" {
 	object {
 		x=525
-		y=200
+		y=313
 		width=60
 		height=20
 	}
@@ -762,7 +762,7 @@ rectangle {
 text {
 	object {
 		x=440
-		y=200
+		y=313
 		width=80
 		height=18
 	}
@@ -775,7 +775,7 @@ text {
 "message button" {
 	object {
 		x=660
-		y=290
+		y=403
 		width=55
 		height=22
 	}
@@ -791,7 +791,7 @@ text {
 "message button" {
 	object {
 		x=605
-		y=290
+		y=403
 		width=55
 		height=22
 	}
@@ -807,7 +807,7 @@ text {
 text {
 	object {
 		x=440
-		y=291
+		y=404
 		width=72
 		height=18
 	}
@@ -819,7 +819,7 @@ text {
 rectangle {
 	object {
 		x=430
-		y=255
+		y=368
 		width=290
 		height=60
 	}
@@ -832,7 +832,7 @@ rectangle {
 text {
 	object {
 		x=437
-		y=265
+		y=378
 		width=96
 		height=18
 	}
@@ -845,7 +845,7 @@ text {
 text {
 	object {
 		x=506
-		y=135
+		y=248
 		width=81
 		height=15
 	}
@@ -858,7 +858,7 @@ text {
 text {
 	object {
 		x=489
-		y=155
+		y=268
 		width=99
 		height=15
 	}
@@ -871,7 +871,7 @@ text {
 "text update" {
 	object {
 		x=593
-		y=155
+		y=268
 		width=40
 		height=15
 	}
@@ -887,7 +887,7 @@ text {
 menu {
 	object {
 		x=520
-		y=290
+		y=403
 		width=75
 		height=20
 	}
@@ -900,7 +900,7 @@ menu {
 menu {
 	object {
 		x=520
-		y=225
+		y=338
 		width=75
 		height=20
 	}
@@ -913,7 +913,7 @@ menu {
 "text update" {
 	object {
 		x=545
-		y=265
+		y=378
 		width=60
 		height=20
 	}
@@ -1669,4 +1669,195 @@ text {
 		clr=54
 	}
 	textix="Energy tracks theta"
+}
+rectangle {
+	object {
+		x=430
+		y=120
+		width=290
+		height=110
+	}
+	"basic attribute" {
+		clr=47
+		fill="outline"
+		width=2
+	}
+}
+"message button" {
+	object {
+		x=595
+		y=150
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PP)_tweak.A"
+		clr=54
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=695
+		y=150
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PP)_tweak.B"
+		clr=54
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=620
+		y=150
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PP)_tweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=440
+		y=150
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PP).VAL"
+		clr=14
+		bclr=0
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=620
+		y=125
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PP).VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=440
+		y=125
+		width=80
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Pitch Piezo"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=595
+		y=205
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PR)_tweak.A"
+		clr=54
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=695
+		y=205
+		width=20
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PR)_tweak.B"
+		clr=54
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=620
+		y=205
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PR)_tweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=440
+		y=205
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PR).VAL"
+		clr=14
+		bclr=0
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=620
+		y=180
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)DAC1_$(PR).VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=440
+		y=180
+		width=80
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Roll Piezo"
+	align="horiz. centered"
 }
