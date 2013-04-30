@@ -3,7 +3,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 #
-dbLoadDatabase("../../../dbd/CARSLinux.dbd")
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 ################################################################################
@@ -12,10 +12,10 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.55", 5001, 6, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.55", 5001, 6, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
-XPSCreateController("XPS2", "164.54.160.56", 5001, 8, 10, 500, 0, 500)
+XPSCreateController("XPS2", "164.54.160.56", 5001, 8, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS2", 0, 2)
 #asynSetTraceMask("XPS2", 0, 255)
 
@@ -61,7 +61,7 @@ dbLoadTemplate("motors.template")
 dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.124:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "164.54.160.55:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
