@@ -179,16 +179,18 @@ pattern
 {13IDD:,  m79,   "OMS VME58",   9,    6, "M79",                    mm,        Neg, 0.3,  .01, .2,  0.02,   1, .2,   48,   0.0116,    3,  25.,    0}
 {13IDD:,  m80,   "OMS VME58",   9,    7, "M80",                    mm,        Neg, 0.3,  .01, .2,  0.02,   1, .2,   48,   0.0116,    3,  25.,    0}
 
-# NOTE: motors m81-m84 are in a Linux IOC for the Newport XPS
+# NOTE: motors m81-m84 are in a Linux IOC for the Newport XPS (DAC sample stage)
 
+# m85-m92 are ACS MCB-4B for LVP slits
 {13IDD:,  m85,  "ACS MCB-4B",  0, 0, "Bottom",   mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
 {13IDD:,  m86,  "ACS MCB-4B",  0, 1, "Top",      mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
 {13IDD:,  m87,  "ACS MCB-4B",  0, 2, "Inboard",  mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
 {13IDD:,  m88,  "ACS MCB-4B",  0, 3, "Outboard", mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
-{13IDD:,  m89,  "ACS MCB-4B",  1, 0, "Test 5",   mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,   0.4,      3,    8, 0}
-{13IDD:,  m90,  "ACS MCB-4B",  1, 1, "Test 6",   mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,   0.4,      3,    8, 0}
-{13IDD:,  m91,  "ACS MCB-4B",  1, 2, "Test 7",   mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,   0.4,      3,    8, 0}
-{13IDD:,  m92,  "ACS MCB-4B",  1, 3, "Test 8",   mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,   0.4,      3,    8, 0}
+
+{13IDD:,  m89,  "ACS MCB-4B",  1, 0, "Inboard",   mm,   Pos,    2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13IDD:,  m90,  "ACS MCB-4B",  1, 1, "Outboard",  mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13IDD:,  m91,  "ACS MCB-4B",  1, 2, "Bottom",  mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13IDD:,  m92,  "ACS MCB-4B",  1, 3, "Top",     mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
 
 }
 
@@ -240,6 +242,14 @@ pattern
 {13IDD:, DetSlitH,  m88,   m87}
 }
 
+# LVP entrance slits (Dec 11, 2012)
+file "$(OPTICS)/opticsApp/Db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13IDD:, EntSlitV,  m92,   m91}
+{13IDD:, EntSlitH,  m90,   m89}
+}
 # LVP T-cup mode
 file "$(MOTOR)/motorApp/Db/coordTrans2D.db"
 {
