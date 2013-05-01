@@ -71,7 +71,7 @@ configIp330("Ip330_1", 3,"Input",1000,0)
 # maxSignals = maximum number of input signals.
 # maxPoints  = maximum number of points in a sweep.  The amount of memory
 #              allocated will be maxPoints*maxSignals*4 bytes
-initFastSweep("Ip330Sweep1","Ip330_1",4,2048)
+initFastSweep("Ip330Sweep1","Ip330_1",6,2048)
 dbLoadTemplate("Ip330_ADC.template")
 
 #Initialize Greenspring IP-Unidig
