@@ -60,9 +60,6 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
 
-# Auto-Shutter 
-dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
-
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13IDE:")
 
@@ -138,6 +135,5 @@ seq(&SIS38XX_SNL, "P=13IDE:SIS1:, R=mca, NUM_SIGNALS=32, FIELD=READ")
 # dbpf("13IDE:sm3C2","1.00")
 
 dbpf("13IDE:userTranEnable","1")
-dbpf("13IDE:ShutterA:EnableShutter","1")
 
 motorUtilInit("13IDE:")
