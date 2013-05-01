@@ -3,7 +3,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 #
-dbLoadDatabase("../../../dbd/CARSLinux.dbd")
+dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 
@@ -130,9 +130,13 @@ create_monitor_set("auto_positions.req",5,"P=13IDA:")
 create_monitor_set("auto_settings.req",30,"P=13IDA:")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
-dbpf("13IDA:m61.NTM","0")
-dbpf("13IDA:m62.NTM","0")
-dbpf("13IDA:m63.NTM","0")
-dbpf("13IDA:m64.NTM","0")
+dbpf("13IDA:m65.NTM","0")
+dbpf("13IDA:m66.NTM","0")
+dbpf("13IDA:m67.NTM","0")
+dbpf("13IDA:m68.NTM","0")
+dbpf("13IDA:m69.NTM","0")
+dbpf("13IDA:m70.NTM","0")
+dbpf("13IDA:m71.NTM","0")
+dbpf("13IDA:m72.NTM","0")
 
 motorUtilInit("13IDA_EMONO:")
