@@ -42,22 +42,24 @@ pattern
 {13BMD:,  m4, "OMS VME58",   0,  3, "Upstream X",        mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
 {13BMD:,  m5, "OMS VME58",   0,  4, "Inboard X",         mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
 {13BMD:,  m6, "OMS VME58",   0,  5, "Z drive",           mm,    Pos,   .2,   .005,   .05,   0.1,  .2,   .05,  400,  0.066666,3,     30,   -30}
-#changed by Vitali 11.14.05 for CDW experiment, !!!current 5A!!!
-{13BMD:,  m7, "OMS VME58",   0,  6, "theta",             mm,    Pos,   0.5,   0.1,   .2,    0,     1,    .2,  400,    .05,    3,      360,    -360}
+# Add new phosphor motor, Bipolar driver card, Nov 21, 2012
+{13BMD:,  m7, "OMS VME58",   0,  6, "Phosph. pos.",      mm,    Neg,   0.5,   0.1,   .2,    0,     1,    .2,  400,  2.0,     3,    150,     0}
 {13BMD:,  m8, "OMS VME58",   0,  7, "2-theta",           mm,    Neg,   0.5,   0.1,   .2,    0,     1,    .2,  400,    .05,    3,      360,    -360}
 
 {13BMD:,  m9, "OMS VME58",   1,  0, "Detect. X",         mm,    Neg,   .4,   .005,   .1,    0.1,  .4,   .1,   400, -5.08,    3,     50,    0}
 {13BMD:,  m10, "OMS VME58",  1,  1, "Detect. Z",         mm,    Pos,   .4,   .005,   .1,    0.1,  .4,   .1,   400, -5.08,    3,     50,    0}
 {13BMD:,  m16, "OMS VME58",  1,  7, "Detect. Y",         mm,    Pos,   .4,   .005,   .1,    0.1,  .4,   .1,   4000,  5.08,    3,     50,    0}
 {13BMD:,  m12, "OMS VME58",  1,  3, "Simple Two Theta",  deg,   Pos,   .1,   .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -3}
-{13BMD:,  m13, "OMS VME58",  1,  4, "Detector Phi",      deg,   Pos,    .1,  .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -10}
+#{13BMD:,  m13, "OMS VME58",  1,  4, "Detector Phi",      deg,   Pos,    .1,  .005,   .1,    0.1,  .2,   .1,   400,  2.00,    3,     10,   -10}
+#use m13 to test 250 ton press rotation motor, 1/24/2013, YBW
+{13BMD:,  m13, "OMS VME58",  1,  4, "Press Phi",      deg,   Pos,    .1,  .005,   .1,    0.1,  .2,   .1,   200,  0.69230769,    3,     5,   -5}
 
 #LVP ccd stage m11, m14 and 15
 #changed by Vitali 11.14.05 for CDW experiment, !!!current 4A!!!
 {13BMD:,  m11, "OMS VME58",  1,  2, "horisontal X1",     mm,    Pos,   0.2,   .1,    .25,   0.02,   1,     .2,     400,    .1,  3,      6,     -6}
-#Claim back m14 (E6) for LVP phorphos Y, Oct 15, 07
-{13BMD:,  m14, "OMS VME58",  1,  5, "Phosph. pos.",      mm,    Neg,   1.,   .2,    .5,    0.1,     2,     .2,     200,    -0.20,  3,      70,     0}
-
+#Claim back m14 (E6) for LVP phosphor Y, Oct 15, 07
+{13BMD:,  m14, "OMS VME58",  1,  5, "Unused",            mm,    Neg,   1.,   1.0,    .5,    1.0,     1.0,     1.,     400,   .2,  3,      70,     0}
+   
 #changed by Vitali 11.14.05 for CDW experiment, !!!current 4A!!!
 {13BMD:,  m15, "OMS VME58",  1,  6, "horisontal X2",     mm,    Pos,   0.2,   .1,    .25,   0.02,   1,     .2,     400,    .1,  3,      6,     -6}
 
@@ -167,7 +169,7 @@ pattern
 # LVP CCD camera stage 15-Sept-2003 TU
 # DDIA diff RAMS, 17-Nov-2003 YW
 # Hi-P Tomo Rotations, 19-Jul-2004 YW
-{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
+{13BMD:,  m57, "OMS VME58",   7,  0, "LVP CCD X",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 {13BMD:,  m58, "OMS VME58",   7,  1, "LVP CCD Y",     mm,     Neg,   2.0,  .1,  .5,    0,   1,   .2,   200, -.10,  3,  100,  0}
 {13BMD:,  m59, "OMS VME58",   7,  2, "LVP CCD Z",     mm,     Pos,   2.0,  .1,  .5,    0,   1,   .2,   200,  -.10,  3,  100,  0}
 # DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio
@@ -212,7 +214,7 @@ pattern
 {13BMD:,  m72, "OMS VME58",   8,  7, "Laser",   mm,  Pos,   1.,  1.,   .5,   0,   1, .5, 400,  2,      4,   30,  -10}
 
 # 3rd CARS BP8000  13-Jan-2005  vitali
-#{13IDD:,  m5, "OMS VME58",   0,    4, "Sample-X1",     mm,    Pos,   0.15,  .01, .2,  0.02,   1, .2,   480,    .03546,  3,      24.,    0}
+#{13BMD:,  m5, "OMS VME58",   0,    4, "Sample-X1",     mm,    Pos,   0.15,  .01, .2,  0.02,   1, .2,   480,    .03546,  3,      24.,    0}
 
 {13BMD:,  m73, "OMS VME58",  9,  0, "Focus Laser",          mm,     Neg, 0.3,  .01, .2,  0.02,   1, .2,   48,   0.0116,    3,  25.,    0}
 {13BMD:,  m74, "OMS VME58",  9,  1, "Focus Brillouin",      mm,     Neg, 0.3,  .01, .2,  0.02,   1, .2,   48,   0.0116,    3,  25.,    0}
@@ -225,16 +227,29 @@ pattern
 #changed by vitali for BS, 4/29/2008
 {13BMD:,  m79, "OMS VME58",  9,  6, "Top laser hor",      mm,     Pos,  .2,      .01,  .2,  0,   1, .2,  48, .003546,  3,   24,    0}
 {13BMD:,  m80, "OMS VME58",  9,  7, "Top signal hor",      mm,     Pos,  .2,      .01,  .2,  0,   1, .2,  48, .003546,  3,   24,    0}
+
+# Motors 81-88 are MAXv below, 89-96 are DAC XPS, 97-104 are LVP XPS
+{13BMD:,  m105,  "ACS MCB-4B",  0, 0, "Bottom",   mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13BMD:,  m106,  "ACS MCB-4B",  0, 1, "Top",      mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13BMD:,  m107,  "ACS MCB-4B",  0, 2, "Inboard",  mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13BMD:,  m108,  "ACS MCB-4B",  0, 3, "Outboard", mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+
+{13BMD:,  m109,  "ACS MCB-4B",  1, 0, "Inboard",   mm,   Pos,    2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13BMD:,  m110,  "ACS MCB-4B",  1, 1, "Outboard",  mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13BMD:,  m111,  "ACS MCB-4B",  1, 2, "Bottom",  mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+{13BMD:,  m112,  "ACS MCB-4B",  1, 3, "Top",     mm,   Pos,     2,     .1,    0.2,    0,      1,     .2,    400,  -0.4,      3,    8, 0}
+
 }
+
 ##
 ## MAXv motor connectors bipolar microstep, BMC rack, patch panel labeled CC
 file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,     DTYP,        C,  S,   DESC,        EGU,   DIR,   VELO,  VBAS,  ACCL,  BDST, BVEL, BACC, SREV,  UREV,  PREC,  DHLM,  DLLM}
-{13BMD:,  m81, "OMS MAXv",   0,  0, "CCD X",         mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52,   4,     157.5, 0.5}
-{13BMD:,  m82, "OMS MAXv",   0,  1, "Sample X",      mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52,   4,     157.5, 0.5}
-{13BMD:,  m83, "OMS MAXv",   0,  2, "IonChamberX",   mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52,   4,     250,  -250}
+{13BMD:,  m81, "OMS MAXv",   0,  0, "Y",             mm,    Neg,   10,    0,     1,     0,     1,   .5,   400,  0.52,   4,     157.5, 0.5}
+{13BMD:,  m82, "OMS MAXv",   0,  1, "X",             mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52,   4,     157.5, 0.5}
+{13BMD:,  m83, "OMS MAXv",   0,  2, "Z",             mm,    Pos,   10,    0,     1,     0,     1,   .5,   400,  0.52,   4,     250,  -250}
 {13BMD:,  m84, "OMS MAXv",   0,  3, "CCD Y bipolar", mm,    Pos,   10,    0,     1,     0.0,   1,   .5,   400,  0.52,   4,     155,   -5}
 # Tomo sample X.  8 mini steps, 2mm leadscrew pitch
 {13BMD:,  m85, "OMS MAXv",   0,  4, "Sample X",      mm,    Pos,   10,    0.0,  0.5,    0.0,   1,   .5,  1600,  2.00,   4,     150,   -5}
@@ -257,6 +272,24 @@ pattern
 {P,      SLIT,       mXp,  mXn}
 {13BMD:, BMD_CDWV,   m71,   m28}
 {13BMD:, BMD_CDWH,   m70,   m69}
+}
+
+# LVP detector slits
+file "$(OPTICS)/opticsApp/Db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13BMD:, DetSlitV,  m106,   m105}
+{13BMD:, DetSlitH,  m108,   m107}
+}
+
+# LVP entrance slits (Dec 11, 2012)
+file "$(OPTICS)/opticsApp/Db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13BMD:, EntSlitV,  m112,   m111}
+{13BMD:, EntSlitH,  m110,   m109}
 }
 
 file "$(SSCAN)/sscanApp/Db/scanParms.db"
