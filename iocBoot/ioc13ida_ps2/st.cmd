@@ -19,7 +19,8 @@ epicsEnvSet("NCHANS", "2048")
 # The Unique ID will be displayed on the first line in the information window.
 
 
-prosilicaConfig("$(PORT)", 51039, 50, -1)
+prosilicaConfig("$(PORT)", 137480, 50, -1)
+#prosilicaConfig("$(PORT)", 51039, 50, -1)
 ### prosilicaConfig("$(PORT)", 102986, 50, -1)
 
 # prosilicaConfig("$(PORT)", 101271, 50, -1)
