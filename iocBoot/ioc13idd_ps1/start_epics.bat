@@ -4,7 +4,7 @@ rem Start MEDM
 start medm -x -macro "P=13IDDPS1:,R=cam1:" prosilica.adl
 
 rem Start IOC
-J:\epics\support\areaDetector\bin\win32-x86\prosilicaApp st.cmd
+J:\epics\support\areaDetector\bin\win32-x86\prosilicaApp st.cmd.windows
 
 pause
 
