@@ -13,28 +13,28 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "newport-xps9", 5001, 8, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.41", 5001, 8, 10, 500, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "newport-xps9", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "164.54.160.41", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.THETA",  "10000")  
-XPSCreateAxis("XPS1",1,"GROUP2.HEIGHT", "5000")  
-XPSCreateAxis("XPS1",2,"GROUP3.PITCH",  "5600")  
-XPSCreateAxis("XPS1",3,"GROUP4.ROLL",   "5600")  
-XPSCreateAxis("XPS1",4,"GROUP5.Hp",   "5000")
-XPSCreateAxis("XPS1",5,"GROUP6.Hw",   "5000")
-XPSCreateAxis("XPS1",6,"GROUP7.Vp",   "5000")
-XPSCreateAxis("XPS1",7,"GROUP8.Vw",   "5000")
+XPSCreateAxis("XPS1",0,"MONO.THETA",   "87466.66667")  
+XPSCreateAxis("XPS1",1,"MONO.HEIGHT",   "5000")  
+XPSCreateAxis("XPS1",2,"XTAL2.PITCH",   "5600")  
+XPSCreateAxis("XPS1",3,"XTAL2.ROLL",    "5600")  
+XPSCreateAxis("XPS1",4,"SSA.HPOS",      "5000")
+XPSCreateAxis("XPS1",5,"SSA.HWID",      "5000")
+XPSCreateAxis("XPS1",6,"SSA.VPOS",      "5000")
+XPSCreateAxis("XPS1",7,"SSA.VWID",      "5000")
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
-XPSCreateProfile("XPS1", 10010, "Administrator", "Administrator")
+XPSCreateProfile("XPS1", 5000, "Administrator", "Administrator")
 
 # Disable setting position from motor record
 XPSEnableSetPosition(0) 
@@ -95,8 +95,8 @@ set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
 set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
-save_restoreSet_status_prefix("13IDA_XPS2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_XPS2:")
+save_restoreSet_status_prefix("13IDA_EMONO:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_EMONO:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -104,9 +104,20 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_XPS2:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_XPS2:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_EMONO:")
+
+dbLoadTemplate  "mono_energy.template"
+
+# Free-standing user string/number calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_EMONO:")
+
+# Free-standing user transforms (transform records)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_EMONO:")
+
 
 iocInit
+# MN 12-Nov-2012  run MonoEnergy sequence program here
+seq(&GSE_MonoEnergy, "MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, FB=13IDA:mono_pid2, CAL=13ID_US_UndCalibration.xml")
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
@@ -124,4 +135,4 @@ dbpf("13IDA:m62.NTM","0")
 dbpf("13IDA:m63.NTM","0")
 dbpf("13IDA:m64.NTM","0")
 
-motorUtilInit("13IDA_XPS2:")
+motorUtilInit("13IDA_EMONO:")
