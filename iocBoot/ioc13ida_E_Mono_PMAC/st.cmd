@@ -75,7 +75,7 @@ dbLoadTemplate  "mono_energy.template"
 
 iocInit
 # MN Oct-29-2012  comment out running state program
-seq(&GSE_MonoEnergy, "PRE=13IDA:, MONO=E, ID=ID13us:, MTH=m81, MY=m66, FB=mono_pid2")
+seq(&GSE_MonoEnergy, "PRE=13IDA:, MONO=E, ID=ID13us:, MTH=m65, MY=m66, FB=mono_pid2")
 
 
 ### Start up the autosave task and tell it what to do.
