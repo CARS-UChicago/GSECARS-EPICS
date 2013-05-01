@@ -1,12 +1,12 @@
 errlogInit(20000)
 
-< envPaths
+## < envPaths
 
 dbLoadDatabase("$(AREA_DETECTOR)/dbd/prosilicaApp.dbd")
 
 prosilicaApp_registerRecordDeviceDriver(pdbbase) 
 
-epicsEnvSet("PREFIX", "13IDCPS1:")
+epicsEnvSet("PREFIX", "13IDC_PS1:")
 epicsEnvSet("PORT",   "PS1")
 epicsEnvSet("QSIZE",  "20")
 epicsEnvSet("XSIZE",  "1360")
@@ -19,10 +19,16 @@ epicsEnvSet("NCHANS", "2048")
 # The Unique ID will be displayed on the first line in the information window.
 
 
-# prosilicaConfig("$(PORT)", 51031, 50, -1)
-prosilicaConfig("$(PORT)", 102986, 50, -1)
-# prosilicaConfig("$(PORT)", 101271, 50, -1)
+# prosilicaConfig("$(PORT)", 50022, 50, -1)
+# prosilicaConfig("$(PORT)", 50022, 50, -1)
+# prosilicaConfig("$(PORT)",  137480, 50, -1)
 
+# GC1350 = 102986
+# prosilicaConfig("$(PORT)", 102986, 50, -1)
+# GC1380 (prosilica3) = 51031
+# prosilicaConfig("$(PORT)", 50022, 50, -1)
+# Mant 1 for bench camera
+prosilicaConfig("$(PORT)", 5000698, 50, -1)
 
 asynSetTraceIOMask("$(PORT)",0,2)
 #asynSetTraceMask("$(PORT)",0,255)
