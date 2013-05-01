@@ -7,7 +7,7 @@
 # -------------   ----------   -------  -----------
 #   1-8           OMS VME58       0     Step Pak A (XAS Table) -- NO ACTIVE LIMITS
 #   9-16          OMS VME58       1     Step Pak B  32M drivers
-#  17-24          OMS VME58       2     Step Pak C  6U drivers
+#  17-24          OMS VME58       2     Step Pak C  32M drivers
 #  25-32          OMS VME58       3     BP8000      (KB Mirrors)
 #  33-40          OMS-VME58       4     BP8000      (Extra Motors) 
 # -------------   ----------   -------  -----------
@@ -18,59 +18,51 @@ file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,    DTYP,      C,  S,  DESC,               EGU,  DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM}
-# Step Pak A (XAS Table)
-{13IDE:,  m1, "OMS VME58", 0, 0, "Upstream Y",          mm,  Pos,   .2,  .005,   1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
-{13IDE:,  m2, "OMS VME58", 0, 1, "Inboard Y",           mm,  Pos,   .2,  .005,   1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
-{13IDE:,  m3, "OMS VME58", 0, 2, "Outboard Y",          mm,  Pos,   .2,  .005,   1.,  0,   1, .2, 400,  0.023813, 4,   50,    0}
-{13IDE:,  m4, "OMS VME58", 0, 3, "Upstream X",          mm,  Pos,   .5,  .005,   .5,  0,   1, .2, 400, -0.035278, 4,   79,  -52}
-{13IDE:,  m5, "OMS VME58", 0, 4, "Downstream X",        mm,  Pos,   .5,  .005,   .5,  0,   1, .2, 400,  0.035278, 4,   30,  -75}
-{13IDE:,  m6, "OMS VME58", 0, 5, "Base Y",              mm,  Pos,   .5,   .05,   1., .05,.05, .5, 400, -0.10583,  4,  200,    0}
-{13IDE:,  m7, "OMS VME58", 0, 6, "Microscope Y",        mm,  Pos,  1.0,    .1,   .5,  0,   1, .2, 200, -.710,     3,   27,    0}
-{13IDE:,  m8, "OMS VME58", 0, 7, "Split Ion Chamber X", mm,  Neg,   1.,    .1,   .5,  0,   1, .5, 200,  0.1,      4,   0,   -25}
+{13IDE:,  m1, "OMS VME58", 0, 0, "Upstream Y",          mm,  Pos,   .2,  .005,   1., 0, 1, .2,  400,  0.023813,  4,   50,   0}
+{13IDE:,  m2, "OMS VME58", 0, 1, "Inboard Y",           mm,  Pos,   .2,  .005,   1., 0, 1, .2,  400,  0.023813,  4,   50,   0}
+{13IDE:,  m3, "OMS VME58", 0, 2, "Outboard Y",          mm,  Pos,   .2,  .005,   1., 0, 1, .2,  400,  0.023813,  4,   50,   0}
+{13IDE:,  m4, "OMS VME58", 0, 3, "Microscope Y",        mm,  Pos,   1.,    .1,   .5, 0, 1, .2,  200, -.710,      3,   27,   0}
+{13IDE:,  m5, "OMS VME58", 0, 4, "Split Ion Chamber X", mm,  Neg,   1.,    .1,   .5, 0, 1, .5,  200,  0.1,       4,   0,  -25}
+{13IDE:,  m6, "OMS VME58", 0, 5, "unused",              mm,  Pos,   1.,    .1,   .5, 0, 1, .2,  400,  0.1,       4,   79, -76}
+{13IDE:,  m7, "OMS VME58", 0, 6, "VMirror stripe x",    mm,  Neg,  0.2,    0.,   1., 0, 1, .2,  200,  0.0032,    4,   15,   0}
+{13IDE:,  m8, "OMS VME58", 0, 7, "VMirror up height",   mm,  Pos,  0.5,  0.01,   .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
 
-# Step Pak B (several 32M)
-{13IDE:,  m9, "OMS VME58", 1, 0, "Vortex X (32M)",      mm,  Neg,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  4,  80,  -80}
-{13IDE:, m10, "OMS VME58", 1, 1, "Vortex Y (32M)",      mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  4,  80,  -80}
-{13IDE:, m11, "OMS VME58", 1, 2, "Vortex Z (32M)",      mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  4,  80,  -80}
-{13IDE:, m12, "OMS VME58", 1, 3, "unused (32M)",        mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  4,  80,  -80}
-{13IDE:, m13, "OMS VME58", 1, 4, "TT Slit Bot",         mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  3,  11,  -11}
-{13IDE:, m14, "OMS VME58", 1, 5, "TT Slit Top",         mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  3,  11,  -11}
-{13IDE:, m15, "OMS VME58", 1, 6, "TT Slit In",          mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  3,  11,  -11}
-{13IDE:, m16, "OMS VME58", 1, 7, "TT Slit Out",         mm,  Neg,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,  3,  11,  -11}
+# Step Pak B (All 32M) KB Mirrors
+{13IDE:,  m9, "OMS VME58", 1, 0, "VMirror dn force",    mm,  Pos,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4    19, -19}
+{13IDE:, m10, "OMS VME58", 1, 1, "VMirror up force",    mm,  Pos,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
+{13IDE:, m11, "OMS VME58", 1, 2, "VMirror dn height",   mm,  Neg,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
+{13IDE:, m12, "OMS VME58", 1, 3, "HMirror stripe x",    mm,  Neg,  0.2,   0.,    1., 0, 1, .2,  200,  0.0032,    4,   15,   0}
+{13IDE:, m13, "OMS VME58", 1, 4, "HMirror up height",   mm,  Pos,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
+{13IDE:, m14, "OMS VME58", 1, 5, "HMirror dn force",    mm,  Pos,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
+{13IDE:, m15, "OMS VME58", 1, 6, "HMirror up force",    mm,  Pos,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
+{13IDE:, m16, "OMS VME58", 1, 7, "HMirror dn height",   mm,  Pos,  0.5,   0.01,  .2, 0, 1, .2,  200,  -.0357143, 4,   19, -19}
 
-#
-# Step Pak C
-{13IDE:, m17, "OMS VME58", 2, 0, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -95}
-{13IDE:, m18, "OMS VME58", 2, 1, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  20,   0.10,  4,  95,  -95}
-{13IDE:, m19, "OMS VME58", 2, 2, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -90}
-{13IDE:, m20, "OMS VME58", 2, 3, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -90}
-{13IDE:, m21, "OMS VME58", 2, 4, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -90}
-{13IDE:, m22, "OMS VME58", 2, 5, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -90}
-{13IDE:, m23, "OMS VME58", 2, 6, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -90}
-{13IDE:, m24, "OMS VME58", 2, 7, "unused",              mm,  Pos,  1.0,  0.1,  .5, 0, 1, .2,  200,  0.10,  4,  95,  -90}
+# Step Pak C (All 32M)
+{13IDE:, m17, "OMS VME58", 2, 0, "Vortex X (32M)",      mm,  Neg,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     4,  80,  -80}
+{13IDE:, m18, "OMS VME58", 2, 1, "Vortex Y (32M)",      mm,  Pos,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     4,  80,  -80}
+{13IDE:, m19, "OMS VME58", 2, 2, "Vortex Z (32M)",      mm,  Neg,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     4,  80,  -80}
+{13IDE:, m20, "OMS VME58", 2, 3, "unused (32M)",        mm,  Pos,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     4,  80,  -80}
+{13IDE:, m21, "OMS VME58", 2, 4, "TT Slit Bot",         mm,  Pos,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     3,  11,  -11}
+{13IDE:, m22, "OMS VME58", 2, 5, "TT Slit Top",         mm,  Pos,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     3,  11,  -11}
+{13IDE:, m23, "OMS VME58", 2, 6, "TT Slit In",          mm,  Pos,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     3,  11,  -11}
+{13IDE:, m24, "OMS VME58", 2, 7, "TT Slit Out",         mm,  Neg,  10.,    1.,   .5, 0, 5, .5,  400,  0.52,     3,  11,  -11}
 
-# {13IDE:, m20, "OMS VME58", 2, 3, "unused",              mm,  Pos,  1.0,  0.1, .5, 0, 1, .2,  400, -.710,  4,  10,  0}
-# {13IDE:, m21, "OMS VME58", 2, 4, "unused",              mm,  Neg,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-# {13IDE:, m22, "OMS VME58", 2, 5, "unused",              mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-# {13IDE:, m23, "OMS VME58", 2, 6, "unused",              mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
-# {13IDE:, m24, "OMS VME58", 2, 7, "unused",              mm,  Pos,   10.,   1.,  .5,  0,  5,  .5, 400,  0.52,     4,  80,  -80}
 
 # KB Mirrors, BP800 #1 (round connectors)
-{13IDE:, m25, "OMS VME58", 3, 0, "Vert mirror angle",    mrad,      Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+{13IDE:, m25, "OMS VME58", 3, 0, "Vert mirror angle",     mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
 {13IDE:, m26, "OMS VME58", 3, 1, "Vert mirror height",    microns,  Pos,  250.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
 {13IDE:, m27, "OMS VME58", 3, 2, "Vert force UpStream",   microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
 {13IDE:, m28, "OMS VME58", 3, 3, "Vert force DownStream", microns,  Pos,  200.0,  10, .2, 0, 1, .2, 48,   11.628, 1, 8e3,  0}
-
-{13IDE:, m29, "OMS VME58", 3, 4, "Hor mirror angle",     mrad,      Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
+{13IDE:, m29, "OMS VME58", 3, 4, "Hor mirror angle",      mrad,     Pos,     10,  .1, .2, 0, 1, .2, 48,  -0.8868,3,  30,-30}
 {13IDE:, m30, "OMS VME58", 3, 5, "Hor mirror height",     microns,  Pos,  150.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
 {13IDE:, m31, "OMS VME58", 3, 6, "Hor force UpStream",    microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
 {13IDE:, m32, "OMS VME58", 3, 7, "Hor force DownStream",  microns,  Pos,  100.0,  10, .2, 0, 1, .2, 48,   3.546, 1, 8e3,  0}
 
 
 # CMA and additional motors, BP8000 #2 (elco connectors)
-#P,      M,    DTYP,       C, S,     DESC,          EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
-{13IDE:, m33, "OMS VME58",  4, 0, "Microscope X", microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
-{13IDE:, m34, "OMS VME58",  4, 1, "Beamstop X",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
+#  P,      M,    DTYP,       C, S,     DESC,          EGU,   DIR,  VELO, VBAS, ACCL, BDST,BVEL,BACC, SREV,UREV,PREC,DHLM,DLLM
+{13IDE:, m33, "OMS VME58",  4, 0, "Microscope Focus", microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
+{13IDE:, m34, "OMS VME58",  4, 1, "Microscope X",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
 {13IDE:, m35, "OMS VME58",  4, 2, "Unused CMA",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
 {13IDE:, m36, "OMS VME58",  4, 3, "unused CMA",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
 {13IDE:, m37, "OMS VME58",  4, 4, "unused CMA",   microns, Pos,  200.0,  10,  .2,  0,  200,  .2,  10240,  500,   1,  27000,  -150}
@@ -80,41 +72,26 @@ pattern
 }
 
 # XAS table using generic table-record
-file "$(OPTICS)/opticsApp/Db/table.db"
-{
-pattern
-{P,         Q,     T, M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
-{13IDE:, XAS:T1, XAS:t1, m5,   m2,   m3,   m4,   m1,  junk,  SRI}
-}
+#file "$(OPTICS)/opticsApp/Db/table.db"
+#{
+###pattern
+#{P,         Q,     T, M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
+#{13IDE:, XAS:T1, XAS:t1, m5,   m2,   m3,   m4,   m1,  junk,  SRI}
+#}
 
-# Psuedo-motors
+################################################
+###                                          ###
+###              Psuedo-motors               ###
+###                                          ###
+
+### Table Top Slits:  sm1, sm2, sm3, sm4
 file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
 pattern
-{P,       M,        DINP,      OUT,       RDBL,    STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,  BACC, MRES,   RRES, PREC,  DHLM, DLLM}
-{13IDE:, pm1, "13IDE:KBV:Done NPP NMS","13IDE:pm1DVAL.VAL PP MS", "13IDE:KBV:Readback.G NPP NMS", "13IDE:KBV:Stop PP MS", "Curvature",    mm, Pos, 1, .1, .1, 0, 1, .1, .1, 1.0, 1, 10000, -10000}
-{13IDE:, pm2, "13IDE:KBV:Done NPP NMS","13IDE:pm2DVAL.VAL PP MS", "13IDE:KBV:Readback.H NPP NMS", "13IDE:KBV:Stop PP MS", "Ellipticity",  mm, Pos, 1, .1, .1, 0, 1, .1, .1, 1.0, 1, 10000, -10000}
-{13IDE:, pm3, "13IDE:KBH:Done NPP NMS","13IDE:pm3DVAL.VAL PP MS", "13IDE:KBH:Readback.G NPP NMS", "13IDE:KBH:Stop PP MS", "Curvature",    mm, Pos, 1, .1, .1, 0, 1, .1, .1, 1.0, 1, 10000, -10000}
-{13IDE:, pm4, "13IDE:KBH:Done NPP NMS","13IDE:pm4DVAL.VAL PP MS", "13IDE:KBH:Readback.H NPP NMS", "13IDE:KBH:Stop PP MS", "Ellipticity",  mm, Pos, 1, .1, .1, 0, 1, .1, .1, 1.0, 1, 10000, -10000}
-}
-
-#
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
-{
-pattern
-{P,      T,   SUM, DIFF,  M1DRV,   M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13IDE:, KBV:, pm1, pm2,  m27.VAL, m27.RBV, m28.VAL, m28.RBV, m27.STOP, m27.DMOV, m28.STOP, m28.DMOV, 1}
-{13IDE:, KBH:, pm3, pm4,  m31.VAL, m31.RBV, m32.VAL, m32.RBV, m31.STOP, m31.DMOV, m32.STOP, m32.DMOV, 1}
-}
-
-# Psuedo-motors
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
-{
-pattern
-{P,       M,        DINP,      OUT,       RDBL,    STOO,     DESC,                                                                EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,  BACC, MRES,   RRES, PREC,  DHLM, DLLM}
-{13IDE:, sm1, "13IDE:SL1:Done NPP NMS","13IDE:sm1DVAL.VAL PP MS", "13IDE:SL1:Readback.G NPP NMS", "13IDE:SL1:Stop PP MS", "center",   mm, Pos, 5., 1., .5, 0, 5, .5, 0.013, 1, 3, 50, -50}
+{P,       M,        DINP,      OUT,       RDBL,    STOO,     DESC,         EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,  BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+{13IDE:, sm1, "13IDE:SL1:Done NPP NMS","13IDE:sm1DVAL.VAL PP MS", "13IDE:SL1:Readback.G NPP NMS", "13IDE:SL1:Stop PP MS", "center", mm, Pos, 5., 1., .5, 0, 5, .5, 0.013, 1, 3, 50, -50}
 {13IDE:, sm2, "13IDE:SL1:Done NPP NMS","13IDE:sm2DVAL.VAL PP MS", "13IDE:SL1:Readback.H NPP NMS", "13IDE:SL1:Stop PP MS", "width",  mm, Pos, 5., 1., .5, 0, 5, .5, 0.013, 1, 3, 50, -50}
-{13IDE:, sm3, "13IDE:SL2:Done NPP NMS","13IDE:sm3DVAL.VAL PP MS", "13IDE:SL2:Readback.G NPP NMS", "13IDE:SL2:Stop PP MS", "center",   mm, Pos, 5., 1., .5, 0, 5, .5, 0.013, 1, 3, 50, -50}
+{13IDE:, sm3, "13IDE:SL2:Done NPP NMS","13IDE:sm3DVAL.VAL PP MS", "13IDE:SL2:Readback.G NPP NMS", "13IDE:SL2:Stop PP MS", "center", mm, Pos, 5., 1., .5, 0, 5, .5, 0.013, 1, 3, 50, -50}
 {13IDE:, sm4, "13IDE:SL2:Done NPP NMS","13IDE:sm4DVAL.VAL PP MS", "13IDE:SL2:Readback.H NPP NMS", "13IDE:SL2:Stop PP MS", "width",  mm, Pos, 5., 1., .5, 0, 5, .5, 0.013, 1, 3, 50, -50}
 }
 
@@ -122,16 +99,65 @@ file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
 {
 pattern
 {P,      T,   SUM, DIFF,  M1DRV,   M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-{13IDE:, SL1:, sm1, sm2,  m13.VAL, m13.RBV, m14.VAL, m14.RBV, m13.STOP, m13.DMOV, m14.STOP, m14.DMOV, 3}
-{13IDE:, SL2:, sm3, sm4,  m15.VAL, m15.RBV, m16.VAL, m16.RBV, m15.STOP, m15.DMOV, m16.STOP, m16.DMOV, 3}
+{13IDE:, SL1:, sm1, sm2,  m21.VAL, m21.RBV, m22.VAL, m22.RBV, m21.STOP, m21.DMOV, m22.STOP, m22.DMOV, 3}
+{13IDE:, SL2:, sm3, sm4,  m23.VAL, m23.RBV, m24.VAL, m24.RBV, m23.STOP, m23.DMOV, m24.STOP, m24.DMOV, 3}
 }
 
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+###                                          ###
+################################################
+### Vertical KB Miror: pm1, pm2, pm3, pm4    ###
+
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
 {
-{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
-{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
-{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1Z,POS=XAS:t1.Z,RDBK=XAS:t1.ZRB}
-{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1AX,POS=XAS:t1.AX,RDBK=XAS:t1.AXRB}
-{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1AY,POS=XAS:t1.AY,RDBK=XAS:t1.AYRB}
-{P=13IDE:,SCANREC=13IDE:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
+pattern
+{P,      M,        DINP,                    OUT,                     RDBL,                        STOO,               DESC,    EGU, DIR,VELO,VBAS,ACCL,BDST,BVEL,BACC,MRES,RRES PREC,DHLM, DLLM}
+{13IDE:, pm1, "13IDE:VF:Done NPP NMS", "13IDE:pm1DVAL.VAL PP MS","13IDE:VF:Readback.G NPP NMS", "13IDE:VF:Stop PP MS", "Curvature",  mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13IDE:, pm2, "13IDE:VF:Done NPP NMS", "13IDE:pm2DVAL.VAL PP MS","13IDE:VF:Readback.H NPP NMS", "13IDE:VF:Stop PP MS", "Ellipticity",mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13IDE:, pm3, "13IDE:VP:Done NPP NMS", "13IDE:pm3DVAL.VAL PP MS","13IDE:VP:Readback.G NPP NMS", "13IDE:VP:Stop PP MS", "Height",     mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13IDE:, pm4, "13IDE:VP:Done NPP NMS", "13IDE:pm4DVAL.VAL PP MS","13IDE:VP:Readback.H NPP NMS", "13IDE:VP:Stop PP MS", "Pitch",      mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
 }
+
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDE:, VF:,  pm1, pm2,   m10.VAL,  m10.RBV,   m9.VAL,  m9.RBV, m10.STOP, m10.DMOV,  m9.STOP,  m9.DMOV, 3}
+{13IDE:, VP:,  pm3, pm4,    m8.VAL,   m8.RBV,  m11.VAL, m11.RBV,  m8.STOP,  m8.DMOV, m11.STOP, m11.DMOV, 3}
+}
+
+###                                          ###
+################################################
+### Horizontal KB Miror: pm5, pm6, pm7, pm8  ###
+
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern
+{P,      M,        DINP,                    OUT,                     RDBL,                        STOO,               DESC,    EGU, DIR,VELO,VBAS,ACCL,BDST,BVEL,BACC,MRES,RRES PREC,DHLM, DLLM}
+{13IDE:, pm5, "13IDE:HF:Done NPP NMS", "13IDE:pm5DVAL.VAL PP MS","13IDE:HF:Readback.G NPP NMS", "13IDE:HF:Stop PP MS", "Curvature",  mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13IDE:, pm6, "13IDE:HF:Done NPP NMS", "13IDE:pm6DVAL.VAL PP MS","13IDE:HF:Readback.H NPP NMS", "13IDE:HF:Stop PP MS", "Ellipticity",mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13IDE:, pm7, "13IDE:HP:Done NPP NMS", "13IDE:pm7DVAL.VAL PP MS","13IDE:HP:Readback.G NPP NMS", "13IDE:HP:Stop PP MS", "Height",     mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13IDE:, pm8, "13IDE:HP:Done NPP NMS", "13IDE:pm8DVAL.VAL PP MS","13IDE:HP:Readback.H NPP NMS", "13IDE:HP:Stop PP MS", "Pitch",      mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+}
+
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+
+{13IDE:, HF:,  pm5, pm6,   m15.VAL,  m15.RBV,  m14.VAL, m14.RBV, m15.STOP, m15.DMOV, m14.STOP, m14.DMOV, 3}
+{13IDE:, HP:,  pm7, pm8,   m13.VAL,  m13.RBV,  m16.VAL, m16.RBV, m13.STOP, m13.DMOV, m16.STOP, m16.DMOV, 3}
+}
+
+###                                          ###
+################################################
+### notes on psued-motor setups for mirror   ###
+#   ID-A  E Mirrors        ID-E  KB Mirrors
+#  m13,   "M1 up pitch",    V up height    m8
+#  m14,   "M1 dn pitch",    V dn height    m11
+#  m15,   "M2 up pitch",    H up height    m13
+#  m16,   "M2 dn pitch",    H dn height    m17
+#  m17,   "M1 up moment",   V up force     m10
+#  m18,   "M1 dn moment",   V dn force     m9
+#  m19,   "M2 up moment",   H up force     m15
+#  m20,   "M2 dn moment",   H dn force     m14
+
