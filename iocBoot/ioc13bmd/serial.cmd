@@ -19,6 +19,18 @@ tyGSAsynInit("serial14", "UART1", 5, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial15", "UART1", 6, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 tyGSAsynInit("serial16", "UART1", 7, 9600,'N',1,8,'N',"\r","\r")  /* Unused */
 
+# Set up 2 serial ports on Moxa terminal server which is inside the MCB-4B slit controller box
+drvAsynIPPortConfigure("serial17", "164.54.160.36:4001")
+#asynSetOption(serial1,0,baud,19200)
+#asynSetOption(serial1,0,parity,none)
+drvAsynIPPortConfigure("serial18", "164.54.160.36:4002")
+#asynSetOption(serial2,0,baud,19200)
+#asynSetOption(serial2,0,parity,none)
+asynOctetSetInputEos("serial17",0,"\r")
+asynOctetSetOutputEos("serial17",0,"\r")
+asynOctetSetInputEos("serial18",0,"\r")
+asynOctetSetOutputEos("serial18",0,"\r")
+
 # Load asyn records on all ports
 dbLoadTemplate("asynRecord.template")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,PORT=serial1")
