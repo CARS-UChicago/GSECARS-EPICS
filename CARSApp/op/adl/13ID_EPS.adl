@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=100
-		y=81
+		x=78
+		y=44
 		width=1230
 		height=1100
 	}
@@ -5037,66 +5037,44 @@ composite {
 		}
 	}
 }
-composite {
+rectangle {
 	object {
 		x=784
-		y=396
+		y=389
 		width=190
-		height=20
+		height=45
 	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=784
-				y=396
-				width=190
-				height=20
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=784
-						y=396
-						width=190
-						height=20
-					}
-					"basic attribute" {
-						clr=56
-					}
-				}
-				text {
-					object {
-						x=812
-						y=399
-						width=84
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="BPM battery (V)"
-					align="horiz. centered"
-				}
-				"text update" {
-					object {
-						x=922
-						y=399
-						width=50
-						height=15
-					}
-					monitor {
-						chan="13IDA:DMM2Ch9_raw.VAL"
-						clr=53
-						bclr=56
-					}
-					align="horiz. centered"
-					limits {
-					}
-				}
-			}
-		}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=812
+		y=392
+		width=84
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BPM battery (V)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=922
+		y=392
+		width=50
+		height=15
+	}
+	monitor {
+		chan="13IDA:DMM2Ch9_raw.VAL"
+		clr=54
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
 	}
 }
 composite {
@@ -5850,153 +5828,6 @@ rectangle {
 		fill="outline"
 	}
 }
-composite {
-	object {
-		x=326
-		y=803
-		width=174
-		height=26
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=326
-				y=803
-				width=174
-				height=26
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		oval {
-			object {
-				x=479
-				y=808
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
-			}
-		}
-		oval {
-			object {
-				x=479
-				y=808
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
-			}
-		}
-		text {
-			object {
-				x=358
-				y=808
-				width=84
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Station Searched"
-			align="horiz. centered"
-		}
-	}
-}
-rectangle {
-	object {
-		x=220
-		y=769
-		width=100
-		height=60
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-text {
-	object {
-		x=235
-		y=776
-		width=70
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Water Flow"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=220
-		y=794
-		width=100
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(220,794)
-		(320,794)
-	}
-}
-oval {
-	object {
-		x=301
-		y=804
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi59"
-	}
-}
-oval {
-	object {
-		x=304
-		y=807
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi58"
-	}
-}
-text {
-	object {
-		x=241
-		y=805
-		width=56
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="Backstop"
-	align="horiz. centered"
-}
 rectangle {
 	object {
 		x=521
@@ -6103,7 +5934,7 @@ composite {
 }
 text {
 	object {
-		x=327
+		x=405
 		y=774
 		width=84
 		height=25
@@ -6126,70 +5957,6 @@ text {
 	}
 	textix="13-ID-C"
 	align="horiz. centered"
-}
-composite {
-	object {
-		x=220
-		y=899
-		width=60
-		height=110
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=220
-				y=899
-				width=60
-				height=110
-			}
-			"basic attribute" {
-				clr=45
-			}
-		}
-		rectangle {
-			object {
-				x=240
-				y=916
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="PA:13ID:SDS_PS_CLSD_LS.VAL"
-			}
-		}
-		text {
-			object {
-				x=220
-				y=901
-				width=60
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Backstop"
-		}
-		rectangle {
-			object {
-				x=240
-				y=945
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="PA:13ID:SDS_PS_CLSD_LS.VAL"
-			}
-		}
-	}
 }
 rectangle {
 	object {
@@ -6318,70 +6085,6 @@ polyline {
 	points {
 		(766,849)
 		(836,849)
-	}
-}
-composite {
-	object {
-		x=515
-		y=899
-		width=60
-		height=110
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=515
-				y=899
-				width=60
-				height=110
-			}
-			"basic attribute" {
-				clr=45
-			}
-		}
-		rectangle {
-			object {
-				x=535
-				y=916
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="PA:13ID:SDS_PS_CLSD_LS.VAL"
-			}
-		}
-		text {
-			object {
-				x=515
-				y=901
-				width=60
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Backstop"
-		}
-		rectangle {
-			object {
-				x=535
-				y=945
-				width=5
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="PA:13ID:SDS_PS_CLSD_LS.VAL"
-			}
-		}
 	}
 }
 rectangle {
@@ -6716,8 +6419,8 @@ composite {
 }
 composite {
 	object {
-		x=302
-		y=999
+		x=289
+		y=1002
 		width=165
 		height=26
 	}
@@ -6725,8 +6428,8 @@ composite {
 	children {
 		rectangle {
 			object {
-				x=302
-				y=999
+				x=289
+				y=1002
 				width=165
 				height=26
 			}
@@ -6736,8 +6439,8 @@ composite {
 		}
 		composite {
 			object {
-				x=310
-				y=1004
+				x=297
+				y=1007
 				width=149
 				height=16
 			}
@@ -6745,8 +6448,8 @@ composite {
 			children {
 				"text update" {
 					object {
-						x=399
-						y=1005
+						x=386
+						y=1008
 						width=60
 						height=15
 					}
@@ -6761,8 +6464,8 @@ composite {
 				}
 				text {
 					object {
-						x=310
-						y=1004
+						x=297
+						y=1007
 						width=84
 						height=15
 					}
@@ -9441,5 +9144,320 @@ oval {
 	"dynamic attribute" {
 		clr="alarm"
 		chan="13IDA:eps_mbbi218"
+	}
+}
+menu {
+	object {
+		x=789
+		y=410
+		width=90
+		height=20
+	}
+	control {
+		chan="13IDA:eps_bo18"
+		clr=14
+		bclr=4
+	}
+}
+"text update" {
+	object {
+		x=883
+		y=413
+		width=85
+		height=15
+	}
+	monitor {
+		chan="13IDA:eps_mbbi220"
+		clr=54
+		bclr=56
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=230
+		y=769
+		width=120
+		height=160
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=255
+		y=776
+		width=70
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Water Flow"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=230
+		y=794
+		width=120
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(230,794)
+		(350,794)
+	}
+}
+oval {
+	object {
+		x=330
+		y=804
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi59"
+	}
+}
+oval {
+	object {
+		x=333
+		y=807
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi58"
+	}
+}
+text {
+	object {
+		x=268
+		y=805
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Backstop"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=261
+		y=825
+		width=63
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="CO2 laser"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=330
+		y=844
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi222"
+	}
+}
+text {
+	object {
+		x=233
+		y=845
+		width=91
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="CO2 polarizer"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=330
+		y=864
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi223"
+	}
+}
+text {
+	object {
+		x=261
+		y=865
+		width=63
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="LVP slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=330
+		y=884
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi224"
+	}
+}
+text {
+	object {
+		x=240
+		y=885
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Fiber lasers"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=330
+		y=904
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi225"
+	}
+}
+text {
+	object {
+		x=261
+		y=905
+		width=63
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="DAC stage"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=330
+		y=824
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi221"
+	}
+}
+composite {
+	object {
+		x=380
+		y=805
+		width=120
+		height=26
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=380
+				y=805
+				width=120
+				height=26
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		oval {
+			object {
+				x=476
+				y=811
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
+			}
+		}
+		oval {
+			object {
+				x=476
+				y=811
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
+			}
+		}
+		text {
+			object {
+				x=388
+				y=811
+				width=84
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Searched"
+			align="horiz. centered"
+		}
 	}
 }
