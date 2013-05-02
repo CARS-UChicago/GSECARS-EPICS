@@ -1,12 +1,12 @@
 
 file {
-	name="i:\epics\support\CARS\CARSApp\op\adl\13BMD_LVP_HPXTM.adl"
-	version=030105
+	name="Z:\adl\13BMD_LVP_HPXTM.adl"
+	version=030107
 }
 display {
 	object {
-		x=1997
-		y=51
+		x=108
+		y=155
 		width=1354
 		height=1020
 	}
@@ -2007,39 +2007,6 @@ rectangle {
 }
 rectangle {
 	object {
-		x=18
-		y=441
-		width=145
-		height=20
-	}
-	"basic attribute" {
-		clr=55
-	}
-}
-rectangle {
-	object {
-		x=18
-		y=399
-		width=145
-		height=20
-	}
-	"basic attribute" {
-		clr=55
-	}
-}
-rectangle {
-	object {
-		x=18
-		y=354
-		width=145
-		height=20
-	}
-	"basic attribute" {
-		clr=55
-	}
-}
-rectangle {
-	object {
 		x=13
 		y=348
 		width=450
@@ -2058,7 +2025,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:x_tweak.A"
+		chan="13BMD:m99.TWF"
 		clr=14
 		bclr=4
 	}
@@ -2073,7 +2040,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:x_tweak.B"
+		chan="13BMD:m99.TWR"
 		clr=14
 		bclr=4
 	}
@@ -2088,7 +2055,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:x_tweakVal.VAL"
+		chan="13BMD:m99.TWV"
 		clr=14
 		bclr=50
 	}
@@ -2103,7 +2070,7 @@ rectangle {
 		height=25
 	}
 	control {
-		chan="13BMD:LVP:t1.X"
+		chan="13BMD:m99.VAL"
 		clr=14
 		bclr=50
 	}
@@ -2131,7 +2098,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:y_tweak.A"
+		chan="13BMD:m98.TWF"
 		clr=14
 		bclr=4
 	}
@@ -2146,7 +2113,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:y_tweak.B"
+		chan="13BMD:m98.TWR"
 		clr=14
 		bclr=4
 	}
@@ -2161,7 +2128,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:y_tweakVal.VAL"
+		chan="13BMD:m98.TWV"
 		clr=14
 		bclr=50
 	}
@@ -2176,7 +2143,7 @@ rectangle {
 		height=25
 	}
 	control {
-		chan="13BMD:LVP:t1.Y"
+		chan="13BMD:m98.VAL"
 		clr=14
 		bclr=50
 	}
@@ -2204,7 +2171,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:z_tweak.A"
+		chan="13BMD:m102.TWF"
 		clr=14
 		bclr=4
 	}
@@ -2219,7 +2186,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:z_tweak.B"
+		chan="13BMD:m102.TWR"
 		clr=14
 		bclr=4
 	}
@@ -2234,7 +2201,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13BMD:LVP:T1:z_tweakVal.VAL"
+		chan="13BMD:m102.TWV"
 		clr=14
 		bclr=50
 	}
@@ -2249,7 +2216,7 @@ rectangle {
 		height=25
 	}
 	control {
-		chan="13BMD:LVP:t1.Z"
+		chan="13BMD:m102.VAL"
 		clr=14
 		bclr=50
 	}
@@ -2318,8 +2285,8 @@ text {
 	}
 	display[0] {
 		label="Setup scan parameters"
-		name="scanParmsCustom.adl"
-		args="P=13BMD:,Q=LVP:T1X,NAME=$(Q)X,DESC=$(Q)X,EGU=LVP:t1.LEGU"
+		name="scanParms.adl"
+		args="P=13BMD:,Q=m99,PV=m99"
 	}
 	clr=14
 	bclr=50
@@ -2333,8 +2300,8 @@ text {
 	}
 	display[0] {
 		label="Setup scan parameters"
-		name="scanParmsCustom.adl"
-		args="P=13BMD:,Q=LVP:T1Y,NAME=$(Q)Y,DESC=$(Q)Y,EGU=LVP:t1.LEGU"
+		name="scanParms.adl"
+		args="P=13BMD:,Q=m98,PV=m98"
 	}
 	clr=14
 	bclr=50
@@ -2348,8 +2315,8 @@ text {
 	}
 	display[0] {
 		label="Setup scan parameters"
-		name="scanParmsCustom.adl"
-		args="P=13BMD:,Q=LVP:T1Z,NAME=$(Q)Z,DESC=$(Q)Z,EGU=LVP:t1.LEGU"
+		name="scanParms.adl"
+		args="P=13BMD:,Q=m102,PV=m102"
 	}
 	clr=14
 	bclr=50
@@ -2392,42 +2359,6 @@ text {
 	}
 	textix="Scan"
 	align="horiz. centered"
-}
-text {
-	object {
-		x=55
-		y=355
-		width=70
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Press X"
-}
-text {
-	object {
-		x=55
-		y=400
-		width=70
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Press Y"
-}
-text {
-	object {
-		x=55
-		y=442
-		width=70
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Press Z"
 }
 rectangle {
 	object {
@@ -3556,51 +3487,6 @@ oval {
 	}
 	monitor {
 		chan="13BMD:m26.RBV"
-		clr=54
-		bclr=3
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=176
-		y=366
-		width=75
-		height=18
-	}
-	monitor {
-		chan="13BMD:LVP:t1.EX"
-		clr=54
-		bclr=3
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=176
-		y=409
-		width=75
-		height=18
-	}
-	monitor {
-		chan="13BMD:LVP:t1.EY"
-		clr=54
-		bclr=3
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=176
-		y=452
-		width=75
-		height=18
-	}
-	monitor {
-		chan="13BMD:LVP:t1.EZ"
 		clr=54
 		bclr=3
 	}
@@ -5309,10 +5195,12 @@ text {
 	trace[0] {
 		ydata="13BMD:aim_adc1.VAL"
 		data_clr=14
+		yaxis=0
 	}
 	trace[1] {
 		ydata="13BMD:aim_adc1.BG"
 		data_clr=20
+		yaxis=1
 	}
 	x_axis {
 		rangeStyle="auto-scale"
@@ -7422,36 +7310,237 @@ text {
 	}
 	textix="Scan Status:"
 }
+"text update" {
+	object {
+		x=18
+		y=354
+		width=145
+		height=20
+	}
+	monitor {
+		chan="13BMD:m99.DESC"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=18
+		y=399
+		width=145
+		height=20
+	}
+	monitor {
+		chan="13BMD:m98.DESC"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=18
+		y=441
+		width=145
+		height=20
+	}
+	monitor {
+		chan="13BMD:m102.DESC"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
 text {
 	object {
-		x=365
-		y=326
-		width=100
-		height=18
+		x=175
+		y=350
+		width=75
+		height=10
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m99.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=170
+		y=350
+		width=10
+		height=10
 	}
 	"basic attribute" {
 		clr=20
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:LVP:t1.LVIO"
+		chan="13BMD:m99.HLS"
 	}
-	textix="Motor Limit"
-	align="horiz. centered"
+}
+oval {
+	object {
+		x=245
+		y=350
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m99.LLS"
+	}
 }
 "text update" {
 	object {
-		x=265
-		y=349
-		width=70
-		height=15
+		x=176
+		y=370
+		width=75
+		height=18
 	}
 	monitor {
-		chan="13BMD:LVP:t1.LEGU"
+		chan="13BMD:m99.RBV"
 		clr=54
 		bclr=3
 	}
+	limits {
+	}
+}
+text {
+	object {
+		x=175
+		y=394
+		width=75
+		height=10
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m98.LVIO"
+	}
+	textix="Soft-Limit"
 	align="horiz. centered"
+}
+oval {
+	object {
+		x=170
+		y=394
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m98.HLS"
+	}
+}
+oval {
+	object {
+		x=245
+		y=394
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m98.LLS"
+	}
+}
+"text update" {
+	object {
+		x=176
+		y=410
+		width=75
+		height=18
+	}
+	monitor {
+		chan="13BMD:m98.RBV"
+		clr=54
+		bclr=3
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=175
+		y=438
+		width=75
+		height=10
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m102.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=170
+		y=438
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m102.HLS"
+	}
+}
+oval {
+	object {
+		x=245
+		y=438
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:m102.LLS"
+	}
+}
+"text update" {
+	object {
+		x=176
+		y=454
+		width=75
+		height=18
+	}
+	monitor {
+		chan="13BMD:m102.RBV"
+		clr=54
+		bclr=3
+	}
 	limits {
 	}
 }

@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2135
-		y=217
+		x=234
+		y=240
 		width=595
-		height=276
+		height=275
 	}
 	clr=46
 	bclr=2
@@ -85,6 +85,21 @@ display {
 		3cb420,
 		289315,
 		1a7309,
+	}
+}
+oval {
+	object {
+		x=565
+		y=175
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:mono_pid2_incalc.K"
 	}
 }
 oval {
@@ -391,7 +406,7 @@ rectangle {
 	display[0] {
 		label="FOE Slits"
 		name="4motors.adl"
-		args="P=13IDA:, TITLE=FOE_slits_E, M1=m5, M2=m6, M3=m6, M4=m8"
+		args="P=13IDA:, TITLE=FOE_slits_E, M1=m5, M2=m6, M3=m7, M4=m8"
 	}
 	display[3] {
 		label=" "
@@ -581,7 +596,7 @@ menu {
 }
 "message button" {
 	object {
-		x=245
+		x=251
 		y=138
 		width=20
 		height=22
@@ -596,7 +611,7 @@ menu {
 }
 "message button" {
 	object {
-		x=325
+		x=331
 		y=138
 		width=20
 		height=22
@@ -611,7 +626,7 @@ menu {
 }
 "text entry" {
 	object {
-		x=264
+		x=270
 		y=138
 		width=65
 		height=22
@@ -641,7 +656,7 @@ menu {
 }
 text {
 	object {
-		x=270
+		x=277
 		y=123
 		width=45
 		height=15
@@ -653,8 +668,8 @@ text {
 }
 "text update" {
 	object {
-		x=433
-		y=141
+		x=445
+		y=140
 		width=60
 		height=18
 	}
@@ -667,25 +682,10 @@ text {
 	limits {
 	}
 }
-"text entry" {
-	object {
-		x=495
-		y=138
-		width=65
-		height=22
-	}
-	control {
-		chan="ID13us:ScanEnergy.VAL"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
 text {
 	object {
-		x=560
-		y=141
+		x=515
+		y=140
 		width=27
 		height=14
 	}
@@ -712,8 +712,8 @@ text {
 }
 "related display" {
 	object {
-		x=350
-		y=136
+		x=360
+		y=135
 		width=80
 		height=25
 	}
@@ -803,7 +803,7 @@ rectangle {
 		x=5
 		y=164
 		width=290
-		height=107
+		height=105
 	}
 	"basic attribute" {
 		clr=59
@@ -861,109 +861,38 @@ rectangle {
 		name="single_dxp_top.adl"
 		args="P=13XRM:, M=mca1, D=dxp1"
 	}
+	display[11] {
+		label="XRD Collection"
+		name="XRM_AD_Control.adl"
+		args="P=13PE1:"
+	}
 	clr=54
 	bclr=1
 	label="-Detectors"
 }
-"related display" {
-	object {
-		x=305
-		y=174
-		width=100
-		height=26
-	}
-	display[1] {
-		label="XAS Feedback "
-		name="13ID_mono_fb_xas.adl"
-		args="P=13IDA:, M1=m12, M2=m11"
-	}
-	display[2] {
-		name="13ID_mono_feedback.adl"
-		args="P=13IDA:, M1=m12, M2=m11, PID1=fast_pitch_pid, PID2=fast_roll_pid"
-	}
-	clr=54
-	bclr=1
-	label="-Feedback"
-}
-"text update" {
-	object {
-		x=415
-		y=205
-		width=60
-		height=18
-	}
-	monitor {
-		chan="13IDA:mono_pid2_incalc.M"
-		clr=54
-		bclr=0
-	}
-	align="horiz. right"
-	limits {
-	}
-}
 text {
 	object {
-		x=305
-		y=205
-		width=40
-		height=18
-	}
-	"basic attribute" {
-		clr=23
-	}
-	textix="Pre-Slit:"
-}
-text {
-	object {
-		x=485
-		y=205
-		width=40
-		height=18
-	}
-	"basic attribute" {
-		clr=23
-	}
-	textix="Diff"
-}
-"text update" {
-	object {
-		x=520
-		y=205
-		width=60
-		height=18
-	}
-	monitor {
-		chan="13IDA:mono_pid2_incalc.N"
-		clr=54
-		bclr=0
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=415
-		y=179
+		x=310
+		y=175
 		width=30
-		height=18
+		height=20
 	}
 	"basic attribute" {
 		clr=23
 	}
-	textix="I0 intensity"
+	textix="I0"
 }
 "text update" {
 	object {
-		x=520
-		y=179
-		width=60
-		height=18
+		x=360
+		y=175
+		width=125
+		height=20
 	}
 	monitor {
-		chan="13IDA:mono_pid2_incalc.I"
+		chan="13XRM:ION:FluxOut"
 		clr=54
-		bclr=0
+		bclr=1
 	}
 	align="horiz. right"
 	limits {
@@ -981,18 +910,6 @@ text {
 		width=2
 	}
 	textix="E Shutter:"
-}
-text {
-	object {
-		x=380
-		y=205
-		width=40
-		height=18
-	}
-	"basic attribute" {
-		clr=23
-	}
-	textix="Sum"
 }
 "message button" {
 	object {
@@ -1148,7 +1065,7 @@ rectangle {
 		x=300
 		y=164
 		width=290
-		height=107
+		height=105
 	}
 	"basic attribute" {
 		clr=59
@@ -1167,77 +1084,6 @@ text {
 		clr=23
 	}
 	textix="Energy"
-}
-menu {
-	object {
-		x=310
-		y=245
-		width=70
-		height=20
-	}
-	control {
-		chan="13IDA:mono_pid1.FBON"
-		clr=14
-		bclr=1
-	}
-}
-"message button" {
-	object {
-		x=400
-		y=245
-		width=20
-		height=20
-	}
-	control {
-		chan="13IDA:m12.TWR"
-		clr=54
-		bclr=1
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=440
-		y=245
-		width=20
-		height=20
-	}
-	control {
-		chan="13IDA:m12.TWF"
-		clr=54
-		bclr=1
-	}
-	label=">"
-	press_msg="1"
-}
-valuator {
-	object {
-		x=475
-		y=245
-		width=100
-		height=20
-	}
-	control {
-		chan="13IDA:DAC1_3.VAL"
-		clr=14
-		bclr=1
-	}
-	dPrecision=1.000000
-	limits {
-	}
-}
-text {
-	object {
-		x=305
-		y=228
-		width=120
-		height=15
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Feedback   Coarse / Fine"
 }
 oval {
 	object {
@@ -1391,4 +1237,167 @@ text {
 		width=2
 	}
 	textix="E"
+}
+text {
+	object {
+		x=305
+		y=205
+		width=45
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Pitch"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=489
+		y=205
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7_tweak.A"
+		clr=54
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=560
+		y=205
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7_tweak.B"
+		clr=54
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=512
+		y=205
+		width=45
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7_tweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=355
+		y=205
+		width=125
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7.VAL"
+		clr=14
+		bclr=0
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=489
+		y=235
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8_tweak.A"
+		clr=54
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=560
+		y=235
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8_tweak.B"
+		clr=54
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=512
+		y=235
+		width=45
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8_tweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=355
+		y=235
+		width=125
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8.VAL"
+		clr=14
+		bclr=0
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+text {
+	object {
+		x=305
+		y=235
+		width=45
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Roll"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=565
+		y=175
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:mono_pid2_incalc.K"
+	}
 }
