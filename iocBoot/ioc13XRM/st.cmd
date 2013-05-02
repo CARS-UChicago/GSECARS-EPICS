@@ -1,4 +1,4 @@
-errlogInit(5000)
+ERRLogInit(5000)
 < envPaths
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
@@ -31,7 +31,15 @@ XPSCreateAxis("XPS1", 2, "THETA.POSITIONER",   "2000") # URS75CC
 XPSCreateAxis("XPS1", 3, "COARSEX.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 4, "COARSEZ.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 5, "COARSEY.POSITIONER", "5000") # IMS300CC
-# XPSCreateAxis("XPS1", 6, "DETX.POSITIONER",    "1000") # UTS100PP
+#XPSCreateAxis("XPS1", 6, "UTS1.POSITIONER",    "1000") # UTS100PP
+#XPSCreateAxis("XPS1", 7, "UTS2.POSITIONER",    "1000") # UTS150PP
+
+#XPSCreateAxis("XPS1", 0, "GROUP1.POSITIONER",  "100000") # VP-25XL
+#XPSCreateAxis("XPS1", 1, "GROUP2.POSITIONER",   "50000") # VP-5ZA
+#XPSCreateAxis("XPS1", 2, "GROUP3.POSITIONER",    "2000") # URS75CC
+#XPSCreateAxis("XPS1", 3, "GROUP4.POSITIONER",    "2000") # ILS200CC
+#XPSCreateAxis("XPS1", 4, "GROUP5.POSITIONER",    "2000") # ILS200CC
+#XPSCreateAxis("XPS1", 5, "GROUP6.POSITIONER",    "5000") # IMS300CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -117,10 +125,9 @@ dbpf("13XRM:m4.NTM","0")
 dbpf("13XRM:m5.NTM","0")
 dbpf("13XRM:m6.NTM","0")
 dbpf("13XRM:m7.NTM","0")
+dbpf("13XRM:m8.NTM","0")
 dbpf("13XRM:pm1C1","0.70710678")
 dbpf("13XRM:pm1C2","0.70710678")
 dbpf("13XRM:pm2C1","0.70710678")
 dbpf("13XRM:pm2C2","0.70710678")
-
-#dbpf("13XRM:m8.NTM","0")
 
