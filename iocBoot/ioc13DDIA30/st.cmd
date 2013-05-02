@@ -11,14 +11,14 @@ dbLoadTemplate  "motors.template"
 
 drvAsynIPPortConfigure("ARIES1", "gse-aries1:5002", 0, 0, 0)
 asynWaitConnect("ARIES1", 10.)
-#asynSetTraceMask("ARIES1", 0, 3)
+#asynSetTraceMask("ARIES1", 0, 9)
 asynSetTraceIOMask("ARIES1", 0, 2)
 asynOctetSetInputEos("ARIES1",0,"\r")
 asynOctetSetOutputEos("ARIES1",0,"\r")
 
 drvAsynIPPortConfigure("ARIES2", "gse-aries2:5002", 0, 0, 0)
 asynWaitConnect("ARIES2", 10.)
-#asynSetTraceMask("ARIES2", 0, 3)
+#asynSetTraceMask("ARIES2", 0, 9)
 asynSetTraceIOMask("ARIES2", 0, 2)
 asynOctetSetInputEos("ARIES2",0,"\r")
 asynOctetSetOutputEos("ARIES2",0,"\r")
