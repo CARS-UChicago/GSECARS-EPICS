@@ -4,7 +4,8 @@
 
 #drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
 #                        noProcessEos)
-drvAsynIPPortConfigure("serial1", "gsets4:2101", 0, 0, 0)
+#drvAsynIPPortConfigure("serial1", "gsets4:2101", 0, 0, 0)
+drvAsynIPPortConfigure("serial1", "gsets5:2101", 0, 0, 0)
 asynOctetConnect("serial1", "serial1")
 asynOctetSetInputEos("serial1",0,"\r\n")
 asynOctetSetOutputEos("serial1",0,"\r\n")
