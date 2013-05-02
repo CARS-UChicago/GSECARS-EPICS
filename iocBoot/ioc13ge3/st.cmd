@@ -7,7 +7,7 @@ mem = malloc(1024*1024*96)
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+load("CARSApp.munch")
 cd startup
 
 # Tell EPICS all about the record types, device-support modules, drivers,

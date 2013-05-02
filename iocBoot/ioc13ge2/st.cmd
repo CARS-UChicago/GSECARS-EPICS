@@ -7,7 +7,7 @@ mem = malloc(1024*1024*96)
 < ../nfsCommandsGSE
 
 cd topbin
-ld < CARSApp.munch
+load("CARSApp.munch")
 cd startup
 
 # Increase size of buffer for error logging from default 1256
