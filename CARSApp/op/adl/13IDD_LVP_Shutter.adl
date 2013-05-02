@@ -1,0 +1,317 @@
+
+file {
+	name="Z:\adl\13IDD_LVP_Shutter.adl"
+	version=030107
+}
+display {
+	object {
+		x=479
+		y=368
+		width=200
+		height=260
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=20
+		y=20
+		width=160
+		height=200
+	}
+	"basic attribute" {
+		clr=45
+	}
+}
+text {
+	object {
+		x=467
+		y=2
+		width=317
+		height=30
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13-ID Beamline"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=10
+		y=10
+		width=180
+		height=240
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=77
+		y=227
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=101
+		y=212
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:eps_mbbi26"
+	}
+}
+polyline {
+	object {
+		x=70
+		y=48
+		width=70
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(70,48)
+		(140,48)
+	}
+}
+"text update" {
+	object {
+		x=50
+		y=125
+		width=100
+		height=25
+	}
+	monitor {
+		chan="13IDA:eps_mbbi26"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=50
+		y=75
+		width=100
+		height=25
+	}
+	control {
+		chan="13IDA:CloseCDShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Close"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=50
+		y=50
+		width=100
+		height=25
+	}
+	control {
+		chan="13IDA:OpenCDShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Open"
+	press_msg="1"
+}
+text {
+	object {
+		x=50
+		y=27
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="C/D Shutter"
+	align="horiz. centered"
+}
+menu {
+	object {
+		x=50
+		y=100
+		width=100
+		height=25
+	}
+	control {
+		chan="13IDA:eps_bo9"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+}
+rectangle {
+	object {
+		x=101
+		y=182
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi26"
+	}
+}
+rectangle {
+	object {
+		x=95
+		y=177
+		width=26
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=2
+		y=227
+		width=75
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=24
+		y=233
+		width=160
+		height=4
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi26"
+	}
+}
+polygon {
+	object {
+		x=16
+		y=230
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:eps_mbbi26"
+	}
+	points {
+		(26,230)
+		(16,234)
+		(26,240)
+		(26,230)
+	}
+}

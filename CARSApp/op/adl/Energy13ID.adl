@@ -1,0 +1,886 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/Energy.adl"
+	version=030105
+}
+display {
+	object {
+		x=243
+		y=217
+		width=650
+		height=331
+	}
+	clr=24
+	bclr=45
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"text entry" {
+	object {
+		x=175
+		y=125
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(THETA_MOTOR).VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=400
+		y=105
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(THETA_MOTOR).SET"
+		clr=54
+		bclr=33
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=128
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(P)$(THETA_MOTOR).RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=570
+		y=105
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="motorx_all.adl"
+		args="P=$(P), M=$(THETA_MOTOR)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P), Q=$(THETA_MOTOR), PV=$(THETA_MOTOR)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+polyline {
+	object {
+		x=-5
+		y=465
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(-4,466)
+		(644,466)
+	}
+}
+rectangle {
+	object {
+		x=170
+		y=105
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(THETA_MOTOR).SET"
+	}
+}
+oval {
+	object {
+		x=70
+		y=110
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(THETA_MOTOR).HLS"
+	}
+}
+text {
+	object {
+		x=85
+		y=110
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(THETA_MOTOR).LVIO"
+	}
+	textix="Soft-Limit"
+}
+oval {
+	object {
+		x=155
+		y=110
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(THETA_MOTOR).LLS"
+	}
+}
+"message button" {
+	object {
+		x=285
+		y=127
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(THETA_MOTOR).TWR"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=380
+		y=127
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(THETA_MOTOR).TWF"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=127
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(THETA_MOTOR).TWV"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=170
+		y=105
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(THETA_MOTOR).SET"
+	}
+	textix="SET"
+	align="horiz. centered"
+}
+"choice button" {
+	object {
+		x=455
+		y=105
+		width=100
+		height=40
+	}
+	control {
+		chan="$(P)$(THETA_MOTOR).SPMG"
+		clr=31
+		bclr=21
+	}
+	stacking="row column"
+}
+text {
+	object {
+		x=10
+		y=95
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Mono Angle"
+}
+polyline {
+	object {
+		x=0
+		y=150
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(1,151)
+		(649,151)
+	}
+}
+text {
+	object {
+		x=10
+		y=35
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Energy"
+}
+"text update" {
+	object {
+		x=10
+		y=68
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(P)$(EN):E_RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=0
+		y=30
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(1,31)
+		(649,31)
+	}
+}
+polyline {
+	object {
+		x=0
+		y=90
+		width=651
+		height=3
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(1,91)
+		(649,91)
+	}
+}
+"text entry" {
+	object {
+		x=175
+		y=65
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):Energy"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=400
+		y=45
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(EN):SET"
+		clr=54
+		bclr=33
+	}
+}
+rectangle {
+	object {
+		x=170
+		y=45
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):SET"
+	}
+}
+"message button" {
+	object {
+		x=285
+		y=67
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):tweak.A"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=380
+		y=67
+		width=15
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):tweak.B"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=67
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(EN):tweakval"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=170
+		y=45
+		width=110
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):SET"
+	}
+	textix="SET"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=570
+		y=45
+		width=60
+		height=20
+	}
+	display[0] {
+		label="Mono parameters"
+		name="monoParms.adl"
+		args="P=$(P), EN=$(EN), P2=$(P2), THETA_MOTOR=$(THETA_MOTOR)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P), Q=$(EN), PV=$(EN)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+text {
+	object {
+		x=303
+		y=110
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+text {
+	object {
+		x=304
+		y=50
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+text {
+	object {
+		x=65
+		y=10
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="$(TITLE)"
+}
+rectangle {
+	object {
+		x=455
+		y=40
+		width=100
+		height=35
+	}
+	"basic attribute" {
+		clr=31
+		width=9
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):Moving"
+	}
+}
+text {
+	object {
+		x=455
+		y=50
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(EN):Moving"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=10
+		y=167
+		width=162
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Undulator Settings"
+}
+text {
+	object {
+		x=15
+		y=262
+		width=60
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Harmonic"
+}
+text {
+	object {
+		x=15
+		y=232
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Deadband"
+}
+text {
+	object {
+		x=255
+		y=232
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="microns"
+}
+"text update" {
+	object {
+		x=100
+		y=202
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)Energy.VAL"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=202
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Energy"
+}
+text {
+	object {
+		x=255
+		y=202
+		width=27
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="KeV"
+}
+"text update" {
+	object {
+		x=100
+		y=232
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)DeadbandGap"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=100
+		y=262
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(ID)HarmonicValue"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=190
+		y=227
+		width=60
+		height=20
+	}
+	control {
+		chan="$(ID)DeadbandGap"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=190
+		y=257
+		width=60
+		height=20
+	}
+	control {
+		chan="$(ID)HarmonicValue"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=190
+		y=197
+		width=60
+		height=20
+	}
+	control {
+		chan="$(ID)ScanEnergy.VAL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+polyline {
+	object {
+		x=340
+		y=152
+		width=3
+		height=179
+	}
+	"basic attribute" {
+		clr=58
+		width=3
+	}
+	points {
+		(341,153)
+		(341,329)
+	}
+}
+text {
+	object {
+		x=360
+		y=162
+		width=120
+		height=15
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Auto-Tracking"
+}
+"choice button" {
+	object {
+		x=195
+		y=287
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P)$(EN):use_feedback"
+		clr=54
+		bclr=33
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=20
+		y=292
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Wait for Feedback"
+}
+composite {
+	object {
+		x=375
+		y=202
+		width=235
+		height=25
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=375
+				y=207
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Fixed Offset"
+		}
+		"choice button" {
+			object {
+				x=510
+				y=202
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P)$(EN):y2_track"
+				clr=54
+				bclr=33
+			}
+			stacking="column"
+		}
+	}
+}
+composite {
+	object {
+		x=375
+		y=172
+		width=235
+		height=25
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=510
+				y=172
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P)$(EN):id_track"
+				clr=54
+				bclr=33
+			}
+			stacking="column"
+		}
+		text {
+			object {
+				x=375
+				y=182
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Undulator"
+		}
+	}
+}
