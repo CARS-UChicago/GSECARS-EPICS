@@ -1,7 +1,7 @@
 
 file {
-	name="j:\epics\R3.13.1\CARS\CARSApp\op\adl\1000_Ton_LVP_furnace.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/op/adl/1000_Ton_LVP_furnace.adl"
+	version=030105
 }
 display {
 	object {
@@ -191,8 +191,6 @@ composite {
 		height=30
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		"text entry" {
 			object {
@@ -288,8 +286,6 @@ composite {
 		height=30
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		"text entry" {
 			object {
@@ -328,8 +324,6 @@ composite {
 		height=26
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		text {
 			object {
@@ -368,8 +362,6 @@ composite {
 		height=30
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		text {
 			object {
@@ -438,8 +430,6 @@ composite {
 		height=30
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		text {
 			object {
@@ -478,8 +468,6 @@ composite {
 		height=26
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		text {
 			object {
@@ -510,55 +498,47 @@ composite {
 		}
 	}
 }
-composite {
+"related display" {
 	object {
 		x=203
-		y=461
+		y=483
 		width=104
-		height=55
+		height=33
 	}
-	"composite name"=""
-	vis="static"
-	chan=""
-	children {
-		"related display" {
-			object {
-				x=203
-				y=483
-				width=104
-				height=33
-			}
-			display[0] {
-				label="PID control"
-				name="pid_control.adl"
-				args="P=13IDD:, PID=LVP:PID1, TITLE=LVP_Furnace_Control"
-			}
-			display[1] {
-				label="Furnace calcs"
-				name="userTransform_full.adl"
-				args="P=13IDD:, T=LVP_furnace_calcs"
-			}
-			display[2] {
-				label="Heater DAC"
-				name="singleDAC.adl"
-				args="P=13IDD:, D=1, C=5"
-			}
-			clr=14
-			bclr=4
-		}
-		text {
-			object {
-				x=235
-				y=461
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="More"
-		}
+	display[0] {
+		label="PID control"
+		name="pid_control.adl"
+		args="P=13IDD:, PID=LVP:PID1, TITLE=LVP_Furnace_Control"
 	}
+	display[1] {
+		label="Furnace calcs"
+		name="userTransform_full.adl"
+		args="P=13IDD:, T=LVP_furnace_calcs"
+	}
+	display[2] {
+		label="Heater DAC"
+		name="singleDAC.adl"
+		args="P=13IDD:, D=1, C=5"
+	}
+	display[3] {
+		label="Furnace strip chart"
+		name="13IDD_furnace_plot.adl"
+		args="DAC=13IDD:DAC1_5,Temp=13IDD:LVP_furnace_calcs.E"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=235
+		y=461
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="More"
 }
 composite {
 	object {
@@ -568,8 +548,6 @@ composite {
 		height=51
 	}
 	"composite name"=""
-	vis="static"
-	chan=""
 	children {
 		menu {
 			object {
