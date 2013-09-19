@@ -80,6 +80,11 @@ dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
 
+# 
+
+# Dummy Energy PV for the filterDrive.st program
+dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_EnergyDummyPV.db")
+
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
 
@@ -180,5 +185,11 @@ motorUtilInit("13BMC:")
 
 # Enable UserstringCALs
 dbpf("13BMC:userStringCalcEnable.VAL","Enable")
+
+# Filter seq program
+seq(&filterDrive, "NAME=filterDrive,P=13BMC:,R=filter:,NUM_FILTERS=8")
+
+# Our beamline is in eV, so change the calc to divide by 1000.
+dbpf("13BMC:filter:Energy.CALC", "(A==0)?B/1000.:C")
 
 

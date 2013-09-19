@@ -99,6 +99,7 @@ dbLoadTemplate("DAC.template")
 # risingMask  = mask of bits to generate interrupts on low to high (24 bits)
 # fallingMask = mask of bits to generate interrupts on high to low (24 bits)
 initIpUnidig("Unidig1", 0, 3, 100, 116, 0xffffff, 0xffffff)
+dbLoadTemplate("filter.substitutions")
 
 # Second IP Unidig
 initIpUnidig("Unidig2", 1, 0, 1000, 117, 0xffffff, 0xffffff)
