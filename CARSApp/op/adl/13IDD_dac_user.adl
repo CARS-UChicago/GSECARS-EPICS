@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
-	version=030105
+	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
+	version=030107
 }
 display {
 	object {
-		x=308
-		y=245
+		x=257
+		y=185
 		width=1435
 		height=770
 	}
@@ -85,6 +85,22 @@ display {
 		3cb420,
 		289315,
 		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=624
+		y=115
+		width=120
+		height=80
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<67"
+		chan="13IDD:m72.RBV"
 	}
 }
 polygon {
@@ -4556,7 +4572,7 @@ text {
 composite {
 	object {
 		x=15
-		y=90
+		y=120
 		width=231
 		height=183
 	}
@@ -4565,7 +4581,7 @@ composite {
 		oval {
 			object {
 				x=15
-				y=90
+				y=120
 				width=231
 				height=183
 			}
@@ -4576,7 +4592,7 @@ composite {
 		menu {
 			object {
 				x=60
-				y=146
+				y=176
 				width=150
 				height=17
 			}
@@ -4589,7 +4605,7 @@ composite {
 		menu {
 			object {
 				x=60
-				y=170
+				y=200
 				width=150
 				height=19
 			}
@@ -4602,7 +4618,7 @@ composite {
 		menu {
 			object {
 				x=60
-				y=195
+				y=225
 				width=150
 				height=19
 			}
@@ -4615,7 +4631,7 @@ composite {
 		menu {
 			object {
 				x=60
-				y=219
+				y=249
 				width=150
 				height=19
 			}
@@ -4628,7 +4644,7 @@ composite {
 		"related display" {
 			object {
 				x=177
-				y=125
+				y=155
 				width=33
 				height=15
 			}
@@ -4649,7 +4665,7 @@ composite {
 		text {
 			object {
 				x=42
-				y=145
+				y=175
 				width=10
 				height=19
 			}
@@ -4662,7 +4678,7 @@ composite {
 		text {
 			object {
 				x=42
-				y=169
+				y=199
 				width=10
 				height=19
 			}
@@ -4675,7 +4691,7 @@ composite {
 		text {
 			object {
 				x=42
-				y=194
+				y=224
 				width=10
 				height=19
 			}
@@ -4688,7 +4704,7 @@ composite {
 		text {
 			object {
 				x=42
-				y=218
+				y=248
 				width=10
 				height=19
 			}
@@ -4701,7 +4717,7 @@ composite {
 		text {
 			object {
 				x=51
-				y=120
+				y=150
 				width=62
 				height=18
 			}
@@ -4713,7 +4729,7 @@ composite {
 		text {
 			object {
 				x=116
-				y=121
+				y=151
 				width=62
 				height=18
 			}
@@ -8826,4 +8842,95 @@ menu {
 	clrmod="discrete"
 	limits {
 	}
+}
+text {
+	object {
+		x=10
+		y=65
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=35
+	}
+	textix="Raman is"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=95
+		y=67
+		width=30
+		height=20
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=95
+				y=67
+				width=30
+				height=20
+			}
+			control {
+				chan="13IDD:m72.VAL"
+				clr=14
+				bclr=20
+			}
+			label="In"
+			press_msg="68"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-57"
+		chan="13IDD:m72.RBV"
+	}
+}
+composite {
+	object {
+		x=95
+		y=67
+		width=30
+		height=20
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=95
+				y=67
+				width=30
+				height=20
+			}
+			control {
+				chan="13IDD:m72.VAL"
+				clr=14
+				bclr=15
+			}
+			label="Out"
+			press_msg="-58"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>67"
+		chan="13IDD:m72.RBV"
+	}
+}
+"related display" {
+	object {
+		x=8
+		y=90
+		width=82
+		height=18
+	}
+	display[0] {
+		label="Laser Excel"
+		name="ExcelLaser.adl"
+		args="P=13IDD:, R=LQE1"
+	}
+	clr=15
+	bclr=19
+	label="-Green Laser"
 }
