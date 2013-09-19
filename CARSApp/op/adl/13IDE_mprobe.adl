@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=234
-		y=240
+		x=257
+		y=126
 		width=595
 		height=275
 	}
@@ -89,8 +89,8 @@ display {
 }
 oval {
 	object {
-		x=565
-		y=175
+		x=400
+		y=180
 		width=14
 		height=14
 	}
@@ -297,13 +297,13 @@ rectangle {
 	}
 	display[6] {
 		label="Microscope motors"
-		name="4motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m33, M2=m34, M3=m4, M4=m5"
+		name="3motors.adl"
+		args="P=13IDE:, TITLE=Microscope, M1=m33, M2=m17, M3=m18"
 	}
 	display[7] {
 		label="Vortex Stage"
-		name="4motors.adl"
-		args="P=13IDE:, TITLE=Vortex_Detector_Stages, M1=m17, M2=m18, M3=m19, M4=m20"
+		name="3motors.adl"
+		args="P=13IDE:, TITLE=Vortex_Detector_Stages, M1=m34, M2=m4, M3=m19"
 	}
 	display[8] {
 		label="XPS UTS Stages"
@@ -706,6 +706,26 @@ text {
 		name="GSE_MonoEnergy.adl"
 		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
+	display[1] {
+		label="Fast Pitch Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+	}
+	display[2] {
+		label="Fast Roll Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
+	}
+	display[3] {
+		label="BPM Electronics"
+		name="quadEM.adl"
+		args="P=13IDA:, R=QE2:,P_TS=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
+	}
+	display[4] {
+		label="BPM Foil"
+		name="BPM_Foil.adl"
+		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM"
+	}
 	clr=54
 	bclr=1
 	label="-Mono      "
@@ -731,12 +751,12 @@ text {
 		x=10
 		y=174
 		width=150
-		height=20
+		height=18
 	}
 	"basic attribute" {
 		clr=23
 	}
-	textix="Fluorescence Detector:"
+	textix="XRF Detector:"
 }
 oval {
 	object {
@@ -802,7 +822,7 @@ rectangle {
 	object {
 		x=5
 		y=164
-		width=290
+		width=240
 		height=105
 	}
 	"basic attribute" {
@@ -831,7 +851,7 @@ rectangle {
 	display[2] {
 		label="Quad Vortex"
 		name="4element_dxp.adl"
-		args="P=dxpMercury:, D=dxp, M=mca"
+		args="P=13SDD1:, D=dxp, M=mca"
 	}
 	display[3] {
 		label="Ion Chamber"
@@ -841,7 +861,7 @@ rectangle {
 	display[4] {
 		label="XRF Collector"
 		name="XRF_Collect.adl"
-		args="P=13XRM:, Q=XRF, D=dxpMercury:"
+		args="P=13XRM:, Q=XRF, D=13SDD1:"
 	}
 	display[5] {
 		label="cc"
@@ -852,9 +872,9 @@ rectangle {
 		args="P=13IDE:, S=scaler1"
 	}
 	display[7] {
-		label="Quad Vortex (SDD1)"
+		label="Quad Vortex (Mercury)"
 		name="4element_dxp.adl"
-		args="P=13SDD1:, D=dxp, M=mca"
+		args="P=dxpMercury:, D=dxp, M=mca"
 	}
 	display[9] {
 		label="Single Vortex"
@@ -872,8 +892,8 @@ rectangle {
 }
 text {
 	object {
-		x=310
-		y=175
+		x=256
+		y=176
 		width=30
 		height=20
 	}
@@ -884,15 +904,15 @@ text {
 }
 "text update" {
 	object {
-		x=360
-		y=175
-		width=125
-		height=20
+		x=296
+		y=178
+		width=100
+		height=22
 	}
 	monitor {
 		chan="13XRM:ION:FluxOut"
 		clr=54
-		bclr=1
+		bclr=2
 	}
 	align="horiz. right"
 	limits {
@@ -913,9 +933,9 @@ text {
 }
 "message button" {
 	object {
-		x=150
+		x=130
 		y=195
-		width=60
+		width=55
 		height=20
 	}
 	control {
@@ -928,9 +948,9 @@ text {
 }
 "message button" {
 	object {
-		x=20
-		y=194
-		width=60
+		x=10
+		y=195
+		width=55
 		height=20
 	}
 	control {
@@ -943,9 +963,9 @@ text {
 }
 "message button" {
 	object {
-		x=85
-		y=194
-		width=60
+		x=70
+		y=195
+		width=55
 		height=20
 	}
 	control {
@@ -958,8 +978,8 @@ text {
 }
 text {
 	object {
-		x=215
-		y=196
+		x=160
+		y=175
 		width=40
 		height=18
 	}
@@ -974,8 +994,8 @@ text {
 }
 text {
 	object {
-		x=215
-		y=196
+		x=160
+		y=175
 		width=75
 		height=18
 	}
@@ -990,7 +1010,7 @@ text {
 }
 "text update" {
 	object {
-		x=145
+		x=100
 		y=223
 		width=60
 		height=15
@@ -1006,7 +1026,7 @@ text {
 }
 "text entry" {
 	object {
-		x=210
+		x=170
 		y=220
 		width=60
 		height=20
@@ -1021,7 +1041,7 @@ text {
 }
 text {
 	object {
-		x=25
+		x=12
 		y=223
 		width=90
 		height=15
@@ -1033,7 +1053,7 @@ text {
 }
 "text update" {
 	object {
-		x=145
+		x=100
 		y=250
 		width=60
 		height=15
@@ -1050,7 +1070,7 @@ text {
 }
 text {
 	object {
-		x=20
+		x=12
 		y=250
 		width=100
 		height=15
@@ -1062,9 +1082,9 @@ text {
 }
 rectangle {
 	object {
-		x=300
-		y=164
-		width=290
+		x=250
+		y=165
+		width=340
 		height=105
 	}
 	"basic attribute" {
@@ -1240,8 +1260,8 @@ text {
 }
 text {
 	object {
-		x=305
-		y=205
+		x=256
+		y=206
 		width=45
 		height=18
 	}
@@ -1249,12 +1269,11 @@ text {
 		clr=24
 	}
 	textix="Pitch"
-	align="horiz. centered"
 }
 "message button" {
 	object {
-		x=489
-		y=205
+		x=456
+		y=206
 		width=20
 		height=20
 	}
@@ -1268,8 +1287,8 @@ text {
 }
 "message button" {
 	object {
-		x=560
-		y=205
+		x=511
+		y=206
 		width=20
 		height=20
 	}
@@ -1283,9 +1302,9 @@ text {
 }
 "text entry" {
 	object {
-		x=512
-		y=205
-		width=45
+		x=476
+		y=206
+		width=35
 		height=20
 	}
 	control {
@@ -1298,9 +1317,9 @@ text {
 }
 valuator {
 	object {
-		x=355
-		y=205
-		width=125
+		x=351
+		y=206
+		width=100
 		height=20
 	}
 	control {
@@ -1314,8 +1333,8 @@ valuator {
 }
 "message button" {
 	object {
-		x=489
-		y=235
+		x=456
+		y=236
 		width=20
 		height=20
 	}
@@ -1329,8 +1348,8 @@ valuator {
 }
 "message button" {
 	object {
-		x=560
-		y=235
+		x=511
+		y=236
 		width=20
 		height=20
 	}
@@ -1344,9 +1363,9 @@ valuator {
 }
 "text entry" {
 	object {
-		x=512
-		y=235
-		width=45
+		x=476
+		y=236
+		width=35
 		height=20
 	}
 	control {
@@ -1359,9 +1378,9 @@ valuator {
 }
 valuator {
 	object {
-		x=355
-		y=235
-		width=125
+		x=351
+		y=236
+		width=100
 		height=20
 	}
 	control {
@@ -1375,8 +1394,8 @@ valuator {
 }
 text {
 	object {
-		x=305
-		y=235
+		x=256
+		y=236
 		width=45
 		height=18
 	}
@@ -1384,12 +1403,11 @@ text {
 		clr=24
 	}
 	textix="Roll"
-	align="horiz. centered"
 }
 oval {
 	object {
-		x=565
-		y=175
+		x=400
+		y=180
 		width=14
 		height=14
 	}
@@ -1400,4 +1418,103 @@ oval {
 		vis="if zero"
 		chan="13IDA:mono_pid2_incalc.K"
 	}
+}
+text {
+	object {
+		x=440
+		y=95
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BPM Foil"
+}
+"text update" {
+	object {
+		x=520
+		y=95
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:E_BPMFoilPosition_RBV"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=295
+		y=208
+		width=50
+		height=15
+	}
+	monitor {
+		chan="13IDE:userTran1.I"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=295
+		y=238
+		width=50
+		height=15
+	}
+	monitor {
+		chan="13IDE:userTran1.O"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+menu {
+	object {
+		x=535
+		y=205
+		width=50
+		height=18
+	}
+	control {
+		chan="13IDA:efast_pitch_pid.FBON"
+		clr=54
+		bclr=1
+	}
+}
+menu {
+	object {
+		x=535
+		y=237
+		width=50
+		height=18
+	}
+	control {
+		chan="13IDA:efast_roll_pid.FBON"
+		clr=54
+		bclr=1
+	}
+}
+text {
+	object {
+		x=510
+		y=180
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Feedback:"
 }
