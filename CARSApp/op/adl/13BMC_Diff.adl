@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13BMC_Diff.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13BMC_Diff.adl"
 	version=030105
 }
 display {
 	object {
-		x=333
-		y=89
+		x=1055
+		y=95
 		width=160
 		height=500
 	}
@@ -85,289 +85,6 @@ display {
 		3cb420,
 		289315,
 		1a7309,
-	}
-}
-composite {
-	object {
-		x=10
-		y=185
-		width=130
-		height=273
-	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=10
-				y=202
-				width=128
-				height=24
-			}
-			display[0] {
-				label="BMC GPD Rotation"
-				name="6motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_Rotation, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38"
-			}
-			display[1] {
-				label="BMC GPD XYZ"
-				name="3motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_XYZ,  M1=m44, M2=m45, M3=m46"
-			}
-			display[2] {
-				label="BMC GPD Base"
-				name="5motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_Base, M1=m39, M2=m40, M3=m41, M4=m42, M5=m43"
-			}
-			display[3] {
-				label="BMC GPD Table Record"
-				name="table.adl"
-				args="P=13BMC:, Q=DIF:T1, T=DIF:t1, M0X=m43, M0Y=m39, M1Y=m41, M2X=junk, M2Y=m40, M2Z=m42"
-			}
-			display[4] {
-				label="BMC GPD Detector Slits"
-				name="4motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_Detector_Slits, M1=m13, M2=m14, M3=m15, M4=m16"
-			}
-			display[5] {
-				label="BMC GPD Enterance Slits"
-				name="2motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_Enterance_Slit, M1=m63, M2=m64"
-			}
-			display[6] {
-				label="BMC GPD Film Gap"
-				name="1motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_Film_Gap, M1=m70"
-			}
-			clr=14
-			bclr=4
-			label="-BMC GPD"
-		}
-		"related display" {
-			object {
-				x=10
-				y=231
-				width=128
-				height=24
-			}
-			display[0] {
-				label="Bench Attenuators"
-				name="13BMC_Unidig_atten_bench.adl"
-				args="P=13BMC:, R=Unidig1"
-			}
-			display[1] {
-				label=" Arm Attenuators"
-				name="13BMC_Unidig_atten_arm.adl"
-				args="P=13BMC:, R=Unidig1"
-			}
-			clr=14
-			bclr=4
-			label="-Attenuators"
-		}
-		"related display" {
-			object {
-				x=10
-				y=260
-				width=128
-				height=24
-			}
-			display[0] {
-				label="Trajectory Scan"
-				name="profileMove.adl"
-				args="P=13BMC:, R=Prof1:, TITLE=Trajectory Scans, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m25,M8=m26"
-			}
-			clr=14
-			bclr=4
-			label="-Trajectory Scan"
-		}
-		"related display" {
-			object {
-				x=10
-				y=289
-				width=128
-				height=24
-			}
-			display[0] {
-				label="Scaler"
-				name="scaler_full.adl"
-				args="P=13BMC:, S=scaler1"
-			}
-			display[1] {
-				label="SIS MCS"
-				name="SIS38XX.adl"
-				args="P=13BMC:SIS1:"
-			}
-			display[2] {
-				label="Stanford #1"
-				name="SR570.adl"
-				args="P=13BMC:, A=A1"
-			}
-			display[3] {
-				label="Stanford #2"
-				name="SR570.adl"
-				args="P=13BMC:, A=A2"
-			}
-			clr=14
-			bclr=4
-			label="-Counters"
-		}
-		"related display" {
-			object {
-				x=10
-				y=318
-				width=128
-				height=24
-			}
-			display[0] {
-				label="Pilatus #1"
-				name="pilatusDetector.adl"
-				args="P=GSE-PIL1:, R=cam1:,ROI=ROI1:,I=image1:"
-			}
-			display[1] {
-				label="Pilatus #2"
-				name="pilatusDetector.adl"
-				args="P=GSE-PIL2:, R=cam1:,ROI=ROI1:,I=image1:"
-			}
-			display[2] {
-				label="MAR-CCD #1"
-				name="marCCD.adl"
-				args="P=13MARCCD1:, R=cam1:"
-			}
-			display[3] {
-				label="MAR-CCD #2"
-				name="marCCD.adl"
-				args="P=13MARCCD2:, R=cam1:"
-			}
-			display[4] {
-				label="Mar345 Image Plate #1"
-				name="mar345.adl"
-				args="P=13MAR345_1:, R=cam1:"
-			}
-			display[5] {
-				label="Mar345 Image Plate #2"
-				name="mar345.adl"
-				args="P=13MAR345_2:, R=cam1:"
-			}
-			clr=14
-			bclr=4
-			label="-XRD Dectectors"
-		}
-		"related display" {
-			object {
-				x=10
-				y=347
-				width=128
-				height=24
-			}
-			display[0] {
-				label="Video switch"
-				name="Pelco_CM6700.adl"
-				args="P=13BMC:, R=Pelco1"
-			}
-			clr=14
-			bclr=4
-			label="-Video Switch"
-		}
-		"text update" {
-			object {
-				x=76
-				y=185
-				width=45
-				height=15
-			}
-			monitor {
-				chan="S:SRcurrentAI.VAL"
-				clr=14
-				bclr=4
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=10
-				y=185
-				width=45
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Iring = "
-		}
-		text {
-			object {
-				x=123
-				y=185
-				width=17
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="ma"
-		}
-		"related display" {
-			object {
-				x=10
-				y=434
-				width=128
-				height=24
-			}
-			display[0] {
-				label="13BMC Full"
-				name="13BMC.adl"
-			}
-			clr=14
-			bclr=4
-			label="-13BMC Full"
-		}
-		"related display" {
-			object {
-				x=10
-				y=376
-				width=128
-				height=24
-			}
-			display[0] {
-				label="Side Mono"
-				name="6motors.adl"
-				args="P=13BMC:, TITLE=13BMC_Side_Mono, M1=m55, M2=m57, M3=m28, M4=m27, M5=m30, M6=m29"
-			}
-			display[1] {
-				label="Vertical Mirror"
-				name="4motors.adl"
-				args="P=13BMC:,TITLE=13BMC_Vert_Mirror,M1=pm1,M2=pm2,M3=pm3,M4=pm4"
-			}
-			clr=14
-			bclr=4
-			label="-BMC Xray Optics"
-		}
-		"related display" {
-			object {
-				x=10
-				y=405
-				width=128
-				height=24
-			}
-			display[0] {
-				label="BMC Tomo"
-				name="5motors.adl"
-				args="P=13BMC:, TITLE=BMC_TomoSample, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5"
-			}
-			display[1] {
-				label="BMC Effluence Vial Rotation"
-				name="1motors.adl"
-				args="P=13BMC:, TITLE=BMC_Effluence_Vial_Rotation, M1=m5"
-			}
-			display[2] {
-				label="BMC Tomo Camera"
-				name="4motors.adl"
-				args="P=13BMC:, TITLE=TomoCameraStage, M1=m6, M2=m7, M3=m8, M4=m65"
-			}
-			clr=14
-			bclr=4
-			label="-More Motors"
-		}
 	}
 }
 text {
@@ -579,4 +296,291 @@ composite {
 			}
 		}
 	}
+}
+"related display" {
+	object {
+		x=10
+		y=202
+		width=128
+		height=24
+	}
+	display[0] {
+		label="BMC GPD Rotation"
+		name="6motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Rotation, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38"
+	}
+	display[1] {
+		label="BMC GPD XYZ"
+		name="3motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_XYZ,  M1=m44, M2=m45, M3=m46"
+	}
+	display[2] {
+		label="BMC GPD Base"
+		name="5motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Base, M1=m39, M2=m40, M3=m41, M4=m42, M5=m43"
+	}
+	display[3] {
+		label="BMC GPD Table Record"
+		name="table.adl"
+		args="P=13BMC:, Q=DIF:T1, T=DIF:t1, M0X=m43, M0Y=m39, M1Y=m41, M2X=junk, M2Y=m40, M2Z=m42"
+	}
+	display[4] {
+		label="BMC GPD Detector Slits"
+		name="4motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Detector_Slits, M1=m13, M2=m14, M3=m15, M4=m16"
+	}
+	display[5] {
+		label="BMC GPD Enterance Slits"
+		name="2motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Enterance_Slit, M1=m63, M2=m64"
+	}
+	display[6] {
+		label="BMC GPD Film Gap"
+		name="1motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Film_Gap, M1=m70"
+	}
+	display[7] {
+		label="BMC GPD Readbacks"
+		name="diff_motors.adl"
+		args="P=13BMC:, TITLE=Newport_Goniometer, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38, M7=m44, M8=m45, M9=m46"
+	}
+	clr=14
+	bclr=4
+	label="-BMC GPD"
+}
+"related display" {
+	object {
+		x=10
+		y=231
+		width=128
+		height=24
+	}
+	display[0] {
+		label="Bench Attenuators"
+		name="13BMC_Unidig_atten_bench.adl"
+		args="P=13BMC:, R=Unidig1"
+	}
+	display[1] {
+		label="Arm Attenuators"
+		name="13BMC_Unidig_atten_arm.adl"
+		args="P=13BMC:, R=Unidig1"
+	}
+	display[2] {
+		label="Filters"
+		name="filter_4_4_less.adl"
+		args="P=13BMC:, R=filter:"
+	}
+	display[3] {
+		label="Lead"
+		name="13BMC_lead_atten.adl"
+		args="P=13BMC:, R=Unidig1"
+	}
+	clr=14
+	bclr=4
+	label="-Attenuators"
+}
+"related display" {
+	object {
+		x=10
+		y=260
+		width=128
+		height=24
+	}
+	display[0] {
+		label="Trajectory Scan"
+		name="profileMove.adl"
+		args="P=13BMC:, R=Prof1:, TITLE=Trajectory Scans, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m25,M8=m26"
+	}
+	clr=14
+	bclr=4
+	label="-Trajectory Scan"
+}
+"related display" {
+	object {
+		x=10
+		y=289
+		width=128
+		height=24
+	}
+	display[0] {
+		label="Scaler"
+		name="scaler_full.adl"
+		args="P=13BMC:, S=scaler1"
+	}
+	display[1] {
+		label="SIS MCS"
+		name="SIS38XX.adl"
+		args="P=13BMC:SIS1:"
+	}
+	display[2] {
+		label="Stanford #1"
+		name="SR570.adl"
+		args="P=13BMC:, A=A1"
+	}
+	display[3] {
+		label="Stanford #2"
+		name="SR570.adl"
+		args="P=13BMC:, A=A2"
+	}
+	clr=14
+	bclr=4
+	label="-Counters"
+}
+"related display" {
+	object {
+		x=10
+		y=318
+		width=128
+		height=24
+	}
+	display[0] {
+		label="Pilatus #1"
+		name="pilatusDetector.adl"
+		args="P=GSE-PIL1:, R=cam1:,ROI=ROI1:,I=image1:"
+	}
+	display[1] {
+		label="Pilatus #2"
+		name="pilatusDetector.adl"
+		args="P=GSE-PIL2:, R=cam1:,ROI=ROI1:,I=image1:"
+	}
+	display[2] {
+		label="MAR-CCD #1"
+		name="marCCD.adl"
+		args="P=13MARCCD1:, R=cam1:"
+	}
+	display[3] {
+		label="MAR-CCD #2"
+		name="marCCD.adl"
+		args="P=13MARCCD2:, R=cam1:"
+	}
+	display[4] {
+		label="Mar345 Image Plate #1"
+		name="mar345.adl"
+		args="P=13MAR345_1:, R=cam1:"
+	}
+	display[5] {
+		label="Mar345 Image Plate #2"
+		name="mar345.adl"
+		args="P=13MAR345_2:, R=cam1:"
+	}
+	clr=14
+	bclr=4
+	label="-XRD Dectectors"
+}
+"related display" {
+	object {
+		x=10
+		y=347
+		width=128
+		height=24
+	}
+	display[0] {
+		label="Video switch"
+		name="Pelco_CM6700.adl"
+		args="P=13BMC:, R=Pelco1"
+	}
+	clr=14
+	bclr=4
+	label="-Video Switch"
+}
+"text update" {
+	object {
+		x=76
+		y=185
+		width=45
+		height=15
+	}
+	monitor {
+		chan="S:SRcurrentAI.VAL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=185
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Iring = "
+}
+text {
+	object {
+		x=123
+		y=185
+		width=17
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="ma"
+}
+"related display" {
+	object {
+		x=10
+		y=434
+		width=128
+		height=24
+	}
+	display[0] {
+		label="13BMC Full"
+		name="13BMC.adl"
+	}
+	clr=14
+	bclr=4
+	label="-13BMC Full"
+}
+"related display" {
+	object {
+		x=10
+		y=376
+		width=128
+		height=24
+	}
+	display[0] {
+		label="Side Mono"
+		name="6motors.adl"
+		args="P=13BMC:, TITLE=13BMC_Side_Mono, M1=m55, M2=m57, M3=m28, M4=m27, M5=m30, M6=m29"
+	}
+	display[1] {
+		label="Vertical Mirror"
+		name="4motors.adl"
+		args="P=13BMC:,TITLE=13BMC_Vert_Mirror,M1=pm1,M2=pm2,M3=pm3,M4=pm4"
+	}
+	clr=14
+	bclr=4
+	label="-BMC Xray Optics"
+}
+"related display" {
+	object {
+		x=10
+		y=405
+		width=128
+		height=24
+	}
+	display[0] {
+		label="BMC Tomo"
+		name="5motors.adl"
+		args="P=13BMC:, TITLE=BMC_TomoSample, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5"
+	}
+	display[1] {
+		label="BMC Effluence Vial Rotation"
+		name="1motors.adl"
+		args="P=13BMC:, TITLE=BMC_Effluence_Vial_Rotation, M1=m5"
+	}
+	display[2] {
+		label="BMC Tomo Camera"
+		name="4motors.adl"
+		args="P=13BMC:, TITLE=TomoCameraStage, M1=m6, M2=m7, M3=m8, M4=m65"
+	}
+	clr=14
+	bclr=4
+	label="-More Motors"
 }
