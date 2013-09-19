@@ -1,6 +1,6 @@
 errlogInit(20000)
 
-< envPaths
+# < envPaths
 
 dbLoadDatabase("$(AREA_DETECTOR)/dbd/prosilicaApp.dbd")
 
