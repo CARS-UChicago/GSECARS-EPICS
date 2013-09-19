@@ -27,23 +27,17 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.180", 5001, 50)
 # card,  axis, groupName.positionerName, stepsPerUnit
 XPSCreateAxis("XPS1", 0, "FINE.X",           "100000") # VP-25XL
 XPSCreateAxis("XPS1", 1, "FINE.Y",            "50000") # VP-5ZA
-XPSCreateAxis("XPS1", 2, "THETA.POSITIONER",   "2000") # URS75CC
+# XPSCreateAxis("XPS1", 2, "FINE.THETA",         "2000") # URS75CC
+XPSCreateAxis("XPS1", 2, "THETA.POSITIONER",     "2000") # URS75CC
 XPSCreateAxis("XPS1", 3, "COARSEX.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 4, "COARSEZ.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 5, "COARSEY.POSITIONER", "5000") # IMS300CC
 #XPSCreateAxis("XPS1", 6, "UTS1.POSITIONER",    "1000") # UTS100PP
 #XPSCreateAxis("XPS1", 7, "UTS2.POSITIONER",    "1000") # UTS150PP
 
-#XPSCreateAxis("XPS1", 0, "GROUP1.POSITIONER",  "100000") # VP-25XL
-#XPSCreateAxis("XPS1", 1, "GROUP2.POSITIONER",   "50000") # VP-5ZA
-#XPSCreateAxis("XPS1", 2, "GROUP3.POSITIONER",    "2000") # URS75CC
-#XPSCreateAxis("XPS1", 3, "GROUP4.POSITIONER",    "2000") # ILS200CC
-#XPSCreateAxis("XPS1", 4, "GROUP5.POSITIONER",    "2000") # ILS200CC
-#XPSCreateAxis("XPS1", 5, "GROUP6.POSITIONER",    "5000") # IMS300CC
-
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
-XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
+XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 
 # Disable setting position
 XPSEnableSetPosition(0)
@@ -53,8 +47,7 @@ XPSEnableSetPosition(0)
 # crate.
 dbLoadTemplate "scanParms.template"
 
-### Allstop, alldone
-### Allstop, alldone
+# Allstop, alldone
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XRM:")
 
 ### Scan-support software
@@ -70,7 +63,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XRM:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XRM:")
-dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
+# dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XRM:")
