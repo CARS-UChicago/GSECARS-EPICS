@@ -12,11 +12,11 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.55", 5001, 6, 10, 500, 1, 500)
-asynSetTraceIOMask("XPS1", 0, 2)
+XPSCreateController("XPS1", "164.54.160.55", 5001, 6, 10, 500, 0, 500)
+#asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
-XPSCreateController("XPS2", "164.54.160.56", 5001, 8, 10, 500, 1, 500)
-asynSetTraceIOMask("XPS2", 0, 2)
+XPSCreateController("XPS2", "164.54.160.56", 5001, 8, 10, 500, 0, 500)
+#asynSetTraceIOMask("XPS2", 0, 2)
 #asynSetTraceMask("XPS2", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
