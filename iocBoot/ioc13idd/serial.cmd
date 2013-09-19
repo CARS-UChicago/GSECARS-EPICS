@@ -9,7 +9,7 @@ tyGSAsynInit("serial8",  "UART0", 7,  9600,'N',1,8,'N',"\r","\r")   /* SMART PC 
 tyGSAsynInit("serial9",  "UART1", 0,  9600,'N',2,7,'N',"\r","\r")   /* Omega meter */
 tyGSAsynInit("serial10", "UART1", 1, 19200,'N',1,8,'N',"\r","\r")   /* RSF encoder readout */
 tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',">","\r")    /* PicoMotor controller */
-tyGSAsynInit("serial12", "UART1", 3, 19200,'N',1,8,'N',"\r","\r")   /* Keithley 2700 */
+tyGSAsynInit("serial12", "UART1", 3,  9600,'N',1,8,'N',"\r\n","\r\n") /* LQExcel laser */
 tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r")   /* Pelco CM6700 video switch */
 tyGSAsynInit("serial14", "UART1", 5, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
 tyGSAsynInit("serial15", "UART1", 6, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
@@ -55,7 +55,9 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,PORT=serial7")
 dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,PORT=serial10")
 # Serial 11 is picoMotors
 dbLoadTemplate("picoMotors.template")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM5,PORT=serial12")
+
+# Laser Quantum Excel laser
+dbLoadRecords("$(CARS)/CARSApp/Db/LQExcel.db", "P=13IDD:,R=LQE1,PORT=serial12")
 
 # Serial 13 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
@@ -68,5 +70,5 @@ dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT
 dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=4")
 
 # Tell StreamDevice where to find protocol files
-iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db)")
+iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db:$(CARS)/CARSApp/Db)")
 
