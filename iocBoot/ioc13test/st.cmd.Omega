@@ -1,0 +1,17 @@
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+epicsEnvSet("STREAM_PROTOCOL_PATH",".")
+
+drvAsynIPPortConfigure("HX86PA","localhost:1234 TCP",0,0,1)
+asynSetTraceIOMask HX86PA,0,2
+#asynSetTraceMask HX86PA,0,255
+
+dbLoadRecords("./Omega.db", "P=Test:,R=Omega1:,PORT=HX86PA")
+
+iocInit
+
+
