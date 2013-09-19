@@ -87,6 +87,8 @@ initIpUnidig("Unidig2", 1, 1, 100, 117, 0xffffff, 0xffffff)
 initIpUnidig("Unidig3", 1, 2, 100, 118, 0xffffff, 0xffffff)
 
 dbLoadTemplate("ipUnidig.substitutions")
+dbLoadTemplate("filter.substitutions")
+
 
 # DAC in first slot on second board
 # Initialize Systran DAC

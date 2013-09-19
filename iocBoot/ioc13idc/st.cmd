@@ -173,6 +173,11 @@ seq &Keithley2kDMM, "P=13IDC:, Dmm=DMM1"
 # For SISXX MCS
 seq(&SIS38XX_SNL, "P=13IDC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
+# Filter seq program
+seq(&filterDrive, "NAME=filterDrive,P=13IDC:,R=filter:,NUM_FILTERS=8")
+
+# Our beamline is in eV, so change the calc to divide by 1000.
+dbpf("13IDC:filter:Energy.CALC", "(A==0)?B/1000.:C")
 
 motorUtilInit("13IDC:")
 
