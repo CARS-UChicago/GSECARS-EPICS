@@ -41,6 +41,7 @@ set_pass1_restoreFile("auto_settings.sav")
 # specify directories in which to to search for included request files
 set_requestfile_path("./")
 set_requestfile_path(cars,     "CARSApp/Db")
+set_requestfile_path(area_detector, "ADApp/Db")
 set_requestfile_path(autosave, "asApp/Db")
 set_requestfile_path(calc,     "calcApp/Db")
 set_requestfile_path(camac,    "camacApp/Db")
