@@ -35,63 +35,11 @@ dbLoadTemplate("motors.template")
 < industryPack.cmd
 < serial.cmd
 
-# APS Quad electrometer for C/D branch
-# -----------------------------------------------------
-# drvAPS_EMConfigure(const char *portName, unsigned short *baseAddr, int fiberChannel,
-#                    const char *unidigName, int unidigChan, char *unidigDrvInfo)
-#  portName     = name of APS_EM asyn port driver created 
-#  baseAddress = base address of VME card
-#  channel     = 0-3, fiber channel number
-#  unidigName  = name of ipInidig server if it is used for interrupts.
-#                Set to 0 if there is no IP-Unidig being used, in which
-#                case the quadEM will be read at 60Hz.
-#  unidigChan  = IP-Unidig channel connected to quadEM pulse output
-#  unidigDrvInfo = drvInfo string for digital input parameter
-drvAPS_EMConfigure("APS_EM", 0xf000, 0, "Unidig1", 0, "DIGITAL_INPUT")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.template", "P=13IDA:, R=QE1:, PORT=APS_EM")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/APS_EM.template", "P=13IDA:, R=QE1:, PORT=APS_EM")
+# APS electrometer for C/D branch
+iocsh("APS_EM.cmd")
 
-# initFastSweep(portName, inputName, maxSignals, maxPoints)
-#  portName = asyn port name for this new port (string)
-#  inputName = name of asynPort providing data
-#  maxSignals  = maximum number of signals (spectra)
-#  maxPoints  = maximum number of channels per spectrum
-#  dataString  = drvInfo string for current and position data
-#  intervalString  = drvInfo string for time interval per point
-initFastSweep("QE1TS", "APS_EM", 11, 2048, "QE_INT_ARRAY_DATA", "QE_SAMPLE_TIME")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_TimeSeries.template", "P=13IDA:,R=QE1_TS:,NUM_TS=2048,NUM_FREQ=1024,PORT=QE1TS")
-
-# AH501D Quad electrometer for E branch
-#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
-#                        noProcessEos)
-drvAsynIPPortConfigure("IP_AH501D", "164.54.160.11:10001", 0, 0, 0)
-asynOctetSetInputEos("IP_AH501D",0,"\r\n")
-asynOctetSetOutputEos("IP_AH501D",0,"\r")
-
-# Set both TRACE_IO_ESCAPE (for ASCII command/response) and TRACE_IO_HEX (for binary data)
-asynSetTraceIOMask("IP_AH501D",0,6)
-#asynSetTraceFile("IP_AH501D",0,"AHxxx.out")
-#asynSetTraceMask("IP_AH501D",0,9)
-
-# Load asynRecord record
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA:, R=QE2_asyn1,PORT=IP_AH501D,ADDR=0,OMAX=256,IMAX=256")
-
-drvAHxxxConfigure("AH501D", "IP_AH501D")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.template", "P=13IDA:, R=QE2:, PORT=AH501D")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/AH501.template", "P=13IDA:, R=QE2:, PORT=AH501D")
-
-asynSetTraceIOMask("AH501D",0,2)
-#asynSetTraceMask("AH501D",0,9)
-
-# initFastSweep(portName, inputName, maxSignals, maxPoints)
-#  portName = asyn port name for this new port (string)
-#  inputName = name of asynPort providing data
-#  maxSignals  = maximum number of signals (spectra)
-#  maxPoints  = maximum number of channels per spectrum
-#  dataString  = drvInfo string for current and position data
-#  intervalString  = drvInfo string for time interval per point
-initFastSweep("AH501DTS", "AH501D", 11, 2048, "QE_INT_ARRAY_DATA", "QE_SAMPLE_TIME")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_TimeSeries.template", "P=13IDA:,R=QE2_TS:,NUM_TS=2048,NUM_FREQ=1024,PORT=AH501DTS")
+# AH501 electrometer for E branch
+iocsh("AH501.cmd")
 
 # Monochromator positions
 #dbLoadTemplate("mono_position.template")
