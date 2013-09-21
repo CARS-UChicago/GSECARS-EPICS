@@ -40,12 +40,7 @@ DBD += CARSWin32.dbd
 # build an ioc application
 
 PROD_IOC = CARSApp
-PROD_IOC_Linux = test_splint
-test_splint_SRCS += test_splint.c
-test_splint_LIBS += CARS
-PROD_IOC_Linux = test_GSEMonoSupport
-test_GSEMonoSupport_SRCS += test_GSEMonoSupport.c
-test_GSEMonoSupport_LIBS += CARS ADBase
+PROD_NAME = CARSApp
 PROD_IOC_vxWorks = CARSAppMini
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
@@ -69,7 +64,7 @@ CARSApp_Common_LIBS += busy
 CARSApp_Common_LIBS += love
 CARSApp_Common_LIBS += ip
 CARSApp_Common_LIBS += quadEM
-CARSApp_Common_LIBS += pmacAsynMotorPort pmacAsynIPPort
+CARSApp_Common_LIBS += pmacAsynMotor pmacAsynIPPort
 CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport ACRMotor motor
 CARSApp_Common_LIBS += stream streamSynApps
 CARSApp_Common_LIBS += modbus
@@ -101,6 +96,8 @@ CARSApp_WIN32_LIBS        += wpcap Packet
 
 CARSApp_SYS_LIBS_cygwin32 += wpcap Packet
 CARSApp_SYS_LIBS_cygwin32 += $(CYGWIN_RPC_LIB)
+
+include $(AREA_DETECTOR)/ADApp/commonDriverMakefile
 
 CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)                            
 CARSApp_LIBS_vxWorks  = $(CARSApp_vxWorks_LIBS)  $(CARSApp_Common_LIBS)
