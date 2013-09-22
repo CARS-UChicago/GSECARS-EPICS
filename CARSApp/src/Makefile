@@ -10,6 +10,27 @@ include $(TOP)/configure/CONFIG
 
 LIBRARY_IOC += CARS
 
+CARS_Common_LIBS += busy
+CARS_Common_LIBS += mca 
+CARS_Common_LIBS += mcaCanberra
+CARS_Common_LIBS += calc
+CARS_Common_LIBS += sscan
+CARS_Common_LIBS += autosave
+CARS_Common_LIBS += optics
+CARS_Common_LIBS += std
+CARS_Common_LIBS += busy
+CARS_Common_LIBS += love
+CARS_Common_LIBS += ip
+CARS_Common_LIBS += quadEM
+CARS_Common_LIBS += pmacAsynMotor pmacAsynIPPort
+CARS_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport ACRMotor motor
+CARS_Common_LIBS += stream streamSynApps
+CARS_Common_LIBS += modbus
+CARS_Common_LIBS += ADBase
+CARS_Common_LIBS += asyn
+CARS_Common_LIBS += seq pv
+CARS_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
+
 # The following are compiled and added to the Support library
 CARS_SRCS += coordTrans2D.st
 CARS_SRCS += BMD_LVP_Detector.st
@@ -23,9 +44,6 @@ CARS_SRCS += Analyzer.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 CARS_SRCS += splint.c
-
-CARS_LIBS += asyn seq pv
-CARS_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 
@@ -51,59 +69,45 @@ CARSApp_SRCS_vxWorks += CARSVX_registerRecordDeviceDriver.cpp
 
 CARSAppMini_SRCS += CARSMini_registerRecordDeviceDriver.cpp
 
-CARSApp_Common_LIBS += CARS
-CARSApp_Common_LIBS += busy
-CARSApp_Common_LIBS += mca 
-CARSApp_Common_LIBS += mcaCanberra
-CARSApp_Common_LIBS += calc
-CARSApp_Common_LIBS += sscan
-CARSApp_Common_LIBS += autosave
-CARSApp_Common_LIBS += optics
-CARSApp_Common_LIBS += std
-CARSApp_Common_LIBS += busy
-CARSApp_Common_LIBS += love
-CARSApp_Common_LIBS += ip
-CARSApp_Common_LIBS += quadEM
-CARSApp_Common_LIBS += pmacAsynMotor pmacAsynIPPort
-CARSApp_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport ACRMotor motor
-CARSApp_Common_LIBS += stream streamSynApps
-CARSApp_Common_LIBS += modbus
-CARSApp_Common_LIBS += ADBase
-CARSApp_Common_LIBS += asyn
-CARSApp_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-CARSApp_Common_LIBS += seq pv
-
-CARSApp_vxWorks_LIBS += allenBradley
-CARSApp_vxWorks_LIBS += SIS38XX
-CARSApp_vxWorks_LIBS += ip330
-CARSApp_vxWorks_LIBS += ipUnidig
-CARSApp_vxWorks_LIBS += dac128V
-CARSApp_vxWorks_LIBS += camac devCamac
-CARSApp_vxWorks_LIBS += dxp handel
-CARSApp_vxWorks_LIBS += oms
-CARSApp_vxWorks_LIBS += vme
-CARSApp_vxWorks_LIBS += TyGSOctal Ipac
-CARSApp_vxWorks_LIBS += vxStats
-CARSApp_vxWorks_LIBS += softGlue
+CARS_vxWorks_LIBS += allenBradley
+CARS_vxWorks_LIBS += SIS38XX
+CARS_vxWorks_LIBS += ip330
+CARS_vxWorks_LIBS += ipUnidig
+CARS_vxWorks_LIBS += dac128V
+CARS_vxWorks_LIBS += camac devCamac
+CARS_vxWorks_LIBS += dxp handel
+CARS_vxWorks_LIBS += oms
+CARS_vxWorks_LIBS += vme
+CARS_vxWorks_LIBS += TyGSOctal Ipac
+CARS_vxWorks_LIBS += vxStats
+CARS_vxWorks_LIBS += softGlue
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARSApp_SYS_LIBS_Linux    += net pcap
-CARSApp_SYS_LIBS_Linux    += usb
+CARS_Linux_SYS_LIBS    += net pcap
+CARS_Linux_SYS_LIBS    += usb
 
-CARSApp_WIN32_LIBS        += wpcap Packet
+CARS_WIN32_LIBS        += wpcap Packet
 
-CARSApp_SYS_LIBS_cygwin32 += wpcap Packet
-CARSApp_SYS_LIBS_cygwin32 += $(CYGWIN_RPC_LIB)
+CARS_Cygwin_SYS_LIBS   += wpcap Packet
+CARS_Cygwin_SYS_LIBS   += $(CYGWIN_RPC_LIB)
 
 include $(AREA_DETECTOR)/ADApp/commonDriverMakefile
 
-CARSApp_LIBS_DEFAULT  = $(CARSApp_Common_LIBS)                            
-CARSApp_LIBS_vxWorks  = $(CARSApp_vxWorks_LIBS)  $(CARSApp_Common_LIBS)
-CARSApp_LIBS_Linux    = $(CARSApp_Linux_LIBS)    $(CARSApp_Common_LIBS)
-CARSApp_LIBS_cygwin32 = $(CARSApp_cygwin32_LIBS) $(CARSApp_Common_LIBS)
-CARSApp_LIBS_WIN32    = $(CARSApp_WIN32_LIBS)    $(CARSApp_Common_LIBS)
+CARSApp_LIBS_DEFAULT       = CARS                         $(CARS_Common_LIBS)                            
+LIB_LIBS_DEFAULT          +=                              $(CARS_Common_LIBS)                            
+CARSApp_LIBS_vxWorks       = CARS $(CARSApp_vxWorks_LIBS) $(CARS_Common_LIBS)
+LIB_LIBS_vxWorks          +=      $(CARSApp_vxWorks_LIBS) $(CARS_Common_LIBS)
+CARSApp_LIBS_Linux         = CARS $(CARS_Linux_LIBS)      $(CARS_Common_LIBS)
+CARSApp_SYS_LIBS_Linux    +=      $(CARS_Linux_SYS_LIBS)
+LIB_LIBS_Linux            +=      $(CARS_Linux_LIBS)      $(CARS_Common_LIBS)
+LIB_SYS_LIBS_Linux        +=      $(CARS_Linux_SYS_LIBS)
+CARSApp_LIBS_cygwin32      = CARS                         $(CARS_Common_LIBS)
+CARSApp_SYS_LIBS_cygwin32 +=      $(CARS_Cygwin_SYS_LIBS)
+LIB_LIBS_cygwin32         +=                              $(CARS_Common_LIBS)
+LIB_SYS_LIBS_cygwin32     +=      $(CARS_Cygwin_SYS_LIBS)
+CARSApp_LIBS_WIN32         = CARS $(CARS_WIN32_LIBS)      $(CARS_Common_LIBS)
+LIB_LIBS_WIN32            +=      $(CARS_WIN32_LIBS)      $(CARS_Common_LIBS)
 
 CARSAppMini_LIBS += busy
 CARSAppMini_LIBS += mca 
