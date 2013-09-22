@@ -12,6 +12,7 @@
 #include "tinyxml.h"
 #include "splint.h"
 #include "GSE_MonoSupport.h"
+#include <epicsExport.h>
 
 typedef struct measurementTable {
   int numMeasurements;
