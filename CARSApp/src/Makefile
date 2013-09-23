@@ -96,8 +96,8 @@ include $(AREA_DETECTOR)/ADApp/commonDriverMakefile
 
 CARSApp_LIBS_DEFAULT       = CARS                         $(CARS_Common_LIBS)                            
 LIB_LIBS_DEFAULT          +=                              $(CARS_Common_LIBS)                            
-CARSApp_LIBS_vxWorks       = CARS $(CARSApp_vxWorks_LIBS) $(CARS_Common_LIBS)
-LIB_LIBS_vxWorks          +=      $(CARSApp_vxWorks_LIBS) $(CARS_Common_LIBS)
+CARSApp_LIBS_vxWorks       = CARS $(CARS_vxWorks_LIBS)    $(CARS_Common_LIBS)
+LIB_LIBS_vxWorks          +=      $(CARS_vxWorks_LIBS)    $(CARS_Common_LIBS)
 CARSApp_LIBS_Linux         = CARS $(CARS_Linux_LIBS)      $(CARS_Common_LIBS)
 CARSApp_SYS_LIBS_Linux    +=      $(CARS_Linux_SYS_LIBS)
 LIB_LIBS_Linux            +=      $(CARS_Linux_LIBS)      $(CARS_Common_LIBS)
