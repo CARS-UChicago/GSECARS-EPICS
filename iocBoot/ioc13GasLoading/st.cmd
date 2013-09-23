@@ -5,6 +5,7 @@ errlogInit(5000)
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARS.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
+#CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 # Set up 4 serial ports on Moxa terminal server
 
