@@ -12,6 +12,8 @@ pattern
 {13BMA:,   8,   "BMC shutter close",        0,  3,  7, "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
 {13BMA:,   9,   "BMD shutter disable",      0,  3,  8, "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
 {13BMA:,  10,   "BMC shutter disable",      0,  3,  9, "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
+{13BMA:,  15,   "BMD pump request",         0,  5, 14, "Off",            "MAJOR",     "On",               "NO_ALARM"}
+{13BMA:,  16,   "BMD vent request",         0,  5, 15, "Close",          "NO_ALARM",  "Open",             "MAJOR"}
 }
 
 file "$(CARS)/CARSApp/Db/eps_pulse.db"
@@ -24,4 +26,6 @@ pattern
 {13BMA:,   CloseBMDShutter, 6,  "Close BMD shutter" }
 {13BMA:,   OpenBMCShutter,  7,  "Open BMC shutter"  }
 {13BMA:,   CloseBMCShutter, 8,  "Close BMC shutter" }
+{13BMA:,   DPumpRequest,   15,  "BM-D pump request" }
+{13BMA:,   DVentRequest,   16,  "BM-D vent request" }
 }
