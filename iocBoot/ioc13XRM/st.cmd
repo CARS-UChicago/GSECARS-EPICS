@@ -27,8 +27,8 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.180", 5001, 50)
 # card,  axis, groupName.positionerName, stepsPerUnit
 XPSCreateAxis("XPS1", 0, "FINE.X",           "100000") # VP-25XL
 XPSCreateAxis("XPS1", 1, "FINE.Y",            "50000") # VP-5ZA
-# XPSCreateAxis("XPS1", 2, "FINE.THETA",         "2000") # URS75CC
-XPSCreateAxis("XPS1", 2, "THETA.POSITIONER",     "2000") # URS75CC
+XPSCreateAxis("XPS1", 2, "FINE.THETA",         "2000") # URS75CC
+# XPSCreateAxis("XPS1", 2, "THETA.POSITIONER",     "2000") # URS75CC
 XPSCreateAxis("XPS1", 3, "COARSEX.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 4, "COARSEZ.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 5, "COARSEY.POSITIONER", "5000") # IMS300CC
