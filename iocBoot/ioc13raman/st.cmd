@@ -3,14 +3,16 @@ errlogInit(5000)
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARS.dbd")
-CARS_registerRecordDeviceDriver(pdbbase)
+CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 # Set up 2 local serial ports
 # COM1 is for spectrometer, not EPICS
 #drvAsynSerialPortConfigure("serial1", "/dev/ttyS0", 0, 0, 0)
 #asynSetOption(serial1,0,baud,19200)
 #asynSetOption(serial1,0,parity,none)
-drvAsynSerialPortConfigure("serial2", "/dev/ttyS1", 0, 0, 0)
+drvAsynSerialPortConfigure("serial2", "COM2", 0, 0, 0)
+asynSetTraceIOMask("serial2",0,2)
+#asynSetTraceMask("serial2",0,255)
 asynSetOption(serial2,0,baud,19200)
 asynSetOption(serial2,0,parity,none)
 asynSetOption(serial2,0,bits,8)
@@ -21,8 +23,6 @@ asynOctetSetOutputEos("serial2",0,"\r")
 #asynOctetConnect("serial1", "serial1")
 asynOctetConnect("serial2", "serial2")
 
-asynSetTraceIOMask("serial2",0,2)
-#asynSetTraceMask("serial2",0,255)
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
