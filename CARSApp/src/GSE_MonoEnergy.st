@@ -27,6 +27,9 @@ program GSE_MonoEnergy("MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, 
  *                     changed name from Energy to GSE_MonoEnergy
  *  Oct 22, 2012  MN:  add "Set ID Offset" (now!) variable
  *  Oct 28, 2012  MN:  fixed use of busy record (fix is to GSE_MonoEnergy.db) so that put-wait works
+ *  Oct 15, 2013  MN:  fixed bug in which a  non-zero y2_mvmin could cause y2 to never actually 
+ *                     move for accumulated small moves (that is, error build up was not being 
+ *                     seen and respected).
  *
  */
 %%#include <math.h>
@@ -133,7 +136,8 @@ double en_max;
 double th_min;
 double th_max;
 double tiny;
-double y2_diff; double y2_old; 
+double y2_old;
+double y2_new;
 int move_busy;
 int wait_count;
 int timeout_ticks;
@@ -281,12 +285,14 @@ ss GSE_MonoEnergy {
           width  =  height / (2 * cos(th * d2r));
           pvPut(width);
           y2_old = y2;
-          y2  = y2_off + width;
-          if (fabs(y2 - y2_old) > y2_mvmin) { 
-          pvPut(y2);  
-        }
-        if (verbose) { 
-          printf("  En(move)> 2nd XTAL y2->%12.6f, height->%12.6f\n", y2, height);}
+          y2_new = y2_off + width;
+          if (fabs(y2_new - y2_old) > y2_mvmin) { 
+	    y2 = y2_new;
+	    pvPut(y2);  
+	  }
+	  if (verbose) { 
+	    printf("  En(move)> 2nd XTAL y2->%12.6f, height->%12.6f\n", y2, height);
+	  }
         } 
       }
     } state wait_done
@@ -321,9 +327,11 @@ ss GSE_MonoEnergy {
         width  =  height / (2 * cos(th * d2r));
         pvPut(width);
         y2_old = y2;
-        y2 = y2_off + width;
-        y2_diff = fabs(y2 - y2_old);
-        if (y2_diff > y2_mvmin) {  pvPut(y2);  }
+        y2_new = y2_off + width;
+        if (fabs(y2_new - y2_old) > y2_mvmin) {
+	  y2 = y2_new ;
+	  pvPut(y2);  
+	}
         if (verbose) { printf("  En(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
                       y2, width, height);}
       } 
