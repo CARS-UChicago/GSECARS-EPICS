@@ -130,10 +130,17 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13BMD:,Q=edb")
 # crate.
 dbLoadTemplate "scanParms.template"
 
-# Miscellaneous PV's, such as burtResult
+# Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
-dbLoadRecords("$(CALC)/calcApp/Db/userTransform.db", "P=13BMD:, N=1")
-dbLoadRecords("$(CALC)/calcApp/Db/userTransform.db", "P=13BMD:, N=2")
+
+# Free-standing user string/number calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMD:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMD:,N=10")
+
+# Free-standing user transforms (transform records)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMD:")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
@@ -169,9 +176,10 @@ seq &BMD_LVP_Detector, "P=13BMD:,PMT=pm4,PMR=pm3,X=m9,Y=m16,Z=m10,TV=m12,TH=m13"
 
 seq(&SIS38XX_SNL, "P=13BMD:SIS1:, R=mca, NUM_SIGNALS=32, FIELD=READ")
 
-# Force the DAC to be 0 volts.  The hardware does this automatically on VME 
-# reset but the the software display is not correct
-dbpf "13BMD:DAC1_1", "0."
+# Enable user string calcs and user transforms
+dbpf "13BMD:EnableUserTrans.PROC","1"
+dbpf "13BMD:EnableUserSCalcs.PROC","1"
+dbpf "13BMD:EnableuserACalcs.PROC","1"
 
 ### Start the saveData task.
 # saveData_MessagePolicy
