@@ -62,12 +62,15 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,
 dbLoadTemplate("scanParms.template")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13BMA:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMA:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMA:,N=10")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13BMA:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMA:")
 
-# Miscellaneous PV's, such as burtResult
+# Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
 
 # vxWorks statistics
@@ -108,6 +111,8 @@ seq &Keithley2kDMM, "P=13BMA:, Dmm=DMM2, stack=10000"
 # Enable user string calcs and user transforms
 dbpf "13BMA:EnableUserTrans.PROC","1"
 dbpf "13BMA:EnableUserSCalcs.PROC","1"
+dbpf "13BMA:EnableuserACalcs.PROC","1"
+
 
 seq &BM13_Energy, "E=13BMA:E, MONO=13BMA:m17, EXPTAB_Z=13BMD:m22, YXTAL=13BMA:MON:, ZXTAL=13BMA:m14" 
 

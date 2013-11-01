@@ -69,18 +69,19 @@ dbLoadTemplate "scanParms.template"
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13BMC:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMC:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMC:,N=10")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13BMC:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMC:")
 
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
-
-# 
 
 # Dummy Energy PV for the filterDrive.st program
 dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_EnergyDummyPV.db")
@@ -183,8 +184,11 @@ seq(&SIS38XX_SNL, "P=13BMC:SIS1:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 # Initialize the motorUtil software
 motorUtilInit("13BMC:")
 
-# Enable UserstringCALs
-dbpf("13BMC:userStringCalcEnable.VAL","Enable")
+# Enable user string calcs and user transforms
+dbpf "13BMC:EnableUserTrans.PROC","1"
+dbpf "13BMC:EnableUserSCalcs.PROC","1"
+dbpf "13BMC:EnableuserACalcs.PROC","1"
+
 
 # Filter seq program
 seq(&filterDrive, "NAME=filterDrive,P=13BMC:,R=filter:,NUM_FILTERS=8")
