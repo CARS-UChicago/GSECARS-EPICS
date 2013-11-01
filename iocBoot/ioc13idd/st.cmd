@@ -1,4 +1,4 @@
-# vxWorks startup file for 13BMD IOC
+# vxWorks startup file for 13IDD IOC
 < cdCommands
 < ../nfsCommandsGSE
 
@@ -110,9 +110,17 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=200,
 # crate.
 dbLoadTemplate("scanParms.template")
 
-# Miscellaneous PV's, such as burtResult
+# Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDD:", std)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDD:", std)
+
+# Free-standing user string/number calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDD:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDD:,N=10")
+
+# Free-standing user transforms (transform records)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDD:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
@@ -158,6 +166,11 @@ saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
 saveData_Init("saveDataExtraPVs.req", "P=13IDD:")
 #saveData_PrintScanInfo("13IDD:scan1")
+
+# Enable user string calcs and user transforms
+dbpf "13IDD:EnableUserTrans.PROC","1"
+dbpf "13IDD:EnableUserSCalcs.PROC","1"
+dbpf "13IDD:EnableuserACalcs.PROC","1"
 
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
 dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"

@@ -61,10 +61,13 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13IDE:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDE:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDE:,N=10")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13IDE:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDE:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
@@ -134,6 +137,9 @@ seq(&SIS38XX_SNL, "P=13IDE:SIS1:, R=mca, NUM_SIGNALS=32, FIELD=READ")
 # dbpf("13IDE:sm3C1","1.00")
 # dbpf("13IDE:sm3C2","1.00")
 
-dbpf("13IDE:userTranEnable","1")
+# Enable user string calcs and user transforms
+dbpf "13IDE:EnableUserTrans.PROC","1"
+dbpf "13IDE:EnableUserSCalcs.PROC","1"
+dbpf "13IDE:EnableuserACalcs.PROC","1"
 
 motorUtilInit("13IDE:")

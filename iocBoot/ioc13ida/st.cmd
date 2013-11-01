@@ -77,7 +77,16 @@ dbLoadTemplate("scanParms.template")
 #dbLoadRecords ("$(VME)/vmeApp/Db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
 dbLoadRecords ("$(VME)/vmeApp/Db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
 
-# Miscellaneous PV's, such as burtResult
+# Free-standing user string/number calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDA:,N=10")
+
+# Free-standing user transforms (transform records)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA:")
+
+# Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
 
 # vxWorks statistics
@@ -162,6 +171,10 @@ seq(&quadEM_SNL, "P=13IDA:, R=QE2_TS:, NUM_CHANNELS=2048")
 dbpf "13IDA:V8_status.ONSV","MAJOR"
 dbpf "13IDA:V8_status.TWSV","NO_ALARM"
 
+# Enable user string calcs and user transforms
+dbpf "13IDA:EnableUserTrans.PROC","1"
+dbpf "13IDA:EnableUserSCalcs.PROC","1"
+dbpf "13IDA:EnableuserACalcs.PROC","1"
 
 #
 # MN/MR 27/Nov/01

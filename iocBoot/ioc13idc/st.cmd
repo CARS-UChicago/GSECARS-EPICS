@@ -89,8 +89,17 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_4,DTYP=asynMCA,NCHAN
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
-# Miscellaneous PV's, such as burtResult
+# Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDC:")
+
+# Free-standing user string/number calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDC:")
+
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDC:,N=10")
+
+# Free-standing user transforms (transform records)
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDC:")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDC:")
@@ -144,15 +153,10 @@ create_monitor_set("auto_positions.req",5,"P=13IDC:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDC:")
 
-#{MN 15-Feb-00 : energy sequencer for channel-cut crystal
-## seq(&Energy_CC, "P=13IDC:, IDXX=ID13:, EN=Energy,  MONO=m8, TABLE=m6, DIF=DIF:t1.Y")
-
-#}
-#{ for using crystal analyzer
-#  commented out MN 08-Aug-98 
-#  seq &Analyzer, "P=13IDC:, THETA=m43, DETECTOR=m44, ANAL=ANAL"
-#}
-#  PVSstart
+# Enable user string calcs and user transforms
+dbpf "13IDC:EnableUserTrans.PROC","1"
+dbpf "13IDC:EnableUserSCalcs.PROC","1"
+dbpf "13IDC:EnableuserACalcs.PROC","1"
 
 ### Start the saveData task.
 # saveData_MessagePolicy
