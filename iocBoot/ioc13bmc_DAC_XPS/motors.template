@@ -1,0 +1,16 @@
+# XPS Stages
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,      M,       DTYP,   PORT, ADDR,  DESC,        EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV,   UREV, PREC,  DHLM,     DLLM}
+{13BMC:, m71, "asynMotor", XPS1, 0,   "X",           mm,  Neg,  40.,   1,   0.5,   0,    1, .2,   56499,      1,    3,    12.45,  -12.45}
+{13BMC:, m72, "asynMotor", XPS1, 1,   "Y",           mm,  Neg,  2.5,   1,   0.5,   0,    1, .2,   56499,      1,    3,    12.45,  -12.45}
+}
+
+file "$(MOTOR)/motorApp/Db/XPS_extra.db"
+{
+pattern
+{P,     R,  PORT,  ADDR}
+{13BMC:,  m71, XPS1,  0}
+{13BMC:,  m72, XPS1,  1}
+}
