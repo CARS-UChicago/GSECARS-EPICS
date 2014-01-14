@@ -13,7 +13,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.34", 5001, 4, 10, 500, 1, 500)
+XPSCreateController("XPS1", "164.54.160.34", 5001, 7, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -27,6 +27,9 @@ XPSCreateAxis("XPS1",0,"GROUP1.POSITIONER",  "10000")
 XPSCreateAxis("XPS1",1,"GROUP2.POSITIONER",  "10000")  
 XPSCreateAxis("XPS1",2,"GROUP3.POSITIONER",  "50000")  
 XPSCreateAxis("XPS1",3,"GROUP4.POSITIONER",  "1000")  
+XPSCreateAxis("XPS1",4,"GROUP5.POSITIONER",  "10000")  
+XPSCreateAxis("XPS1",5,"GROUP6.POSITIONER",  "10000")  
+XPSCreateAxis("XPS1",6,"GROUP7.POSITIONER",  "10000")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
