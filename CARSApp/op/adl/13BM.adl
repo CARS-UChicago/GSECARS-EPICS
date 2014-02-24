@@ -1,14 +1,14 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13BM.adl"
-	version=030105
+	version=030107
 }
 display {
 	object {
-		x=897
-		y=30
+		x=173
+		y=46
 		width=350
-		height=490
+		height=520
 	}
 	clr=14
 	bclr=4
@@ -228,7 +228,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Ring Status/Beam Position"
+	textix="Ring Status, BPMs, PSS"
 }
 "related display" {
 	object {
@@ -252,8 +252,8 @@ text {
 		args="xx=13"
 	}
 	display[3] {
-		label="PSS Status"
-		name="StationStatus04.adl"
+		label="PSS Main"
+		name="Main_13BM.adl"
 		args="xx=13,yy=BM"
 	}
 	display[4] {
@@ -263,6 +263,11 @@ text {
 	display[5] {
 		label="PSS Outputs"
 		name="Outputs_13BM.adl"
+	}
+	display[6] {
+		label="PSS Faults"
+		name="13BM_FTW.adl"
+		args="xx=13,yy=BM"
 	}
 	clr=14
 	bclr=4
@@ -305,102 +310,6 @@ text {
 "related display" {
 	object {
 		x=5
-		y=381
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Serial 1"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial1"
-	}
-	display[1] {
-		label="Serial 2"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial2"
-	}
-	display[2] {
-		label="Serial 3"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial3"
-	}
-	display[3] {
-		label="Serial 4"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial4"
-	}
-	display[4] {
-		label="Serial 5"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial5"
-	}
-	display[5] {
-		label="Serial 6"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial6"
-	}
-	display[6] {
-		label="Serial 7"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial7"
-	}
-	display[7] {
-		label="Serial 8"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial8"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=85
-		y=381
-		width=128
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Generic serial 1-8"
-}
-text {
-	object {
-		x=85
-		y=354
-		width=128
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="User calcs, transforms"
-}
-"related display" {
-	object {
-		x=5
-		y=354
-		width=75
-		height=24
-	}
-	display[0] {
-		label="User transforms"
-		name="userTrans10.adl"
-		args="P=13BMA:"
-	}
-	display[1] {
-		label="User sCalcOut1"
-		name="yysCalcoutRecord.adl"
-		args="P=13BMA:, C=userStringCalc1"
-	}
-	clr=14
-	bclr=4
-}
-"related display" {
-	object {
-		x=5
 		y=327
 		width=75
 		height=24
@@ -411,27 +320,12 @@ text {
 		args="P=13BMA:, Dmm=DMM1"
 	}
 	display[1] {
-		label="DAC #1"
-		name="singleDAC.adl"
-		args="P=13BMA:, D=1, C=1"
-	}
-	display[2] {
-		label="DAC #2"
-		name="singleDAC.adl"
-		args="P=13BMA:, D=1, C=2"
-	}
-	display[3] {
-		label="DAC #3"
-		name="singleDAC.adl"
-		args="P=13BMA:, D=1, C=3"
-	}
-	display[4] {
 		label="Monochromator"
 		name="13BM_MONO.adl"
 	}
-	display[5] {
+	display[2] {
 		label="Mirror Keithley 2000"
-		name="Keithley2kDMM_mf.adl"
+		name="lKeithley2kDMM_mf.adl"
 		args="P=13BMA:, Dmm=DMM2"
 	}
 	clr=14
@@ -494,48 +388,6 @@ text {
 		width=2
 	}
 	textix="Monochromator"
-}
-"related display" {
-	object {
-		x=5
-		y=435
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Scan 1"
-		name="scan_more.adl"
-		args="P=13BMA:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
-	}
-	display[1] {
-		label="Scan 2"
-		name="scan_more.adl"
-		args="P=13BMA:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
-	}
-	display[2] {
-		label="Scan 3"
-		name="scan_more.adl"
-		args="P=13BMA:, S=scan3, N=3, DW=Dwait3, PW=Pwait3"
-	}
-	display[3] {
-		label="Scan 4"
-		name="scan_more.adl"
-		args="P=13BMA:, S=scan4, N=4, DW=Dwait4, PW=Pwait4"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=85
-		y=435
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Scan"
 }
 "related display" {
 	object {
@@ -621,69 +473,6 @@ text {
 "related display" {
 	object {
 		x=5
-		y=408
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Serial 9"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial9"
-	}
-	display[1] {
-		label="Serial 10"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial10"
-	}
-	display[2] {
-		label="Serial 11"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial11"
-	}
-	display[3] {
-		label="Serial 12"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial12"
-	}
-	display[4] {
-		label="Serial 13"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial13"
-	}
-	display[5] {
-		label="Serial 14"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial14"
-	}
-	display[6] {
-		label="Serial 15"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial15"
-	}
-	display[7] {
-		label="Serial 16"
-		name="asynOctet.adl"
-		args="P=13BMA:, R=serial16"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=85
-		y=408
-		width=128
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Generic serial 9-16"
-}
-"related display" {
-	object {
-		x=5
 		y=300
 		width=75
 		height=24
@@ -737,7 +526,175 @@ text {
 "related display" {
 	object {
 		x=5
+		y=408
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 1"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial1"
+	}
+	display[1] {
+		label="Serial 2"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial2"
+	}
+	display[2] {
+		label="Serial 3"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial3"
+	}
+	display[3] {
+		label="Serial 4"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial4"
+	}
+	display[4] {
+		label="Serial 5"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial5"
+	}
+	display[5] {
+		label="Serial 6"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial6"
+	}
+	display[6] {
+		label="Serial 7"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial7"
+	}
+	display[7] {
+		label="Serial 8"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial8"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=408
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 1-8"
+}
+"related display" {
+	object {
+		x=5
 		y=462
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
+	}
+	display[2] {
+		label="Scan 3"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan3, N=3, DW=Dwait3, PW=Pwait3"
+	}
+	display[3] {
+		label="Scan 4"
+		name="scan_more.adl"
+		args="P=13BMA:, S=scan4, N=4, DW=Dwait4, PW=Pwait4"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=462
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Scan"
+}
+"related display" {
+	object {
+		x=5
+		y=435
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Serial 9"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial9"
+	}
+	display[1] {
+		label="Serial 10"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial10"
+	}
+	display[2] {
+		label="Serial 11"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial11"
+	}
+	display[3] {
+		label="Serial 12"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial12"
+	}
+	display[4] {
+		label="Serial 13"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial13"
+	}
+	display[5] {
+		label="Serial 14"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial14"
+	}
+	display[6] {
+		label="Serial 15"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial15"
+	}
+	display[7] {
+		label="Serial 16"
+		name="asynOctet.adl"
+		args="P=13BMA:, R=serial16"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=435
+		width=128
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Generic serial 9-16"
+}
+"related display" {
+	object {
+		x=5
+		y=489
 		width=75
 		height=24
 	}
@@ -757,7 +714,7 @@ text {
 text {
 	object {
 		x=85
-		y=462
+		y=489
 		width=180
 		height=20
 	}
@@ -765,4 +722,110 @@ text {
 		clr=14
 	}
 	textix="IOC statistics"
+}
+"related display" {
+	object {
+		x=5
+		y=381
+		width=75
+		height=24
+	}
+	display[0] {
+		label="User transforms"
+		name="userTransforms10.adl"
+		args="P=13BMA:"
+	}
+	display[1] {
+		label="User stringCalcs"
+		name="userStringCalcs10.adl"
+		args="P=13BMA:"
+	}
+	display[2] {
+		label="User arrayCalcs"
+		name="userArrayCalcs10.adl"
+		args="P=13BMA:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=381
+		width=220
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="User calcs, transforms"
+}
+"related display" {
+	object {
+		x=5
+		y=354
+		width=75
+		height=24
+	}
+	display[0] {
+		label="DAC 1"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=1"
+	}
+	display[1] {
+		label="DAC 2"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=2"
+	}
+	display[2] {
+		label="DAC 3"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=3"
+	}
+	display[3] {
+		label="DAC 4"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=4"
+	}
+	display[4] {
+		label="DAC 5"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=5"
+	}
+	display[5] {
+		label="DAC 6"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=6"
+	}
+	display[6] {
+		label="DAC 7"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=7"
+	}
+	display[7] {
+		label="DAC 8"
+		name="singleDAC.adl"
+		args="P=13BMA:, D=1, C=8"
+	}
+	display[8] {
+		label="All 8 DACs"
+		name="8_DACs.adl"
+		args="P=13BMA:, D=1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=85
+		y=354
+		width=200
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="DACs"
 }
