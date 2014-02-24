@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
 	version=030107
 }
 display {
 	object {
-		x=211
-		y=105
+		x=217
+		y=165
 		width=399
 		height=275
 	}
@@ -334,6 +334,21 @@ text {
 		label="Pace 5000"
 		name="13PACE5000.adl"
 	}
+	display[7] {
+		label="Tabor 8024 AWG"
+		name="Tabor8024.adl"
+		args="P=13Tabor1:, R=AWG:"
+	}
+	display[8] {
+		label="Syringe pump 1"
+		name="CPSyringe.adl"
+		args="P=13Syringe1:,R=S1:"
+	}
+	display[9] {
+		label="SXDiff"
+		name="13SXDiff.adl"
+		args="P=13SXD:"
+	}
 	clr=14
 	bclr=4
 	label="- Other IOCs"
@@ -403,13 +418,13 @@ text {
 	}
 	display[2] {
 		label="Vortex (Saturn) #1"
-		name="single_dxp_top.adl"
-		args="P=13Saturn1:, D=dxp1, M=mca1"
+		name="dxpSaturn.adl"
+		args="P=13Saturn1:, D=dxp1:, M=mca1"
 	}
 	display[3] {
 		label="Vortex (Saturn) #2"
-		name="single_dxp_top.adl"
-		args="P=13Saturn2:, D=dxp1, M=mca1"
+		name="dxpSaturn.adl"
+		args="P=13Saturn2:, D=dxp1:, M=mca1"
 	}
 	display[4] {
 		label="SII ME-4 SDD #1"
@@ -476,6 +491,21 @@ text {
 		label="HP Pilatus 1M"
 		name="pilatusDetector.adl"
 		args="P=HP1M-PIL1:, R=cam1:"
+	}
+	display[8] {
+		label="Pilatus #3"
+		name="pilatusDetector.adl"
+		args="P=GSE-PIL3:, R=cam1:"
+	}
+	display[9] {
+		label="Perkin Elmer DP #2"
+		name="PerkinElmer.adl"
+		args="P=dp_pe2:, R=cam1:"
+	}
+	display[10] {
+		label="MAR-CCD IMCA"
+		name="marCCD.adl"
+		args="P=13MARCCD_IMCA:, R=cam1:"
 	}
 	clr=14
 	bclr=4
