@@ -1,12 +1,12 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13BMC.adl"
-	version=030102
+	version=030107
 }
 display {
 	object {
-		x=308
-		y=72
+		x=775
+		y=47
 		width=310
 		height=650
 	}
@@ -173,12 +173,17 @@ text {
 	display[6] {
 		label="Monochromator"
 		name="8motors.adl"
-		args="P=13BMC:, TITLE=13BMB_Mono, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m55, M8=m57"
+		args="P=13BMC:, TITLE=13BMB_Mono, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m31, M8=m32"
 	}
 	display[7] {
 		label="MaxV Stepping Motors"
 		name="8motors.adl"
 		args="P=13BMC:, M1=m63, M2=m64, M3=m65, M4=m66, M5=m67, M6=m68, M7=m69, M8=m70, TITLE=MaxV_Stepping"
+	}
+	display[8] {
+		label="DAC cleanup slit"
+		name="2motors.adl"
+		args="P=13BMC:, M1=m71, M2=m72, TITLE=DAC_Cleanup_Slits"
 	}
 	clr=14
 	bclr=4
@@ -219,39 +224,6 @@ text {
 	}
 	textix="GeoCARS 13-BM-C"
 	align="horiz. centered"
-}
-"related display" {
-	object {
-		x=10
-		y=323
-		width=71
-		height=24
-	}
-	display[0] {
-		label="User transforms"
-		name="userTransforms10.adl"
-		args="P=13BMC:"
-	}
-	display[1] {
-		label="User calcs"
-		name="userStringCalcs10.adl"
-		args="P=13BMC:"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=86
-		y=323
-		width=124
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="User calcs, transforms"
 }
 "related display" {
 	object {
@@ -536,6 +508,11 @@ text {
 		label="DAC #8"
 		name="singleDAC.adl"
 		args="P=13BMC:, D=1, C=8"
+	}
+	display[8] {
+		label="All 8 DACs"
+		name="8_DACs.adl"
+		args="P=13BMC:, D=1"
 	}
 	clr=14
 	bclr=4
@@ -977,4 +954,42 @@ text {
 		width=2
 	}
 	textix="softGlue"
+}
+"related display" {
+	object {
+		x=10
+		y=323
+		width=71
+		height=24
+	}
+	display[0] {
+		label="User transforms"
+		name="userTransforms10.adl"
+		args="P=13BMC:"
+	}
+	display[1] {
+		label="User stringCalcs"
+		name="userStringCalcs10.adl"
+		args="P=13BMC:"
+	}
+	display[2] {
+		label="User arrayCalcs"
+		name="userArrayCalcs10.adl"
+		args="P=13BMC:"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=86
+		y=323
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="User calcs"
 }
