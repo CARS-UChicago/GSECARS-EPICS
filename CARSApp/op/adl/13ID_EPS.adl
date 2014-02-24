@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=334
-		y=32
+		x=158
+		y=63
 		width=1230
 		height=1100
 	}
@@ -87,40 +87,6 @@ display {
 		1a7309,
 	}
 }
-text {
-	object {
-		x=169
-		y=138
-		width=53
-		height=16
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="PA:13ID:STA_A_INBD_WHITE_PL.VAL"
-	}
-	textix="Mono"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=169
-		y=138
-		width=53
-		height=16
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13ID:STA_A_INBD_WHITE_PL.VAL"
-	}
-	textix="White"
-	align="horiz. centered"
-}
 rectangle {
 	object {
 		x=162
@@ -130,17 +96,6 @@ rectangle {
 	}
 	"basic attribute" {
 		clr=45
-	}
-}
-rectangle {
-	object {
-		x=165
-		y=136
-		width=60
-		height=20
-	}
-	"basic attribute" {
-		clr=1
 	}
 }
 text {
@@ -1292,8 +1247,8 @@ text {
 }
 rectangle {
 	object {
-		x=280
-		y=46
+		x=279
+		y=45
 		width=800
 		height=35
 	}
@@ -3899,7 +3854,7 @@ text {
 }
 text {
 	object {
-		x=948
+		x=949
 		y=66
 		width=105
 		height=13
@@ -3912,7 +3867,7 @@ text {
 }
 oval {
 	object {
-		x=1058
+		x=906
 		y=47
 		width=15
 		height=15
@@ -3927,7 +3882,7 @@ oval {
 }
 oval {
 	object {
-		x=1061
+		x=909
 		y=50
 		width=9
 		height=9
@@ -3942,7 +3897,7 @@ oval {
 }
 oval {
 	object {
-		x=1058
+		x=906
 		y=65
 		width=15
 		height=15
@@ -3957,7 +3912,7 @@ oval {
 }
 oval {
 	object {
-		x=1061
+		x=909
 		y=68
 		width=9
 		height=9
@@ -3998,7 +3953,7 @@ text {
 }
 oval {
 	object {
-		x=908
+		x=1059
 		y=47
 		width=15
 		height=15
@@ -4013,7 +3968,7 @@ oval {
 }
 oval {
 	object {
-		x=911
+		x=1062
 		y=50
 		width=9
 		height=9
@@ -4028,7 +3983,7 @@ oval {
 }
 oval {
 	object {
-		x=908
+		x=1059
 		y=65
 		width=15
 		height=15
@@ -4043,7 +3998,7 @@ oval {
 }
 oval {
 	object {
-		x=911
+		x=1062
 		y=68
 		width=9
 		height=9
@@ -9490,4 +9445,72 @@ composite {
 			align="horiz. right"
 		}
 	}
+}
+rectangle {
+	object {
+		x=162
+		y=133
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=170
+		y=135
+		width=53
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="!A&&B"
+		chan="13IDA:eps_mbbi28"
+		chanB="13IDA:eps_mbbi29"
+	}
+	textix="Mono"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=165
+		y=135
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&&B)||(!A&&!B)"
+		chan="13IDA:eps_mbbi28"
+		chanB="13IDA:eps_mbbi29"
+	}
+	textix="Unknown"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=170
+		y=135
+		width=53
+		height=15
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&&!B"
+		chan="13IDA:eps_mbbi28"
+		chanB="13IDA:eps_mbbi29"
+	}
+	textix="White"
+	align="horiz. centered"
 }
