@@ -11,7 +11,7 @@ dbLoadTemplate  "motors.template"
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "newport-xps11", 5001, 5, 10, 500, 1, 500)
+XPSCreateController("XPS1", "newport-xps11", 5001, 6, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -26,6 +26,7 @@ XPSCreateAxis("XPS1",1,"omega.omega",          "10000")
 XPSCreateAxis("XPS1",2,"chi.chi",              "10000")  
 XPSCreateAxis("XPS1",3,"horizontal.horizontal","10000")  
 XPSCreateAxis("XPS1",4,"distance.distance",    "10000")  
+XPSCreateAxis("XPS1",5,"phi.phi",              "750")  
 
 # Auxillary I/O records
 dbLoadTemplate("XPSAux.substitutions")
