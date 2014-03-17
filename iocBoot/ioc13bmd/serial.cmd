@@ -30,6 +30,10 @@ asynOctetSetInputEos("serial17",0,"\r")
 asynOctetSetOutputEos("serial17",0,"\r")
 asynOctetSetInputEos("serial18",0,"\r")
 asynOctetSetOutputEos("serial18",0,"\r")
+# Serial port for Mitutoyo Digimatic
+drvAsynIPPortConfigure("serial19", "164.54.160.123:4006", 0, 0, 0)
+asynOctetSetInputEos ("serial19",0,"\n")
+asynOctetSetOutputEos("serial19",0,"\r\n")
 
 # Load asyn records on all ports
 dbLoadTemplate("asynRecord.template")
@@ -49,3 +53,6 @@ dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13BMD:,R=Verdi1:,PORT=seria
 
 # Serial 12 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
+
+# Serial 19 is Mitutoyo Digimatic
+dbLoadRecords("$(CARS)/CARSApp/Db/Mitutoyo_Digimatic.db","P=13BMD:,R=Mitu,PORT=serial19")
