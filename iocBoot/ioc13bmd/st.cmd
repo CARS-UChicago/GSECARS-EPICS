@@ -156,6 +156,10 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
+iocsh
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/ipApp/Db:$(CARS)/CARSApp/Db")
+exit
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
