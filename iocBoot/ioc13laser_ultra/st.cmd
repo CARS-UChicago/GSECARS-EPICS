@@ -9,27 +9,68 @@ dbLoadDatabase("../../dbd/CARS.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 # For Windows
+
 drvAsynSerialPortConfigure("serial1", "COM3", 0, 0, 0)
-drvAsynSerialPortConfigure("serial2", "COM4", 0, 0, 0)
-drvAsynSerialPortConfigure("serial3", "COM5", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r\n")
 asynOctetSetOutputEos("serial1",0,"\r\n")
-#asynSetOption("serial1",0,"baud","921600")
+asynSetOption("serial1",0,"baud","921600")
 #asynSetOption("serial1",0,"baud","9600")
 asynSetOption("serial1",0,"bits","8")
 asynSetOption("serial1",0,"stop","1")
 asynSetOption("serial1",0,"parity","none")
 asynSetOption("serial1",0,"clocal","Y")
 asynSetOption("serial1",0,"crtscts","N")
-
 asynSetTraceIOMask("serial1", 0, 2)
 #asynSetTraceMask("serial1", 0, 9)
 
+drvAsynSerialPortConfigure("serial2", "COM4", 0, 0, 0)
+asynOctetSetInputEos("serial2",0,"\r\n")
+asynOctetSetOutputEos("serial2",0,"\r\n")
+asynSetOption("serial2",0,"baud","921600")
+#asynSetOption("serial2",0,"baud","9600")
+asynSetOption("serial2",0,"bits","8")
+asynSetOption("serial2",0,"stop","1")
+asynSetOption("serial2",0,"parity","none")
+asynSetOption("serial2",0,"clocal","Y")
+asynSetOption("serial2",0,"crtscts","N")
+asynSetTraceIOMask("serial2", 0, 2)
+#asynSetTraceMask("serial2", 0, 9)
+
+drvAsynSerialPortConfigure("serial3", "COM5", 0, 0, 0)
+asynOctetSetInputEos("serial3",0,"\r\n")
+asynOctetSetOutputEos("serial3",0,"\r\n")
+asynSetOption("serial3",0,"baud","921600")
+#asynSetOption("serial3",0,"baud","9600")
+asynSetOption("serial3",0,"bits","8")
+asynSetOption("serial3",0,"stop","1")
+asynSetOption("serial3",0,"parity","none")
+asynSetOption("serial3",0,"clocal","Y")
+asynSetOption("serial3",0,"crtscts","N")
+asynSetTraceIOMask("serial3", 0, 2)
+#asynSetTraceMask("serial3", 0, 0x19)
+
 # AG_CONEXCreateController(asyn port, serial port, controllerID, 
 #                          active poll period (ms), idle poll period (ms)) 
-AG_CONEXCreateController("Agilis1", "serial1", 1, 50, 500)
+AG_CONEXCreateController("CONEX1", "serial1", 1, 50, 500)
+asynSetTraceIOMask("CONEX1", 0, 2)
+#asynSetTraceMask("CONEX1", 0, 255)
+
+AG_CONEXCreateController("CONEX2", "serial2", 1, 50, 500)
+asynSetTraceIOMask("CONEX2", 0, 2)
+#asynSetTraceMask("CONEX2", 0, 255)
+
+# AG_UCCreateController(asyn port, serial port, number of axes, 
+#                        active poll period (ms), idle poll period (ms)) 
+AG_UCCreateController("Agilis1", "serial3", 5, 50, 500)
 asynSetTraceIOMask("Agilis1", 0, 2)
 #asynSetTraceMask("Agilis1", 0, 255)
+
+# AG_UCCreateAxis((AG_UC controller port,  axis, hasLimits, forwardAmplitude, reverseAmplitude)
+AG_UCCreateAxis("Agilis1", 0, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 1, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 2, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 3, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 4, 0, 50, -50)
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
