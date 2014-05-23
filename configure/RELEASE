@@ -8,11 +8,14 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-SUPPORT=/corvette/home/epics/support
+SUPPORT=/corvette/home/epics/devel
 -include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
 
 ALLEN_BRADLEY=$(SUPPORT)/allenBradley-2-2
-AREA_DETECTOR=$(SUPPORT)/areaDetector-1-10
+AREA_DETECTOR=$(SUPPORT)/areaDetector-2-0
+ADCORE=$(SUPPORT)/areaDetector-2-0/ADCore
+ADBINARIES=$(SUPPORT)/areaDetector-2-0/ADBinaries
+ADANDOR=$(SUPPORT)/areaDetector-2-0/ADAndor
 ASYN=$(SUPPORT)/asyn-4-22
 AUTOSAVE=$(SUPPORT)/autosave-5-1
 BUSY=$(SUPPORT)/busy-1-6
@@ -42,7 +45,7 @@ VME=$(SUPPORT)/vme-2-8-1
 VXSTATS=$(SUPPORT)/vxStats-1-7-2h
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/corvette/usr/local/epics/base-3.14.12.3
+EPICS_BASE=/corvette/usr/local/epics/base-3.14.12.4
 -include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
 
 #Capfast users may need the following definitions
