@@ -13,7 +13,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.190", 5001, 2, 10, 500, 1, 500)
+XPSCreateController("XPS1", "164.54.160.190", 5001, 5, 10, 500, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -23,8 +23,11 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.190", 5001, 50)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"Group1.Pos",  "10000")  
-XPSCreateAxis("XPS1",1,"Group2.Pos",  "56499")  
+XPSCreateAxis("XPS1", 0, "VIEW_X.X",    "10000")  
+XPSCreateAxis("XPS1", 1, "VIEW_Y.Y",    "10000")  
+XPSCreateAxis("XPS1", 2, "VIEW_Z.Z",    "10000")  
+XPSCreateAxis("XPS1", 3, "CLEANUP_X.X", "56499")  
+XPSCreateAxis("XPS1", 4, "CLEANUP_Y.Y", "56499")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -113,7 +116,7 @@ create_monitor_set("auto_positions.req",5,"P=13BMC:")
 create_monitor_set("auto_settings.req",30,"P=13BMC:")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
-dbpf("13BMC:m71.NTM","0")
-dbpf("13BMC:m72.NTM","0")
+dbpf("13BMC:m74.NTM","0")
+dbpf("13BMC:m75.NTM","0")
 
 motorUtilInit("13BMC_XPS:")
