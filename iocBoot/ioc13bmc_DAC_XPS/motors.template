@@ -2,9 +2,12 @@
 file "$(CARS)/CARSApp/Db/asynMotor.db"
 {
 pattern
-{P,      M,       DTYP,   PORT, ADDR,  DESC,        EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV,   UREV, PREC,  DHLM,     DLLM}
-{13BMC:, m71, "asynMotor", XPS1, 0,   "X",           mm,  Neg,  40.,   1,   0.5,   0,    1, .2,   10000,      1,    3,    12.45,  -12.45}
-{13BMC:, m72, "asynMotor", XPS1, 1,   "Y",           mm,  Neg,  2.5,   1,   0.5,   0,    1, .2,   56499,      1,    3,    12.45,  -12.45}
+{P,      M,       DTYP,   PORT, ADDR,  DESC,            EGU,  DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC,    SREV,   UREV, PREC,  DHLM,   DLLM}
+{13BMC:, m71, "asynMotor", XPS1, 0,   "DAC_View_X",      mm,  Pos,   2.,   .1,  0.5,    0,    1,   .2,   10000,      1,    4,  100.,      0}
+{13BMC:, m72, "asynMotor", XPS1, 1,   "DAC_View_Y",      mm,  Pos,   2.,   .1,  0.5,    0,    1,   .2,   10000,      1,    4,   25.,      0}
+{13BMC:, m73, "asynMotor", XPS1, 2,   "DAC_View_Z",      mm,  Pos,   2.,   .1,  0.5,    0,    1,   .2,   10000,      1,    4,  100.,      0}
+{13BMC:, m74, "asynMotor", XPS1, 3,   "DAC_Cleanup_X",   mm,  Pos,  2.5,   .1,  0.5,    0,    1,   .2,   56499,      1,    4,   25.,      0}
+{13BMC:, m75, "asynMotor", XPS1, 4,   "DAC_Cleanup_Y",   mm,  Pos,  2.5,   .1,  0.5,    0,    1,   .2,   56499,      1,    4,   25.,      0}
 }
 
 file "$(MOTOR)/motorApp/Db/XPS_extra.db"
@@ -13,4 +16,35 @@ pattern
 {P,     R,  PORT,  ADDR}
 {13BMC:,  m71, XPS1,  0}
 {13BMC:,  m72, XPS1,  1}
+{13BMC:,  m73, XPS1,  2}
+{13BMC:,  m74, XPS1,  3}
+{13BMC:,  m75, XPS1,  4}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+{
+pattern
+{P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13BMC:,  Prof2:, XPS1,     1,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13BMC:,  Prof2:, XPS1,     1,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
+{13BMC:,  Prof2:, 1,  XPS1,    0,   2000,      2000, 13BMC:m71,   3,       1}
+}
+
+file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
+{13BMC:,  Prof2:, 1,  XPS1,    0,   2000,      2000,    3,       1}
 }
