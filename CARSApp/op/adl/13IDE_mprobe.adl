@@ -1,14 +1,14 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13IDE_mprobe.adl"
-	version=030105
+	version=030107
 }
 display {
 	object {
-		x=257
-		y=126
-		width=595
-		height=275
+		x=576
+		y=131
+		width=625
+		height=370
 	}
 	clr=46
 	bclr=2
@@ -89,8 +89,8 @@ display {
 }
 oval {
 	object {
-		x=400
-		y=180
+		x=590
+		y=260
 		width=14
 		height=14
 	}
@@ -249,15 +249,15 @@ rectangle {
 		name="scanner.adl"
 		args="P=13XRM:, Q=edb"
 	}
-	display[9] {
-		label="Microscope Motors ()"
-		name="13IDE_mprobe_uscope.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m16, M2=m7, M3=m8"
-	}
 	display[10] {
 		label="Instruments"
 		name="PyInstrument.adl"
 		args="P=13XRM:, Q=Inst"
+	}
+	display[11] {
+		label="I0 Transform "
+		name="userTransform_full.adl"
+		args="P=13IDE:, T=userTran1"
 	}
 	clr=54
 	bclr=1
@@ -273,7 +273,7 @@ rectangle {
 	display[0] {
 		label="Sample Stage"
 		name="13IDE_SampleStage.adl"
-		args="P=13XRM:, XF=m1, YF=m2, TH=m3, ZC=pm1, XC=pm2, YC=m6"
+		args="P=13XRM:, XF=m1, YF=m2, TH=m3, ZC=m5, XC=m4, YC=m6"
 	}
 	display[2] {
 		label="Table Top Slits"
@@ -369,10 +369,10 @@ composite {
 }
 rectangle {
 	object {
-		x=216
+		x=210
 		y=5
-		width=375
-		height=112
+		width=410
+		height=120
 	}
 	"basic attribute" {
 		clr=59
@@ -574,21 +574,25 @@ menu {
 		name="scanner.adl"
 		args="P=13XRM:, Q=edb"
 	}
+	display[7] {
+		label="play"
+		name="tmp.adl"
+	}
 	clr=14
 	bclr=55
 	label="-13IDE Microprobe"
 }
 "text update" {
 	object {
-		x=75
-		y=141
+		x=325
+		y=145
 		width=80
 		height=18
 	}
 	monitor {
 		chan="13IDE:En:E_RBV"
 		clr=54
-		bclr=0
+		bclr=1
 	}
 	align="horiz. right"
 	limits {
@@ -596,8 +600,8 @@ menu {
 }
 "message button" {
 	object {
-		x=251
-		y=138
+		x=500
+		y=145
 		width=20
 		height=22
 	}
@@ -611,8 +615,8 @@ menu {
 }
 "message button" {
 	object {
-		x=331
-		y=138
+		x=590
+		y=145
 		width=20
 		height=22
 	}
@@ -626,10 +630,10 @@ menu {
 }
 "text entry" {
 	object {
-		x=270
-		y=138
+		x=525
+		y=145
 		width=65
-		height=22
+		height=20
 	}
 	control {
 		chan="13IDE:En:tweakval"
@@ -641,10 +645,10 @@ menu {
 }
 "text entry" {
 	object {
-		x=158
-		y=138
+		x=410
+		y=145
 		width=90
-		height=22
+		height=20
 	}
 	control {
 		chan="13IDE:En:Energy"
@@ -656,8 +660,8 @@ menu {
 }
 text {
 	object {
-		x=277
-		y=123
+		x=530
+		y=130
 		width=45
 		height=15
 	}
@@ -668,31 +672,19 @@ text {
 }
 "text update" {
 	object {
-		x=445
-		y=140
-		width=60
+		x=325
+		y=175
+		width=80
 		height=18
 	}
 	monitor {
 		chan="ID13us:Energy.VAL"
 		clr=54
-		bclr=0
+		bclr=1
 	}
 	align="horiz. right"
 	limits {
 	}
-}
-text {
-	object {
-		x=515
-		y=140
-		width=27
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="keV"
 }
 "related display" {
 	object {
@@ -732,10 +724,10 @@ text {
 }
 "related display" {
 	object {
-		x=360
-		y=135
-		width=80
-		height=25
+		x=215
+		y=175
+		width=100
+		height=22
 	}
 	display[0] {
 		label="Undulator"
@@ -749,7 +741,7 @@ text {
 text {
 	object {
 		x=10
-		y=174
+		y=140
 		width=150
 		height=18
 	}
@@ -821,9 +813,9 @@ oval {
 rectangle {
 	object {
 		x=5
-		y=164
-		width=240
-		height=105
+		y=130
+		width=200
+		height=120
 	}
 	"basic attribute" {
 		clr=59
@@ -882,9 +874,19 @@ rectangle {
 		args="P=13XRM:, M=mca1, D=dxp1"
 	}
 	display[11] {
-		label="XRD Collection"
+		label="XRD Collection (PE1)"
 		name="XRM_AD_Control.adl"
 		args="P=13PE1:"
+	}
+	display[12] {
+		label="XRD Collection (DP2)"
+		name="XRM_AD_Control.adl"
+		args="P=dp_pe2:"
+	}
+	display[13] {
+		label="XRD Full (DP2)"
+		name="PerkinElmer.adl"
+		args="P=dp_pe2:, R=cam1:"
 	}
 	clr=54
 	bclr=1
@@ -892,22 +894,22 @@ rectangle {
 }
 text {
 	object {
-		x=256
-		y=176
-		width=30
-		height=20
+		x=220
+		y=260
+		width=80
+		height=18
 	}
 	"basic attribute" {
 		clr=23
 	}
-	textix="I0"
+	textix="I0 Flux:"
 }
 "text update" {
 	object {
-		x=296
-		y=178
+		x=290
+		y=260
 		width=100
-		height=22
+		height=20
 	}
 	monitor {
 		chan="13XRM:ION:FluxOut"
@@ -915,6 +917,7 @@ text {
 		bclr=2
 	}
 	align="horiz. right"
+	format="string"
 	limits {
 	}
 }
@@ -934,7 +937,7 @@ text {
 "message button" {
 	object {
 		x=130
-		y=195
+		y=165
 		width=55
 		height=20
 	}
@@ -949,7 +952,7 @@ text {
 "message button" {
 	object {
 		x=10
-		y=195
+		y=165
 		width=55
 		height=20
 	}
@@ -964,7 +967,7 @@ text {
 "message button" {
 	object {
 		x=70
-		y=195
+		y=165
 		width=55
 		height=20
 	}
@@ -978,8 +981,8 @@ text {
 }
 text {
 	object {
-		x=160
-		y=175
+		x=120
+		y=140
 		width=40
 		height=18
 	}
@@ -994,8 +997,8 @@ text {
 }
 text {
 	object {
-		x=160
-		y=175
+		x=120
+		y=140
 		width=75
 		height=18
 	}
@@ -1010,9 +1013,9 @@ text {
 }
 "text update" {
 	object {
-		x=100
-		y=223
-		width=60
+		x=15
+		y=210
+		width=80
 		height=15
 	}
 	monitor {
@@ -1026,9 +1029,9 @@ text {
 }
 "text entry" {
 	object {
-		x=170
-		y=220
-		width=60
+		x=115
+		y=210
+		width=80
 		height=20
 	}
 	control {
@@ -1042,7 +1045,7 @@ text {
 text {
 	object {
 		x=12
-		y=223
+		y=192
 		width=90
 		height=15
 	}
@@ -1053,8 +1056,8 @@ text {
 }
 "text update" {
 	object {
-		x=100
-		y=250
+		x=120
+		y=230
 		width=60
 		height=15
 	}
@@ -1070,8 +1073,8 @@ text {
 }
 text {
 	object {
-		x=12
-		y=250
+		x=10
+		y=230
 		width=100
 		height=15
 	}
@@ -1082,9 +1085,9 @@ text {
 }
 rectangle {
 	object {
-		x=250
-		y=165
-		width=340
+		x=210
+		y=255
+		width=410
 		height=105
 	}
 	"basic attribute" {
@@ -1092,18 +1095,6 @@ rectangle {
 		fill="outline"
 		width=2
 	}
-}
-text {
-	object {
-		x=10
-		y=138
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=23
-	}
-	textix="Energy"
 }
 oval {
 	object {
@@ -1260,20 +1251,20 @@ text {
 }
 text {
 	object {
-		x=256
-		y=206
+		x=220
+		y=308
 		width=45
 		height=18
 	}
 	"basic attribute" {
 		clr=24
 	}
-	textix="Pitch"
+	textix="Pitch Piezo"
 }
 "message button" {
 	object {
-		x=456
-		y=206
+		x=460
+		y=308
 		width=20
 		height=20
 	}
@@ -1287,8 +1278,8 @@ text {
 }
 "message button" {
 	object {
-		x=511
-		y=206
+		x=535
+		y=308
 		width=20
 		height=20
 	}
@@ -1302,9 +1293,9 @@ text {
 }
 "text entry" {
 	object {
-		x=476
-		y=206
-		width=35
+		x=480
+		y=308
+		width=55
 		height=20
 	}
 	control {
@@ -1317,9 +1308,9 @@ text {
 }
 valuator {
 	object {
-		x=351
-		y=206
-		width=100
+		x=380
+		y=308
+		width=80
 		height=20
 	}
 	control {
@@ -1333,8 +1324,8 @@ valuator {
 }
 "message button" {
 	object {
-		x=456
-		y=236
+		x=460
+		y=335
 		width=20
 		height=20
 	}
@@ -1348,8 +1339,8 @@ valuator {
 }
 "message button" {
 	object {
-		x=511
-		y=236
+		x=535
+		y=335
 		width=20
 		height=20
 	}
@@ -1363,9 +1354,9 @@ valuator {
 }
 "text entry" {
 	object {
-		x=476
-		y=236
-		width=35
+		x=480
+		y=335
+		width=55
 		height=20
 	}
 	control {
@@ -1378,9 +1369,9 @@ valuator {
 }
 valuator {
 	object {
-		x=351
-		y=236
-		width=100
+		x=380
+		y=335
+		width=80
 		height=20
 	}
 	control {
@@ -1394,20 +1385,20 @@ valuator {
 }
 text {
 	object {
-		x=256
-		y=236
+		x=220
+		y=335
 		width=45
 		height=18
 	}
 	"basic attribute" {
 		clr=24
 	}
-	textix="Roll"
+	textix="Roll Piezo"
 }
 oval {
 	object {
-		x=400
-		y=180
+		x=590
+		y=260
 		width=14
 		height=14
 	}
@@ -1447,55 +1438,23 @@ text {
 	limits {
 	}
 }
-"text update" {
-	object {
-		x=295
-		y=208
-		width=50
-		height=15
-	}
-	monitor {
-		chan="13IDE:userTran1.I"
-		clr=54
-		bclr=2
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=295
-		y=238
-		width=50
-		height=15
-	}
-	monitor {
-		chan="13IDE:userTran1.O"
-		clr=54
-		bclr=2
-	}
-	align="horiz. right"
-	limits {
-	}
-}
 menu {
 	object {
-		x=535
-		y=205
+		x=560
+		y=308
 		width=50
 		height=18
 	}
 	control {
-		chan="13IDA:efast_pitch_pid.FBON"
+		chan="13XRM:edb:use_fb"
 		clr=54
 		bclr=1
 	}
 }
 menu {
 	object {
-		x=535
-		y=237
+		x=560
+		y=335
 		width=50
 		height=18
 	}
@@ -1507,8 +1466,8 @@ menu {
 }
 text {
 	object {
-		x=510
-		y=180
+		x=540
+		y=285
 		width=60
 		height=15
 	}
@@ -1516,5 +1475,333 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Feedback:"
+	textix="Feedback"
+}
+"related display" {
+	object {
+		x=215
+		y=145
+		width=100
+		height=22
+	}
+	display[0] {
+		label="MonoEnergy"
+		name="GSE_MonoEnergy.adl"
+		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
+	}
+	clr=54
+	bclr=1
+	label="-MonoEnergy"
+}
+"text entry" {
+	object {
+		x=410
+		y=175
+		width=90
+		height=20
+	}
+	control {
+		chan="ID13us:ScanEnergy.VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=500
+		y=175
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDE:En:UndEnergyTweak.A"
+		clr=14
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=525
+		y=175
+		width=65
+		height=20
+	}
+	control {
+		chan="13IDE:En:UndEnergyTweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=590
+		y=175
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDE:En:UndEnergyTweak.B"
+		clr=14
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+text {
+	object {
+		x=220
+		y=205
+		width=72
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Harmonic"
+}
+"text entry" {
+	object {
+		x=320
+		y=200
+		width=30
+		height=20
+	}
+	control {
+		chan="13IDE:En:id_harmonic"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=215
+		y=225
+		width=150
+		height=20
+	}
+	control {
+		chan="13IDE:En:id_set_off.VAL"
+		clr=14
+		bclr=31
+	}
+	label="Use Current Offset"
+	press_msg="1"
+	release_msg="1"
+}
+rectangle {
+	object {
+		x=210
+		y=130
+		width=410
+		height=120
+	}
+	"basic attribute" {
+		clr=59
+		fill="outline"
+		width=2
+	}
+}
+"text entry" {
+	object {
+		x=320
+		y=335
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8.VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=320
+		y=308
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7.VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=490
+		y=260
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Preamp OK:"
+}
+"text entry" {
+	object {
+		x=320
+		y=283
+		width=80
+		height=20
+	}
+	control {
+		chan="13XRM:ION:FluxLowLimit"
+		clr=14
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=220
+		y=283
+		width=30
+		height=18
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="I0 Minimum:"
+}
+"choice button" {
+	object {
+		x=545
+		y=200
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDE:En:id_track"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=370
+		y=202
+		width=130
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="ID Tracks Mono:"
+}
+text {
+	object {
+		x=370
+		y=227
+		width=171
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Mono waits for ID:"
+}
+"choice button" {
+	object {
+		x=545
+		y=225
+		width=70
+		height=20
+	}
+	control {
+		chan="13IDE:En:id_wait"
+		clr=54
+		bclr=55
+	}
+	stacking="column"
+}
+rectangle {
+	object {
+		x=5
+		y=255
+		width=200
+		height=105
+	}
+	"basic attribute" {
+		clr=59
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=15
+		y=260
+		width=150
+		height=18
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="XRF Map Status"
+}
+"text update" {
+	object {
+		x=10
+		y=315
+		width=190
+		height=15
+	}
+	monitor {
+		chan="13XRM:map:status"
+		clr=24
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=340
+		width=190
+		height=15
+	}
+	monitor {
+		chan="13XRM:map:info"
+		clr=24
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=290
+		width=190
+		height=15
+	}
+	monitor {
+		chan="13XRM:map:workdir"
+		clr=24
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
 }
