@@ -22,7 +22,7 @@ CARS_Common_LIBS += busy
 CARS_Common_LIBS += love
 CARS_Common_LIBS += ip
 CARS_Common_LIBS += quadEM
-CARS_Common_LIBS += pmacAsynMotor pmacAsynIPPort
+CARS_Common_LIBS += pmacAsynMotorPort pmacAsynIPPort
 CARS_Common_LIBS += Acs Ims Mclennan Newport Faulhaber Parker softMotor motorSimSupport ACRMotor motor
 CARS_Common_LIBS += stream streamSynApps
 CARS_Common_LIBS += modbus
@@ -79,11 +79,12 @@ CARS_vxWorks_LIBS += dxp handel
 CARS_vxWorks_LIBS += oms
 CARS_vxWorks_LIBS += vme
 CARS_vxWorks_LIBS += TyGSOctal Ipac
-CARS_vxWorks_LIBS += vxStats
+CARS_vxWorks_LIBS += devIocStats
 CARS_vxWorks_LIBS += softGlue
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
+CARS_Linux_LIBS        += devIocStats
 CARS_Linux_SYS_LIBS    += net pcap
 CARS_Linux_SYS_LIBS    += usb
 
@@ -123,7 +124,7 @@ CARSAppMini_LIBS += oms softMotor motor
 CARSAppMini_LIBS += asyn
 CARSAppMini_LIBS += seq pv
 CARSAppMini_LIBS += TyGSOctal Ipac
-CARSAppMini_LIBS += vxStats
+CARSAppMini_LIBS += devIocStats
 CARSAppMini_LIBS += $(EPICS_BASE_IOC_LIBS)
 #The following adds support from base/src/vxWorks
 CARSAppMini_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
