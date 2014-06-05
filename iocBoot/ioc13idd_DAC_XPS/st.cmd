@@ -23,18 +23,18 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.34", 5001, 50)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",1,"GROUP2.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",2,"GROUP3.POSITIONER",  "50000")  
-XPSCreateAxis("XPS1",3,"GROUP4.POSITIONER",  "1000")  
-XPSCreateAxis("XPS1",4,"GROUP5.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",5,"GROUP6.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",6,"GROUP7.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",7,"GROUP8.POSITIONER",  "2000")  
+XPSCreateAxis("XPS1",0,"G1.STX",  "10000")  
+XPSCreateAxis("XPS1",1,"G1.STZ",  "10000")  
+XPSCreateAxis("XPS1",2,"G1.STY",  "50000")  
+XPSCreateAxis("XPS1",3,"G1.OM",    "2000")  
+XPSCreateAxis("XPS1",4,"G2.SLX",  "10000")  
+XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")  
+XPSCreateAxis("XPS1",6,"G2.SLT",  "10000")  
+XPSCreateAxis("XPS1",7,"G3.CZ",    "1000")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
-XPSCreateProfile("XPS1", 10010, "Administrator", "Administrator")
+XPSCreateProfile("XPS1", 2048, "Administrator", "Administrator")
 
 # Disable setting position from motor record
 XPSEnableSetPosition(0) 
@@ -123,5 +123,13 @@ dbpf("13IDD:m81.NTM","0")
 dbpf("13IDD:m82.NTM","0")
 dbpf("13IDD:m83.NTM","0")
 dbpf("13IDD:m84.NTM","0")
+dbpf("13IDD:m93.NTM","0")
+dbpf("13IDD:m94.NTM","0")
+dbpf("13IDD:m95.NTM","0")
+dbpf("13IDD:m96.NTM","0")
 
 motorUtilInit("13IDD_XPS:")
+
+# Enable the mode where the XPS determines axis move complete by socket response, 
+# not GroupStatusGet()
+XPSEnableMovingMode XPS1
