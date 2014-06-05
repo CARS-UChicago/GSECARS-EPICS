@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/devel/CARS/CARSApp/op/adl/13Lab.adl"
-	version=030105
+	name="/home/epics/support/CARS/CARSApp/op/adl/13Lab.adl"
+	version=030107
 }
 display {
 	object {
@@ -442,39 +442,6 @@ text {
 "related display" {
 	object {
 		x=11
-		y=340
-		width=74
-		height=24
-	}
-	display[0] {
-		label="User transforms"
-		name="userTrans10.adl"
-		args="P=13LAB:"
-	}
-	display[1] {
-		label="User sCalcOut1"
-		name="yysCalcoutRecord.adl"
-		args="P=13LAB:, C=userStringCalc1"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=90
-		y=340
-		width=220
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="User calcs, transforms"
-}
-"related display" {
-	object {
-		x=11
 		y=394
 		width=74
 		height=24
@@ -556,69 +523,6 @@ text {
 "related display" {
 	object {
 		x=11
-		y=232
-		width=74
-		height=24
-	}
-	display[0] {
-		label="DAC 1"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=1"
-	}
-	display[1] {
-		label="DAC 2"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=2"
-	}
-	display[2] {
-		label="DAC 3"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=3"
-	}
-	display[3] {
-		label="DAC 4"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=4"
-	}
-	display[4] {
-		label="DAC 5"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=5"
-	}
-	display[5] {
-		label="DAC 6"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=6"
-	}
-	display[6] {
-		label="DAC 7"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=7"
-	}
-	display[7] {
-		label="DAC 8"
-		name="singleDAC.adl"
-		args="P=13LAB:, D=1, C=8"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=90
-		y=232
-		width=200
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Other electronics #2"
-}
-"related display" {
-	object {
-		x=11
 		y=259
 		width=74
 		height=24
@@ -682,7 +586,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Other electronics #3"
+	textix="Other electronics #2"
 }
 "related display" {
 	object {
@@ -1049,4 +953,123 @@ text {
 		width=2
 	}
 	textix="SoftGlue"
+}
+"related display" {
+	object {
+		x=11
+		y=340
+		width=74
+		height=24
+	}
+	display[0] {
+		label="User transforms"
+		name="userTransforms10.adl"
+		args="P=13LAB:"
+	}
+	display[1] {
+		label="User stringCalcs"
+		name="userStringCalcs10.adl"
+		args="P=13LAB:"
+		policy="replace display"
+	}
+	display[2] {
+		label="User arrayCalcs"
+		name="userArrayCalcs10.adl"
+		args="P=13LAB:"
+		policy="replace display"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=90
+		y=342
+		width=220
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="User calcs, transforms"
+}
+composite {
+	object {
+		x=11
+		y=232
+		width=279
+		height=24
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=11
+				y=232
+				width=74
+				height=24
+			}
+			display[0] {
+				label="DAC 1"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=1"
+			}
+			display[1] {
+				label="DAC 2"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=2"
+			}
+			display[2] {
+				label="DAC 3"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=3"
+			}
+			display[3] {
+				label="DAC 4"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=4"
+			}
+			display[4] {
+				label="DAC 5"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=5"
+			}
+			display[5] {
+				label="DAC 6"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=6"
+			}
+			display[6] {
+				label="DAC 7"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=7"
+			}
+			display[7] {
+				label="DAC 8"
+				name="singleDAC.adl"
+				args="P=13LAB:, D=1, C=8"
+			}
+			display[8] {
+				label="All 8 DACs"
+				name="8_DACs.adl"
+				args="P=13LAB:, D=1"
+			}
+			clr=14
+			bclr=4
+		}
+		text {
+			object {
+				x=90
+				y=234
+				width=200
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="DACs"
+		}
+	}
 }
