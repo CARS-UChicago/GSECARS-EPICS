@@ -1,0 +1,13 @@
+# Database for Mitutoyo Digimatic LVDT
+
+record(bo,"$(P)$(R)Zero") {
+    field(DTYP, "stream")
+    field(OUT, "@Mitutoyo_Digimatic.proto Zero $(PORT)")
+}
+
+record(ai,"$(P)$(R)Value") {
+    field(DTYP, "stream")
+    field(INP, "@Mitutoyo_Digimatic.proto Read $(PORT)")
+    field(PREC, "3")
+    field(SCAN, ".1 second")
+}

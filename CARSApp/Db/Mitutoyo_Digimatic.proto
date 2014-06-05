@@ -1,0 +1,16 @@
+# Mitutoyo_Digimatic.proto
+
+# stream protocol file for Mitutoyo Digimatic LVDT
+
+# Mark Rivers
+# Feb. 11, 2014
+
+Zero {
+   out "CR00";
+   in "CH00\r\000";
+}
+
+Read {
+   out "GA00";
+   in "GN00,%f\r\000";
+}
