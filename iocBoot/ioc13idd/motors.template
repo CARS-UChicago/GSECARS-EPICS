@@ -5,8 +5,8 @@
 #  9-16      1        P         DAC slits (9-12), Open (13-14), DAC Table (15-16)
 #  17-24     2        N         DAC Table (17-19), DAC clean-up (20-22), Carbon Mirror (23-24)
 #  25-32     3        T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
-#  33-40     4        U         LVP Detector (33-39) open (40)
-#  41-48     5        V         Open (41-44), LVP Press Table (45-48)
+#  33-40     4        U         LVP Detector (33-39), DAC beam filter (40)
+#  41-48     5        V         Open (41-42), DAC cleanup slit slit (43-44), LVP Press Table (45-48)
 #  49-56     6      None        DAC K/B mirrors
 #  57-64     7      None        LVP Detector Slits (57-60)
 #  65-72     8        S         DAC Carbon Mirror (65-66), Microscope (67-69), Laser power control (70-72)
@@ -73,7 +73,7 @@ pattern
 {13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
 
 # LVP CCD camera stage
-{13IDD:,  m27,   "OMS VME58",   3,    2, "Phosphor X",                mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
+{13IDD:,  m27,   "OMS VME58",   3,    2, "Phosphor X",                mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.05,  3,     95,     5}
 {13IDD:,  m28,   "OMS VME58",   3,    3, "Stage X",                   mm,     Pos,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     95,     5}
 {13IDD:,  m29,   "OMS VME58",   3,    4, "Stage Y",                   mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,    -0.10,  3,     70,     0}
 {13IDD:,  m30,   "OMS VME58",   3,    5, "Stage Z",                   mm,     Neg,   1.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,     70,     0}
@@ -114,7 +114,7 @@ pattern
 {13IDD:,  m45,   "OMS VME58",   5,    4, "LVP Y",                   mm,       Neg,    .2,  .005,   .2,    -.2,    .1,     .1,   5000,  -0.15875, 3,      100,     0}
 # LVP X (inboard-outboard). 5000 steps/rev microstepper, SREV=5000
 #                           10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
-{13IDD:,  m46,   "OMS VME58",   5,    5, "LVP X",                   mm,       Neg,    .2,  .005,   .2,    .2,     .1,     .1,   5000,     1.27,  3,      100,     0}
+{13IDD:,  m46,   "OMS VME58",   5,    5, "LVP X",                   mm,       Neg,    .2,  .05,   2.0,    .2,     .1,     .1,   5000,     1.27,  3,      100,     0}
 # LVP Z outboard (upstream-downstream). 5000 steps/rev microstepper, SREV=5000
 #                                       10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
 {13IDD:,  m47,   "OMS VME58",   5,    6, "LVP Z outboard",          mm,       Neg,    .2,  .005,   .2,    .2,      .1,    .1,   5000,     1.27,  3,      100,    0}
