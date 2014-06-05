@@ -2,6 +2,8 @@
 # This version uses a EPID record to control the pressure, rather than
 # the Omega controller and Rockland's PLC.
 # It still uses the Omega, but only to read the pressure.
+# Feb. 11, 2014 added ability to do feedback on LVDT position, in
+# addition to the previous mode that does feedback on load.
 
 # Serial record for the current value
 grecord(asyn, "$(P)$(R)ReadValue") {
@@ -19,8 +21,8 @@ grecord(scalcout,"$(P)$(R)Value") {
         field(FLNK,"$(P)$(R)PID.PROC PP MS")
 }
 
-# EPID record for feedback to control the pressure
-grecord(epid,"$(P)$(R)PID") {
+# EPID record for feedback to control the pressure feeding back on load
+grecord(epid,"$(P)$(R)LoadPID") {
         field(INP,"$(P)$(R)Value")
         field(OUTL,"$(P)$(OUT) PP NMS")
         field(KP,"$(KP)")
@@ -33,31 +35,91 @@ grecord(epid,"$(P)$(R)PID") {
         field(PREC,"3")
 }
 # This record is not used, but it needed for the standard save/restore file
-grecord(transform,"$(P)$(R)PID_incalc") {
-        field(DESC,"PID input calculation")
+grecord(transform,"$(P)$(R)LoadPID_incalc") {
+        field(DESC,"Load PID input calculation")
         field(PREC,"3")
 }
 
 # These records are for tweaking the pressure setpoint
-grecord(ao,"$(P)$(R)PID_tweak") {
+grecord(ao,"$(P)$(R)LoadPID_tweak") {
         field(VAL, "1")
         field(PREC,"3")
 }
 
-grecord(calcout,"$(P)$(R)PID_tweak_down") {
-        field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
-        field(INPB,"$(P)$(R)PID.VAL NPP NMS")
+grecord(calcout,"$(P)$(R)LoadPID_tweak_down") {
+        field(INPA,"$(P)$(R)LoadPID_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)LoadPID.VAL NPP NMS")
         field(CALC,"B-A")
-        field(OUT, "$(P)$(R)PID.VAL PP NMS")
+        field(OUT, "$(P)$(R)LoadPID.VAL PP NMS")
 }
 
-grecord(calcout,"$(P)$(R)PID_tweak_up") {
-        field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
-        field(INPB,"$(P)$(R)PID.VAL NPP NMS")
+grecord(calcout,"$(P)$(R)LoadPID_tweak_up") {
+        field(INPA,"$(P)$(R)LoadPID_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)LoadPID.VAL NPP NMS")
         field(CALC,"B+A")
-        field(OUT, "$(P)$(R)PID.VAL PP NMS")
+        field(OUT, "$(P)$(R)LoadPID.VAL PP NMS")
 }
 
+# EPID record for feedback to control the pressure feeding back on position
+grecord(epid,"$(P)$(R)PosnPID") {
+        field(INP,"$(P)$(R)MituValue")
+        field(OUTL,"$(P)$(OUT) PP NMS")
+        field(KP,"$(KP)")
+        field(KI,"$(KI)")
+        field(KD,"$(KD)")
+        field(LOPR,"0")
+        field(HOPR,"300")
+        field(DRVL,"-100")
+        field(DRVH,"100")
+        field(PREC,"3")
+}
+# This record is not used, but it needed for the standard save/restore file
+grecord(transform,"$(P)$(R)PosnPID_incalc") {
+        field(DESC,"Position PID input calculation")
+        field(PREC,"3")
+}
+
+# These records are for tweaking the pressure setpoint
+grecord(ao,"$(P)$(R)PosnPID_tweak") {
+        field(VAL, "1")
+        field(PREC,"3")
+}
+
+grecord(calcout,"$(P)$(R)PosnPID_tweak_down") {
+        field(INPA,"$(P)$(R)PosnPID_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)PosnPID.VAL NPP NMS")
+        field(CALC,"B-A")
+        field(OUT, "$(P)$(R)PosnPID.VAL PP NMS")
+}
+
+grecord(calcout,"$(P)$(R)PosnPID_tweak_up") {
+        field(INPA,"$(P)$(R)PosnPID_tweak.VAL NPP NMS")
+        field(INPB,"$(P)$(R)PosnPID.VAL NPP NMS")
+        field(CALC,"B+A")
+        field(OUT, "$(P)$(R)PosnPID.VAL PP NMS")
+}
+
+# Record to control which feedback to use
+record(mbbo, "$(P)$(R)FeedbackMode") {
+       field(ZRST, "Off")
+       field(ZRVL, "0")
+       field(ONST, "Load")
+       field(ONVL, "1")
+       field(TWST, "Position")
+       field(TWVL, "2")
+}
+
+record(calcout, "$(P)$(R)SetFeedbackLoad") {
+       field(INPA, "$(P)$(R)FeedbackMode CP")
+       field(CALC, "A=1")
+       field(OUT,  "$(P)$(R)LoadPID.FBON")
+}
+
+record(calcout, "$(P)$(R)SetFeedbackPosn") {
+       field(INPA, "$(P)$(R)FeedbackMode CP")
+       field(CALC, "A=2")
+       field(OUT,  "$(P)$(R)PosnPID.FBON")
+}
 
 # Records to ramp the load using an EPICS SSCAN record.
 # This record starts the ramp after computing the delay time and copying the
