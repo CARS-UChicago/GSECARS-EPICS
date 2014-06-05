@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/GSE_MonoEnergy.adl"
-	version=030105
+	name="j:\epics\support\CARS\CARSApp\op\adl\GSE_MonoEnergy.adl"
+	version=030107
 }
 display {
 	object {
-		x=970
-		y=625
+		x=988
+		y=262
 		width=726
 		height=500
 	}
@@ -181,9 +181,9 @@ composite {
 rectangle {
 	object {
 		x=430
-		y=238
+		y=163
 		width=290
-		height=60
+		height=70
 	}
 	"basic attribute" {
 		clr=47
@@ -445,37 +445,11 @@ text {
 	}
 	textix="Energy"
 }
-"choice button" {
-	object {
-		x=565
-		y=90
-		width=70
-		height=20
-	}
-	control {
-		chan="$(MONO):use_feedback"
-		clr=54
-		bclr=55
-	}
-	stacking="column"
-}
-text {
-	object {
-		x=435
-		y=95
-		width=119
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Wait for Feedback"
-}
 "related display" {
 	object {
-		x=440
+		x=438
 		y=10
-		width=120
+		width=145
 		height=25
 	}
 	display[0] {
@@ -483,148 +457,9 @@ text {
 		name="13ID_mono_feedback.adl"
 		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2"
 	}
-	display[1] {
-		label="XAS Feedback "
-		name="13ID_mono_fb_xas.adl"
-		args="P=13IDA:, M1=m12, M2=m11"
-	}
 	clr=24
 	bclr=55
-	label="-Mono Feedback"
-}
-"text entry" {
-	object {
-		x=645
-		y=60
-		width=70
-		height=22
-	}
-	control {
-		chan="$(P)$(SLOW_PITCH_PID).VAL"
-		clr=14
-		bclr=0
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=650
-		y=40
-		width=64
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Setpoint"
-}
-"text update" {
-	object {
-		x=645
-		y=90
-		width=65
-		height=20
-	}
-	monitor {
-		chan="$(P)$(SLOW_PITCH_PID).CVAL"
-		clr=14
-		bclr=1
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=515
-		y=40
-		width=48
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Status"
-}
-menu {
-	object {
-		x=570
-		y=40
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)$(SLOW_PITCH_PID).FBON"
-		clr=14
-		bclr=55
-	}
-}
-menu {
-	object {
-		x=570
-		y=61
-		width=70
-		height=20
-	}
-	control {
-		chan="$(P)$(SLOW_PITCH_PID)EnableReset"
-		clr=14
-		bclr=55
-	}
-}
-text {
-	object {
-		x=515
-		y=65
-		width=40
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Reset"
-}
-oval {
-	object {
-		x=490
-		y=70
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="$(P)$(SLOW_PITCH_PID)Locked"
-	}
-}
-rectangle {
-	object {
-		x=430
-		y=5
-		width=290
-		height=110
-	}
-	"basic attribute" {
-		clr=47
-		fill="outline"
-		width=2
-	}
-}
-text {
-	object {
-		x=436
-		y=70
-		width=48
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Locked"
-	align="horiz. centered"
+	label="-C/D Mono Feedback"
 }
 text {
 	object {
@@ -641,7 +476,7 @@ text {
 "related display" {
 	object {
 		x=435
-		y=243
+		y=168
 		width=45
 		height=25
 	}
@@ -656,7 +491,7 @@ text {
 "text update" {
 	object {
 		x=592
-		y=248
+		y=173
 		width=40
 		height=15
 	}
@@ -669,113 +504,10 @@ text {
 	limits {
 	}
 }
-"related display" {
-	object {
-		x=590
-		y=10
-		width=120
-		height=25
-	}
-	display[1] {
-		label="Feedback "
-		name="13ID_mono_mirror_feedback.adl"
-		args="P=13IDA:, M1=m12, M2=m11, PID1=fast_pitch_pid, PID2=fast_roll_pid"
-	}
-	clr=24
-	bclr=55
-	label="-Mir Mono FB"
-}
 "message button" {
 	object {
 		x=660
-		y=337
-		width=55
-		height=22
-	}
-	control {
-		chan="13IDA:CloseFEShutter.PROC"
-		clr=14
-		bclr=20
-	}
-	label="Close"
-	press_msg="1"
-	release_msg="0"
-}
-"message button" {
-	object {
-		x=605
-		y=337
-		width=55
-		height=22
-	}
-	control {
-		chan="13IDA:OpenFEShutter.PROC"
-		clr=14
-		bclr=16
-	}
-	label="Open"
-	press_msg="1"
-	release_msg="0"
-}
-text {
-	object {
-		x=440
-		y=339
-		width=72
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Auto Open"
-}
-rectangle {
-	object {
-		x=430
-		y=303
-		width=290
-		height=60
-	}
-	"basic attribute" {
-		clr=47
-		fill="outline"
-		width=2
-	}
-}
-"text update" {
-	object {
-		x=525
-		y=313
-		width=60
-		height=20
-	}
-	monitor {
-		chan="$(P)eps_mbbi25"
-		clr=14
-		bclr=1
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=440
-		y=313
-		width=80
-		height=18
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="FE Shutter"
-	align="horiz. centered"
-}
-"message button" {
-	object {
-		x=660
-		y=403
+		y=274
 		width=55
 		height=22
 	}
@@ -791,7 +523,7 @@ text {
 "message button" {
 	object {
 		x=605
-		y=403
+		y=274
 		width=55
 		height=22
 	}
@@ -807,7 +539,7 @@ text {
 text {
 	object {
 		x=440
-		y=404
+		y=275
 		width=72
 		height=18
 	}
@@ -819,7 +551,7 @@ text {
 rectangle {
 	object {
 		x=430
-		y=368
+		y=239
 		width=290
 		height=60
 	}
@@ -832,7 +564,7 @@ rectangle {
 text {
 	object {
 		x=437
-		y=378
+		y=249
 		width=96
 		height=18
 	}
@@ -845,7 +577,7 @@ text {
 text {
 	object {
 		x=506
-		y=248
+		y=173
 		width=81
 		height=15
 	}
@@ -858,20 +590,20 @@ text {
 text {
 	object {
 		x=489
-		y=268
+		y=193
 		width=99
 		height=15
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="Station C/D"
+	textix="C/D Station"
 	align="horiz. centered"
 }
 "text update" {
 	object {
 		x=593
-		y=268
+		y=193
 		width=40
 		height=15
 	}
@@ -887,7 +619,7 @@ text {
 menu {
 	object {
 		x=520
-		y=403
+		y=274
 		width=75
 		height=20
 	}
@@ -897,23 +629,10 @@ menu {
 		bclr=51
 	}
 }
-menu {
-	object {
-		x=520
-		y=338
-		width=75
-		height=20
-	}
-	control {
-		chan="13IDA:FOEAutoOpenMode"
-		clr=14
-		bclr=51
-	}
-}
 "text update" {
 	object {
 		x=545
-		y=378
+		y=249
 		width=60
 		height=20
 	}
@@ -1673,9 +1392,9 @@ text {
 rectangle {
 	object {
 		x=430
-		y=120
+		y=6
 		width=290
-		height=110
+		height=150
 	}
 	"basic attribute" {
 		clr=47
@@ -1686,7 +1405,7 @@ rectangle {
 "message button" {
 	object {
 		x=595
-		y=150
+		y=75
 		width=20
 		height=20
 	}
@@ -1701,7 +1420,7 @@ rectangle {
 "message button" {
 	object {
 		x=695
-		y=150
+		y=75
 		width=20
 		height=20
 	}
@@ -1716,7 +1435,7 @@ rectangle {
 "text entry" {
 	object {
 		x=620
-		y=150
+		y=75
 		width=75
 		height=20
 	}
@@ -1731,7 +1450,7 @@ rectangle {
 valuator {
 	object {
 		x=440
-		y=150
+		y=75
 		width=150
 		height=20
 	}
@@ -1747,7 +1466,7 @@ valuator {
 "text entry" {
 	object {
 		x=620
-		y=125
+		y=50
 		width=75
 		height=20
 	}
@@ -1762,7 +1481,7 @@ valuator {
 text {
 	object {
 		x=440
-		y=125
+		y=50
 		width=80
 		height=18
 	}
@@ -1775,7 +1494,7 @@ text {
 "message button" {
 	object {
 		x=595
-		y=205
+		y=130
 		width=20
 		height=20
 	}
@@ -1790,7 +1509,7 @@ text {
 "message button" {
 	object {
 		x=695
-		y=205
+		y=130
 		width=20
 		height=20
 	}
@@ -1805,7 +1524,7 @@ text {
 "text entry" {
 	object {
 		x=620
-		y=205
+		y=130
 		width=75
 		height=20
 	}
@@ -1820,7 +1539,7 @@ text {
 valuator {
 	object {
 		x=440
-		y=205
+		y=130
 		width=150
 		height=20
 	}
@@ -1836,7 +1555,7 @@ valuator {
 "text entry" {
 	object {
 		x=620
-		y=180
+		y=105
 		width=75
 		height=20
 	}
@@ -1851,7 +1570,7 @@ valuator {
 text {
 	object {
 		x=440
-		y=180
+		y=105
 		width=80
 		height=18
 	}
@@ -1859,5 +1578,34 @@ text {
 		clr=24
 	}
 	textix="Roll Piezo"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=594
+		y=210
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(P)eps_mbbi194"
+		clr=14
+		bclr=1
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=490
+		y=210
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="E Station"
 	align="horiz. centered"
 }
