@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=305
-		y=142
+		x=560
+		y=154
 		width=475
-		height=620
+		height=645
 	}
 	clr=14
 	bclr=4
@@ -456,7 +456,7 @@ text {
 	display[0] {
 		label="PID control"
 		name="pid_control.adl"
-		args="P=$(P), PID=$(R)PID, TITLE=LVP_Pressure"
+		args="P=$(P), PID=$(R)PosnPID, TITLE=LVP_Pressure"
 	}
 	display[1] {
 		label="asyn record"
@@ -477,7 +477,7 @@ rectangle {
 		x=2
 		y=260
 		width=471
-		height=115
+		height=140
 	}
 	"basic attribute" {
 		clr=14
@@ -650,199 +650,7 @@ text {
 composite {
 	object {
 		x=2
-		y=380
-		width=471
-		height=85
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=152
-				y=383
-				width=170
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Speed control (%)"
-		}
-		"text entry" {
-			object {
-				x=26
-				y=409
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P)DAC$(D)_$(C).VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		valuator {
-			object {
-				x=160
-				y=409
-				width=152
-				height=20
-			}
-			control {
-				chan="$(P)DAC$(D)_$(C).VAL"
-				clr=14
-				bclr=51
-			}
-			dPrecision=1.000000
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=136
-				y=410
-				width=20
-				height=19
-			}
-			control {
-				chan="$(P)DAC$(D)_$(C)_tweak.A"
-				clr=14
-				bclr=51
-			}
-			label="<"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=316
-				y=410
-				width=20
-				height=19
-			}
-			control {
-				chan="$(P)DAC$(D)_$(C)_tweak.B"
-				clr=14
-				bclr=51
-			}
-			label=">"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=355
-				y=409
-				width=50
-				height=20
-			}
-			control {
-				chan="$(P)DAC$(D)_$(C)_tweakVal"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=408
-				y=412
-				width=45
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Tweak"
-		}
-		rectangle {
-			object {
-				x=2
-				y=380
-				width=471
-				height=85
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		"message button" {
-			object {
-				x=36
-				y=386
-				width=80
-				height=19
-			}
-			control {
-				chan="$(P)$(R)Stop.PROC"
-				clr=14
-				bclr=20
-			}
-			label="Stop motor"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=115
-				y=437
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)$(R)LoadPID.DRVL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=270
-				y=437
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)$(R)LoadPID.DRVH"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=359
-				y=440
-				width=99
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Upper limit"
-		}
-		text {
-			object {
-				x=11
-				y=440
-				width=99
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Lower limit"
-		}
-	}
-}
-composite {
-	object {
-		x=2
-		y=470
+		y=495
 		width=471
 		height=140
 	}
@@ -851,7 +659,7 @@ composite {
 		text {
 			object {
 				x=192
-				y=475
+				y=500
 				width=90
 				height=20
 			}
@@ -863,7 +671,7 @@ composite {
 		composite {
 			object {
 				x=99
-				y=504
+				y=529
 				width=70
 				height=54
 			}
@@ -872,7 +680,7 @@ composite {
 				text {
 					object {
 						x=116
-						y=504
+						y=529
 						width=36
 						height=15
 					}
@@ -885,7 +693,7 @@ composite {
 				"text entry" {
 					object {
 						x=99
-						y=538
+						y=563
 						width=70
 						height=20
 					}
@@ -900,7 +708,7 @@ composite {
 				text {
 					object {
 						x=103
-						y=520
+						y=545
 						width=63
 						height=15
 					}
@@ -915,7 +723,7 @@ composite {
 		composite {
 			object {
 				x=174
-				y=504
+				y=529
 				width=65
 				height=54
 			}
@@ -924,7 +732,7 @@ composite {
 				text {
 					object {
 						x=184
-						y=504
+						y=529
 						width=45
 						height=15
 					}
@@ -937,7 +745,7 @@ composite {
 				text {
 					object {
 						x=188
-						y=520
+						y=545
 						width=36
 						height=15
 					}
@@ -950,7 +758,7 @@ composite {
 				"message button" {
 					object {
 						x=174
-						y=539
+						y=564
 						width=65
 						height=19
 					}
@@ -967,7 +775,7 @@ composite {
 		text {
 			object {
 				x=35
-				y=587
+				y=612
 				width=36
 				height=15
 			}
@@ -983,7 +791,7 @@ composite {
 		text {
 			object {
 				x=22
-				y=587
+				y=612
 				width=63
 				height=15
 			}
@@ -999,7 +807,7 @@ composite {
 		text {
 			object {
 				x=26
-				y=567
+				y=592
 				width=54
 				height=15
 			}
@@ -1011,7 +819,7 @@ composite {
 		composite {
 			object {
 				x=4
-				y=504
+				y=529
 				width=90
 				height=54
 			}
@@ -1020,7 +828,7 @@ composite {
 				text {
 					object {
 						x=4
-						y=504
+						y=529
 						width=90
 						height=15
 					}
@@ -1033,7 +841,7 @@ composite {
 				text {
 					object {
 						x=22
-						y=520
+						y=545
 						width=54
 						height=15
 					}
@@ -1046,7 +854,7 @@ composite {
 				"text entry" {
 					object {
 						x=14
-						y=538
+						y=563
 						width=70
 						height=20
 					}
@@ -1063,7 +871,7 @@ composite {
 		text {
 			object {
 				x=113
-				y=567
+				y=592
 				width=45
 				height=15
 			}
@@ -1075,7 +883,7 @@ composite {
 		text {
 			object {
 				x=258
-				y=504
+				y=529
 				width=36
 				height=15
 			}
@@ -1088,7 +896,7 @@ composite {
 		text {
 			object {
 				x=258
-				y=520
+				y=545
 				width=36
 				height=15
 			}
@@ -1101,7 +909,7 @@ composite {
 		"message button" {
 			object {
 				x=244
-				y=539
+				y=564
 				width=65
 				height=19
 			}
@@ -1116,7 +924,7 @@ composite {
 		text {
 			object {
 				x=408
-				y=504
+				y=529
 				width=36
 				height=15
 			}
@@ -1129,7 +937,7 @@ composite {
 		text {
 			object {
 				x=408
-				y=520
+				y=545
 				width=36
 				height=15
 			}
@@ -1142,7 +950,7 @@ composite {
 		"message button" {
 			object {
 				x=394
-				y=539
+				y=564
 				width=65
 				height=19
 			}
@@ -1157,7 +965,7 @@ composite {
 		text {
 			object {
 				x=332
-				y=504
+				y=529
 				width=36
 				height=15
 			}
@@ -1170,7 +978,7 @@ composite {
 		text {
 			object {
 				x=332
-				y=520
+				y=545
 				width=36
 				height=15
 			}
@@ -1183,7 +991,7 @@ composite {
 		"message button" {
 			object {
 				x=318
-				y=539
+				y=564
 				width=65
 				height=19
 			}
@@ -1198,7 +1006,7 @@ composite {
 		text {
 			object {
 				x=277
-				y=567
+				y=592
 				width=54
 				height=15
 			}
@@ -1210,7 +1018,7 @@ composite {
 		"text update" {
 			object {
 				x=194
-				y=586
+				y=611
 				width=270
 				height=15
 			}
@@ -1225,7 +1033,7 @@ composite {
 		composite {
 			object {
 				x=91
-				y=587
+				y=612
 				width=89
 				height=15
 			}
@@ -1234,7 +1042,7 @@ composite {
 				"text update" {
 					object {
 						x=140
-						y=587
+						y=612
 						width=40
 						height=15
 					}
@@ -1250,7 +1058,7 @@ composite {
 				"text update" {
 					object {
 						x=91
-						y=587
+						y=612
 						width=40
 						height=15
 					}
@@ -1266,7 +1074,7 @@ composite {
 				text {
 					object {
 						x=132
-						y=587
+						y=612
 						width=7
 						height=15
 					}
@@ -1281,7 +1089,7 @@ composite {
 		rectangle {
 			object {
 				x=2
-				y=470
+				y=495
 				width=471
 				height=140
 			}
@@ -1348,4 +1156,250 @@ text {
 	align="horiz. centered"
 	limits {
 	}
+}
+text {
+	object {
+		x=152
+		y=408
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Speed control (%)"
+}
+"text entry" {
+	object {
+		x=26
+		y=434
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)DAC$(D)_$(C).VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=160
+		y=434
+		width=152
+		height=20
+	}
+	control {
+		chan="$(P)DAC$(D)_$(C).VAL"
+		clr=14
+		bclr=51
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=136
+		y=435
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)DAC$(D)_$(C)_tweak.A"
+		clr=14
+		bclr=51
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=316
+		y=435
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)DAC$(D)_$(C)_tweak.B"
+		clr=14
+		bclr=51
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=355
+		y=434
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)DAC$(D)_$(C)_tweakVal"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=408
+		y=437
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+rectangle {
+	object {
+		x=2
+		y=405
+		width=471
+		height=85
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"message button" {
+	object {
+		x=36
+		y=411
+		width=80
+		height=19
+	}
+	control {
+		chan="$(P)$(R)Stop.PROC"
+		clr=14
+		bclr=20
+	}
+	label="Stop motor"
+	press_msg="1"
+}
+composite {
+	object {
+		x=11
+		y=462
+		width=447
+		height=20
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=115
+				y=462
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)$(R)LoadPID.DRVL"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=270
+				y=462
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)$(R)LoadPID.DRVH"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=359
+				y=465
+				width=99
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Upper limit"
+		}
+		text {
+			object {
+				x=11
+				y=465
+				width=99
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Lower limit"
+		}
+	}
+}
+"text entry" {
+	object {
+		x=169
+		y=372
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PosnPID.DRVL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=250
+		y=372
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PosnPID.DRVH"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=315
+		y=375
+		width=153
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Upper speed limit"
+}
+text {
+	object {
+		x=11
+		y=375
+		width=153
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Lower speed limit"
 }
