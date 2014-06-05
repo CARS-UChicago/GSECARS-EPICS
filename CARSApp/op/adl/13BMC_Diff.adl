@@ -1,14 +1,14 @@
 
 file {
 	name="J:\epics\support\CARS\CARSApp\op\adl\13BMC_Diff.adl"
-	version=030105
+	version=030107
 }
 display {
 	object {
-		x=1055
-		y=95
+		x=567
+		y=162
 		width=160
-		height=500
+		height=490
 	}
 	clr=14
 	bclr=4
@@ -90,9 +90,9 @@ display {
 text {
 	object {
 		x=45
-		y=107
+		y=113
 		width=81
-		height=15
+		height=16
 	}
 	"basic attribute" {
 		clr=14
@@ -102,9 +102,9 @@ text {
 rectangle {
 	object {
 		x=5
-		y=105
+		y=111
 		width=150
-		height=75
+		height=79
 	}
 	"basic attribute" {
 		clr=14
@@ -114,18 +114,18 @@ rectangle {
 composite {
 	object {
 		x=10
-		y=127
+		y=135
 		width=135
-		height=45
+		height=48
 	}
 	"composite name"=""
 	children {
 		text {
 			object {
 				x=28
-				y=130
+				y=138
 				width=36
-				height=15
+				height=16
 			}
 			"basic attribute" {
 				clr=14
@@ -135,9 +135,9 @@ composite {
 		text {
 			object {
 				x=10
-				y=155
+				y=165
 				width=54
-				height=15
+				height=16
 			}
 			"basic attribute" {
 				clr=14
@@ -147,9 +147,9 @@ composite {
 		menu {
 			object {
 				x=70
-				y=127
+				y=135
 				width=75
-				height=20
+				height=21
 			}
 			control {
 				chan="13BMA:BMCAutoOpenMode"
@@ -160,9 +160,9 @@ composite {
 		"text entry" {
 			object {
 				x=70
-				y=152
+				y=162
 				width=75
-				height=20
+				height=21
 			}
 			control {
 				chan="13BMA:BMCAutoOpenPeriod.DLY1"
@@ -174,135 +174,12 @@ composite {
 		}
 	}
 }
-composite {
-	object {
-		x=16
-		y=9
-		width=128
-		height=90
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=54
-				y=9
-				width=50
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="13BMC"
-		}
-		"message button" {
-			object {
-				x=16
-				y=74
-				width=50
-				height=25
-			}
-			control {
-				chan="13BMA:OpenBMCShutter.PROC"
-				clr=14
-				bclr=15
-			}
-			label="Open"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=94
-				y=74
-				width=50
-				height=25
-			}
-			control {
-				chan="13BMA:CloseBMCShutter.PROC"
-				clr=14
-				bclr=20
-			}
-			label="Close"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=88
-				y=54
-				width=55
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi100"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=16
-				y=54
-				width=60
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Shutter"
-		}
-		text {
-			object {
-				x=16
-				y=34
-				width=72
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Searched"
-		}
-		oval {
-			object {
-				x=115
-				y=34
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="PA:13BM:Q01:02.VAL"
-			}
-		}
-		oval {
-			object {
-				x=115
-				y=34
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="PA:13BM:Q01:02.VAL"
-			}
-		}
-	}
-}
 "related display" {
 	object {
 		x=10
-		y=202
+		y=214
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="BMC GPD Rotation"
@@ -326,13 +203,13 @@ composite {
 	}
 	display[4] {
 		label="BMC GPD Detector Slits"
-		name="4motors.adl"
-		args="P=13BMC:, TITLE=BMC_GPD_Detector_Slits, M1=m13, M2=m14, M3=m15, M4=m16"
+		name="6motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Detector_Slits, M1=m9, M2=m10, M3=m13, M4=m14, M5=m15, M6=m16"
 	}
 	display[5] {
-		label="BMC GPD Enterance Slits"
-		name="2motors.adl"
-		args="P=13BMC:, TITLE=BMC_GPD_Enterance_Slit, M1=m63, M2=m64"
+		label="BMC GPD Entrance Slits"
+		name="4motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Entrance_Slit, M1=m63, M2=m64, M3=m67, M4=m68"
 	}
 	display[6] {
 		label="BMC GPD Film Gap"
@@ -351,9 +228,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=231
+		y=245
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="Bench Attenuators"
@@ -382,9 +259,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=260
+		y=276
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="Trajectory Scan"
@@ -398,9 +275,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=289
+		y=306
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="Scaler"
@@ -429,9 +306,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=318
+		y=337
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="Pilatus #1"
@@ -470,9 +347,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=347
+		y=368
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="Video switch"
@@ -486,9 +363,9 @@ composite {
 "text update" {
 	object {
 		x=76
-		y=185
+		y=196
 		width=45
-		height=15
+		height=16
 	}
 	monitor {
 		chan="S:SRcurrentAI.VAL"
@@ -501,9 +378,9 @@ composite {
 text {
 	object {
 		x=10
-		y=185
+		y=196
 		width=45
-		height=15
+		height=16
 	}
 	"basic attribute" {
 		clr=14
@@ -513,9 +390,9 @@ text {
 text {
 	object {
 		x=123
-		y=185
+		y=196
 		width=17
-		height=15
+		height=16
 	}
 	"basic attribute" {
 		clr=14
@@ -525,9 +402,9 @@ text {
 "related display" {
 	object {
 		x=10
-		y=434
+		y=460
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="13BMC Full"
@@ -540,19 +417,29 @@ text {
 "related display" {
 	object {
 		x=10
-		y=376
+		y=399
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
-		label="Side Mono"
-		name="6motors.adl"
-		args="P=13BMC:, TITLE=13BMC_Side_Mono, M1=m55, M2=m57, M3=m28, M4=m27, M5=m30, M6=m29"
+		label="Side Mono Full"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=13BMC_Side_Mono_Full, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m31, M8=m32"
 	}
 	display[1] {
+		label="Side Mono 111"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=13BMC_Side_Mono_111, M1=m31, M2=m32, M3=m27, M4=m28, M5=m29, M6=m30, M7=pm7, M8=pm8"
+	}
+	display[2] {
+		label="Side Mono 311"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=13BMC_Side_Mono_311, M1=m25, M2=m26, M3=pm11, M4=m28, M5=pm12, M6=m30, M7=pm9, M8=pm10"
+	}
+	display[3] {
 		label="Vertical Mirror"
 		name="4motors.adl"
-		args="P=13BMC:,TITLE=13BMC_Vert_Mirror,M1=pm1,M2=pm2,M3=pm3,M4=pm4"
+		args="P=13BMC:,TITLE=13BMC_Vert_Mirror, M1=pm1, M2=pm2, M3=pm3, M4=pm4"
 	}
 	clr=14
 	bclr=4
@@ -561,9 +448,9 @@ text {
 "related display" {
 	object {
 		x=10
-		y=405
+		y=429
 		width=128
-		height=24
+		height=25
 	}
 	display[0] {
 		label="BMC Tomo"
@@ -578,9 +465,132 @@ text {
 	display[2] {
 		label="BMC Tomo Camera"
 		name="4motors.adl"
-		args="P=13BMC:, TITLE=TomoCameraStage, M1=m6, M2=m7, M3=m8, M4=m65"
+		args="P=13BMC:, TITLE=TomoCameraStage, M1=m1, M2=m2, M3=m8, M4=m65"
 	}
 	clr=14
 	bclr=4
 	label="-More Motors"
+}
+text {
+	object {
+		x=54
+		y=10
+		width=50
+		height=21
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13BMC"
+}
+composite {
+	object {
+		x=16
+		y=36
+		width=128
+		height=69
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=115
+				y=36
+				width=15
+				height=16
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="PA:13BM:STA_C_SEARCHED_PL"
+			}
+		}
+		oval {
+			object {
+				x=115
+				y=36
+				width=15
+				height=16
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="PA:13BM:STA_C_SEARCHED_PL"
+			}
+		}
+		"message button" {
+			object {
+				x=16
+				y=79
+				width=50
+				height=26
+			}
+			control {
+				chan="13BMA:OpenBMCShutter.PROC"
+				clr=14
+				bclr=15
+			}
+			label="Open"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=94
+				y=79
+				width=50
+				height=26
+			}
+			control {
+				chan="13BMA:CloseBMCShutter.PROC"
+				clr=14
+				bclr=20
+			}
+			label="Close"
+			press_msg="1"
+		}
+		"text update" {
+			object {
+				x=88
+				y=58
+				width=55
+				height=16
+			}
+			monitor {
+				chan="13BMA:eps_mbbi100"
+				clr=14
+				bclr=0
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=16
+				y=58
+				width=60
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Shutter"
+		}
+		text {
+			object {
+				x=16
+				y=36
+				width=72
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Searched"
+		}
+	}
 }
