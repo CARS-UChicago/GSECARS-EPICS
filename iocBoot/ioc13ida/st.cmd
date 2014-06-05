@@ -90,7 +90,9 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA:")
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
 
 # vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+#dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDA:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDA:")
