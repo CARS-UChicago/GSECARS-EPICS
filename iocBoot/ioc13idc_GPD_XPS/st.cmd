@@ -151,3 +151,7 @@ dbpf("13IDC:m39.NTM","0")
 dbpf("13IDC:m40.NTM","0")
 
 #motorUtilInit("13IDC_XPS:")
+
+# Enable the mode where the XPS determines axis move complete by socket response, 
+# not GroupStatusGet()
+XPSEnableMovingMode XPS1
