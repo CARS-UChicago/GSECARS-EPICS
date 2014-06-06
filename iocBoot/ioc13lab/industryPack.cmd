@@ -3,11 +3,10 @@ ipacAddVIPC616_01("0x3000,0xa0000000")
 
 # The second carrier in our system is a TEWS TVME200
 # The argument to ipacAddTVME200 is the values of the 6 switches on the board
-# In thise case 30 = base address 3000
-#                2 = interrupt mapping 4, 5, 2, 1, 4, 5, 2, 1
-#                F = A32 address space, 8MB per slot
-#               A0 = A0000000 base address in A32 space
-#ipacAddTVME200("302FA0") 
+# In this case 34 = base address 3400
+#               2 = interrupt mapping 4, 5, 2, 1, 4, 5, 2, 1
+#               F = A32 address space, 8MB per slot, 32MB total
+#              A2 = A2000000 base address in A32 space
 ipacAddTVME200("342FA2") 
 
 ipacReport(2)
@@ -72,7 +71,7 @@ dbLoadTemplate "DAC.template"
 #               0 to 15 (differential)
 # lastChan    = last channel to be digitized
 # intVec        Interrupt vector
-initIp330("Ip330_1",1,0,"D","-5to5",0,15,120)
+initIp330("Ip330_1",0,2,"D","-5to5",0,15,120)
 
 #asynSetTraceIOMask "Ip330_1",0,0x2
 #asynSetTraceMask "Ip330_1",0,0x9
@@ -98,7 +97,7 @@ initIp330("Ip330_1",1,0,"D","-5to5",0,15,120)
 # secondsBetweenCalibrate = number of seconds between calibration cycles.
 #               If zero then there will be no periodic calibration, but
 #               one calibration will still be done at initialization.
-configIp330("Ip330_1", 3,"Input",1000,0)
+configIp330("Ip330_1", 3,"Input", 500,0)
 
 # int initFastSweep(char *portName, char *inputName, 
 #                   int maxSignals, int maxPoints)
