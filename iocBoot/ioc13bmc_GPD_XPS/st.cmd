@@ -105,3 +105,7 @@ dbpf("13BMC:m44.NTM","0")
 dbpf("13BMC:m45.NTM","0")
 dbpf("13BMC:m46.NTM","0")
 
+# Enable the mode where the XPS determines axis move complete by socket response, 
+# not GroupStatusGet()
+XPSEnableMovingMode XPS1
+
