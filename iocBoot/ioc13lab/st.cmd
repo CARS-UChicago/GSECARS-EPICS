@@ -37,18 +37,14 @@ icbDebug=0
 sscanRecordDebug=0
 devMCA_softDebug = 0 
 
-ifShow
-
-pwd 
-ll
 < industryPack.cmd
 < serial.cmd
 
 # Test Koyo PLC
 # < Koyo1.cmd
 
-# Test initialization of ipUnidig
-#dbLoadRecords("testUnidig.db", "P=13LAB:")
+# Test Lewis Muir's problem
+dbLoadRecords("bi_test.db", "P=13LAB:")
 
 # Heidenhain IK320 VME encoder interpolator
 #dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
@@ -70,10 +66,9 @@ dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13LAB:,R=TC:")
 
 ### Motors
 dbLoadTemplate  "motors.template"
-# -----------------------------------------------------
 
-#Quad electrometer
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM.db", "P=13LAB:, EM=EM1, CARD=0, PORT=quadEM1")
+### APS Quad Electrometer
+#iocsh("APS_EM.cmd")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db", "P=13LAB:")
@@ -91,9 +86,9 @@ dbLoadTemplate "scanParms.template"
 
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans, 
 #           maxSignals, maxSequences, ethernetDevice)
-AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "dc0")
-AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "dc0")
-AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "dc0")
+AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "fei0")
+AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "fei0")
+AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "fei0")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYP=asynMCA,INP=@asyn(AIM1/2 2),NCHAN=2048")
@@ -105,9 +100,6 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYP=asynMCA,NCHAN
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
-
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med.db", "P=13LAB:quadEM:,NCHAN=2048,PORT=quadEMSweep")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/quadEM_med_FFT.db", "P=13LAB:quadEM_FFT:,NCHAN=1024")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -131,7 +123,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,POR
 #dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
 
 # SIS 3801 and SIS3820
-#<SIS3801.cmd
+<SIS3801.cmd
 <SIS3820.cmd
 
 ### Scalers: Joerger VSC8/16
@@ -146,20 +138,22 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db", "P=13LAB:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10000")
 
+# Miscellaneous PV's
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
 
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13LAB:")
+
+# Free-standing user array calculations (sCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13LAB:,N=10")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13LAB:")
 
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB:,Q=vme1")
-
-# Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13LAB:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
@@ -232,29 +226,6 @@ oms58Setup(1, 0x4000, 190, 5, 10)
 # XPSConfigAxis(0,1,"GROUP2.POSITIONER1",6768)
 # XPSConfigAxis(0,2,"GROUP2.POSITIONER2",20480)
 #}}}}  
-# initQuadEM(quadEMName, baseAddress, fiberChannel, microSecondsPerScan, 
-#            maxClients, unidigName, unidigChan, unidigDrvInfo)
-#  quadEMName  = name of quadEM asyn port driver created 
-#  baseAddress = base address of VME card
-#  channel     = 0-3, fiber channel number
-#  microSecondsPerScan = microseconds to integrate.  When used with ipUnidig
-#                interrupts the unit is also read at this rate.
-#  unidigName  = name of ipInidig server if it is used for interrupts.
-#                Set to 0 if there is no IP-Unidig being used, in which
-#                case the quadEM will be read at 60Hz.
-#  unidigChan  = IP-Unidig channel connected to quadEM pulse output
-#  unidigDrvInfo = drvInfo string for digital input parameter
-initQuadEM("quadEM1", 0xf000, 0, 1000, "Unidig1", 2, "DIGITAL_INPUT")
-# Use this line for 60Hz
-#initQuadEM("quadEM1", 0xf000, 0, 1000, 0, 0)
-
-# initFastSweep(portName, inputName, maxSignals, maxPoints)
-#  portName = asyn port name for this new port (string)
-#  inputName = name of asynPort providing data
-#  maxSignals  = maximum number of signals (spectra)
-#  maxPoints  = maximum number of channels per spectrum
-initFastSweep("quadEMSweep", "quadEM1", 10, 2048)
-
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
@@ -286,15 +257,18 @@ create_monitor_set("auto_settings.req", 30, "P=13LAB:")
 # Enable user string calcs and user transforms
 dbpf "13LAB:EnableUserTrans.PROC","1"
 dbpf "13LAB:EnableUserSCalcs.PROC","1"
+dbpf "13LAB:EnableuserACalcs.PROC","1"
 
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM1, stack=10000"
 seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM2, channels=22, model=2700, stack=10000"
 #seq &Keithley2kDMM, "P=13LAB:, Dmm=DMM3, channels=22, model=2700, stack=10000"
 #seq &seq_test, "pv1=13LAB:m1, pv2=13LAB:m2"
 
-#seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=32, FIELD=READ")
+seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
-seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=2, FIELD=READ")
+seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=2, FIELD=PROC")
+
+seq(&quadEM_SNL, "P=13LAB:, R=QE1:, NUM_CHANNELS=2048")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
