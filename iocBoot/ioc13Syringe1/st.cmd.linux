@@ -4,10 +4,8 @@ errlogInit(5000)
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
-#CARSWin32_registerRecordDeviceDriver(pdbbase)
 
-#vxi11Configure("L0","164.54.160.16",0,"0.0","COM1",0,0)
-drvAsynSerialPortConfigure("L0","/dev/ttyS1",0,0,0)
+drvAsynIPPortConfigure("L0","gsets8:2001",0,0,0)
 # We don't set terminators here, we let StreamDevice take care of it
 asynSetTraceIOMask("L0",0,2)
 #asynSetTraceMask("L0",0,0x9)

@@ -5,7 +5,7 @@ errlogInit(5000)
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
 
-drvAsynSerialPortConfigure("L0","COM1",0,0,0)
+drvAsynIPPortConfigure("L0","164.54.160.188:2001",0,0,0)
 # We don't set terminators here, we let StreamDevice take care of it
 asynSetTraceIOMask("L0",0,2)
 #asynSetTraceMask("L0",0,0x9)
