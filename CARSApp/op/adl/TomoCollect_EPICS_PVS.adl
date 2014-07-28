@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/iocBoot/ioc13lab_ps1/test_epicsPVS.adl"
-	version=030102
+	name="/home/epics/devel/CARS/CARSApp/op/adl/TomoCollect_EPICS_PVS.adl"
+	version=030107
 }
 display {
 	object {
-		x=45
-		y=630
-		width=561
-		height=260
+		x=70
+		y=71
+		width=560
+		height=365
 	}
 	clr=14
 	bclr=4
@@ -87,338 +87,365 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=113
+		y=9
+		width=335
+		height=24
+	}
+	"basic attribute" {
+		clr=2
+	}
+}
 text {
 	object {
-		x=140
-		y=15
-		width=150
+		x=142
+		y=10
+		width=276
 		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Epics Process Variables"
+}
+text {
+	object {
+		x=215
+		y=50
+		width=100
+		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Epics Process Variables"
+	textix="Camera PV:"
+	align="horiz. right"
 }
-composite {
+"text entry" {
+	object {
+		x=325
+		y=50
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)CameraPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=325
+		y=225
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)CloseShutterPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=145
+		y=225
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Close shutter PV:"
+}
+text {
+	object {
+		x=155
+		y=200
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Open shutter PV:"
+}
+"text entry" {
+	object {
+		x=325
+		y=200
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)OpenShutterPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=325
+		y=175
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)BeamReadyPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=175
+		y=175
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Beam Ready PV:"
+}
+"text entry" {
+	object {
+		x=325
+		y=150
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)VerticalMotorPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=45
+		y=150
+		width=270
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Vertical translation motor:"
+}
+text {
 	object {
 		x=25
-		y=50
-		width=525
-		height=195
+		y=125
+		width=290
+		height=20
 	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=25
-				y=225
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=25
-						y=225
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="OTF trigger base name PV:"
-				}
-				"text entry" {
-					object {
-						x=325
-						y=225
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)OTFScalerPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=200
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=325
-						y=200
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)CCDReadyPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=25
-						y=200
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="CCD ready PV:"
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=175
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=25
-						y=175
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="CCD trigger PV:"
-				}
-				"text entry" {
-					object {
-						x=325
-						y=175
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)CCDTriggerPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=150
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=325
-						y=150
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)BeamReadyPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=25
-						y=150
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Beam Ready PV:"
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=125
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=325
-						y=125
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)VertMotorPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=25
-						y=125
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Vertical translation motor:"
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=100
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=25
-						y=100
-						width=78
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Horizontal translation motor:"
-				}
-				"text entry" {
-					object {
-						x=325
-						y=100
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)HorizMotorPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=75
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=325
-						y=75
-						width=225
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RotationMotorPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=25
-						y=75
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Rotation motor:"
-				}
-			}
-		}
-		composite {
-			object {
-				x=25
-				y=50
-				width=525
-				height=20
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=325
-						y=50
-						width=225
-						height=20
-					}
-					monitor {
-						chan="$(P)$(R)CameraPVName"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=25
-						y=50
-						width=50
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Camera Name:"
-				}
-			}
-		}
+	"basic attribute" {
+		clr=14
 	}
+	textix="Horizontal translation motor:"
+}
+"text entry" {
+	object {
+		x=325
+		y=125
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)HorizontalMotorPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=325
+		y=100
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)RotationMotorPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=165
+		y=100
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Rotation motor:"
+}
+text {
+	object {
+		x=125
+		y=75
+		width=190
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pulse generator PV:"
+}
+"text entry" {
+	object {
+		x=325
+		y=75
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)PulseGeneratorPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=195
+		y=250
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MCS base PV:"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=325
+		y=250
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)MCSPVName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=125
+		y=275
+		width=190
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Open shutter value:"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=325
+		y=275
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)OpenShutterValue"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=115
+		y=300
+		width=200
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Close shutter value:"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=325
+		y=300
+		width=225
+		height=20
+	}
+	control {
+		chan="$(P)$(R)CloseShutterValue"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=40
+		width=550
+		height=285
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"message button" {
+	object {
+		x=215
+		y=335
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)$(R)AcceptPVS"
+		clr=14
+		bclr=51
+	}
+	label="Accept"
+	press_msg="1"
 }

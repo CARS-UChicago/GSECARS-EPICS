@@ -1,14 +1,14 @@
 
 file {
-	name="test_expinfo.adl"
-	version=030102
+	name="/home/epics/devel/CARS/CARSApp/op/adl/TomoCollectExpInfo.adl"
+	version=030107
 }
 display {
 	object {
-		x=467
-		y=51
-		width=550
-		height=400
+		x=789
+		y=173
+		width=650
+		height=255
 	}
 	clr=14
 	bclr=4
@@ -87,11 +87,35 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=150
+		y=5
+		width=350
+		height=30
+	}
+	"basic attribute" {
+		clr=2
+	}
+}
 text {
 	object {
-		x=25
+		x=181
+		y=7
+		width=288
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Experimental Information"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=80
 		y=50
-		width=50
+		width=70
 		height=20
 	}
 	"basic attribute" {
@@ -101,21 +125,9 @@ text {
 }
 text {
 	object {
-		x=125
-		y=15
-		width=200
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Experiment Information"
-}
-text {
-	object {
-		x=25
+		x=90
 		y=75
-		width=50
+		width=60
 		height=20
 	}
 	"basic attribute" {
@@ -123,271 +135,11 @@ text {
 	}
 	textix="Title:"
 }
-text {
-	object {
-		x=25
-		y=100
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Comments:"
-}
-text {
-	object {
-		x=25
-		y=225
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Operator:"
-}
 "text entry" {
 	object {
-		x=175
-		y=250
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Camera"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
-		x=25
-		y=250
-		width=55
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Camera/Optics:"
-}
-text {
-	object {
-		x=25
-		y=275
-		width=91
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="X Pixel Size:"
-}
-text {
-	object {
-		x=25
-		y=300
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Y Pixel Size:"
-}
-text {
-	object {
-		x=25
-		y=325
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Energy (keV):"
-}
-text {
-	object {
-		x=25
-		y=350
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Dark Current:"
-}
-"text entry" {
-	object {
-		x=175
-		y=275
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)XPixelSize"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=300
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)YPixelSize"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=325
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Energy"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=349
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)DarkCurrent"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=225
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Operator"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=200
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Comments5"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=175
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Comments4"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=150
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Comments3"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=125
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Comments2"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
-		y=100
-		width=350
-		height=20
-	}
-	control {
-		chan="$(P)$(R)Comments1"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=175
+		x=155
 		y=75
-		width=350
+		width=490
 		height=20
 	}
 	control {
@@ -401,13 +153,181 @@ text {
 }
 "text entry" {
 	object {
-		x=175
+		x=155
 		y=50
-		width=350
+		width=490
 		height=20
 	}
 	control {
 		chan="$(P)$(R)SampleName"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=125
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Camera/Optics:"
+}
+text {
+	object {
+		x=60
+		y=100
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Operator:"
+}
+text {
+	object {
+		x=20
+		y=150
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X Pixel Size:"
+}
+text {
+	object {
+		x=20
+		y=175
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y Pixel Size:"
+}
+text {
+	object {
+		x=20
+		y=200
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Energy (keV):"
+}
+text {
+	object {
+		x=20
+		y=225
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Dark Current:"
+}
+"text entry" {
+	object {
+		x=155
+		y=125
+		width=490
+		height=20
+	}
+	control {
+		chan="$(P)$(R)Camera"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=155
+		y=150
+		width=490
+		height=20
+	}
+	control {
+		chan="$(P)$(R)XPixelSize"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=155
+		y=175
+		width=490
+		height=20
+	}
+	control {
+		chan="$(P)$(R)YPixelSize"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=155
+		y=200
+		width=490
+		height=20
+	}
+	control {
+		chan="$(P)$(R)Energy"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=155
+		y=225
+		width=490
+		height=20
+	}
+	control {
+		chan="$(P)$(R)DarkCurrent"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=155
+		y=100
+		width=490
+		height=20
+	}
+	control {
+		chan="$(P)$(R)Operator"
 		clr=14
 		bclr=51
 	}
