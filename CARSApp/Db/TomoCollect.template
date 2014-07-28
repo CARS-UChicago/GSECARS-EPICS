@@ -2,9 +2,41 @@
 # Daniel Citron
 # 12/9/2010
 
+######################
 # EPICS PVs Names
+######################
 
 record(stringout, "$(P)$(R)CameraPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)PulseGeneratorPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)MCSPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)CloseShutterPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)CloseShutterValue")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)OpenShutterPVName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)OpenShutterValue")
 {
    field(VAL,  "Unknown")
 }
@@ -14,12 +46,12 @@ record(stringout, "$(P)$(R)RotationMotorPVName")
    field(VAL,  "Unknown")
 }
 
-record(stringout, "$(P)$(R)HorizMotorPVName")
+record(stringout, "$(P)$(R)HorizontalMotorPVName")
 {
    field(VAL,  "Unknown")
 }
 
-record(stringout, "$(P)$(R)VertMotorPVName")
+record(stringout, "$(P)$(R)VerticalMotorPVName")
 {
    field(VAL,  "Unknown")
 }
@@ -29,22 +61,17 @@ record(stringout, "$(P)$(R)BeamReadyPVName")
    field(VAL,  "Unknown")
 }
 
-record(stringout, "$(P)$(R)CCDTriggerPVName")
+record(bo, "$(P)$(R)AcceptPVS")
 {
-   field(VAL,  "Unknown")
+   field(ZNAM,"Done")
+   field(ONAM,"Accept")
 }
 
-record(stringout, "$(P)$(R)CCDReadyPVName")
-{
-   field(VAL,  "Unknown")
-}
 
-record(stringout, "$(P)$(R)OTFScalerPVName")
-{
-   field(VAL,  "Unknown")
-}
 
+######################
 # Experiment info
+######################
 
 record(stringout, "$(P)$(R)SampleName")
 {
@@ -52,31 +79,6 @@ record(stringout, "$(P)$(R)SampleName")
 }
 
 record(stringout, "$(P)$(R)Title")
-{
-   field(VAL,  "Unknown")
-}
-
-record(stringout, "$(P)$(R)Comments1")
-{
-   field(VAL,  "Unknown")
-}
-
-record(stringout, "$(P)$(R)Comments2")
-{
-   field(VAL,  "Unknown")
-}
-
-record(stringout, "$(P)$(R)Comments3")
-{
-   field(VAL,  "Unknown")
-}
-
-record(stringout, "$(P)$(R)Comments4")
-{
-   field(VAL,  "Unknown")
-}
-
-record(stringout, "$(P)$(R)Comments5")
 {
    field(VAL,  "Unknown")
 }
@@ -91,62 +93,106 @@ record(stringout, "$(P)$(R)Camera")
    field(VAL,  "Unknown")
 }
 
-record(stringout, "$(P)$(R)XPixelSize")
+record(ao, "$(P)$(R)XPixelSize")
 {
-   field(VAL,  "Unknown")
+   field(PREC,  "3")
 }
 
-record(stringout, "$(P)$(R)YPixelSize")
+record(ao, "$(P)$(R)YPixelSize")
 {
-   field(VAL,  "Unknown")
+   field(PREC,  "3")
 }
 
-record(stringout, "$(P)$(R)Energy")
+record(ao, "$(P)$(R)Energy")
 {
-   field(VAL,  "Unknown")
+   field(PREC,  "3")
 }
 
-record(stringout, "$(P)$(R)DarkCurrent")
+record(ao, "$(P)$(R)DarkCurrent")
 {
-   field(VAL,  "Unknown")
+   field(PREC,  "1")
 }
 
-# Scan variables
+
+######################
+# Rotation axis
+######################
 
 record(ao, "$(P)$(R)RotationStart")
 {
-   field(PREC,  "6")
+   field(PREC,  "3")
 }
 
 record(ao, "$(P)$(R)RotationStop")
 {
-   field(PREC,  "6")
+   field(PREC,  "3")
 }
 
 record(ao, "$(P)$(R)RotationStep")
 {
-   field(PREC,  "6")
+   field(PREC,  "3")
 }
 
 record(longout, "$(P)$(R)NumAngles")
 {
 }
 
-record(longout, "$(P)$(R)NumPasses")
+record(ao, "$(P)$(R)RotationMotorSpeed")
 {
+   field(PREC,  "6")
 }
+
+record(bo, "$(P)$(R)LeaveRotationMotor")
+{
+   field(ZNAM, "No")
+   field(ONAM, "Yes")
+}
+
+######################
+# Horizontal axis
+######################
+
+record(ao, "$(P)$(R)HorizontalSampleIn")
+{
+   field(PREC,  "3")
+}
+
+record(ao, "$(P)$(R)HorizontalSampleOut")
+{
+   field(PREC,  "3")
+}
+
+
+######################
+# Vertical axis
+######################
+
+record(ao, "$(P)$(R)VerticalSampleIn")
+{
+   field(PREC,  "3")
+}
+
+record(ao, "$(P)$(R)VerticalSampleOut")
+{
+   field(PREC,  "3")
+}
+
+
+######################
+# Flat field control
+######################
 
 record(mbbo, "$(P)$(R)FlatFieldAxis")
 {
    field(ZRVL, "0")
-   field(ZRST, "xAxis")
+   field(ZRST, "Horizontal")
    field(ONVL, "1")
-   field(ONST, "yAxis")
+   field(ONST, "Vertical")
    field(TWVL, "2")
-   field(TWST, "BothAxes")
+   field(TWST, "Both")
 }
 
-record(longout, "$(P)$(R)FlatFieldIncrement")
+record(longout, "$(P)$(R)AnglesBetweenFlats")
 {
 }
 
@@ -154,46 +200,75 @@ record(longout, "$(P)$(R)NumFlatFields")
 {
 }
 
-record(ao, "$(P)$(R)SampleXIn")
+record(bo, "$(P)$(R)MoveSampleIn")
 {
-   field(PREC,  "6")
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
 }
 
-record(ao, "$(P)$(R)SampleXOut")
+record(bo, "$(P)$(R)MoveSampleOut")
 {
-   field(PREC,  "6")
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
 }
 
-record(ao, "$(P)$(R)SampleYIn")
-{
-   field(PREC,  "6")
-}
 
-record(ao, "$(P)$(R)SampleYOut")
-{
-   field(PREC,  "6")
-}
+######################
+# Dark current control
+######################
 
-record(mbbo, "$(P)$(R)DataCollectionMode")
+record(longout, "$(P)$(R)NumDarkCurrents")
 {
-   field(ZRVL, "0")
-   field(ZRST, "Slow Scan")
-   field(ONVL, "1")
-   field(ONST, "Fast Scan")
-   field(TWVL, "2")
-   field(TWST, "OTF Scan")
 }
 
 record(bo, "$(P)$(R)CollectDarkCurrent")
 {
-   field(ZNAM, "Off")
-   field(ONAM, "On")
+   field(ZNAM,"Done")
+   field(ONAM,"Collect")
 }
 
-record(bo, "$(P)$(R)CancelMotorReset")
+######################
+# Data collection
+######################
+
+record(longin,"$(P)$(R)OTFGroups") {
+}
+
+record(ao, "$(P)$(R)ExposureTime")
 {
-   field(ZNAM, "Off")
-   field(ONAM, "On")
+   field(PREC,  "3")
+}
+
+record(bi, "$(P)$(R)ScanReady") {
+   field(ZNAM,"Ready")
+   field(ZSV, "NO ALARM")
+   field(ONAM,"Not ready")
+   field(OSV, "MAJOR")
+}
+
+
+record(busy,"$(P)$(R)StartScan")
+{
+   field(ZNAM,"Done")
+   field(ONAM,"Start")
+   field(VAL, "0")
+}
+
+record(bo,"$(P)$(R)AbortScan")
+{
+   field(ZNAM,"No")
+   field(ONAM,"Yes")
+}
+
+
+######################
+# File setup
+######################
+
+record(waveform, "$(P)$(R)FilePath")
+{
+   field(FTVL, "UCHAR")
+   field(NELM, "256")
 }
 
 record(waveform, "$(P)$(R)FileName")
@@ -202,14 +277,10 @@ record(waveform, "$(P)$(R)FileName")
    field(NELM, "256")
 }
 
-record(waveform, "$(P)$(R)PSAttributesFileName")
-{
-   field(FTVL, "UCHAR")
-   field(NELM, "256")
-}
 
-record(longin,"$(P)$(R)OTFGroups") {
-}
+######################
+# Scan status
+######################
 
 record(waveform,"$(P)$(R)ScanStatus") 
 {
@@ -225,55 +296,7 @@ record(stringout, "$(P)$(R)ElapsedTime")
 {
 }
 
-record(stringout, "$(P)$(R)EstRemainingTime")
+record(stringout, "$(P)$(R)RemainingTime")
 {
 }
 
-record(ao, "$(P)$(R)OTFMotorSpeed")
-{
-   field(PREC,  "6")
-}
-
-# Trigger and status variables
-
-record(bo, "$(P)$(R)MoveSampleIn")
-{
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
-   field(VAL, "0")
-}
-
-record(bo, "$(P)$(R)MoveSampleOut")
-{
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
-   field(VAL, "0")
-}
-
-record(bo,"$(P)$(R)StartScan")
-{
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
-   field(VAL, "0")
-}
-
-record(bo,"$(P)$(R)AbortScan")
-{
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
-   field(VAL, "0")
-}
-
-record(bo,"$(P)$(R)TCReady")
-{
-   field(ZNAM, "NotReady")
-   field(ONAM, "Ready")
-   field(VAL, "0")
-}
-
-record(bo,"$(P)$(R)InputTCPVS")
-{
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
-   field(VAL, "0")
-}
