@@ -2,12 +2,14 @@
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
+epicsEnvSet("PREFIX", "13BMDTC:"
+
 # Records
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMDTC:,R=TC:")
+dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=$(PREFIX),R=TC:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13BMDTC:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMDTC:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 
 iocInit
 
@@ -17,4 +19,4 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30,"P=13BMDTC:")
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
