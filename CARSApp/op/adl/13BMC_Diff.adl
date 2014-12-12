@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=567
-		y=162
+		x=50
+		y=45
 		width=160
 		height=490
 	}
@@ -192,34 +192,39 @@ composite {
 		args="P=13BMC:, TITLE=BMC_GPD_XYZ,  M1=m44, M2=m45, M3=m46"
 	}
 	display[2] {
+		label="BMC GPD Readbacks"
+		name="diff_motors.adl"
+		args="P=13BMC:, TITLE=Newport_Goniometer, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38, M7=m44, M8=m45, M9=m46"
+	}
+	display[3] {
 		label="BMC GPD Base"
 		name="5motors.adl"
 		args="P=13BMC:, TITLE=BMC_GPD_Base, M1=m39, M2=m40, M3=m41, M4=m42, M5=m43"
 	}
-	display[3] {
+	display[4] {
 		label="BMC GPD Table Record"
 		name="table.adl"
 		args="P=13BMC:, Q=DIF:T1, T=DIF:t1, M0X=m43, M0Y=m39, M1Y=m41, M2X=junk, M2Y=m40, M2Z=m42"
 	}
-	display[4] {
-		label="BMC GPD Detector Slits"
+	display[5] {
+		label="BMC GPD Detector Slits (simple)"
 		name="6motors.adl"
 		args="P=13BMC:, TITLE=BMC_GPD_Detector_Slits, M1=m9, M2=m10, M3=m13, M4=m14, M5=m15, M6=m16"
 	}
-	display[5] {
+	display[6] {
+		label="BMC GPD Det Slits (compound)"
+		name="4slitGraphic.adl"
+		args="P=13BMC:, V=Slit1V,H=Slit1H,mXp=m14,mXn=m13,mYp=m15,mYn=m16,SLIT=BMC_GPD_Det_Slits"
+	}
+	display[7] {
 		label="BMC GPD Entrance Slits"
 		name="4motors.adl"
 		args="P=13BMC:, TITLE=BMC_GPD_Entrance_Slit, M1=m63, M2=m64, M3=m67, M4=m68"
 	}
-	display[6] {
+	display[8] {
 		label="BMC GPD Film Gap"
 		name="1motors.adl"
 		args="P=13BMC:, TITLE=BMC_GPD_Film_Gap, M1=m70"
-	}
-	display[7] {
-		label="BMC GPD Readbacks"
-		name="diff_motors.adl"
-		args="P=13BMC:, TITLE=Newport_Goniometer, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38, M7=m44, M8=m45, M9=m46"
 	}
 	clr=14
 	bclr=4
