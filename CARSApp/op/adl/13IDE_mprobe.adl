@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=576
-		y=131
+		x=252
+		y=526
 		width=625
 		height=370
 	}
@@ -298,7 +298,7 @@ rectangle {
 	display[6] {
 		label="Microscope motors"
 		name="3motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m33, M2=m17, M3=m18"
+		args="P=13IDE:, TITLE=Microscope, M1=m5, M2=m17, M3=m18"
 	}
 	display[7] {
 		label="Vortex Stage"
@@ -698,25 +698,29 @@ text {
 		name="GSE_MonoEnergy.adl"
 		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
-	display[1] {
-		label="Fast Pitch Feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+	display[5] {
+		label="Beam Position"
+		name="13IDE_BPM.adl"
 	}
-	display[2] {
-		label="Fast Roll Feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
-	}
-	display[3] {
+	display[6] {
 		label="BPM Electronics"
 		name="quadEM.adl"
 		args="P=13IDA:, R=QE2:,P_TS=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
 	}
-	display[4] {
+	display[7] {
 		label="BPM Foil"
 		name="BPM_Foil.adl"
 		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM"
+	}
+	display[9] {
+		label="Fast Pitch Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+	}
+	display[10] {
+		label="Fast Roll Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
 	}
 	clr=54
 	bclr=1
@@ -841,9 +845,9 @@ rectangle {
 		args="P=13IDE:SIS1:"
 	}
 	display[2] {
-		label="Quad Vortex"
-		name="4element_dxp.adl"
-		args="P=13SDD1:, D=dxp, M=mca"
+		label="Quad Vortex (xspress)"
+		name="xspress3.adl"
+		args="P=13QX4"
 	}
 	display[3] {
 		label="Ion Chamber"
@@ -856,7 +860,9 @@ rectangle {
 		args="P=13XRM:, Q=XRF, D=13SDD1:"
 	}
 	display[5] {
-		label="cc"
+		label="Quad Vortex (xMAP)"
+		name="4element_dxp.adl"
+		args="P=13SDD1:, D=dxp, M=mca"
 	}
 	display[6] {
 		label="Scalers (old)"
