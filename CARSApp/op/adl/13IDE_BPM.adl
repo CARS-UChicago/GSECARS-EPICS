@@ -1,0 +1,628 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDE_BPM.adl"
+	version=030107
+}
+display {
+	object {
+		x=646
+		y=604
+		width=860
+		height=417
+	}
+	clr=12
+	bclr=1
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+composite {
+	object {
+		x=-1869387105
+		y=-1763906848
+		width=1
+		height=1
+	}
+	"composite name"=""
+	children {
+	}
+}
+"strip chart" {
+	object {
+		x=5
+		y=122
+		width=420
+		height=285
+	}
+	plotcom {
+		title="IO (Blue) // BPM Sum (Red)"
+		clr=14
+		bclr=1
+	}
+	pen[0] {
+		chan="13IDE:userTran1.I"
+		clr=23
+		limits {
+			loprSrc="default"
+			hoprSrc="default"
+			hoprDefault=10
+		}
+	}
+	pen[1] {
+		chan="13IDE:userTran1.F"
+		clr=54
+		limits {
+			loprSrc="default"
+			hoprSrc="default"
+			hoprDefault=10
+		}
+	}
+}
+oval {
+	object {
+		x=295
+		y=15
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDA:mono_pid2_incalc.K"
+	}
+}
+text {
+	object {
+		x=25
+		y=15
+		width=80
+		height=18
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="I0 Flux:"
+}
+"text update" {
+	object {
+		x=95
+		y=15
+		width=100
+		height=20
+	}
+	monitor {
+		chan="13XRM:ION:FluxOut"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=25
+		y=36
+		width=45
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Pitch Piezo"
+}
+"message button" {
+	object {
+		x=265
+		y=36
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7_tweak.A"
+		clr=54
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=340
+		y=36
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7_tweak.B"
+		clr=54
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=285
+		y=36
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7_tweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=185
+		y=36
+		width=80
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7.VAL"
+		clr=14
+		bclr=0
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=265
+		y=63
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8_tweak.A"
+		clr=54
+		bclr=0
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=340
+		y=63
+		width=20
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8_tweak.B"
+		clr=54
+		bclr=0
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=285
+		y=63
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8_tweakVal"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=185
+		y=63
+		width=80
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8.VAL"
+		clr=14
+		bclr=0
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+text {
+	object {
+		x=25
+		y=66
+		width=45
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Roll Piezo"
+}
+oval {
+	object {
+		x=295
+		y=15
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDA:mono_pid2_incalc.K"
+	}
+}
+menu {
+	object {
+		x=365
+		y=36
+		width=50
+		height=18
+	}
+	control {
+		chan="13XRM:edb:use_fb"
+		clr=54
+		bclr=1
+	}
+}
+menu {
+	object {
+		x=365
+		y=63
+		width=50
+		height=18
+	}
+	control {
+		chan="13IDA:efast_roll_pid.FBON"
+		clr=54
+		bclr=1
+	}
+}
+text {
+	object {
+		x=360
+		y=20
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Feedback"
+}
+"text entry" {
+	object {
+		x=125
+		y=63
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_8.VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=125
+		y=36
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDA:DAC1_7.VAL"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=230
+		y=15
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Preamp OK:"
+}
+"text update" {
+	object {
+		x=770
+		y=20
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:E_BPMFoilPosition_RBV"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=740
+		y=56
+		width=95
+		height=25
+	}
+	display[0] {
+		label="BPM Foil"
+		name="BPM_Foil.adl"
+		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM "
+	}
+	display[1] {
+		label="Fast Pitch Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+	}
+	display[2] {
+		label="Fast Roll Feedback"
+		name="pid_control.adl"
+		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
+	}
+	display[3] {
+		label="BPM Electronics"
+		name="quadEM.adl"
+		args="P=13IDA:, R=QE2:,P_TS=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
+	}
+	display[4] {
+		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM"
+	}
+	clr=54
+	bclr=1
+	label="-More"
+}
+"strip chart" {
+	object {
+		x=430
+		y=122
+		width=420
+		height=285
+	}
+	plotcom {
+		title="Beam Positions X / Y"
+		xlabel="Time"
+		clr=14
+		bclr=1
+	}
+	pen[0] {
+		chan="13IDA:QE2:Pos12:MeanValue_RBV"
+		clr=23
+		limits {
+			loprSrc="default"
+			loprDefault=-2000
+			hoprSrc="default"
+			hoprDefault=2000
+		}
+	}
+	pen[1] {
+		chan="13IDA:QE2:Pos34:MeanValue_RBV"
+		clr=54
+		limits {
+			loprSrc="default"
+			loprDefault=-2000
+			hoprSrc="default"
+			hoprDefault=2000
+		}
+	}
+}
+"message button" {
+	object {
+		x=450
+		y=92
+		width=180
+		height=25
+	}
+	control {
+		chan="13IDA:QE2:ComputePosOffset12.PROC"
+		clr=54
+		bclr=0
+	}
+	label="Set Pitch Position"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=650
+		y=92
+		width=180
+		height=25
+	}
+	control {
+		chan="13IDA:QE2:ComputePosOffset34.PROC"
+		clr=54
+		bclr=0
+	}
+	label="Set Roll Position"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=450
+		y=30
+		width=100
+		height=25
+	}
+	control {
+		chan="13IDA:QE2:Acquire"
+		clr=54
+		bclr=30
+	}
+	label="Stop QuadEM"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=450
+		y=60
+		width=100
+		height=25
+	}
+	control {
+		chan="13IDA:QE2:Acquire"
+		clr=54
+		bclr=60
+	}
+	label="Start QuadEM"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=300
+		y=97
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDE:userTran1.G"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=125
+		y=97
+		width=55
+		height=20
+	}
+	control {
+		chan="13IDE:userTran1.E"
+		clr=14
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=685
+		y=20
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="BPM Foil"
+}
+text {
+	object {
+		x=20
+		y=97
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="I0 Scale:"
+}
+text {
+	object {
+		x=200
+		y=97
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="BPM Scale:"
+}
