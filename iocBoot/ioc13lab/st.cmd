@@ -86,8 +86,8 @@ dbLoadTemplate "scanParms.template"
 
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans, 
 #           maxSignals, maxSequences, ethernetDevice)
-AIMConfig("AIM1/1", 0x59e, 1, 2048, 1, 1, "fei0")
-AIMConfig("AIM1/2", 0x59e, 2, 2048, 8, 1, "fei0")
+AIMConfig("AIM1/1", 0x3ED, 1, 2048, 1, 1, "fei0")
+AIMConfig("AIM1/2", 0x3ED, 2, 2048, 8, 1, "fei0")
 AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "fei0")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
@@ -111,13 +111,13 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN
 #      2 = HVPS
 #      3 = TCA
 #      4 = DSP
-icbConfig("icbAdc1", 0x59e, 5, 0)
+icbConfig("icbAdc1", 0x3ED, 5, 0)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
-icbConfig("icbAmp1", 0x59e, 3, 1)
+icbConfig("icbAmp1", 0x3ED, 3, 1)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
-#icbConfig("icbHvps1", 0x59e, 2, 2)
+#icbConfig("icbHvps1", 0x3ED, 2, 2)
 #dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
-icbConfig("icbTca1", 0x59e, 8, 3)
+icbConfig("icbTca1", 0x3ED, 8, 3)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTca1")
 #icbConfig("icbDsp1", 0x8058, 0, 4)
 #dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
