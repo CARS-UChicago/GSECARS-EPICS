@@ -22,7 +22,7 @@ CARS_Common_LIBS += busy
 CARS_Common_LIBS += love
 CARS_Common_LIBS += ip
 CARS_Common_LIBS += quadEM
-CARS_Common_LIBS += pmacAsynMotorPort pmacAsynIPPort
+CARS_Common_LIBS += pmacAsynMotor pmacAsynIPPort
 CARS_Common_LIBS += ACRMotor Aerotech Acs Faulhaber Ims Mclennan Newport Parker motorSimSupport softMotor motor
 CARS_Common_LIBS += stream streamSynApps
 CARS_Common_LIBS += modbus
@@ -44,6 +44,8 @@ CARS_SRCS += Analyzer.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 CARS_SRCS += splint.c
+CARS_SRCS_Linux   += testIpac.c
+CARS_SRCS_vxWorks += testIpac.c
 
 #===========================
 
@@ -85,6 +87,12 @@ CARS_vxWorks_LIBS += softGlue
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 CARS_Linux_LIBS        += devIocStats
+CARS_Linux_LIBS        += ip330
+CARS_Linux_LIBS        += ipUnidig
+CARS_Linux_LIBS        += dac128V
+CARS_Linux_LIBS        += softGlue
+CARS_Linux_LIBS        += Ipac
+CARS_Linux_LIBS        += Hy8522Asyn
 CARS_Linux_SYS_LIBS    += net pcap
 CARS_Linux_SYS_LIBS    += usb
 
