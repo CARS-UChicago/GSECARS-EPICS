@@ -73,7 +73,6 @@ double table_old;
 double table_new;
 double table_diff;
 double delay;
-int i;
 
 /*-------------------------------------------------------------------*/
 /*                  INIT                                               */
@@ -131,132 +130,132 @@ ss Energy {
       efSet(mono_angle_mon);
     } state monitor_changes
   }
-/*-------------------------------------------------------------------*/
+  /*-------------------------------------------------------------------*/
   state monitor_changes {
-/*                  ENERGY SET or MOVE                                 */
+  /*                  ENERGY SET or MOVE                               */
     when(efTestAndClear(energy_mon)) {
-    /* when energy changes: move mono angle, undulator, and table height:
-       strategy:
-       0. set "energy busy"
-       if "set energy" then:
-           1. set new mono angle based on new energy value
-	   2. let the mono_angle monitor handle the rest
-       else (normal energy move) then:
-           1. start move of undulator
-           2. move mono
-           3. move table
-           4. wait for undulator to finish
-       end if
-       Last. unset "energy_busy"
-       */
+      /* when energy changes: move mono angle, undulator, and table height:
+        strategy:
+        0. set "energy busy"
+        if "set energy" then:
+          1. set new mono angle based on new energy value
+	        2. let the mono_angle monitor handle the rest
+        else (normal energy move) then:
+          1. start move of undulator
+          2. move mono
+          3. move table
+          4. wait for undulator to finish
+        end if
+        Last. unset "energy_busy"
+      */
 
       energy_busy = 1;
       pvPut(energy_busy);
       if (verbose) {printf("-------\nEnergy: "); }
 
- /*  ENERGY SET  */
+      /*  ENERGY SET  */
       if (energy_set) {
-	if (verbose) { printf("  ENERGY: reset mono energy to %12.8f\n", energy);}
-	pvPut(energy);
-	/* check that energy is in the correct range */
-	if (energy <        0.)  energy =-energy;         /* force positive */
-	if (energy <      500.0) energy = energy * 1000.; /* force use of  eV */
-	if (energy < energy_min) energy = energy_min;     /* force minimum energy */
-	if (energy >   500000.0) energy = 500000.0 ;      /* force E < .5 MeV */
-	if (verbose) { printf("     energy -> %12.8f", energy );}
-	/* mono angle */
-	mono_angle  = asin(hc_o_2d / energy) * rad2deg;
-	/* now change mono_angle to SET mode and put this value to it */
-	mono_set = 1;
-	pvPut(mono_set);
-	if (verbose) { printf("     mono angle -> %12.8f \n", mono_angle);}
-	pvPut(mono_angle);
-	mono_set = 0;
-	pvPut(mono_set);
-	if (verbose) { printf("  ENERGY done\n");}
+	      if (verbose) { printf("  ENERGY: reset mono energy to %12.8f\n", energy);}
+	      pvPut(energy);
+	      /* check that energy is in the correct range */
+	      if (energy <        0.)  energy =-energy;         /* force positive */
+	      if (energy <      500.0) energy = energy * 1000.; /* force use of  eV */
+	      if (energy < energy_min) energy = energy_min;     /* force minimum energy */
+	      if (energy >   500000.0) energy = 500000.0 ;      /* force E < .5 MeV */
+	      if (verbose) { printf("     energy -> %12.8f", energy );}
+	      /* mono angle */
+	      mono_angle  = asin(hc_o_2d / energy) * rad2deg;
+	      /* now change mono_angle to SET mode and put this value to it */
+	      mono_set = 1;
+	      pvPut(mono_set);
+	      if (verbose) { printf("     mono angle -> %12.8f \n", mono_angle);}
+	      pvPut(mono_angle);
+	      mono_set = 0;
+	      pvPut(mono_set);
+	      if (verbose) { printf("  ENERGY done\n");}
       } else {
-/*  ENERGY MOVE  */
-	/* check that energy is in the correct range */
-	if (energy <        0.)  energy =-energy;         /* force positive */
-	if (energy <      500.0) energy = energy * 1000.; /* force use of  eV */
-	if (energy < energy_min) energy = energy_min;     /* force minimum energy */
-	if (energy >   500000.0) energy = 500000.0 ;      /* force E < .5 MeV */
-	/* start undulator move */
-	if (verbose) { printf("  ENERGY: move energy to %12.8f", energy );}
-	if (verbose) { printf("  (und tracking =%3i)\n", und_track);}
-	if (und_track) {
-	  und_e_set  = und_offset + (energy / 1000.000) ;
-	  if (und_e_set < 0.)    und_e_set  = und_e_rbv;
-	  if (und_e_set > 200.)  und_e_set  = und_e_rbv;
-	  pvPut(und_e_set);
-	  if (verbose) {
-	    printf("    und energy: %12.8f -> %12.8f\n", und_e_rbv, und_e_set);
-	  }
-	}
-	/* move mono angle */
-	mono_angle   =  asin(hc_o_2d / energy) * rad2deg;
-	if (mono_angle < mono_angle_min) mono_angle = mono_angle_min;
-	if (verbose) { printf("    mono angle -> %12.8f \n", mono_angle);}
-	pvPut(mono_angle);
-	/* move spectroscopy table  */
-	table_delta = 2. * mono_c * cos(mono_angle * deg2rad);
-	if (table_s_on) {
-	  table_old  = tableh_s;
-	  table_new  = table_s_offset + table_s_sign * table_delta;
-	  table_diff =  (table_old *10000.0  - table_new * 10000.0 )/10000.0; 
-	  if (table_diff < 0.0) table_diff = - table_diff;
-	  if (table_diff > table_move_min) { 
-	    tableh_s = table_new;
-	    pvPut (tableh_s);  
-	    if  (verbose)  { printf("   spect table:  %12.8f -> %12.8f\n",
-				    table_old, table_new);  }
-	  } else {
-	    if  (verbose)  { printf("   spect table:  stay at %12.8f\n",table_old);}
-	  }
-	} else {
-	  if  (verbose)  { printf("   spect table:  not moving\n");}
-	}
-	/* move diffractometer table */
-	if (table_d_on) {
-	  table_old  = tableh_d;
-	  table_new  = table_d_offset + table_d_sign * table_delta;
-	  table_diff =  (table_old *10000.0  - table_new * 10000.0 )/10000.0; 
-	  if (table_diff < 0.0) table_diff = - table_diff;
-	  if (table_diff > table_move_min) {
-	    tableh_d = table_new;
-	    pvPut (tableh_d);  
-	    if  (verbose)  { printf("   diffr table:  %12.8f -> %12.8f\n",
-				    table_old, table_new);  }
-	  } else {
-	    if  (verbose)  { printf("   diffr table:  stay at %12.8f\n",table_old);}
-	  }
-	} else {
-	  if  (verbose)  { printf("   diffr table:  not moving\n");}
-	}
-	/* wait for undulator to finish */
-	if (und_track) {
-	  undulator_busy   = 1;
-	  delay = 0.1;
-          i = delay(delay);
-	  while (undulator_busy) {
-	    if (delay < 0.95) delay += 0.1; 
-            i = delay(delay);
-	    pvGet(und_busy);	
-	    pvGet(und_abort);
-	    undulator_busy = 0;
-	    if (!und_abort) undulator_busy = und_busy ;
-	    if (verbose) {printf(". ");}
-	  }
+        /*  ENERGY MOVE  */
+	      /* check that energy is in the correct range */
+	      if (energy <        0.)  energy =-energy;         /* force positive */
+	      if (energy <      500.0) energy = energy * 1000.; /* force use of  eV */
+	      if (energy < energy_min) energy = energy_min;     /* force minimum energy */
+	      if (energy >   500000.0) energy = 500000.0 ;      /* force E < .5 MeV */
+	      /* start undulator move */
+	      if (verbose) { printf("  ENERGY: move energy to %12.8f", energy );}
+	      if (verbose) { printf("  (und tracking =%3i)\n", und_track);}
+	      if (und_track) {
+	        und_e_set  = und_offset + (energy / 1000.000) ;
+	        if (und_e_set < 0.)    und_e_set  = und_e_rbv;
+	        if (und_e_set > 200.)  und_e_set  = und_e_rbv;
+	        pvPut(und_e_set);
+	        if (verbose) {
+	          printf("    und energy: %12.8f -> %12.8f\n", und_e_rbv, und_e_set);
+	        }
+	      }
+	      /* move mono angle */
+	      mono_angle   =  asin(hc_o_2d / energy) * rad2deg;
+	      if (mono_angle < mono_angle_min) mono_angle = mono_angle_min;
+	      if (verbose) { printf("    mono angle -> %12.8f \n", mono_angle);}
+	      pvPut(mono_angle);
+	      /* move spectroscopy table  */
+	      table_delta = 2. * mono_c * cos(mono_angle * deg2rad);
+	      if (table_s_on) {
+	        table_old  = tableh_s;
+	        table_new  = table_s_offset + table_s_sign * table_delta;
+	        table_diff =  (table_old *10000.0  - table_new * 10000.0 )/10000.0; 
+	        if (table_diff < 0.0) table_diff = - table_diff;
+	        if (table_diff > table_move_min) { 
+	          tableh_s = table_new;
+	          pvPut (tableh_s);  
+	          if  (verbose)  { printf("   spect table:  %12.8f -> %12.8f\n",
+				          table_old, table_new);  }
+	        } else {
+	          if  (verbose)  { printf("   spect table:  stay at %12.8f\n",table_old);}
+	        }
+	      } else {
+	        if  (verbose)  { printf("   spect table:  not moving\n");}
+	      }
+	      /* move diffractometer table */
+	      if (table_d_on) {
+	        table_old  = tableh_d;
+	        table_new  = table_d_offset + table_d_sign * table_delta;
+	        table_diff =  (table_old *10000.0  - table_new * 10000.0 )/10000.0; 
+	        if (table_diff < 0.0) table_diff = - table_diff;
+	        if (table_diff > table_move_min) {
+	          tableh_d = table_new;
+	          pvPut (tableh_d);  
+	          if  (verbose)  { printf("   diffr table:  %12.8f -> %12.8f\n",
+				          table_old, table_new);  }
+	        } else {
+	          if  (verbose)  { printf("   diffr table:  stay at %12.8f\n",table_old);}
+	        }
+	      } else {
+	        if  (verbose)  { printf("   diffr table:  not moving\n");}
+	      }
+	      /* wait for undulator to finish */
+	      if (und_track) {
+	        undulator_busy   = 1;
+	        delay = 0.1;
+          epicsThreadSleep(delay);
+	        while (undulator_busy) {
+	          if (delay < 0.95) delay += 0.1; 
+            epicsThreadSleep(delay);
+	          pvGet(und_busy);	
+	          pvGet(und_abort);
+	          undulator_busy = 0;
+	          if (!und_abort) undulator_busy = und_busy ;
+	          if (verbose) {printf(". ");}
+	        }
           pvGet(und_e_rbv);
-	  if (verbose) { printf("    und energy reads %12.8f\n", und_e_rbv); }
-	}
+	        if (verbose) { printf("    und energy reads %12.8f\n", und_e_rbv); }
+	      }
       }
       /* get current mono angle, update energy readback */
       pvGet(mono_rbv);
       if (mono_rbv < 0.001 )  mono_rbv = 0.001;
       energy_rbv =  hc_o_2d / sin(mono_rbv * deg2rad) ;
       if (verbose) { 
-	printf("    mono angle_rbv, energy_rbv = %12.8f  %12.8f\n", mono_rbv, energy_rbv);
+	      printf("    mono angle_rbv, energy_rbv = %12.8f  %12.8f\n", mono_rbv, energy_rbv);
       } 
       pvPut(energy_rbv);
       energy_busy = 0;
@@ -265,19 +264,20 @@ ss Energy {
       efClear(und_track_mon);
       if (verbose) {printf("  ENERGY move done\n"); }
     } state monitor_changes
-/*-------------------------------------------------------------------*/
-/*                  MONO ANGLE CHANGED                                 */
-      /* when table or undulator change by themsleves, do nothing */
-      /* when mono_angle changes by itself, change energy, and let*/
-      /* the table and undulator stay where they are*/
+
+    /*-------------------------------------------------------------------*/
+    /*                  MONO ANGLE CHANGED                                 */
+    /* when table or undulator change by themsleves, do nothing */
+    /* when mono_angle changes by itself, change energy, and let*/
+    /* the table and undulator stay where they are*/
     when( efTestAndClear(mono_angle_mon) ) {
       if (verbose) {printf("-------\nEnergy: angle changed! "); }
       if (mono_angle < mono_angle_min)  mono_angle = mono_angle_min;
       energy  = hc_o_2d / sin(mono_angle * deg2rad) ;
       pvPut(energy);
       if (verbose) {
-	printf("Energy: mono angle changed\n");
-	printf("        setting energy to %12.8f \n", energy);
+	      printf("Energy: mono angle changed\n");
+	      printf("        setting energy to %12.8f \n", energy);
       }
       /* get current mono angle, update energy readback */
       pvGet(mono_rbv);
@@ -288,58 +288,58 @@ ss Energy {
       efClear(energy_mon);	
       efClear(mono_angle_mon);
     } state monitor_changes
-/*                  MONO D SPACING CHANGED                             */
+    /*                  MONO D SPACING CHANGED                             */
     when( efTestAndClear(mono_d_mon) ) {
       if (verbose) {printf("-------\nEnergy: mono_d changed! "); }
       if (mono_d < 0.1) mono_d = 1.920128;
       hc_o_2d   = hc / (2 * mono_d);
       energy_min= 1/ hc_o_2d; /* prevent asin(hc_o_2d/energy) from barfing a NaN  */
       if (verbose) {
-	printf("Energy: mono d spacing changed to -> %12.8f \n", mono_d);
+	      printf("Energy: mono d spacing changed to -> %12.8f \n", mono_d);
       }
     } state monitor_changes
-/*                  MONO C SPACING CHANGED                             */
+    /*                  MONO C SPACING CHANGED                             */
     when( efTestAndClear(mono_c_mon) ) {
       if (verbose) {printf("-------\nEnergy: mono_c changed! "); }
       if (mono_c < 0.1) mono_c = 9.10901;
       if (verbose) {printf("Energy: mono channel changed to -> %12.8f \n", mono_c);}
     } state monitor_changes
-/*                  UNDULATOR TRACKING CHANGED                         */
-/* reset offset if switched to on */
+    /*                  UNDULATOR TRACKING CHANGED                         */
+    /* reset offset if switched to on */
     when( efTestAndClear(und_track_mon) ) {
       if (verbose) {printf("Energy: saw und_track change: und_track -> %3i \n", und_track);}
       if (und_track) {
-	und_offset = und_e_rbv - (energy / 1000.000);
-	pvPut(und_offset);
-	if (verbose) {
-	  printf("    changed undulator offset to %12.8f \n", und_offset);
-	}
+	      und_offset = und_e_rbv - (energy / 1000.000);
+	      pvPut(und_offset);
+	      if (verbose) {
+	        printf("    changed undulator offset to %12.8f \n", und_offset);
+	      }
       }
       efClear(und_track_mon);
     } state monitor_changes
-/*                  TABLE_S TRACKING CHANGED                           */
-/* reset offset if switched to on */
+    /*                  TABLE_S TRACKING CHANGED                           */
+    /* reset offset if switched to on */
     when( efTestAndClear(table_s_mon) ) {
       if (verbose) {printf("Energy: saw table_s change --");}
       if (table_s_on) {
-	table_s_offset = tableh_s - 2. * mono_c * table_s_sign * cos(mono_angle * deg2rad);
-	pvPut(table_s_offset);
-	if (verbose) {
-	  printf("    table_s offset changed to %12.8f \n", table_s_offset);
-	}
+	      table_s_offset = tableh_s - 2. * mono_c * table_s_sign * cos(mono_angle * deg2rad);
+	      pvPut(table_s_offset);
+	      if (verbose) {
+	        printf("    table_s offset changed to %12.8f \n", table_s_offset);
+	      }
       }
       efClear(table_s_mon);
     } state monitor_changes
-/*                  TABLE_D TRACKING CHANGED                           */
-/* reset offset if switched to on */
+    /*                  TABLE_D TRACKING CHANGED                           */
+    /* reset offset if switched to on */
     when( efTestAndClear(table_d_mon) ) {
       if (verbose) {printf("Energy: saw table_d change --");}
       if (table_d_on) {
-	table_d_offset = tableh_d - 2. * mono_c * table_d_sign * cos(mono_angle * deg2rad);
-	pvPut(table_d_offset);
-	if (verbose) {
-	  printf("    table_d offset changed to %12.8f \n", table_d_offset);
-	}
+	      table_d_offset = tableh_d - 2. * mono_c * table_d_sign * cos(mono_angle * deg2rad);
+	      pvPut(table_d_offset);
+	      if (verbose) {
+	        printf("    table_d offset changed to %12.8f \n", table_d_offset);
+	      }
       }
       efClear(table_d_mon);
     } state monitor_changes
