@@ -29,6 +29,7 @@ CARS_Common_LIBS += modbus
 CARS_Common_LIBS += ADBase
 CARS_Common_LIBS += asyn
 CARS_Common_LIBS += seq pv
+CARS_Common_LIBS += devIocStats
 CARS_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # The following are compiled and added to the Support library
@@ -81,12 +82,10 @@ CARS_vxWorks_LIBS += dxp handel
 CARS_vxWorks_LIBS += oms
 CARS_vxWorks_LIBS += vme
 CARS_vxWorks_LIBS += TyGSOctal Ipac
-CARS_vxWorks_LIBS += devIocStats
 CARS_vxWorks_LIBS += softGlue
 #The following adds support from base/src/vxWorks
 CARSApp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARS_Linux_LIBS        += devIocStats
 CARS_Linux_LIBS        += ip330
 CARS_Linux_LIBS        += ipUnidig
 CARS_Linux_LIBS        += dac128V
