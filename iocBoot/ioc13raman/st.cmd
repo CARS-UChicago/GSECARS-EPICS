@@ -72,6 +72,12 @@ MCB4BConfig(0, "serial2")
 save_restoreSet_status_prefix("13Raman:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Raman:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","GSE laser lab")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13Raman:")
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
