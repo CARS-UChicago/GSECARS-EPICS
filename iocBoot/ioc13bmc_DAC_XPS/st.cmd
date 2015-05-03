@@ -13,7 +13,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.190", 5001, 5, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.190", 5001, 6, 10, 500, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -28,6 +28,7 @@ XPSCreateAxis("XPS1", 1, "VIEW_Y.Y",    "10000")
 XPSCreateAxis("XPS1", 2, "VIEW_Z.Z",    "10000")  
 XPSCreateAxis("XPS1", 3, "CLEANUP_X.X", "56499")  
 XPSCreateAxis("XPS1", 4, "CLEANUP_Y.Y", "56499")  
+XPSCreateAxis("XPS1", 5, "CLEANUP_Z.Z", "10000")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -47,7 +48,7 @@ dbLoadTemplate("XPSAux.substitutions")
 drvAsynIPPortConfigure("xps", "164.54.160.34:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC_DAC_XPS:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
 
 # Debug-output level
 save_restoreSet_Debug(0)
@@ -92,8 +93,8 @@ set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
 set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
-save_restoreSet_status_prefix("13BMC_XPS:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC_XPS:")
+save_restoreSet_status_prefix("13BMC_DAC_XPS:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC_DAC_XPS:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -101,7 +102,13 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC_XPS:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMC_XPS:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMC_DAC_XPS:")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","corvette")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13BMC_DAC_XPS:")
 
 iocInit
 
@@ -119,4 +126,4 @@ create_monitor_set("auto_settings.req",30,"P=13BMC:")
 dbpf("13BMC:m74.NTM","0")
 dbpf("13BMC:m75.NTM","0")
 
-motorUtilInit("13BMC_XPS:")
+motorUtilInit("13BMC_DAC_XPS:")
