@@ -7,7 +7,7 @@ PerkinElmerApp_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13PE1:")
 epicsEnvSet("PORT",   "PEDET1")
-epicsEnvSet("QSIZE",  "20")
+epicsEnvSet("QSIZE",  "500")
 epicsEnvSet("XSIZE",  "2048")
 epicsEnvSet("YSIZE",  "2048")
 epicsEnvSet("NCHANS", "2048")
@@ -20,7 +20,7 @@ epicsEnvSet("NCHANS", "2048")
 #        = 3 GigE detector by detector name (e.g. 8#2608).  Can get network detector names with asynReport(10)
 
 # This is for the first PCI/PCIExpress frame grabber detector in the system
-PerkinElmerConfig("$(PORT)", 0, "", 100, 200000000, 0, 0)
+PerkinElmerConfig("$(PORT)", 0, "", 0, 0, 0, 0)
 
 # This is for a GigE detector at IP address 164.54.160.204
 #PerkinElmerConfig("$(PORT)", 1, 164.54.160.204, 100, 200000000, 0, 0)
