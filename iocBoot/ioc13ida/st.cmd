@@ -14,6 +14,9 @@ errlogInit(20000)
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
+# For areaDetector
+iocshCmd("epicsEnvSet(EPICS_DB_INCLUDE_PATH,$(ADCORE)/db)")
+
 cd startup
 
 # Debugging flags
@@ -89,9 +92,10 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA:")
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
 
-# vxWorks statistics
-#dbLoadTemplate("vxStats.substitutions")
 # devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=13-ID-A roof")
+putenv("GROUP=GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDA:")
 
 < ../save_restore.cmd
