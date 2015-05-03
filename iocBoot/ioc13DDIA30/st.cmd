@@ -47,6 +47,12 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13xps3:,MAXPTS1=2000,MAXPTS2=20
 save_restoreSet_status_prefix("13DDIA30:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13DDIA30:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","corvette")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13DDIA30:")
+
 iocInit
 
 # save positions every five seconds

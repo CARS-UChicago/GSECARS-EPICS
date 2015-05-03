@@ -90,6 +90,12 @@ MCB4BConfig(0, "serial3")
 save_restoreSet_status_prefix("13GasLoad:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13GasLoad:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","Gas loading system")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13GasLoad:")
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
