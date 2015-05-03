@@ -107,8 +107,11 @@ dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDC:")
 # SCA Window for Bede detector
 dbLoadRecords("$(CARS)/CARSApp/Db/sca_window.db","P=13IDC:,SCA=BEDE,DAC1=DAC1_1,DAC2=DAC1_2,MIN=0,MAX=3")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=13-ID-C")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDC:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDC:")
@@ -121,7 +124,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDC:")
 #     (1)cards, (2)base address(short, 4k boundary),
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(4, 0x4000, 190, 5, 10)
+oms58Setup(5, 0x4000, 190, 5, 10)
 ################################################################################
 
 ################################################################################
