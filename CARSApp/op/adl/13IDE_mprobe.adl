@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=252
-		y=526
+		x=196
+		y=450
 		width=625
-		height=370
+		height=375
 	}
 	clr=46
 	bclr=2
@@ -243,6 +243,11 @@ rectangle {
 		label="Fast Mapping "
 		name="XRM_map.adl"
 		args="P=13XRM:, Q=map"
+	}
+	display[6] {
+		label="Scan Server"
+		name="XRM_scandb.adl"
+		args="P=13XRM:, Q=SCANDB"
 	}
 	display[8] {
 		label="Expt Info"
@@ -840,13 +845,13 @@ rectangle {
 		args="P=13IDE:, S=scaler1"
 	}
 	display[1] {
-		label="Struck MCA"
+		label="Struck MCS"
 		name="SIS38XX.adl"
 		args="P=13IDE:SIS1:"
 	}
 	display[2] {
-		label="Quad Vortex (xspress)"
-		name="xspress3.adl"
+		label="Quad Vortex Xspress3"
+		name="xspress3_custom.adl"
 		args="P=13QX4"
 	}
 	display[3] {
@@ -860,14 +865,9 @@ rectangle {
 		args="P=13XRM:, Q=XRF, D=13SDD1:"
 	}
 	display[5] {
-		label="Quad Vortex (xMAP)"
+		label="XMAP Quad Vortex"
 		name="4element_dxp.adl"
 		args="P=13SDD1:, D=dxp, M=mca"
-	}
-	display[6] {
-		label="Scalers (old)"
-		name="scaler_calcs8.adl"
-		args="P=13IDE:, S=scaler1"
 	}
 	display[7] {
 		label="Quad Vortex (Mercury)"
@@ -942,13 +942,13 @@ text {
 }
 "message button" {
 	object {
-		x=130
+		x=135
 		y=165
 		width=55
 		height=20
 	}
 	control {
-		chan="$(FD):EraseAll"
+		chan="$(FD):ERASE"
 		clr=54
 		bclr=1
 	}
@@ -957,13 +957,13 @@ text {
 }
 "message button" {
 	object {
-		x=10
+		x=15
 		y=165
 		width=55
 		height=20
 	}
 	control {
-		chan="$(FD):EraseStart"
+		chan="$(FD):Acquire"
 		clr=54
 		bclr=1
 	}
@@ -972,55 +972,23 @@ text {
 }
 "message button" {
 	object {
-		x=70
+		x=75
 		y=165
 		width=55
 		height=20
 	}
 	control {
-		chan="$(FD):StopAll"
+		chan="$(FD):Acquire"
 		clr=54
 		bclr=1
 	}
 	label="Stop"
-	press_msg="1"
-}
-text {
-	object {
-		x=120
-		y=140
-		width=40
-		height=18
-	}
-	"basic attribute" {
-		clr=21
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(FD):Acquiring"
-	}
-	textix="Done"
-}
-text {
-	object {
-		x=120
-		y=140
-		width=75
-		height=18
-	}
-	"basic attribute" {
-		clr=18
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(FD):Acquiring"
-	}
-	textix="Acquiring"
+	press_msg="0"
 }
 "text update" {
 	object {
-		x=15
-		y=210
+		x=105
+		y=190
 		width=80
 		height=15
 	}
@@ -1030,21 +998,6 @@ text {
 		bclr=0
 	}
 	align="horiz. right"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=115
-		y=210
-		width=80
-		height=20
-	}
-	control {
-		chan="$(FD):PresetReal"
-		clr=14
-		bclr=0
-	}
 	limits {
 	}
 }
@@ -1059,35 +1012,6 @@ text {
 		clr=14
 	}
 	textix="Acquire time:"
-}
-"text update" {
-	object {
-		x=120
-		y=230
-		width=60
-		height=15
-	}
-	monitor {
-		chan="$(FD):DeadTime"
-		clr=54
-		bclr=0
-	}
-	clrmod="alarm"
-	align="horiz. right"
-	limits {
-	}
-}
-text {
-	object {
-		x=10
-		y=230
-		width=100
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="% Deadtime:"
 }
 rectangle {
 	object {
@@ -1807,6 +1731,52 @@ text {
 		clr=24
 		bclr=1
 	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=210
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Output Count Rates (kHz):"
+}
+"text update" {
+	object {
+		x=25
+		y=230
+		width=80
+		height=15
+	}
+	monitor {
+		chan="$(FD):ElapsedReal"
+		clr=54
+		bclr=0
+	}
+	align="horiz. right"
+	format="engr. notation"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=105
+		y=140
+		width=90
+		height=15
+	}
+	monitor {
+		chan="$(FD):DetectorState_RBV"
+		clr=54
+		bclr=0
+	}
+	align="horiz. right"
 	format="string"
 	limits {
 	}
