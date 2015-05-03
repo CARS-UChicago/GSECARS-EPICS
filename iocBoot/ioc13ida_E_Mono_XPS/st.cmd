@@ -24,14 +24,15 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.41", 5001, 50)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 #XPSCreateAxis("XPS1",0,"GROUP1.THETA",   "87466.66667")  
-XPSCreateAxis("XPS1",0,"GROUP1.THETA",   "131111.111111111")  
-XPSCreateAxis("XPS1",1,"GROUP2.HEIGHT",  "5000")  
-XPSCreateAxis("XPS1",2,"GROUP3.PITCH",   "5600")  
-XPSCreateAxis("XPS1",3,"GROUP4.ROLL",    "5600")  
-XPSCreateAxis("XPS1",4,"GROUP5.Hp",      "5000")
-XPSCreateAxis("XPS1",5,"GROUP6.Hw",      "5000")
-XPSCreateAxis("XPS1",6,"GROUP7.Vp",      "5000")
-XPSCreateAxis("XPS1",7,"GROUP8.Vw",      "5000")
+XPSCreateAxis("XPS1",0,"MONO.THETA",   "131111.111111111")  
+XPSCreateAxis("XPS1",1,"MONO.HEIGHT",      "5000")  
+XPSCreateAxis("XPS1",2,"PITCH.POSITIONER", "5600")  
+XPSCreateAxis("XPS1",3,"ROLL.POSITIONER",  "5600")  
+XPSCreateAxis("XPS1",4,"HPOS.POSITIONER",  "5000")
+XPSCreateAxis("XPS1",5,"HWID.POSITIONER",  "5000")
+XPSCreateAxis("XPS1",6,"VPOS.POSITIONER",  "5000")
+XPSCreateAxis("XPS1",7,"VWID.POSITIONER",  "5000")
+
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -115,6 +116,11 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_EMONO:")
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_EMONO:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","13-ID-A roof")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13IDA_EMONO:")
 
 iocInit
 # MN 12-Nov-2012  run MonoEnergy sequence program here
