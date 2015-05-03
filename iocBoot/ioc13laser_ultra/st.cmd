@@ -10,7 +10,7 @@ CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 # For Windows
 
-drvAsynSerialPortConfigure("serial1", "COM3", 0, 0, 0)
+drvAsynSerialPortConfigure("serial1", "COM4", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r\n")
 asynOctetSetOutputEos("serial1",0,"\r\n")
 asynSetOption("serial1",0,"baud","921600")
@@ -23,7 +23,7 @@ asynSetOption("serial1",0,"crtscts","N")
 asynSetTraceIOMask("serial1", 0, 2)
 #asynSetTraceMask("serial1", 0, 9)
 
-drvAsynSerialPortConfigure("serial2", "COM4", 0, 0, 0)
+drvAsynSerialPortConfigure("serial2", "COM5", 0, 0, 0)
 asynOctetSetInputEos("serial2",0,"\r\n")
 asynOctetSetOutputEos("serial2",0,"\r\n")
 asynSetOption("serial2",0,"baud","921600")
@@ -36,7 +36,7 @@ asynSetOption("serial2",0,"crtscts","N")
 asynSetTraceIOMask("serial2", 0, 2)
 #asynSetTraceMask("serial2", 0, 9)
 
-drvAsynSerialPortConfigure("serial3", "COM5", 0, 0, 0)
+drvAsynSerialPortConfigure("serial3", "COM3", 0, 0, 0)
 asynOctetSetInputEos("serial3",0,"\r\n")
 asynOctetSetOutputEos("serial3",0,"\r\n")
 asynSetOption("serial3",0,"baud","921600")
@@ -109,6 +109,12 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13LU:")
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13LU:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LU:")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","GSE laser lab")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13LU:")
 
 iocInit
 
