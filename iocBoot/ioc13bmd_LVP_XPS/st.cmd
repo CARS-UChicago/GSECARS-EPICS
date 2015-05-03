@@ -98,8 +98,8 @@ set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
 set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
-save_restoreSet_status_prefix("13BMD_XPS_LVP:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD_XPS_LVP:")
+save_restoreSet_status_prefix("13BMD_LVP_XPS:")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD_LVP_XPS:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -107,7 +107,13 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD_XPS_LVP:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMD_XPS_LVP:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMD_LVP_XPS:")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","corvette")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13BMD_LVP_XPS:")
 
 iocInit
 
@@ -126,4 +132,4 @@ create_monitor_set("auto_settings.req",30,"P=13BMD:")
 #dbpf("13BMD:m98.NTM","0")
 #dbpf("13BMD:m99.NTM","0")
 
-motorUtilInit("13BMD_XPS_LVP:")
+motorUtilInit("13BMD_LVP_XPS:")
