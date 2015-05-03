@@ -75,20 +75,23 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Laser:")
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Laser:")
 
 # MCB-4B driver setup parameters:
-#     (1) maximum # of controllers,
-#     (2) maximum # axis per controller
-#     (3) motor task polling rate (min=1Hz, max=60Hz)
-MCB4BSetup(2, 4, 10)
-
-# MCB-4B driver configuration parameters:
-#     (1) controller
-#     (2) asyn port name (e.g. serial1)
-MCB4BConfig(0, "serial1")
-MCB4BConfig(1, "serial2")
+#     (1) port name
+#     (2) serial port name
+#     (3) maximum # axis per controller
+#     (4) moving poll period ms
+#     (5) idle poll period ms
+MCB4BCreateController("MCB4B_1", "serial1", 4, 100, 1000)
+MCB4BCreateController("MCB4B_2", "serial2", 4, 100, 1000)
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Laser:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Laser:")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","GSE DAC lab")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13Laser:")
 
 iocInit
 
