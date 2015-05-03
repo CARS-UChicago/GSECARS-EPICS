@@ -106,6 +106,12 @@ dbLoadTemplate "scanParms.template"
 ### motorUtil - for allstop, moving, etc.
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDD_XPS:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","corvette")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13IDD_XPS:")
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
