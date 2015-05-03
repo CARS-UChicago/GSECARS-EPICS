@@ -133,11 +133,17 @@ dbLoadTemplate "scanParms.template"
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
 
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMD:,N=10")
+
+# Free-standing user calcOuts (calcOut records)
+dbLoadRecords("$(CALC)/calcApp/Db/userCalcOuts10.db", "P=13BMD:")
+
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMD:")
 
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMD:,N=10")
+# Free-standing user string sequence records (sseq records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13BMD:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMD:")
@@ -145,8 +151,11 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMD:")
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=13-BM-D roof")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMD:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMD:")
