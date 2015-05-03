@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
 	version=030107
 }
 display {
@@ -359,6 +359,11 @@ text {
 		name="TomoCollect.adl"
 		args="P=13BMDTC:,R=TC:"
 	}
+	display[12] {
+		label="Syringe pump 2"
+		name="CPSyringe.adl"
+		args="P=13Syringe2:,R=S1:"
+	}
 	clr=14
 	bclr=4
 	label="- Other IOCs"
@@ -377,6 +382,10 @@ text {
 	display[1] {
 		label="13 BMC Diffraction"
 		name="13BMC_Diff.adl"
+	}
+	display[2] {
+		label="13 BMC DAC"
+		name="13BMC_DAC.adl"
 	}
 	clr=14
 	bclr=4
@@ -473,14 +482,14 @@ text {
 		height=30
 	}
 	display[0] {
-		label="Pilatus #1"
+		label="Pilatus 13IDC"
 		name="pilatusDetector.adl"
-		args="P=GSE-PIL1:, R=cam1:"
+		args="P=13IDC-PIL:, R=cam1:"
 	}
 	display[1] {
-		label="Pilatus #2"
+		label="Pilatus 13BMC"
 		name="pilatusDetector.adl"
-		args="P=GSE-PIL2:, R=cam1:"
+		args="P=13BMC-PIL:, R=cam1:"
 	}
 	display[2] {
 		label="MAR-CCD #1"
@@ -518,13 +527,13 @@ text {
 		args="P=GSE-PIL3:, R=cam1:"
 	}
 	display[9] {
-		label="Perkin Elmer DP #2"
+		label="Perkin Elmer DP #1"
 		name="PerkinElmer.adl"
-		args="P=dp_pe2:, R=cam1:"
+		args="P=dp_pe1:, R=cam1:"
 	}
 	display[10] {
 		label="MAR-CCD IMCA"
-		name="marCCD.adl"
+		name="marccd.adl"
 		args="P=13MARCCD_IMCA:, R=cam1:"
 	}
 	display[11] {
@@ -536,6 +545,21 @@ text {
 		label="Pixirad DP xrd43"
 		name="pixirad.adl"
 		args="P=dp_pixirad_xrd43:, R=cam1:"
+	}
+	display[13] {
+		label="Pilatus CdTe"
+		name="pilatusDetector.adl"
+		args="P=13PIL1:, R=cam1:"
+	}
+	display[14] {
+		label="Pixirad DP xrd73"
+		name="pixirad.adl"
+		args="P=dp_pixirad_xrd73:, R=cam1:"
+	}
+	display[15] {
+		label="MARCCD DP(HP)"
+		name="marccd.adl"
+		args="P=dp_mar165_xrd83:, R=cam1:"
 	}
 	clr=14
 	bclr=4
@@ -618,7 +642,7 @@ text {
 	display[0] {
 		label="13IDE Microprobe "
 		name="13IDE_mprobe.adl"
-		args="FD=13SDD1"
+		args="FD=13QX4"
 	}
 	display[1] {
 		label="13 IDE  Main "
@@ -664,6 +688,11 @@ text {
 		label="13BMD Point Grey1"
 		name="pointGrey.adl"
 		args="P=13BMDPG1:, R=cam1:"
+	}
+	display[6] {
+		label="13IDE Point Grey1"
+		name="pointGrey.adl"
+		args="P=13IDEPG1:, R=cam1:"
 	}
 	clr=14
 	bclr=4
