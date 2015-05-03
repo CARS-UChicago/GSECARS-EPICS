@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13Laser_user.adl"
-	version=030102
+	name="j:\epics\support\CARS\CARSApp\op\adl\13Laser_user.adl"
+	version=030107
 }
 display {
 	object {
-		x=292
-		y=460
+		x=76
+		y=414
 		width=557
 		height=405
 	}
@@ -179,8 +179,8 @@ text {
 }
 "related display" {
 	object {
-		x=324
-		y=373
+		x=403
+		y=382
 		width=73
 		height=21
 	}
@@ -195,8 +195,8 @@ text {
 }
 "related display" {
 	object {
-		x=402
-		y=374
+		x=481
+		y=383
 		width=73
 		height=21
 	}
@@ -250,19 +250,6 @@ polygon {
 		(131,157)
 		(130,155)
 	}
-}
-text {
-	object {
-		x=64
-		y=30
-		width=400
-		height=33
-	}
-	"basic attribute" {
-		clr=44
-	}
-	textix="GSECARS Laser Drilling"
-	align="horiz. centered"
 }
 polygon {
 	object {
@@ -1083,11 +1070,11 @@ text {
 	object {
 		x=340
 		y=287
-		width=80
-		height=21
+		width=110
+		height=20
 	}
 	"basic attribute" {
-		clr=21
+		clr=14
 	}
 	textix="Beam Shaper"
 	align="horiz. centered"
@@ -1183,5 +1170,120 @@ composite {
 		vis="calc"
 		calc="A<-30"
 		chan="13Laser:m4.RBV"
+	}
+}
+text {
+	object {
+		x=335
+		y=316
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Modulation:"
+}
+"text update" {
+	object {
+		x=450
+		y=317
+		width=80
+		height=20
+	}
+	monitor {
+		chan="13Laser:Laser1Modulation"
+		clr=53
+		bclr=4
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=442
+		y=340
+		width=50
+		height=20
+	}
+	control {
+		chan="13Laser:Laser1EnableModulation.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Enable"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=498
+		y=341
+		width=50
+		height=20
+	}
+	control {
+		chan="13Laser:Laser1DisableModulation.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Disable"
+	press_msg="1"
+}
+composite {
+	object {
+		x=64
+		y=30
+		width=400
+		height=33
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=64
+				y=30
+				width=400
+				height=33
+			}
+			"basic attribute" {
+				clr=44
+			}
+			textix="GSECARS Laser Drilling"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13Laser:Laser1Modulation"
+	}
+}
+composite {
+	object {
+		x=64
+		y=30
+		width=400
+		height=33
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=64
+				y=30
+				width=400
+				height=33
+			}
+			"basic attribute" {
+				clr=20
+			}
+			textix="GSECARS Laser Heating"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13Laser:Laser1Modulation"
 	}
 }
