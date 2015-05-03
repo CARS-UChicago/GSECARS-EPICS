@@ -64,7 +64,7 @@ dbLoadTemplate("XPSAux.substitutions")
 drvAsynIPPortConfigure("xps", "164.54.160.55:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDC:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
 
 # Debug-output level
 save_restoreSet_Debug(0)
@@ -116,6 +116,12 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDC_XPS:")
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
 dbLoadTemplate "scanParms.template"
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","13-ID-C roof")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13IDC_XPS:")
 
 iocInit
 
