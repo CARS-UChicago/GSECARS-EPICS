@@ -69,8 +69,11 @@ dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDE:,N=10")
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDE:")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=13-ID-C roof")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDE:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDE:")
