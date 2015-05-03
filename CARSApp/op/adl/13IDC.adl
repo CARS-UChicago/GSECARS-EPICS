@@ -1,7 +1,7 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
+	version=030107
 }
 display {
 	object {
@@ -711,8 +711,13 @@ text {
 		height=24
 	}
 	display[0] {
-		label="vxWorks statistics"
-		name="IOC_Status.adl"
+		label="devIocStats"
+		name="ioc_stats_vxworks.adl"
+		args="ioc=13IDC:"
+	}
+	display[1] {
+		label="Save/restore status"
+		name="save_restoreStatus_more.adl"
 		args="P=13IDC:"
 	}
 	clr=14
@@ -729,7 +734,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="vxWorks statistics"
+	textix="IOC statistics"
 }
 "related display" {
 	object {
