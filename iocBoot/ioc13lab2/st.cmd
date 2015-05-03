@@ -13,22 +13,22 @@ cd startup
 dbLoadDatabase("$(CARS)/dbd/CARSMini.dbd")
 CARSMini_registerRecordDeviceDriver(pdbbase)
 
-< industryPack.cmd
-< serial.cmd
+#< industryPack.cmd
+#< serial.cmd
 
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
+#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
 
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
+#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
+#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
 
 # Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
+#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
 
 # SIS3801 MCS
-iocsh "SIS3801.iocsh"
+#iocsh "SIS3801.iocsh"
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -89,5 +89,5 @@ create_monitor_set("auto_positions.req",5,"P=13LAB2:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13LAB2:")
 
-seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
-seq(&SIS38XX_SNL, "P=13LAB2:SIS3801:, R=mca, NUM_SIGNALS=8, FIELD=READ")
+#seq &Keithley2kDMM, "P=13LAB2:, Dmm=DMM1, stack=10000"
+#seq(&SIS38XX_SNL, "P=13LAB2:SIS3801:, R=mca, NUM_SIGNALS=8, FIELD=READ")
