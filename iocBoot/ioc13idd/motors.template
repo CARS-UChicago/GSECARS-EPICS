@@ -5,7 +5,7 @@
 #  9-16      1        P         DAC slits (9-12), Open (13-14), DAC Table (15-16)
 #  17-24     2        N         DAC Table (17-19), DAC clean-up (20-22), Carbon Mirror (23-24)
 #  25-32     3        T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
-#  33-40     4        U         LVP Detector (33-39), DAC beam filter (40)
+#  33-40   MAXv 0     U         LVP Detector (33-39), DAC beam filter (40)
 #  41-48     5        V         Open (41-42), DAC cleanup slit slit (43-44), LVP Press Table (45-48)
 #  49-56     6      None        DAC K/B mirrors
 #  57-64     7      None        LVP Detector Slits (57-60)
@@ -84,24 +84,25 @@ pattern
 {13IDD:,  m32,   "OMS VME58",   3,    7, "Laser stage X",            mm,     Neg,   2.0,   .1,    .5,    0,      1,     .2,     200,     -0.10,  3,      70,    0}
 
 # Detector X: 100:1 gear reducer, 5 threads/inch leadscrew, UREV = 25.4/(100*5) = .0508
-{13IDD:,  m33,   "OMS VME58",   4,    0, "Detector X",             mm,        Pos,    0.5,   .01,   .5,   .2,     1.,     .5,     400,     .0508, 3,      100,    0}
+{13IDD:,  m33,   "OMS MAXv",   0,    0, "Detector X",             mm,        Pos,    0.5,   .01,   .5,   .2,     1.,     .5,     400,     .0508, 3,      100,    0}
 # Detector Y: 10:1 and 36:1 gear reducers, 5 thread/inch pitch leadscrew, UREV = 25.4/(10*36*5) = .01411111
 # Det Y changed to 6:1 and 36:1 gear reducers, UREV - 25.4/(6*36*5) = 0.0235185 - YBW, 5/20/2000.
 # Det Y changed to 1:2 and 36:1 gear reducers, UREV - 25.4/(.5*36*5) = 0.2822222 - MLR, 10/26/2001.
-{13IDD:,  m34,   "OMS VME58",   4,    1, "Detector Y",             mm,        Neg,    0.5,   .01,   .5,   .2,     2.4,     .1,     400,  .28222222, 3,      100,    0}
+{13IDD:,  m34,   "OMS MAXv",   0,    1, "Detector Y",             mm,        Neg,    0.2,   .05,   .2,   .2,     .2,     .1,     400,  .28222222, 3,      100,    0}
 # Detector Z: 100:1 gear reducer, 5 thread/inch leadscrew, UREV = 25.4/(100*5) = .0508
-{13IDD:,  m35,   "OMS VME58",   4,    2, "Detector Z",             mm,        Pos,    0.5,   .01,   .5,   .2,     1.,     .5,     400,    -.0508, 3,      100,    0}
+{13IDD:,  m35,   "OMS MAXv",   0,    2, "Detector Z",             mm,        Pos,    0.5,   .01,   .5,   .2,     1.,     .5,     400,    -.0508, 3,      100,    0}
 # Detector AY: 500:1 gear reducer, 80 mm lever arm, full rotation of shaft = 2*PI*80mm motion at end of arm, UREV = 502.655/(500) = 1.00531
-{13IDD:,  m36,   "OMS VME58",   4,    3, "Detector base AY",       mm,        Pos,    .5,   .01,   .5,   .2,     .5,     .5,     400,   1.00531, 3,      100,    0}
+{13IDD:,  m36,   "OMS MAXv",   0,    3, "Detector base AY",       mm,        Pos,    .5,   .01,   .5,   .2,     .5,     .5,     400,   1.00531, 3,      100,    0}
 # Detector AX : 100:1 gear reducer, 20:1 jack, 5 threads/inch leadscrew, UREV = 25.4/(100*20*5) = .00254
-{13IDD:,  m37,   "OMS VME58",   4,    4, "Detector base AX",       mm,        Pos,    .1,   .01,   .5,    0,     .1,     .5,     400,    .00254, 3,      100,    0}
+{13IDD:,  m37,   "OMS MAXv",   0,    4, "Detector base AX",       mm,        Pos,    .1,   .01,   .5,    0,     .1,     .5,     400,    .00254, 3,      100,    0}
+#note: m37 turned OFF and position set at 0.0, 9/30/2014
 # Detector theta: 1800:1 total gear reducer, UREV=360/1800. = .2
-{13IDD:,  m38,   "OMS VME58",   4,    5, "Gimbal AY/AX",           degrees,     Pos,    2.,   .01,   .5,    -0.05,     2.,     .5,     400,     .20,   3,      360,    -360}
+{13IDD:,  m38,   "OMS MAXv",   0,    5, "Gimbal AY/AX",           degrees,     Pos,    2.,   .01,   .5,    -0.05,     2.,     .5,     400,     .20,   3,      360,    -360}
 # Detector tilt: 2000:1 total gear reducer, UREV=360/2000. = .18
-{13IDD:,  m39,   "OMS VME58",   4,    6, "Gimbal AZ",              degrees,     Pos,    2.,   .01,   .5,    -0.01,     2.,     .5,     400,     .18,   3,      92,   -2}
+{13IDD:,  m39,   "OMS MAXv",   0,    6, "Gimbal AZ",              degrees,     Pos,    2.,   .01,   .5,    -0.01,     2.,     .5,     400,     .18,   3,      92,   -2}
 # used for DAC rotary stage, 8.6.2005, vitali
-{13IDD:,  m40,   "OMS VME58",   4,    7, "beam filter for DAC",     deg,       Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
-#{13IDD:,  m40,   "OMS VME58",   4,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
+{13IDD:,  m40,   "OMS MAXv",   0,    7, "beam filter for DAC",     deg,       Pos,   1.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
+#{13IDD:,  m40,   "OMS MAXv",   0,    7, "M40",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
 
 # Unused
 {13IDD:,  m41,   "OMS VME58",   5,    0, "M41",                    steps,     Pos,  1000,   100,   .5,    0,   1000,     .5,     400,     .0025, 1,      1e6,    -1e6}
@@ -111,14 +112,14 @@ pattern
 {13IDD:,  m44,   "OMS VME58",   5,    3, "tilt horizontal",         steps,     Pos,  1,   1,   .5,    0,   1,     .5,     400,     1.27,    3,      11,   0}
 # LVP Y (vertical).  5000 steps/rev microstepper, SREV=5000
 #                    10:1 gear reducer, 1 turn of jack = 1/16" (0.5" pitch, 8:1 gear ratio) UREV(mm) = 25.4/160 = .15875
-{13IDD:,  m45,   "OMS VME58",   5,    4, "LVP Y",                   mm,       Neg,    .2,  .005,   .2,    -.2,    .1,     .1,   5000,  -0.15875, 3,      100,     0}
+{13IDD:,  m45,   "OMS VME58",   5,    4, "LVP Y",                   mm,       Neg,    .2,  .005,   .2,    -.2,    .1,     .1,   4000,  -0.15875, 3,      100,     0}
 # LVP X (inboard-outboard). 5000 steps/rev microstepper, SREV=5000
 #                           10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
-{13IDD:,  m46,   "OMS VME58",   5,    5, "LVP X",                   mm,       Neg,    .2,  .05,   2.0,    .2,     .1,     .1,   5000,     1.27,  3,      100,     0}
+{13IDD:,  m46,   "OMS VME58",   5,    5, "LVP X",                   mm,       Neg,    .2,  .05,   2.0,    .2,     .1,     .1,   4000,     1.27,  3,      100,     0}
 # LVP Z outboard (upstream-downstream). 5000 steps/rev microstepper, SREV=5000
 #                                       10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
-{13IDD:,  m47,   "OMS VME58",   5,    6, "LVP Z outboard",          mm,       Neg,    .2,  .005,   .2,    .2,      .1,    .1,   5000,     1.27,  3,      100,    0}
-{13IDD:,  m48,   "OMS VME58",   5,    7, "LVP Z inboard",           mm,       Neg,    .2,  .005,   .2,    .2,      .1,    .1,   5000,     1.27,  3,      100,    0}
+{13IDD:,  m47,   "OMS VME58",   5,    6, "LVP Z outboard",          mm,       Neg,    .2,  .005,   .2,    .2,      .1,    .1,   4000,     1.27,  3,      100,    0}
+{13IDD:,  m48,   "OMS VME58",   5,    7, "LVP Z inboard",           mm,       Neg,    .2,  .005,   .2,    .2,      .1,    .1,   4000,     1.27,  3,      100,    0}
 
 # K/B mirrors on DAC table.  Note these are full-step (UREV=24) not half-step (UREV=48)
 {13IDD:,  m49,   "OMS VME58",   6,    0, "Vert. mirror Y pos.",      microns,  Pos,  150.0,    10,    .2,    0,      1,     .2,     48,     3.546,  1,      8e3,    0}
