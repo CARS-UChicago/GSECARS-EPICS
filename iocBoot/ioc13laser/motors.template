@@ -1,15 +1,15 @@
-file "$(CARS)/CARSApp/Db/motor.db"
+file "$(CARS)/CARSApp/Db/asynMotor.db"
 {
 pattern
-{P,         M,      DTYP,     C, S,  DESC,    EGU,   DIR,     VELO,   VBAS,  ACCL,  BDST,   BVEL,  BACC,  SREV,    UREV,  PREC,  DHLM, DLLM}
+{P,         M,     DTYP,     PORT,   ADDR,   DESC,        EGU,    DIR,  VELO,   VBAS,   ACCL,  BDST,   BVEL,   BACC,   SREV,    UREV,  PREC,  DHLM, DLLM}
 # Note: this UT100 stage seems strange, it is moving twice as far per step as all others, so UREV=-.2, rather than -.1
-{13Laser:, m1, "ACS MCB-4B",  0, 0, "Vertical Y",    mm,    Pos,   0.07,   .01,    .07,     0,      1,     .2,     48,  .001176,   3,   12.4,  -12.4}
-{13Laser:, m2, "ACS MCB-4B",  0, 1, "Horisontal X",  mm,    Neg,   0.2,    .01,     .2,     0,      1,     .2,     48,  .003546,   3,   12.4,    -12.4}
-{13Laser:, m3, "ACS MCB-4B",  0, 2, "Focus Z",       mm,    Pos,   0.2,    .01,     .2,     0,      1,     .2,     48,  .003546,   3,   12.4,    -12.4}
-{13Laser:, m4, "ACS MCB-4B",  0, 3, "Shaper",        mm,    Pos,   2.0,    .1,      .5,     0,      1,     .2,    200,  -.10,      3,   100,  0}
-{13Laser:, m5, "ACS MCB-4B",  1, 0, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,    4.,    3,     360, -360}
-{13Laser:, m6, "ACS MCB-4B",  1, 1, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,    4.,    3,     360, -360}
-{13Laser:, m7, "ACS MCB-4B",  1, 2, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,    4.,    3,     360, -360}
-{13Laser:, m8, "ACS MCB-4B",  1, 3, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,    4.,    3,     360, -360}
+{13Laser:, m1, "asynMotor", "MCB4B_1", 0, "Vertical Y",    mm,    Pos,   0.07,   .01,    .07,     0,      1,     .2,     48,  .001176,   3,   12.4,  -12.4}
+{13Laser:, m2, "asynMotor", "MCB4B_1", 1, "HoriZontal X",  mm,    Neg,   0.2,    .01,     .2,     0,      1,     .2,     48,  .003546,   3,   12.4,  -12.4}
+{13Laser:, m3, "asynMotor", "MCB4B_1", 2, "Focus Z",       mm,    Pos,   0.2,    .01,     .2,     0,      1,     .2,     48,  .003546,   3,   12.4,  -12.4}
+{13Laser:, m4, "asynMotor", "MCB4B_1", 3, "Shaper",        mm,    Pos,   2.0,    .1,      .5,     0,      1,     .2,    200,     -.10,   3,    100,      0}
+{13Laser:, m5, "asynMotor", "MCB4B_2", 0, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,       4.,   3,    360,   -360}
+{13Laser:, m6, "asynMotor", "MCB4B_2", 1, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,       4.,   3,    360,   -360}
+{13Laser:, m7, "asynMotor", "MCB4B_2", 2, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,       4.,   3,    360,   -360}
+{13Laser:, m8, "asynMotor", "MCB4B_2", 3, "rotary",       deg,    Pos,    10.,   0.05,    .5,     0,      1,     .2,    400,       4.,   3,    360,    -360}
 }
 
