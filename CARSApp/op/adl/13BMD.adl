@@ -261,8 +261,8 @@ text {
 	}
 	display[2] {
 		label="CCD camera stage"
-		name="4motors.adl"
-		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m33,M2=m34,M3=m35,M4=m70"
+		name="5motors.adl"
+		args="P=13BMD:, TITLE=CCD_Camera_Stage, M1=m33,M2=m34,M3=m35,M4=m70,M5=m37"
 	}
 	display[3] {
 		label="Monochromator"
@@ -640,6 +640,11 @@ text {
 		name="Keithley2kDMM_mf.adl"
 		args="P=13BMD:, Dmm=DMM4"
 	}
+	display[8] {
+		label="Newport XPS Aux/IO"
+		name="XPSAux.adl"
+		args="P=13BMD_LVP:, R=XPSAux"
+	}
 	clr=14
 	bclr=4
 }
@@ -883,54 +888,6 @@ text {
 "related display" {
 	object {
 		x=0
-		y=555
-		width=60
-		height=25
-	}
-	display[0] {
-		label="GPIB 1"
-		name="GPIB_IO.adl"
-		args="REC=13BMD:gpib1"
-	}
-	display[1] {
-		label="Serial 1"
-		name="Serial_IO.adl"
-		args="REC=13BMD:ser1"
-	}
-	display[2] {
-		label="Serial 2"
-		name="Serial_IO.adl"
-		args="REC=13BMD:ser2"
-	}
-	display[3] {
-		label="SMART serial input"
-		name="Serial_IO.adl"
-		args="REC=13BMD:smart1smartIn"
-	}
-	display[4] {
-		label="SMART serial output"
-		name="Serial_IO.adl"
-		args="REC=13BMD:smart1smartOut"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=65
-		y=555
-		width=210
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Generic RS-232 & GPIB"
-}
-"related display" {
-	object {
-		x=0
 		y=583
 		width=60
 		height=25
@@ -1072,9 +1029,9 @@ text {
 		height=25
 	}
 	display[0] {
-		label="vxWorks statistics"
-		name="IOC_Status.adl"
-		args="P=13BMD:"
+		label="devIocStats"
+		name="ioc_stats_vxworks.adl"
+		args="ioc=13BMD:"
 	}
 	display[1] {
 		label="Save/restore status"
