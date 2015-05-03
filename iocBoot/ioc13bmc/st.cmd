@@ -26,6 +26,10 @@ motorRecordDebug = 0
 ### Motors
 dbLoadTemplate  "motors.template"
 
+
+# Feedback PID
+dbLoadTemplate("13bmc_pid.template")
+
 # SIS3801 MCS
 iocsh "SIS3801_8.cmd"
 
@@ -86,8 +90,11 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
 # Dummy Energy PV for the filterDrive.st program
 dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_EnergyDummyPV.db")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=Outside 13-BM-C station")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMC:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMC:")
