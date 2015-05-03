@@ -29,8 +29,10 @@ dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
-AIMConfig("NI3ED/1", 0x3ED, 1, 4000, 1, 1,"dc0")
-AIMConfig("NI3ED/2", 0x3ED, 2, 4000, 1, 1,"dc0")
+#AIMConfig("NI3ED/1", 0x3ED, 1, 4000, 1, 1,"dc0")
+#AIMConfig("NI3ED/2", 0x3ED, 2, 4000, 1, 1,"dc0")
+AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"dc0")
+AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"dc0")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
 
@@ -44,11 +46,11 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@
 #      2 = HVPS
 #      3 = TCA
 #      4 = DSP
-icbConfig("icbAdc1", 0x3ed, 5, 0)
+icbConfig("icbAdc1", 0x59E, 5, 0)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
-icbConfig("icbAmp1", 0x3ed, 3, 1)
+icbConfig("icbAmp1", 0x59E, 3, 1)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
-icbConfig("icbHvps1", 0x3ed, 2, 2)
+icbConfig("icbHvps1", 0x59E, 2, 2)
 dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 # Struck MCS
@@ -79,6 +81,32 @@ dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
 #     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
 #     (5)motor task polling rate (min=1Hz,max=60Hz)
 oms58Setup(10, 0x4000, 190, 5, 10)
+
+
+# OMS MAXv driver setup parameters:
+#     (1)number of cards in array.
+#     (2)VME Address Type (16,24,32).
+#     (3)Base Address on 4K (0x1000) boundary.
+#     (4)interrupt vector (0=disable or  64 - 255).
+#     (5)interrupt level (1 - 6).
+#     (6)motor task polling rate (min=1Hz,max=60Hz).
+MAXvSetup(1, 16, 0xE000, 190, 5, 10)
+drvMAXvdebug=0
+# OMS MAXv configuration string:
+#     (1) number of card being configured (0-14).
+#     (2) configuration string; axis type (PSO/PSE/PSM) MUST be set here.
+#         For example, set which TTL signal level defines
+#         an active limit switch.  Set X,Y,Z,T to active low and set U,V,R,S
+#         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
+#         User's Manual for LL/LH and PSO/PSE/PSM commands.
+# Set all axes to open-loop stepper and active high limits
+#configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+# Set second channel to use encoder
+configStep="AX LH PSO; AY LH PSE; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
+configServo="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+# First MAXv
+MAXvConfig(0, configStep)
 
 # MCB-4B driver setup parameters:
 #     (1) maximum # of controllers,
@@ -113,17 +141,26 @@ dbLoadTemplate("scanParms.template")
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDD:", std)
 
+# Free-standing user array calculations (aCalcout records)
+dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDD:,N=10")
+
+# Free-standing user calcOuts (calcOut records)
+dbLoadRecords("$(CALC)/calcApp/Db/userCalcOuts10.db", "P=13IDD:")
+
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDD:")
 
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDD:,N=10")
+# Free-standing user string sequence records (sseq records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13IDD:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDD:")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=13-ID-D roof")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDD:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDD:")
