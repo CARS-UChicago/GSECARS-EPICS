@@ -1,0 +1,10 @@
+file "$(STD)/stdApp/Db/pid_control.db"
+{
+pattern
+{P,                   PID,                     INP,          OUT,  LOPR,  HOPR,  DRVL, DRVH,  PREC,    KP,   KI,   KD,         SCAN}
+# This is the vertical  feedback
+{13BMC:,         vert_pid,  13BMC:vert_pid_incalc.P, 13BMC:DAC1_1,    0,    10,     0,    10,    5,   0.2,   3.,   0.,   ".1 second"}
+
+# This is the horizontal  feedback
+{13BMC:,          hor_pid,   13BMC:hor_pid_incalc.P, 13BMC:DAC1_2,    0,     10,    0,    10,    5,   0.2,   3.,    0.,  ".1 second"}
+}
