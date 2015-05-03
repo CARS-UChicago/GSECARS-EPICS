@@ -73,8 +73,11 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMA:")
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=13-BM-A roof")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMA:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMA:")
