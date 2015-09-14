@@ -100,7 +100,7 @@ CARS_WIN32_LIBS        += wpcap Packet
 CARS_Cygwin_SYS_LIBS   += wpcap Packet
 CARS_Cygwin_SYS_LIBS   += $(CYGWIN_RPC_LIB)
 
-include $(ADCORE)/ADApp/commonDriverMakefile
+include $(ADEXAMPLE)/exampleApp/commonDriverMakefile
 
 CARSApp_LIBS_DEFAULT       = CARS                         $(CARS_Common_LIBS)                            
 LIB_LIBS_DEFAULT          +=                              $(CARS_Common_LIBS)                            
@@ -116,6 +116,7 @@ LIB_LIBS_cygwin32         +=                              $(CARS_Common_LIBS)
 LIB_SYS_LIBS_cygwin32     +=      $(CARS_Cygwin_SYS_LIBS)
 CARSApp_LIBS_WIN32         = CARS $(CARS_WIN32_LIBS)      $(CARS_Common_LIBS)
 LIB_LIBS_WIN32            +=      $(CARS_WIN32_LIBS)      $(CARS_Common_LIBS)
+CARSApp_SRCS_vxWorks += string_test.c
 
 CARSAppMini_LIBS += busy
 CARSAppMini_LIBS += mca 
