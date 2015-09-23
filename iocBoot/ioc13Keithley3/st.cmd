@@ -41,5 +41,5 @@ create_monitor_set("auto_settings.req", 30, "P=13Keithley3:")
 seq &Keithley2kDMM, "P=13Keithley3:, Dmm=DMM1, channels=22, model=2700, stack=10000"
 
 # Set the initialization string to only send the readings, not units, etc.
-dbpf("13Keithley1:DMM1init_string", "*rst;form:elem read")
+dbpf("13Keithley3:DMM1init_string", "*rst;form:elem read")
 
