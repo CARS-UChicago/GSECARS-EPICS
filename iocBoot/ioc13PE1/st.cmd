@@ -5,12 +5,22 @@ errlogInit(20000)
 dbLoadDatabase("$(ADPERKINELMER)/iocs/perkinElmerIOC/dbd/PerkinElmerApp.dbd")
 PerkinElmerApp_registerRecordDeviceDriver(pdbbase) 
 
-epicsEnvSet("PREFIX", "13PE1:")
+# Prefix for all records
+epicsEnvSet("PREFIX", "13PEL1:")
+# The port name for the detector
 epicsEnvSet("PORT",   "PEDET1")
-epicsEnvSet("QSIZE",  "500")
+# The queue size for all plugins
+epicsEnvSet("QSIZE",  "20")
+# The maximim image width; used for row profiles in the NDPluginStats plugin
 epicsEnvSet("XSIZE",  "2048")
+# The maximim image height; used for column profiles in the NDPluginStats plugin
 epicsEnvSet("YSIZE",  "2048")
+# The maximum number of time seried points in the NDPluginStats plugin
 epicsEnvSet("NCHANS", "2048")
+# The maximum number of frames buffered in the NDPluginCircularBuff plugin
+epicsEnvSet("CBUFFS", "500")
+# The search path for database files
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 # Create a PerkinElmer driver
 # PerkinElmerConfig(const char *portName, IDType, IDValue, maxBuffers, size_t maxMemory, int priority, int stackSize)
@@ -19,31 +29,21 @@ epicsEnvSet("NCHANS", "2048")
 #        = 2 GigE detector by MAC address (e.g. 00005b032e6b, must be lower-case letters)
 #        = 3 GigE detector by detector name (e.g. 8#2608).  Can get network detector names with asynReport(10)
 
+
 # This is for the first PCI/PCIExpress frame grabber detector in the system
 PerkinElmerConfig("$(PORT)", 0, "", 0, 0, 0, 0)
-
-# This is for a GigE detector at IP address 164.54.160.204
-#PerkinElmerConfig("$(PORT)", 1, 164.54.160.204, 100, 200000000, 0, 0)
-
-# This is for a GigE detector at MAC address 00005b032e6b
-#PerkinElmerConfig("$(PORT)", 2, 00005b032e6b, 100, 200000000, 0, 0)
-
-# This is for a GigE detector with name 8#2608
-#PerkinElmerConfig("$(PORT)", 3, 8#2608, 100, 200000000, 0, 0)
 
 asynSetTraceIOMask($(PORT), 0, 2)
 #asynSetTraceMask($(PORT),0,0xff)
 
-dbLoadRecords("$(ADCORE)/db/ADBase.template",            "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 dbLoadRecords("$(ADPERKINELMER)/db/PerkinElmer.template","P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 # Create a standard arrays plugin, set it to get data from Driver.
 NDStdArraysConfigure("Image1", 3, 0, "$(PORT)", 0)
-dbLoadRecords("$(ADCORE)/db/NDPluginBase.template","P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),NDARRAY_ADDR=0")
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,TYPE=Int16,SIZE=16,FTVL=SHORT,NELEMENTS=10000000")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,SIZE=16,FTVL=SHORT,NELEMENTS=10000000")
 
 # Load all other plugins using commonPlugins.cmd
-< $(ADCORE)/iocBoot/commonPlugins.cmd
+< ../commonPlugins.cmd
 
 set_requestfile_path("$(ADPERKINELMER)/perkinElmerApp/Db")
 iocInit()
