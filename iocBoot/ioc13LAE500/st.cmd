@@ -28,6 +28,12 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13LAE500:")
 save_restoreSet_status_prefix("13LAE500:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAE500:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","Sector 13 portable")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13LAE500:")
+
 iocInit
 
 # save positions every five seconds
