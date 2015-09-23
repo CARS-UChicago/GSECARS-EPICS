@@ -4,7 +4,9 @@
 
 #drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
 #                        noProcessEos)
-drvAsynIPPortConfigure("serial1", "gsets4:2101", 0, 0, 0)
+drvAsynIPPortConfigure("serial1", "gsets7.cars.aps.anl.gov:2101", 0, 0, 0)
+
+
 asynOctetConnect("serial1", "serial1")
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
