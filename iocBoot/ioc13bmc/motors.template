@@ -18,10 +18,14 @@ pattern
 {13BMC:,  m8,   "OMS VME58",   0,  7, "Camera-Z",                      mm,  Pos,     .4,   .01,   .5,    0,    1.,   .2,   2064,           .5,    3,    100,      0}
 
 # Connected to the BP8000 in the front of the hutch
-{13BMC:,  m9,   "OMS VME58",   1,  0, "Hor Height",              microns,  Pos,  100.0,    10,  1.0,    0,    1,   .2,   2064,          500,    1,   8e3,       0}
-{13BMC:, m10,   "OMS VME58",   1,  1, "Hor Pitch",                  mrad,  Pos,     10,    .1,   .2,    0,    1,   .2,     48,      -0.8868,    3,    30,     -30}
-{13BMC:, m11,   "OMS VME58",   1,  2, "Hor Fu",                   microns,  Pos,  100.0,    10,  1.0,    0,    1,   .2,   2064,          500,    1,   8e3,       0}
-{13BMC:, m12,   "OMS VME58",   1,  3, "Hor Fd",                   microns,  Pos,  100.0,    10,  1.0,    0,    1,   .2,   2064,          500,    1,   8e3,       0}
+#{13BMC:,  m9,   "OMS VME58",   1,  0, "Hor Height",              microns,  Pos,  100.0,    10,  1.0,    0,    1,   .2,   2064,          500,    1,   8e3,       0}
+#{13BMC:, m10,   "OMS VME58",   1,  1, "Hor Pitch",                  mrad,  Pos,     10,    .1,   .2,    0,    1,   .2,     48,      -0.8868,    3,    30,     -30}
+#{13BMC:, m11,   "OMS VME58",   1,  2, "Hor Fu",                   microns,  Pos,  100.0,    10,  1.0,    0,    1,   .2,   2064,          500,    1,   8e3,       0}
+#{13BMC:, m12,   "OMS VME58",   1,  3, "Hor Fd",                   microns,  Pos,  100.0,    10,  1.0,    0,    1,   .2,   2064,          500,    1,   8e3,       0}
+{13BMC:, m9,    "OMS VME58",   1,  0, "HMirror up height",             mm,  Pos,    0.5,   0.01,  .2,    0,    1,   .2,    200,    -.0357143,    4,   19,      -19}
+{13BMC:, m10,   "OMS VME58",   1,  1, "HMirror dn force",              mm,  Pos,    0.5,   0.01,  .2,    0,    1,   .2,    200,    -.0357143,    4,   19,      -19}
+{13BMC:, m11,   "OMS VME58",   1,  2, "HMirror up force",              mm,  Pos,    0.5,   0.01,  .2,    0,    1,   .2,    200,    -.0357143,    4,   19,      -19}
+{13BMC:, m12,   "OMS VME58",   1,  3, "HMirror dn height",             mm,  Pos,    0.5,   0.01,  .2,    0,    1,   .2,    200,    -.0357143,    4,   19,      -19}
 {13BMC:, m13,   "OMS VME58",   1,  4, "Unused",                        mm,  Pos,    1.5,   .01,   .2,    0,    1,   .2,   2064,      1.22115,    4,  10100,   -100}
 {13BMC:, m14,   "OMS VME58",   1,  5, "Unused",                        mm,  Pos,    1.5,   .01,   .2,    0,    1,   .2,   2064,      1.22115,    4,  10100,   -100}
 {13BMC:, m15,   "OMS VME58",   1,  6, "Unused",                        mm,  Neg,    1.5,   .01,   .2,    0,    1,   .2,   2064,      1.22115,    4,  10100,   -100}
@@ -152,7 +156,28 @@ pattern
 {13BMC:, CHI311:,  pm11,   pm12,    m27.VAL,  m27.RBV,  m29.VAL, m29.RBV, m27.STOP, m27.DMOV, m29.STOP, m29.DMOV,    4}
 }
 
+###                                          ###
+################################################
+### Horizontal KB Miror: pm13, pm14, pm15, pm16  ###
 
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern
+{P,      M,        DINP,                    OUT,                     RDBL,                        STOO,               DESC,    EGU, DIR,VELO,VBAS,ACCL,BDST,BVEL,BACC,MRES,RRES PREC,DHLM, DLLM}
+{13BMC:, pm13, "13BMC:HF:Done NPP NMS", "13BMC:pm13DVALDVAL.VAL PP MS","13BMC:HF:Readback.G NPP NMS", "13BMC:HF:Stop PP MS", "Curvature",  mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13BMC:, pm14, "13BMC:HF:Done NPP NMS", "13BMC:pm14DVAL.VAL PP MS","13BMC:HF:Readback.H NPP NMS", "13BMC:HF:Stop PP MS", "Ellipticity",mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13BMC:, pm15, "13BMC:HP:Done NPP NMS", "13BMC:pm15DVAL.VAL PP MS","13BMC:HP:Readback.G NPP NMS", "13BMC:HP:Stop PP MS", "Height",     mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+{13BMC:, pm16, "13BMC:HP:Done NPP NMS", "13BMC:pm16DVAL.VAL PP MS","13BMC:HP:Readback.H NPP NMS", "13BMC:HP:Stop PP MS", "Pitch",      mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 3, 10000, -10000}
+}
+
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+
+{13BMC:, HF:,  pm13, pm14,   m11.VAL,  m11.RBV,  m10.VAL, m10.RBV, m11.STOP, m11.DMOV, m10.STOP, m10.DMOV, 3}
+{13BMC:, HP:,  pm15, pm16,   m9.VAL,  m9.RBV,  m12.VAL, m12.RBV, m9.STOP, m9.DMOV, m12.STOP, m12.DMOV, 3}
+}
 
 # Utility to stop all motors, etc.
 file "$(MOTOR)/motorApp/Db/motorUtil.db"
