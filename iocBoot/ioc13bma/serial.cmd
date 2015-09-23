@@ -34,7 +34,7 @@ dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip7,PORT=serial3")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,PORT=serial4,CC1=cc7,CC2=cc8,PR1=pr7,PR2=pr8")
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,PORT=serial5,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
 dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip10,PORT=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,PORT=serial7,CC1=cc2,CC2=ccyyy,PR1=pr2,PR2=pryyy")
+dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13BMA:,PORT=serial7,CC1=cc2,CC2=cc11,PR1=pr2,PR2=pr11")
 dbLoadRecords("$(IP)/ipApp/Db/Digitel.db","P=13BMA:,PUMP=ip2,PORT=serial8")
 # PM304 driver setup parameters:
 #     (1) maximum # of controllers,
