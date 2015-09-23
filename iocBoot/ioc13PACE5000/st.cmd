@@ -16,6 +16,12 @@ dbLoadRecords("$(IP)/ipApp/Db/PACE5000.db", "P=13PACE5000:,R=PC1:,PORT=PACE5000"
 save_restoreSet_status_prefix("13PACE5000:")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13PACE5000:")
 
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","13-ID-D")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13PACE5000:")
+
 iocInit
 
 # save other things every thirty seconds
