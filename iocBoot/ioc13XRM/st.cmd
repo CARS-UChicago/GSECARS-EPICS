@@ -28,10 +28,10 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.180", 5001, 50)
 XPSCreateAxis("XPS1", 0, "FINE.X",           "100000") # VP-25XL
 XPSCreateAxis("XPS1", 1, "FINE.Y",            "50000") # VP-5ZA
 XPSCreateAxis("XPS1", 2, "FINE.THETA",         "2000") # URS75CC
-# XPSCreateAxis("XPS1", 2, "THETA.POSITIONER",     "2000") # URS75CC
 XPSCreateAxis("XPS1", 3, "COARSEX.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 4, "COARSEZ.POSITIONER", "2000") # ILS200CC
 XPSCreateAxis("XPS1", 5, "COARSEY.POSITIONER", "5000") # IMS300CC
+
 #XPSCreateAxis("XPS1", 6, "UTS1.POSITIONER",    "1000") # UTS100PP
 #XPSCreateAxis("XPS1", 7, "UTS2.POSITIONER",    "1000") # UTS150PP
 
@@ -75,7 +75,10 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13XRM:")
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 
 # scan communication and meta data
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13XRM:,Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13XRM:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDA:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:, Q=edb")
+
 #
 # XRF Spectra Collector 
 dbLoadRecords("$(CARS)/CARSApp/Db/XRF_Collect.db","P=13XRM:,Q=XRF")
@@ -86,8 +89,18 @@ dbLoadRecords("$(CARS)/CARSApp/Db/FluorTomo.db","P=13XRM:,Q=FT")
 # fast mapping
 dbLoadRecords("$(CARS)/CARSApp/Db/XRM_fastmap.db","P=13XRM:,Q=map")
 
+# fast XAFS 
+dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
+
+# scan server
+dbLoadRecords("larchscan.db","P=13XRM:,Q=SCANDB")
+
 # Epics PyInstrument
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13XRM:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDD:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDC:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMC:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMD:,Q=Inst")
 
 # ion chamber calculations
 dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13XRM:,Q=ION")
@@ -101,6 +114,12 @@ dbLoadRecords("py_exapp.db", "P=Py:,Q=EXT")
 asynSetTraceIOMask("XPS1",0,2)
 #asynSetTraceMask("XPS1",0,0x3)
 asynSetTraceIOTruncateSize("XPS1",0,200)
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Matt Newville")
+epicsEnvSet("LOCATION","corvette")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13XRM:")
 
 iocInit
 
