@@ -25,6 +25,13 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db)
 
 date
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","Sector 13 portable")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
