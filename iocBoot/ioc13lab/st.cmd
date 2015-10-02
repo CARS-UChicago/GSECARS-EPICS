@@ -155,8 +155,11 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13LAB:")
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB:,Q=vme1")
 
-# vxWorks statistics
-dbLoadTemplate("vxStats.substitutions")
+# devIocStats
+putenv("ENGINEER=Mark Rivers")
+putenv("LOCATION=A020 lab")
+putenv("GROUP=GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13LAB:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13LAB:")
@@ -184,20 +187,11 @@ drvMAXvdebug=0
 #         For example, set which TTL signal level defines
 #         an active limit switch.  Set X,Y,Z,T to active low and set U,V,R,S
 #         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
-#         User's Manual for LL/LH and PSO/PSE/PSM commands.
-#config0="AX LL PSO; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-#!config0="AX LH PSM; AY LL PSO; AZ LL PSO; AT LL PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-
-# Set all axes to open-loop stepper and active low limits
-#config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
-#config0="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
-# Set all to active low limits for ThorLabs micrometers.  Set all to servo.  First channel normal limits!
-#config0="AX LH PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+#         User's Manual for LM, LT and PSO/PSE/PSM commands.
 
 # Set all axes to open-loop stepper and active high limits
-config0="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-MAXvConfig(0, config0)
+configStep="AX LMH LTH PSO; AY LMH LTH PSO; AZ LMH LTH PSO; AT LMH LTH PSO; AU LMH LTH PSO; AV LMH LTH PSO; AR LMH LTH PSO; AS LMH LTH PSO;"
+MAXvConfig(0, configStep)
 
 # OMS VME58 driver setup parameters: 
 #     (1)cards, (2)base address(short, 4k boundary), 
