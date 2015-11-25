@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>CARS EPICS IOC Software</title>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type" />
+</head>
+<body>
+  <div style="text-align: right">
+    <img alt="EPICS" src="logo101.gif" />
+  </div>
+  <div style="text-align: center">
+  <h1>
+    CARS EPICS IOC Software</h1>
+  <h2>
+    Mark Rivers</h2>
+  <h2>
+    University of Chicago</h2>
+  </div>
+<hr/>
+<table border="1" cellpadding="5">
+  <tr>
+    <td colspan="2" >
+    <h2 style="text-align:center">EPICS Applications</h2>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Name</b></td>
+    <td><b>Description</b></td>
+  </tr>
+  <tr>
+    <td><a href="camac.html">camac</a></td>
+    <td>Kinetic Systems 2917/3922 driver and various CAMAC device support, including 
+    <ul>
+      <li> DSP E500A stepper motor controller</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td><a href="areaDetector.html">areaDetector</a></td>
+    <td>Area detectors - ADSC, Bruker, Firewire, MAR/Rayonix, Perkin Elmer, Pilatus, Prosilica, Roper, and others</td>
+  </tr>
+  <tr>
+    <td><a href="ccd.html">ccd</a></td>
+    <td>Area detectors - MAR, Bruker, Roper (<b>Note: This module is obsolete, replaced by areaDetector</b>)</td>
+  </tr>
+  <tr>
+    <td><a href="dac128V.html">dac128V</a></td>
+    <td>Industry Pack digital to analog converter</td>
+  </tr>
+  <tr>
+    <td><a href="dxp.html">dxp</a></td>
+    <td>DSP-based multi-channel analyzers from XIA</td>
+  </tr>
+  <tr>
+    <td><a href="ip330.html">ip330</a></td>
+    <td>Industry Pack analog to digital converter</td>
+  </tr>
+  <tr>
+    <td><a href="ipUnidig.html">ipUnidig</a></td>
+    <td>Industry Pack digital I/O module</td>
+  </tr>
+  <tr>
+    <td><a href="mca.html">mca</a></td>
+    <td>MCA record and Canberra/Bruker/SIS/Struck multi-channel analyzer device support</td>
+  </tr>
+  <tr>
+    <td><a href="measComp.html">measComp</a></td>
+    <td>Support for USB devices from Measurement Computing</td>
+  </tr>
+  <tr>
+    <td><a href="modbus.html">modbus</a></td>
+    <td>Modbus support (includes TCP, serial RTU, serial ASCII)</td>
+  </tr>
+  <tr>
+    <td><a href="pilatusROI.html">pilatusROI</a></td>
+    <td>Enhanced EPICS support for the Pilatus pixel-array detector (<b>Note: This module is obsolete, replaced by areaDetector</b>)</td>
+  </tr>
+  <tr>
+    <td><a href="quadEM.html">quadEM</a></td>
+    <td>APS quad electrometer</td>
+  </tr>
+</table>
+
+
+<h2>&nbsp;</h2>
+<table border="1" cellpadding="5">
+  <tr>
+    <td colspan="2" align="center" >
+    <h2>EPICS records </h2>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td><b>Location</b></td>
+  </tr>
+  <tr>
+    <td><a href="camacRecord.html">Generic CAMAC record</a> </td>
+    <td><a href="camac.html">camac</a></td>
+  </tr>
+  <tr>
+    <td><a href="gpibRecord.html">Generic GPIB record</a> </td>
+    <td><b>Obsolete, replaced by </b><a href="http://www.aps.anl.gov/epics/modules/soft/asyn">asyn record</a></td>
+  </tr>
+  <tr>
+    <td><a href="serialRecord.html">Generic Serial record</a></td>
+    <td><b>Obsolete, replaced by </b><a href="http://www.aps.anl.gov/epics/modules/soft/asyn">asyn record</a></td>
+  </tr>
+  <tr>
+    <td><a href="vmeRecord.html">Generic VME record</a></td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/std/std.html">std</a></td>
+  </tr>
+  <tr>
+    <td><a href="mcaRecord.html">MCA record</a></td>
+    <td><a href="mca.html">mca</a></td>
+  </tr>
+  <tr>
+    <td><a href="dxpRecord.html">DXP record</a></td>
+    <td><a href="dxp.html">dxp</a> for 3.14 and <a href="camac.html">
+    camac</a> for 3.13.  <b>Note: rcecent versions of the DXP support no longer have a
+    specialized record, they use standard EPICS records with asyn device support.</b></td>
+  </tr>
+  <tr>
+    <td><a href="epidRecord.html">Enhanced PID (EPID) record for feedback</a></td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/std/std.html">std</a></td>
+  </tr>
+</table>
+
+<h2>&nbsp;</h2>
+<table border="1" cellpadding="5">
+  <tr>
+    <td colspan="2" align="center" >
+    <h2>Other devices</h2>
+    In addition to the modules listed above, I have written support for a
+    number of devices that are contained in other synApps modules.</h2>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td><b>Location</b></td>
+  </tr>
+  <tr>
+    <td>Alcatel ACS1000 vacuum gauge controller</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>HPS 937 vacuum gauge controller</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>Physical Electronics Digitel 500/1500 and MPC ion pump controllers</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>Berkeley Nucleonics Corporation (BNC) 505 pulse generator</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>Newport LAE500 laser autocollimator</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>Omega DP41 digital panel meter</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>Pelco CM6700 video switch</td>
+    <td><a href="http://www.aps.anl.gov/aod/bcda/synApps/ip/ip.html">ip</a></td>
+  </tr>
+  <tr>
+    <td>Newport MM4000/4005 motor controller</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td>Newport PM500 motor controller</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td>Newport XPS motor controller</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td>McClennan PM304 and PM600 motor controller</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td>Parker Aries/ACR motor controller</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td>ACS MCB-4B motor controller</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td>Faulhaber MCDC2805 stepper and servo motor controller and driver</td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+</table>
+
+<h2 style="text-align:left">&nbsp;</h2>
+<table border="1" cellpadding="5">
+  <tr>
+    <td colspan="2" align="center" >
+    <h2>Other EPICS support</h2>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Description</b></td>
+    <td><b>Location</b></td>
+  </tr>
+  <tr>
+    <td><a href="trajectoryScan.html">
+         Trajectory scanning with the Newport MM4005 and XPS motor controllers</a></td>
+    <td><a href="http://www.aps.anl.gov/bcda/synApps/motor/">
+         motor</a></td>
+  </tr>
+  <tr>
+    <td><a href="smartControl.html">Bruker Smart Detector with EPICS</a></td>
+    <td><a href="ccd.html">ccd</a></td>
+  </tr>
+  <tr>
+    <td><a href="tomoRecon.html">Multi-threaded tomography reconstruction software using EPICS libCom</a></td>
+    <td><a href="tomoRecon.html">tomoRecon</a></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<hr/>
+<address>
+Suggestions and Comments to: 
+<br/>
+<a href="mailto:rivers@cars.uchicago.edu">
+Mark Rivers </a> : (rivers@cars.uchicago.edu)
+<br/>
+Last modified: November 26, 2011</address>
+</body>
+</html>
