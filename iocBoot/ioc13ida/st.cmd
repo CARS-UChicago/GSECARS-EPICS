@@ -141,7 +141,7 @@ drvMAXvdebug=0
 #         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
 #         User's Manual for LL/LH and PSO/PSE/PSM commands.
 # Set all axes to open-loop stepper and active high limits
-configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+configStep="AX LMH LTH PSO; AY LMH LTH PSO; AZ LMH LTH PSO; AT LMH LTH PSO; AU LMH LTH PSO; AV LMH LTH PSO; AR LMH LTH PSO; AS LMH LTH PSO;"
 MAXvConfig(0, configStep)
 MAXvConfig(1, configStep)
 MAXvConfig(2, configStep)
