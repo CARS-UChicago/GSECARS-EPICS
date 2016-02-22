@@ -1,14 +1,14 @@
 
 file {
-	name="P:\dzzhang\MEDM\13BMC_DAC.adl"
-	version=030109
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC_DAC.adl"
+	version=030107
 }
 display {
 	object {
-		x=2301
-		y=184
-		width=1000
-		height=618
+		x=83
+		y=71
+		width=1004
+		height=617
 	}
 	clr=14
 	bclr=53
@@ -646,283 +646,272 @@ text {
 }
 composite {
 	object {
-		x=598
-		y=220
-		width=234
-		height=137
+		x=748
+		y=261
+		width=38
+		height=40
 	}
 	"composite name"=""
 	children {
 		composite {
 			object {
-				x=748
+				x=766
 				y=261
-				width=38
+				width=20
 				height=40
 			}
 			"composite name"=""
 			children {
-				composite {
+				polyline {
 					object {
-						x=766
+						x=767
 						y=261
 						width=20
-						height=40
+						height=20
 					}
-					"composite name"=""
-					children {
-						polyline {
-							object {
-								x=767
-								y=261
-								width=20
-								height=20
-							}
-							"basic attribute" {
-								clr=14
-								width=3
-							}
-							points {
-								(785,262)
-								(768,279)
-							}
-						}
-						polyline {
-							object {
-								x=784
-								y=261
-								width=3
-								height=40
-							}
-							"basic attribute" {
-								clr=14
-								width=3
-							}
-							points {
-								(785,262)
-								(785,299)
-							}
-						}
-						polyline {
-							object {
-								x=767
-								y=281
-								width=20
-								height=20
-							}
-							"basic attribute" {
-								clr=14
-								width=3
-							}
-							points {
-								(785,299)
-								(768,282)
-							}
-						}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+					points {
+						(785,262)
+						(768,279)
 					}
 				}
-				composite {
+				polyline {
+					object {
+						x=784
+						y=261
+						width=3
+						height=40
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+					points {
+						(785,262)
+						(785,299)
+					}
+				}
+				polyline {
+					object {
+						x=767
+						y=281
+						width=20
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+					points {
+						(785,299)
+						(768,282)
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=748
+				y=261
+				width=20
+				height=40
+			}
+			"composite name"=""
+			children {
+				polyline {
 					object {
 						x=748
 						y=261
 						width=20
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+					points {
+						(749,262)
+						(766,279)
+					}
+				}
+				polyline {
+					object {
+						x=748
+						y=261
+						width=3
 						height=40
 					}
-					"composite name"=""
-					children {
-						polyline {
-							object {
-								x=748
-								y=261
-								width=20
-								height=20
-							}
-							"basic attribute" {
-								clr=14
-								width=3
-							}
-							points {
-								(749,262)
-								(766,279)
-							}
-						}
-						polyline {
-							object {
-								x=748
-								y=261
-								width=3
-								height=40
-							}
-							"basic attribute" {
-								clr=14
-								width=3
-							}
-							points {
-								(749,262)
-								(749,299)
-							}
-						}
-						polyline {
-							object {
-								x=748
-								y=281
-								width=20
-								height=20
-							}
-							"basic attribute" {
-								clr=14
-								width=3
-							}
-							points {
-								(749,299)
-								(766,282)
-							}
-						}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+					points {
+						(749,262)
+						(749,299)
+					}
+				}
+				polyline {
+					object {
+						x=748
+						y=281
+						width=20
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+					points {
+						(749,299)
+						(766,282)
 					}
 				}
 			}
 		}
-		oval {
-			object {
-				x=628
-				y=270
-				width=13
-				height=21
-			}
-			"basic attribute" {
-				clr=25
-				width=2
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A>25"
-				chan="13BMC:m76.RBV"
-			}
-		}
-		"related display" {
-			object {
-				x=610
-				y=240
-				width=50
-				height=21
-			}
-			display[0] {
-				label="DAC cleanup slit"
-				name="3motors.adl"
-				args="P=13BMC:, M1=m74, M2=m75, M3=m76, TITLE=DAC_Cleanup_Slits"
-			}
-			clr=14
-			bclr=4
-			label="-C slit"
-		}
-		"related display" {
-			object {
-				x=665
-				y=306
-				width=80
-				height=19
-			}
-			display[0] {
-				label="DAC Microscope position"
-				name="3motors.adl"
-				args="P=13BMC:, M1=m71, M2=m72, M3=m73, TITLE=DAC_Microscope"
-			}
-			display[1] {
-				label="Microscope image"
-				name="prosilica.adl"
-				args="P=13BMCPS1:, R=cam1:"
-			}
-			clr=14
-			bclr=4
-			label="-Microscope"
-		}
-		"related display" {
-			object {
-				x=704
-				y=332
-				width=128
-				height=25
-			}
-			display[0] {
-				label="Trajectory Scan"
-				name="profileMove.adl"
-				args="P=13BMC:, R=Prof1:, TITLE=Trajectory Scans, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m25,M8=m26"
-			}
-			clr=14
-			bclr=4
-			label="-Trajectory Scan"
-		}
-		rectangle {
-			object {
-				x=674
-				y=265
-				width=50
-				height=31
-			}
-			"basic attribute" {
-				clr=35
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A>-10"
-				chan="13BMC:m71.RBV"
-			}
-		}
-		oval {
-			object {
-				x=598
-				y=270
-				width=13
-				height=21
-			}
-			"basic attribute" {
-				clr=25
-				width=2
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A<10"
-				chan="13BMC:m76.RBV"
-			}
-		}
-		rectangle {
-			object {
-				x=674
-				y=233
-				width=50
-				height=31
-			}
-			"basic attribute" {
-				clr=35
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A<-10"
-				chan="13BMC:m71.RBV"
-			}
-		}
-		"related display" {
-			object {
-				x=730
-				y=220
-				width=80
-				height=30
-			}
-			display[0] {
-				label="BMC GPD Rotation"
-				name="6motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_Rotation, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38"
-			}
-			display[1] {
-				label="BMC GPD XYZ"
-				name="3motors.adl"
-				args="P=13BMC:, TITLE=BMC_GPD_XYZ,  M1=m44, M2=m45, M3=m46"
-			}
-			clr=14
-			bclr=5
-			label="-BMC GPD"
-		}
 	}
+}
+oval {
+	object {
+		x=628
+		y=270
+		width=13
+		height=21
+	}
+	"basic attribute" {
+		clr=25
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>25"
+		chan="13BMC:m76.RBV"
+	}
+}
+"related display" {
+	object {
+		x=610
+		y=240
+		width=50
+		height=21
+	}
+	display[0] {
+		label="DAC cleanup slit"
+		name="3motors.adl"
+		args="P=13BMC:, M1=m74, M2=m75, M3=m76, TITLE=DAC_Cleanup_Slits"
+	}
+	clr=14
+	bclr=4
+	label="-C slit"
+}
+"related display" {
+	object {
+		x=665
+		y=306
+		width=80
+		height=19
+	}
+	display[0] {
+		label="DAC Microscope position"
+		name="4motors.adl"
+		args="P=13BMC:, M1=m71, M2=m72, M3=m73, M4=m77, TITLE=DAC_Microscope"
+	}
+	display[1] {
+		label="Microscope image"
+		name="prosilica.adl"
+		args="P=13BMCPS1:, R=cam1:"
+	}
+	clr=14
+	bclr=4
+	label="-Microscope"
+}
+"related display" {
+	object {
+		x=704
+		y=332
+		width=128
+		height=25
+	}
+	display[0] {
+		label="Trajectory Scan"
+		name="profileMove.adl"
+		args="P=13BMC:, R=Prof1:, TITLE=Trajectory Scans, M1=m33,M2=m34,M3=m35,M4=m36,M5=m37,M6=m38,M7=m25,M8=m26"
+	}
+	clr=14
+	bclr=4
+	label="-Trajectory Scan"
+}
+rectangle {
+	object {
+		x=674
+		y=265
+		width=50
+		height=31
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-10"
+		chan="13BMC:m71.RBV"
+	}
+}
+oval {
+	object {
+		x=598
+		y=270
+		width=13
+		height=21
+	}
+	"basic attribute" {
+		clr=25
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<10"
+		chan="13BMC:m76.RBV"
+	}
+}
+rectangle {
+	object {
+		x=674
+		y=233
+		width=50
+		height=31
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-10"
+		chan="13BMC:m71.RBV"
+	}
+}
+"related display" {
+	object {
+		x=730
+		y=220
+		width=80
+		height=30
+	}
+	display[0] {
+		label="BMC GPD Rotation"
+		name="6motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_Rotation, M1=m33, M2=m34, M3=m35, M4=m36, M5=m37, M6=m38"
+	}
+	display[1] {
+		label="BMC GPD XYZ"
+		name="3motors.adl"
+		args="P=13BMC:, TITLE=BMC_GPD_XYZ,  M1=m44, M2=m45, M3=m46"
+	}
+	clr=14
+	bclr=5
+	label="-BMC GPD"
 }
 "related display" {
 	object {
