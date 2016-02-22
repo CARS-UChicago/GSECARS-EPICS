@@ -31,7 +31,7 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 
 # This is for the first PCI/PCIExpress frame grabber detector in the system
-PerkinElmerConfig("$(PORT)", 0, "", 0, 0, 0, 0)
+PerkinElmerConfig("$(PORT)", 0, "0", 0, 0, 0, 0)
 
 asynSetTraceIOMask($(PORT), 0, 2)
 #asynSetTraceMask($(PORT),0,0xff)
