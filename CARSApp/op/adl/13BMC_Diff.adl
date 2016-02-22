@@ -1,14 +1,14 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13BMC_Diff.adl"
-	version=030107
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC_Diff.adl"
+	version=030109
 }
 display {
 	object {
 		x=50
 		y=45
 		width=160
-		height=490
+		height=518
 	}
 	clr=14
 	bclr=4
@@ -417,7 +417,7 @@ text {
 "related display" {
 	object {
 		x=10
-		y=460
+		y=489
 		width=128
 		height=25
 	}
@@ -455,6 +455,16 @@ text {
 		label="Vertical Mirror"
 		name="4motors.adl"
 		args="P=13BMC:,TITLE=13BMC_Vert_Mirror, M1=pm1, M2=pm2, M3=pm3, M4=pm4"
+	}
+	display[4] {
+		label="13BMC SMKB Bender"
+		name="4motors.adl"
+		args="P=13BMC:,TITLE=13BMC_SMKB, M1=pm13, M2=pm14, M3=pm15, M4=pm16"
+	}
+	display[5] {
+		label="13BMC SMKB real motors"
+		name="4motors.adl"
+		args="P=13BMC:,TITLE=13BMC_SMKB_Real, M1=m9, M2=m10, M3=m11, M4=m12"
 	}
 	clr=14
 	bclr=4
@@ -612,4 +622,30 @@ composite {
 			textix="Searched"
 		}
 	}
+}
+"related display" {
+	object {
+		x=10
+		y=459
+		width=128
+		height=25
+	}
+	display[0] {
+		label="PID control"
+		name="pid_control.adl"
+		args="P=13BMC:, PID=vert_pid, TITLE=BMC_Vert_Feedback"
+	}
+	display[1] {
+		label="DAC #1"
+		name="singleDAC.adl"
+		args="P=13BMC:, D=1,C=1"
+	}
+	display[2] {
+		label="Acromag ADC"
+		name="Ip330Scan.adl"
+		args="P=13BMC:, R=IP330_"
+	}
+	clr=14
+	bclr=4
+	label="Feedback"
 }
