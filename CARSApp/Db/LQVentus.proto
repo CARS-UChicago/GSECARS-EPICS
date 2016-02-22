@@ -1,0 +1,63 @@
+# Stream protocol file for Laser Quantum Ventus lasers
+
+# Mark Rivers
+# Jan. 29, 2016
+
+On {
+   out "ON";
+   in "";
+}
+
+Off {
+   out "OFF";
+   in "";
+}
+
+PowerOut {
+   out "POWER=%f";
+   in "";
+   @init {out "POWER?"; in "%fmW";}
+}
+
+ControlMode {
+   out "CONTROL=%{POWER|CURRENT}";
+   in "";
+}
+
+CurrentOut {
+   out "CURRENT=%f";
+   in "";
+   @init {out "CURRENT?"; in "%f\%";}
+}
+
+PowerIn {
+   out "POWER?";
+   in "%fmW";
+}
+
+CurrentIn {
+   out "CURRENT?";
+   in "%f\%";
+}
+
+LaserTemp {
+   out "LASTEMP?";
+   in "%fC";
+}
+
+PSUTemp {
+   out "PSUTEMP?";
+   in "%fC";
+}
+
+Status {
+   out "STATUS?";
+   in "%s";
+}
+
+PSUTime {
+   out "TIMERS?";
+   in "PSU Time             =  %f Hours";
+   in "Laser Enabled Time   =  %(\$1)f Hours";
+   in "Laser Operation Time =  %(\$2)f Hours";
+}
