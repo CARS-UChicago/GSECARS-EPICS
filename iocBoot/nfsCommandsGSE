@@ -1,5 +1,5 @@
 # Set the default gateway 
-routec "add default 164.54.160.1"
+routec "-n add default 164.54.160.1"
 
 # The following line eliminates "cksum: out of data" messages due to DHCP
 #proxyPortFwdOff(67)
@@ -15,4 +15,5 @@ nfsMount("corvette","/home","/home")
 # No longer need 164.54.188.50 since a local PV gateway 
 #  provides APS variables, MLR 5/31/00
 putenv("EPICS_IOC_LOG_INET=164.54.160.82")
-putenv("EPICS_CA_MAX_ARRAY_BYTES=65536")
+# Set size large enough for acalcout records with N=30000
+putenv("EPICS_CA_MAX_ARRAY_BYTES=250000")
