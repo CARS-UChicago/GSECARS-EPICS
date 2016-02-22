@@ -60,10 +60,19 @@ iocInit()
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30,"P=$(PREFIX)")
 
+# Wait for enum callbacks to complete
+epicsThreadSleep(1.0)
 
-# There is a problem with some records for which PINI=YES does not work because of timing or ordering
-# For those records to process after iocInit
-
+# Records with dynamic enums need to be processed again because the enum values are not available during iocInit.  
+dbpf("$(PREFIX)cam1:Format7Mode.PROC", "1")
 dbpf("$(PREFIX)cam1:PixelFormat.PROC", "1")
+
+# Wait for callbacks on the property limits (DRVL, DRVH) to complete
+epicsThreadSleep(1.0)
+
+# Records that depend on the state of the dynamic enum records or property limits also need to be processed again
+# Other property records may need to be added to this list
 dbpf("$(PREFIX)cam1:FrameRate.PROC", "1")
 dbpf("$(PREFIX)cam1:FrameRateValAbs.PROC", "1")
+dbpf("$(PREFIX)cam1:AcquireTime.PROC", "1")
+
