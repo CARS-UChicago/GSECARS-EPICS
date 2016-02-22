@@ -1,11 +1,112 @@
 < envPaths
+
 # Start errlog Task before any possible error messsage to prevent
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
-#
-dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
-CARSLinux_registerRecordDeviceDriver(pdbbase)
 
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/CARSApp/Db)
+
+dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
+CARSWin32_registerRecordDeviceDriver(pdbbase)
+
+# Create serial ports 1-4 on COM4-7
+# Serial 1 is Laser Quantum laser
+drvAsynSerialPortConfigure("serial1", "COM4", 0, 0, 0)
+asynOctetSetInputEos("serial1",0,"\r\n")
+asynOctetSetOutputEos("serial1",0,"\r\n")
+asynSetOption("serial1",0,"baud","19200")
+asynSetOption("serial1",0,"bits","8")
+asynSetOption("serial1",0,"stop","1")
+asynSetOption("serial1",0,"parity","none")
+asynSetOption("serial1",0,"clocal","Y")
+asynSetOption("serial1",0,"crtscts","N")
+asynSetTraceIOMask("serial1", 0, 2)
+#asynSetTraceMask("serial1", 0, 9)
+
+# Serial 1 is Laser Quantum laser
+drvAsynSerialPortConfigure("serial2", "COM5", 0, 0, 0)
+asynOctetSetInputEos("serial2",0,"\r\n")
+asynOctetSetOutputEos("serial2",0,"\r\n")
+asynSetOption("serial2",0,"baud","19200")
+asynSetOption("serial2",0,"bits","8")
+asynSetOption("serial2",0,"stop","1")
+asynSetOption("serial2",0,"parity","none")
+asynSetOption("serial2",0,"clocal","Y")
+asynSetOption("serial2",0,"crtscts","N")
+asynSetTraceIOMask("serial2", 0, 2)
+#asynSetTraceMask("serial2", 0, 9)
+
+# Serial 3 is Verdi laser
+drvAsynSerialPortConfigure("serial3", "COM6", 0, 0, 0)
+asynOctetSetInputEos("serial3",0,"\r\n")
+asynOctetSetOutputEos("serial3",0,"\r\n")
+asynSetOption("serial3",0,"baud","19200")
+asynSetOption("serial3",0,"bits","8")
+asynSetOption("serial3",0,"stop","1")
+asynSetOption("serial3",0,"parity","none")
+asynSetOption("serial3",0,"clocal","Y")
+asynSetOption("serial3",0,"crtscts","N")
+asynSetTraceIOMask("serial3", 0, 2)
+#asynSetTraceMask("serial3", 0, 0x19)
+
+# Serial 4 is XXX laser
+drvAsynSerialPortConfigure("serial4", "COM7", 0, 0, 0)
+asynOctetSetInputEos("serial4",0,"\r\n")
+asynOctetSetOutputEos("serial4",0,"\r\n")
+asynSetOption("serial4",0,"baud","921600")
+#asynSetOption("serial4",0,"baud","9600")
+asynSetOption("serial4",0,"bits","8")
+asynSetOption("serial4",0,"stop","1")
+asynSetOption("serial4",0,"parity","none")
+asynSetOption("serial4",0,"clocal","Y")
+asynSetOption("serial4",0,"crtscts","N")
+asynSetTraceIOMask("serial4", 0, 2)
+#asynSetTraceMask("serial4", 0, 0x19)
+
+# Serial 5 is Newport AG-UC8 motor controller
+drvAsynSerialPortConfigure("serial5", "COM8", 0, 0, 0)
+asynOctetSetInputEos("serial5",0,"\r\n")
+asynOctetSetOutputEos("serial5",0,"\r\n")
+asynSetOption("serial5",0,"baud","921600")
+#asynSetOption("serial5",0,"baud","9600")
+asynSetOption("serial5",0,"bits","8")
+asynSetOption("serial5",0,"stop","1")
+asynSetOption("serial5",0,"parity","none")
+asynSetOption("serial5",0,"clocal","Y")
+asynSetOption("serial5",0,"crtscts","N")
+asynSetTraceIOMask("serial5", 0, 2)
+#asynSetTraceMask("serial5", 0, 0x19)
+
+# Serial 6 is IPG-YLR laser over Ethernet
+drvAsynIPPortConfigure("serial6", "164.54.160.112:10001", 0, 0, 0) 
+asynOctetSetInputEos("serial6",0,"\r")
+asynOctetSetOutputEos("serial6",0,"\r")
+
+# AG_UCCreateController(asyn port, serial port, number of axes, 
+#                        active poll period (ms), idle poll period (ms)) 
+AG_UCCreateController("Agilis1", "serial5", 5, 50, 5000)
+asynSetTraceIOMask("Agilis1", 0, 2)
+#asynSetTraceMask("Agilis1", 0, 255)
+
+# AG_UCCreateAxis((AG_UC controller port,  axis, hasLimits, forwardAmplitude, reverseAmplitude)
+AG_UCCreateAxis("Agilis1", 0, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 1, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 2, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 3, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 4, 0, 50, -50)
+
+# Load asyn records on each of these ports
+dbLoadTemplate("asynRecord.template")
+
+# Laser Quantum Excel lasers on serial 1 and 2
+dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=13RAMAN2:,R=LQE1,PORT=serial1")
+dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=13RAMAN2:,R=LQE2,PORT=serial2")
+
+# Serial 3 is Verdi Laser
+dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13RAMAN2:,R=Verdi1:,PORT=serial3")
+
+# IPG laser is serial 6
+dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13RAMAN2:,R=IPG1,PORT=serial6")
 
 ################################################################################
 # XPS Setup
