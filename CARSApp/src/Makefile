@@ -100,7 +100,7 @@ CARS_WIN32_LIBS        += wpcap Packet
 CARS_Cygwin_SYS_LIBS   += wpcap Packet
 CARS_Cygwin_SYS_LIBS   += $(CYGWIN_RPC_LIB)
 
-include $(ADEXAMPLE)/exampleApp/commonDriverMakefile
+include $(ADCORE)/ADApp/commonDriverMakefile
 
 CARSApp_LIBS_DEFAULT       = CARS                         $(CARS_Common_LIBS)                            
 LIB_LIBS_DEFAULT          +=                              $(CARS_Common_LIBS)                            
