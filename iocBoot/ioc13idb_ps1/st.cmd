@@ -28,7 +28,7 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 # select the camera, and press the "i" icon on the bottom of the main window to show the camera information for this camera. 
 # The Unique ID will be displayed on the first line in the information window.
 
-# prosilicaConfig("$(PORT)", 51031, 0, 0)
+# prosilicaConfig("$(PORT)", 50022, 0, 0)
 # prosilicaConfig("$(PORT)", 102986, 0, 0)
 prosilicaConfig("$(PORT)", 137481, 0, 0)
 
