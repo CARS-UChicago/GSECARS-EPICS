@@ -72,14 +72,9 @@ dbLoadTemplate "scanParms.template"
 # and it's time to trigger detectors.
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMC:")
-
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMC:,N=10")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMC:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13BMC:")
+iocsh("../calc_GSECARS.iocsh")
 
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
