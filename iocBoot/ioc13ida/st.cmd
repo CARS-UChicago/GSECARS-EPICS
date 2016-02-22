@@ -14,8 +14,8 @@ errlogInit(20000)
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
-# For areaDetector
-iocshCmd("epicsEnvSet(EPICS_DB_INCLUDE_PATH,$(ADCORE)/db)")
+# For areaDetector and quadEM
+iocshCmd("epicsEnvSet(EPICS_DB_INCLUDE_PATH,$(ADCORE)/db:$(QUADEM)/db")
 
 cd startup
 
@@ -39,7 +39,10 @@ dbLoadTemplate("motors.template")
 < serial.cmd
 
 # APS electrometer for C/D branch
-iocsh("APS_EM.cmd")
+#iocsh("APS_EM.cmd")
+
+# TetrAMM electrometer for C/D branch
+iocsh("TetrAMM.cmd")
 
 # AH501 electrometer for E branch
 iocsh("AH501.cmd")
@@ -80,14 +83,9 @@ dbLoadTemplate("scanParms.template")
 #dbLoadRecords ("$(VME)/vmeApp/Db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
 dbLoadRecords ("$(VME)/vmeApp/Db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA:")
-
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDA:,N=10")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13IDA:")
+iocsh("../calc_GSECARS.iocsh")
 
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
