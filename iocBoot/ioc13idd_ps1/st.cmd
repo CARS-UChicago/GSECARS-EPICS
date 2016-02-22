@@ -1,6 +1,6 @@
-errlogInit(20000)
+< envPaths
 
-# < envPaths
+errlogInit(20000)
 
 dbLoadDatabase("$(ADPROSILICA)/iocs/prosilicaIOC/dbd/prosilicaApp.dbd")
 
