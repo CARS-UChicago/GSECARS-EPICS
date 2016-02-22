@@ -92,10 +92,7 @@ drvMAXvdebug=0
 #         User's Manual for LL/LH and PSO/PSE/PSM commands.
 
 # Set all axes to open-loop stepper and active high limits
-configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
-configServo="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
-# First MAXv
+configStep="AX LMH LTH PSO; AY LMH LTH PSO; AZ LMH LTH PSO; AT LMH LTH PSO; AU LMH LTH PSO; AV LMH LTH PSO; AR LMH LTH PSO; AS LMH LTH PSO;"
 MAXvConfig(0, configStep)
 
 # MCB-4B driver setup parameters:
@@ -133,20 +130,9 @@ dbLoadTemplate "scanParms.template"
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
 
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMD:,N=10")
-
-# Free-standing user calcOuts (calcOut records)
-dbLoadRecords("$(CALC)/calcApp/Db/userCalcOuts10.db", "P=13BMD:")
-
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMD:")
-
-# Free-standing user string sequence records (sseq records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13BMD:")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMD:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13BMD:")
+iocsh("../calc_GSECARS.iocsh")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
@@ -206,10 +192,10 @@ dbpf "13BMD:EnableuserACalcs.PROC","1"
 ##{
 ##  MN 05-Apr-2008  turn save data off
 ## altered saveDataExtraPVs
-saveData_MessagePolicy = 1
+# saveData_MessagePolicy = 1
 # saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVsMN.req", "P=13BMD:")
-#saveData_PrintScanInfo("13BMD:scan1")
+# saveData_Init("saveDataExtraPVsMN.req", "P=13BMD:")
+# saveData_PrintScanInfo("13BMD:scan1")
 ##}
 
 motorUtilInit("13BMD:")
