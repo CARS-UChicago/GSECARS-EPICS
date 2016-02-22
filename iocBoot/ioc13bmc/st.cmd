@@ -136,9 +136,9 @@ drvMAXvdebug=0
 #         User's Manual for LL/LH and PSO/PSE/PSM commands.
 
 # Set all axes to open-loop stepper and active high limits
-configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
+configStep= "AX LMH LTH PSO; AY LMH LTH PSO; AZ LMH LTH PSO; AT LMH LTH PSO; AU LMH LTH PSO; AV LMH LTH PSO; AR LMH LTH PSO; AS LMH LTH PSO;"
 # Set all to active low limits for ThorLabs micrometers.  Set all to servo.
-configServo="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
+configServo="AX LMH LTL PSM; AY LMH LTL PSM; AZ LMH LTL PSM; AT LMH LTL PSM; AU LMH LTL PSM; AV LMH LTL PSM; AR LMH LTL PSM; AS LMH LTL PSM;"
 # First MAXv
 MAXvConfig(0, configServo)
 # Second MAXv is steppers
