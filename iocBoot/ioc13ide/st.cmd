@@ -60,14 +60,9 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDE:")
-
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDE:,N=10")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDE:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13IDE:")
+iocsh("../calc_GSECARS.iocsh")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")

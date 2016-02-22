@@ -100,12 +100,8 @@ drvMAXvdebug=0
 #         to active high.  Set all axes to open-loop stepper (PSO). See MAXv
 #         User's Manual for LL/LH and PSO/PSE/PSM commands.
 # Set all axes to open-loop stepper and active high limits
-#configStep="AX LH PSO; AY LH PSO; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
 # Set second channel to use encoder
-configStep="AX LH PSO; AY LH PSE; AZ LH PSO; AT LH PSO; AU LH PSO; AV LH PSO; AR LH PSO; AS LH PSO;"
-# Set all to active low limits for ThorLabs micrometers.  Set all to servo.
-configServo="AX LL PSM; AY LL PSM; AZ LL PSM; AT LL PSM; AU LL PSM; AV LL PSM; AR LL PSM; AS LL PSM;"
-# First MAXv
+configStep="AX LMH LTH PSO; AY LMH LTH PSE; AZ LMH LTH PSO; AT LMH LTH PSO; AU LMH LTH PSO; AV LMH LTH PSO; AR LMH LTH PSO; AS LMH LTH PSO;"
 MAXvConfig(0, configStep)
 
 # MCB-4B driver setup parameters:
@@ -141,20 +137,9 @@ dbLoadTemplate("scanParms.template")
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDD:", std)
 
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13IDD:,N=10")
-
-# Free-standing user calcOuts (calcOut records)
-dbLoadRecords("$(CALC)/calcApp/Db/userCalcOuts10.db", "P=13IDD:")
-
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDD:")
-
-# Free-standing user string sequence records (sseq records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13IDD:")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDD:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13IDD:")
+iocsh("../calc_GSECARS.iocsh")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -207,11 +192,15 @@ saveData_Init("saveDataExtraPVs.req", "P=13IDD:")
 # Enable user string calcs and user transforms
 dbpf "13IDD:EnableUserTrans.PROC","1"
 dbpf "13IDD:EnableUserSCalcs.PROC","1"
-dbpf "13IDD:EnableuserACalcs.PROC","1"
+dbpf "13IDD:EnableUserACalcs.PROC","1"
+dbpf "13IDD:EnableUserCalcOuts.PROC","1"
 
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
 dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
 # The scale factor from LPC power reading to actual laser watts
 dbpf "13IDD:LPC1_power_scale.B","1.0"
+
+# Set the encoder resolution for the LVP detector Y stages
+dbpf("13IDD:m34.ERES",".001")
 
 motorUtilInit("13IDD:")

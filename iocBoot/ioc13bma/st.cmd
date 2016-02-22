@@ -61,14 +61,9 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,
 # crate.
 dbLoadTemplate("scanParms.template")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13BMA:")
-
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13BMA:,N=10")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13BMA:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13BMA:")
+iocsh("../calc_GSECARS.iocsh")
 
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
