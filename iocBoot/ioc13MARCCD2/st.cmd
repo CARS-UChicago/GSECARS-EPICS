@@ -5,7 +5,7 @@ dbLoadDatabase("$(ADMARCCD)/iocs/marCCDIOC/dbd/marCCDApp.dbd")
 marCCDApp_registerRecordDeviceDriver(pdbbase) 
 
 # Prefix for all records
-epicsEnvSet("PREFIX", "13MARCCD2:")
+epicsEnvSet("PREFIX", "13MARCCD3:")
 # The port name for the detector
 epicsEnvSet("PORT",   "MAR")
 # The queue size for all plugins
@@ -23,7 +23,7 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 ###
 # Create the asyn port to talk to the MAR on port 2222
-drvAsynIPPortConfigure("marServer","gse-marccd2.cars.aps.anl.gov:2222")
+drvAsynIPPortConfigure("marServer","gse-marccd3.cars.aps.anl.gov:2222")
 # Set the input and output terminators.
 asynOctetSetInputEos("marServer", 0, "\n")
 asynOctetSetOutputEos("marServer", 0, "\n")
