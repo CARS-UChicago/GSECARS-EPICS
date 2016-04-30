@@ -163,14 +163,6 @@ create_monitor_set("auto_settings.req",30,"P=13IDA:")
 seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM1, channels=22, model=2700, stack=10000"
 seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
 
-#str=malloc(256)
-#strcpy(str,"PRE=13IDA:,ID=ID13ds:,")
-#strcat(str,"FB=mono_pid1")
-#seq &Energy, str
-
-seq(&quadEM_SNL, "P=13IDA:, R=QE1_TS:, NUM_CHANNELS=2048")
-seq(&quadEM_SNL, "P=13IDA:, R=QE2_TS:, NUM_CHANNELS=2048")
-
 # For the bypass valve swap the severity of the open and closed states
 dbpf "13IDA:V8_status.ONSV","MAJOR"
 dbpf "13IDA:V8_status.TWSV","NO_ALARM"
