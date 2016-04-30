@@ -19,7 +19,6 @@ CARS_Common_LIBS += autosave
 CARS_Common_LIBS += optics
 CARS_Common_LIBS += std
 CARS_Common_LIBS += busy
-CARS_Common_LIBS += love
 CARS_Common_LIBS += ip
 CARS_Common_LIBS += quadEM
 CARS_Common_LIBS += pmacAsynMotor pmacAsynIPPort
@@ -116,7 +115,6 @@ LIB_LIBS_cygwin32         +=                              $(CARS_Common_LIBS)
 LIB_SYS_LIBS_cygwin32     +=      $(CARS_Cygwin_SYS_LIBS)
 CARSApp_LIBS_WIN32         = CARS $(CARS_WIN32_LIBS)      $(CARS_Common_LIBS)
 LIB_LIBS_WIN32            +=      $(CARS_WIN32_LIBS)      $(CARS_Common_LIBS)
-CARSApp_SRCS_vxWorks += string_test.c
 
 CARSAppMini_LIBS += busy
 CARSAppMini_LIBS += mca 
