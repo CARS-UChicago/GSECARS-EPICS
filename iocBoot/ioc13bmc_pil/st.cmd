@@ -36,7 +36,7 @@ NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, 0)
 dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int32,FTVL=LONG,NELEMENTS=94965")
 
 # Load all other plugins using commonPlugins.cmd
-< ../commonPlugins.cmd
+< $(ADCORE)/iocBoot/commonPlugins.cmd
 set_requestfile_path("$(ADPILATUS)/pilatusApp/Db")
 
 #asynSetTraceMask("$(PORT)",0,255)

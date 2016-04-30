@@ -10,9 +10,9 @@ pointGreyApp_registerRecordDeviceDriver(pdbbase)
 # Use this line for a specific camera by serial number, in this case a Flea2 Firewire camera
 #epicsEnvSet("CAMERA_ID", "9211601")
 # Use this line for a specific camera by serial number, in this case the tomography Grasshopper3 USB-3.0 cameras
-#epicsEnvSet("CAMERA_ID", "13510305")
+epicsEnvSet("CAMERA_ID", "13510305")
 # Use this line for a specific camera by serial number, in this case the LVP Grasshopper3 USB-3.0 cameras
-epicsEnvSet("CAMERA_ID", "14120134")
+#epicsEnvSet("CAMERA_ID", "14120134")
 # Use this line for a specific camera by serial number, in this case a BlackFly GigE cameras
 #epicsEnvSet("CAMERA_ID", "13481965")
 
@@ -52,7 +52,7 @@ NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, 0)
 dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELEMENTS)")
 
 # Load all other plugins using commonPlugins.cmd
-< ../commonPlugins.cmd
+< $(ADCORE)/iocBoot/commonPlugins.cmd
 set_requestfile_path("$(ADPOINTGREY)/pointGreyApp/Db")
 
 iocInit()
