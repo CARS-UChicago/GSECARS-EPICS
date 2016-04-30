@@ -22,9 +22,6 @@ prosilicaConfig("$(PORT)", 50110, 50, -1)
 asynSetTraceIOMask("PS1",0,2)
 #asynSetTraceMask("PS1",0,255)
 
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/ADBase.template",   "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",   "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
-# Note that prosilica.template must be loaded after NDFile.template to replace the file format correctly
 dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/prosilica.template","P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 # Create a standard arrays plugin, set it to get data from first Prosilica driver.
@@ -41,7 +38,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=i
 #dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=Image1,ADDR=0,TIMEOUT=1,TYPE=Int16,FTVL=SHORT,NELEMENTS=4177920")
 
 # Load all other plugins using commonPlugins.cmd
-< ../commonPlugins.cmd
+< $(ADCORE)/iocBoot/commonPlugins.cmd
 
 iocInit()
 
