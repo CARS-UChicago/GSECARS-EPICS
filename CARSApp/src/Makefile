@@ -38,6 +38,7 @@ CARS_SRCS += IDD_LVP_Detector.st
 CARS_SRCS += Energy_CC.st
 CARS_SRCS += Energy.st
 CARS_SRCS += GSE_MonoEnergy.st
+CARS_SRCS += tomoCollect.st
 CARS_SRCS += GSE_MonoSupport.cpp
 CARS_SRCS += BM13_Energy.st
 CARS_SRCS += Analyzer.st
@@ -94,7 +95,13 @@ CARS_Linux_LIBS        += Hy8522Asyn
 CARS_Linux_SYS_LIBS    += net pcap
 CARS_Linux_SYS_LIBS    += usb
 
-CARS_WIN32_LIBS        += wpcap Packet
+CARS_WIN32_LIBS        += wpcap Packet 
+CARS_WIN32_LIBS        += measComp
+ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
+CARS_WIN32_LIBS        += cbw32
+else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
+CARS_WIN32_LIBS        += cbw64
+endif
 
 CARS_Cygwin_SYS_LIBS   += wpcap Packet
 CARS_Cygwin_SYS_LIBS   += $(CYGWIN_RPC_LIB)
