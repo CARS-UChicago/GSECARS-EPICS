@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=64
-		y=176
+		x=394
+		y=335
 		width=1318
 		height=688
 	}
@@ -1793,8 +1793,8 @@ polygon {
 }
 text {
 	object {
-		x=489
-		y=258
+		x=540
+		y=290
 		width=66
 		height=17
 	}
@@ -4071,8 +4071,8 @@ composite {
 }
 "text update" {
 	object {
-		x=490
-		y=498
+		x=485
+		y=500
 		width=41
 		height=12
 	}
@@ -4999,9 +4999,8 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="calc"
-						calc="A<.1&&B<0.22"
+						calc="A<.1"
 						chan="13IDD:m22.RBV"
-						chanB="13IDD:m21.RBV"
 					}
 				}
 				"message button" {
@@ -5407,7 +5406,7 @@ text {
 }
 text {
 	object {
-		x=819
+		x=825
 		y=164
 		width=93
 		height=15
@@ -8991,7 +8990,7 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A>-10ORB>-10"
+		calc="A>-10ORB>-100"
 		chan="13IDD:m23.RBV"
 		chanB="13IDD:m24.RBV"
 	}
@@ -9118,7 +9117,7 @@ composite {
 }
 "text update" {
 	object {
-		x=920
+		x=930
 		y=160
 		width=41
 		height=19
@@ -9811,4 +9810,169 @@ text {
 	clr=60
 	bclr=19
 	label="-Keithley"
+}
+"message button" {
+	object {
+		x=380
+		y=160
+		width=26
+		height=13
+	}
+	control {
+		chan="13IDD:DAC2_4_tweakVal"
+		clr=0
+		bclr=27
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=401
+		y=160
+		width=25
+		height=13
+	}
+	control {
+		chan="13IDD:DAC2_4_tweakVal"
+		clr=0
+		bclr=29
+	}
+	label=".1"
+	press_msg=".1"
+}
+"message button" {
+	object {
+		x=630
+		y=160
+		width=26
+		height=13
+	}
+	control {
+		chan="13IDD:DAC2_3_tweakVal"
+		clr=0
+		bclr=27
+	}
+	label=".01"
+	press_msg=".01"
+}
+"message button" {
+	object {
+		x=651
+		y=160
+		width=25
+		height=13
+	}
+	control {
+		chan="13IDD:DAC2_3_tweakVal"
+		clr=0
+		bclr=29
+	}
+	label=".1"
+	press_msg=".1"
+}
+"related display" {
+	object {
+		x=510
+		y=255
+		width=15
+		height=15
+	}
+	display[0] {
+		label="Fiber Laser"
+		name="13IDD_omega.adl"
+	}
+	clr=54
+	bclr=16
+	label="-O"
+}
+composite {
+	object {
+		x=1080
+		y=230
+		width=60
+		height=40
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=1080
+				y=230
+				width=60
+				height=19
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Delay, s"
+		}
+		"text entry" {
+			object {
+				x=1090
+				y=250
+				width=40
+				height=20
+			}
+			control {
+				chan="13IDDLF1:AcquireSequence.DLY3"
+				clr=14
+				bclr=19
+			}
+			limits {
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-100ORB>-100"
+		chan="13IDD:m24.RBV"
+		chanB="13IDD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=505
+		y=509
+		width=19
+		height=19
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=505
+				y=509
+				width=19
+				height=19
+			}
+			control {
+				chan="13IDD_PG3:TIFF1:WriteFile"
+				clr=30
+				bclr=14
+			}
+			label="S"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="a>-10"
+		chan="13IDD:m67.RBV"
+	}
+}
+"message button" {
+	object {
+		x=804
+		y=162
+		width=19
+		height=19
+	}
+	control {
+		chan="13IDD:userStringSeq2.PROC"
+		clr=20
+		bclr=40
+	}
+	label="N"
+	press_msg="1"
 }
