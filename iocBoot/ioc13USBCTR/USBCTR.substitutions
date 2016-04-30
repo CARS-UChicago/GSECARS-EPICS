@@ -1,0 +1,90 @@
+file "$(MEASCOMP)/measCompApp/Db/measCompLongIn.template"
+{
+pattern
+{    P,           R,   MASK,   PORT,    ADDR}
+{   13USBCTR1:,  Li,   0xFF,  USBCTR,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompBinaryIn.template"
+{
+pattern
+{    P,            R,  MASK,   PORT,    ADDR}
+{   13USBCTR1:,  Bi1,  0x01   USBCTR,     0}
+{   13USBCTR1:,  Bi2,  0x02   USBCTR,     0}
+{   13USBCTR1:,  Bi3,  0x04   USBCTR,     0}
+{   13USBCTR1:,  Bi4,  0x08   USBCTR,     0}
+{   13USBCTR1:,  Bi5,  0x10   USBCTR,     0}
+{   13USBCTR1:,  Bi6,  0x20   USBCTR,     0}
+{   13USBCTR1:,  Bi7,  0x40   USBCTR,     0}
+{   13USBCTR1:,  Bi8,  0x80   USBCTR,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompLongOut.template"
+{
+pattern
+{    P,           R,   MASK,   PORT,    ADDR}
+{   13USBCTR1:,  Lo,   0xFF,  USBCTR,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompBinaryOut.template"
+{
+pattern
+{    P,            R,  MASK,    PORT,    ADDR}
+{   13USBCTR1:,  Bo1,  0x01   USBCTR,     0}
+{   13USBCTR1:,  Bo2,  0x02   USBCTR,     0}
+{   13USBCTR1:,  Bo3,  0x04   USBCTR,     0}
+{   13USBCTR1:,  Bo4,  0x08   USBCTR,     0}
+{   13USBCTR1:,  Bo5,  0x10   USBCTR,     0}
+{   13USBCTR1:,  Bo6,  0x20   USBCTR,     0}
+{   13USBCTR1:,  Bo7,  0x40   USBCTR,     0}
+{   13USBCTR1:,  Bo8,  0x80   USBCTR,     0}
+}
+
+# Direction bits on binary I/O
+#  VAL 0=input, 1=output
+file "$(MEASCOMP)/measCompApp/Db/measCompBinaryDir.template"
+{
+pattern
+{    P,           R,   MASK,  VAL,  PORT,    ADDR}
+{   13USBCTR1:,  Bd1,  0x01    0,  USBCTR,     0}
+{   13USBCTR1:,  Bd2,  0x02    0,  USBCTR,     0}
+{   13USBCTR1:,  Bd3,  0x04    0,  USBCTR,     0}
+{   13USBCTR1:,  Bd4,  0x08    0,  USBCTR,     0}
+{   13USBCTR1:,  Bd5,  0x10    1,  USBCTR,     0}
+{   13USBCTR1:,  Bd6,  0x20    1,  USBCTR,     0}
+{   13USBCTR1:,  Bd7,  0x40    1,  USBCTR,     0}
+{   13USBCTR1:,  Bd8,  0x80    1,  USBCTR,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompPulseGen.template"
+{
+pattern
+{     P,             R,        PORT,    ADDR,  PREC}
+{   13USBCTR1:,  PulseGen1,  USBCTR,      0,     4}
+{   13USBCTR1:,  PulseGen2,  USBCTR,      1,     4}
+{   13USBCTR1:,  PulseGen3,  USBCTR,      2,     4}
+{   13USBCTR1:,  PulseGen4,  USBCTR,      3,     4}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/1608GCounter.template"
+{
+pattern
+{     P,             R,       PORT,    ADDR}
+{   13USBCTR1:,  Counter1,  USBCTR,      0}
+{   13USBCTR1:,  Counter2,  USBCTR,      1}
+{   13USBCTR1:,  Counter3,  USBCTR,      2}
+{   13USBCTR1:,  Counter4,  USBCTR,      3}
+{   13USBCTR1:,  Counter5,  USBCTR,      4}
+{   13USBCTR1:,  Counter6,  USBCTR,      5}
+{   13USBCTR1:,  Counter7,  USBCTR,      6}
+{   13USBCTR1:,  Counter8,  USBCTR,      7}
+}
+
+# Trigger
+file "$(MEASCOMP)/measCompApp/Db/measCompTrigger.template"
+{
+pattern
+{     P,           R,          PORT,    ADDR}
+{   13USBCTR1:,  Trig,       USBCTR,      0}
+}
+
