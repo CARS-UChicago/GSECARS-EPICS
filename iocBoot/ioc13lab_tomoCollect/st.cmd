@@ -20,3 +20,5 @@ iocInit
 #
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
+
+seq(tomoCollect, "P=13LABTC:,R=TC:")
