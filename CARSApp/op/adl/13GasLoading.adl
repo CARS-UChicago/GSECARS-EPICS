@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/CARS/CARSApp/op/adl/13GasLoading.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/13GasLoading.adl"
 	version=030107
 }
 display {
 	object {
-		x=555
-		y=31
+		x=255
+		y=44
 		width=370
 		height=320
 	}
@@ -288,11 +288,16 @@ text {
 		height=24
 	}
 	display[0] {
-		label="Low pressure meter"
+		label="Low pressue in meter"
 		name="Omega_DP41.adl"
-		args="P=13GasLoad:, R=Omega1, TITLE=Low_Pressure"
+		args="P=13GasLoad:, R=Omega1, TITLE=Low_Pressure_In"
 	}
 	display[1] {
+		label="Low pressure out meter"
+		name="Omega_DP41.adl"
+		args="P=13GasLoad:, R=Omega3, TITLE=Low_Pressure_Out"
+	}
+	display[2] {
 		label="High pressure meter"
 		name="Omega_DP41.adl"
 		args="P=13GasLoad:, R=Omega2, TITLE=High_Pressure"
@@ -323,16 +328,6 @@ text {
 	display[0] {
 		label="Gas Loading Expert"
 		name="13GasLoadingGraphic.adl"
-		args="P=13GasLoad:"
-	}
-	display[1] {
-		label="Gas Loading User"
-		name="13GasLoading_user.adl"
-		args="P=13GasLoad:"
-	}
-	display[2] {
-		label="Gas Loading New"
-		name="13GasLoadingGraphicNew.adl"
 		args="P=13GasLoad:"
 	}
 	clr=14
