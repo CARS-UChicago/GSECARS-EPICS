@@ -7,7 +7,7 @@ dbLoadDatabase("../../dbd/CARS.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
 #CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-# Set up 4 serial ports on Moxa terminal server
+# Set up 5 serial ports on Moxa terminal server
 
 # Serial 1 and 2 are the Omega meters.  They are nominally
 # 8 data bits and 1 stop bit.  However, they actually always
@@ -20,6 +20,8 @@ drvAsynIPPortConfigure("serial2", "164.54.160.163:4002", 0, 0, 0)
 drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
 # Serial 4 is the SensaVac vaccum gauge controller
 drvAsynIPPortConfigure("serial4", "164.54.160.163:4004", 0, 0, 0)
+# Serial 5 is an Omega meter.  See above.
+drvAsynIPPortConfigure("serial5", "164.54.160.163:4005", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
@@ -28,6 +30,8 @@ asynOctetSetInputEos("serial3",0,"\r")
 asynOctetSetOutputEos("serial3",0,"\r")
 asynOctetSetInputEos("serial4",0,"\r")
 asynOctetSetOutputEos("serial4",0,"\r")
+asynOctetSetInputEos("serial5",0,"\r")
+asynOctetSetOutputEos("serial5",0,"\r")
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
