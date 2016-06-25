@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
+	name="j:\epics\support\cars\CARSApp\op\adl\13IDD_dac_user.adl"
 	version=030109
 }
 display {
@@ -1126,8 +1126,8 @@ text {
 }
 oval {
 	object {
-		x=1194
-		y=156
+		x=1188
+		y=157
 		width=14
 		height=12
 	}
@@ -1141,8 +1141,8 @@ oval {
 }
 oval {
 	object {
-		x=1266
-		y=156
+		x=1277
+		y=157
 		width=14
 		height=12
 	}
@@ -1156,8 +1156,8 @@ oval {
 }
 oval {
 	object {
-		x=1228
-		y=156
+		x=1232
+		y=157
 		width=14
 		height=12
 	}
@@ -1197,8 +1197,8 @@ text {
 }
 oval {
 	object {
-		x=1156
-		y=157
+		x=1144
+		y=158
 		width=14
 		height=12
 	}
@@ -1212,8 +1212,8 @@ oval {
 }
 oval {
 	object {
-		x=1156
-		y=157
+		x=1144
+		y=158
 		width=14
 		height=12
 	}
@@ -1227,8 +1227,8 @@ oval {
 }
 oval {
 	object {
-		x=1194
-		y=156
+		x=1188
+		y=157
 		width=14
 		height=12
 	}
@@ -1242,8 +1242,8 @@ oval {
 }
 oval {
 	object {
-		x=1228
-		y=156
+		x=1232
+		y=157
 		width=14
 		height=12
 	}
@@ -1257,8 +1257,8 @@ oval {
 }
 oval {
 	object {
-		x=1266
-		y=156
+		x=1278
+		y=157
 		width=14
 		height=12
 	}
@@ -8333,7 +8333,7 @@ rectangle {
 	display[0] {
 		label="PACE 5000"
 		name="PACE5000.adl"
-		args="P=13PACE5000:,R=PC1:"
+		args="P=13IDD_PACE5000:,R=PC1:"
 	}
 	clr=14
 	bclr=15
@@ -8359,7 +8359,7 @@ text {
 		height=17
 	}
 	monitor {
-		chan="13PACE5000:PC1:Pressure_RBV"
+		chan="13IDD_PACE5000:PC1:Pressure_RBV"
 		clr=14
 		bclr=19
 	}
@@ -8375,7 +8375,7 @@ text {
 		height=17
 	}
 	monitor {
-		chan="13PACE5000:PC1:Units_RBV"
+		chan="13IDD_PACE5000:PC1:Units_RBV"
 		clr=14
 		bclr=19
 	}
@@ -8390,7 +8390,7 @@ text {
 		height=17
 	}
 	control {
-		chan="13PACE5000:PC1:TweakDown.PROC"
+		chan="13IDD_PACE5000:PC1:TweakDown.PROC"
 		clr=14
 		bclr=19
 	}
@@ -8405,7 +8405,7 @@ text {
 		height=17
 	}
 	control {
-		chan="13PACE5000:PC1:TweakUp.PROC"
+		chan="13IDD_PACE5000:PC1:TweakUp.PROC"
 		clr=14
 		bclr=19
 	}
@@ -8420,7 +8420,7 @@ menu {
 		height=19
 	}
 	control {
-		chan="13PACE5000:PC1:Control"
+		chan="13IDD_PACE5000:PC1:Control"
 		clr=30
 		bclr=19
 	}
@@ -8433,7 +8433,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="13PACE5000:PC1:Setpoint"
+		chan="13IDD_PACE5000:PC1:Setpoint"
 		clr=14
 		bclr=19
 	}
@@ -9975,4 +9975,36 @@ composite {
 	}
 	label="N"
 	press_msg="1"
+}
+"message button" {
+	object {
+		x=1090
+		y=75
+		width=19
+		height=19
+	}
+	control {
+		chan="13IDD:userStringSeq3.PROC"
+		clr=14
+		bclr=40
+	}
+	label="BG"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=475
+		y=465
+		width=85
+		height=15
+	}
+	monitor {
+		chan="13IDD_PG3:TIFF1:FullFileName_RBV"
+		clr=40
+		bclr=19
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
 }
