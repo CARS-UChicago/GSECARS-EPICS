@@ -2,12 +2,18 @@ file "$(CARS)/CARSApp/Db/motor.db"
 {
 pattern
 {P,       M,       DTYP,       C,  S, DESC,                           EGU,  DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC,   SREV,         UREV, PREC,   DHLM,   DLLM}
-{13BMC:,  m1,   "OMS VME58",   0,  0,  "Sample X",                     mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,  1600,            1,    3,     24,      0}
-{13BMC:,  m2,   "OMS VME58",   0,  1,  "Sample Y",                     mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,  1600,          .75,    3,     24,      0}
+#m1 m2 below = DAC stages
+#{13BMC:,  m1,   "OMS VME58",   0,  0,  "Sample X",                     mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,  1600,            1,    3,     24,      0}
+#{13BMC:,  m2,   "OMS VME58",   0,  1,  "Sample Y",                     mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,  1600,          .75,    3,     24,      0}
+#m1 m2 below = historical - tomo sample
 # {13BMC:,  m1,   "OMS VME58",   0,  0,  "Sample C1",                  mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,     48,       .01136,    3,     24,      0}
 # {13BMC:,  m2,   "OMS VME58",   0,  1,  "Sample C2",                  mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,     48,       .01136,    3,     24,      0}
+#m1 m2 below = using original tomo sample stages for tomo camera
 #{13BMC:,  m1,   "OMS VME58",   0,  0,  "Camera-X",                     mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,     48,      .003546,    3,     24,      0}
 #{13BMC:,  m2,   "OMS VME58",   0,  1,  "Camera-Y (focus)",             mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,     48,      .003546,    3,     24,      0}
+#m1 m2 below for MFN stages on GPD for crystal screening
+{13BMC:,  m1,   "OMS VME58",   0,  0,  "Long Sample X",                mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,     48,      .003546,    3,     24,      0}
+{13BMC:,  m2,   "OMS VME58",   0,  1,  "Long Sample Y",                mm,  Neg,     .2,   .01,   .2,    0,    1.,   .2,     48,      .003546,    3,     24,      0}
 # channel 2 (m3) not working
 {13BMC:,  m3,   "OMS VME58",   0,  2, "bad channel",                  deg,  Pos,    15.,   0.0,   .5,    0,    1.,   .2,    200,        -0.10,    3,    360,   -360}
 {13BMC:,  m4,   "OMS VME58",   0,  3, "Translation",                   mm,  Neg,    2.0,    .1,   .5,    0,    1.,   .2,    200,        -0.10,    3,    100,      0}
