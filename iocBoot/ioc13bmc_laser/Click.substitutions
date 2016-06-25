@@ -1,0 +1,58 @@
+# asyn record for the underlying asyn TCP port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,           R,               PORT,      ADDR,   IMAX,    OMAX}
+{13BMCLaser:   ClickOctetAsyn,    Click,     0,      80,      80}
+}
+
+# These are the Cn inputs done with bit access C100-C112
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,              R,          PORT,             OFFSET,      ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{13BMCLaser:,    Door_Status,     K1_Cn_In_Bit,     0000,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Expert_Mode,     K1_Cn_In_Bit,     0001,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Panic_Switch,    K1_Cn_In_Bit,     0002,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    IPG_Emi_Stat,    K1_Cn_In_Bit,     0003,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Fault,           K1_Cn_In_Bit,     0004,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Danger_Sign,     K1_Cn_In_Bit,     0005,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Caution_Sign,    K1_Cn_In_Bit,     0006,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Safe_Sign,       K1_Cn_In_Bit,     0007,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    IPG_Pwr_Stat,    K1_Cn_In_Bit,     0008,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    IPG_Act_Stat,    K1_Cn_In_Bit,     0009,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    IPG_EMI_Stat,    K1_Cn_In_Bit,     0010,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Quant_Emission,  K1_Cn_In_Bit,     0011,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+{13BMCLaser:,    Photo_Sensor,    K1_Cn_In_Bit,     0012,        Low,    High,  NO_ALARM,  MAJOR,  "I/O Intr"}
+
+
+
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,          PORT,              ADDR,     TMOD,  IFACE}
+{13BMCLaser:,  CnInBAsyn,  K1_Cn_In_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{13BMCLaser:,  CnInB,      K1_Cn_In_Bit,   "10 second"}
+}
+file "$(MODBUS)/db/poll_delay.template" { pattern
+{P,           R,              PORT}
+{13BMCLaser:,  CnInBPollDelay, K1_Cn_In_Bit}
+}
+
+# These are the Cn outputs done with bit access.  C120-C125 
+file "$(MODBUS)/db/bo_bit.template" { pattern
+{P,             R,                  PORT,           OFFSET,        ZNAM,    ONAM}
+{13BMCLaser:,    IPG_PWR,         K1_Cn_Out_Bit,    0020,       Close,    Open}
+{13BMCLaser:,    IPG_PS_Act,      K1_Cn_Out_Bit,    0021,        Open,   Close}
+{13BMCLaser:,    IPG_EMI,         K1_Cn_Out_Bit,    0022,        Open,   Close}
+{13BMCLaser:,    Rst_Fault,       K1_Cn_Out_Bit,    0023,        Open,   Close}
+{13BMCLaser:,    QUant_PWR,       K1_Cn_Out_Bit,    0024,        Open,   Close}
+{13BMCLaser:,    QUantT_ENB,      K1_Cn_Out_Bit,    0025,        Open,   Close}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,          PORT,              ADDR,     TMOD,  IFACE}
+{13BMCLaser:,    CnOutBAsyn, K1_Cn_Out_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{13BMCLaser:,    CnOutB,     K1_Cn_Out_Bit,  "10 second"}
+}
+
