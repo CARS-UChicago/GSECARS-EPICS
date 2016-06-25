@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=646
-		y=604
+		x=4279
+		y=480
 		width=860
 		height=417
 	}
@@ -100,8 +100,8 @@ composite {
 }
 "strip chart" {
 	object {
-		x=5
-		y=120
+		x=0
+		y=130
 		width=420
 		height=285
 	}
@@ -416,56 +416,6 @@ text {
 	}
 	textix="Preamp OK:"
 }
-"text update" {
-	object {
-		x=770
-		y=20
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:E_BPMFoilPosition_RBV"
-		clr=54
-		bclr=2
-	}
-	align="horiz. right"
-	limits {
-	}
-}
-"related display" {
-	object {
-		x=740
-		y=56
-		width=95
-		height=25
-	}
-	display[0] {
-		label="BPM Foil"
-		name="BPM_Foil.adl"
-		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM "
-	}
-	display[1] {
-		label="Fast Pitch Feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
-	}
-	display[2] {
-		label="Fast Roll Feedback"
-		name="pid_control.adl"
-		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
-	}
-	display[3] {
-		label="BPM Electronics"
-		name="quadEM.adl"
-		args="P=13IDA:, R=QE2:,P_TS=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
-	}
-	display[4] {
-		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM"
-	}
-	clr=54
-	bclr=1
-	label="-More"
-}
 "strip chart" {
 	object {
 		x=430
@@ -500,66 +450,6 @@ text {
 		}
 	}
 }
-"message button" {
-	object {
-		x=450
-		y=92
-		width=180
-		height=25
-	}
-	control {
-		chan="13IDA:QE2:ComputePosOffsetX.PROC"
-		clr=54
-		bclr=0
-	}
-	label="Set Pitch Position"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=650
-		y=92
-		width=180
-		height=25
-	}
-	control {
-		chan="13IDA:QE2:ComputePosOffsetY.PROC"
-		clr=54
-		bclr=0
-	}
-	label="Set Roll Position"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=450
-		y=30
-		width=100
-		height=25
-	}
-	control {
-		chan="13IDA:QE2:Acquire"
-		clr=54
-		bclr=30
-	}
-	label="Stop QuadEM"
-	press_msg="0"
-}
-"message button" {
-	object {
-		x=450
-		y=60
-		width=100
-		height=25
-	}
-	control {
-		chan="13IDA:QE2:Acquire"
-		clr=54
-		bclr=60
-	}
-	label="Start QuadEM"
-	press_msg="1"
-}
 "text entry" {
 	object {
 		x=300
@@ -589,18 +479,6 @@ text {
 	}
 	limits {
 	}
-}
-text {
-	object {
-		x=685
-		y=20
-		width=70
-		height=18
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="BPM Foil"
 }
 text {
 	object {
