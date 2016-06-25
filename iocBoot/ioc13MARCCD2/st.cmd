@@ -5,7 +5,7 @@ dbLoadDatabase("$(ADMARCCD)/iocs/marCCDIOC/dbd/marCCDApp.dbd")
 marCCDApp_registerRecordDeviceDriver(pdbbase) 
 
 # Prefix for all records
-epicsEnvSet("PREFIX", "13MARCCD3:")
+epicsEnvSet("PREFIX", "13MARCCD2:")
 # The port name for the detector
 epicsEnvSet("PORT",   "MAR")
 # The queue size for all plugins
