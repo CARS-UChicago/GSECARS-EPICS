@@ -1,0 +1,710 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/ClickLaserPLC.adl"
+	version=030107
+}
+display {
+	object {
+		x=209
+		y=94
+		width=360
+		height=475
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=165
+		y=85
+		width=185
+		height=20
+	}
+	"basic attribute" {
+		clr=2
+	}
+}
+"message button" {
+	object {
+		x=220
+		y=185
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)Fault_Reset"
+		clr=14
+		bclr=51
+	}
+	label="Reset Fault"
+	press_msg="1"
+}
+text {
+	object {
+		x=108
+		y=250
+		width=144
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IPG IR Laser"
+}
+text {
+	object {
+		x=57
+		y=10
+		width=247
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Laser PLC ($(P))"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=102
+		y=55
+		width=156
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="System Status"
+}
+rectangle {
+	object {
+		x=5
+		y=50
+		width=350
+		height=190
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=10
+		y=85
+		width=150
+		height=145
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=20
+				y=85
+				width=140
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Safety Status:"
+		}
+		text {
+			object {
+				x=40
+				y=110
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Door Status:"
+		}
+		text {
+			object {
+				x=40
+				y=160
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Expert Mode:"
+		}
+		text {
+			object {
+				x=30
+				y=185
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Fault Status:"
+		}
+		text {
+			object {
+				x=10
+				y=210
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Emergency Stop:"
+		}
+		text {
+			object {
+				x=30
+				y=135
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Photo Switch:"
+		}
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=245
+		width=350
+		height=135
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=165
+		y=110
+		width=50
+		height=120
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=165
+				y=110
+				width=50
+				height=20
+			}
+			monitor {
+				chan="$(P)Door_Status"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=135
+				width=50
+				height=20
+			}
+			monitor {
+				chan="$(P)Photo_Sensor"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=160
+				width=50
+				height=20
+			}
+			monitor {
+				chan="$(P)Expert_Mode"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=185
+				width=50
+				height=20
+			}
+			monitor {
+				chan="$(P)Fault"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=210
+				width=50
+				height=20
+			}
+			monitor {
+				chan="$(P)Panic_Switch"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=30
+		y=390
+		width=300
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser Quantum Green Laser"
+}
+rectangle {
+	object {
+		x=5
+		y=385
+		width=350
+		height=85
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=120
+		y=280
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power:"
+}
+text {
+	object {
+		x=90
+		y=305
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Activate:"
+}
+"text update" {
+	object {
+		x=185
+		y=280
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P)IPG_Power_Status"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=185
+		y=305
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P)IPG_Activate_Status"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=240
+		y=280
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)IPG_Power_Control"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"choice button" {
+	object {
+		x=240
+		y=305
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)IPG_Activate_Control"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"text update" {
+	object {
+		x=185
+		y=330
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P)IPG_Emission_Enabled"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=240
+		y=330
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)IPG_Emission_Control"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"text update" {
+	object {
+		x=185
+		y=355
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P)IPG_Emission_Status"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=20
+		y=330
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Emission Enable:"
+}
+text {
+	object {
+		x=20
+		y=355
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Emission Status:"
+}
+text {
+	object {
+		x=165
+		y=85
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		calc="A"
+		chan="$(P)Safe_Sign"
+	}
+	textix="Safe"
+}
+text {
+	object {
+		x=210
+		y=85
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		calc="A"
+		chan="$(P)Caution_Sign"
+	}
+	textix="Caution"
+}
+text {
+	object {
+		x=285
+		y=85
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		calc="A"
+		chan="$(P)Danger_Sign"
+	}
+	textix="Danger"
+}
+composite {
+	object {
+		x=20
+		y=420
+		width=320
+		height=45
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=185
+				y=420
+				width=155
+				height=45
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=185
+						y=420
+						width=50
+						height=20
+					}
+					monitor {
+						chan="$(P)LQ_Enable_Status"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=185
+						y=445
+						width=50
+						height=20
+					}
+					monitor {
+						chan="$(P)LQ_Emission_Status"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				composite {
+					object {
+						x=240
+						y=420
+						width=100
+						height=45
+					}
+					"composite name"=""
+					children {
+						"choice button" {
+							object {
+								x=240
+								y=420
+								width=100
+								height=20
+							}
+							control {
+								chan="$(P)LQ_Enable_Control"
+								clr=14
+								bclr=51
+							}
+							stacking="column"
+						}
+						"choice button" {
+							object {
+								x=240
+								y=445
+								width=100
+								height=20
+							}
+							control {
+								chan="$(P)LQ_Emission_Control"
+								clr=14
+								bclr=51
+							}
+							stacking="column"
+						}
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=20
+				y=420
+				width=160
+				height=45
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=50
+						y=420
+						width=130
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Power Enable:"
+				}
+				text {
+					object {
+						x=20
+						y=445
+						width=160
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Emission Enable:"
+				}
+			}
+		}
+	}
+}
