@@ -7,7 +7,7 @@ file "$(ASYN)/db/asynRecord.db" { pattern
 # These are the Cn inputs done with bit access C100-C112
 file "$(MODBUS)/db/bi_bit.template" { pattern
 {P,                    R,                   PORT,          OFFSET,      ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
-{13BMC_Laser:,    Door_Status,          Click1_Cn_In_Bit,     0,       Open,  Closed,  NO_ALARM,     MINOR, "I/O Intr"}
+{13BMC_Laser:,    Door_Status,          Click1_Cn_In_Bit,     0,       Open,  Closed,     MAJOR,  NO_ALARM, "I/O Intr"}
 {13BMC_Laser:,    Expert_Mode,          Click1_Cn_In_Bit,     1,        Off,      On,  NO_ALARM,     MAJOR, "I/O Intr"}
 {13BMC_Laser:,    Panic_Switch,         Click1_Cn_In_Bit,     2,        Off,      On,  NO_ALARM,     MAJOR, "I/O Intr"}
 {13BMC_Laser:,    IPG_Emission_Status,  Click1_Cn_In_Bit,     3,        Off,      On,  NO_ALARM,     MAJOR, "I/O Intr"}
@@ -16,7 +16,7 @@ file "$(MODBUS)/db/bi_bit.template" { pattern
 {13BMC_Laser:,    Caution_Sign,         Click1_Cn_In_Bit,     6,        Off,      On,  NO_ALARM,     MINOR, "I/O Intr"}
 {13BMC_Laser:,    Safe_Sign,            Click1_Cn_In_Bit,     7,        Off,      On,  NO_ALARM,  NO_ALARM, "I/O Intr"}
 {13BMC_Laser:,    IPG_Power_Status,     Click1_Cn_In_Bit,     8,        Off,      On,  NO_ALARM,     MINOR, "I/O Intr"}
-{13BMC_Laser:,    IPG_Activate_Status,  Click1_Cn_In_Bit,     9,        Off,      On,  NO_ALARM,     MINOR, "I/O Intr"}
+{13BMC_Laser:,    IPG_Enable_Status,    Click1_Cn_In_Bit,     9,        Off,      On,  NO_ALARM,     MINOR, "I/O Intr"}
 {13BMC_Laser:,    IPG_Emission_Enabled, Click1_Cn_In_Bit,    10,        Off,      On,  NO_ALARM,     MAJOR, "I/O Intr"}
 {13BMC_Laser:,    LQ_Emission_Status,   Click1_Cn_In_Bit,    11,        Off,      On,  NO_ALARM,     MAJOR, "I/O Intr"}
 {13BMC_Laser:,    Photo_Sensor,         Click1_Cn_In_Bit,    12,        Off,      On,  NO_ALARM,     MAJOR, "I/O Intr"}
@@ -41,7 +41,7 @@ file "$(MODBUS)/db/poll_delay.template" { pattern
 file "$(MODBUS)/db/bo_bit.template" { pattern
 {P,                   R,                  PORT,           OFFSET,        ZNAM,    ONAM}
 {13BMC_Laser:,    IPG_Power_Control,    Click1_Cn_Out_Bit,    20,        Off,      On}
-{13BMC_Laser:,    IPG_Activate_Control, Click1_Cn_Out_Bit,    21,        Off,      On}
+{13BMC_Laser:,    IPG_Enable_Control,   Click1_Cn_Out_Bit,    21,        Off,      On}
 {13BMC_Laser:,    IPG_Emission_Control, Click1_Cn_Out_Bit,    22,        Off,      On}
 {13BMC_Laser:,    Fault_Reset,          Click1_Cn_Out_Bit,    23,       None,   Reset}
 {13BMC_Laser:,    LQ_Enable_Control,    Click1_Cn_Out_Bit,    24,        Off,      On}
