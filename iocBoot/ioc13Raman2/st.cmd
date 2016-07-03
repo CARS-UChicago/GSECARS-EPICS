@@ -114,7 +114,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13RAMAN2:,R=IPG1,PORT=ser
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.147", 5001, 5, 10, 500, 1, 500)
+XPSCreateController("XPS1", "164.54.160.147", 5001, 6, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -129,6 +129,7 @@ XPSCreateAxis("XPS1",1,"Group2.Pos",  "50000")
 XPSCreateAxis("XPS1",2,"Group3.Pos",  "10000")  
 XPSCreateAxis("XPS1",3,"Group4.Pos",  "50")  
 XPSCreateAxis("XPS1",4,"Group5.Pos",  "50")  
+XPSCreateAxis("XPS1",5,"Group6.Pos",  "800") 
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -212,5 +213,6 @@ dbpf("13RAMAN2:m2.NTM","0")
 dbpf("13RAMAN2:m3.NTM","0")
 dbpf("13RAMAN2:m4.NTM","0")
 dbpf("13RAMAN2:m5.NTM","0")
+dbpf("13RAMAN2:m6.NTM","0")
 
 motorUtilInit("13RAMAN2:")
