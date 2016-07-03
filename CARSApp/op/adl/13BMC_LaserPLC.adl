@@ -1,6 +1,6 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/ClickLaserPLC.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/13BMC_LaserPLC.adl"
 	version=030107
 }
 display {
@@ -386,15 +386,15 @@ text {
 }
 text {
 	object {
-		x=90
+		x=50
 		y=305
-		width=90
+		width=130
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Activate:"
+	textix="Laser Enable:"
 }
 "text update" {
 	object {
@@ -420,7 +420,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="$(P)IPG_Activate_Status"
+		chan="$(P)IPG_Enable_Status"
 		clr=14
 		bclr=2
 	}
@@ -437,20 +437,6 @@ text {
 	}
 	control {
 		chan="$(P)IPG_Power_Control"
-		clr=14
-		bclr=51
-	}
-	stacking="column"
-}
-"choice button" {
-	object {
-		x=240
-		y=305
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)IPG_Activate_Control"
 		clr=14
 		bclr=51
 	}
@@ -580,131 +566,103 @@ text {
 	}
 	textix="Danger"
 }
-composite {
+"text update" {
+	object {
+		x=185
+		y=420
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P)LQ_Enable_Status"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=185
+		y=445
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P)LQ_Emission_Status"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=240
+		y=445
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)LQ_Emission_Control"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=50
+		y=420
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Laser Enable:"
+}
+text {
 	object {
 		x=20
+		y=445
+		width=160
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Emission Enable:"
+}
+"message button" {
+	object {
+		x=240
 		y=420
-		width=320
-		height=45
+		width=80
+		height=20
 	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=185
-				y=420
-				width=155
-				height=45
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=185
-						y=420
-						width=50
-						height=20
-					}
-					monitor {
-						chan="$(P)LQ_Enable_Status"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=185
-						y=445
-						width=50
-						height=20
-					}
-					monitor {
-						chan="$(P)LQ_Emission_Status"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				composite {
-					object {
-						x=240
-						y=420
-						width=100
-						height=45
-					}
-					"composite name"=""
-					children {
-						"choice button" {
-							object {
-								x=240
-								y=420
-								width=100
-								height=20
-							}
-							control {
-								chan="$(P)LQ_Enable_Control"
-								clr=14
-								bclr=51
-							}
-							stacking="column"
-						}
-						"choice button" {
-							object {
-								x=240
-								y=445
-								width=100
-								height=20
-							}
-							control {
-								chan="$(P)LQ_Emission_Control"
-								clr=14
-								bclr=51
-							}
-							stacking="column"
-						}
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=20
-				y=420
-				width=160
-				height=45
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=50
-						y=420
-						width=130
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Power Enable:"
-				}
-				text {
-					object {
-						x=20
-						y=445
-						width=160
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Emission Enable:"
-				}
-			}
-		}
+	control {
+		chan="$(P)LQ_Enable_Control"
+		clr=14
+		bclr=51
 	}
+	label="Enable"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=240
+		y=305
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)IPG_Enable_Control"
+		clr=14
+		bclr=51
+	}
+	label="Enable"
+	press_msg="1"
 }
