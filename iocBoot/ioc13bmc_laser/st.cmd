@@ -38,6 +38,9 @@ dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1
 # IPG laser is serial 2
 dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial2")
 
+# Laser PLC Modbus connection
+< Click.cmd
+
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
