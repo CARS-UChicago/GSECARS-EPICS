@@ -30,6 +30,8 @@ program GSE_MonoEnergy("MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, 
  *  Oct 15, 2013  MN:  fixed bug in which a  non-zero y2_mvmin could cause y2 to never actually 
  *                     move for accumulated small moves (that is, error build up was not being 
  *                     seen and respected).
+ *  Oct 24, 2016  MN:  converted checking of DMOV for theta and height to use pvPut(val, ASYNC)
+ *                     and then checking pvPutComplete() in the wait_done state.
  *
  */
 %%#include <math.h>
@@ -48,7 +50,7 @@ char *calibrationFile;
 
 /* 2nd crystal table PVs  */
 double y2;        assign y2        to "{MY}.VAL";             monitor y2;
-int    y2_done;   assign y2_done   to "{MY}.DMOV";            monitor y2_done;
+int    y2_done;   // assign y2_done   to "{MY}.DMOV";            monitor y2_done;
 int    y2_stop;   assign y2_stop   to "{MY}.SPMG";
 double y2_mvmin;  assign y2_mvmin  to "{MONO}:y2_mvmin.VAL";  monitor y2_mvmin;
 
@@ -56,7 +58,7 @@ double y2_mvmin;  assign y2_mvmin  to "{MONO}:y2_mvmin.VAL";  monitor y2_mvmin;
 double th;        assign th        to "{MTH}.VAL";   monitor th;
 double th_rbv;    assign th_rbv    to "{MTH}.RBV";   monitor th_rbv;
 int    th_set;    assign th_set    to "{MTH}.SET";
-int    th_done;   assign th_done   to "{MTH}.DMOV";  monitor th_done;
+int    th_done;   // assign th_done   to "{MTH}.DMOV";  monitor th_done;
 int    th_stop;   assign th_stop   to "{MTH}.SPMG";
 
 /* undulator PVs  (from {ID}) */
@@ -79,7 +81,7 @@ double width;     assign width     to "{MONO}:width.VAL";     monitor width;
 int    verbose;   assign verbose   to "{MONO}:verbose.VAL";   monitor verbose;
 int    en_abort;  assign en_abort  to "{MONO}:en_abort.VAL";  
 
-double en_timeout; assign en_timeout to "{MONO}:timeout.VAL";    
+double en_timeout; assign en_timeout to "{MONO}:timeout.VAL";   monitor en_timeout; 
 int    en_busy;    assign en_busy    to "{MONO}:Moving.VAL";    monitor en_busy;
 int    en_set;     assign en_set     to "{MONO}:SET.VAL";       monitor en_set;
 
@@ -139,6 +141,7 @@ double tiny;
 double y2_old;
 double y2_new;
 int move_busy;
+int id_done;
 int wait_count;
 int timeout_ticks;
 int i;
@@ -252,7 +255,7 @@ ss GSE_MonoEnergy {
               pvPut(id_stop);
             }
             /* put id value*/
-            pvPut(id_val);
+            pvPut(id_val, ASYNC);
             if (verbose) { printf(", id_energy->%12.6f",id_val);}
           }
           else {
@@ -266,7 +269,7 @@ ss GSE_MonoEnergy {
             status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
             if (status == 0) {
               id_gap = id_offset + gap;
-              pvPut(id_gap);
+              pvPut(id_gap, ASYNC);
               if (verbose) { printf(", id_gap->%12.6f",id_gap);}
             } else {
               printf("Error calling GSE_monoEnergyToGap for harmonic=%d energy=%f\n", id_harm_num, en);
@@ -278,7 +281,7 @@ ss GSE_MonoEnergy {
         th   =  (asin(omega / en) * r2d) - tiny;
         if (th < th_min) th = th_min;
         if (verbose) { printf(",  mono_angle->%12.6f\n", th);}
-        pvPut(th);
+        pvPut(th, ASYNC);
 
         /* move 2nd xtal Y to keep beam offset fixed */
         if (y2_track) {
@@ -288,7 +291,7 @@ ss GSE_MonoEnergy {
           y2_new = y2_off + width;
           if (fabs(y2_new - y2_old) > y2_mvmin) { 
 	    y2 = y2_new;
-	    pvPut(y2);  
+	    pvPut(y2, ASYNC);  
 	  }
 	  if (verbose) { 
 	    printf("  En(move)> 2nd XTAL y2->%12.6f, height->%12.6f\n", y2, height);
@@ -330,7 +333,7 @@ ss GSE_MonoEnergy {
         y2_new = y2_off + width;
         if (fabs(y2_new - y2_old) > y2_mvmin) {
 	  y2 = y2_new ;
-	  pvPut(y2);  
+	  pvPut(y2, ASYNC);  
 	}
         if (verbose) { printf("  En(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
                       y2, width, height);}
@@ -344,14 +347,14 @@ ss GSE_MonoEnergy {
           pvPut(id_harmonic);
           id_val  = (id_offset + en * mil) ;  
           if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
-          pvPut(id_val);
+          pvPut(id_val, ASYNC);
           if (verbose) { printf("  En(mono)> ID energy -> %12.6f\n",id_val);}
         }
         else {
           status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
           if (status == 0) {
             id_gap = id_offset + gap;
-            pvPut(id_gap);
+            pvPut(id_gap, ASYNC);
             if (verbose) { printf(", id_gap->%12.6f",id_gap);}
           } else {
             printf("Error calling GSE_monoEnergyToGap for harmonic=%d energy=%f\n", id_harm_num, en);
@@ -459,7 +462,8 @@ ss GSE_MonoEnergy {
      * so the entry and exit blocks are not executed when wait_done transitions to itself */
     entry {
       move_busy = 1;
-      timeout_ticks = (1000.0*en_timeout)+0.5;
+      if (en_timeout < 0.1) {en_timeout = 0.1;}
+      timeout_ticks = (int)(100.0*en_timeout);
       wait_count = 0;
     }
     
@@ -478,17 +482,20 @@ ss GSE_MonoEnergy {
       pvPut(en_abort);      
     } state monitor_changes
 
-    when( delay(0.001) ) {
+    when( delay(0.005) ) {
       /* Wait for undulator, mono, 2nd xtal to finish 
          this gets tricky as we're waiting for things that 
          may or may not be moving */
-      move_busy = ((y2_track) && (y2_done == 0)) || (th_done == 0) || (id_busy && id_wait);
+      th_done = pvPutComplete(th);
+      y2_done = pvPutComplete(y2);
+      id_done = pvPutComplete(id_val) && pvPutComplete(id_gap); 
+      move_busy = (th_done==0) || (y2_done==0) || ((id_done==0) && id_wait);
       if (fb_is_on && fb_use && (fb_locked == 0)) move_busy = 1;
       if (wait_count > timeout_ticks) move_busy = 0;
-      if (verbose && (wait_count%100 == 0)) {
+      wait_count++;
+      if (verbose && (wait_count%5 == 0)) {
         printf("  En(wait): count/timeout=%4.4d/%4.4d", wait_count, timeout_ticks);
-        printf(", busy=%d, id_done=%d, th_done=%d, y2_done=%d", move_busy, !(id_busy && id_wait),
-          th_done, y2_done);
+        printf(", id_done=%d, th_done=%d, y2_done=%d", id_done, th_done, y2_done);
         if (fb_is_on) {
           printf(", feedback is on, locked=%d", fb_locked);
         }
@@ -508,7 +515,7 @@ ss GSE_MonoEnergy {
       efClear(ef_width);
       efClear(ef_busy);
       en_moving = 0;
-      if (verbose) {printf("  En(move)> done\n");}
+      if (verbose) {printf("  En(move)> done (%d milliseconds)\n", 5*wait_count);}
       en_busy = 0; pvPut(en_busy);
       efClear(ef_busy);
     }
