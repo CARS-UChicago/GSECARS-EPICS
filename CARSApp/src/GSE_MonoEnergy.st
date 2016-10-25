@@ -255,7 +255,7 @@ ss GSE_MonoEnergy {
               pvPut(id_stop);
             }
             /* put id value*/
-            pvPut(id_val, ASYNC);
+            pvPut(id_val); 
             if (verbose) { printf(", id_energy->%12.6f",id_val);}
           }
           else {
@@ -269,7 +269,7 @@ ss GSE_MonoEnergy {
             status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
             if (status == 0) {
               id_gap = id_offset + gap;
-              pvPut(id_gap, ASYNC);
+              pvPut(id_gap);
               if (verbose) { printf(", id_gap->%12.6f",id_gap);}
             } else {
               printf("Error calling GSE_monoEnergyToGap for harmonic=%d energy=%f\n", id_harm_num, en);
@@ -488,8 +488,7 @@ ss GSE_MonoEnergy {
          may or may not be moving */
       th_done = pvPutComplete(th);
       y2_done = pvPutComplete(y2);
-      id_done = pvPutComplete(id_val) && pvPutComplete(id_gap); 
-      move_busy = (th_done==0) || (y2_done==0) || ((id_done==0) && id_wait);
+      move_busy = (th_done==0) || (y2_done==0) || (id_busy && id_wait);
       if (fb_is_on && fb_use && (fb_locked == 0)) move_busy = 1;
       if (wait_count > timeout_ticks) move_busy = 0;
       wait_count++;
