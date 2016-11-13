@@ -63,6 +63,9 @@ dbLoadTemplate("laser_pid.template")
 # Simple laser heating database
 dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
 
+# XRD File Base and relative paths
+dbLoadRecords("$(CARS)/CARSApp/Db/xrd_files.db", "P=13IDD:")
+
 # LVP furnace controls
 dbLoadTemplate("LVP_furnace_control.template")
 
@@ -194,6 +197,7 @@ dbpf "13IDD:EnableUserTrans.PROC","1"
 dbpf "13IDD:EnableUserSCalcs.PROC","1"
 dbpf "13IDD:EnableUserACalcs.PROC","1"
 dbpf "13IDD:EnableUserCalcOuts.PROC","1"
+dbpf "13IDD:userStringSeqEnable","1"
 
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
 dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
