@@ -8,10 +8,12 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 epicsEnvSet PORT L0
 epicsEnvSet PREFIX 13PHD2000:
 
+# The Digi terminal server needs to be configured with baud=9600, 8 data bits, 2 stop bits, parity=None
 drvAsynIPPortConfigure("$(PORT)","gsets9:2101",0,0,0)
 # We don't set terminators here, we let StreamDevice take care of it
 asynSetTraceIOMask("$(PORT)",0,2)
 #asynSetTraceMask("$(PORT)",0,0x9)
+# The GSETS9 terminal server must be configured for 9600, 8, 2, None
 
 dbLoadRecords("$(IP)/ipApp/Db/PHD2000.db", "P=$(PREFIX), R=S1:, PORT=$(PORT), PREC=4")
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=asyn1, PORT=$(PORT), ADDR=0, IMAX=80, OMAX=80")
