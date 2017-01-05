@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_expert.adl"
-	version=030102
+	name="j:\epics\support\cars\carsapp\op\adl\13IDD_dac_expert.adl"
+	version=030109
 }
 display {
 	object {
-		x=140
-		y=109
+		x=410
+		y=294
 		width=1432
 		height=788
 	}
@@ -2691,7 +2691,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13IDD:both_las_trig.VAL"
+		chan="13IDDLF1:cam1:Acquire"
 		clr=30
 		bclr=39
 	}
@@ -3570,23 +3570,6 @@ text {
 	clr=54
 	bclr=35
 	label="-XES"
-}
-"related display" {
-	object {
-		x=320
-		y=765
-		width=50
-		height=20
-	}
-	display[0] {
-		label="Expert mode"
-		name="13IDD_dac_user.adl"
-		args="P=13IDD:, D=1, C=Pelco1"
-		policy="replace display"
-	}
-	clr=0
-	bclr=34
-	label="-User"
 }
 "text entry" {
 	object {
@@ -7146,7 +7129,7 @@ composite {
 		height=23
 	}
 	control {
-		chan="13IDDRP2:cam1:AcquireTime"
+		chan="13IDD_PG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7161,7 +7144,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13IDDRP2:cam1:AcquireTime"
+		chan="13IDD_PG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7176,7 +7159,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13IDDRP2:cam1:AcquireTime"
+		chan="13IDD_PG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7191,7 +7174,7 @@ composite {
 		height=15
 	}
 	control {
-		chan="13IDDRP2:cam1:AcquireTime"
+		chan="13IDD_PG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7499,7 +7482,7 @@ valuator {
 		height=23
 	}
 	control {
-		chan="13IDDRP1:cam1:AcquireTime"
+		chan="13IDD_PG1:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7514,7 +7497,7 @@ valuator {
 		height=15
 	}
 	control {
-		chan="13IDDRP1:cam1:AcquireTime"
+		chan="13IDD_PG1:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7529,7 +7512,7 @@ valuator {
 		height=15
 	}
 	control {
-		chan="13IDDRP1:cam1:AcquireTime"
+		chan="13IDD_PG1:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -7544,7 +7527,7 @@ valuator {
 		height=15
 	}
 	control {
-		chan="13IDDRP1:cam1:AcquireTime"
+		chan="13IDD_PG1:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -8010,18 +7993,30 @@ text {
 	object {
 		x=375
 		y=765
-		width=50
+		width=80
 		height=19
 	}
 	display[0] {
-		label="Expert mode"
+		label="Perkin Elmer"
 		name="13IDD_dac_user_PE.adl"
+		args="P=13IDD:, D=1, C=Pelco1"
+		policy="replace display"
+	}
+	display[1] {
+		label="MARCCD"
+		name="13IDD_dac_user.adl"
+		args="P=13IDD:, D=1, C=Pelco1"
+		policy="replace display"
+	}
+	display[2] {
+		label="Pilatus CdTe"
+		name="13IDD_dac_user_PIL3.adl"
 		args="P=13IDD:, D=1, C=Pelco1"
 		policy="replace display"
 	}
 	clr=0
 	bclr=14
-	label="-PE"
+	label="Detectors"
 }
 composite {
 	object {
@@ -8079,5 +8074,71 @@ composite {
 	"dynamic attribute" {
 		vis="if zero"
 		chan="13IDD:Unidig2Bi4.VAL"
+	}
+}
+composite {
+	object {
+		x=320
+		y=765
+		width=50
+		height=20
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=320
+				y=765
+				width=50
+				height=20
+			}
+			display[0] {
+				label="Expert mode"
+				name="13IDD_dac_user_PIL3.adl"
+				args="P=13IDD:, D=1, C=Pelco1"
+				policy="replace display"
+			}
+			clr=0
+			bclr=34
+			label="-User"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<-150"
+		chan="13IDD:m8.VAL"
+	}
+}
+composite {
+	object {
+		x=320
+		y=765
+		width=50
+		height=20
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=320
+				y=765
+				width=50
+				height=20
+			}
+			display[0] {
+				label="Expert mode"
+				name="13IDD_dac_user.adl"
+				args="P=13IDD:, D=1, C=Pelco1"
+				policy="replace display"
+			}
+			clr=0
+			bclr=34
+			label="-User"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-150"
+		chan="13IDD:m8.VAL"
 	}
 }
