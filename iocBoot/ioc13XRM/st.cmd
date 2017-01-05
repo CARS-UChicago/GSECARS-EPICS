@@ -1,5 +1,6 @@
-ERRLogInit(5000)
 < envPaths
+errlogInit(5000)
+
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
@@ -50,6 +51,10 @@ dbLoadTemplate "scanParms.template"
 # Allstop, alldone
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XRM:")
 
+
+# Monochromator slow PID
+dbLoadTemplate("mono_pid.template")
+
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
@@ -92,6 +97,9 @@ dbLoadRecords("$(CARS)/CARSApp/Db/XRM_fastmap.db","P=13XRM:,Q=map")
 # fast XAFS 
 dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
 
+# simple Image (to push Point Grey image)
+dbLoadRecords("simple_image.db","P=13XRM:,R=PG")
+
 # scan server
 dbLoadRecords("larchscan.db","P=13XRM:,Q=SCANDB")
 
@@ -120,6 +128,10 @@ epicsEnvSet("ENGINEER", "Matt Newville")
 epicsEnvSet("LOCATION","corvette")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13XRM:")
+
+# AH501 electrometer for E branch
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", $(ADCORE)/db:$(QUADEM)/db)
+< AH501.cmd
 
 iocInit
 
