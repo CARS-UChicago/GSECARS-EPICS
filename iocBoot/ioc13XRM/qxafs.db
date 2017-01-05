@@ -1,0 +1,48 @@
+# This database contains fields used for qxafs scans
+
+grecord(mbbo,"$(P)$(Q):status") {
+	field(DESC,"QXAFS State")
+        field(ZRVL,"0")
+        field(ZRST,"IDLE")
+        field(ONVL,"1")
+        field(ONST,"Starting")
+        field(TWVL,"2")
+        field(TWST,"Collecting")
+        field(THVL,"3")
+        field(THST,"Finishing")
+        field(FRVL,"4")
+        field(FRST,"Aborting")
+        field(FVVL,"5")
+        field(FVST,"Unknown")
+}
+ 
+grecord(ao,"$(P)$(Q):ipt") {
+	field(DESC, "current index")
+	field(VAL,  "0")
+}
+
+record(waveform,"$(P)$(Q):idarray")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"undulator energies")
+       field(NELM,"8192")
+       field(FTVL,"DOUBLE")
+}
+
+record(waveform,"$(P)$(Q):array1")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"waveform1")
+       field(NELM,"8192")
+       field(FTVL,"DOUBLE")
+}
+
+record(waveform,"$(P)$(Q):array2")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"waveform2")
+       field(NELM,"8192")
+       field(FTVL,"DOUBLE")
+}
+
+
+
+
+
