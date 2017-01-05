@@ -262,7 +262,7 @@ seq(&SIS38XX_SNL, "P=13LAB:SIS3801:, R=mca, NUM_SIGNALS=8, FIELD=READ")
 
 seq(&SIS38XX_SNL, "P=13LAB:SIS3820:, R=mca, NUM_SIGNALS=2, FIELD=PROC")
 
-seq(&quadEM_SNL, "P=13LAB:, R=QE1:, NUM_CHANNELS=2048")
+#seq(&quadEM_SNL, "P=13LAB:, R=QE1:, NUM_CHANNELS=2048")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
