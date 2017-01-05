@@ -695,7 +695,7 @@ text {
 	display[6] {
 		label="BPM Electronics"
 		name="quadEM.adl"
-		args="P=13IDA:, R=QE2:,P_TS=13IDA:QE2_TS:,P_FFT=13IDA:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
+		args="P=13XRM:, R=QE2:,P_TS=13XRM:QE2_TS:,P_FFT=13XRM:QE2_FFT:,T12=Vertical_BPM, T34=Horizontal_BPM"
 	}
 	display[7] {
 		label="BPM Foil"
@@ -703,14 +703,14 @@ text {
 		args="P=13IDA:, TITLE=ID-E_BPM_Foils, M1=m33, EN=E, BPM=E_BPM"
 	}
 	display[9] {
-		label="Fast Pitch Feedback"
+		label="Pitch Feedback"
 		name="pid_control.adl"
-		args="P=13IDA:, PID=efast_pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
+		args="P=13XRM:, PID=pitch_pid, TITLE=ID-E_Mono_Pitch_feedback"
 	}
 	display[10] {
-		label="Fast Roll Feedback"
+		label="Roll Feedback"
 		name="pid_control.adl"
-		args="P=13IDA:, PID=efast_roll_pid, TITLE=ID-E_Mono_Roll_feedback"
+		args="P=13XRM:, PID=roll_pid, TITLE=ID-E_Mono_Roll_feedback"
 	}
 	clr=54
 	bclr=1
@@ -1233,7 +1233,7 @@ menu {
 		height=18
 	}
 	control {
-		chan="13XRM:edb:use_fb"
+		chan="13XRM:pitch_pid.FBON"
 		clr=54
 		bclr=1
 	}
@@ -1246,7 +1246,7 @@ menu {
 		height=18
 	}
 	control {
-		chan="13IDA:efast_roll_pid.FBON"
+		chan="13XRM:roll_pid.FBON"
 		clr=54
 		bclr=1
 	}
@@ -1543,7 +1543,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13IDA:QE2:ComputePosOffsetX.PROC"
+		chan="13XRM:QE2:ComputePosOffsetX.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1558,7 +1558,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13IDA:QE2:ComputePosOffsetY.PROC"
+		chan="13XRM:QE2:ComputePosOffsetY.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1573,7 +1573,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13IDA:QE2:Acquire"
+		chan="13XRM:QE2:Acquire"
 		clr=54
 		bclr=30
 	}
@@ -1588,7 +1588,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13IDA:QE2:Acquire"
+		chan="13XRM:QE2:Acquire"
 		clr=54
 		bclr=60
 	}
