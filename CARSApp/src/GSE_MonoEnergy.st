@@ -140,6 +140,7 @@ double th_max;
 double tiny;
 double y2_old;
 double y2_new;
+
 int move_busy;
 int id_done;
 int wait_count;
@@ -292,9 +293,10 @@ ss GSE_MonoEnergy {
           if (fabs(y2_new - y2_old) > y2_mvmin) { 
 	    y2 = y2_new;
 	    pvPut(y2, ASYNC);  
-	  }
-	  if (verbose) { 
-	    printf("  En(move)> 2nd XTAL y2->%12.6f, height->%12.6f\n", y2, height);
+	    if (verbose) { 
+	      printf("  En(move)> 2nd XTAL y2->%12.6f\n", y2);
+	    }
+
 	  }
         } 
       }
@@ -335,8 +337,9 @@ ss GSE_MonoEnergy {
 	  y2 = y2_new ;
 	  pvPut(y2, ASYNC);  
 	}
-        if (verbose) { printf("  En(move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
-                      y2, width, height);}
+        if (verbose) { 
+	  printf("  En(th_move)> 2nd XTAL y2,width,height -> %12.6f %12.6f %12.6f\n",
+		 y2, width, height);}
       } 
 
       /* track undulator    */
@@ -347,14 +350,14 @@ ss GSE_MonoEnergy {
           pvPut(id_harmonic);
           id_val  = (id_offset + en * mil) ;  
           if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
-          pvPut(id_val, ASYNC);
+          pvPut(id_val); // , ASYNC);
           if (verbose) { printf("  En(mono)> ID energy -> %12.6f\n",id_val);}
         }
         else {
           status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
           if (status == 0) {
             id_gap = id_offset + gap;
-            pvPut(id_gap, ASYNC);
+            pvPut(id_gap); // , ASYNC);
             if (verbose) { printf(", id_gap->%12.6f",id_gap);}
           } else {
             printf("Error calling GSE_monoEnergyToGap for harmonic=%d energy=%f\n", id_harm_num, en);
@@ -492,8 +495,8 @@ ss GSE_MonoEnergy {
       if (fb_is_on && fb_use && (fb_locked == 0)) move_busy = 1;
       if (wait_count > timeout_ticks) move_busy = 0;
       wait_count++;
-      if (verbose && (wait_count%5 == 0)) {
-        printf("  En(wait): count/timeout=%4.4d/%4.4d", wait_count, timeout_ticks);
+      if (verbose && (wait_count%10 == 0)) {
+        printf("  En(wait): count=%4.4d/%4.4d", wait_count, timeout_ticks);
         printf(", id_done=%d, th_done=%d, y2_done=%d", id_done, th_done, y2_done);
         if (fb_is_on) {
           printf(", feedback is on, locked=%d", fb_locked);
