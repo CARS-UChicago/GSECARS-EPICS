@@ -5,9 +5,9 @@ file {
 }
 display {
 	object {
-		x=76
-		y=414
-		width=557
+		x=334
+		y=430
+		width=740
 		height=405
 	}
 	clr=14
@@ -89,9 +89,9 @@ display {
 }
 rectangle {
 	object {
-		x=65
-		y=17
-		width=399
+		x=176
+		y=16
+		width=388
 		height=59
 	}
 	"basic attribute" {
@@ -186,8 +186,8 @@ text {
 	}
 	display[0] {
 		label="Sample stage"
-		name="3motors.adl"
-		args="P=13Laser:, TITLE=Sample_Stage, M1=m1, M2=m2, M3=m3"
+		name="5motors.adl"
+		args="P=13Laser:, TITLE=Sample_Stage, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5"
 	}
 	clr=14
 	bclr=25
@@ -253,61 +253,61 @@ polygon {
 }
 polygon {
 	object {
-		x=65
+		x=170
 		y=8
-		width=400
+		width=401
 		height=9
 	}
 	"basic attribute" {
 		clr=25
 	}
 	points {
-		(65,8)
-		(74,17)
-		(456,17)
-		(465,8)
-		(65,8)
+		(170,8)
+		(179,17)
+		(561,17)
+		(571,8)
+		(170,8)
 	}
 }
 polygon {
 	object {
-		x=65
+		x=170
 		y=8
-		width=9
+		width=14
 		height=77
 	}
 	"basic attribute" {
 		clr=25
 	}
 	points {
-		(65,8)
-		(74,18)
-		(74,76)
-		(65,85)
-		(65,8)
+		(170,8)
+		(184,18)
+		(184,76)
+		(170,85)
+		(170,8)
 	}
 }
 polygon {
 	object {
-		x=65
+		x=170
 		y=75
-		width=400
+		width=401
 		height=9
 	}
 	"basic attribute" {
 		clr=27
 	}
 	points {
-		(65,84)
-		(74,75)
-		(456,75)
-		(465,84)
-		(65,84)
+		(170,84)
+		(179,75)
+		(561,75)
+		(571,84)
+		(170,84)
 	}
 }
 polygon {
 	object {
-		x=455
+		x=560
 		y=7
 		width=9
 		height=77
@@ -316,11 +316,11 @@ polygon {
 		clr=28
 	}
 	points {
-		(464,7)
-		(455,17)
-		(455,75)
-		(464,84)
-		(464,7)
+		(569,7)
+		(560,17)
+		(560,75)
+		(569,84)
+		(569,7)
 	}
 }
 image {
@@ -388,36 +388,6 @@ polygon {
 		(282,204)
 	}
 }
-composite {
-	object {
-		x=154
-		y=172
-		width=108
-		height=81
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=154
-				y=172
-				width=108
-				height=81
-			}
-			control {
-				chan="13Raman:allstop.PROC"
-				clr=30
-				bclr=20
-			}
-			label="STOP"
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13Laser:alldone.VAL"
-	}
-}
 rectangle {
 	object {
 		x=297
@@ -452,7 +422,7 @@ text {
 		height=27
 	}
 	control {
-		chan="13Laser:m1.VAL"
+		chan="13Laser:m5.VAL"
 		clr=14
 		bclr=55
 	}
@@ -472,7 +442,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13Laser:m1.HLS"
+		chan="13Laser:m5.HLS"
 	}
 }
 oval {
@@ -487,7 +457,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13Laser:m1.LLS"
+		chan="13Laser:m5.LLS"
 	}
 }
 text {
@@ -503,7 +473,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13Laser:m1.LVIO"
+		chan="13Laser:m5.LVIO"
 	}
 	textix="Soft-Limit"
 	align="horiz. centered"
@@ -521,7 +491,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13Laser:m1.DMOV"
+		chan="13Laser:m5.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -536,7 +506,7 @@ text {
 	"basic attribute" {
 		clr=31
 	}
-	textix="m1"
+	textix="m5"
 }
 "text update" {
 	object {
@@ -546,7 +516,7 @@ text {
 		height=14
 	}
 	monitor {
-		chan="13Laser:m1.RBV"
+		chan="13Laser:m5.RBV"
 		clr=14
 		bclr=40
 	}
@@ -580,13 +550,13 @@ polygon {
 }
 "message button" {
 	object {
-		x=305
+		x=327
 		y=144
-		width=30
+		width=44
 		height=17
 	}
 	control {
-		chan="13Laser:m1.TWV"
+		chan="13Laser:m5.TWV"
 		clr=0
 		bclr=48
 	}
@@ -596,13 +566,13 @@ polygon {
 }
 "message button" {
 	object {
-		x=338
+		x=375
 		y=144
-		width=30
+		width=44
 		height=17
 	}
 	control {
-		chan="13Laser:m1.TWV"
+		chan="13Laser:m5.TWV"
 		clr=0
 		bclr=48
 	}
@@ -835,7 +805,7 @@ composite {
 		height=22
 	}
 	control {
-		chan="13Laser:m1.TWV"
+		chan="13Laser:m5.TWV"
 		clr=14
 		bclr=56
 	}
@@ -850,7 +820,7 @@ composite {
 		height=22
 	}
 	control {
-		chan="13Laser:m1.TWR"
+		chan="13Laser:m5.TWR"
 		clr=14
 		bclr=57
 	}
@@ -865,7 +835,7 @@ composite {
 		height=22
 	}
 	control {
-		chan="13Laser:m1.TWF"
+		chan="13Laser:m5.TWF"
 		clr=14
 		bclr=57
 	}
@@ -914,7 +884,7 @@ composite {
 		clr=14
 		bclr=62
 	}
-	label="-->"
+	label="<--"
 	press_msg="1"
 }
 "message button" {
@@ -929,18 +899,18 @@ composite {
 		clr=14
 		bclr=62
 	}
-	label="<--"
+	label="-->"
 	press_msg="1"
 }
 "message button" {
 	object {
-		x=372
+		x=424
 		y=144
-		width=37
+		width=54
 		height=17
 	}
 	control {
-		chan="13Laser:m1.TWV"
+		chan="13Laser:m5.TWV"
 		clr=0
 		bclr=48
 	}
@@ -1235,7 +1205,7 @@ composite {
 	object {
 		x=64
 		y=30
-		width=400
+		width=616
 		height=33
 	}
 	"composite name"=""
@@ -1244,7 +1214,7 @@ composite {
 			object {
 				x=64
 				y=30
-				width=400
+				width=616
 				height=33
 			}
 			"basic attribute" {
@@ -1263,7 +1233,7 @@ composite {
 	object {
 		x=64
 		y=30
-		width=400
+		width=606
 		height=33
 	}
 	"composite name"=""
@@ -1272,7 +1242,7 @@ composite {
 			object {
 				x=64
 				y=30
-				width=400
+				width=606
 				height=33
 			}
 			"basic attribute" {
@@ -1285,5 +1255,276 @@ composite {
 	"dynamic attribute" {
 		vis="if zero"
 		chan="13Laser:Laser1Modulation"
+	}
+}
+"message button" {
+	object {
+		x=544
+		y=144
+		width=44
+		height=17
+	}
+	control {
+		chan="13Laser:m1.TWV"
+		clr=0
+		bclr=15
+	}
+	label="0.1"
+	press_msg="0.1"
+	clrmod="discrete"
+}
+text {
+	object {
+		x=634
+		y=159
+		width=23
+		height=38
+	}
+	"basic attribute" {
+		clr=55
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="Y"
+}
+"text entry" {
+	object {
+		x=626
+		y=210
+		width=85
+		height=27
+	}
+	control {
+		chan="13Laser:m1.VAL"
+		clr=14
+		bclr=15
+	}
+	clrmod="discrete"
+	limits {
+	}
+}
+oval {
+	object {
+		x=550
+		y=246
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13Laser:m1.HLS"
+	}
+}
+oval {
+	object {
+		x=638
+		y=247
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13Laser:m1.LLS"
+	}
+}
+text {
+	object {
+		x=564
+		y=248
+		width=75
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13Laser:m1.LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=565
+		y=245
+		width=71
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13Laser:m1.DMOV"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=686
+		y=242
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="m1"
+}
+"text update" {
+	object {
+		x=646
+		y=176
+		width=60
+		height=14
+	}
+	monitor {
+		chan="13Laser:m1.RBV"
+		clr=14
+		bclr=40
+	}
+	limits {
+	}
+}
+polygon {
+	object {
+		x=604
+		y=160
+		width=19
+		height=84
+	}
+	"basic attribute" {
+		clr=56
+	}
+	points {
+		(614,160)
+		(604,175)
+		(612,173)
+		(612,230)
+		(606,225)
+		(614,244)
+		(623,226)
+		(616,230)
+		(616,174)
+		(623,177)
+		(615,163)
+		(614,160)
+	}
+}
+"text entry" {
+	object {
+		x=546
+		y=193
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m1.TWV"
+		clr=14
+		bclr=56
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=546
+		y=220
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m1.TWR"
+		clr=14
+		bclr=15
+	}
+	label="\/"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=546
+		y=167
+		width=56
+		height=22
+	}
+	control {
+		chan="13Laser:m1.TWF"
+		clr=14
+		bclr=15
+	}
+	label="/\"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=377
+		y=114
+		width=44
+		height=17
+	}
+	control {
+		chan="13Laser:m5.VAL"
+		clr=0
+		bclr=12
+	}
+	label="Zero"
+	press_msg="0"
+	clrmod="discrete"
+}
+text {
+	object {
+		x=546
+		y=104
+		width=182
+		height=26
+	}
+	"basic attribute" {
+		clr=55
+	}
+	"dynamic attribute" {
+		chan="X"
+	}
+	textix="Rough Movement"
+}
+composite {
+	object {
+		x=155
+		y=171
+		width=108
+		height=81
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=155
+				y=171
+				width=108
+				height=81
+			}
+			control {
+				chan="13Laser:allstop"
+				clr=30
+				bclr=20
+			}
+			label="STOP"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13Laser:alldone.VAL"
 	}
 }
