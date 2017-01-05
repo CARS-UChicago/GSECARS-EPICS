@@ -1,4 +1,4 @@
-# VXWorks startup file for 13IDA ioc
+# vxWorks startup file for 13IDA ioc
 
 < cdCommands
 < ../nfsCommandsGSE
@@ -45,7 +45,8 @@ dbLoadTemplate("motors.template")
 iocsh("TetrAMM.cmd")
 
 # AH501 electrometer for E branch
-iocsh("AH501.cmd")
+#MN 10-Oct-2016: move to softioc 13XRM
+## iocsh("AH501.cmd")
 
 # Monochromator positions
 #dbLoadTemplate("mono_position.template")
@@ -55,7 +56,8 @@ dbLoadTemplate("13ID_BPM_Foil.substitutions")
 
 # Monochromator PID
 dbLoadTemplate("mono_pid.template")
-dbLoadTemplate("emono_pid.template")
+#MN 10-Oct-2016: move to softioc 13XRM
+## dbLoadTemplate("emono_pid.template")
 
 # Large KB Mirror PID
 dbLoadTemplate("mirror_pid.template")
@@ -210,3 +212,9 @@ saveData_Init("saveDataExtraPVs.req", "P=13IDA:")
 motorUtilInit("13IDA:")
 
 
+# 2016-Sep-27: set lower limit on QuadBPM values per read
+
+dbpf("13IDA:QE1:ValuesPerRead.LOPR","15")
+
+# dbpf("13IDA:QE2:ValuesPerRead.LOPR","15")
+# dbpf("13IDA:QE2:ValuesPerRead","40")
