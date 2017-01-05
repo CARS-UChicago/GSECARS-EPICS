@@ -14,11 +14,15 @@ CARSWin32_registerRecordDeviceDriver(pdbbase)
 # set bit 7(MSB)=1, which results in non-printable ASCII.
 # Work around this problem by setting the Moxa terminal server
 # to 7 data bits and 2 stop bits.
+# Omega meters should be
+#   9600 baud, 7 data, 2 stop, parity=None, Flow control=None
 drvAsynIPPortConfigure("serial1", "164.54.160.163:4001", 0, 0, 0)
 drvAsynIPPortConfigure("serial2", "164.54.160.163:4002", 0, 0, 0)
 # Serial 3 is the ACS MCB-4B motor controller
+# Settings: 19200, 8, 1, None, None
 drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
 # Serial 4 is the SensaVac vaccum gauge controller
+# Settings: 19200, 8, 1, None, None
 drvAsynIPPortConfigure("serial4", "164.54.160.163:4004", 0, 0, 0)
 # Serial 5 is an Omega meter.  See above.
 drvAsynIPPortConfigure("serial5", "164.54.160.163:4005", 0, 0, 0)
