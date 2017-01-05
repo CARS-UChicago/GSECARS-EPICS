@@ -10,7 +10,7 @@ pointGreyApp_registerRecordDeviceDriver(pdbbase)
 # Use this line for a specific camera by serial number, in this case the tomography Grasshopper3 USB-3.0 cameras
 #epicsEnvSet("CAMERA_ID", "13510305")
 # Use this line for a specific camera by serial number, in this case the LVP Grasshopper3 USB-3.0 cameras
-epicsEnvSet("CAMERA_ID", "14120134")
+epicsEnvSet("CAMERA_ID", "15452742")
 
 # Prefix for all records
 epicsEnvSet("PREFIX", "13BMDPG2:")
