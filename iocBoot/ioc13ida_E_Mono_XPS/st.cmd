@@ -124,7 +124,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13IDA_EMONO:")
 
 iocInit
 # MN 12-Nov-2012  run MonoEnergy sequence program here
-seq(&GSE_MonoEnergy, "MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, FB=13IDA:mono_pid2, CAL=13ID_US_UndCalibration.xml")
+seq(&GSE_MonoEnergy, "MONO=13IDE:En, ID=ID13us:, MTH=13IDA:m65, MY=13IDA:m66, FB=13XRM:pitch_pid, CAL=13ID_US_UndCalibration.xml")
 
 ### Start up the autosave task and tell it what to do.
 # The task is actually named "save_restore".
