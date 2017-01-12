@@ -8,20 +8,20 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-SUPPORT=/corvette/home/epics/devel
+SUPPORT=/corvette/home/epics/support
 -include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
 
 ALLEN_BRADLEY=$(SUPPORT)/allenBradley-2-3
 # CARS requires areaDetector, and areaDetector/configure already defines
 # ASYN, EV4_BASE, libraries needed for plugins, etc.
-AREA_DETECTOR=$(SUPPORT)/areaDetector-2-5
+AREA_DETECTOR=$(SUPPORT)/areaDetector-2-6
 -include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local
 
 # Unfortunately RELEASE_PATHS.local above redefines SUPPORT and AREA_DETECTOR
 # and this messes things up on Windows building on a Linux host.
 # Need to redefine them as above.
 -include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
-AREA_DETECTOR=$(SUPPORT)/areaDetector-2-5
+AREA_DETECTOR=$(SUPPORT)/areaDetector-2-6
 -include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
 -include $(AREA_DETECTOR)/configure/RELEASE_PRODS.local
 
@@ -36,7 +36,7 @@ ADPERKINELMER=$(AREA_DETECTOR)/ADPerkinElmer
 ADPILATUS=$(AREA_DETECTOR)/ADPilatus
 ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
 ADPOINTGREY=$(AREA_DETECTOR)/ADPointGrey
-ASYN=$(SUPPORT)/asyn-4-30
+ASYN=$(SUPPORT)/asyn-4-31
 AUTOSAVE=$(SUPPORT)/autosave-5-7-1
 BUSY=$(SUPPORT)/busy-1-6-1
 CALC=$(SUPPORT)/calc-3-6-1
@@ -48,27 +48,27 @@ DEVIOCSTATS=$(SUPPORT)/devIocStats-3-1-14
 DXP=$(SUPPORT)/dxp-3-5
 HY8522=$(SUPPORT)/Hy8522ip-asyn-4-4
 IP=$(SUPPORT)/ip-2-17
-IPAC=$(SUPPORT)/ipac-2-13
+IPAC=$(SUPPORT)/ipac-2-14
 IP330=$(SUPPORT)/ip330-2-8
 IPUNIDIG=$(SUPPORT)/ipUnidig-2-10
 LOVE=$(SUPPORT)/love-3-2-5
 MCA=$(SUPPORT)/mca-7-6
-MEASCOMP=$(SUPPORT)/measComp-1-3
+MEASCOMP=$(SUPPORT)/measComp-1-3-1
 MODBUS=$(SUPPORT)/modbus-2-9
 MOTOR=$(SUPPORT)/motor-6-9
 OPTICS=$(SUPPORT)/optics-2-9-3
 QUADEM=$(SUPPORT)/quadEM-7-0
-SNCSEQ=$(SUPPORT)/seq-2-2-3
+SNCSEQ=$(SUPPORT)/seq-2-2-4
 SOFTGLUE=$(SUPPORT)/softGlue-2-8
 SSCAN=$(SUPPORT)/sscan-2-10-2
 STD=$(SUPPORT)/std-3-4-1
-STREAM=$(SUPPORT)/stream-2-6c
+STREAM=$(SUPPORT)/stream-2-7-7
 TPMAC=$(SUPPORT)/tpmac-3-11dls5
 VME=$(SUPPORT)/vme-2-8-2
 VXSTATS=$(SUPPORT)/vxStats-1-7-2h
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/corvette/usr/local/epics-devel/base-3.15.5
+EPICS_BASE=/corvette/usr/local/epics/base-3.15.5
 -include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
 
 #Capfast users may need the following definitions
