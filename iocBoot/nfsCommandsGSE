@@ -5,7 +5,12 @@ routec "-n add default 164.54.160.1"
 #proxyPortFwdOff(67)
 
 # Set the UNIX uid/gid to the EPICS account
-nfsAuthUnixSet("corvette",401,400,0,0)
+## nfsAuthUnixSet("corvette",401,400,0,0)
+## nfsAuthUnixSet("ion",1001,400,0,0)
+## nfsAuthUnixSet("ion", 849601092, 400, 0, 0)
+##
+
+nfsAuthUnixSet("corvette", 849601092, 849600513, 0, 0)
 
 # Mount drives with NFS
 nfsMount("corvette","/home","/corvette/home")
