@@ -14,7 +14,7 @@ CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13BMC_Laser:")
 
-# Create serial ports 1-4 on COM4-7
+
 # Serial 1 is Laser Quantum laser
 drvAsynIPPortConfigure("serial1", "164.54.160.53:4001", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r\n")
@@ -27,6 +27,44 @@ drvAsynIPPortConfigure("serial2", "164.54.160.107:10001", 0, 0, 0)
 asynOctetSetInputEos("serial2",0,"\r")
 asynOctetSetOutputEos("serial2",0,"\r")
 
+
+# Serial 4 is AG-UC8 8-axis AGILIS controller
+
+# Following section from serial.cmd on computer:lightfield
+drvAsynSerialPortConfigure("serial4", "COM4", 0, 0, 0)
+asynOctetSetInputEos("serial4",0,"\r\n")
+asynOctetSetOutputEos("serial4",0,"\r\n")
+asynSetOption("serial4",0,"baud","921600")
+#asynSetOption("serial4",0,"baud","9600")
+asynSetOption("serial4",0,"bits","8")
+asynSetOption("serial4",0,"stop","1")
+asynSetOption("serial4",0,"parity","none")
+asynSetOption("serial4",0,"clocal","Y")
+asynSetOption("serial4",0,"crtscts","N")
+asynSetTraceIOMask("serial4", 0, 2)
+#asynSetTraceMask("serial4", 0, 0x19)
+
+# Load asynRecord records on all ports
+dbLoadTemplate("asynRecord.substitutions")
+
+# Following section from st.cmd on computer:lightfield
+
+# AG_UCCreateController(asyn port, serial port, number of axes, 
+#                        active poll period (ms), idle poll period (ms)) 
+AG_UCCreateController("Agilis1", "serial4", 5, 50, 500)
+asynSetTraceIOMask("Agilis1", 0, 2)
+#asynSetTraceMask("Agilis1", 0, 255)
+
+# AG_UCCreateAxis((AG_UC controller port,  axis, hasLimits, forwardAmplitude, reverseAmplitude)
+AG_UCCreateAxis("Agilis1", 0, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 1, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 2, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 3, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 4, 0, 50, -50)
+
+### Motors
+dbLoadTemplate  "motors.template"
+####################################################
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
 
