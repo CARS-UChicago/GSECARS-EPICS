@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13IDE_mprobe.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
@@ -688,10 +688,6 @@ text {
 		name="GSE_MonoEnergy.adl"
 		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
-	display[5] {
-		label="Beam Position"
-		name="13IDE_BPM.adl"
-	}
 	display[6] {
 		label="BPM Electronics"
 		name="quadEM.adl"
@@ -827,8 +823,13 @@ rectangle {
 		name="quadEM.adl"
 		args="P=13IDE:, R=TetrAMM:"
 	}
+	display[3] {
+		label="QuadVortex Xspress3 (new)"
+		name="xspress3_4chan.adl"
+		args="P=13QX4"
+	}
 	display[4] {
-		label="Quad Vortex Xspress3"
+		label="QuadVortex Xspress3 (classic)"
 		name="xspress3_main.adl"
 		args="P=13QX4"
 	}
