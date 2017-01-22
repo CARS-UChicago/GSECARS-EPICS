@@ -55,6 +55,9 @@ dbLoadRecords("$(ADCORE)/db/NDFileNexus.template", "P=$(PREFIX),R=Nexus1:,PORT=D
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=$(PREFIX),MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
 
+# Load devIocStats
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db", "IOC=$(PREFIX)")
+
 iocInit
 
 seq dxpMED, "P=$(PREFIX), DXP=dxp, MCA=mca, N_DETECTORS=4, N_SCAS=32"
