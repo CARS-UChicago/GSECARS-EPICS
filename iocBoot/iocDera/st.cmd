@@ -26,10 +26,7 @@ MultiFunctionConfig("1608G", 0, $(INPUT_POINTS), $(OUTPUT_POINTS))
 
 dbLoadTemplate("1608G.substitutions")
 
-# Load asynRecord
-dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=asyn1,PORT=serial1,ADDR=0,OMAX=80,IMAX=80")
-
-# SR570 database
+## SR570 database
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=$(PREFIX),A=A1,PORT=serial1")
 
 # Newport CONEX-PP controllers
@@ -58,7 +55,14 @@ asynSetTraceIOMask("CONEX2", 0, 2)
 AG_CONEXCreateController("CONEX3", "serial2", 3, 50, 500)
 asynSetTraceIOMask("CONEX3", 0, 2)
 #asynSetTraceMask("CONEX3", 0, 255)
+dbLoadTemplate("motor.substitutions")
 
+### Allstop, alldone
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=Dera:")
+
+# Load asynRecords
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=serial1,ADDR=0,OMAX=80,IMAX=80")
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial2,PORT=serial2,ADDR=0,OMAX=80,IMAX=80")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -67,6 +71,7 @@ asynSetTraceIOMask("CONEX3", 0, 2)
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadTemplate("scanParms.template")
 
 <../calc_GSECARS.iocsh
 
