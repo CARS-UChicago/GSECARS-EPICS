@@ -9,7 +9,7 @@
  */
 
 #include <stdio.h>
-#include "tinyxml.h"
+#include <libxml/parser.h>
 #include "splint.h"
 #include "GSE_MonoSupport.h"
 #include <epicsExport.h>
@@ -35,34 +35,35 @@ int GSE_MonoReadCalibration(const char *fileName)
   static const char *functionName = "GSE_MonoReadCalibration";
 
   const char *pHarmonicNum, *pEnergy, *pGap;
-  TiXmlDocument doc(fileName);
-  TiXmlElement *Harmonics, *Harmonic, *Measurement;
+  xmlDocPtr doc;
+  xmlNode *Harmonics, *Harmonic, *Measurement;
   int i, j;
   measurementTable_t *pMT;
 
-  if (!doc.LoadFile()) {
-    fprintf(stderr, "%s: cannot open file %s error=%s\n", 
-      functionName, fileName, doc.ErrorDesc());
+  doc = xmlReadFile(fileName, NULL, 0);
+  if (doc == NULL) {
+    fprintf(stderr, "%s: cannot open file %s\n", 
+      functionName, fileName);
     return -1;
   }
-  Harmonics = doc.FirstChildElement("Harmonics");
-  if (!Harmonics) {
+  Harmonics = xmlDocGetRootElement(doc);
+  if (!Harmonics || (!xmlStrEqual(Harmonics->name, (const xmlChar *)"Harmonics"))) {
     fprintf(stderr, "%s: cannot find Harmonics element\n", 
       functionName);
     return -1;
   }
   // Count the number of harmonics in the file
-  for (i=0, Harmonic = Harmonics->FirstChildElement(); 
+  for (i=0, Harmonic = xmlFirstElementChild(Harmonics); 
        Harmonic; 
-       i++, Harmonic = Harmonic->NextSiblingElement()) {
+       i++, Harmonic = xmlNextElementSibling(Harmonic)) {
   }
   HT.numHarmonics = i;
   HT.harmonics = (int *)calloc(i, sizeof(int *));
   HT.pMT = (measurementTable_t **)calloc(i, sizeof(measurementTable_t *));
-  for (i=0, Harmonic = Harmonics->FirstChildElement(); 
+  for (i=0, Harmonic = xmlFirstElementChild(Harmonics); 
        Harmonic; 
-       i++, Harmonic = Harmonic->NextSiblingElement()) {
-    pHarmonicNum = Harmonic->Attribute("value");
+       i++, Harmonic = xmlNextElementSibling(Harmonic)) {
+    pHarmonicNum = (const char *)xmlGetProp(Harmonic, (const xmlChar *)"value");
     if (!pHarmonicNum) {
       fprintf(stderr, "%s: value attribute not found for Harmonic\n", 
         functionName);
@@ -72,25 +73,25 @@ int GSE_MonoReadCalibration(const char *fileName)
     HT.pMT[i] = (measurementTable_t *)calloc(1, sizeof(measurementTable_t));
     pMT = HT.pMT[i];
     // Count the number of measurements for this harmonic
-    for (j=0, Measurement = Harmonic->FirstChildElement(); 
+    for (j=0, Measurement = xmlFirstElementChild(Harmonic); 
          Measurement; 
-         j++, Measurement = Measurement->NextSiblingElement()) {
+         j++, Measurement = xmlNextElementSibling(Measurement)) {
     }
     pMT->numMeasurements = j;
     pMT->energy =            (double *)calloc(j, sizeof(double));
     pMT->gap =               (double *)calloc(j, sizeof(double));
     pMT->energyToGapCoeffs = (double *)calloc(j, sizeof(double));
     pMT->gapToEnergyCoeffs = (double *)calloc(j, sizeof(double));
-    for (j=0, Measurement = Harmonic->FirstChildElement(); 
+    for (j=0, Measurement = xmlFirstElementChild(Harmonic); 
          Measurement; 
-         j++, Measurement = Measurement->NextSiblingElement()) {
-      pEnergy = Measurement->Attribute("energy");
+         j++, Measurement = xmlNextElementSibling(Measurement)) {
+      pEnergy= (const char *)xmlGetProp(Measurement, (const xmlChar *)"energy");
       if (!pEnergy) {
         fprintf(stderr, "%s: energy attribute not found for Measurement\n", 
           functionName);
         return -1;
       }
-      pGap = Measurement->Attribute("gap");
+      pGap= (const char *)xmlGetProp(Measurement, (const xmlChar *)"gap");
       if (!pGap) {
         fprintf(stderr, "%s: gap attribute not found for Measurement\n", 
           functionName);
