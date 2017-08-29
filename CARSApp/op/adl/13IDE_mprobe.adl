@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=1232
-		y=359
+		x=2648
+		y=341
 		width=625
 		height=676
 	}
@@ -233,6 +233,10 @@ rectangle {
 		label="Scan Server"
 		name="XRM_scandb.adl"
 		args="P=13XRM:, Q=SCANDB"
+	}
+	display[7] {
+		label="QXAFS Status"
+		name="XRM_qxafs.adl"
 	}
 	display[8] {
 		label="Expt Info"
@@ -721,7 +725,7 @@ text {
 	}
 	display[0] {
 		label="Undulator"
-		name="UndulatorCtl.adl"
+		name="UndulatorCtl_us.adl"
 		args="xx=13us"
 	}
 	clr=54
@@ -821,7 +825,7 @@ rectangle {
 	display[2] {
 		label="TetrAMM"
 		name="quadEM.adl"
-		args="P=13IDE:, R=TetrAMM:"
+		args="P=13XRM:,R=TetrAMM:"
 	}
 	display[3] {
 		label="QuadVortex Xspress3 (new)"
@@ -871,7 +875,7 @@ text {
 }
 "text update" {
 	object {
-		x=290
+		x=318
 		y=260
 		width=100
 		height=20
@@ -1075,7 +1079,7 @@ text {
 	"basic attribute" {
 		clr=24
 	}
-	textix="Pitch Piezo"
+	textix="Pitch"
 }
 "message button" {
 	object {
@@ -1209,7 +1213,7 @@ text {
 	"basic attribute" {
 		clr=24
 	}
-	textix="Roll Piezo"
+	textix="Roll"
 }
 oval {
 	object {
@@ -1442,9 +1446,9 @@ text {
 }
 "text entry" {
 	object {
-		x=320
-		y=283
-		width=80
+		x=322
+		y=285
+		width=55
 		height=20
 	}
 	control {
@@ -1459,14 +1463,14 @@ text {
 text {
 	object {
 		x=220
-		y=283
-		width=30
+		y=285
+		width=100
 		height=18
 	}
 	"basic attribute" {
 		clr=23
 	}
-	textix="I0 Minimum:"
+	textix="Reset: @I0"
 }
 "choice button" {
 	object {
@@ -1539,7 +1543,7 @@ text {
 "message button" {
 	object {
 		x=10
-		y=240
+		y=195
 		width=190
 		height=25
 	}
@@ -1554,7 +1558,7 @@ text {
 "message button" {
 	object {
 		x=10
-		y=270
+		y=225
 		width=190
 		height=25
 	}
@@ -1611,7 +1615,7 @@ text {
 "text entry" {
 	object {
 		x=120
-		y=330
+		y=335
 		width=80
 		height=20
 	}
@@ -1626,7 +1630,7 @@ text {
 "text entry" {
 	object {
 		x=120
-		y=305
+		y=310
 		width=80
 		height=20
 	}
@@ -1640,8 +1644,8 @@ text {
 }
 text {
 	object {
-		x=15
-		y=305
+		x=10
+		y=310
 		width=70
 		height=18
 	}
@@ -1652,8 +1656,8 @@ text {
 }
 text {
 	object {
-		x=15
-		y=330
+		x=10
+		y=335
 		width=70
 		height=18
 	}
@@ -1704,4 +1708,32 @@ text {
 		clr=24
 	}
 	textix="BPM"
+}
+"text entry" {
+	object {
+		x=460
+		y=285
+		width=55
+		height=20
+	}
+	control {
+		chan="13XRM:ION:AutotuneDelay"
+		clr=14
+		bclr=0
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=385
+		y=285
+		width=75
+		height=18
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="@Time"
 }
