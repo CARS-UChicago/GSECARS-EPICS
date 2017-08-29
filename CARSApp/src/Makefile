@@ -25,11 +25,11 @@ CARS_Common_LIBS += pmacAsynMotor pmacAsynIPPort
 CARS_Common_LIBS += ACRMotor Aerotech Acs Faulhaber Ims Mclennan Newport Parker motorSimSupport softMotor motor
 CARS_Common_LIBS += stream streamSynApps
 CARS_Common_LIBS += modbus
-CARS_Common_LIBS += ADBase
 CARS_Common_LIBS += asyn
 CARS_Common_LIBS += seq pv
 CARS_Common_LIBS += devIocStats
 CARS_Common_LIBS += $(EPICS_BASE_IOC_LIBS)
+
 
 # The following are compiled and added to the Support library
 CARS_SRCS += coordTrans2D.st
@@ -47,6 +47,8 @@ CARS_SRCS += newport_table_support.c
 CARS_SRCS += splint.c
 CARS_SRCS_Linux   += testIpac.c
 CARS_SRCS_vxWorks += testIpac.c
+
+include $(ADCORE)/ADApp/commonLibraryMakefile
 
 #===========================
 
@@ -92,11 +94,13 @@ CARS_Linux_LIBS        += dac128V
 CARS_Linux_LIBS        += softGlue
 CARS_Linux_LIBS        += Ipac
 #CARS_Linux_LIBS        += Hy8522Asyn
+CARS_Linux_LIBS        += mcaAmptek
 CARS_Linux_SYS_LIBS    += net pcap
 CARS_Linux_SYS_LIBS    += usb
 
 CARS_WIN32_LIBS        += wpcap Packet 
 CARS_WIN32_LIBS        += measComp
+CARS_WIN32_LIBS        += mcaAmptek
 ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
 CARS_WIN32_LIBS        += cbw32
 else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
