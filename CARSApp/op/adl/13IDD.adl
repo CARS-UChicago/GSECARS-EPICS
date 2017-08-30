@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13IDD.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
@@ -406,6 +406,11 @@ text {
 		name="stripChart.adl"
 		args="P=13IDD:"
 	}
+	display[8] {
+		label="Joerger Scaler"
+		name="scaler_full.adl"
+		args="P=13IDD:, S=scaler2"
+	}
 	clr=14
 	bclr=4
 }
@@ -455,6 +460,11 @@ text {
 		label="Temperature Ramp"
 		name="LVP_Theta.adl"
 		args="P=13IDD:,R=Theta1_,RBV=13IDD:LVP:PID1.VAL,DRV=13IDD:Theta1_RampOut.E, PID=LVP:PID1"
+	}
+	display[9] {
+		label="Joerger Scaler"
+		name="scaler_full.adl"
+		args="P=13IDD:, S=scaler2"
 	}
 	clr=14
 	bclr=4
@@ -844,9 +854,9 @@ text {
 		args="P=13IDD:SIS1:"
 	}
 	display[1] {
-		label="Scaler #2"
+		label="Scaler #1"
 		name="scaler_full.adl"
-		args="P=13IDD:, S=scaler2"
+		args="P=13IDD:, S=scaler1"
 	}
 	clr=14
 	bclr=4
