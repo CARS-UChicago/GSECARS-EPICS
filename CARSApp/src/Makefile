@@ -97,6 +97,7 @@ CARS_Linux_LIBS        += Ipac
 CARS_Linux_LIBS        += mcaAmptek
 CARS_Linux_SYS_LIBS    += net pcap
 CARS_Linux_SYS_LIBS    += usb
+CARS_Linux_SYS_LIBS    += usb-1.0
 
 CARS_WIN32_LIBS        += wpcap Packet 
 CARS_WIN32_LIBS        += measComp
