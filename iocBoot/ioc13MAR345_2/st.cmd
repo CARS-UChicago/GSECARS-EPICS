@@ -23,7 +23,7 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 ###
 # Create the asyn port to talk to the MAR on port 5001
-drvAsynIPPortConfigure("marServer","gse-marip2.cars.aps.anl.gov:5001")
+drvAsynIPPortConfigure("marServer","localhost:5001")
 # Set the input and output terminators.
 asynOctetSetInputEos("marServer", 0, "\n")
 asynOctetSetOutputEos("marServer", 0, "\n")
