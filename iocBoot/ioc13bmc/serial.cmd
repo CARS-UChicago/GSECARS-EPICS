@@ -5,7 +5,7 @@ tyGSAsynInit("serial2", "UART0", 1, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
 tyGSAsynInit("serial3", "UART0", 2, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
 tyGSAsynInit("serial4", "UART0", 3, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
 tyGSAsynInit("serial5", "UART0", 4, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
-tyGSAsynInit("serial6", "UART0", 5, 9600,'N',2,8,'N',"\n","\n")  /* SRS 570 */
+tyGSAsynInit("serial6", "UART0", 5,19200,'N',1,8,'N',"\r","\r")  /* Linkam */
 tyGSAsynInit("serial7", "UART0", 6, 9600,'N',2,8,'N',"\r","\r")  /* Pelco CM6700 video switch */
 # Serial 8 can either be the LAE or the Keithley
 #tyGSAsynInit("serial8", "UART0", 7, 9600,'N',1,8,'N',"\n","\n")  /* LAE500 */
@@ -18,7 +18,7 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A2,PORT=serial2")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A3,PORT=serial3")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A4,PORT=serial4")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A5,PORT=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A6,PORT=serial6")
+#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A6,PORT=serial6")
 
 # Serial 7 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
