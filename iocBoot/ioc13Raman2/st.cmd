@@ -64,7 +64,7 @@ asynSetTraceIOMask("serial4", 0, 2)
 #asynSetTraceMask("serial4", 0, 0x19)
 
 # Serial 5 is Newport AG-UC8 motor controller
-drvAsynSerialPortConfigure("serial5", "COM8", 0, 0, 0)
+drvAsynSerialPortConfigure("serial5", "COM9", 0, 0, 0)
 asynOctetSetInputEos("serial5",0,"\r\n")
 asynOctetSetOutputEos("serial5",0,"\r\n")
 asynSetOption("serial5",0,"baud","921600")
