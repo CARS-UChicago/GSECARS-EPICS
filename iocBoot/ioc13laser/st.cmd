@@ -88,6 +88,8 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Laser:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Laser:")
+# Free-standing user string sequence records (sseq records)
+dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13Laser:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Laser:")
