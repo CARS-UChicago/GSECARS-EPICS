@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/multi_prosilica.adl"
-	version=030105
+	name="/home/epics/support/CARS/CARSApp/op/adl/prosilica4.adl"
+	version=030109
 }
 display {
 	object {
@@ -111,1719 +111,1695 @@ text {
 	textix="Prosilica Camera Control"
 	align="horiz. centered"
 }
-composite {
+text {
+	object {
+		x=286
+		y=50
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Exposure time"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=315
+		y=100
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P1)cam1:AcquireTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=303
+		y=75
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P1)cam1:AcquireTime_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=416
+		y=50
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acq period"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=448
+		y=100
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P1)cam1:AcquirePeriod"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=443
+		y=75
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P1)cam1:AcquirePeriod_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+menu {
+	object {
+		x=550
+		y=100
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P1)cam1:ImageMode"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=552
+		y=50
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=556
+		y=75
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P1)cam1:ImageMode_RBV"
+		clr=54
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=18
+		y=75
+		width=140
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="$(P1)cam1:"
+}
+text {
+	object {
+		x=23
+		y=50
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Camera/Model"
+}
+"text update" {
+	object {
+		x=18
+		y=100
+		width=160
+		height=18
+	}
+	monitor {
+		chan="$(P1)cam1:Model_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=75
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P1)cam1:ArrayCounter_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=100
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P1)cam1:ArrayRate_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=168
+		y=50
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acquire"
+	align="horiz. right"
+}
+text {
+	object {
+		x=183
+		y=75
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=63
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		calc="A"
+		chan="$(P1)cam1:Acquire"
+	}
+	textix="Done"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=163
+		y=75
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A"
+		chan="$(P1)cam1:Acquire"
+	}
+	textix="Collecting"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=163
+		y=100
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P1)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Start"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=223
+		y=100
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P1)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Stop"
+	press_msg="0"
+}
+text {
+	object {
+		x=781
+		y=50
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="More"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=794
+		y=75
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Image #1"
+		name="NDStdArrays.adl"
+		args="P=$(P1), R=image1:"
+	}
+	display[1] {
+		label="Process #1"
+		name="NDProcess.adl"
+		args="P=$(P1), R=Proc1:"
+	}
+	display[2] {
+		label="Transform #1"
+		name="NDTransform.adl"
+		args="P=$(P1), R=Trans1:"
+	}
+	display[3] {
+		label="Color convert #1"
+		name="NDColorConvert.adl"
+		args="P=$(P1), R=CC1:"
+	}
+	display[4] {
+		label="Overlays 1-8"
+		name="NDOverlay8.adl"
+		args="P=$(P1), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[5] {
+		label="ROIs 1-4"
+		name="NDROI4.adl"
+		args="P=$(P1), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
+	}
+	display[6] {
+		label="Tiff Plugin"
+		name="NDFileTIFF.adl"
+		args="P=$(P1),R=TIFF1:"
+	}
+	display[7] {
+		label="JPEG Plugin"
+		name="NDFileJPEG.adl"
+		args="P=$(P1),R=JPEG1:"
+	}
+	display[8] {
+		label="All plugins"
+		name="commonPlugins.adl"
+		args="P=$(P1)"
+	}
+	clr=14
+	bclr=51
+	label="-Plugins"
+}
+text {
+	object {
+		x=670
+		y=50
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Counter/Rate"
+	align="horiz. right"
+}
+"related display" {
+	object {
+		x=794
+		y=100
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Prosilica"
+		name="prosilica.adl"
+		args="P=$(P1), R=cam1:"
+	}
+	display[1] {
+		name="NDProcess.adl"
+		args="P=$(P1), R=Proc1:"
+	}
+	display[2] {
+		name="NDTransform.adl"
+		args="P=$(P1), R=Trans1:"
+	}
+	display[3] {
+		name="NDColorConvert.adl"
+		args="P=$(P1), R=CC1:"
+	}
+	display[4] {
+		name="NDColorConvert.adl"
+		args="P=$(P1), R=CC2:"
+	}
+	display[5] {
+		name="NDOverlay.adl"
+		args="P=$(P1), R=Over1:"
+	}
+	display[6] {
+		name="NDOverlay8.adl"
+		args="P=$(P1), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[7] {
+		name="scan_more.adl"
+		args="P=$(P1), S=scan1, N=1"
+	}
+	display[8] {
+		name="yySseq.adl"
+		args="P=$(P1), S=AcquireSequence"
+	}
+	clr=14
+	bclr=51
+	label="-Full"
+}
+rectangle {
 	object {
 		x=10
 		y=45
 		width=880
 		height=90
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=286
-				y=50
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Exposure time"
-			align="horiz. right"
-		}
-		"text entry" {
-			object {
-				x=315
-				y=100
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P1)cam1:AcquireTime"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=303
-				y=75
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P1)cam1:AcquireTime_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=416
-				y=50
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acq period"
-			align="horiz. centered"
-		}
-		"text entry" {
-			object {
-				x=448
-				y=100
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P1)cam1:AcquirePeriod"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=443
-				y=75
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P1)cam1:AcquirePeriod_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		menu {
-			object {
-				x=550
-				y=100
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P1)cam1:ImageMode"
-				clr=14
-				bclr=51
-			}
-		}
-		text {
-			object {
-				x=552
-				y=50
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=556
-				y=75
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P1)cam1:ImageMode_RBV"
-				clr=54
-				bclr=4
-			}
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=18
-				y=75
-				width=140
-				height=18
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="$(P1)cam1:"
-		}
-		text {
-			object {
-				x=23
-				y=50
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Camera/Model"
-		}
-		"text update" {
-			object {
-				x=18
-				y=100
-				width=160
-				height=18
-			}
-			monitor {
-				chan="$(P1)cam1:Model_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=75
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P1)cam1:ArrayCounter_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=100
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P1)cam1:ArrayRate_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=168
-				y=50
-				width=70
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acquire"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=183
-				y=75
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=63
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				calc="A"
-				chan="$(P1)cam1:Acquire"
-			}
-			textix="Done"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=163
-				y=75
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				calc="A"
-				chan="$(P1)cam1:Acquire"
-			}
-			textix="Collecting"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=163
-				y=100
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P1)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Start"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=223
-				y=100
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P1)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=781
-				y=50
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="More"
-			align="horiz. centered"
-		}
-		"related display" {
-			object {
-				x=794
-				y=75
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Image #1"
-				name="NDStdArrays.adl"
-				args="P=$(P1), R=image1:"
-			}
-			display[1] {
-				label="Process #1"
-				name="NDProcess.adl"
-				args="P=$(P1), R=Proc1:"
-			}
-			display[2] {
-				label="Transform #1"
-				name="NDTransform.adl"
-				args="P=$(P1), R=Trans1:"
-			}
-			display[3] {
-				label="Color convert #1"
-				name="NDColorConvert.adl"
-				args="P=$(P1), R=CC1:"
-			}
-			display[4] {
-				label="Overlays 1-8"
-				name="NDOverlay8.adl"
-				args="P=$(P1), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[5] {
-				label="ROIs 1-4"
-				name="NDROI4.adl"
-				args="P=$(P1), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
-			}
-			display[6] {
-				label="Tiff Plugin"
-				name="NDFileTIFF.adl"
-				args="P=$(P1),R=TIFF1:"
-			}
-			display[7] {
-				label="JPEG Plugin"
-				name="NDFileJPEG.adl"
-				args="P=$(P1),R=JPEG1:"
-			}
-			clr=14
-			bclr=51
-			label="-Plugins"
-		}
-		text {
-			object {
-				x=670
-				y=50
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Counter/Rate"
-			align="horiz. right"
-		}
-		"related display" {
-			object {
-				x=794
-				y=100
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Prosilica"
-				name="prosilica.adl"
-				args="P=$(P1), R=cam1:"
-			}
-			display[1] {
-				name="NDProcess.adl"
-				args="P=$(P1), R=Proc1:"
-			}
-			display[2] {
-				name="NDTransform.adl"
-				args="P=$(P1), R=Trans1:"
-			}
-			display[3] {
-				name="NDColorConvert.adl"
-				args="P=$(P1), R=CC1:"
-			}
-			display[4] {
-				name="NDColorConvert.adl"
-				args="P=$(P1), R=CC2:"
-			}
-			display[5] {
-				name="NDOverlay.adl"
-				args="P=$(P1), R=Over1:"
-			}
-			display[6] {
-				name="NDOverlay8.adl"
-				args="P=$(P1), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[7] {
-				name="scan_more.adl"
-				args="P=$(P1), S=scan1, N=1"
-			}
-			display[8] {
-				name="yySseq.adl"
-				args="P=$(P1), S=AcquireSequence"
-			}
-			clr=14
-			bclr=51
-			label="-Full"
-		}
-		rectangle {
-			object {
-				x=10
-				y=45
-				width=880
-				height=90
-			}
-			"basic attribute" {
-				clr=13
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=13
+		fill="outline"
 	}
 }
-composite {
+text {
+	object {
+		x=286
+		y=145
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Exposure time"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=315
+		y=195
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P2)cam1:AcquireTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=303
+		y=170
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P2)cam1:AcquireTime_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=416
+		y=145
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acq period"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=448
+		y=195
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P2)cam1:AcquirePeriod"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=443
+		y=170
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P2)cam1:AcquirePeriod_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+menu {
+	object {
+		x=550
+		y=195
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P2)cam1:ImageMode"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=552
+		y=145
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=556
+		y=170
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P2)cam1:ImageMode_RBV"
+		clr=54
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=18
+		y=170
+		width=140
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="$(P2)cam1:"
+}
+text {
+	object {
+		x=23
+		y=145
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Camera/Model"
+}
+"text update" {
+	object {
+		x=18
+		y=195
+		width=160
+		height=18
+	}
+	monitor {
+		chan="$(P2)cam1:Model_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=170
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P2)cam1:ArrayCounter_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=195
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P2)cam1:ArrayRate_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=168
+		y=145
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acquire"
+	align="horiz. right"
+}
+text {
+	object {
+		x=183
+		y=170
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=63
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		calc="A"
+		chan="$(P2)cam1:Acquire"
+	}
+	textix="Done"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=163
+		y=170
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A"
+		chan="$(P2)cam1:Acquire"
+	}
+	textix="Collecting"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=163
+		y=195
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P2)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Start"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=223
+		y=195
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P2)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Stop"
+	press_msg="0"
+}
+text {
+	object {
+		x=781
+		y=145
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="More"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=794
+		y=170
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Image #1"
+		name="NDStdArrays.adl"
+		args="P=$(P2), R=image1:"
+	}
+	display[1] {
+		label="Process #1"
+		name="NDProcess.adl"
+		args="P=$(P2), R=Proc1:"
+	}
+	display[2] {
+		label="Transform #1"
+		name="NDTransform.adl"
+		args="P=$(P2), R=Trans1:"
+	}
+	display[3] {
+		label="Color convert #1"
+		name="NDColorConvert.adl"
+		args="P=$(P2), R=CC1:"
+	}
+	display[4] {
+		label="Overlays 1-8"
+		name="NDOverlay8.adl"
+		args="P=$(P2), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[5] {
+		label="ROIs 1-4"
+		name="NDROI4.adl"
+		args="P=$(P2), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
+	}
+	display[6] {
+		label="Tiff Plugin"
+		name="NDFileTIFF.adl"
+		args="P=$(P2),R=TIFF1:"
+	}
+	display[7] {
+		label="JPEG Plugin"
+		name="NDFileJPEG.adl"
+		args="P=$(P2),R=JPEG1:"
+	}
+	display[8] {
+		label="All plugins"
+		name="commonPlugins.adl"
+		args="P=$(P2)"
+	}
+	clr=14
+	bclr=51
+	label="-Plugins"
+}
+text {
+	object {
+		x=670
+		y=145
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Counter/Rate"
+	align="horiz. right"
+}
+"related display" {
+	object {
+		x=794
+		y=195
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Prosilica"
+		name="prosilica.adl"
+		args="P=$(P2), R=cam1:"
+	}
+	display[1] {
+		name="NDProcess.adl"
+		args="P=$(P2), R=Proc1:"
+	}
+	display[2] {
+		name="NDTransform.adl"
+		args="P=$(P2), R=Trans1:"
+	}
+	display[3] {
+		name="NDColorConvert.adl"
+		args="P=$(P2), R=CC1:"
+	}
+	display[4] {
+		name="NDColorConvert.adl"
+		args="P=$(P2), R=CC2:"
+	}
+	display[5] {
+		name="NDOverlay.adl"
+		args="P=$(P2), R=Over1:"
+	}
+	display[6] {
+		name="NDOverlay8.adl"
+		args="P=$(P2), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[7] {
+		name="scan_more.adl"
+		args="P=$(P2), S=scan1, N=1"
+	}
+	display[8] {
+		name="yySseq.adl"
+		args="P=$(P2), S=AcquireSequence"
+	}
+	clr=14
+	bclr=51
+	label="-Full"
+}
+rectangle {
 	object {
 		x=10
 		y=140
 		width=880
 		height=90
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=286
-				y=145
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Exposure time"
-			align="horiz. right"
-		}
-		"text entry" {
-			object {
-				x=315
-				y=195
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P2)cam1:AcquireTime"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=303
-				y=170
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P2)cam1:AcquireTime_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=416
-				y=145
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acq period"
-			align="horiz. centered"
-		}
-		"text entry" {
-			object {
-				x=448
-				y=195
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P2)cam1:AcquirePeriod"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=443
-				y=170
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P2)cam1:AcquirePeriod_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		menu {
-			object {
-				x=550
-				y=195
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P2)cam1:ImageMode"
-				clr=14
-				bclr=51
-			}
-		}
-		text {
-			object {
-				x=552
-				y=145
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=556
-				y=170
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P2)cam1:ImageMode_RBV"
-				clr=54
-				bclr=4
-			}
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=18
-				y=170
-				width=140
-				height=18
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="$(P2)cam1:"
-		}
-		text {
-			object {
-				x=23
-				y=145
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Camera/Model"
-		}
-		"text update" {
-			object {
-				x=18
-				y=195
-				width=160
-				height=18
-			}
-			monitor {
-				chan="$(P2)cam1:Model_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=170
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P2)cam1:ArrayCounter_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=195
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P2)cam1:ArrayRate_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=168
-				y=145
-				width=70
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acquire"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=183
-				y=170
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=63
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				calc="A"
-				chan="$(P2)cam1:Acquire"
-			}
-			textix="Done"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=163
-				y=170
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				calc="A"
-				chan="$(P2)cam1:Acquire"
-			}
-			textix="Collecting"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=163
-				y=195
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P2)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Start"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=223
-				y=195
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P2)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=781
-				y=145
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="More"
-			align="horiz. centered"
-		}
-		"related display" {
-			object {
-				x=794
-				y=170
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Image #1"
-				name="NDStdArrays.adl"
-				args="P=$(P2), R=image1:"
-			}
-			display[1] {
-				label="Process #1"
-				name="NDProcess.adl"
-				args="P=$(P2), R=Proc1:"
-			}
-			display[2] {
-				label="Transform #1"
-				name="NDTransform.adl"
-				args="P=$(P2), R=Trans1:"
-			}
-			display[3] {
-				label="Color convert #1"
-				name="NDColorConvert.adl"
-				args="P=$(P2), R=CC1:"
-			}
-			display[4] {
-				label="Overlays 1-8"
-				name="NDOverlay8.adl"
-				args="P=$(P2), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[5] {
-				label="ROIs 1-4"
-				name="NDROI4.adl"
-				args="P=$(P2), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
-			}
-			display[6] {
-				label="Tiff Plugin"
-				name="NDFileTIFF.adl"
-				args="P=$(P2),R=TIFF1:"
-			}
-			display[7] {
-				label="JPEG Plugin"
-				name="NDFileJPEG.adl"
-				args="P=$(P2),R=JPEG1:"
-			}
-			clr=14
-			bclr=51
-			label="-Plugins"
-		}
-		text {
-			object {
-				x=670
-				y=145
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Counter/Rate"
-			align="horiz. right"
-		}
-		"related display" {
-			object {
-				x=794
-				y=195
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Prosilica"
-				name="prosilica.adl"
-				args="P=$(P2), R=cam1:"
-			}
-			display[1] {
-				name="NDProcess.adl"
-				args="P=$(P2), R=Proc1:"
-			}
-			display[2] {
-				name="NDTransform.adl"
-				args="P=$(P2), R=Trans1:"
-			}
-			display[3] {
-				name="NDColorConvert.adl"
-				args="P=$(P2), R=CC1:"
-			}
-			display[4] {
-				name="NDColorConvert.adl"
-				args="P=$(P2), R=CC2:"
-			}
-			display[5] {
-				name="NDOverlay.adl"
-				args="P=$(P2), R=Over1:"
-			}
-			display[6] {
-				name="NDOverlay8.adl"
-				args="P=$(P2), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[7] {
-				name="scan_more.adl"
-				args="P=$(P2), S=scan1, N=1"
-			}
-			display[8] {
-				name="yySseq.adl"
-				args="P=$(P2), S=AcquireSequence"
-			}
-			clr=14
-			bclr=51
-			label="-Full"
-		}
-		rectangle {
-			object {
-				x=10
-				y=140
-				width=880
-				height=90
-			}
-			"basic attribute" {
-				clr=13
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=13
+		fill="outline"
 	}
 }
-composite {
+text {
+	object {
+		x=286
+		y=240
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Exposure time"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=315
+		y=290
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P3)cam1:AcquireTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=303
+		y=265
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P3)cam1:AcquireTime_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=416
+		y=240
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acq period"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=448
+		y=290
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P3)cam1:AcquirePeriod"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=443
+		y=265
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P3)cam1:AcquirePeriod_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+menu {
+	object {
+		x=550
+		y=290
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P3)cam1:ImageMode"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=552
+		y=240
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=556
+		y=265
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P3)cam1:ImageMode_RBV"
+		clr=54
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=18
+		y=265
+		width=140
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="$(P3)cam1:"
+}
+text {
+	object {
+		x=23
+		y=240
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Camera/Model"
+}
+"text update" {
+	object {
+		x=18
+		y=290
+		width=160
+		height=18
+	}
+	monitor {
+		chan="$(P3)cam1:Model_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=265
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P3)cam1:ArrayCounter_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=290
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P3)cam1:ArrayRate_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=168
+		y=240
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acquire"
+	align="horiz. right"
+}
+text {
+	object {
+		x=183
+		y=265
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=63
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		calc="A"
+		chan="$(P3)cam1:Acquire"
+	}
+	textix="Done"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=163
+		y=265
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A"
+		chan="$(P3)cam1:Acquire"
+	}
+	textix="Collecting"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=163
+		y=290
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P3)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Start"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=223
+		y=290
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P3)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Stop"
+	press_msg="0"
+}
+text {
+	object {
+		x=781
+		y=240
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="More"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=794
+		y=265
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Image #1"
+		name="NDStdArrays.adl"
+		args="P=$(P3), R=image1:"
+	}
+	display[1] {
+		label="Process #1"
+		name="NDProcess.adl"
+		args="P=$(P3), R=Proc1:"
+	}
+	display[2] {
+		label="Transform #1"
+		name="NDTransform.adl"
+		args="P=$(P3), R=Trans1:"
+	}
+	display[3] {
+		label="Color convert #1"
+		name="NDColorConvert.adl"
+		args="P=$(P3), R=CC1:"
+	}
+	display[4] {
+		label="Overlays 1-8"
+		name="NDOverlay8.adl"
+		args="P=$(P3), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[5] {
+		label="ROIs 1-4"
+		name="NDROI4.adl"
+		args="P=$(P3), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
+	}
+	display[6] {
+		label="Tiff Plugin"
+		name="NDFileTIFF.adl"
+		args="P=$(P3),R=TIFF1:"
+	}
+	display[7] {
+		label="JPEG Plugin"
+		name="NDFileJPEG.adl"
+		args="P=$(P3),R=JPEG1:"
+	}
+	display[8] {
+		label="All plugins"
+		name="commonPlugins.adl"
+		args="P=$(P3)"
+	}
+	clr=14
+	bclr=51
+	label="-Plugins"
+}
+text {
+	object {
+		x=670
+		y=240
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Counter/Rate"
+	align="horiz. right"
+}
+"related display" {
+	object {
+		x=794
+		y=290
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Prosilica"
+		name="prosilica.adl"
+		args="P=$(P3), R=cam1:"
+	}
+	display[1] {
+		name="NDProcess.adl"
+		args="P=$(P3), R=Proc1:"
+	}
+	display[2] {
+		name="NDTransform.adl"
+		args="P=$(P3), R=Trans1:"
+	}
+	display[3] {
+		name="NDColorConvert.adl"
+		args="P=$(P3), R=CC1:"
+	}
+	display[4] {
+		name="NDColorConvert.adl"
+		args="P=$(P3), R=CC2:"
+	}
+	display[5] {
+		name="NDOverlay.adl"
+		args="P=$(P3), R=Over1:"
+	}
+	display[6] {
+		name="NDOverlay8.adl"
+		args="P=$(P3), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[7] {
+		name="scan_more.adl"
+		args="P=$(P3), S=scan1, N=1"
+	}
+	display[8] {
+		name="yySseq.adl"
+		args="P=$(P3), S=AcquireSequence"
+	}
+	clr=14
+	bclr=51
+	label="-Full"
+}
+rectangle {
 	object {
 		x=10
 		y=235
 		width=880
 		height=90
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=286
-				y=240
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Exposure time"
-			align="horiz. right"
-		}
-		"text entry" {
-			object {
-				x=315
-				y=290
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P3)cam1:AcquireTime"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=303
-				y=265
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P3)cam1:AcquireTime_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=416
-				y=240
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acq period"
-			align="horiz. centered"
-		}
-		"text entry" {
-			object {
-				x=448
-				y=290
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P3)cam1:AcquirePeriod"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=443
-				y=265
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P3)cam1:AcquirePeriod_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		menu {
-			object {
-				x=550
-				y=290
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P3)cam1:ImageMode"
-				clr=14
-				bclr=51
-			}
-		}
-		text {
-			object {
-				x=552
-				y=240
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=556
-				y=265
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P3)cam1:ImageMode_RBV"
-				clr=54
-				bclr=4
-			}
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=18
-				y=265
-				width=140
-				height=18
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="$(P3)cam1:"
-		}
-		text {
-			object {
-				x=23
-				y=240
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Camera/Model"
-		}
-		"text update" {
-			object {
-				x=18
-				y=290
-				width=160
-				height=18
-			}
-			monitor {
-				chan="$(P3)cam1:Model_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=265
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P3)cam1:ArrayCounter_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=290
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P3)cam1:ArrayRate_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=168
-				y=240
-				width=70
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acquire"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=183
-				y=265
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=63
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				calc="A"
-				chan="$(P3)cam1:Acquire"
-			}
-			textix="Done"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=163
-				y=265
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				calc="A"
-				chan="$(P3)cam1:Acquire"
-			}
-			textix="Collecting"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=163
-				y=290
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P3)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Start"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=223
-				y=290
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P3)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=781
-				y=240
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="More"
-			align="horiz. centered"
-		}
-		"related display" {
-			object {
-				x=794
-				y=265
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Image #1"
-				name="NDStdArrays.adl"
-				args="P=$(P3), R=image1:"
-			}
-			display[1] {
-				label="Process #1"
-				name="NDProcess.adl"
-				args="P=$(P3), R=Proc1:"
-			}
-			display[2] {
-				label="Transform #1"
-				name="NDTransform.adl"
-				args="P=$(P3), R=Trans1:"
-			}
-			display[3] {
-				label="Color convert #1"
-				name="NDColorConvert.adl"
-				args="P=$(P3), R=CC1:"
-			}
-			display[4] {
-				label="Overlays 1-8"
-				name="NDOverlay8.adl"
-				args="P=$(P3), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[5] {
-				label="ROIs 1-4"
-				name="NDROI4.adl"
-				args="P=$(P3), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
-			}
-			display[6] {
-				label="Tiff Plugin"
-				name="NDFileTIFF.adl"
-				args="P=$(P3),R=TIFF1:"
-			}
-			display[7] {
-				label="JPEG Plugin"
-				name="NDFileJPEG.adl"
-				args="P=$(P3),R=JPEG1:"
-			}
-			clr=14
-			bclr=51
-			label="-Plugins"
-		}
-		text {
-			object {
-				x=670
-				y=240
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Counter/Rate"
-			align="horiz. right"
-		}
-		"related display" {
-			object {
-				x=794
-				y=290
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Prosilica"
-				name="prosilica.adl"
-				args="P=$(P3), R=cam1:"
-			}
-			display[1] {
-				name="NDProcess.adl"
-				args="P=$(P3), R=Proc1:"
-			}
-			display[2] {
-				name="NDTransform.adl"
-				args="P=$(P3), R=Trans1:"
-			}
-			display[3] {
-				name="NDColorConvert.adl"
-				args="P=$(P3), R=CC1:"
-			}
-			display[4] {
-				name="NDColorConvert.adl"
-				args="P=$(P3), R=CC2:"
-			}
-			display[5] {
-				name="NDOverlay.adl"
-				args="P=$(P3), R=Over1:"
-			}
-			display[6] {
-				name="NDOverlay8.adl"
-				args="P=$(P3), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[7] {
-				name="scan_more.adl"
-				args="P=$(P3), S=scan1, N=1"
-			}
-			display[8] {
-				name="yySseq.adl"
-				args="P=$(P3), S=AcquireSequence"
-			}
-			clr=14
-			bclr=51
-			label="-Full"
-		}
-		rectangle {
-			object {
-				x=10
-				y=235
-				width=880
-				height=90
-			}
-			"basic attribute" {
-				clr=13
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=13
+		fill="outline"
 	}
 }
-composite {
+text {
+	object {
+		x=286
+		y=335
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Exposure time"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=315
+		y=385
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P4)cam1:AcquireTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=303
+		y=360
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P4)cam1:AcquireTime_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=416
+		y=335
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acq period"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=448
+		y=385
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P4)cam1:AcquirePeriod"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=443
+		y=360
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P4)cam1:AcquirePeriod_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+menu {
+	object {
+		x=550
+		y=385
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P4)cam1:ImageMode"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=552
+		y=335
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=556
+		y=360
+		width=79
+		height=18
+	}
+	monitor {
+		chan="$(P4)cam1:ImageMode_RBV"
+		clr=54
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=18
+		y=360
+		width=140
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="$(P4)cam1:"
+}
+text {
+	object {
+		x=23
+		y=335
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Camera/Model"
+}
+"text update" {
+	object {
+		x=18
+		y=385
+		width=160
+		height=18
+	}
+	monitor {
+		chan="$(P4)cam1:Model_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=360
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P4)cam1:ArrayCounter_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=665
+		y=385
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P4)cam1:ArrayRate_RBV"
+		clr=54
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=168
+		y=335
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acquire"
+	align="horiz. right"
+}
+text {
+	object {
+		x=183
+		y=360
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=63
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		calc="A"
+		chan="$(P4)cam1:Acquire"
+	}
+	textix="Done"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=163
+		y=360
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A"
+		chan="$(P4)cam1:Acquire"
+	}
+	textix="Collecting"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=163
+		y=385
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P4)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Start"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=223
+		y=385
+		width=59
+		height=20
+	}
+	control {
+		chan="$(P4)cam1:Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Stop"
+	press_msg="0"
+}
+text {
+	object {
+		x=781
+		y=335
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="More"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=794
+		y=360
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Image #1"
+		name="NDStdArrays.adl"
+		args="P=$(P4), R=image1:"
+	}
+	display[1] {
+		label="Process #1"
+		name="NDProcess.adl"
+		args="P=$(P4), R=Proc1:"
+	}
+	display[2] {
+		label="Transform #1"
+		name="NDTransform.adl"
+		args="P=$(P4), R=Trans1:"
+	}
+	display[3] {
+		label="Color convert #1"
+		name="NDColorConvert.adl"
+		args="P=$(P4), R=CC1:"
+	}
+	display[4] {
+		label="Overlays 1-8"
+		name="NDOverlay8.adl"
+		args="P=$(P4), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[5] {
+		label="ROIs 1-4"
+		name="NDROI4.adl"
+		args="P=$(P4), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
+	}
+	display[6] {
+		label="Tiff Plugin"
+		name="NDFileTIFF.adl"
+		args="P=$(P4),R=TIFF1:"
+	}
+	display[7] {
+		label="JPEG Plugin"
+		name="NDFileJPEG.adl"
+		args="P=$(P4),R=JPEG1:"
+	}
+	display[8] {
+		label="All plugins"
+		name="commonPlugins.adl"
+		args="P=$(P4)"
+	}
+	clr=14
+	bclr=51
+	label="-Plugins"
+}
+text {
+	object {
+		x=670
+		y=335
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Counter/Rate"
+	align="horiz. right"
+}
+"related display" {
+	object {
+		x=794
+		y=385
+		width=80
+		height=22
+	}
+	display[0] {
+		label="Prosilica"
+		name="prosilica.adl"
+		args="P=$(P4), R=cam1:"
+	}
+	display[1] {
+		name="NDProcess.adl"
+		args="P=$(P4), R=Proc1:"
+	}
+	display[2] {
+		name="NDTransform.adl"
+		args="P=$(P4), R=Trans1:"
+	}
+	display[3] {
+		name="NDColorConvert.adl"
+		args="P=$(P4), R=CC1:"
+	}
+	display[4] {
+		name="NDColorConvert.adl"
+		args="P=$(P4), R=CC2:"
+	}
+	display[5] {
+		name="NDOverlay.adl"
+		args="P=$(P4), R=Over1:"
+	}
+	display[6] {
+		name="NDOverlay8.adl"
+		args="P=$(P4), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
+	}
+	display[7] {
+		name="scan_more.adl"
+		args="P=$(P4), S=scan1, N=1"
+	}
+	display[8] {
+		name="yySseq.adl"
+		args="P=$(P4), S=AcquireSequence"
+	}
+	clr=14
+	bclr=51
+	label="-Full"
+}
+rectangle {
 	object {
 		x=10
 		y=330
 		width=880
 		height=90
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=286
-				y=335
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Exposure time"
-			align="horiz. right"
-		}
-		"text entry" {
-			object {
-				x=315
-				y=385
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P4)cam1:AcquireTime"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=303
-				y=360
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P4)cam1:AcquireTime_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=416
-				y=335
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acq period"
-			align="horiz. centered"
-		}
-		"text entry" {
-			object {
-				x=448
-				y=385
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P4)cam1:AcquirePeriod"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=443
-				y=360
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P4)cam1:AcquirePeriod_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		menu {
-			object {
-				x=550
-				y=385
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P4)cam1:ImageMode"
-				clr=14
-				bclr=51
-			}
-		}
-		text {
-			object {
-				x=552
-				y=335
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=556
-				y=360
-				width=79
-				height=18
-			}
-			monitor {
-				chan="$(P4)cam1:ImageMode_RBV"
-				clr=54
-				bclr=4
-			}
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=18
-				y=360
-				width=140
-				height=18
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="$(P4)cam1:"
-		}
-		text {
-			object {
-				x=23
-				y=335
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Camera/Model"
-		}
-		"text update" {
-			object {
-				x=18
-				y=385
-				width=160
-				height=18
-			}
-			monitor {
-				chan="$(P4)cam1:Model_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=360
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P4)cam1:ArrayCounter_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=665
-				y=385
-				width=100
-				height=18
-			}
-			monitor {
-				chan="$(P4)cam1:ArrayRate_RBV"
-				clr=54
-				bclr=4
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=168
-				y=335
-				width=70
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acquire"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=183
-				y=360
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=63
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				calc="A"
-				chan="$(P4)cam1:Acquire"
-			}
-			textix="Done"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=163
-				y=360
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				calc="A"
-				chan="$(P4)cam1:Acquire"
-			}
-			textix="Collecting"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=163
-				y=385
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P4)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Start"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=223
-				y=385
-				width=59
-				height=20
-			}
-			control {
-				chan="$(P4)cam1:Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=781
-				y=335
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="More"
-			align="horiz. centered"
-		}
-		"related display" {
-			object {
-				x=794
-				y=360
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Image #1"
-				name="NDStdArrays.adl"
-				args="P=$(P4), R=image1:"
-			}
-			display[1] {
-				label="Process #1"
-				name="NDProcess.adl"
-				args="P=$(P4), R=Proc1:"
-			}
-			display[2] {
-				label="Transform #1"
-				name="NDTransform.adl"
-				args="P=$(P4), R=Trans1:"
-			}
-			display[3] {
-				label="Color convert #1"
-				name="NDColorConvert.adl"
-				args="P=$(P4), R=CC1:"
-			}
-			display[4] {
-				label="Overlays 1-8"
-				name="NDOverlay8.adl"
-				args="P=$(P4), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[5] {
-				label="ROIs 1-4"
-				name="NDROI4.adl"
-				args="P=$(P4), R1=ROI1:, R2=ROI2:, R3=ROI3:, R4=ROI4:"
-			}
-			display[6] {
-				label="Tiff Plugin"
-				name="NDFileTIFF.adl"
-				args="P=$(P4),R=TIFF1:"
-			}
-			display[7] {
-				label="JPEG Plugin"
-				name="NDFileJPEG.adl"
-				args="P=$(P4),R=JPEG1:"
-			}
-			clr=14
-			bclr=51
-			label="-Plugins"
-		}
-		text {
-			object {
-				x=670
-				y=335
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Counter/Rate"
-			align="horiz. right"
-		}
-		"related display" {
-			object {
-				x=794
-				y=385
-				width=80
-				height=22
-			}
-			display[0] {
-				label="Prosilica"
-				name="prosilica.adl"
-				args="P=$(P4), R=cam1:"
-			}
-			display[1] {
-				name="NDProcess.adl"
-				args="P=$(P4), R=Proc1:"
-			}
-			display[2] {
-				name="NDTransform.adl"
-				args="P=$(P4), R=Trans1:"
-			}
-			display[3] {
-				name="NDColorConvert.adl"
-				args="P=$(P4), R=CC1:"
-			}
-			display[4] {
-				name="NDColorConvert.adl"
-				args="P=$(P4), R=CC2:"
-			}
-			display[5] {
-				name="NDOverlay.adl"
-				args="P=$(P4), R=Over1:"
-			}
-			display[6] {
-				name="NDOverlay8.adl"
-				args="P=$(P4), R=Over1:,O1=Over1:1:,O2=Over1:2:,O3=Over1:3:,O4=Over1:4:,O5=Over1:5:,O6=Over1:6:,O7=Over1:7:,O8=Over1:8:"
-			}
-			display[7] {
-				name="scan_more.adl"
-				args="P=$(P4), S=scan1, N=1"
-			}
-			display[8] {
-				name="yySseq.adl"
-				args="P=$(P4), S=AcquireSequence"
-			}
-			clr=14
-			bclr=51
-			label="-Full"
-		}
-		rectangle {
-			object {
-				x=10
-				y=330
-				width=880
-				height=90
-			}
-			"basic attribute" {
-				clr=13
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=13
+		fill="outline"
 	}
 }
