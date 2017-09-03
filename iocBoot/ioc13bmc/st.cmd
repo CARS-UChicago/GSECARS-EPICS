@@ -76,6 +76,9 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000
 epicsEnvSet("PREFIX", "13BMC:")
 iocsh("../calc_GSECARS.iocsh")
 
+# Simple laser heating database
+dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13BMC:")
+
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
 
