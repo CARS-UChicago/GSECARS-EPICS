@@ -14,14 +14,14 @@ SUPPORT=/corvette/home/epics/support
 ALLEN_BRADLEY=$(SUPPORT)/allenBradley-2-3
 # CARS requires areaDetector, and areaDetector/configure already defines
 # ASYN, EV4_BASE, libraries needed for plugins, etc.
-AREA_DETECTOR=$(SUPPORT)/areaDetector-2-6
+AREA_DETECTOR=$(SUPPORT)/areaDetector-3-1
 -include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local
 
 # Unfortunately RELEASE_PATHS.local above redefines SUPPORT and AREA_DETECTOR
 # and this messes things up on Windows building on a Linux host.
 # Need to redefine them as above.
 -include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
-AREA_DETECTOR=$(SUPPORT)/areaDetector-2-6
+AREA_DETECTOR=$(SUPPORT)/areaDetector-3-1
 -include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
 -include $(AREA_DETECTOR)/configure/RELEASE_PRODS.local
 
@@ -37,27 +37,27 @@ ADPILATUS=$(AREA_DETECTOR)/ADPilatus
 ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
 ADPOINTGREY=$(AREA_DETECTOR)/ADPointGrey
 ASYN=$(SUPPORT)/asyn-4-31
-AUTOSAVE=$(SUPPORT)/autosave-5-7-1
-BUSY=$(SUPPORT)/busy-1-6-1
+AUTOSAVE=$(SUPPORT)/autosave-5-8
+BUSY=$(SUPPORT)/busy-1-7
 CALC=$(SUPPORT)/calc-3-6-1
 CAMAC=$(SUPPORT)/camac-2-7
 CARS=$(SUPPORT)/CARS
 DAC128V=$(SUPPORT)/dac128V-2-8
 DELAYGEN=$(SUPPORT)/delaygen-1-1-1
 DEVIOCSTATS=$(SUPPORT)/devIocStats-3-1-14
-DXP=$(SUPPORT)/dxp-3-5
+DXP=$(SUPPORT)/dxp-4-0
 HY8522=$(SUPPORT)/Hy8522ip-asyn-4-4
 IP=$(SUPPORT)/ip-2-17
 IPAC=$(SUPPORT)/ipac-2-14
 IP330=$(SUPPORT)/ip330-2-8
-IPUNIDIG=$(SUPPORT)/ipUnidig-2-10
+IPUNIDIG=$(SUPPORT)/ipUnidig-2-11
 LOVE=$(SUPPORT)/love-3-2-5
 MCA=$(SUPPORT)/mca-7-6
 MEASCOMP=$(SUPPORT)/measComp-1-3-1
 MODBUS=$(SUPPORT)/modbus-2-9
 MOTOR=$(SUPPORT)/motor-6-9
 OPTICS=$(SUPPORT)/optics-2-9-3
-QUADEM=$(SUPPORT)/quadEM-7-0
+QUADEM=$(SUPPORT)/quadEM-8-0
 SNCSEQ=$(SUPPORT)/seq-2-2-4
 SOFTGLUE=$(SUPPORT)/softGlue-2-8
 SSCAN=$(SUPPORT)/sscan-2-10-2
