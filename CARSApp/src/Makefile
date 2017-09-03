@@ -106,6 +106,7 @@ ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
 CARS_WIN32_LIBS        += cbw32
 else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
 CARS_WIN32_LIBS        += cbw64
+CARS_WIN32_LIBS        += libusb-1.0
 endif
 
 CARS_Cygwin_SYS_LIBS   += wpcap Packet
