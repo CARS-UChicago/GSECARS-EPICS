@@ -1,22 +1,29 @@
 # This database switches the BPM Foils
 
+# Note: The values in an mbbo and mbbi record must be positive because the fields are ULONG.  We do the math in a calcout
 record(mbbo, "$(P)$(R)FoilPosition")
 {
     field(DTYP, "Raw Soft Channel")
-	field(PINI, "YES")
+    field(PINI, "YES")
     field(ZRVL, "0")
     field(ZRST, "$(F1)")
     field(ONVL, "120")
     field(ONST, "$(F2)")
     field(TWVL, "180")
     field(TWST, "$(F3)")
-	field(THVL, "-120")
+    field(THVL, "240")
     field(THST, "$(F4)")
-	field(FRVL, "-60")
+    field(FRVL, "300")
     field(FRST, "$(F5)")
-	field(FVVL, "60")
+    field(FVVL, "60")
     field(FVST, "$(F6)")
-	field(OUT, "$(P)$(MOTOR).VAL PP MS")
+    field(OUT, "$(P)$(R)FoilPosition_CALC.A PP MS")
+}
+
+record(calcout, "$(P)$(R)FoilPosition_CALC")
+{
+    field(CALC, "A<=180?A:A-360")
+    field(OUT, "$(P)$(MOTOR).VAL PP MS")
 }
 
 record(mbbi, "$(P)$(R)FoilPosition_RBV")
@@ -28,17 +35,17 @@ record(mbbi, "$(P)$(R)FoilPosition_RBV")
     field(ONST, "$(F2)")
     field(TWVL, "180")
     field(TWST, "$(F3)")
-	field(THVL, "-120")
+    field(THVL, "240")
     field(THST, "$(F4)")
-	field(FRVL, "-60")
+    field(FRVL, "300")
     field(FRST, "$(F5)")
-	field(FVVL, "60")
+    field(FVVL, "60")
     field(FVST, "$(F6)")
-	field(INP, "$(P)$(R)FoilCalc CP MS")
+    field(INP, "$(P)$(R)FoilCalc CP MS")
 }
 
 record(calc, "$(P)$(R)FoilCalc")
 {
-	field(INPA, "$(P)$(MOTOR).RBV CP MS")
-	field(CALC, "A>0?FLOOR(A+.5):CEIL(A-.5)")
+    field(INPA, "$(P)$(MOTOR).RBV CP MS")
+    field(CALC, "A>0?FLOOR(A+.5):FLOOR(A+360.5)")
 }
