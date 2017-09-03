@@ -82,7 +82,17 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPS1,ADDR=0,IMA
 # scan communication and meta data
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13XRM:, Q=edb")
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDA:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDB:, Q=edb")
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDD:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDE:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMA:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMC:, Q=edb")
+dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMD:, Q=edb")
+
+
+
+
 
 #
 # XRF Spectra Collector 
@@ -102,11 +112,23 @@ dbLoadRecords("simple_image.db","P=13XRM:,R=PG")
 
 # scan server
 dbLoadRecords("larchscan.db","P=13XRM:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13IDE:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13IDD:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13IDC:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13IDB:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13IDA:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13BMD:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13BMC:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13BMB:,Q=SCANDB")
+dbLoadRecords("larchscan.db","P=13BMA:,Q=SCANDB")
 
 # Epics PyInstrument
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13XRM:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDE:,Q=Inst")
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDD:,Q=Inst")
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDC:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDA:,Q=Inst")
+dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMA:,Q=Inst")
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMC:,Q=Inst")
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMD:,Q=Inst")
 
