@@ -335,13 +335,13 @@ ifeq ($(OS_CLASS), Linux)
 		ifeq ($(LINUX_NET_INSTALLED), YES)
 			CARSLinux_DBD += mcaCanberraSupport.dbd
 			CARSApp_LIBS_Linux += mcaCanberra
-			CARS_Linux_SYSLIBS += net pcap
+			CARSApp_SYS_LIBS_Linux += net pcap
 		endif
 		
 		ifeq ($(LINUX_USB1.0_INSTALLED), YES)
 	    CARSLinux_DBD += mcaAmptekSupport.dbd
       CARSApp_LIBS_Linux += mcaAmptek
-      CARS_Linux_SYSLIBS += libusb-1.0
+      CARSApp_SYS_LIBS_Linux += libusb-1.0
     endif
 	endif
 
@@ -377,10 +377,10 @@ ifeq ($(OS_CLASS), Darwin)
 endif
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
-CARS_SRCS_vxWorks  += CARSVX_registerRecordDeviceDriver.cpp
-CARS_SRCS_Linux    += CARSLinux_registerRecordDeviceDriver.cpp     CARSMain.cpp
-CARS_SRCS_WIN32    += CARSWin32_registerRecordDeviceDriver.cpp     CARSMain.cpp
-CARS_SRCS_Darwin   += CARSDarwin_registerRecordDeviceDriver.cpp    CARSMain.cpp
+CARSApp_SRCS_vxWorks  += CARSVX_registerRecordDeviceDriver.cpp
+CARSApp_SRCS_Linux    += CARSLinux_registerRecordDeviceDriver.cpp     CARSMain.cpp
+CARSApp_SRCS_WIN32    += CARSWin32_registerRecordDeviceDriver.cpp     CARSMain.cpp
+CARSApp_SRCS_Darwin   += CARSDarwin_registerRecordDeviceDriver.cpp    CARSMain.cpp
 
 #The following adds support from base/src/vxWorks
 CARS_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
