@@ -29,11 +29,17 @@ CARS_SRCS += splint.c
 CARS_SRCS_Linux   += testIpac.c
 CARS_SRCS_vxWorks += testIpac.c
 
+CARS_LIBS += seq pv $(EPICS_IOC_BASE_LIBS)
+# GSE_MonoSupport.cpp needs libxml2.  That is provided in ADSupport.
+-include $(ADCORE)/ADApp/commonLibraryMakefile
+
 
 #=============================
 # build an ioc application
 
-PROD_IOC = CARSApp
+PROD_NAME = CARSApp
+DBD_PREFIX = CARS
+PROD_IOC = $(PROD_NAME)
 
 # Note that the order in which .dbd files and libraries are added to a list
 # variable is important.  For .dbd files, things must be defined before they
@@ -41,354 +47,359 @@ PROD_IOC = CARSApp
 # before they are searched for; otherwise they won't be included.
 
 ##################################################################
-# First, define CARS_Common_DBD and CARS_Common_LIBS from the modules
+# First, define $(PROD_NAME)_Common_DBD and $(PROD_NAME)_Common_LIBS from the modules
 # defined in RELEASE
 ##################################################################
-DBD += CARS_Common.dbd
-CARS_Common_DBD += base.dbd
+DBD += $(PROD_NAME)_Common.dbd
+$(PROD_NAME)_Common_DBD += base.dbd
 
 #ifdef TDS3000
-#	CARS_Common_DBD += devTDS3000.dbd
-#	CARS_Common_LIBS := devTDS3000 $(CARS_Common_LIBS)
+#	$(PROD_NAME)_Common_DBD += devTDS3000.dbd
+#	$(PROD_NAME)_Common_LIBS := devTDS3000 $($(PROD_NAME)_Common_LIBS)
 #endif
 
 #ifdef CAPUTLOG
-#	CARS_Common_DBD += caPutLog.dbd
-#	CARS_Common_LIBS := caPutLog $(CARS_Common_LIBS)
+#	$(PROD_NAME)_Common_DBD += caPutLog.dbd
+#	$(PROD_NAME)_Common_LIBS := caPutLog $($(PROD_NAME)_Common_LIBS)
 #endif
 
 ifdef CAPUTRECORDER
-	CARS_Common_DBD += caputRecorder.dbd
-	CARS_Common_LIBS := caputRecorder $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += caputRecorder.dbd
+	$(PROD_NAME)_Common_LIBS := caputRecorder $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef SNCSEQ
 	ifeq (seq-2-1, $(findstring seq-2-1, $(SNCSEQ)))
-		CARS_Common_DBD += devSequencer.dbd
-		CARS_Common_LIBS := seqDev seq pv $(CARS_Common_LIBS)
+		$(PROD_NAME)_Common_DBD += devSequencer.dbd
+		$(PROD_NAME)_Common_LIBS := seqDev seq pv $($(PROD_NAME)_Common_LIBS)
 	else ifeq (seq-2.1, $(findstring seq-2.1, $(SNCSEQ)))
-		CARS_Common_DBD += devSequencer.dbd
-		CARS_Common_LIBS := seqDev seq pv $(CARS_Common_LIBS)
+		$(PROD_NAME)_Common_DBD += devSequencer.dbd
+		$(PROD_NAME)_Common_LIBS := seqDev seq pv $($(PROD_NAME)_Common_LIBS)
 	else
 		# seq 2.2.
-		CARS_Common_LIBS := seq pv $(CARS_Common_LIBS)
+		$(PROD_NAME)_Common_LIBS := seq pv $($(PROD_NAME)_Common_LIBS)
 	endif
 endif
 
 ifdef ASYN
-	CARS_Common_DBD += asyn.dbd drvAsynSerialPort.dbd
-	CARS_Common_DBD += drvAsynIPPort.dbd drvVxi11.dbd devGpib.dbd
-	CARS_Common_LIBS := asyn $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += asyn.dbd drvAsynSerialPort.dbd
+	$(PROD_NAME)_Common_DBD += drvAsynIPPort.dbd drvVxi11.dbd devGpib.dbd
+	$(PROD_NAME)_Common_LIBS := asyn $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef STD
-	CARS_Common_DBD += stdSupport.dbd
-	CARS_Common_LIBS := std $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += stdSupport.dbd
+	$(PROD_NAME)_Common_LIBS := std $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef CALC
-	CARS_Common_DBD += calcSupport.dbd
-	CARS_Common_LIBS := calc $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += calcSupport.dbd
+	$(PROD_NAME)_Common_LIBS := calc $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef BUSY
-	CARS_Common_DBD += busySupport.dbd
-	CARS_Common_LIBS := busy $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += busySupport.dbd
+	$(PROD_NAME)_Common_LIBS := busy $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef SSCAN
-	CARS_Common_DBD += sscanSupport.dbd
-	CARS_Common_LIBS := sscan $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += sscanSupport.dbd
+	$(PROD_NAME)_Common_LIBS := sscan $($(PROD_NAME)_Common_LIBS)
 	ifdef SNCSEQ
-		CARS_Common_DBD += sscanProgressSupport.dbd
-		CARS_Common_LIBS := scanProgress $(CARS_Common_LIBS)
+		$(PROD_NAME)_Common_DBD += sscanProgressSupport.dbd
+		$(PROD_NAME)_Common_LIBS := scanProgress $($(PROD_NAME)_Common_LIBS)
 	endif
 endif
 
 ifdef AUTOSAVE
-	CARS_Common_DBD += asSupport.dbd
-	CARS_Common_LIBS := autosave $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += asSupport.dbd
+	$(PROD_NAME)_Common_LIBS := autosave $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef OPTICS
-	CARS_Common_DBD += opticsSupport.dbd
-	CARS_Common_LIBS := optics $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += opticsSupport.dbd
+	$(PROD_NAME)_Common_LIBS := optics $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef MCA
-	CARS_Common_DBD += mcaSupport.dbd
-	CARS_Common_LIBS := mca $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += mcaSupport.dbd
+	$(PROD_NAME)_Common_LIBS := mca $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef IP
-	CARS_Common_DBD += ipSupport.dbd
-	CARS_Common_LIBS := ip $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += ipSupport.dbd
+	$(PROD_NAME)_Common_LIBS := ip $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef MODBUS
-	CARS_Common_DBD += modbusSupport.dbd
-	CARS_Common_LIBS := modbus $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += modbusSupport.dbd
+	$(PROD_NAME)_Common_LIBS := modbus $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef MOTOR
-	CARS_Common_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
-	CARS_Common_DBD += devAttocube.dbd devFaulhaberMotor.dbd devImsMotor.dbd
-	CARS_Common_DBD += devKohzuMotor.dbd devMclennanMotor.dbd devMicos.dbd
-	CARS_Common_DBD += devMicroMo.dbd devNewFocus.dbd devNewport.dbd
+	$(PROD_NAME)_Common_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
+	$(PROD_NAME)_Common_DBD += devAttocube.dbd devFaulhaberMotor.dbd devImsMotor.dbd
+	$(PROD_NAME)_Common_DBD += devKohzuMotor.dbd devMclennanMotor.dbd devMicos.dbd
+	$(PROD_NAME)_Common_DBD += devMicroMo.dbd devNewFocus.dbd devNewport.dbd
   ifdef SNCSEQ
-	CARS_Common_DBD += devAerotechSeq.dbd devNewportSeq.dbd
+	$(PROD_NAME)_Common_DBD += devAerotechSeq.dbd devNewportSeq.dbd
   endif
-	CARS_Common_DBD += devOriel.dbd devPC6K.dbd devPIJena.dbd devPIMotor.dbd
-	CARS_Common_DBD += devSPiiPlus.dbd devSmartMotorMotor.dbd devSoftMotor.dbd
-	CARS_Common_DBD += devThorLabs.dbd motorSimSupport.dbd
+	$(PROD_NAME)_Common_DBD += devOriel.dbd devPC6K.dbd devPIJena.dbd devPIMotor.dbd
+	$(PROD_NAME)_Common_DBD += devSPiiPlus.dbd devSmartMotorMotor.dbd devSoftMotor.dbd
+	$(PROD_NAME)_Common_DBD += devThorLabs.dbd motorSimSupport.dbd
 
-	CARS_Common_LIBS := motor $(CARS_Common_LIBS)
-	CARS_Common_LIBS := ACRMotor Acs acsTech80 Aerotech Attocube Faulhaber Ims KohzuMotor $(CARS_Common_LIBS)
-	CARS_Common_LIBS := Mclennan Micos MicroMo NewFocus Newport Oriel PI PIJena $(CARS_Common_LIBS)
-	CARS_Common_LIBS := Parker SmartMotor ThorLabs softMotor motorSimSupport $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_LIBS := motor $($(PROD_NAME)_Common_LIBS)
+	$(PROD_NAME)_Common_LIBS := ACRMotor Acs acsTech80 Aerotech Attocube Faulhaber Ims KohzuMotor $($(PROD_NAME)_Common_LIBS)
+	$(PROD_NAME)_Common_LIBS := Mclennan Micos MicroMo NewFocus Newport Oriel PI PIJena $($(PROD_NAME)_Common_LIBS)
+	$(PROD_NAME)_Common_LIBS := Parker SmartMotor ThorLabs softMotor motorSimSupport $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef STREAM
-	CARS_Common_DBD += stream.dbd streamSynApps.dbd
-	CARS_Common_LIBS := stream streamSynApps $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += stream.dbd streamSynApps.dbd
+	$(PROD_NAME)_Common_LIBS := stream streamSynApps $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef DEVIOCSTATS
-	CARS_Common_DBD += devIocStats.dbd iocAdmin.dbd
-	CARS_Common_LIBS := devIocStats $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += devIocStats.dbd iocAdmin.dbd
+	$(PROD_NAME)_Common_LIBS := devIocStats $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef ETHERIP
-	CARS_Common_DBD += ether_ip.dbd
-	CARS_Common_LIBS := ether_ip $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += ether_ip.dbd
+	$(PROD_NAME)_Common_LIBS := ether_ip $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef ALIVE
-	CARS_Common_DBD += aliveSupport.dbd
-	CARS_Common_LIBS := alive $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += aliveSupport.dbd
+	$(PROD_NAME)_Common_LIBS := alive $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef DELAYGEN
-	CARS_Common_DBD += delaygenSupport.dbd
-	CARS_Common_LIBS := delaygen $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += delaygenSupport.dbd
+	$(PROD_NAME)_Common_LIBS := delaygen $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef VAC
-	CARS_Common_DBD += vacSupport.dbd
-	CARS_Common_LIBS := vac $(CARS_Common_LIBS)
+	$(PROD_NAME)_Common_DBD += vacSupport.dbd
+	$(PROD_NAME)_Common_LIBS := vac $($(PROD_NAME)_Common_LIBS)
 endif
 
-ifdef AREA_DETECTOR
+ifdef ADCORE
   # areaDetector provides a Makefile for things it needs and supplies
-	PROD_NAME = CARSApp
 	-include $(ADCORE)/ADApp/commonDriverMakefile
-	CARS_Common_DBD += ADSupport.dbd NDPluginSupport.dbd
+	$(PROD_NAME)_Common_DBD += ADSupport.dbd NDPluginSupport.dbd
 endif
 
 ifdef QUADEM
-  CARS_Common_DBD += drvAHxxx.dbd drvTetrAMM.dbd
-	CARS_Common_LIBS += quadEM
+  $(PROD_NAME)_Common_DBD += drvAHxxx.dbd drvTetrAMM.dbd
+	$(PROD_NAME)_Common_LIBS += quadEM
 endif
 
 ifdef TPMAC
-  CARS_Common_DBD += pmacAsynMotor.dbd
-	CARS_Common_LIBS += pmacAsynMotor pmacAsynIPPort
+  $(PROD_NAME)_Common_DBD += pmacAsynMotor.dbd
+	$(PROD_NAME)_Common_LIBS += pmacAsynMotor pmacAsynIPPort
 endif
 
 #ifdef FLY
-#	CARS_Common_DBD += flySupport.dbd
-#	CARS_Common_LIBS := fly $(CARS_Common_LIBS)
+#	$(PROD_NAME)_Common_DBD += flySupport.dbd
+#	$(PROD_NAME)_Common_LIBS := fly $($(PROD_NAME)_Common_LIBS)
 #endif
 
 
 ifdef CARS
-  CARS_Common_DBD += CARSSupport.dbd
-	CARS_Common_LIBS += CARS
+  $(PROD_NAME)_Common_DBD += CARSSupport.dbd
+	$(PROD_NAME)_Common_LIBS += CARS
 endif
 
-CARS_Common_LIBS := $(CARS_Common_LIBS) $(EPICS_BASE_IOC_LIBS)
+$(PROD_NAME)_Common_LIBS := $($(PROD_NAME)_Common_LIBS) $(EPICS_BASE_IOC_LIBS)
 
 ##################################################################
-# Things we can build on both 32-bit and 64-bit Windows
-
-ifeq ($(OS_CLASS), WIN32)
-  DBD  += CARSWin32.dbd
-  CARSWin32_DBD += CARS_Common.dbd
+# Windows
+WINDOWS_TARGET =
+ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
+  WINDOWS_TARGET = YES
+endif
+ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
+  WINDOWS_TARGET = YES
+endif
+ifdef WINDOWS_TARGET
+  DBD  += $(DBD_PREFIX)Win32.dbd
+  $(DBD_PREFIX)Win32_DBD += $(PROD_NAME)_Common.dbd
 
   ifdef MEASCOMP
-    CARSWin32_DBD += measCompSupport.dbd
-	  CARSApp_LIBS_WIN32 += measComp
+    $(DBD_PREFIX)Win32_DBD += measCompSupport.dbd
+	  $(PROD_NAME)_LIBS_WIN32 += measComp
     ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
-      CARSApp_LIBS_WIN32 += cbw32
+      $(PROD_NAME)_LIBS_WIN32 += cbw32
     else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
-      CARSApp_LIBS_WIN32 += cbw64
+      $(PROD_NAME)_LIBS_WIN32 += cbw64
     endif
   endif
 
 	ifdef MCA
 		# If your host supports libpcap and libnet and you want to build
 		# Canberra network support uncomment the following lines
-		CARSWin32_DBD += mcaCanberraSupport.dbd
-		CARSApp_LIBS_WIN32 += mcaCanberra
-		CARSApp_LIBS_WIN32 += wpcap Packet
+		$(DBD_PREFIX)Win32_DBD += mcaCanberraSupport.dbd
+		$(PROD_NAME)_LIBS_WIN32 += mcaCanberra
+		$(PROD_NAME)_LIBS_WIN32 += wpcap Packet
 		
-		CARSWin32_DBD += mcaAmptekSupport.dbd
-    CARSApp_LIBS_WIN32 += mcaAmptek
-    CARSApp_LIBS_WIN32 += libusb-1.0
+		$(DBD_PREFIX)Win32_DBD += mcaAmptekSupport.dbd
+    $(PROD_NAME)_LIBS_WIN32 += mcaAmptek
+    $(PROD_NAME)_LIBS_WIN32 += libusb-1.0
 
 	endif
 endif
 
-ifeq ($(OS_CLASS), vxWorks)
-	DBD  += CARSVX.dbd
-	CARS_VX_DBD += CARS_Common.dbd
+ifeq (vxWorks,$(findstring vxWorks, $(T_A)))
+	DBD  += $(DBD_PREFIX)VX.dbd
+	$(DBD_PREFIX)VX_DBD += $(PROD_NAME)_Common.dbd
 
 	ifdef ALLEN_BRADLEY
-		CARS_VX_DBD += allenBradley.dbd
-		CARSApp_LIBS_vxWorks += allenBradley
+		$(DBD_PREFIX)VX_DBD += allenBradley.dbd
+		$(PROD_NAME)_LIBS_vxWorks += allenBradley
 	endif
 
 	ifdef VME
-		CARS_VX_DBD += vmeVXSupport.dbd
-		CARSApp_LIBS_vxWorks += vme
+		$(DBD_PREFIX)VX_DBD += vmeVXSupport.dbd
+		$(PROD_NAME)_LIBS_vxWorks += vme
 	endif
 
 	ifdef STD
-		CARS_VX_DBD += stdVXSupport.dbd
+		$(DBD_PREFIX)VX_DBD += stdVXSupport.dbd
 	endif
 
 	ifdef IP
-		CARS_VX_DBD += ipVXSupport.dbd
+		$(DBD_PREFIX)VX_DBD += ipVXSupport.dbd
 	endif
 
 	ifdef MCA
-		CARS_VX_DBD += SIS38XXSupport.dbd
-		CARS_VX_DBD += mcaCanberraSupport.dbd
-		CARSApp_LIBS_vxWorks += SIS38XX
-		CARSApp_LIBS_vxWorks += mcaCanberra
+		$(DBD_PREFIX)VX_DBD += SIS38XXSupport.dbd
+		$(DBD_PREFIX)VX_DBD += mcaCanberraSupport.dbd
+		$(PROD_NAME)_LIBS_vxWorks += SIS38XX
+		$(PROD_NAME)_LIBS_vxWorks += mcaCanberra
 	endif
 
 	ifdef IPUNIDIG
-		CARS_VX_DBD += ipUnidigSupport.dbd
-		CARSApp_LIBS_vxWorks += ipUnidig
+		$(DBD_PREFIX)VX_DBD += ipUnidigSupport.dbd
+		$(PROD_NAME)_LIBS_vxWorks += ipUnidig
 	endif
 
 	ifdef DAC128V
-		CARS_VX_DBD += dac128VSupport.dbd
-		CARSApp_LIBS_vxWorks += dac128V
+		$(DBD_PREFIX)VX_DBD += dac128VSupport.dbd
+		$(PROD_NAME)_LIBS_vxWorks += dac128V
 	endif
 
 	ifdef IP330
-		CARS_VX_DBD += ip330Support.dbd
-		CARSApp_LIBS_vxWorks += ip330
+		$(DBD_PREFIX)VX_DBD += ip330Support.dbd
+		$(PROD_NAME)_LIBS_vxWorks += ip330
 	endif
 
 	ifdef CAMAC
-		CARS_VX_DBD += camacSupport.dbd
-		CARS_VX_DBD += devCamacSupport.dbd
-		CARSApp_LIBS_vxWorks += camac devCamac
+		$(DBD_PREFIX)VX_DBD += camacSupport.dbd
+		$(DBD_PREFIX)VX_DBD += devCamacSupport.dbd
+		$(PROD_NAME)_LIBS_vxWorks += camac devCamac
 	endif
 
 	ifdef LOVE
-		CARS_VX_DBD += devLove.dbd
-		CARSApp_LIBS_vxWorks += love
+		$(DBD_PREFIX)VX_DBD += devLove.dbd
+		$(PROD_NAME)_LIBS_vxWorks += love
 	endif
 
 	ifdef IPAC
-		CARS_VX_DBD += tyGSOctal.dbd
-		CARS_VX_DBD += drvIpac.dbd
-		CARSApp_LIBS_vxWorks += TyGSOctal Ipac
-		CARS_VX_DBD += IP520.dbd
-		CARSApp_LIBS_vxWorks += IP520
+		$(DBD_PREFIX)VX_DBD += tyGSOctal.dbd
+		$(DBD_PREFIX)VX_DBD += drvIpac.dbd
+		$(PROD_NAME)_LIBS_vxWorks += TyGSOctal Ipac
+		$(DBD_PREFIX)VX_DBD += IP520.dbd
+		$(PROD_NAME)_LIBS_vxWorks += IP520
 	endif
 
 	ifdef ASYN
-		CARS_VX_DBD += drvGsIP488.dbd
+		$(DBD_PREFIX)VX_DBD += drvGsIP488.dbd
 	endif
 
 	ifdef SOFTGLUE
-		CARS_VX_DBD += softGlueSupport.dbd
-		CARSApp_LIBS_vxWorks += softGlue
+		$(DBD_PREFIX)VX_DBD += softGlueSupport.dbd
+		$(PROD_NAME)_LIBS_vxWorks += softGlue
 	endif
 
 	ifdef MOTOR
-		CARS_VX_DBD += devDeltaTau.dbd
-		CARS_VX_DBD += devOms.dbd
-		CARSApp_LIBS_vxWorks += oms DeltaTau
+		$(DBD_PREFIX)VX_DBD += devDeltaTau.dbd
+		$(DBD_PREFIX)VX_DBD += devOms.dbd
+		$(PROD_NAME)_LIBS_vxWorks += oms DeltaTau
 	endif
 
 #	ifdef FLY
-#		CARS_VX_DBD += flyVXSupport.dbd
-#		CARSApp_LIBS_vxWorks += fly
+#		$(DBD_PREFIX)VX_DBD += flyVXSupport.dbd
+#		$(PROD_NAME)_LIBS_vxWorks += fly
 #	endif
 
 endif
 
-ifeq ($(OS_CLASS), Linux)
-	DBD  += CARSLinux.dbd
-	CARSLinux_DBD += CARS_Common.dbd
+ifeq (linux,$(findstring linux, $(T_A)))
+	DBD  += $(DBD_PREFIX)Linux.dbd
+	$(DBD_PREFIX)Linux_DBD += $(PROD_NAME)_Common.dbd
 
 
 	ifdef MCA
 		# If your host supports libpcap and libnet and you want to build Canberra network
 		# support, set LINUX_NET_INSTALLED to YES in <synApps>/configure/CONFIG_SITE.
 		ifeq ($(LINUX_NET_INSTALLED), YES)
-			CARSLinux_DBD += mcaCanberraSupport.dbd
-			CARSApp_LIBS_Linux += mcaCanberra
-			CARSApp_SYS_LIBS_Linux += net pcap
+			$(DBD_PREFIX)Linux_DBD += mcaCanberraSupport.dbd
+			$(PROD_NAME)_LIBS_Linux += mcaCanberra
+			$(PROD_NAME)_SYS_LIBS_Linux += net pcap
 		endif
 		
 		ifeq ($(LINUX_USB1.0_INSTALLED), YES)
-	    CARSLinux_DBD += mcaAmptekSupport.dbd
-      CARSApp_LIBS_Linux += mcaAmptek
-      CARSApp_SYS_LIBS_Linux += libusb-1.0
+	    $(DBD_PREFIX)Linux_DBD += mcaAmptekSupport.dbd
+      $(PROD_NAME)_LIBS_Linux += mcaAmptek
+      $(PROD_NAME)_SYS_LIBS_Linux += libusb-1.0
     endif
 	endif
 
 	ifdef IPAC
-		CARSLinux_DBD += drvIpac.dbd
-		CARSApp_LIBS_Linux += Ipac
+		$(DBD_PREFIX)Linux_DBD += drvIpac.dbd
+		$(PROD_NAME)_LIBS_Linux += Ipac
 	endif
 
 	ifdef IPUNIDIG
-		CARSLinux_DBD += ipUnidigSupport.dbd
-		CARSApp_LIBS_Linux += ipUnidig
+		$(DBD_PREFIX)Linux_DBD += ipUnidigSupport.dbd
+		$(PROD_NAME)_LIBS_Linux += ipUnidig
 	endif
 
 	ifdef DAC128V
-		CARSLinux_DBD += dac128VSupport.dbd
-		CARSApp_LIBS_Linux += dac128V
+		$(DBD_PREFIX)Linux_DBD += dac128VSupport.dbd
+		$(PROD_NAME)_LIBS_Linux += dac128V
 	endif
 
 	ifdef IP330
-		CARSLinux_DBD += ip330Support.dbd
-		CARSApp_LIBS_Linux += ip330
+		$(DBD_PREFIX)Linux_DBD += ip330Support.dbd
+		$(PROD_NAME)_LIBS_Linux += ip330
 	endif
 
 	ifdef SOFTGLUE
-		CARSLinux_DBD += softGlueSupport.dbd
-		CARSApp_LIBS_Linux += softGlue
+		$(DBD_PREFIX)Linux_DBD += softGlueSupport.dbd
+		$(PROD_NAME)_LIBS_Linux += softGlue
 	endif
 endif
 
 ifeq ($(OS_CLASS), Darwin)
-	DBD  += CARSDarwin.dbd
-	CARSDarwin_DBD += CARS_Common.dbd
+	DBD  += $(DBD_PREFIX)Darwin.dbd
+	$(DBD_PREFIX)Darwin_DBD += $(PROD_NAME)_Common.dbd
 endif
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
-CARSApp_SRCS_vxWorks  += CARSVX_registerRecordDeviceDriver.cpp
-CARSApp_SRCS_Linux    += CARSLinux_registerRecordDeviceDriver.cpp     CARSMain.cpp
-CARSApp_SRCS_WIN32    += CARSWin32_registerRecordDeviceDriver.cpp     CARSMain.cpp
-CARSApp_SRCS_Darwin   += CARSDarwin_registerRecordDeviceDriver.cpp    CARSMain.cpp
+$(PROD_NAME)_SRCS_vxWorks  += $(DBD_PREFIX)VX_registerRecordDeviceDriver.cpp
+$(PROD_NAME)_SRCS_Linux    += $(DBD_PREFIX)Linux_registerRecordDeviceDriver.cpp     $(PROD_NAME)Main.cpp
+$(PROD_NAME)_SRCS_WIN32    += $(DBD_PREFIX)Win32_registerRecordDeviceDriver.cpp     $(PROD_NAME)Main.cpp
+$(PROD_NAME)_SRCS_Darwin   += $(DBD_PREFIX)Darwin_registerRecordDeviceDriver.cpp    $(PROD_NAME)Main.cpp
 
 #The following adds support from base/src/vxWorks
-CARS_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+$(PROD_NAME)_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-CARSApp_LIBS_vxWorks  += $(CARS_Common_LIBS)
-CARSApp_LIBS_Linux    += $(CARS_Common_LIBS)
-CARSApp_LIBS_WIN32    += $(CARS_Common_LIBS)
-CARSApp_LIBS_Darwin   += $(CARS_Common_LIBS)
+$(PROD_NAME)_LIBS_vxWorks  += $($(PROD_NAME)_Common_LIBS)
+$(PROD_NAME)_LIBS_Linux    += $($(PROD_NAME)_Common_LIBS)
+$(PROD_NAME)_LIBS_WIN32    += $($(PROD_NAME)_Common_LIBS)
+$(PROD_NAME)_LIBS_Darwin   += $($(PROD_NAME)_Common_LIBS)
 
 # Here's how to print out all gnumake variables
 #$(foreach v, $(.VARIABLES), $(info $(v) = $($(v))))
@@ -401,20 +412,20 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
-$(COMMON_DIR)/CARSWin32Include.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSWin64Include.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSVXInclude.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSLinuxInclude.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSDarwinInclude.dbd: $(COMMON_DIR)/CARS_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win32Include.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win64Include.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)VXInclude.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)LinuxInclude.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)DarwinInclude.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
 
-$(COMMON_DIR)/CARSWin32.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSWin64.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSVX.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSLinux.dbd: $(COMMON_DIR)/CARS_Common.dbd
-$(COMMON_DIR)/CARSDarwin.dbd: $(COMMON_DIR)/CARS_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win32.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win64.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)VX.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Linux.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Darwin.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
 
-CARSWin32.dbd$(DEP): $(COMMON_DIR)/CARS_Common.dbd
-CARSWin64.dbd$(DEP): $(COMMON_DIR)/CARS_Common.dbd
-CARSVX.dbd$(DEP): $(COMMON_DIR)/CARS_Common.dbd
-CARSLinux.dbd$(DEP): $(COMMON_DIR)/CARS_Common.dbd
-CARSDarwin.dbd$(DEP): $(COMMON_DIR)/CARS_Common.dbd
+$(DBD_PREFIX)Win32.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(DBD_PREFIX)Win64.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(DBD_PREFIX)VX.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(DBD_PREFIX)Linux.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(DBD_PREFIX)Darwin.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
