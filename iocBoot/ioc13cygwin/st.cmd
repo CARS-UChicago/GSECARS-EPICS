@@ -2,8 +2,8 @@ errlogInit(5000)
 < envPaths
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARS.dbd")
-CARS_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("../../dbd/CARSWin32.dbd")
+CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 routerInit
 localMessageRouterStart(0)

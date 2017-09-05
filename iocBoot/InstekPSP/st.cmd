@@ -3,8 +3,8 @@ errlogInit(5000)
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARS.dbd")
-CARS_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 # Serial 1 and 2 are the Omega meters.  They are nominally
 # 8 data bits and 1 stop bit.  However, they actually always

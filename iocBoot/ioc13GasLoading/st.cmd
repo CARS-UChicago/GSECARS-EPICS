@@ -3,8 +3,9 @@ errlogInit(5000)
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARS.dbd")
+dbLoadDatabase("../../dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
+#dbLoadDatabase("../../dbd/CARSLinux.dbd")
 #CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 # Set up 5 serial ports on Moxa terminal server
