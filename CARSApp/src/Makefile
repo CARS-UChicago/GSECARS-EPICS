@@ -47,33 +47,40 @@ PROD_IOC = $(PROD_NAME)
 # before they are searched for; otherwise they won't be included.
 
 ##################################################################
-# First, define $(PROD_NAME)_Common_DBD and $(PROD_NAME)_Common_LIBS from the modules
+# First, define $(PROD_NAME)_DBD and $(PROD_NAME)_Common_LIBS from the modules
 # defined in RELEASE
 ##################################################################
-DBD += $(PROD_NAME)_Common.dbd
-$(PROD_NAME)_Common_DBD += base.dbd
+DBD += $(PROD_NAME).dbd
+ifndef ADCORE
+  $(PROD_NAME)_DBD += base.dbd
+endif
+
+ifdef ADCORE
+  # areaDetector provides a Makefile for things it needs and supplies
+	-include $(ADCORE)/ADApp/commonDriverMakefile
+endif
 
 #ifdef TDS3000
-#	$(PROD_NAME)_Common_DBD += devTDS3000.dbd
+#	$(PROD_NAME)_DBD += devTDS3000.dbd
 #	$(PROD_NAME)_Common_LIBS := devTDS3000 $($(PROD_NAME)_Common_LIBS)
 #endif
 
 #ifdef CAPUTLOG
-#	$(PROD_NAME)_Common_DBD += caPutLog.dbd
+#	$(PROD_NAME)_DBD += caPutLog.dbd
 #	$(PROD_NAME)_Common_LIBS := caPutLog $($(PROD_NAME)_Common_LIBS)
 #endif
 
 ifdef CAPUTRECORDER
-	$(PROD_NAME)_Common_DBD += caputRecorder.dbd
+	$(PROD_NAME)_DBD += caputRecorder.dbd
 	$(PROD_NAME)_Common_LIBS := caputRecorder $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef SNCSEQ
 	ifeq (seq-2-1, $(findstring seq-2-1, $(SNCSEQ)))
-		$(PROD_NAME)_Common_DBD += devSequencer.dbd
+		$(PROD_NAME)_DBD += devSequencer.dbd
 		$(PROD_NAME)_Common_LIBS := seqDev seq pv $($(PROD_NAME)_Common_LIBS)
 	else ifeq (seq-2.1, $(findstring seq-2.1, $(SNCSEQ)))
-		$(PROD_NAME)_Common_DBD += devSequencer.dbd
+		$(PROD_NAME)_DBD += devSequencer.dbd
 		$(PROD_NAME)_Common_LIBS := seqDev seq pv $($(PROD_NAME)_Common_LIBS)
 	else
 		# seq 2.2.
@@ -82,71 +89,81 @@ ifdef SNCSEQ
 endif
 
 ifdef ASYN
-	$(PROD_NAME)_Common_DBD += asyn.dbd drvAsynSerialPort.dbd
-	$(PROD_NAME)_Common_DBD += drvAsynIPPort.dbd drvVxi11.dbd devGpib.dbd
+  ifndef ADCORE
+    $(PROD_NAME)_DBD += asyn.dbd 
+	endif
+	$(PROD_NAME)_DBD += drvAsynSerialPort.dbd drvAsynIPPort.dbd drvVxi11.dbd devGpib.dbd
 	$(PROD_NAME)_Common_LIBS := asyn $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef STD
-	$(PROD_NAME)_Common_DBD += stdSupport.dbd
+	$(PROD_NAME)_DBD += stdSupport.dbd
 	$(PROD_NAME)_Common_LIBS := std $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef CALC
-	$(PROD_NAME)_Common_DBD += calcSupport.dbd
+  ifndef ADCORE
+	  $(PROD_NAME)_DBD += calcSupport.dbd
+	endif
 	$(PROD_NAME)_Common_LIBS := calc $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef BUSY
-	$(PROD_NAME)_Common_DBD += busySupport.dbd
+  ifndef ADCORE
+	  $(PROD_NAME)_DBD += busySupport.dbd
+	endif
 	$(PROD_NAME)_Common_LIBS := busy $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef SSCAN
-	$(PROD_NAME)_Common_DBD += sscanSupport.dbd
+  ifndef ADCORE
+  	$(PROD_NAME)_DBD += sscanSupport.dbd
+	endif
 	$(PROD_NAME)_Common_LIBS := sscan $($(PROD_NAME)_Common_LIBS)
 	ifdef SNCSEQ
-		$(PROD_NAME)_Common_DBD += sscanProgressSupport.dbd
+		$(PROD_NAME)_DBD += sscanProgressSupport.dbd
 		$(PROD_NAME)_Common_LIBS := scanProgress $($(PROD_NAME)_Common_LIBS)
 	endif
 endif
 
 ifdef AUTOSAVE
-	$(PROD_NAME)_Common_DBD += asSupport.dbd
+  ifndef ADCORE
+	$(PROD_NAME)_DBD += asSupport.dbd
+	endif
 	$(PROD_NAME)_Common_LIBS := autosave $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef OPTICS
-	$(PROD_NAME)_Common_DBD += opticsSupport.dbd
+	$(PROD_NAME)_DBD += opticsSupport.dbd
 	$(PROD_NAME)_Common_LIBS := optics $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef MCA
-	$(PROD_NAME)_Common_DBD += mcaSupport.dbd
+	$(PROD_NAME)_DBD += mcaSupport.dbd
 	$(PROD_NAME)_Common_LIBS := mca $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef IP
-	$(PROD_NAME)_Common_DBD += ipSupport.dbd
+	$(PROD_NAME)_DBD += ipSupport.dbd
 	$(PROD_NAME)_Common_LIBS := ip $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef MODBUS
-	$(PROD_NAME)_Common_DBD += modbusSupport.dbd
+	$(PROD_NAME)_DBD += modbusSupport.dbd
 	$(PROD_NAME)_Common_LIBS := modbus $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef MOTOR
-	$(PROD_NAME)_Common_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
-	$(PROD_NAME)_Common_DBD += devAttocube.dbd devFaulhaberMotor.dbd devImsMotor.dbd
-	$(PROD_NAME)_Common_DBD += devKohzuMotor.dbd devMclennanMotor.dbd devMicos.dbd
-	$(PROD_NAME)_Common_DBD += devMicroMo.dbd devNewFocus.dbd devNewport.dbd
+	$(PROD_NAME)_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
+	$(PROD_NAME)_DBD += devAttocube.dbd devFaulhaberMotor.dbd devImsMotor.dbd
+	$(PROD_NAME)_DBD += devKohzuMotor.dbd devMclennanMotor.dbd devMicos.dbd
+	$(PROD_NAME)_DBD += devMicroMo.dbd devNewFocus.dbd devNewport.dbd
   ifdef SNCSEQ
-	$(PROD_NAME)_Common_DBD += devAerotechSeq.dbd devNewportSeq.dbd
+	$(PROD_NAME)_DBD += devAerotechSeq.dbd devNewportSeq.dbd
   endif
-	$(PROD_NAME)_Common_DBD += devOriel.dbd devPC6K.dbd devPIJena.dbd devPIMotor.dbd
-	$(PROD_NAME)_Common_DBD += devSPiiPlus.dbd devSmartMotorMotor.dbd devSoftMotor.dbd
-	$(PROD_NAME)_Common_DBD += devThorLabs.dbd motorSimSupport.dbd
+	$(PROD_NAME)_DBD += devOriel.dbd devPC6K.dbd devPIJena.dbd devPIMotor.dbd
+	$(PROD_NAME)_DBD += devSPiiPlus.dbd devSmartMotorMotor.dbd devSoftMotor.dbd
+	$(PROD_NAME)_DBD += devThorLabs.dbd motorSimSupport.dbd
 
 	$(PROD_NAME)_Common_LIBS := motor $($(PROD_NAME)_Common_LIBS)
 	$(PROD_NAME)_Common_LIBS := ACRMotor Acs acsTech80 Aerotech Attocube Faulhaber Ims KohzuMotor $($(PROD_NAME)_Common_LIBS)
@@ -155,59 +172,55 @@ ifdef MOTOR
 endif
 
 ifdef STREAM
-	$(PROD_NAME)_Common_DBD += stream.dbd streamSynApps.dbd
+	$(PROD_NAME)_DBD += stream.dbd streamSynApps.dbd
 	$(PROD_NAME)_Common_LIBS := stream streamSynApps $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef DEVIOCSTATS
-	$(PROD_NAME)_Common_DBD += devIocStats.dbd iocAdmin.dbd
+	$(PROD_NAME)_DBD += devIocStats.dbd iocAdmin.dbd
 	$(PROD_NAME)_Common_LIBS := devIocStats $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef ETHERIP
-	$(PROD_NAME)_Common_DBD += ether_ip.dbd
+	$(PROD_NAME)_DBD += ether_ip.dbd
 	$(PROD_NAME)_Common_LIBS := ether_ip $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef ALIVE
-	$(PROD_NAME)_Common_DBD += aliveSupport.dbd
+	ifndef ADCORE
+	  $(PROD_NAME)_DBD += aliveSupport.dbd
+	endif
 	$(PROD_NAME)_Common_LIBS := alive $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef DELAYGEN
-	$(PROD_NAME)_Common_DBD += delaygenSupport.dbd
+	$(PROD_NAME)_DBD += delaygenSupport.dbd
 	$(PROD_NAME)_Common_LIBS := delaygen $($(PROD_NAME)_Common_LIBS)
 endif
 
 ifdef VAC
-	$(PROD_NAME)_Common_DBD += vacSupport.dbd
+	$(PROD_NAME)_DBD += vacSupport.dbd
 	$(PROD_NAME)_Common_LIBS := vac $($(PROD_NAME)_Common_LIBS)
 endif
 
-ifdef ADCORE
-  # areaDetector provides a Makefile for things it needs and supplies
-	-include $(ADCORE)/ADApp/commonDriverMakefile
-	$(PROD_NAME)_Common_DBD += ADSupport.dbd NDPluginSupport.dbd
-endif
-
 ifdef QUADEM
-  $(PROD_NAME)_Common_DBD += drvAHxxx.dbd drvTetrAMM.dbd
+  $(PROD_NAME)_DBD += drvAHxxx.dbd drvTetrAMM.dbd
 	$(PROD_NAME)_Common_LIBS += quadEM
 endif
 
 ifdef TPMAC
-  $(PROD_NAME)_Common_DBD += pmacAsynMotor.dbd
+  $(PROD_NAME)_DBD += pmacAsynMotor.dbd
 	$(PROD_NAME)_Common_LIBS += pmacAsynMotor pmacAsynIPPort
 endif
 
 #ifdef FLY
-#	$(PROD_NAME)_Common_DBD += flySupport.dbd
+#	$(PROD_NAME)_DBD += flySupport.dbd
 #	$(PROD_NAME)_Common_LIBS := fly $($(PROD_NAME)_Common_LIBS)
 #endif
 
 
 ifdef CARS
-  $(PROD_NAME)_Common_DBD += CARSSupport.dbd
+  $(PROD_NAME)_DBD += CARSSupport.dbd
 	$(PROD_NAME)_Common_LIBS += CARS
 endif
 
@@ -224,7 +237,7 @@ ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
 endif
 ifdef WINDOWS_TARGET
   DBD  += $(DBD_PREFIX)Win32.dbd
-  $(DBD_PREFIX)Win32_DBD += $(PROD_NAME)_Common.dbd
+  $(DBD_PREFIX)Win32_DBD += $(PROD_NAME).dbd
 
   ifdef MEASCOMP
     $(DBD_PREFIX)Win32_DBD += measCompSupport.dbd
@@ -252,7 +265,7 @@ endif
 
 ifeq (vxWorks,$(findstring vxWorks, $(T_A)))
 	DBD  += $(DBD_PREFIX)VX.dbd
-	$(DBD_PREFIX)VX_DBD += $(PROD_NAME)_Common.dbd
+	$(DBD_PREFIX)VX_DBD += $(PROD_NAME).dbd
 
 	ifdef ALLEN_BRADLEY
 		$(DBD_PREFIX)VX_DBD += allenBradley.dbd
@@ -337,7 +350,7 @@ endif
 
 ifeq (linux,$(findstring linux, $(T_A)))
 	DBD  += $(DBD_PREFIX)Linux.dbd
-	$(DBD_PREFIX)Linux_DBD += $(PROD_NAME)_Common.dbd
+	$(DBD_PREFIX)Linux_DBD += $(PROD_NAME).dbd
 
 
 	ifdef MCA
@@ -384,7 +397,7 @@ endif
 
 ifeq ($(OS_CLASS), Darwin)
 	DBD  += $(DBD_PREFIX)Darwin.dbd
-	$(DBD_PREFIX)Darwin_DBD += $(PROD_NAME)_Common.dbd
+	$(DBD_PREFIX)Darwin_DBD += $(PROD_NAME).dbd
 endif
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
@@ -412,20 +425,20 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
-$(COMMON_DIR)/$(DBD_PREFIX)Win32Include.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)Win64Include.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)VXInclude.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)LinuxInclude.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)DarwinInclude.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win32Include.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win64Include.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)VXInclude.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)LinuxInclude.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)DarwinInclude.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
 
-$(COMMON_DIR)/$(DBD_PREFIX)Win32.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)Win64.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)VX.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)Linux.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(COMMON_DIR)/$(DBD_PREFIX)Darwin.dbd: $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win32.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Win64.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)VX.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Linux.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
+$(COMMON_DIR)/$(DBD_PREFIX)Darwin.dbd: $(COMMON_DIR)/$(PROD_NAME).dbd
 
-$(DBD_PREFIX)Win32.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(DBD_PREFIX)Win64.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(DBD_PREFIX)VX.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(DBD_PREFIX)Linux.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
-$(DBD_PREFIX)Darwin.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME)_Common.dbd
+$(DBD_PREFIX)Win32.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME).dbd
+$(DBD_PREFIX)Win64.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME).dbd
+$(DBD_PREFIX)VX.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME).dbd
+$(DBD_PREFIX)Linux.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME).dbd
+$(DBD_PREFIX)Darwin.dbd$(DEP): $(COMMON_DIR)/$(PROD_NAME).dbd
