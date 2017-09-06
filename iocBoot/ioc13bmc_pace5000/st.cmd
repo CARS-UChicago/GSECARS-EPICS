@@ -4,7 +4,7 @@ epicsEnvSet("PREFIX", "13BMC_PACE5000:")
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARS.dbd")
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 drvAsynIPPortConfigure("PACE5000", "164.54.160.146:5025", 0, 0, 0)

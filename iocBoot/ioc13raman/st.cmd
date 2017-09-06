@@ -2,7 +2,7 @@ errlogInit(5000)
 < envPaths
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARS.dbd")
+dbLoadDatabase("../../dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 # Set up 2 local serial ports
