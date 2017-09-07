@@ -57,6 +57,10 @@ PROD_IOC = $(PROD_NAME)
 DBD_SUFFIX_cygwin32 = $(error Cygwin not supported)
 DBD_SUFFIX_Darwin = Darwin
 DBD_SUFFIX_Linux = Linux
+# We need a special dbd file for old SUSE on Pilatus because it does not support libusb-1.0
+ifneq ($(LINUX_USB-1.0_INSTALLED), YES)
+  DBD_SUFFIX_Linux = LinuxNoLibUsb
+endif
 DBD_SUFFIX_RTEMS = $(error RTEMS not supported)
 DBD_SUFFIX_vxWorks = VX
 DBD_SUFFIX_WIN32 = Win32
