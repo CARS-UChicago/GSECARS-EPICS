@@ -72,6 +72,9 @@ dbLoadTemplate("LVP_furnace_control.template")
 # LVP pressure control
 dbLoadTemplate("LVP_pressure_control.template")
 
+# Koyo PLC for lasers
+< Koyo.cmd
+
 #MN May-29-2002
 # LVP Theta (temperature ramping) controller
 dbLoadRecords("$(CARS)/CARSApp/Db/RampScan.db","P=13IDD:,R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
