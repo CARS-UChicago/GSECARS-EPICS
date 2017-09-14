@@ -106,6 +106,10 @@ dbLoadTemplate "scanParms.template"
 ### motorUtil - for allstop, moving, etc.
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDD_XPS:")
 
+# User calc stuff
+epicsEnvSet("PREFIX", "13IDD:")
+< ../calc_GSECARS.iocsh
+
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION","corvette")
@@ -123,6 +127,13 @@ iocInit
 create_monitor_set("auto_positions.req",5,"P=13IDD:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDD:")
+
+# Enable user string calcs and user transforms
+dbpf "13IDD:EnableUserTrans.PROC","1"
+dbpf "13IDD:EnableUserSCalcs.PROC","1"
+dbpf "13IDD:EnableUserACalcs.PROC","1"
+dbpf "13IDD:EnableUserCalcOuts.PROC","1"
+dbpf "13IDD:userStringSeqEnable","1"
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13IDD:m81.NTM","0")
