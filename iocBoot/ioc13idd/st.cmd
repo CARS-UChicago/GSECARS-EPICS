@@ -143,10 +143,6 @@ dbLoadTemplate("scanParms.template")
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDD:", std)
 
-# User calc stuff
-epicsEnvSet("PREFIX", "13IDD:")
-iocsh("../calc_GSECARS.iocsh")
-
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
 putenv("LOCATION=13-ID-D roof")
@@ -194,13 +190,6 @@ saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
 saveData_Init("saveDataExtraPVs.req", "P=13IDD:")
 #saveData_PrintScanInfo("13IDD:scan1")
-
-# Enable user string calcs and user transforms
-dbpf "13IDD:EnableUserTrans.PROC","1"
-dbpf "13IDD:EnableUserSCalcs.PROC","1"
-dbpf "13IDD:EnableUserACalcs.PROC","1"
-dbpf "13IDD:EnableUserCalcOuts.PROC","1"
-dbpf "13IDD:userStringSeqEnable","1"
 
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
 dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
