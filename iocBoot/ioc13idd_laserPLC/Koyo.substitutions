@@ -1,0 +1,101 @@
+# asyn record for the underlying asyn TCP port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,           R,               PORT,      ADDR,   IMAX,    OMAX}
+{13IDD_LaserPLC:   KoyoOctetAsyn,    Koyo,     0,      80,      80}
+}
+
+# These are the Xn inputs done with bit access X0-X17
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,             R,                    PORT,        OFFSET,     ZNAM,     ONAM,  ZSV,         OSV,    SCAN}
+#{13IDD_LaserPLC:,  RemoteUserEnable,  K1_Xn_Bit,    004,   Disabled,  Enabled,  NO_ALARM,    MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,      DoorOverride,  K1_Xn_Bit,    005,         OK,  Enabled,   NO_ALARM,    MAJOR,  "I/O Intr"}
+{13IDD_LaserPLC:,         Photocell,  K1_Xn_Bit,    006,    Blocked,       OK,     MAJOR, NO_ALARM,  "I/O Intr"}
+{13IDD_LaserPLC:,      ExpertSwitch,  K1_Xn_Bit,    010,   Disabled,  Enabled,  NO_ALARM,    MAJOR,  "I/O Intr"}
+#{13IDD_LaserPLC:,         PanicStop,  K1_Xn_Bit,    016,   Disabled,  Enabled,  NO_ALARM,    MINOR,  "I/O Intr"}
+#{13IDD_LaserPLC:,        DoorSwitch,  K1_Xn_Bit,    017,     Opened,   Closed,     MINOR, NO_ALARM,  "I/O Intr"}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,       PORT,          ADDR,     TMOD,  IFACE}
+{13IDD_LaserPLC:,    XnBAsyn, K1_Xn_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,       PORT,       SCAN}
+{13IDD_LaserPLC:,    XnB,     K1_Xn_Bit,  "10 second"}
+} 
+file "$(MODBUS)/db/poll_delay.template" { pattern
+{P,           R,            PORT}
+{13IDD_LaserPLC:,    XnBPollDelay, K1_Xn_Bit}
+}
+
+# These are the Yn inputs done with bit access Y0-Y27
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,                   R,             PORT,            OFFSET,     ZNAM,     ONAM,       ZSV,    OSV,        SCAN}
+{13IDD_LaserPLC:,            Buzzer,     K1_Yn_In_Bit,    000,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,    RemoteUserLamp,     K1_Yn_In_Bit,    001,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,     L1EnableRelay,     K1_Yn_In_Bit,    011,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,     L2EnableRelay,     K1_Yn_In_Bit,    012,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,     L3OpenShutter,     K1_Yn_In_Bit,    013,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,     L4EnableRelay,     K1_Yn_In_Bit,    014,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,      LaserOnLight,     K1_Yn_In_Bit,    015,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,     LaserOffLight,     K1_Yn_In_Bit,    016,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:, LaserCautionLight,     K1_Yn_In_Bit,    017,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,         PORT,             ADDR,     TMOD,  IFACE}
+{13IDD_LaserPLC:,    YnInBAsyn, K1_Yn_In_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{13IDD_LaserPLC:,    YnInB,     K1_Yn_In_Bit,  "10 second"}
+}
+file "$(MODBUS)/db/poll_delay.template" { pattern
+{P,           R,              PORT}
+{13IDD_LaserPLC:,    YnInBPollDelay, K1_Yn_In_Bit}
+}
+
+# These are the Cn inputs done with bit access C200-C207
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{P,                             R,           PORT,   OFFSET,      ZNAM,   ONAM,     ZSV,       OSV,    SCAN}
+{13IDD_LaserPLC:,  EnclosureClosed,  K1_Cn_In_Bit,     0200,     Opened,  Closed,     MINOR,  NO_ALARM,  "I/O Intr"}
+{13IDD_LaserPLC:,        L1Enabled,  K1_Cn_In_Bit,     0201,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,        L2Enabled,  K1_Cn_In_Bit,     0202,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,        L3Enabled,  K1_Cn_In_Bit,     0203,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,         UserMode,  K1_Cn_In_Bit,     0204,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13IDD_LaserPLC:,   FaultCondition,  K1_Cn_In_Bit,     0211,         OK,   Fault,  NO_ALARM,     MAJOR,  "I/O Intr"}
+{13IDD_LaserPLC:,   PanicCondition,  K1_Cn_In_Bit,     0212,         OK,   Panic,  NO_ALARM,     MAJOR,  "I/O Intr"}
+{13IDD_LaserPLC:,      DoorsClosed,  K1_Cn_In_Bit,     0214,     Opened,  Closed,     MINOR,  NO_ALARM,  "I/O Intr"}
+{13IDD_LaserPLC:,        L4Enabled,  K1_Cn_In_Bit,     0222,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,          PORT,              ADDR,     TMOD,  IFACE}
+{13IDD_LaserPLC:,  CnInBAsyn,  K1_Cn_In_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{13IDD_LaserPLC:,  CnInB,      K1_Cn_In_Bit,   "10 second"}
+}
+file "$(MODBUS)/db/poll_delay.template" { pattern
+{P,           R,              PORT}
+{13IDD_LaserPLC:,  CnInBPollDelay, K1_Cn_In_Bit}
+}
+
+# These are the Cn outputs done with bit access.  C300-C337 
+file "$(MODBUS)/db/bo_bit.template" { pattern
+{P,                          R,                  PORT,           OFFSET,        ZNAM,    ONAM}
+{13IDD_LaserPLC:,      FaultResetRequest,         K1_Cn_Out_Bit,    0300,       Done,    Request}
+{13IDD_LaserPLC:,        L1EnableRequest,         K1_Cn_Out_Bit,    0301,       Done,    Request}
+{13IDD_LaserPLC:,        L2EnableRequest,         K1_Cn_Out_Bit,    0302,       Done,    Request}
+{13IDD_LaserPLC:,        L3EnableRequest,         K1_Cn_Out_Bit,    0303,       Done,    Request}
+{13IDD_LaserPLC:,        L4EnableRequest,         K1_Cn_Out_Bit,    0304,       Done,    Request}
+{13IDD_LaserPLC:,  UserModeEnableRequest,         K1_Cn_Out_Bit,    0305,       Done,    Request}
+{13IDD_LaserPLC:,   EmergencyStopRequest,         K1_Cn_Out_Bit,    0306,       Done,    Request}
+}
+file "$(MODBUS)/db/asynRecord.template" { pattern
+{P,           R,          PORT,              ADDR,     TMOD,  IFACE}
+{13IDD_LaserPLC:,    CnOutBAsyn, K1_Cn_Out_Bit,     0,        Read,  asynUInt32Digital}
+}
+file "$(MODBUS)/db/statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{13IDD_LaserPLC:,    CnOutB,     K1_Cn_Out_Bit,  "10 second"}
+}
+
