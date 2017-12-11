@@ -91,9 +91,6 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMC:, Q=edb")
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMD:, Q=edb")
 
 
-
-
-
 #
 # XRF Spectra Collector 
 dbLoadRecords("$(CARS)/CARSApp/Db/XRF_Collect.db","P=13XRM:,Q=XRF")
@@ -121,6 +118,10 @@ dbLoadRecords("larchscan.db","P=13BMD:,Q=SCANDB")
 dbLoadRecords("larchscan.db","P=13BMC:,Q=SCANDB")
 dbLoadRecords("larchscan.db","P=13BMB:,Q=SCANDB")
 dbLoadRecords("larchscan.db","P=13BMA:,Q=SCANDB")
+
+# temporary data arrays for escan
+dbLoadRecords("escandata.db","P=13XRM:,Q=ScanData")
+
 
 # Epics PyInstrument
 dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13XRM:,Q=Inst")
