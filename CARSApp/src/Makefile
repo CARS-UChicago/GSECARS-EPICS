@@ -374,6 +374,13 @@ ifeq ($(OS_CLASS), Linux)
     endif
   endif
 
+  ifdef MEASCOMP
+    $(DBD_NAME)_DBD += measCompSupport.dbd
+    $(PROD_NAME)_LIBS := measCompLinuxDrivers $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_LIBS := cbw_linux $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
+  endif
+
   ifdef MCA
     # If your host supports libpcap and libnet and you want to build Canberra network
     # support, set LINUX_NET_INSTALLED to YES in <synApps>/configure/CONFIG_SITE.
