@@ -6,6 +6,8 @@ errlogInit(0)
 
 epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/CARSApp/Db)
 
+epicsEnvSet(PREFIX, "13RAMAN2:")
+
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
 
@@ -93,20 +95,43 @@ AG_UCCreateAxis("Agilis1", 0, 1, 50, -50)
 AG_UCCreateAxis("Agilis1", 1, 1, 50, -50)
 AG_UCCreateAxis("Agilis1", 2, 1, 50, -50)
 AG_UCCreateAxis("Agilis1", 3, 1, 50, -50)
-AG_UCCreateAxis("Agilis1", 4, 0, 50, -50)
+AG_UCCreateAxis("Agilis1", 4, 1, 50, -50)
 
 # Load asyn records on each of these ports
 dbLoadTemplate("asynRecord.template")
 
 # Laser Quantum Excel lasers on serial 1 and 2
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=13RAMAN2:,R=LQE1,PORT=serial1")
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=13RAMAN2:,R=LQE2,PORT=serial2")
+dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
+dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE2,PORT=serial2")
 
 # Serial 3 is Verdi Laser
-dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13RAMAN2:,R=Verdi1:,PORT=serial3")
+dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=$(PREFIX),R=Verdi1:,PORT=serial3")
 
 # IPG laser is serial 6
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13RAMAN2:,R=IPG1,PORT=serial6")
+dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial6")
+
+# Koyo PLC
+< Koyo.cmd
+
+##############################################################################
+# Set up serial ports on Moxa box
+drvAsynIPPortConfigure("serial7", "gsets9:2101", 0, 0)
+
+# Make these ports available from the iocsh command line
+asynOctetConnect("serial7", "serial7", 0, 1, 80)
+asynOctetSetInputEos("serial7",0,"\r")
+asynOctetSetOutputEos("serial7",0,"\r")
+
+# Load asyn records on each of these ports
+dbLoadTemplate("asynRecord.template")
+
+# MCB-4B driver setup parameters:
+#     (1) port name
+#     (2) serial port name
+#     (3) maximum # axis per controller
+#     (4) moving poll period ms
+#     (5) idle poll period ms
+MCB4BCreateController("MCB4B_1", "serial7", 4, 100, 0)
 
 ################################################################################
 # XPS Setup
@@ -114,7 +139,7 @@ dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13RAMAN2:,R=IPG1,PORT=ser
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.147", 5001, 6, 10, 500, 1, 500)
+XPSCreateController("XPS1", "164.54.160.147", 5001, 7, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -130,6 +155,7 @@ XPSCreateAxis("XPS1",2,"Group3.Pos",  "10000")
 XPSCreateAxis("XPS1",3,"Group4.Pos",  "50")  
 XPSCreateAxis("XPS1",4,"Group5.Pos",  "50")  
 XPSCreateAxis("XPS1",5,"Group6.Pos",  "800") 
+XPSCreateAxis("XPS1",6,"Group7.Pos",  "600")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -149,7 +175,7 @@ dbLoadTemplate("XPSAux.substitutions")
 drvAsynIPPortConfigure("xps", "164.54.160.147:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13RAMAN2:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -157,7 +183,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13RAMAN2:, R=trajAsyn1, PORT=xps, A
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13RAMAN2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -165,35 +191,22 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13RAMAN2:,MAXPTS1=2000,MAXPTS2=
 dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13RAMAN2:", std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
 
-# Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13RAMAN2:,N=10")
-
-# Free-standing user calcOuts (calcOut records)
-dbLoadRecords("$(CALC)/calcApp/Db/userCalcOuts10.db", "P=13RAMAN2:")
-
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13RAMAN2:")
-
-# Free-standing user string sequence records (sseq records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13RAMAN2:")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13RAMAN2:")
+< ../calc_GSECARS.iocsh
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("13RAMAN2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13RAMAN2:")
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13RAMAN2:")
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION","corvette")
 epicsEnvSet("GROUP","GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13RAMAN2:")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 iocInit
 
@@ -203,16 +216,17 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req",5,"P=13RAMAN2:")
+create_monitor_set("auto_positions.req",5,"P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30,"P=13RAMAN2:")
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
-dbpf("13RAMAN2:m1.NTM","0")
-dbpf("13RAMAN2:m2.NTM","0")
-dbpf("13RAMAN2:m3.NTM","0")
-dbpf("13RAMAN2:m4.NTM","0")
-dbpf("13RAMAN2:m5.NTM","0")
-dbpf("13RAMAN2:m6.NTM","0")
+dbpf("$(PREFIX)m1.NTM","0")
+dbpf("$(PREFIX)m2.NTM","0")
+dbpf("$(PREFIX)m3.NTM","0")
+dbpf("$(PREFIX)m4.NTM","0")
+dbpf("$(PREFIX)m5.NTM","0")
+dbpf("$(PREFIX)m6.NTM","0")
+dbpf("$(PREFIX)m7.NTM","0")
 
-motorUtilInit("13RAMAN2:")
+motorUtilInit("$(PREFIX)")
