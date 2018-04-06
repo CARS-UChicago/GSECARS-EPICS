@@ -1,6 +1,6 @@
-start medm -x -macro "P=13IDDLF1:, R=cam1:" LightField.adl
-call J:\epics\support\areaDetector\ADLightField\iocs\lightFieldIOC\iocBoot\iocLightField\dllPath.bat
-J:\epics\support\areaDetector\ADLightField\iocs\lightFieldIOC\bin\windows-x64\LightFieldApp st.cmd
+rem start medm -x -macro "P=13IDDLF1:, R=cam1:" LightField.adl
+set PATH=C:\epics_windows_binaries\windows-x64;%PATH%
+LightFieldApp st.cmd
 pause
 
 

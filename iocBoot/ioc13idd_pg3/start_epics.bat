@@ -1,6 +1,6 @@
 rem start medm -x -macro "P=13IDD_PG3:, R=cam1:" PointGrey.adl
-call dllPath.bat
-J:\epics\support\areaDetector\ADPointGrey\iocs\pointGreyIOC\bin\windows-x64-static\pointGreyApp st.cmd
+set PATH=C:\epics_windows_binaries\windows-x64-static;%PATH%
+pointGreyApp st.cmd
 pause
 
 

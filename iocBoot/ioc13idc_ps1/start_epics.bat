@@ -1,4 +1,4 @@
-## start medm -x -macro "P=13IDC_PS1:, R=cam1:" prosilica.adl
-call dllPath.bat
-J:\epics\support\areaDetector\ADProsilica\iocs\prosilicaIOC\bin\windows-x64-static\prosilicaApp st.cmd
+rem start medm -x -macro "P=13IDC_PS1:, R=cam1:" prosilica.adl
+set PATH=C:\epics_windows_binaries\windows-x64-static;%PATH%
+prosilicaApp st.cmd
 

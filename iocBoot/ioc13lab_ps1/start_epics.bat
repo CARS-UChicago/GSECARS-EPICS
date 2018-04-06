@@ -1,13 +1,14 @@
 rem This batch file starts the software for controlling Prosilica cameras from EPICS
 
 rem Start MEDM
-start medm -x -macro "P=13LABPS1:,R=cam1:,I=image1:,NETCDF=netCDF1:,JPEG=JPEG1:,TIFF=TIFF1:,ROI=ROI1:" prosilica.adl
+start medm -x -macro "P=13LABPS1:,R=cam1:" prosilica.adl
 
 rem Start TC window
 start medm -x -macro "P=13LABPS1:,R=TC:" test.adl
 
 rem Start IOC
-J:\epics\support\areaDetector\bin\win32-x86\prosilicaApp st.cmd
+set PATH=C:\epics_windows_binaries\windows-x64-static;%PATH%
+prosilicaApp st.cmd
 
 pause
 
