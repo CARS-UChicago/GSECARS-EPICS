@@ -5,6 +5,8 @@
 dbLoadDatabase("$(DXP)/dbd/dxp.dbd")
 dxp_registerRecordDeviceDriver(pdbbase)
 
+# The search path for database files
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 # The default callback queue in EPICS base is only 2000 bytes. 
 # The dxp detector system needs this to be larger to avoid the error message: 
@@ -31,9 +33,7 @@ dbLoadTemplate("4element.substitutions")
 
 # Create a netCDF file saving plugin
 NDFileNetCDFConfigure("DXP1NetCDF", 100, 0, "DXP1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=DXP1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileNetCDF.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(ADCORE)/db/NDFileNetCDF.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
 
 #asynSetTraceMask DXP1 0 255
 asynSetTraceIOMask DXP1 0 2
