@@ -1,4 +1,4 @@
 start medm -x 13GasLoading.adl 
-call dllPath.bat
-..\..\bin\win32-x86-static\CARSApp st.cmd
+set PATH=C:\epics_windows_binaries\win32-x86-static;%PATH%
+CARSApp st.cmd
 pause
