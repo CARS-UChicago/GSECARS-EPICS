@@ -28,7 +28,10 @@ XPSCreateAxis("XPS1",1,"G1.STZ",  "10000")
 XPSCreateAxis("XPS1",2,"G1.STY",  "50000")  
 XPSCreateAxis("XPS1",3,"G1.OM",    "2000")  
 XPSCreateAxis("XPS1",4,"G2.SLX",  "10000")  
+# Used for normal DAC and LVP Setup
 XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")  
+# used when xps plug 5 is setup for gpd x stage
+#XPSCreateAxis("XPS1",5,"G4.GPD_X",  "10000")  
 XPSCreateAxis("XPS1",6,"G2.SLT",  "10000")  
 XPSCreateAxis("XPS1",7,"G3.CZ",    "1000")  
 
