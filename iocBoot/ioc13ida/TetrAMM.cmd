@@ -26,6 +26,7 @@ drvTetrAMMConfigure("$(PORT)", "IP_$(PORT)", $(RING_SIZE))
 dbLoadRecords("$(QUADEM)/db/$(TEMPLATE).template", "P=$(PREFIX), R=$(RECORD), PORT=$(PORT), ADDR=0, TIMEOUT=1")
 
 asynSetTraceIOMask("$(PORT)",0,2)
-#asynSetTraceMask("$(PORT)",  0,9)
+# Set ASYN_TRACE_WARNING and ASYN_TRACE_ERROR
+asynSetTraceMask("$(PORT)",  0, 0x21)
 
 < ../quadEMCommonPlugins.cmd
