@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\cars\carsapp\op\adl\13Raman2.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13Raman2.adl"
 	version=030109
 }
 display {
 	object {
-		x=352
-		y=73
+		x=351
+		y=198
 		width=370
 		height=270
 	}
@@ -219,13 +219,18 @@ text {
 	}
 	display[0] {
 		label="Sample stage"
-		name="6motors.adl"
-		args="P=13RAMAN2:, TITLE=Sample_Stage, M1=m1, M2=m2, M3=m3,  M4=m4, M5=m5, M6=m6"
+		name="7motors.adl"
+		args="P=13RAMAN2:, TITLE=Sample_Stage, M1=m1, M2=m2, M3=m3,  M4=m4, M5=m5, M6=m6, M7=m7"
 	}
 	display[1] {
 		label="Mirrors"
 		name="4motors.adl"
-		args="P=13RAMAN2:, TITLE=Mirrors,M1=m7,M2=m8,M3=m9,M4=m10"
+		args="P=13RAMAN2:, TITLE=Mirrors,M1=m9,M2=m10,M3=m11,M4=m12"
+	}
+	display[2] {
+		label="LH Objective"
+		name="3motors.adl"
+		args="P=13RAMAN2:, TITLE=LH_Objective, M1=m13,M2=m14,M3=m15"
 	}
 	clr=14
 	bclr=4
@@ -383,8 +388,8 @@ text {
 }
 "related display" {
 	object {
-		x=246
-		y=79
+		x=245
+		y=73
 		width=98
 		height=34
 	}
@@ -396,4 +401,20 @@ text {
 	clr=14
 	bclr=4
 	label="- Raman"
+}
+"related display" {
+	object {
+		x=225
+		y=113
+		width=130
+		height=34
+	}
+	display[0] {
+		label="Expert"
+		name="13Raman_usermode.adl"
+		args="P=13RAMAN2:, TITLE=Sample_Stage, M1=m1, M2=m2, M3=m3,  M4=m4, M5=m5, M6=m6"
+	}
+	clr=14
+	bclr=4
+	label="- UserMode"
 }

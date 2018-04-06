@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\support\cars\CARSApp\op\adl\13IDD_dac_user.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user.adl"
 	version=030109
 }
 display {
@@ -6800,35 +6800,6 @@ composite {
 composite {
 	object {
 		x=1272
-		y=106
-		width=33
-		height=31
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1272
-				y=106
-				width=33
-				height=31
-			}
-			control {
-				chan="13IDA:OpenCDShutter.PROC"
-				clr=17
-				bclr=20
-			}
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDA:eps_mbbi26"
-	}
-}
-composite {
-	object {
-		x=1272
 		y=37
 		width=33
 		height=31
@@ -10264,5 +10235,49 @@ composite {
 	"dynamic attribute" {
 		vis="if not zero"
 		chan="13IDD:LaserPLC:FaultCondition"
+	}
+}
+composite {
+	object {
+		x=1272
+		y=106
+		width=33
+		height=31
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=1272
+				y=106
+				width=33
+				height=31
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=1272
+						y=106
+						width=33
+						height=31
+					}
+					control {
+						chan="13IDA:OpenCDShutter.PROC"
+						clr=17
+						bclr=20
+					}
+					press_msg="1"
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13IDA:eps_mbbi26"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:13ID:STA_D_SDS_OPEN_PL.VAL"
 	}
 }

@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=185
-		y=96
-		width=380
-		height=460
+		x=448
+		y=144
+		width=420
+		height=485
 	}
 	clr=14
 	bclr=4
@@ -104,8 +104,8 @@ rectangle {
 	object {
 		x=5
 		y=50
-		width=370
-		height=405
+		width=410
+		height=430
 	}
 	"basic attribute" {
 		clr=14
@@ -114,7 +114,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=165
+		x=195
 		y=55
 		width=185
 		height=20
@@ -125,7 +125,7 @@ rectangle {
 }
 text {
 	object {
-		x=20
+		x=50
 		y=55
 		width=140
 		height=20
@@ -137,7 +137,7 @@ text {
 }
 text {
 	object {
-		x=165
+		x=195
 		y=55
 		width=40
 		height=20
@@ -154,7 +154,7 @@ text {
 }
 text {
 	object {
-		x=210
+		x=240
 		y=55
 		width=70
 		height=20
@@ -171,7 +171,7 @@ text {
 }
 text {
 	object {
-		x=285
+		x=315
 		y=55
 		width=60
 		height=20
@@ -188,7 +188,7 @@ text {
 }
 composite {
 	object {
-		x=40
+		x=70
 		y=105
 		width=205
 		height=20
@@ -197,7 +197,7 @@ composite {
 	children {
 		"text update" {
 			object {
-				x=165
+				x=195
 				y=105
 				width=80
 				height=20
@@ -213,7 +213,7 @@ composite {
 		}
 		text {
 			object {
-				x=40
+				x=70
 				y=105
 				width=120
 				height=20
@@ -227,7 +227,7 @@ composite {
 }
 composite {
 	object {
-		x=40
+		x=70
 		y=80
 		width=205
 		height=20
@@ -236,7 +236,7 @@ composite {
 	children {
 		text {
 			object {
-				x=40
+				x=70
 				y=80
 				width=120
 				height=20
@@ -248,7 +248,7 @@ composite {
 		}
 		"text update" {
 			object {
-				x=165
+				x=195
 				y=80
 				width=80
 				height=20
@@ -266,7 +266,7 @@ composite {
 }
 text {
 	object {
-		x=40
+		x=70
 		y=140
 		width=300
 		height=25
@@ -277,27 +277,11 @@ text {
 	textix="Raman Table"
 	align="horiz. centered"
 }
-"message button" {
-	object {
-		x=250
-		y=170
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)FaultResetRequest"
-		clr=14
-		bclr=51
-	}
-	label="Reset Fault"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=10
+		x=60
 		y=170
-		width=150
+		width=130
 		height=20
 	}
 	"basic attribute" {
@@ -308,7 +292,7 @@ text {
 }
 "text update" {
 	object {
-		x=165
+		x=195
 		y=170
 		width=80
 		height=20
@@ -324,9 +308,9 @@ text {
 }
 text {
 	object {
-		x=10
+		x=80
 		y=195
-		width=150
+		width=110
 		height=20
 	}
 	"basic attribute" {
@@ -337,7 +321,7 @@ text {
 }
 "text update" {
 	object {
-		x=165
+		x=195
 		y=195
 		width=80
 		height=20
@@ -351,26 +335,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=250
-		y=195
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)EmergencyStop1Request"
-		clr=14
-		bclr=20
-	}
-	label="Emergency Stop"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=10
-		y=355
+		x=40
+		y=380
 		width=150
 		height=20
 	}
@@ -382,13 +350,13 @@ text {
 }
 "text update" {
 	object {
-		x=165
-		y=355
+		x=195
+		y=380
 		width=80
 		height=20
 	}
 	monitor {
-		chan="$(P)L2Enabled"
+		chan="$(P)E2L1Enabled"
 		clr=14
 		bclr=2
 	}
@@ -396,26 +364,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=250
-		y=355
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)L2EnableRequest"
-		clr=14
-		bclr=51
-	}
-	label="Laser 2 Enable"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=10
-		y=380
+		x=40
+		y=405
 		width=150
 		height=20
 	}
@@ -427,13 +379,13 @@ text {
 }
 "text update" {
 	object {
-		x=165
-		y=380
+		x=195
+		y=405
 		width=80
 		height=20
 	}
 	monitor {
-		chan="$(P)L3Enabled"
+		chan="$(P)E2L2Enabled"
 		clr=14
 		bclr=2
 	}
@@ -441,26 +393,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=250
-		y=380
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)L3EnableRequest"
-		clr=14
-		bclr=51
-	}
-	label="Laser 3 Enable"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=10
-		y=405
+		x=40
+		y=430
 		width=150
 		height=20
 	}
@@ -472,13 +408,13 @@ text {
 }
 "text update" {
 	object {
-		x=165
-		y=405
+		x=195
+		y=430
 		width=80
 		height=20
 	}
 	monitor {
-		chan="$(P)L4Enabled"
+		chan="$(P)E2L3Enabled"
 		clr=14
 		bclr=2
 	}
@@ -486,26 +422,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=250
-		y=405
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)L4EnableRequest"
-		clr=14
-		bclr=51
-	}
-	label="Laser 4 Enable"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=33
-		y=430
+		x=63
+		y=455
 		width=120
 		height=20
 	}
@@ -517,8 +437,8 @@ text {
 }
 "related display" {
 	object {
-		x=165
-		y=430
+		x=195
+		y=455
 		width=120
 		height=20
 	}
@@ -553,8 +473,8 @@ text {
 }
 text {
 	object {
-		x=38
-		y=275
+		x=68
+		y=300
 		width=300
 		height=25
 	}
@@ -564,26 +484,10 @@ text {
 	textix="Ultrasonic Table"
 	align="horiz. centered"
 }
-"message button" {
-	object {
-		x=250
-		y=305
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)FaultResetRequest"
-		clr=14
-		bclr=51
-	}
-	label="Reset Fault"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=10
-		y=305
+		x=40
+		y=330
 		width=150
 		height=20
 	}
@@ -595,8 +499,8 @@ text {
 }
 "text update" {
 	object {
-		x=165
-		y=305
+		x=195
+		y=330
 		width=80
 		height=20
 	}
@@ -611,8 +515,8 @@ text {
 }
 text {
 	object {
-		x=10
-		y=330
+		x=40
+		y=355
 		width=150
 		height=20
 	}
@@ -624,8 +528,8 @@ text {
 }
 "text update" {
 	object {
-		x=165
-		y=330
+		x=195
+		y=355
 		width=80
 		height=20
 	}
@@ -638,71 +542,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=250
-		y=330
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)EmergencyStop2Request"
-		clr=14
-		bclr=20
-	}
-	label="Emergency Stop"
-	press_msg="1"
-	release_msg="0"
-}
 text {
 	object {
-		x=10
-		y=220
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Lasers Enable:"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=165
-		y=220
-		width=80
-		height=20
-	}
-	monitor {
-		chan="$(P)L1Enabled"
-		clr=14
-		bclr=2
-	}
-	clrmod="alarm"
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=250
-		y=220
-		width=120
-		height=20
-	}
-	control {
-		chan="$(P)L1EnableRequest"
-		clr=14
-		bclr=51
-	}
-	label="Lasers Enable"
-	press_msg="1"
-	release_msg="0"
-}
-text {
-	object {
-		x=10
-		y=245
+		x=40
+		y=270
 		width=150
 		height=20
 	}
@@ -713,8 +556,8 @@ text {
 }
 "text update" {
 	object {
-		x=165
-		y=245
+		x=195
+		y=270
 		width=80
 		height=20
 	}
@@ -727,11 +570,181 @@ text {
 	limits {
 	}
 }
+text {
+	object {
+		x=10
+		y=220
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Lasers 1-2 Enable:"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=195
+		y=220
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)E1L1-2Enabled"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=245
+		width=180
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Lasers 3-6 Enable:"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=195
+		y=245
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)E1L3-6Enabled"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
 "message button" {
 	object {
-		x=250
-		y=245
-		width=120
+		x=280
+		y=170
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)FaultResetRequest"
+		clr=14
+		bclr=51
+	}
+	label="Reset Fault"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=195
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)EmergencyStop1Request"
+		clr=14
+		bclr=20
+	}
+	label="Emergency Stop"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=380
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)E2L1EnableRequest"
+		clr=14
+		bclr=51
+	}
+	label="Laser 1 Enable"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=405
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)E2L2EnableRequest"
+		clr=14
+		bclr=51
+	}
+	label="Laser 2 Enable"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=430
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)E2L3EnableRequest"
+		clr=14
+		bclr=51
+	}
+	label="Laser 3 Enable"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=330
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)FaultResetRequest"
+		clr=14
+		bclr=51
+	}
+	label="Reset Fault"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=355
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)EmergencyStop2Request"
+		clr=14
+		bclr=20
+	}
+	label="Emergency Stop"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=270
+		width=130
 		height=20
 	}
 	control {
@@ -740,6 +753,38 @@ text {
 		bclr=51
 	}
 	label="Shutters Enable"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=220
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)E1L1-2EnableRequest"
+		clr=14
+		bclr=51
+	}
+	label="Lasers 1-2 Enable"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=280
+		y=245
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)E1L3-6EnableRequest"
+		clr=14
+		bclr=51
+	}
+	label="Lasers 3-6 Enable"
 	press_msg="1"
 	release_msg="0"
 }
