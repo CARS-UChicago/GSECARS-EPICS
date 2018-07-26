@@ -8,7 +8,7 @@ The instructions here use the CARSApp application as an example.  CARSApp
 is an EPICS application built with support for most of the devices in the 
 [EPICS SynApps module](https://www.aps.anl.gov/BCDA/synApps).  This includes
 many motors, serial, TCP/IP, and USB devices.  It does not include
-support for any [EPICS areaDetector modules](http://cars.uchicago.edu/software/epics/areaDetector.html).  
+support for any [EPICS areaDetector modules](http://cars.uchicago.edu/software/epics/areaDetector.html).
 Those are provided as separate pre-built IOC applications.
 
 With some modifications these instructions can be used for other pre-built EPICS IOCs.
