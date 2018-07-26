@@ -204,6 +204,7 @@ the aliases.
 ## Create a top-level medm screen
 The C:\EPICS\support modules contain complete medm screens for all supported devices.
 However, you must create a top-level medm screen for your specific application.
+This top-level screen will load the device-specific screens.
 
 You should copy an existing top-level medm .adl file as a starting point.  For example
 CARS/CARSApp/op/adl/13Raman2.adl could be copied to iocTest.adl.  Open iocTest.adl
