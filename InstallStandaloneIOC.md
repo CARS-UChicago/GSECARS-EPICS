@@ -104,44 +104,45 @@ package](http://www.aps.anl.gov/epics/distributions/win32/index.php).
 
 Before running an EPICS IOC application it is usually necessary to configure a number of items.
 
-### EPICS environment variables. There are several environment variables that EPICS
-  uses.
+### EPICS environment variables
 
-    - EPICS_CA_AUTO_ADDR_LIST and EPICS_CA_ADDR_LIST.
-      These variables control the IP addresses that EPICS clients use when searching for
-      EPICS PVs. The default is EPICS_CA_AUTO_ADDR_LIST=YES and EPICS_CA_ADDR_LIST to be the
-      broadcast address of all networks connected to the host. If the computer running the IOC
-      and medm has 2 or more network cards, then the default value of these variables must be changed.
-      If they are not then EPICS clients (e.g. medm) running on the IOC host computer will generate many errors because each
-      EPICS PV will appear to be coming from both networks. The solution is to set these
-      variables as follows:
+There are several environment variables that EPICS uses.
 
-      <code>setenv EPICS_CA_AUTO_ADDR_LIST NO</code>
-      
-      <code>setenv EPICS_CA_ADDR_LIST localhost:XX.YY.ZZ.255</code>
+- EPICS_CA_AUTO_ADDR_LIST and EPICS_CA_ADDR_LIST.
+  These variables control the IP addresses that EPICS clients use when searching for
+  EPICS PVs. The default is EPICS_CA_AUTO_ADDR_LIST=YES and EPICS_CA_ADDR_LIST to be the
+  broadcast address of all networks connected to the host. If the computer running the IOC
+  and medm has 2 or more network cards, then the default value of these variables must be changed.
+  If they are not then EPICS clients (e.g. medm) running on the IOC host computer will generate many errors because each
+  EPICS PV will appear to be coming from both networks. The solution is to set these
+  variables as follows:
 
-      where XX.YY.ZZ.255 should be replaced with the broadcast address for the public
-      network on this computer.
+  <code>setenv EPICS_CA_AUTO_ADDR_LIST NO</code>
+  
+  <code>setenv EPICS_CA_ADDR_LIST localhost:XX.YY.ZZ.255</code>
 
-    - EPICS_CA_MAX_ARRAY_BYTES.
-      This variable controls the maximum array size that EPICS can transmit with Channel
-      Access. The default is only 16kB, which is much too small for most detector data. This
-      value must be set to a large enough value on both the EPICS server computer (e.g. the
-      one running the areaDetector IOC) and client computer (e.g. the one running medm,
-      Python, ImageJ, IDL, etc.). This should be set to a value that is larger than the largest
-      waveform record that will be used for the detector.  For example:
-      `EPICS_CA_MAX_ARRAY_BYTES=1000000`.
+  where XX.YY.ZZ.255 should be replaced with the broadcast address for the public
+  network on this computer.
 
-      Do not simply set EPICS_CA_MAX_ARRAY_BYTES to a very large number like 100MB or 1GB.
-      EPICS Channel Access allocates buffers of exactly EPICS_CA_MAX_ARRAY bytes whenever
-      the required buffer size exceeds 16 kB, and one does not want unnecessarily large
-      buffers to be allocated.
-      
-    - EPICS_DISPLAY_PATH. This variable controls where medm looks for .adl display files.
-      If the recommendation below is followed to copy all adl files to a single directory,
-      then this environment variable should be defined to point to that directory. For
-      example, create a directory C:\EPICS\adls and then set the environment variable
-      `EPICS_DISPLAY_PATH=C:\EPICS\adls`.
+- EPICS_CA_MAX_ARRAY_BYTES.
+  This variable controls the maximum array size that EPICS can transmit with Channel
+  Access. The default is only 16kB, which is much too small for most detector data. This
+  value must be set to a large enough value on both the EPICS server computer (e.g. the
+  one running the areaDetector IOC) and client computer (e.g. the one running medm,
+  Python, ImageJ, IDL, etc.). This should be set to a value that is larger than the largest
+  waveform record that will be used for the detector.  For example:
+  `EPICS_CA_MAX_ARRAY_BYTES=1000000`.
+
+  Do not simply set EPICS_CA_MAX_ARRAY_BYTES to a very large number like 100MB or 1GB.
+  EPICS Channel Access allocates buffers of exactly EPICS_CA_MAX_ARRAY bytes whenever
+  the required buffer size exceeds 16 kB, and one does not want unnecessarily large
+  buffers to be allocated.
+  
+- EPICS_DISPLAY_PATH. This variable controls where medm looks for .adl display files.
+  If the recommendation below is followed to copy all adl files to a single directory,
+  then this environment variable should be defined to point to that directory. For
+  example, create a directory C:\EPICS\adls and then set the environment variable
+  `EPICS_DISPLAY_PATH=C:\EPICS\adls`.
 
 
 ### medm display files. 
