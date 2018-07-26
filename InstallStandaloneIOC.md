@@ -2,7 +2,7 @@
 
 Pre-built binary versions of EPICS applications can be provided for Windows.
 This is very convenient so that it is not necessary to
-set up a build system to compile the IOC, which required significant effort.
+set up a build system to compile the IOC, which requires significant effort.
 
 The instructions here use the CARSApp application as an example.  CARSApp
 is an EPICS application built with support for most of the devices in the 
@@ -15,78 +15,58 @@ With some modifications these instructions can be used for other pre-built EPICS
 IOCs.
 
 ## Install required support libraries
-The CARSApp application can control devices include Canberra and Amptek multichannel analyzers,
+The devices that the CARSApp application can control include Canberra and Amptek multichannel analyzers and
 Measurement Computing USB and Ethernet modules.  These require additional support packages 
-to be installed, or CARSApp will not be able to be run.
+to be installed, or CARSApp will report missing DLL files when one tries to run it.
 
 ### WinPcap
 This package provides the libraries needed for the Canberra Multichannel Analyzers.  It can be downloaded
-here: https://www.winpcap.org/install/default.htm 
+here: 
+
+https://www.winpcap.org/install/default.htm 
 
 ### InstaCal
 This package provides the libraries needed for the Measurement Computing devices.
 Download and install the InstaCal software from this Web page:
+
 https://www.mccdaq.com/Software-Downloads.aspx 
 
 ### libusb-1.0
 This library is needed for the Amptek Multichannel Analyzers. It can be downloaded from this Web page:
+
 https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.21/libusb-1.0.21.7z/download 
-You can use the 7-Zip program to extract the downloaded .7z archive file: https://www.7-zip.org/download.html 
-It unzips into a libusb-1.0.21 directory.  The libusb-1.0.21\lib\liusb-1.0.21\MS64\dll subdirectory must be added to your PATH environment variable: 
+
+You can use the 7-Zip program to extract the downloaded .7z archive file:
+
+https://www.7-zip.org/download.html 
+
+It unzips into a libusb-1.0.21 directory.  The libusb-1.0.21\lib\liusb-1.0.21\MS64\dll subdirectory must be added to your PATH environment variable.
 For example you could put the package in C:\Program Files\libusb-1.0.21 and then add C:\Program Files\\libusb-1.0.21\MS64\dll in your PATH.
 That is done with Control Panel/System/Advanced/Environment Variables/Edit and add it to the existing PATH environment variable.
 
-## Download
-The pre-built package can be found on the 
-[CARS Web site](http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip). 
+## Install the pre-built CARS package
+- The pre-built package can be downloaded here:
 
+http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip). 
 
-The pre-built binaries contain executables for one or more of the following
-architectures:
-- linux-x86 (32-bit Linux built on Centos7, gcc 4.8.5, libc 2.17)
-- linux-x86_64 (64-bit Linux built on Centos7, gcc 4.8.5, libc 2.17)
-- linux-x86_rhel6 (32-bit Linux build on RHEL6, gcc 4.4.7, libc 2.12)
-- linux-x86_64-gcc42 (64-bit Linux built on SUSE, gcc 4.2.1, libc 2.6.1)
-- darwin-x86 (64-bit Mac OS X built on Darwin 11.4.2,  ??, clang 4.2)
-- win32-x86-static (32-bit Windows, VS2010 compiler, statically linked)
-- win32-x86 (32-bit Windows, VX2010 compiler, dyanamically linked)
-- windows-x64-static (64-bit Windows, VS2010 compiler, statically linked)
-- windows-x64 (64-bit Windows, VX2010 compiler, dyanamically linked)
+- Create an installation directory for the module.
+I typically use C:\EPICS\support.  Unzip the downloaded file into this directory.
 
-Note that the linux-x86 and linux-x86_64 builds are done a relatively new Linux system
-and will not run on RHEL 6, for example.  The linux-x86-rhel6 build will run on RHEL 6. 
-The linux-x86_64-gcc42 build uses a very old version of libc and should run on most Linux 
-systems.
-
-Follow these steps to use the prebuilt version.  
-
-* Create an installation directory for the module. On Windows I typically use C:\EPICS\support.
-  On Linux I typically use /home/ACCOUNT/epics/support, where ACCOUNT is the name
-  of the account that is normally used to run the detector software, e.g. marccd on
-  a marCCD detector, mar345 on a mar345 detector, det on a Pilatus detector, etc.
-
-* Place the distribution file in this directory. Then issue the commands (Unix style)
-
-    <code>tar xvzf ADPilatus_RX-Y.tgz</code>
-    
-  On Windows it is more convenient to download the zip file and extract it using
-  Windows Explorer.
+- In the CARS/iocBoot directory make a *copy* of one of the existing ioc* directories.  Choose 
+  a directory that most closely matches the types of devices that you will be using.  As an
+  example one could copy ioc13Raman2 to iocTest.
   
-    
-* In the ADPilatus/iocs/pilatusIOC/iocBoot/ directory make a *copy* of the example 
-  iocPilatus directory and give it a new local name, e.g. ioc13Pilatus1. By doing this you
-  will be able to update to later versions of areaDetector without overwriting modifications
-  you make in the ioc13Pilatus1 directory.
+- By doing this you will be able to update to later versions of the pre-built module without
+  losing changes you make in this directory.
 
-* In the new io13Pilatus1 directory you just created edit st.cmd to change the PV prefix
-  $(PREFIX) to one that is unique to your site. PV prefixes must be unique on the subnet, and
-  if you use the default prefix there could be a conflict with other detectors of the same
-  type.
+* In the new directory you just created edit st.cmd to change the PV prefix
+  $(PREFIX) to one that is unique to your site. PV prefixes must be unique on the subnet.
 
-* In the same ioc13Pilatus1 directory edit the file envPaths to point to the locations of all of the
+* In the same directory edit the file envPaths to point to the locations of all of the
   support modules on your system. Normally this is handled by the EPICS build system, but
   when using the prebuilt version this must be manually edited. Do not worry about the path
-  to EPICS_BASE, it is not required.
+  to EPICS_BASE or any other modules that don't exist in the EPICS\support directory, they
+  are not used or needed.
 
 
 Display Managers
