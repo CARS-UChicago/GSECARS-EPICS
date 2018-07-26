@@ -45,28 +45,28 @@ For example you could put the package in C:\Program Files\libusb-1.0.21 and then
 That is done with Control Panel/System/Advanced/Environment Variables/Edit and add it to the existing PATH environment variable.
 
 ## Install the pre-built CARS package
-- The pre-built package can be downloaded here:
+The pre-built package can be downloaded here:
 
 http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip). 
 
-- Create an installation directory for the module.
+Create an installation directory for the module.
 I typically use C:\EPICS\support.  Unzip the downloaded file into this directory.
 
-- In the CARS/iocBoot directory make a *copy* of one of the existing ioc* directories.  Choose 
-  a directory that most closely matches the types of devices that you will be using.  As an
-  example one could copy ioc13Raman2 to iocTest.
+In the CARS/iocBoot directory make a *copy* of one of the existing ioc* directories.  Choose 
+a directory that most closely matches the types of devices that you will be using.  As an
+example one could copy ioc13Raman2 to iocTest.
   
-- By doing this you will be able to update to later versions of the pre-built module without
-  losing changes you make in this directory.
+By doing this you will be able to update to later versions of the pre-built module without
+losing changes you make in this directory.
 
-* In the new directory you just created edit st.cmd to change the PV prefix
-  $(PREFIX) to one that is unique to your site. PV prefixes must be unique on the subnet.
+In the new directory you just created edit st.cmd to change the PV prefix
+$(PREFIX) to one that is unique to your site. PV prefixes must be unique on the subnet.
 
-* In the same directory edit the file envPaths to point to the locations of all of the
-  support modules on your system. Normally this is handled by the EPICS build system, but
-  when using the prebuilt version this must be manually edited. Do not worry about the path
-  to EPICS_BASE or any other modules that don't exist in the EPICS\support directory, they
-  are not used or needed.
+In the same directory edit the file envPaths to point to the locations of all of the
+support modules on your system. Normally this is handled by the EPICS build system, but
+when using the prebuilt version this must be manually edited. Do not worry about the path
+to EPICS_BASE or any other modules that don't exist in the EPICS\support directory, they
+are not used or needed.
 
 
 Display Managers
