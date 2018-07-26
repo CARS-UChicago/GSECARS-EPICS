@@ -7,12 +7,11 @@ set up a build system to compile the IOC, which requires significant effort.
 The instructions here use the CARSApp application as an example.  CARSApp
 is an EPICS application built with support for most of the devices in the 
 [EPICS SynApps module](https://www.aps.anl.gov/BCDA/synApps).  This includes
-many motors, serial, TCP/IP, and USB devices.It does not include
-support for any EPICS areaDetector modules.  Those are provided as separate pre-built
-IOC applications.
+many motors, serial, TCP/IP, and USB devices.  It does not include
+support for any [EPICS areaDetector modules](http://cars.uchicago.edu/software/epics/areaDetector.html).  
+Those are provided as separate pre-built IOC applications.
 
-With some modifications these instructions can be used for other pre-built EPICS
-IOCs.
+With some modifications these instructions can be used for other pre-built EPICS IOCs.
 
 ## Install required support libraries
 The devices that the CARSApp application can control include Canberra and Amptek multichannel analyzers and
@@ -20,8 +19,8 @@ Measurement Computing USB and Ethernet modules.  These require additional suppor
 to be installed, or CARSApp will report missing DLL files when one tries to run it.
 
 ### WinPcap
-This package provides the libraries needed for the Canberra Multichannel Analyzers.  It can be downloaded
-here: 
+This package provides the libraries needed for the Canberra multichannel analyzers.  
+It can be downloaded here: 
 
 https://www.winpcap.org/install/default.htm 
 
@@ -32,7 +31,8 @@ Download and install the InstaCal software from this Web page:
 https://www.mccdaq.com/Software-Downloads.aspx 
 
 ### libusb-1.0
-This library is needed for the Amptek Multichannel Analyzers. It can be downloaded from this Web page:
+This library is needed for the Amptek multichannel analyzers. 
+It can be downloaded from this Web page:
 
 https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.21/libusb-1.0.21.7z/download 
 
@@ -42,18 +42,19 @@ https://www.7-zip.org/download.html
 
 It unzips into a libusb-1.0.21 directory.  The libusb-1.0.21\lib\liusb-1.0.21\MS64\dll subdirectory must be added to your PATH environment variable.
 For example you could put the package in C:\Program Files\libusb-1.0.21 and then add C:\Program Files\\libusb-1.0.21\MS64\dll in your PATH.
-That is done with Control Panel/System/Advanced/Environment Variables/Edit and add it to the existing PATH environment variable.
+That is done with Control Panel/System/Advanced/Environment Variables/Edit, adding it to the existing PATH environment variable.
 
 ## Install the pre-built CARS package
 The pre-built package can be downloaded here:
 
-http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip). 
+http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip. 
 
 Create an installation directory for the module.
-I typically use C:\EPICS\support.  Unzip the downloaded file into this directory.
+I typically use C:\EPICS\support.  Unzip the downloaded file into the C:\EPICS\support directory, not into the 
+default epics_standalone_CARS directory.
 
 In the CARS/iocBoot directory make a *copy* of one of the existing ioc* directories.  Choose 
-a directory that most closely matches the types of devices that you will be using.  
+a directory that most closely matches the types of devices that you will be using.
 Here as an example I assume you have copied ioc13Raman2 to iocTest.
   
 By making a copy you will be able to update to later versions of the pre-built module without
@@ -72,7 +73,8 @@ Do not worry about the path to EPICS_BASE, any other modules in the H:/epics/, o
 in the C:/EPICS/support directory. They are not used or needed.
 
 Edit the st.cmd file and any .template or .substitutions files to configure them for the devices you will be using in 
-your IOC application.
+your IOC application.  The deails of how to do this are device-specific, and are beyong the scope of this
+document.
 
 Edit the start_ioc.bat file to contain the following:
 ```
@@ -92,7 +94,7 @@ what I currently recommend and what is covered in this document.
 The source code for medm can be downloaded from:
 [medm](http://www.aps.anl.gov/epics/extensions/medm/index.php)
 
-This requires [Motif](http://motif.ics.com/).  medm can be built from source on Linux if the Motif library is
+This requires [Motif](http://motif.ics.com/). medm can be built from source on Linux if the Motif library is
 available. 
 
 medm is available for Windows as via an
@@ -117,21 +119,21 @@ There are several environment variables that EPICS uses.
   EPICS PV will appear to be coming from both networks. The solution is to set these
   variables as follows:
 
-  <code>setenv EPICS_CA_AUTO_ADDR_LIST NO</code>
-  
-  <code>setenv EPICS_CA_ADDR_LIST localhost:XX.YY.ZZ.255</code>
+  ```
+  EPICS_CA_AUTO_ADDR_LIST=NO
+  EPICS_CA_ADDR_LIST=XX.YY.ZZ.255
+  ```
 
-  where XX.YY.ZZ.255 should be replaced with the broadcast address for the public
+  where XX.YY.ZZ.255 should normally be replaced with the broadcast address for the public wired
   network on this computer.
 
 - EPICS_CA_MAX_ARRAY_BYTES.
   This variable controls the maximum array size that EPICS can transmit with Channel
-  Access. The default is only 16kB, which is much too small for most detector data. This
+  Access. The default is only 16kB, which is often too small for detector data. This
   value must be set to a large enough value on both the EPICS server computer (e.g. the
   one running the areaDetector IOC) and client computer (e.g. the one running medm,
   Python, ImageJ, IDL, etc.). This should be set to a value that is larger than the largest
-  waveform record that will be used for the detector.  For example:
-  `EPICS_CA_MAX_ARRAY_BYTES=1000000`.
+  waveform record that will be used.  For example: `EPICS_CA_MAX_ARRAY_BYTES=1000000`.
 
   Do not simply set EPICS_CA_MAX_ARRAY_BYTES to a very large number like 100MB or 1GB.
   EPICS Channel Access allocates buffers of exactly EPICS_CA_MAX_ARRAY bytes whenever
@@ -162,6 +164,17 @@ There are several environment variables that EPICS uses.
   in the MobaXterm local terminal Window, or using Cygwin or some other Linux-like
   shell for Windows.
 
+### X11 server
+The medm and edm display managers are written for the X11 windows system with Motif.
+They thus require an X11 server to be running to display the screens.  On Windows there are
+several X11 servers available.
+
+An X11 server that I recommend is [MobaXterm](https://mobaxterm.mobatek.net/).  It is available for
+free for personal use, or with reasonable license fees for an enhanced version with support.
+
+[OpenText/Exceed](https://www.opentext.com/what-we-do/products/specialty-technologies/connectivity/exceed/)
+is a commercial package that also works well.
+
 ### medm fonts
 medm needs font aliases in order to display correctly.  The following instructions cover
 settings these font aliases for MobaXterm and Exceed.  For other X11 servers the 
@@ -178,7 +191,7 @@ the aliases.
 - Download this file: https://github.com/epics-extensions/medm/blob/master/medm/fonts.alias.sun
 - Click the Raw button in the upper-right and then right-click and save as fonts.sun.ali.
 - Start Exceed
-- Right-click program in taskbar, go to 'Xconfig'
+- Right-click Exceed in taskbar, go to 'Xconfig'
 - Open "Font Management"
 - Select Edit
 - Select "Import Alias"
@@ -187,4 +200,13 @@ the aliases.
 - Click "Import" Button
 - Click "OK"
 - Restart Exceed.
+
+## Create a top-level medm screen
+The C:\EPICS\support modules contain complete medm screens for all supported devices.
+However, you must create a top-level medm screen for your specific application.
+
+You should copy an existing top-level medm .adl file as a starting point.  For example
+CARS/CARSApp/op/adl/13Raman2.adl could be copied to iocTest.adl.  Open iocTest.adl
+with medm in edit mode, removing unneeded related display entries, and adding new
+ones for additional devices.
 
