@@ -73,7 +73,7 @@ Do not worry about the path to EPICS_BASE, any other modules in the H:/epics/, o
 in the C:/EPICS/support directory. They are not used or needed.
 
 Edit the st.cmd file and any .template or .substitutions files to configure them for the devices you will be using in 
-your IOC application.  The deails of how to do this are device-specific, and are beyong the scope of this
+your IOC application.  The details of how to do this are device-specific, and are beyong the scope of this
 document.
 
 Edit the start_ioc.bat file to contain the following:
