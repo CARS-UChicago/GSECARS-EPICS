@@ -53,75 +53,66 @@ Create an installation directory for the module.
 I typically use C:\EPICS\support.  Unzip the downloaded file into this directory.
 
 In the CARS/iocBoot directory make a *copy* of one of the existing ioc* directories.  Choose 
-a directory that most closely matches the types of devices that you will be using.  As an
-example one could copy ioc13Raman2 to iocTest.
+a directory that most closely matches the types of devices that you will be using.  
+Here as an example I assume you have copied ioc13Raman2 to iocTest.
   
-By doing this you will be able to update to later versions of the pre-built module without
+By making a copy you will be able to update to later versions of the pre-built module without
 losing changes you make in this directory.
 
-In the new directory you just created edit st.cmd to change the PV prefix
-$(PREFIX) to one that is unique to your site. PV prefixes must be unique on the subnet.
+cd to the directory you just created, for example iocTest.
 
-In the same directory edit the file envPaths to point to the locations of all of the
-support modules on your system. Normally this is handled by the EPICS build system, but
-when using the prebuilt version this must be manually edited. Do not worry about the path
-to EPICS_BASE or any other modules that don't exist in the EPICS\support directory, they
-are not used or needed.
+Edit st.cmd to change the PV prefix $(PREFIX) to one that is unique to your site. PV prefixes must be unique on the subnet.
+
+Edit the file envPaths to point to the locations of all of the
+support modules on your system, e.g. C:\EPICS\support\*.  Normally this step is handled by the EPICS build system, but
+when using the prebuilt version this must be manually edited. Typically a global search and replace to change 
+`J:/epics/support` to `C:/EPICS/support` is all that is needed.
+
+Do not worry about the path to EPICS_BASE, any other modules in the H:/epics/, or any modules not present
+in the C:/EPICS/support directory. They are not used or needed.
+
+Edit the st.cmd file and any .template or .substitutions files to configure them for the devices you will be using in 
+your IOC application.
+
+Edit the start_ioc.bat file to contain the following:
+```
+..\..\bin\windows-x64-static\CARSApp st.cmd
+pause
+```
+
+Create a shortcut to start_ioc.bat and place it on the desktop or some other convenient location.  Double clicking
+the icon for that shortcut will start the IOC application and run the startup script.
 
 
-Display Managers
-================    
-A display manager is needed to view the areaDetector control screens. Control screens are
-provided for the following display managers: MEDM, EDM, CSS, and caQtDM. The native screens
-are created manually using MEDM.  The EDM, CSS and caQtDM screens are converted from the MEDM
-screens using conversion utilities. These are discussed in a later section.   
-
-In order to control the detectors and the plugins you should install one or more of
-MEDM, EDM, CSS, caQtDM.
-
-### MEDM
+## MEDM Display Manager
+A display manager is needed to view the EPICS control screens. The EPICS display managers
+include MEDM, EDM, CSS, and caQtDM. The CARS control screens are written using MEDM, which is
+what I currently recommend and what is covered in this document.   
 
 The source code for medm can be downloaded from:
 [medm](http://www.aps.anl.gov/epics/extensions/medm/index.php)
 
 This requires [Motif](http://motif.ics.com/).  medm can be built from source on Linux if the Motif library is
-available (which it is not for some new releases, such as Fedora 20). 
+available. 
 
-It is available for Windows as via an
+medm is available for Windows as via an
 [EPICS Windows Tools MSI installer 
 package](http://www.aps.anl.gov/epics/distributions/win32/index.php).
 
 
-### EDM
-This can be downloaded through links on the 
-[EDM home page](http://ics-web.sns.ornl.gov/edm).
+## Configuration
 
-### CSS
-This can be downloaded through links on the 
-[CSS home page](http://controlsystemstudio.org).
+Before running an EPICS IOC application it is usually necessary to configure a number of items.
 
-### caQtDM
-This can be downloaded through links on the 
-[caQtDM home page](http://epics.web.psi.ch/software/caqtdm).
-
-
-Configuration
-=============
-Before running an areaDetector application it is usually necessary to configure
-    a number of items.
-
-* EPICS environment variables. There are several environment variables that EPICS
-  uses. I suggest setting these in the .cshrc (or .bashrc) file for the account that
-  will be used to run the detector.
+### EPICS environment variables. There are several environment variables that EPICS
+  uses.
 
     - EPICS_CA_AUTO_ADDR_LIST and EPICS_CA_ADDR_LIST.
       These variables control the IP addresses that EPICS clients use when searching for
       EPICS PVs. The default is EPICS_CA_AUTO_ADDR_LIST=YES and EPICS_CA_ADDR_LIST to be the
-      broadcast address of all networks connected to the host. Some detectors, for example
-      the marCCD and mar345, come with 2 network cards, which are on 2 different subnets,
-      typically a private one connected to the detector and a public one connected to the
-      local LAN. If the default value of these variables is used then EPICS clients (e.g.
-      medm) running on the detector host computer will generate many errors because each
+      broadcast address of all networks connected to the host. If the computer running the IOC
+      and medm has 2 or more network cards, then the default value of these variables must be changed.
+      If they are not then EPICS clients (e.g. medm) running on the IOC host computer will generate many errors because each
       EPICS PV will appear to be coming from both networks. The solution is to set these
       variables as follows:
 
@@ -137,14 +128,9 @@ Before running an areaDetector application it is usually necessary to configure
       Access. The default is only 16kB, which is much too small for most detector data. This
       value must be set to a large enough value on both the EPICS server computer (e.g. the
       one running the areaDetector IOC) and client computer (e.g. the one running medm,
-      ImageJ, IDL, etc.). This should be set to a value that is larger than the largest
-      waveform record that will be used for the detector.  For example if using a detector
-      with 1024x1024 pixels and 4-bytes per pixel (waveform record FTVL=LONG) then
-      EPICS_CA_MAX_ARRAY_BYTES would need to be at least 1024 * 1024 * 4 = 4153344.  
-      In practice it should be set at least 100 bytes larger than this because there 
-      is some overhead.  For example:
-
-      <code>setenv EPICS_CA_MAX_ARRAY_BYTES 4154000</code>
+      Python, ImageJ, IDL, etc.). This should be set to a value that is larger than the largest
+      waveform record that will be used for the detector.  For example:
+      `EPICS_CA_MAX_ARRAY_BYTES=1000000`.
 
       Do not simply set EPICS_CA_MAX_ARRAY_BYTES to a very large number like 100MB or 1GB.
       EPICS Channel Access allocates buffers of exactly EPICS_CA_MAX_ARRAY bytes whenever
@@ -154,115 +140,50 @@ Before running an areaDetector application it is usually necessary to configure
     - EPICS_DISPLAY_PATH. This variable controls where medm looks for .adl display files.
       If the recommendation below is followed to copy all adl files to a single directory,
       then this environment variable should be defined to point to that directory. For
-      example:
+      example, create a directory C:\EPICS\adls and then set the environment variable
+      `EPICS_DISPLAY_PATH=C:\EPICS\adls`.
 
-      <code>setenv EPICS_DISPLAY_PATH /home/det/epics/adls</code>
 
-
-* medm display files. 
+### medm display files. 
   It is convenient to copy all medm .adl files to a single directory and then point the
   environment variable EPICS_DISPLAY_PATH to this directory. The alternative is to point
   EPICS_DISPLAY_PATH to a long list of directories where the adl files are located in the
-  distributions, which is harder to maintain. On the Pilatus, for example, create a
-  directory called /home/det/epics/adls, and put all of the adl files there. To simplify
-  copying the adl files to that location use the following one-line script, which can be
-  placed in /home/det/bin/sync_adls.
+  distributions, which is harder to maintain. For example, create a directory C:\EPICS\adls 
+  and put all of the adl files there. To simplify copying the adl files to that location use
+  the following command.
 
-  <code>find /home/det/epics/support -name '*.adl' -exec cp -fv {} /home/det/epics/adls \;</code>
+  ```
+  find /drives/c/EPICS/support -name '*.adl' -exec cp -fv {} /drives/c/EPICS/adls \;
+  ```
 
-  This script finds all adl files in the epics/support tree and copies them to /home/det/epics/adls.
-  That directory must be created before running this script. Similar scripts can be
-  used for other Linux detectors (marCCD, mar345, etc.) and can be used on Windows
-  as well if Cygwin is installed. Each time a new release of areaDetector is installed
-  remove the old versions of each support module (areaDetector, asyn, autosave, etc.)
-  and then run this script to install the latest medm files.
+  This command finds all adl files in the EPICS/support tree and copies them to C:\EPICS\adls.
+  That directory must be created before running this script.  This command can be run
+  in the MobaXterm local terminal Window, or using Cygwin or some other Linux-like
+  shell for Windows.
 
+### medm fonts
+medm needs font aliases in order to display correctly.  The following instructions cover
+settings these font aliases for MobaXterm and Exceed.  For other X11 servers the 
+procedure will be different.
 
-Running the IOC Application
-===========================
+#### MobaXterm
+Get the following zip file: http://cars.uchicago.edu/data/mobaxterm/linux_fonts.zip
 
-Each example IOC directory comes with a Linux script (start_epics) or a Windows
-batch file (start_epics.bat) or both depending on the architectures that the detector
-runs on. These scripts provide simple examples of how to start medm and the EPICS
-IOC. For example, for the mar345 iocBoot/iocMAR345/start_epics contains the following:
+Unzip this file and put the directories in C:\Users\[myAccount]\Documents\MobaXterm\slash\usr\share\fonts.
+This not only adds the font aliases, but adds standard Linux fonts to MobaXterm that are required for
+the aliases.
 
-    medm -x -macro "P=13MAR345_1:, R=cam1:" mar345.adl &
-    ../../bin/linux-x86/mar345App st.cmd
-
-This script starts medm in execute mode with the appropriate medm display file and
-macro parameters, running it in the background. It then runs the IOC application.
-This script assumes that iocBoot/iocMAR345 is the default directory when it is run,
-which could be added to the command or set in the configuration if this script is
-set as the target of a desktop shortcut, etc. The script assumes that EPICS_DISPLAY_PATH
-has been defined to be a location where the mar345.adl and related displays that
-it loads can be found. You will need to edit the script in your copy of the iocXXX
-directory to change the prefix (P) from 13MAR345_1: to whatever prefix you chose
-for your IOC. The start_epics script could also be copied to a location in your
-PATH (e.g. /home/mar345/bin/start_epics). Add a command like 
-
-    cd /home/mar345/epics/support/areaDetector-2-0/ADmar345/iocs/mar345IOC/iocBoot/iocMAR345
-   
-at the beginning of the script and then type
-
-    start_epics
-    
-from any directory to start the EPICS IOC.
-
-
-
-
-# Installing a pre-built version of EPICS on Windows
-(5/16/18 PJE)
-
-1.	EPICS Standalone
-a.	Download:
-i.	http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip
-b.	Make a directory:
-i.	C:\epics\support
-c.	Unzip epics_standalone_CARS.zip in the “support” directory.  Note windows extraction will want to put the file into a directory “epics_standalone_CARS”  make sure it unzips to “support”
-d.	Change the name of the directory “CARS-1-6beta” to “CARS”
-2.	Install DLL’s that are not part of the “epics_standalone_CARS.zip”
-a.	libusb-1.0.dll
-i.	Under “C:\epics\support\mca-7-6” add the path:
-ii.	“..\ bin\windows-x64-static”
-iii.	The final path should look like this:
-1.	C:\epics\support\mca-7-6\Bin\windows-x64-static
-iv.	To this directory copy libusb-1.0.dll.  A copy of this DLL can be found in “libusb” located off of this setup instructions directory.
-b.	Measurement Computing
-i.	Under “C:\epics\support\measComp-1-3-1” add the path:
-ii.	“..\ bin\windows-x64-static”
-iii.	The final path should look like this:
-1.	C:\epics\support\measComp-1-3-1\bin\windows-x64-static
-iv.	To this directory copy cbw64.dll.  A copy of this DLL can be found in “Measurement Computing” located off of this setup instructions directory.
-v.	As an alternative you can download the full install package from: 
-1.	https://www.mccdaq.com/daq-software/universal-library.aspx
-2.	Run installer file is: mccdaq.exe
-3.	This will eliminate the need for steps i.  iv. above.
-c.	WinPcap
-i.	Download and install WinPcap installer it will install the wpcap.dll needed to run a windows IOC.  
-ii.	Download it from here: https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
-iii.	The installer file is: WinPcap_4_1_3.exe
-3.	Example iocBoot Directory
-a.	There is an example iocBoot directory included here.  It’s setup to run the small KB mirror bender using the Newport XPS.
-i.	Copy this directory to: C:\epics\support\CARS\iocBoot
-ii.	There is a batch file in this directory “start_epics.bat” here is what it contains:
-1.	ECHO OFF
-2.	call dllPath.bat
-3.	..\..\bin\windows-x64-static\CARSApp st.cmd
-4.	Pause
-b.	Rename this directory for you project and then edit envPaths
-i.	envPaths
-1.	You need to edit “envPaths” and set “IOC” to the name of the directory off of “ioc_Boot” directory where the ioc is run from for example:
-a.	epicsEnvSet("IOC"," ioc13xps_smkb_win64")
-c.	Make changes for motors.template and st.cmd as needed.  
-4.	Configure Exceed to use MEDM fonts:
-a.	Start Exceed
-b.	Right-click program in taskbar, go to 'Xconfig'
-c.	Select "Screen", uncheck "Close Warning on Exit"
-d.	Open "Font Management"
-e.	Select on Edit
-f.	Select "Import Alias" and locate " s:\win32app\exceed71_xdk\fonts\medm\fonts_sun.ali”
-g.	Click "Import" Button
-h.	Click "OK"
-i.	Close all windows and shutdown Exceed.
+#### Exceed
+- Download this file: https://github.com/epics-extensions/medm/blob/master/medm/fonts.alias.sun
+- Click the Raw button in the upper-right and then right-click and save as fonts.sun.ali.
+- Start Exceed
+- Right-click program in taskbar, go to 'Xconfig'
+- Open "Font Management"
+- Select Edit
+- Select "Import Alias"
+- In the From widget click Browse and locate fonts_sun.ali
+- In the To widget select "All directories"
+- Click "Import" Button
+- Click "OK"
+- Restart Exceed.
 
