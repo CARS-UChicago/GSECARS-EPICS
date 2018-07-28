@@ -2,14 +2,14 @@
 
 ## Overview
 EPICS is a client/server system.  The server is often called an IOC (for Input/Output Controller).
-It can be run in a real-time OS like vxWorks, or as a standard Linux or Windows application.  
+It can be run in a real-time OS like vxWorks, or as a standard Linux or Windows application.
 This document describes running an IOC that is a Windows application. 
 
 The server has a database containing EPICS records.
 There are records for analog inputs and outputs, binary inputs and outputs, motors, strings, etc.
 These can be connected to real hardware, or be "soft" records with no hardware connection.  
 Each field in a record is called an EPICS Process Variable (PV).
-These PVs are served on the network using a protocol called EPICS Channel Access.  
+These PVs are served on the network using a protocol called EPICS Channel Access.
 Channel Access is a layer on top of TCP/IP.
 Channel Access clients can write to or read from PVs, and they request that the server send
 callback messages (called monitors) when PVs change.
