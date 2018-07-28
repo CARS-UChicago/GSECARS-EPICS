@@ -1,17 +1,40 @@
 # Installing Pre-Built EPICS IOCs on Windows
 
-Pre-built binary versions of EPICS applications can be provided for Windows.
-This is very convenient so that it is not necessary to
-set up a build system to compile the IOC, which requires significant effort.
+## Overview
+EPICS is a client/server system.  The server is often called an IOC (for Input/Output Controller).
+It can be run in a real-time OS like vxWorks, or as a standard Linux or Windows application.  
+This document describes running an IOC that is a Windows application. 
 
-The instructions here use the CARSApp application as an example.  CARSApp
+The server has a database containing EPICS records.
+There are records for analog inputs and outputs, binary inputs and outputs, motors, strings, etc.
+These can be connected to real hardware, or be "soft" records with no hardware connection.  
+Each field in a record is called an EPICS Process Variable (PV).
+These PVs are served on the network using a protocol called EPICS Channel Access.  
+Channel Access is a layer on top of TCP/IP.
+Channel Access clients can write to or read from PVs, and they request that the server send
+callback messages (called monitors) when PVs change.
+
+Many different clients can talk to the server.
+These include generic GUI clients, Windows or Linux shell commands, and applications written
+in nearly any programming language (C, C++, Python, Java, IDL, Matlab, etc.). 
+
+For the generic GUI client this document describes using medm (Motif Editor and Display Module).
+It is a simple X11/Motif program that lets you graphically design a screen, with widgets that connect to PVs.  
+These can read and/or write to PVs, and for reading it always uses monitors, not polling.
+
+Pre-built binary versions of EPICS applications can be provided for Windows and Linux.
+This is very convenient so that it is not necessary to set up a build system to compile the IOC,
+which requires significant effort.
+
+The instructions here use the Windows CARSApp.exe application as an example.  CARSApp
 is an EPICS application built with support for most of the devices in the 
 [EPICS SynApps module](https://www.aps.anl.gov/BCDA/synApps).  This includes
 many motors, serial, TCP/IP, and USB devices.  It does not include
 support for any [EPICS areaDetector modules](http://cars.uchicago.edu/software/epics/areaDetector.html).
 Those are provided as separate pre-built IOC applications.
 
-With some modifications these instructions can be used for other pre-built EPICS IOCs.
+With some modifications these instructions can be used for other pre-built EPICS IOCs,
+or for Linux rather than Windows.
 
 ## Install required support libraries
 The devices that the CARSApp application can control include Canberra and Amptek multichannel analyzers and
@@ -73,7 +96,7 @@ Do not worry about the path to EPICS_BASE, any other modules in the H:/epics/, o
 in the C:/EPICS/support directory. They are not used or needed.
 
 Edit the st.cmd file and any .template or .substitutions files to configure them for the devices you will be using in 
-your IOC application.  The details of how to do this are device-specific, and are beyong the scope of this
+your IOC application.  The details of how to do this are device-specific, and are beyond the scope of this
 document.
 
 Edit the start_ioc.bat file to contain the following:
@@ -91,15 +114,15 @@ A display manager is needed to view the EPICS control screens. The EPICS display
 include MEDM, EDM, CSS, and caQtDM. The CARS control screens are written using MEDM, which is
 what I currently recommend and what is covered in this document.   
 
-The source code for medm can be downloaded from:
-[medm](http://www.aps.anl.gov/epics/extensions/medm/index.php)
+medm is available for Windows in the
+[EPICS Windows Tools MSI installer package](http://www.aps.anl.gov/epics/distributions/win32/index.php).
 
-This requires [Motif](http://motif.ics.com/). medm can be built from source on Linux if the Motif library is
-available. 
-
-medm is available for Windows as via an
-[EPICS Windows Tools MSI installer 
-package](http://www.aps.anl.gov/epics/distributions/win32/index.php).
+After installing that package you should add its installation directory (typically C:\Program Files\EPICS Windows Tools)
+to your PATH environment variable, following the same method as for the libusb-1.0 directory above.
+Adding this directory to your path does two things:
+- Allows IOCs and clients to find the caRepeater.exe application which allows clients to be informed when
+IOCs are restarted.
+- Provides command line tools caget, caput, camonitor, and others which are very useful.
 
 
 ## Configuration
@@ -146,6 +169,9 @@ There are several environment variables that EPICS uses.
   example, create a directory C:\EPICS\adls and then set the environment variable
   `EPICS_DISPLAY_PATH=C:\EPICS\adls`.
 
+These environment variables should be created in Control Panel/System/Advanced/Environment Variables.
+Added them using the New button in the System environment variables, so they will be available
+for all user accounts on the computer.
 
 ### medm display files. 
   It is convenient to copy all medm .adl files to a single directory and then point the
