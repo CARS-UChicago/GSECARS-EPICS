@@ -72,7 +72,7 @@ dbLoadTemplate "scanParms.template"
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
-epicsEnvSet("LOCATION",corvette")
+epicsEnvSet("LOCATION","corvette")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13BMC_GPD_XPS:")
 
