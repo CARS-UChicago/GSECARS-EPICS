@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=247
-		y=396
+		x=481
+		y=46
 		width=1318
 		height=701
 	}
@@ -2603,6 +2603,11 @@ text {
 		name="3motors.adl"
 		args="P=13IDD:, TITLE=Soller_slit,M1=m93, M2=m94, M3=m95"
 	}
+    display[8] {
+		label="Carbon Mirrors"
+		name="4motors.adl"
+		args="P=13Mirror:, TITLE=Carbon_Mirros,M1=m1,M2=m2,M3=m3,M4=m4"
+	}
 	clr=14
 	bclr=55
 	label="-motors #2"
@@ -2779,7 +2784,6 @@ text {
 		label="Expert mode"
 		name="13IDD_dac_expert.adl"
 		args="P=13IDD:, D=1, C=Pelco1"
-		policy="replace display"
 	}
 	clr=0
 	bclr=24
@@ -6771,35 +6775,6 @@ composite {
 composite {
 	object {
 		x=1272
-		y=106
-		width=33
-		height=31
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1272
-				y=106
-				width=33
-				height=31
-			}
-			control {
-				chan="13IDA:CloseCDShutter.PROC"
-				clr=35
-				bclr=16
-			}
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDA:eps_mbbi26"
-	}
-}
-composite {
-	object {
-		x=1272
 		y=37
 		width=33
 		height=31
@@ -10239,8 +10214,8 @@ composite {
 }
 composite {
 	object {
-		x=1272
-		y=106
+		x=1270
+		y=105
 		width=33
 		height=31
 	}
@@ -10248,8 +10223,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=1272
-				y=106
+				x=1270
+				y=105
 				width=33
 				height=31
 			}
@@ -10257,27 +10232,72 @@ composite {
 			children {
 				"message button" {
 					object {
-						x=1272
-						y=106
+						x=1270
+						y=105
 						width=33
 						height=31
 					}
 					control {
-						chan="13IDA:OpenCDShutter.PROC"
-						clr=17
-						bclr=20
+						chan="13IDA:CloseCDShutter.PROC"
+						clr=35
+						bclr=16
 					}
 					press_msg="1"
 				}
 			}
 			"dynamic attribute" {
-				vis="if zero"
+				vis="if not zero"
 				chan="13IDA:eps_mbbi26"
+			}
+		}
+		composite {
+			object {
+				x=1270
+				y=105
+				width=33
+				height=31
+			}
+			"composite name"=""
+			children {
+				composite {
+					object {
+						x=1270
+						y=105
+						width=33
+						height=31
+					}
+					"composite name"=""
+					children {
+						"message button" {
+							object {
+								x=1270
+								y=105
+								width=33
+								height=31
+							}
+							control {
+								chan="13IDA:OpenCDShutter.PROC"
+								clr=17
+								bclr=20
+							}
+							press_msg="1"
+						}
+					}
+					"dynamic attribute" {
+						vis="if zero"
+						chan="13IDA:eps_mbbi26"
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A==1"
+				chan="PA:13ID:STA_D_SDS_OPEN_PL"
 			}
 		}
 	}
 	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13ID:STA_D_SDS_OPEN_PL.VAL"
+		vis="if zero"
+		chan="PB:13ID:STA_D_SDS_CLSD_PL"
 	}
 }
