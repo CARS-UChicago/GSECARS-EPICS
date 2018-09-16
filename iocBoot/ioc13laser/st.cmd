@@ -100,8 +100,8 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Laser:")
 #     (3) maximum # axis per controller
 #     (4) moving poll period ms
 #     (5) idle poll period ms
-MCB4BCreateController("MCB4B_1", "serial1", 4, 100, 1000)
-MCB4BCreateController("MCB4B_2", "serial2", 4, 100, 1000)
+MCB4BCreateController("MCB4B_1", "serial1", 4, 100, 0)
+MCB4BCreateController("MCB4B_2", "serial2", 4, 100, 0)
 
 # AG_CONEXCreateController(asyn port, serial port, controllerID, 
 #                          active poll period (ms), idle poll period (ms)) 
