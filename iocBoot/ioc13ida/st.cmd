@@ -42,7 +42,7 @@ dbLoadTemplate("motors.template")
 #iocsh("APS_EM.cmd")
 
 # TetrAMM electrometer for C/D branch
-iocsh("TetrAMM.cmd")
+#iocsh("TetrAMM.cmd")
 
 # AH501 electrometer for E branch
 #MN 10-Oct-2016: move to softioc 13XRM
@@ -214,7 +214,7 @@ motorUtilInit("13IDA:")
 
 # 2016-Sep-27: set lower limit on QuadBPM values per read
 
-dbpf("13IDA:QE1:ValuesPerRead.LOPR","15")
+#dbpf("13IDA:QE1:ValuesPerRead.LOPR","15")
 
 # dbpf("13IDA:QE2:ValuesPerRead.LOPR","15")
 # dbpf("13IDA:QE2:ValuesPerRead","40")
