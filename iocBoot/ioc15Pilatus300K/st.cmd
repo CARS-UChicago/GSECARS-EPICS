@@ -5,15 +5,15 @@ dbLoadDatabase("$(ADPILATUS)/iocs/pilatusIOC/dbd/pilatusDetectorApp.dbd")
 pilatusDetectorApp_registerRecordDeviceDriver(pdbbase) 
 
 # Prefix for all records
-epicsEnvSet("PREFIX", "15PIL3:")
+epicsEnvSet("PREFIX", "15PIL300K:")
 # The port name for the detector
 epicsEnvSet("PORT",   "PIL")
 # The queue size for all plugins
 epicsEnvSet("QSIZE",  "20")
 # The maximim image width; used for row profiles in the NDPluginStats plugin
-epicsEnvSet("XSIZE",  "981")
+epicsEnvSet("XSIZE",  "1475")
 # The maximim image height; used for column profiles in the NDPluginStats plugin
-epicsEnvSet("YSIZE",  "1043")
+epicsEnvSet("YSIZE",  "195")
 # The maximum number of time seried points in the NDPluginStats plugin
 epicsEnvSet("NCHANS", "2048")
 # The maximum number of frames buffered in the NDPluginCircularBuff plugin
