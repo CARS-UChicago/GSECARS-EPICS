@@ -16,6 +16,8 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 cd startup
 < industryPack.cmd
 < serial.cmd
+# Koyo PLC for lasers
+< Koyo.cmd
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -201,4 +203,6 @@ dbpf "13BMD:EnableuserACalcs.PROC","1"
 motorUtilInit("13BMD:")
 
 dbpf("13BMD:saveData_status", "0")
-
+# Laser shutter states
+dbpf("13BMD:Unidig2Bo21.ZNAM","Open")
+dbpf("13BMD:Unidig2Bo21.ONAM","Closed")
