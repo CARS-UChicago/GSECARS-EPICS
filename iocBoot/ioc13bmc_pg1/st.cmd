@@ -7,16 +7,8 @@ pointGreyApp_registerRecordDeviceDriver(pdbbase)
 
 # Use this line for the first Point Grey camera in the system
 #epicsEnvSet("CAMERA_ID", "0")
-# Use this line for a specific camera by serial number, in this case a Flea2 Firewire camera
-#epicsEnvSet("CAMERA_ID", "9211601")
-# Use this line for a specific camera by serial number, in this case the tomography Grasshopper3 USB-3.0 cameras
-#epicsEnvSet("CAMERA_ID", "13510305")
-# Use this line for a specific camera by serial number, in this case the LVP Grasshopper3 USB-3.0 cameras
-#epicsEnvSet("CAMERA_ID", "14120134")
-# Use this line for a specific camera by serial number, in this case a BlackFly GigE cameras
-#epicsEnvSet("CAMERA_ID", "13481965")
 # Use this line for a specific camera by serial number, in this case the BMC Grasshopper3 USB-3.0 cameras
-epicsEnvSet("CAMERA_ID", "15337483")
+epicsEnvSet("CAMERA_ID", "17476170")
 
 # Prefix for all records
 epicsEnvSet("PREFIX", "13BMCPG1:")
@@ -25,9 +17,9 @@ epicsEnvSet("PORT",   "PG1")
 # The queue size for all plugins. Really large queue so we can stream to disk at full camera speed
 epicsEnvSet("QSIZE",  "2000")
 # The maximim image width; used for row profiles in the NDPluginStats plugin
-epicsEnvSet("XSIZE",  "2448")
+epicsEnvSet("XSIZE",  "1920")
 # The maximim image height; used for column profiles in the NDPluginStats plugin
-epicsEnvSet("YSIZE",  "2048")
+epicsEnvSet("YSIZE",  "1200")
 # The maximum number of time seried points in the NDPluginStats plugin
 epicsEnvSet("NCHANS", "2048")
 # The maximum number of frames buffered in the NDPluginCircularBuff plugin
