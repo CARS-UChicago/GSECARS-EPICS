@@ -7,7 +7,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 # Serial port settings for pump
 # Baud Rate: 9600
-drvAsynIPPortConfigure("L0","gsets9:2001",0,0,0)
+drvAsynIPPortConfigure("L0","gsets8:2001",0,0,0)
 
 # We don't set terminators here, we let StreamDevice take care of it
 asynSetTraceIOMask("L0",0,2)
