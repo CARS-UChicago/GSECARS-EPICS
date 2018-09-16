@@ -136,6 +136,8 @@ create_monitor_set("auto_positions.req",5,"P=13IDC:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDC:")
 
+save_restoreSet_periodicDatedBackups(10)
+
 # newport table sequencer
 #var newport_tableDebug=1
 # seq(&newport_table, "P=13IDC:,T=NewTab1:,M1=m34,M2=m33,M3=m35,M4=m36,M5=m37,PM1=pm7,PM2=pm8,PM3=pm9,PM4=pm10,PM5=pm11,PM6=pm12,PM7=pm13,PM8=pm14")
