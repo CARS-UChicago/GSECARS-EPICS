@@ -176,7 +176,7 @@ ifdef MODBUS
 endif
 
 ifdef MOTOR
-  $(DBD_NAME)_DBD += motorSupport.dbd devAcsMotor.dbd devAerotech.dbd
+  $(DBD_NAME)_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
   $(DBD_NAME)_DBD += devAttocube.dbd devFaulhaberMotor.dbd devImsMotor.dbd
   $(DBD_NAME)_DBD += devKohzuMotor.dbd devMclennanMotor.dbd devMicos.dbd
   $(DBD_NAME)_DBD += devMicroMo.dbd devNewFocus.dbd devNewport.dbd
@@ -188,7 +188,7 @@ ifdef MOTOR
   $(DBD_NAME)_DBD += devThorLabs.dbd motorSimSupport.dbd
 
   $(PROD_NAME)_LIBS := motor $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := Acs acsTech80 Aerotech Attocube Faulhaber Ims KohzuMotor $($(PROD_NAME)_LIBS)
+  $(PROD_NAME)_LIBS := ACRMotor Acs acsTech80 Aerotech Attocube Faulhaber Ims KohzuMotor $($(PROD_NAME)_LIBS)
   $(PROD_NAME)_LIBS := Mclennan Micos MicroMo NewFocus Newport Oriel PI PIJena $($(PROD_NAME)_LIBS)
   $(PROD_NAME)_LIBS := Parker SmartMotor ThorLabs softMotor motorSimSupport $($(PROD_NAME)_LIBS)
 endif
@@ -270,7 +270,7 @@ ifeq ($(OS_CLASS), WIN32)
       # xMAP DXP, then uncomment the following lines
       $(DBD_NAME)_DBD += dxpSupport.dbd
       $(PROD_NAME)_LIBS := dxp handel $($(PROD_NAME)_LIBS)
-      $(PROD_NAME)_LIBS := DLPORTIO PlxApi $($(PROD_NAME)_LIBS)
+      $(PROD_NAME)_LIBS := PlxApi $($(PROD_NAME)_LIBS)
       $(PROD_NAME)_SYS_LIBS += setupapi
     endif
   endif
