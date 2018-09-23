@@ -137,18 +137,18 @@ create_monitor_set("auto_positions.req", 5, "P=13Mirror:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=13Mirror:")
 
+dbpf 13Mirror:m1.RTRY 0
+dbpf 13Mirror:m1.NTM 0
+#motorUtilInit("13Mirror:")
+
+dbpf 13Mirror:m2.RTRY 0
+dbpf 13Mirror:m2.NTM 0
+#motorUtilInit("13Mirror:")
+
+dbpf 13Mirror:m3.RTRY 0
+dbpf 13Mirror:m3.NTM 0
+#motorUtilInit("13Mirror:")
+
 dbpf 13Mirror:m4.RTRY 0
 dbpf 13Mirror:m4.NTM 0
-#motorUtilInit("13Mirror:")
-
-dbpf 13Mirror:m5.RTRY 0
-dbpf 13Mirror:m5.NTM 0
-#motorUtilInit("13Mirror:")
-
-dbpf 13Mirror:m6.RTRY 0
-dbpf 13Mirror:m6.NTM 0
-#motorUtilInit("13Mirror:")
-
-dbpf 13Mirror:m7.RTRY 0
-dbpf 13Mirror:m7.NTM 0
 #motorUtilInit("13Mirror:")
