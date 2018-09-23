@@ -15,26 +15,25 @@ dbLoadTemplate  "motors.template"
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.180", 5001, 7, 10, 500, 0, 500)
-asynSetTraceIOMask("XPS1", 0, 2)
+XPSCreateController("XPS1", "164.54.160.210", 5001, 8, 10, 500, 0, 500)
+# asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.180", 5001, 50)
-#asynSetTraceIOMask("XPS_AUX1", 0, 2)
+# XPSAuxConfig("XPS_AUX1", "164.54.160.210", 5001, 50)
+# asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS1", 0, "FINE.X",           "100000") # VP-25XL
-XPSCreateAxis("XPS1", 1, "FINE.Y",            "50000") # VP-5ZA
-XPSCreateAxis("XPS1", 2, "FINE.THETA",         "2000") # URS75CC
-XPSCreateAxis("XPS1", 3, "COARSEX.POSITIONER", "2000") # ILS200CC
-XPSCreateAxis("XPS1", 4, "COARSEZ.POSITIONER", "2000") # ILS200CC
-XPSCreateAxis("XPS1", 5, "COARSEY.POSITIONER", "5000") # IMS300CC
-XPSCreateAxis("XPS1", 6, "FINE.Z",           "100000") # VP-25XL
-
-#XPSCreateAxis("XPS1", 7, "UTS2.POSITIONER",    "1000") # UTS150PP
+XPSCreateAxis("XPS1", 0, "FINE.X",      "100000") # VP-25XL
+XPSCreateAxis("XPS1", 1, "FINE.Y",       "50000") # VP-5ZA
+XPSCreateAxis("XPS1", 2, "FINE.THETA",    "2000") # URS75CC
+XPSCreateAxis("XPS1", 3, "COARSEX.Pos",   "2000") # ILS200CC
+XPSCreateAxis("XPS1", 4, "COARSEY.Pos",   "5000") # IMS300CC
+XPSCreateAxis("XPS1", 5, "COARSEZ.Pos",   "2000") # ILS200CC
+XPSCreateAxis("XPS1", 6, "VORTEXZ.Pos",   "2000") # ILS150CC
+XPSCreateAxis("XPS1", 7, "EIGERZ.Pos",    "2000") # UTS150CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -42,27 +41,6 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 
 # Disable setting position
 XPSEnableSetPosition(0)
-
-##############
-XPSCreateController("XPS2", "164.54.160.210", 5001, 4, 10, 500, 0, 500)
-asynSetTraceIOMask("XPS2", 0, 2)
-
-# # asynPort, IP address, IP port, poll period (ms)
-# XPSAuxConfig("XPS_AUX2", "164.54.160.210", 5001, 50)
-# 
-# 
-# # XPS asyn port,  axis, groupName.positionerName, stepSize
-# # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS2", 0, "VortexZ.Pos",       "2000")  # ILS150CC
-XPSCreateAxis("XPS2", 1, "EigerX.Pos",        "2000")  # UTS150CC
-XPSCreateAxis("XPS2", 2, "EigerY.Pos",        "2000")  # UTS150CC
-XPSCreateAxis("XPS2", 3, "EigerZ.Pos",        "2000")  # UTS150CC
-# 
-# # XPS asyn port,  max points, FTP username, FTP password
-# # Note: this must be done after configuring axes
-XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
-##############
-
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
