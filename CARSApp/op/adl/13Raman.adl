@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=629
-		y=3216
+		x=816
+		y=3230
 		width=1490
 		height=1026
 	}
@@ -389,8 +389,8 @@ composite {
 		}
 	}
 	"dynamic attribute" {
-		vis="if zero"
-		chan="rpi_4:Switch12"
+		vis="if not zero"
+		chan="rpi_4:Switch02"
 	}
 }
 rectangle {
@@ -4100,7 +4100,7 @@ composite {
 		height=20
 	}
 	monitor {
-		chan="13RamanPLC:L1Enabled"
+		chan="13RamanPLC:E1L3-6Enabled"
 		clr=30
 		bclr=8
 	}
@@ -5272,37 +5272,6 @@ menu {
 		chan="13RAMAN2:Verdi1:ReadBack.SCAN"
 		clr=0
 		bclr=54
-	}
-}
-composite {
-	object {
-		x=990
-		y=195
-		width=50
-		height=12
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=990
-				y=195
-				width=50
-				height=12
-			}
-			control {
-				chan="rpi_4:Switch02"
-				clr=14
-				bclr=23
-			}
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=0&&B=0"
-		chan="rpi_4:Switch02"
-		chanB="rpi_4:Switch12"
 	}
 }
 "message button" {
@@ -6683,7 +6652,7 @@ text {
 		height=21
 	}
 	control {
-		chan="13RamanPLC:L1EnableRequest"
+		chan="13RamanPLC:E1L3-6EnableRequest"
 		clr=14
 		bclr=2
 	}
@@ -7083,4 +7052,33 @@ text {
 	clr=0
 	bclr=54
 	label="- Scan 2"
+}
+composite {
+	object {
+		x=990
+		y=195
+		width=50
+		height=12
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=990
+				y=195
+				width=50
+				height=12
+			}
+			control {
+				chan="rpi_4:Switch02"
+				clr=14
+				bclr=23
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="rpi_4:Switch02"
+	}
 }

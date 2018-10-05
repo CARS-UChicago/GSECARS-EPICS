@@ -1,0 +1,10 @@
+# This is an EPICS status input to the PLC, which is not really safe.
+# However, it is only used to set the status of the Caution light because the PLC never actually
+# disables L1, in order to keep the interferometer stable
+
+record(calcout, "$(P)$(R)VerdiStatusCalc") {
+    field(INPA, "$(IN) CP"}
+    field(CALC, "A")
+    field(OUT,  "$(P)$(R)$(OUT) PP")
+}
+

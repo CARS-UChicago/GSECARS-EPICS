@@ -13,6 +13,7 @@ asynOctetConnect("serial1", "serial1")
 dbLoadTemplate("asynRecord.template")
 
 # Keithley 2700 DMM
+# Baud:19200, Data:8, Parity None, Stop: 1
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13Keithley3:,Dmm=DMM1,PORT=serial1")
 
 # END serial.cmd --------------------------------------------------------------

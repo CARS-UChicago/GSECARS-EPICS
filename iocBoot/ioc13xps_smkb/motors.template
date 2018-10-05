@@ -1,0 +1,36 @@
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,      M,        DTYP, PORT, ADDR,          DESC,  EGU,   DIR,  VELO,   VBAS,  ACCL, BDST, BVEL, BACC, SREV,     UREV, PREC, DHLM, DLLM}
+{13SMKB:, m1, "asynMotor", XPS1,    0,     "VStripe",   mm, Pos,  0.11,   0.01,    1.,    0,    1,   .2,  200,   0.0032,    3,   15,    0}
+{13SMKB:, m2, "asynMotor", XPS1,    1,   "VHeightUp",   mm, Pos,   0.5,   0.01,    1.,    0,    1,   .2,  200, .0357143,    4,   19,  -19}
+{13SMKB:, m3, "asynMotor", XPS1,    2,    "VforceUp",   mm, Pos,   0.2,   0.01,    1.,    0,    1,   .2,  200, .0357143,    4,   19,  -19}
+{13SMKB:, m4, "asynMotor", XPS1,    3,  "VforceDown",   mm, Pos,   0.2,   0.01,    1.,    0,    1,   .2,  200, .0357143,    4,   15,    0}
+{13SMKB:, m5, "asynMotor", XPS1,    4, "VHeightDown",   mm, Pos,   0.5,   0.01,    1.,    0,    1,   .2,  200, .0357143,    4,   19,  -19}
+#{13SMKB:, m6, "asynMotor", XPS1,    5,      "motor6",   mm, Pos,   0.5,   0.01,    .2,    0,    1,   .2,  200, .0357143,    4,   19, -19}
+#{13SMKB:, m7, "asynMotor", XPS1,    6,      "motor7",   mm, Pos,   0.5,   0.01,    .2,    0,    1,   .2,  200, .0357143,    4,   19, -19}
+#{13SMKB:, m8, "asynMotor", XPS1,    7,      "motor8",   mm, Pos,   0.5,   0.01,    .2,    0,    1,   .2,  200, .0357143,    4,   19, -19}
+}
+
+
+
+################################################
+### Vertical KB Miror: pm1, pm2, pm3, pm4    ###
+
+file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+{
+pattern
+{P,      M,        DINP,                    OUT,                     RDBL,                        STOO,               DESC,    EGU, DIR,VELO,VBAS,ACCL,BDST,BVEL,BACC,MRES,RRES PREC,DHLM, DLLM}
+{13SMKB:, pm1, "13SMKB:VF:Done NPP NMS", "13SMKB:pm1DVAL.VAL PP MS","13SMKB:VF:Readback.G NPP NMS", "13SMKB:VF:Stop PP MS", "Curvature",  mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 4, 10000, -10000}
+{13SMKB:, pm2, "13SMKB:VF:Done NPP NMS", "13SMKB:pm2DVAL.VAL PP MS","13SMKB:VF:Readback.H NPP NMS", "13SMKB:VF:Stop PP MS", "Ellipticity",mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 4, 10000, -10000}
+{13SMKB:, pm3, "13SMKB:VP:Done NPP NMS", "13SMKB:pm3DVAL.VAL PP MS","13SMKB:VP:Readback.G NPP NMS", "13SMKB:VP:Stop PP MS", "Height",     mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 4, 10000, -10000}
+{13SMKB:, pm4, "13SMKB:VP:Done NPP NMS", "13SMKB:pm4DVAL.VAL PP MS","13SMKB:VP:Readback.H NPP NMS", "13SMKB:VP:Stop PP MS", "Pitch",      mm, Pos, 1, .1, .1, 0, 1, .1, .0001, 1.0, 4, 10000, -10000}
+}
+
+file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13SMKB:, VF:,  pm1, pm2,   m3.VAL,  m3.RBV,   m4.VAL,  m4.RBV, m3.STOP, m3.DMOV,  m4.STOP,  m4.DMOV, 3}
+{13SMKB:, VP:,  pm3, pm4,    m2.VAL,   m2.RBV,  m5.VAL, m5.RBV,  m2.STOP,  m2.DMOV, m5.STOP, m5.DMOV, 3}
+}

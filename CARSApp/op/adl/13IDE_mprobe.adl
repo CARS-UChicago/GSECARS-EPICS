@@ -5,9 +5,9 @@ file {
 }
 display {
 	object {
-		x=2648
-		y=341
-		width=625
+		x=2315
+		y=288
+		width=624
 		height=676
 	}
 	clr=46
@@ -85,21 +85,6 @@ display {
 		3cb420,
 		289315,
 		1a7309,
-	}
-}
-oval {
-	object {
-		x=590
-		y=260
-		width=14
-		height=14
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDA:mono_pid2_incalc.K"
 	}
 }
 oval {
@@ -290,14 +275,14 @@ rectangle {
 		args="P=13IDE:, M1P=pm4,  M1H=pm3, M1C=pm1, M1E=pm2, M2P=pm8, M2H=pm7, M2C=pm5, M2E=pm6"
 	}
 	display[6] {
-		label="Microscope motors"
+		label="Eiger Stages"
 		name="3motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m5, M2=m17, M3=m18"
+		args="P=13, TITLE=Eiger_Detector_Stages, M1=IDE:m20, M2=IDE:m19, M3=XRM:m8"
 	}
 	display[7] {
-		label="Vortex Stage"
+		label="Vortex Stages"
 		name="3motors.adl"
-		args="P=13IDE:, TITLE=Vortex_Detector_Stages, M1=m34, M2=m4, M3=m19"
+		args="P=13, TITLE=Vortex_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=XRM:m7"
 	}
 	display[8] {
 		label="XPS UTS Stages"
@@ -305,7 +290,7 @@ rectangle {
 		args="P=13XRM:, TITLE=XPS_UTS_Stages, M1=m7, M2=m8"
 	}
 	display[9] {
-		label="Lift Table (simple)"
+		label="Other Motors"
 		name="6motors.adl"
 		args="P=13IDE:, TITLE=Lift_Table, M1=m1,  M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
 	}
@@ -322,6 +307,16 @@ rectangle {
 		label="centering Stages"
 		name="2motors.adl"
 		args="P=13IDE:, TITLE=CMA_Motors, M1=m35, M2=m36"
+	}
+	display[13] {
+		label="Analyzer Stages"
+		name="2motors.adl"
+		args="P=13IDE:, TITLE=AnalyzerMotors, M1=m20, M2=m6"
+	}
+	display[15] {
+		label="OSCAR Motors"
+		name="3motors.adl"
+		args="P=13IDE:, TITLE=Microscope, M1=m5, M2=m17, M3=m18"
 	}
 	clr=54
 	bclr=1
@@ -692,6 +687,10 @@ text {
 		name="GSE_MonoEnergy.adl"
 		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
+	display[2] {
+		label="Settings"
+		name="13IDE_MonoSettings.adl"
+	}
 	display[6] {
 		label="BPM Electronics"
 		name="quadEM.adl"
@@ -833,9 +832,9 @@ rectangle {
 		args="P=13QX4"
 	}
 	display[4] {
-		label="QuadVortex Xspress3 (classic)"
-		name="xspress3_main.adl"
-		args="P=13QX4"
+		label="QuadVortex Xspress3 (DP)"
+		name="xspress3_4chan.adl"
+		args="P=dp_xsp3_1"
 	}
 	display[6] {
 		label="Ion Chamber"
@@ -1214,21 +1213,6 @@ text {
 		clr=24
 	}
 	textix="Roll"
-}
-oval {
-	object {
-		x=590
-		y=260
-		width=14
-		height=14
-	}
-	"basic attribute" {
-		clr=17
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDA:mono_pid2_incalc.K"
-	}
 }
 menu {
 	object {
@@ -1736,4 +1720,49 @@ text {
 		clr=23
 	}
 	textix="@Time"
+}
+oval {
+	object {
+		x=590
+		y=260
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=32
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDE:userTran1.K"
+	}
+}
+oval {
+	object {
+		x=590
+		y=260
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDE:userTran1.K"
+	}
+}
+oval {
+	object {
+		x=590
+		y=260
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDE:userTran1.L"
+	}
 }

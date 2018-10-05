@@ -1,14 +1,14 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC_DAC.adl"
-	version=030107
+	name="P:\dzzhang\MEDM\13BMC_DAC_2018Jun18.adl"
+	version=030109
 }
 display {
 	object {
-		x=83
-		y=71
-		width=1004
-		height=617
+		x=1975
+		y=85
+		width=1000
+		height=618
 	}
 	clr=14
 	bclr=53
@@ -445,9 +445,9 @@ composite {
 		args="P=13MARCCD1:, R=cam1:"
 	}
 	display[3] {
-		label="MAR-CCD #2"
+		label="MAR-CCD #3"
 		name="marCCD.adl"
-		args="P=13MARCCD2:, R=cam1:"
+		args="P=13MARCCD3:, R=cam1:"
 	}
 	display[4] {
 		label="Mar345 Image Plate #1"
@@ -458,6 +458,11 @@ composite {
 		label="Mar345 Image Plate #2"
 		name="mar345.adl"
 		args="P=13MAR345_2:, R=cam1:"
+	}
+	display[6] {
+		label="MAR-CCD #2"
+		name="marCCD.adl"
+		args="P=13MARCCD2:, R=cam1:"
 	}
 	clr=14
 	bclr=4
@@ -591,7 +596,7 @@ text {
 }
 oval {
 	object {
-		x=848
+		x=373
 		y=270
 		width=15
 		height=25
@@ -606,7 +611,7 @@ oval {
 }
 oval {
 	object {
-		x=848
+		x=373
 		y=300
 		width=15
 		height=25
@@ -621,20 +626,20 @@ oval {
 }
 text {
 	object {
-		x=842
-		y=330
+		x=355
+		y=250
 		width=30
 		height=20
 	}
 	"basic attribute" {
 		clr=60
 	}
-	textix="PIN"
+	textix="Filter"
 }
 "choice button" {
 	object {
-		x=845
-		y=244
+		x=372
+		y=231
 		width=23
 		height=19
 	}
@@ -819,9 +824,19 @@ oval {
 		args="P=13BMC:, M1=m71, M2=m72, M3=m73, M4=m77, TITLE=DAC_Microscope"
 	}
 	display[1] {
-		label="Microscope image"
+		label="Prosilica image"
 		name="prosilica.adl"
 		args="P=13BMCPS1:, R=cam1:"
+	}
+	display[2] {
+		label="PointGrey image"
+		name="PointGrey.adl"
+		args="P=13BMCPG1:, R=cam1:"
+	}
+	display[3] {
+		label="DAC crosshair"
+		name="NDOverlayN.adl"
+		args="P=13BMCPS1:, R=Over1:1:"
 	}
 	clr=14
 	bclr=4
@@ -909,6 +924,16 @@ rectangle {
 		name="3motors.adl"
 		args="P=13BMC:, TITLE=BMC_GPD_XYZ,  M1=m44, M2=m45, M3=m46"
 	}
+	display[2] {
+		label="BMC DAC User Motors"
+		name="8motors.adl"
+		args="P=13BMC:, TITLE=BMC_DAC_Usr_Motors, M1=m33, M2=m37, M3=m38, M4=m44, M5=m45, M6=m46, M7=m73, M8=m77"
+	}
+	display[3] {
+		label="Portable motors"
+		name="3motors.adl"
+		args="P=13ESP:, TITLE=Portable_motors, M1=m1, M2=m2, M3=m3"
+	}
 	clr=14
 	bclr=5
 	label="-BMC GPD"
@@ -916,7 +941,7 @@ rectangle {
 "related display" {
 	object {
 		x=382
-		y=227
+		y=201
 		width=128
 		height=25
 	}
@@ -1036,10 +1061,14 @@ text {
 		name="4motors.adl"
 		args="P=13BMC:,TITLE=13BMC_Hori_Mirror, M1=m9, M2=m10, M3=m11, M4=m12"
 	}
+	display[1] {
+		label="HM PseudoMotors"
+		name="4motors.adl"
+		args="P=13BMC:,TITLE=HMirror_PseudoMotors, M1=pm13, M2=pm14, M3=pm15, M4=pm16"
+	}
 	clr=14
 	bclr=30
 	label="Hmirror"
-	visual="invisible"
 }
 text {
 	object {
@@ -1124,9 +1153,14 @@ composite {
 		height=20
 	}
 	display[1] {
-		label="PID control"
+		label="Vertical beam feedback"
 		name="pid_control.adl"
 		args="P=13BMC:, PID=vert_pid, TITLE=BMC_Vert_Feedback"
+	}
+	display[2] {
+		label="Temperature feedback"
+		name="pid_control.adl"
+		args="P=13IDD:, PID=PID1, TITLE=BMC_Temp_Feedback"
 	}
 	display[3] {
 		label="Acromag ADC"
@@ -1391,8 +1425,8 @@ text {
 }
 text {
 	object {
-		x=300
-		y=333
+		x=298
+		y=337
 		width=73
 		height=18
 	}
@@ -1823,4 +1857,49 @@ text {
 	}
 	limits {
 	}
+}
+"related display" {
+	object {
+		x=496
+		y=562
+		width=150
+		height=30
+	}
+	display[0] {
+		label="Prosilica Illum"
+		name="singleDAC.adl"
+		args="P=13BMC:, R=DAC, D=1, C=2"
+	}
+	display[1] {
+		label="Laser Power"
+		name="singleDAC.adl"
+		args="P=13BMC:, R=DAC, D=1, C=3"
+	}
+	display[2] {
+		label="Resistive Power"
+		name="singleDAC.adl"
+		args="P=13BMC:, R=DAC, D=1, C=4"
+	}
+	display[3] {
+		label="BMC PACE5000"
+		name="PACE5000.adl"
+		args="P=13BMC_PACE5000:, R=PC1:"
+	}
+	display[4] {
+		label="13BMC Lasers"
+		name="13BMC_Laser.adl"
+	}
+	display[5] {
+		label="13Keithley3"
+		name="13Keithley.adl"
+		args="P=13Keithley3:"
+	}
+	display[6] {
+		label="MeasComp 2408 #1"
+		name="13USB2408.adl"
+		args="P=13USB2408_1:"
+	}
+	clr=14
+	bclr=53
+	label="Electronics"
 }

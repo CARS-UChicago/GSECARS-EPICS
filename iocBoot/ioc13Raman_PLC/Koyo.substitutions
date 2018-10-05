@@ -30,10 +30,11 @@ file "$(MODBUS)/db/bi_bit.template" { pattern
 {P,                   R,             PORT,            OFFSET,     ZNAM,     ONAM,       ZSV,    OSV,        SCAN}
 {13RamanPLC:,            Buzzer,     K1_Yn_In_Bit,    007,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
 {13RamanPLC:,    E1ShutterRelay,     K1_Yn_In_Bit,    014,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
-{13RamanPLC:,     L1EnableRelay,     K1_Yn_In_Bit,    011,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
-{13RamanPLC:,     L2EnableRelay,     K1_Yn_In_Bit,    012,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
-{13RamanPLC:,     L3EnableRelay,     K1_Yn_In_Bit,    006,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
-{13RamanPLC:,     L4EnableRelay,     K1_Yn_In_Bit,    013,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13RamanPLC:,   E1L1EnableRelay,     K1_Yn_In_Bit,    011,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13RamanPLC:,   E1L3EnableRelay,     K1_Yn_In_Bit,    011,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13RamanPLC:,   E2L1EnableRelay,     K1_Yn_In_Bit,    012,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13RamanPLC:,   E2L2EnableRelay,     K1_Yn_In_Bit,    006,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
+{13RamanPLC:,   E2L3EnableRelay,     K1_Yn_In_Bit,    013,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
 {13RamanPLC:,      LaserOnLight,     K1_Yn_In_Bit,    015,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
 {13RamanPLC:,     LaserOffLight,     K1_Yn_In_Bit,    016,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
 {13RamanPLC:, LaserCautionLight,     K1_Yn_In_Bit,    017,       Off,     On,  NO_ALARM,  MINOR,  "I/O Intr"}
@@ -56,11 +57,12 @@ file "$(MODBUS)/db/bi_bit.template" { pattern
 {P,                             R,           PORT,   OFFSET,      ZNAM,   ONAM,     ZSV,       OSV,    SCAN}
 {13RamanPLC:, Enclosure1Closed,  K1_Cn_In_Bit,     0200,     Opened,  Closed,     MINOR,  NO_ALARM,  "I/O Intr"}
 {13RamanPLC:, Enclosure2Closed,  K1_Cn_In_Bit,     0220,     Opened,  Closed,     MINOR,  NO_ALARM,  "I/O Intr"}
-{13RamanPLC:,        L1Enabled,  K1_Cn_In_Bit,     0201,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13RamanPLC:,    E1L1-2Enabled,  K1_Cn_In_Bit,     0201,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13RamanPLC:,    E1L3-6Enabled,  K1_Cn_In_Bit,     0216,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
 {13RamanPLC:, E1ShutterEnabled,  K1_Cn_In_Bit,     0202,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
-{13RamanPLC:,        L2Enabled,  K1_Cn_In_Bit,     0203,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
-{13RamanPLC:,        L3Enabled,  K1_Cn_In_Bit,     0204,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
-{13RamanPLC:,        L4Enabled,  K1_Cn_In_Bit,     0205,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13RamanPLC:,      E2L1Enabled,  K1_Cn_In_Bit,     0203,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13RamanPLC:,      E2L2Enabled,  K1_Cn_In_Bit,     0204,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
+{13RamanPLC:,      E2L3Enabled,  K1_Cn_In_Bit,     0205,   Disabled, Enabled,  NO_ALARM,     MINOR,  "I/O Intr"}
 {13RamanPLC:,         UserMode,  K1_Cn_In_Bit,     0205,   Disabled, Enabled,     MINOR,  NO_ALARM,  "I/O Intr"}
 {13RamanPLC:, E1FaultCondition,  K1_Cn_In_Bit,     0223,         OK,   Fault,  NO_ALARM,     MAJOR,  "I/O Intr"}
 {13RamanPLC:, E2FaultCondition,  K1_Cn_In_Bit,     0224,         OK,   Fault,  NO_ALARM,     MAJOR,  "I/O Intr"}
@@ -83,13 +85,14 @@ file "$(MODBUS)/db/poll_delay.template" { pattern
 file "$(MODBUS)/db/bo_bit.template" { pattern
 {P,                          R,                  PORT,           OFFSET,        ZNAM,    ONAM}
 {13RamanPLC:,      FaultResetRequest,         K1_Cn_Out_Bit,    0300,       Done,    Request}
-{13RamanPLC:,        L1EnableRequest,         K1_Cn_Out_Bit,    0301,       Done,    Request}
-{13RamanPLC:,        L2EnableRequest,         K1_Cn_Out_Bit,    0302,       Done,    Request}
-{13RamanPLC:,        L3EnableRequest,         K1_Cn_Out_Bit,    0303,       Done,    Request}
-{13RamanPLC:,        L4EnableRequest,         K1_Cn_Out_Bit,    0304,       Done,    Request}
+{13RamanPLC:,    E1L1-2EnableRequest,         K1_Cn_Out_Bit,    0301,       Done,    Request}
+{13RamanPLC:,      E2L1EnableRequest,         K1_Cn_Out_Bit,    0302,       Done,    Request}
+{13RamanPLC:,      E2L2EnableRequest,         K1_Cn_Out_Bit,    0303,       Done,    Request}
+{13RamanPLC:,      E2L3EnableRequest,         K1_Cn_Out_Bit,    0304,       Done,    Request}
 {13RamanPLC:,       E1ShutterRequest,         K1_Cn_Out_Bit,    0305,       Done,    Request}
 {13RamanPLC:,  EmergencyStop1Request,         K1_Cn_Out_Bit,    0306,       Done,    Request}
 {13RamanPLC:,  EmergencyStop2Request,         K1_Cn_Out_Bit,    0307,       Done,    Request}
+{13RamanPLC:,    E1L3-6EnableRequest,         K1_Cn_Out_Bit,    0310,       Done,    Request}
 }
 file "$(MODBUS)/db/asynRecord.template" { pattern
 {P,           R,          PORT,              ADDR,     TMOD,  IFACE}

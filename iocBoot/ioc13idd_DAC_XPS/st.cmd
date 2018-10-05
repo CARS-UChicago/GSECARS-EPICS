@@ -28,6 +28,22 @@ XPSCreateAxis("XPS1",1,"G1.STZ",  "10000")
 XPSCreateAxis("XPS1",2,"G1.STY",  "50000")  
 XPSCreateAxis("XPS1",3,"G1.OM",    "2000")  
 XPSCreateAxis("XPS1",4,"G2.SLX",  "10000")  
+# Share XPS axis 5 with "GPD X" PE Cell "Soller Z"
+# (In 13IDC use DB25 connector labled "m94 - Soller Z")
+# To change:
+# 1) Edit motor.template swap setup for m94
+# 2) Edit lines below, swap setup for axis 5
+# 3) FTP to the XPS the corresponding system.ini file
+#    a. copy to system.ini either:
+#        "system - Standard DAC and LVP Setup.ini" or
+#        "system Plug5 used for GPD X Stage.ini"
+#    b. from a corvette command prompt in the ioc13idd_DAC_XPS directory
+#         type: ftp_put_xps        
+# 4) Connect via web browser to "newport-xps3.cars.aps.anl.gov" and
+#      reboot the xps
+# 5) Under the DAC table switch the XPS connector A/B box with the
+#     yellow tape to output B
+#     
 # Used for normal DAC and LVP Setup
 XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")  
 # used when xps plug 5 is setup for gpd x stage
