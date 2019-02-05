@@ -273,5 +273,14 @@ record(bi,"$(P)xbo") {
   field(VAL,  "0")
 }
 
+## compress 
+record(ao, "$(P)signal1") {
+    field(FLNK, "$(P)compress1")
+}
 
-
+record(compress, "$(P)compress1") {
+    field(INP, "$(P)signal1")
+    field(ALG, "Circular Buffer")
+    field(NSAM, 25)
+    field(N, 1)
+}
