@@ -1,0 +1,31 @@
+# This database contains fields used for status of copying eiger data
+
+grecord(mbbo,"$(P)$(Q):status") {
+	field(DESC,"Eiger Copy State")
+        field(ZRVL,"0")
+        field(ZRST,"idle")
+        field(ONVL,"1")
+        field(ONST,"starting")
+        field(TWVL,"2")
+        field(TWST,"scanning")
+        field(THVL,"3")
+        field(THST,"finishing")
+        field(FRVL,"4")
+        field(FRST,"aborting")
+        field(FVVL,"5")
+        field(FVST,"unknown")
+}
+
+grecord(stringin,"$(P)$(Q):tstamp") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp")
+	field(VAL,  "--")
+}
+
+grecord(waveform,"$(P)$(Q):folder")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user folder")
+       field(NELM,"256")
+       field(FTVL,"CHAR")
+}
+
