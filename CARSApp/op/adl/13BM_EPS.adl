@@ -1,14 +1,14 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13BM_EPS.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
 		x=52
-		y=47
+		y=48
 		width=1200
-		height=1100
+		height=1099
 	}
 	clr=14
 	bclr=4
@@ -230,126 +230,14 @@ text {
 }
 rectangle {
 	object {
-		x=371
+		x=338
 		y=750
-		width=150
-		height=200
+		width=180
+		height=240
 	}
 	"basic attribute" {
 		clr=56
 	}
-}
-text {
-	object {
-		x=415
-		y=757
-		width=63
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Utilities"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=371
-		y=775
-		width=150
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(371,775)
-		(521,775)
-	}
-}
-oval {
-	object {
-		x=502
-		y=785
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13BMA:eps_mbbi72"
-	}
-}
-text {
-	object {
-		x=381
-		y=786
-		width=119
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="Water Resistivity"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=502
-		y=803
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi67"
-	}
-}
-text {
-	object {
-		x=381
-		y=804
-		width=119
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="He Tank Farm Left"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=502
-		y=821
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi68"
-	}
-}
-text {
-	object {
-		x=374
-		y=822
-		width=126
-		height=13
-	}
-	"basic attribute" {
-		clr=13
-	}
-	textix="He Tank Farm Right"
-	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -7267,11 +7155,78 @@ menu {
 	limits {
 	}
 }
+composite {
+	object {
+		x=104
+		y=929
+		width=180
+		height=40
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=161
+				y=955
+				width=91
+				height=13
+			}
+			"basic attribute" {
+				clr=13
+			}
+			textix="Water shutoff"
+			align="horiz. centered"
+		}
+		oval {
+			object {
+				x=260
+				y=954
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi229"
+			}
+		}
+		text {
+			object {
+				x=114
+				y=929
+				width=161
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Emergency Water Shutoff"
+			align="horiz. centered"
+		}
+		polyline {
+			object {
+				x=104
+				y=948
+				width=180
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(104,948)
+				(284,948)
+			}
+		}
+	}
+}
 text {
 	object {
-		x=385
-		y=850
-		width=119
+		x=362
+		y=896
+		width=133
 		height=14
 	}
 	"basic attribute" {
@@ -7282,23 +7237,23 @@ text {
 }
 polyline {
 	object {
-		x=371
-		y=870
-		width=150
+		x=338
+		y=916
+		width=180
 		height=0
 	}
 	"basic attribute" {
 		clr=14
 	}
 	points {
-		(371,870)
-		(521,870)
+		(338,916)
+		(518,916)
 	}
 }
 composite {
 	object {
-		x=400
-		y=877
+		x=385
+		y=923
 		width=93
 		height=40
 	}
@@ -7306,8 +7261,8 @@ composite {
 	children {
 		"text update" {
 			object {
-				x=402
-				y=877
+				x=387
+				y=923
 				width=41
 				height=15
 			}
@@ -7323,8 +7278,8 @@ composite {
 		}
 		"message button" {
 			object {
-				x=400
-				y=897
+				x=385
+				y=943
 				width=45
 				height=20
 			}
@@ -7338,8 +7293,8 @@ composite {
 		}
 		"message button" {
 			object {
-				x=448
-				y=897
+				x=433
+				y=943
 				width=45
 				height=20
 			}
@@ -7353,8 +7308,8 @@ composite {
 		}
 		"text update" {
 			object {
-				x=450
-				y=877
+				x=435
+				y=923
 				width=41
 				height=15
 			}
@@ -7368,5 +7323,173 @@ composite {
 			limits {
 			}
 		}
+	}
+}
+text {
+	object {
+		x=397
+		y=757
+		width=63
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Utilities"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=338
+		y=775
+		width=180
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(338,775)
+		(518,775)
+	}
+}
+oval {
+	object {
+		x=494
+		y=785
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi72"
+	}
+}
+text {
+	object {
+		x=367
+		y=786
+		width=119
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Water Resistivity"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=494
+		y=803
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi67"
+	}
+}
+text {
+	object {
+		x=367
+		y=804
+		width=119
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="He Tank Farm Left"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=494
+		y=821
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi68"
+	}
+}
+text {
+	object {
+		x=360
+		y=822
+		width=126
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="He Tank Farm Right"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=395
+		y=872
+		width=91
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Water shutoff"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=494
+		y=871
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi229"
+	}
+}
+text {
+	object {
+		x=348
+		y=846
+		width=161
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Emergency Water Shutoff"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=338
+		y=865
+		width=180
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(338,865)
+		(518,865)
 	}
 }
