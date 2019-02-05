@@ -493,7 +493,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A1:pM1_twSet"
+		chan="13Mirror:m3.TWV"
 		clr=14
 		bclr=51
 	}
@@ -508,7 +508,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A1:pM1_twr.PROC"
+		chan="13Mirror:m3.TWF"
 		clr=14
 		bclr=52
 	}
@@ -523,7 +523,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A1:pM1_twf.PROC"
+		chan="13Mirror:m3.TWR"
 		clr=14
 		bclr=52
 	}
@@ -538,7 +538,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A1:pM0_twSet"
+		chan="13Mirror:m4.TWV"
 		clr=14
 		bclr=51
 	}
@@ -553,7 +553,7 @@ polygon {
 		height=12
 	}
 	control {
-		chan="13IDD:pico:A1:pM0_twr.PROC"
+		chan="13Mirror:m4.TWR"
 		clr=14
 		bclr=52
 	}
@@ -568,7 +568,7 @@ polygon {
 		height=12
 	}
 	control {
-		chan="13IDD:pico:A1:pM0_twf.PROC"
+		chan="13Mirror:m4.TWF"
 		clr=14
 		bclr=52
 	}
@@ -786,7 +786,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A1:pM2_twSet"
+		chan="13Mirror:m2.TWV"
 		clr=14
 		bclr=51
 	}
@@ -801,7 +801,7 @@ polygon {
 		height=12
 	}
 	control {
-		chan="13IDD:pico:A1:pM2_twr.PROC"
+		chan="13Mirror:m2.TWR"
 		clr=14
 		bclr=52
 	}
@@ -816,7 +816,7 @@ polygon {
 		height=12
 	}
 	control {
-		chan="13IDD:pico:A1:pM2_twf.PROC"
+		chan="13Mirror:m2.TWF"
 		clr=14
 		bclr=52
 	}
@@ -831,7 +831,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A2:pM0_twSet"
+		chan="13Mirror:m1.TWV"
 		clr=14
 		bclr=51
 	}
@@ -846,7 +846,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A2:pM0_twr.PROC"
+		chan="13Mirror:m1.TWR"
 		clr=14
 		bclr=52
 	}
@@ -861,7 +861,7 @@ polygon {
 		height=20
 	}
 	control {
-		chan="13IDD:pico:A2:pM0_twf.PROC"
+		chan="13Mirror:m1.TWF"
 		clr=14
 		bclr=52
 	}
@@ -1220,7 +1220,7 @@ polygon {
 		height=14
 	}
 	monitor {
-		chan="13IDD:pico:A1:pM0_pos"
+		chan="13Mirror:m4.RBV"
 		clr=50
 		bclr=19
 	}
@@ -1235,7 +1235,7 @@ polygon {
 		height=14
 	}
 	monitor {
-		chan="13IDD:pico:A1:pM1_pos"
+		chan="13Mirror:m3.RBV"
 		clr=50
 		bclr=19
 	}
@@ -1280,7 +1280,7 @@ polygon {
 		height=14
 	}
 	monitor {
-		chan="13IDD:pico:A2:pM0_pos"
+		chan="13Mirror:m1.TWF"
 		clr=50
 		bclr=19
 	}
@@ -1295,7 +1295,7 @@ polygon {
 		height=14
 	}
 	monitor {
-		chan="13IDD:pico:A1:pM2_pos"
+		chan="13Mirror:m2.RBV"
 		clr=50
 		bclr=19
 	}
@@ -2999,7 +2999,7 @@ composite {
 				height=53
 			}
 			control {
-				chan="13IDD:picoStopAll.PROC"
+				chan="13Mirror:allstop"
 				clr=30
 				bclr=24
 			}
@@ -3008,8 +3008,8 @@ composite {
 		}
 	}
 	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:picoMoving"
+		vis="if zero"
+		chan="13Mirror:alldone"
 	}
 }
 composite {
@@ -3029,7 +3029,7 @@ composite {
 				height=53
 			}
 			control {
-				chan="13IDD:picoStopAll.PROC"
+				chan="13Mirror:allstop"
 				clr=30
 				bclr=24
 			}
@@ -3038,8 +3038,8 @@ composite {
 		}
 	}
 	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:picoMoving"
+		vis="if zero"
+		chan="13Mirror:alldone"
 	}
 }
 "related display" {
