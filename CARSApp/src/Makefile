@@ -264,16 +264,15 @@ ifeq ($(OS_CLASS), WIN32)
     $(PROD_NAME)_LIBS := libusb-1.0 $($(PROD_NAME)_LIBS)
   endif
 
-  ifeq (win32-x86,$(findstring win32-x86, $(T_A)))
-    ifdef DXP
-      # If you want to build parallel port or USB interfaces to Saturn and/or
-      # xMAP DXP, then uncomment the following lines
-      $(DBD_NAME)_DBD += dxpSupport.dbd
-      $(PROD_NAME)_LIBS := dxp handel $($(PROD_NAME)_LIBS)
-      $(PROD_NAME)_LIBS := PlxApi $($(PROD_NAME)_LIBS)
-      $(PROD_NAME)_SYS_LIBS += setupapi
-    endif
+  ifdef DXP
+    # If you want to build parallel port or USB interfaces to Saturn and/or
+    # xMAP DXP, then uncomment the following lines
+    $(DBD_NAME)_DBD += dxpSupport.dbd
+    $(PROD_NAME)_LIBS := dxp handel $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_LIBS := PlxApi $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_SYS_LIBS += setupapi
   endif
+
 endif
 
 ##################################################################
