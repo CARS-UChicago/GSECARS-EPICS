@@ -1,5 +1,5 @@
 rem This batch file starts the software for controlling Prosilica cameras from EPICS
-em start medm -x -macro "P=13BMDPS1:,R=cam1:" prosilica.adl
+rem start medm -x -macro "P=13BMDPS1:,R=cam1:" prosilica.adl
 
 set PATH=C:\epics_windows_binaries\windows-x64-static;%PATH%
 prosilicaApp st.cmd
