@@ -55,7 +55,8 @@ dbLoadTemplate("motors.template")
 dbLoadTemplate("13ID_BPM_Foil.substitutions")
 
 # Monochromator PID
-dbLoadTemplate("mono_pid.template")
+#PJE 1-Oct-2018: moved to softioc 13IDCD_mono 
+#dbLoadTemplate("mono_pid.template")
 #MN 10-Oct-2016: move to softioc 13XRM
 ## dbLoadTemplate("emono_pid.template")
 
