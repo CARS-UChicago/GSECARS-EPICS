@@ -5,7 +5,8 @@ dbLoadDatabase("$(ADPOINTGREY)/iocs/pointGreyIOC/dbd/pointGreyApp.dbd")
 pointGreyApp_registerRecordDeviceDriver(pdbbase) 
 
 # Use this line for a specific camera by serial number, in this case a BlackFly GigE cameras
-epicsEnvSet("CAMERA_ID", "13481965")
+#epicsEnvSet("CAMERA_ID", "13481965")
+epicsEnvSet("CAMERA_ID",  "17476170")
 
 # Prefix for all records
 epicsEnvSet("PREFIX", "13BV1:")
