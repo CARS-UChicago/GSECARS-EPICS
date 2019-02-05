@@ -15,7 +15,7 @@ dbLoadTemplate  "motors.template"
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.210", 5001, 8, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.210", 5001, 6, 10, 500, 0, 500)
 # asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -26,14 +26,12 @@ XPSCreateController("XPS1", "164.54.160.210", 5001, 8, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS1", 0, "FINE.X",      "100000") # VP-25XL
-XPSCreateAxis("XPS1", 1, "FINE.Y",       "50000") # VP-5ZA
-XPSCreateAxis("XPS1", 2, "FINE.THETA",    "2000") # URS75CC
-XPSCreateAxis("XPS1", 3, "COARSEX.Pos",   "2000") # ILS200CC
-XPSCreateAxis("XPS1", 4, "COARSEY.Pos",   "5000") # IMS300CC
-XPSCreateAxis("XPS1", 5, "COARSEZ.Pos",   "2000") # ILS200CC
-XPSCreateAxis("XPS1", 6, "VORTEXZ.Pos",   "2000") # ILS150CC
-XPSCreateAxis("XPS1", 7, "EIGERZ.Pos",    "2000") # UTS150CC
+XPSCreateAxis("XPS1", 0, "COARSEX.Pos",   "2000") # ILS200CC
+XPSCreateAxis("XPS1", 1, "COARSEY.Pos",   "5000") # IMS300CC
+XPSCreateAxis("XPS1", 2, "COARSEZ.Pos",   "2000") # ILS200CC
+XPSCreateAxis("XPS1", 3, "VORTEXZ.Pos",   "2000") # ILS150CC
+XPSCreateAxis("XPS1", 4, "EIGERY.Pos",    "2000") # ILS100PP
+XPSCreateAxis("XPS1", 5, "ILS150.Pos",    "2000") # ILS150CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -41,6 +39,20 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 
 # Disable setting position
 XPSEnableSetPosition(0)
+
+XPSCreateController("XPS2", "164.54.160.180", 5001, 4, 10, 500, 0, 500)
+
+# XPS asyn port,  axis, groupName.positionerName, stepSize
+# card,  axis, groupName.positionerName, stepsPerUnit
+XPSCreateAxis("XPS2", 0, "FINE.X",      "100000") # VP-25XL
+XPSCreateAxis("XPS2", 1, "FINE.Y",       "50000") # VP-5ZA
+XPSCreateAxis("XPS2", 2, "FINE.THETA",    "2000") # URS75CC
+XPSCreateAxis("XPS2", 3, "FINE.Z",      "100000") # VP-25XL
+
+# XPS asyn port,  max points, FTP username, FTP password
+# Note: this must be done after configuring axes
+XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
+
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -104,6 +116,9 @@ dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
 
 # simple Image (to push Point Grey image)
 dbLoadRecords("simple_image.db","P=13XRM:,R=PG")
+
+# status of Eiger copying
+dbLoadRecords("eigercopy.db","P=13XRM:,Q=EIGER")
 
 # scan server
 dbLoadRecords("larchscan.db","P=13XRM:,Q=SCANDB")
