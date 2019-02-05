@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2315
-		y=288
-		width=624
-		height=676
+		x=206
+		y=226
+		width=630
+		height=680
 	}
 	clr=46
 	bclr=1
@@ -252,7 +252,7 @@ rectangle {
 	display[0] {
 		label="Sample Stage"
 		name="13IDE_SampleStage.adl"
-		args="P=13XRM:, XF=m1, YF=m2, TH=m3, ZC=m5, XC=m4, YC=m6"
+		args="P=13XRM:, XF=m1, YF=m2, ZF=m10, TH=m3, ZC=m5, XC=m4, YC=m6"
 	}
 	display[2] {
 		label="Table Top Slits"
@@ -277,7 +277,7 @@ rectangle {
 	display[6] {
 		label="Eiger Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Eiger_Detector_Stages, M1=IDE:m20, M2=IDE:m19, M3=XRM:m8"
+		args="P=13, TITLE=Eiger_Detector_Stages, M1=IDE:m20, M2=XRM:m8, M3=IDE:m19"
 	}
 	display[7] {
 		label="Vortex Stages"
@@ -295,8 +295,6 @@ rectangle {
 		args="P=13IDE:, TITLE=Lift_Table, M1=m1,  M2=m2, M3=m3, M4=m4, M5=m5, M6=m6"
 	}
 	display[10] {
-		label="Profile moves"
-		name="profileMove.adl"
 		args="P=13XRM:, R=Prof1:,TITLE=13XRM_Profile_Move,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6"
 	}
 	display[11] {
@@ -313,10 +311,15 @@ rectangle {
 		name="2motors.adl"
 		args="P=13IDE:, TITLE=AnalyzerMotors, M1=m20, M2=m6"
 	}
+	display[14] {
+		label="XPS-D Motors"
+		name="8motors.adl"
+		args="P=13XRM:, TITLE=XPS_D_Motors, M1=m4, M2=m5, M3=m6, M4=m7, M5=m8, M6=m9"
+	}
 	display[15] {
 		label="OSCAR Motors"
 		name="3motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m5, M2=m17, M3=m18"
+		args="P=13IDE:, TITLE=Offline_Microscope, M1=m1, M2=m2, M3=m3"
 	}
 	clr=54
 	bclr=1
@@ -773,7 +776,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="PA:13ID:STA_A_SRCHD_TO_B.VAL"
+		chan="PA:13ID:STA_A_SEARCHED_PL.VAL"
 	}
 }
 oval {
@@ -788,7 +791,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="PA:13ID:STA_B_SRCHD_TO_B.VAL"
+		chan="PA:13ID:STA_B_SEARCHED_PL.VAL"
 	}
 }
 rectangle {
@@ -821,20 +824,15 @@ rectangle {
 		name="SIS38XX.adl"
 		args="P=13IDE:SIS1:"
 	}
-	display[2] {
-		label="TetrAMM"
-		name="quadEM.adl"
-		args="P=13XRM:,R=TetrAMM:"
-	}
 	display[3] {
-		label="QuadVortex Xspress3 (new)"
+		label="QuadVortex Xspress3"
 		name="xspress3_4chan.adl"
 		args="P=13QX4"
 	}
 	display[4] {
-		label="QuadVortex Xspress3 (DP)"
-		name="xspress3_4chan.adl"
-		args="P=dp_xsp3_1"
+		label="XRD Eiger"
+		name="eigerDetector.adl"
+		args="P=13EIG1:, R=cam1:"
 	}
 	display[6] {
 		label="Ion Chamber"
@@ -927,7 +925,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="PA:13ID:STA_E_SRCHD_TO_B.VAL"
+		chan="PA:13ID:STA_E_SEARCHED_PL.VAL"
 	}
 }
 text {
@@ -1532,7 +1530,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:QE2:ComputePosOffsetX.PROC"
+		chan="13XRM:QE2:ComputePosOffsetY.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1547,7 +1545,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13XRM:QE2:ComputePosOffsetY.PROC"
+		chan="13XRM:QE2:ComputePosOffsetX.PROC"
 		clr=54
 		bclr=0
 	}
