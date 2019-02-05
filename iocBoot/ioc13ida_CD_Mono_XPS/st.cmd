@@ -12,8 +12,11 @@ epicsEnvSet(EPICS_DB_INCLUDE_PATH,"$(ADCORE)/db:$(QUADEM)/db")
 ################################################################################
 # TetrAMM setup
 < TetrAMM.cmd
-
 ################################################################################
+
+# Feedback for C/D Mono
+dbLoadTemplate("mono_pid.template")
+
 # XPS Setup
 
 # asyn port, IP address, IP port, number of axes, 
