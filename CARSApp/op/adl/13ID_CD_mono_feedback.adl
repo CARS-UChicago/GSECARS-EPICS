@@ -1,0 +1,1174 @@
+
+file {
+	name="J:\epics\support\CARS\CARSApp\op\adl\13ID_CD_mono_feedback.adl"
+	version=030109
+}
+display {
+	object {
+		x=295
+		y=591
+		width=390
+		height=442
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=205
+		y=212
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Setpoint"
+}
+"related display" {
+	object {
+		x=336
+		y=278
+		width=45
+		height=20
+	}
+	display[1] {
+		label="PID Control"
+		name="pid_control.adl"
+		args="P=$(P), PID=$(IDD_ROLL_PID), TITLE=IDD_Mono_Roll"
+	}
+	display[2] {
+		label="Plot"
+		name="pid_plot_readback.adl"
+		args="P=$(P), PID=$(IDD_ROLL_PID)"
+	}
+	display[4] {
+		label="PID Calculation"
+		name="userTransform_full.adl"
+		args="P=$(P), T=$(IDD_ROLL_PID)_incalc"
+	}
+	clr=54
+	bclr=2
+	label="-More"
+}
+"text entry" {
+	object {
+		x=205
+		y=233
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)$(IDD_ROLL_PID).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=299
+		y=233
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P)$(IDD_ROLL_PID).CVAL"
+		clr=14
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+menu {
+	object {
+		x=280
+		y=278
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(IDD_ROLL_PID).FBON"
+		clr=14
+		bclr=51
+	}
+}
+menu {
+	object {
+		x=205
+		y=278
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(IDD_ROLL_PID)EnableReset"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=205
+		y=258
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="AutoReset"
+}
+text {
+	object {
+		x=304
+		y=212
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Actual"
+}
+oval {
+	object {
+		x=364
+		y=188
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(P)$(IDD_ROLL_PID)Locked"
+	}
+}
+text {
+	object {
+		x=303
+		y=187
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Locked"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=6
+		y=354
+		width=70
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_MOTOR).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=6
+		y=331
+		width=50
+		height=17
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Coarse"
+}
+"message button" {
+	object {
+		x=80
+		y=354
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_MOTOR).TWR"
+		clr=54
+		bclr=56
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=162
+		y=354
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_MOTOR).TWF"
+		clr=54
+		bclr=56
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=101
+		y=354
+		width=60
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_MOTOR).TWV"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=71
+		y=331
+		width=70
+		height=17
+	}
+	monitor {
+		chan="$(P)$(PITCH_MOTOR).RBV"
+		clr=54
+		bclr=3
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=80
+		y=402
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_DAC)_tweak.A"
+		clr=54
+		bclr=56
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=162
+		y=402
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_DAC)_tweak.B"
+		clr=54
+		bclr=56
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=101
+		y=402
+		width=60
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_DAC)_tweakVal"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=46
+		y=378
+		width=100
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_DAC).VAL"
+		clr=14
+		bclr=55
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=6
+		y=402
+		width=70
+		height=19
+	}
+	control {
+		chan="$(P)$(PITCH_DAC).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=6
+		y=378
+		width=50
+		height=17
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Fine"
+}
+text {
+	object {
+		x=60
+		y=5
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="Pitch"
+}
+text {
+	object {
+		x=271
+		y=6
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="Roll"
+}
+text {
+	object {
+		x=5
+		y=186
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="13IDD"
+}
+text {
+	object {
+		x=205
+		y=186
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="13IDD"
+}
+"related display" {
+	object {
+		x=136
+		y=278
+		width=45
+		height=20
+	}
+	display[1] {
+		label="PID Control"
+		name="pid_control.adl"
+		args="P=$(P), PID=$(IDD_PITCH_PID), TITLE=IDD_Mono_Pitch"
+	}
+	display[2] {
+		label="Plot"
+		name="pid_plot_readback.adl"
+		args="P=$(P), PID=$(IDD_PITCH_PID)"
+	}
+	display[4] {
+		label="PID Calculation"
+		name="userTransform_full.adl"
+		args="P=$(P), T=$(IDD_PITCH_PID)_incalc"
+	}
+	clr=54
+	bclr=2
+	label="-More"
+}
+menu {
+	object {
+		x=80
+		y=278
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(IDD_PITCH_PID).FBON"
+		clr=14
+		bclr=51
+	}
+}
+menu {
+	object {
+		x=5
+		y=278
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(IDD_PITCH_PID)EnableReset"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=5
+		y=258
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="AutoReset"
+}
+text {
+	object {
+		x=5
+		y=212
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Setpoint"
+}
+"text entry" {
+	object {
+		x=5
+		y=233
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)$(IDD_PITCH_PID).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=104
+		y=212
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Actual"
+}
+"text update" {
+	object {
+		x=99
+		y=233
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P)$(IDD_PITCH_PID).CVAL"
+		clr=14
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+oval {
+	object {
+		x=164
+		y=188
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(P)$(IDD_PITCH_PID)Locked"
+	}
+}
+text {
+	object {
+		x=103
+		y=187
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Locked"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=190
+		y=0
+		width=2
+		height=439
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(191,1)
+		(191,438)
+	}
+}
+polyline {
+	object {
+		x=0
+		y=322
+		width=391
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	points {
+		(1,323)
+		(390,323)
+	}
+}
+polyline {
+	object {
+		x=0
+		y=171
+		width=391
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	points {
+		(1,172)
+		(390,172)
+	}
+}
+"text entry" {
+	object {
+		x=207
+		y=354
+		width=70
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_MOTOR).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=207
+		y=331
+		width=50
+		height=17
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Coarse"
+}
+"message button" {
+	object {
+		x=281
+		y=354
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_MOTOR).TWR"
+		clr=54
+		bclr=56
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=363
+		y=354
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_MOTOR).TWF"
+		clr=54
+		bclr=56
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=302
+		y=354
+		width=60
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_MOTOR).TWV"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=272
+		y=331
+		width=70
+		height=17
+	}
+	monitor {
+		chan="$(P)$(ROLL_MOTOR).RBV"
+		clr=54
+		bclr=3
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=281
+		y=402
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_DAC)_tweak.A"
+		clr=54
+		bclr=56
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=363
+		y=402
+		width=20
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_DAC)_tweak.B"
+		clr=54
+		bclr=56
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=302
+		y=402
+		width=60
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_DAC)_tweakVal"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+valuator {
+	object {
+		x=247
+		y=378
+		width=100
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_DAC).VAL"
+		clr=14
+		bclr=55
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=207
+		y=402
+		width=70
+		height=19
+	}
+	control {
+		chan="$(P)$(ROLL_DAC).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=207
+		y=378
+		width=50
+		height=17
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Fine"
+}
+polyline {
+	object {
+		x=0
+		y=35
+		width=401
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	points {
+		(1,36)
+		(400,36)
+	}
+}
+text {
+	object {
+		x=205
+		y=71
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Setpoint"
+}
+"related display" {
+	object {
+		x=336
+		y=137
+		width=45
+		height=20
+	}
+	display[1] {
+		label="PID Control"
+		name="pid_control.adl"
+		args="P=$(P), PID=$(IDC_ROLL_PID), TITLE=IDC_Mono_Roll"
+	}
+	display[2] {
+		label="Plot"
+		name="pid_plot_readback.adl"
+		args="P=$(P), PID=$(IDC_ROLL_PID)"
+	}
+	display[4] {
+		label="PID Calculation"
+		name="userTransform_full.adl"
+		args="P=$(P), T=$(IDC_ROLL_PID)_incalc"
+	}
+	clr=54
+	bclr=2
+	label="-More"
+}
+"text entry" {
+	object {
+		x=205
+		y=92
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)$(IDC_ROLL_PID).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=299
+		y=92
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P)$(IDC_ROLL_PID).CVAL"
+		clr=14
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+menu {
+	object {
+		x=280
+		y=137
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(IDC_ROLL_PID).FBON"
+		clr=14
+		bclr=51
+	}
+}
+menu {
+	object {
+		x=205
+		y=137
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(IDC_ROLL_PID)EnableReset"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=205
+		y=117
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="AutoReset"
+}
+text {
+	object {
+		x=304
+		y=71
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Actual"
+}
+oval {
+	object {
+		x=364
+		y=47
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(P)$(IDC_ROLL_PID)Locked"
+	}
+}
+text {
+	object {
+		x=303
+		y=46
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Locked"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=5
+		y=45
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="13IDC"
+}
+text {
+	object {
+		x=205
+		y=45
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="13IDC"
+}
+"related display" {
+	object {
+		x=136
+		y=137
+		width=45
+		height=20
+	}
+	display[1] {
+		label="PID Control"
+		name="pid_control.adl"
+		args="P=$(P), PID=$(IDC_PITCH_PID), TITLE=IDC_Mono_Pitch"
+	}
+	display[2] {
+		label="Plot"
+		name="pid_plot_readback.adl"
+		args="P=$(P), PID=$(IDC_PITCH_PID)"
+	}
+	display[4] {
+		label="PID Calculation"
+		name="userTransform_full.adl"
+		args="P=$(P), T=$(IDC_PITCH_PID)_incalc"
+	}
+	clr=54
+	bclr=2
+	label="-More"
+}
+menu {
+	object {
+		x=80
+		y=137
+		width=50
+		height=20
+	}
+	control {
+		chan="$(P)$(IDC_PITCH_PID).FBON"
+		clr=14
+		bclr=51
+	}
+}
+menu {
+	object {
+		x=5
+		y=137
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(IDC_PITCH_PID)EnableReset"
+		clr=14
+		bclr=51
+	}
+}
+text {
+	object {
+		x=5
+		y=117
+		width=70
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="AutoReset"
+}
+text {
+	object {
+		x=5
+		y=71
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Setpoint"
+}
+"text entry" {
+	object {
+		x=5
+		y=92
+		width=75
+		height=20
+	}
+	control {
+		chan="$(P)$(IDC_PITCH_PID).VAL"
+		clr=14
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=104
+		y=71
+		width=67
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Actual"
+}
+"text update" {
+	object {
+		x=99
+		y=92
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P)$(IDC_PITCH_PID).CVAL"
+		clr=14
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+oval {
+	object {
+		x=164
+		y=47
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(P)$(IDC_PITCH_PID)Locked"
+	}
+}
+text {
+	object {
+		x=103
+		y=46
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Locked"
+	align="horiz. centered"
+}
