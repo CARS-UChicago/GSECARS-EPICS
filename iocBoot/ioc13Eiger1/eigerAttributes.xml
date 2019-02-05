@@ -1,9 +1,14 @@
 <?xml version="1.0" standalone="no" ?>
-<!-- Attributes -->
-<Attributes
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://epics.aps.anl.gov/areaDetector/attributes ../attributes.xsd"
-    >
+<Attributes>
+    <Attribute name="Date"                  type="EPICS_PV"  source="S:IOC:timeOfDayForm1SI"  dbrtype="DBR_STRING"  description="Date and time"/>
+    <Attribute name="RingCurrent"           type="EPICS_PV"  source="S:SRcurrentAI.VAL"       dbrtype="DBR_DOUBLE"  description="Ring current (mA)"/> 
+    <Attribute name="Mono Energy"           type="EPICS_PV"  source="13IDE:En:Energy"         dbrtype="DBR_DOUBLE"  description="X-ray energy (eV)"/> 
+    <Attribute name="I0 Flux Estimate"      type="EPICS_PV"  source="13XRM:ION:FluxOut"       dbrtype="DBR_STRING"  description="X-ray flux (Hz)"/> 
+    <Attribute name="Eiger X (In/Out)"      type="EPICS_PV"  source="13IDE:m20.RBV"           dbrtype="DBR_DOUBLE"  description="Eiger X (mm)"/> 
+    <Attribute name="Eiger Y (Vertical)"    type="EPICS_PV"  source="13XRM:m8.RBV"            dbrtype="DBR_DOUBLE"  description="Eiger Y (mm)"/> 
+    <Attribute name="Eiger Z (Along Beam)"  type="EPICS_PV"  source="13IDE:m19.RBV"           dbrtype="DBR_DOUBLE"  description="Eiger Z (mm)"/> 
+    <Attribute name="Detector Distance"     type="EPICS_PV"  source="13EIG1:cam1:DetDist"     dbrtype="DBR_DOUBLE"  description="Detector Distance (mm)"/> 
+
     <Attribute name="DetectorDescription"       type="PARAM"    source="DESCRIPTION"        datatype="STRING"   description="Detector Description"/>
     <Attribute name="DetectorSerialNumber"      type="PARAM"    source="SERIAL_NUMBER"      datatype="STRING"   description="Detector Serial Number"/>
     <Attribute name="DetectorSoftwareVersion"   type="PARAM"    source="SW_VERSION"         datatype="STRING"   description="Detector Software Version"/>
@@ -21,7 +26,4 @@
     <Attribute name="PixelMaskApplied"          type="PARAM"    source="PIXEL_MASK_APPLIED" datatype="INT"      description="Pixel Mask Applied to Data"/>
     <Attribute name="OmegaStart"                type="PARAM"    source="OMEGA"              datatype="DOUBLE"   description="Frame's Omega Angle"/>
     <Attribute name="OmegaIncrement"            type="PARAM"    source="OMEGA_INCR"         datatype="DOUBLE"   description="Frame's Omega Angle Increment"/>
-    
-</Attributes>
-    
-    
+</Attributes> 
