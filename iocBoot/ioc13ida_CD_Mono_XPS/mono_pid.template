@@ -1,0 +1,15 @@
+file "$(CARS)/CARSApp/Db/mono_pid_control_idcd.db"
+{
+pattern
+{P,      PID,       INP,                   OUT,      LOPR,  HOPR,  DRVL,  DRVH,  PREC,   KP,   KI,   KD,  SCAN,          SHUT_STATUS}
+# This is the IDD pitch feedback
+{13IDA:, mono_pid1, 13IDC:IP330_2.VAL, 13IDA:DAC1_2,   0,      5,    -5,    5,     3,     0.2,  3.,   0.,  ".1 second", 13IDA:eps_mbbi25}
+# This is the IDD roll feedback
+{13IDA:, mono_pid2, 13IDC:IP330_5.VAL, 13IDA:DAC1_3,   0,      5,    -5,    5,     3,     0.2,  3.,   0.,  ".1 second", 13IDA:eps_mbbi25}
+# This is the IDC pitch feedback
+{13IDA:, mono_pid3, 13IDC:IP330_2.VAL, 13IDA:DAC1_2,   0,      5,    -5,    5,     3,     0.2,  3.,   0.,  ".1 second", 13IDA:eps_mbbi25}
+# This is the IDC roll feedback
+{13IDA:, mono_pid4, 13IDC:IP330_5.VAL, 13IDA:DAC1_3,   0,      5,    -5,    5,     3,     0.2,  3.,   0.,  ".1 second", 13IDA:eps_mbbi25}
+}
+
+
