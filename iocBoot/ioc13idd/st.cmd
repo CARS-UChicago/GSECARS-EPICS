@@ -66,18 +66,8 @@ dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
 # XRD File Base and relative paths
 dbLoadRecords("$(CARS)/CARSApp/Db/xrd_files.db", "P=13IDD:")
 
-# LVP furnace controls
-dbLoadTemplate("LVP_furnace_control.template")
-
-# LVP pressure control
-dbLoadTemplate("LVP_pressure_control.template")
-
 # Koyo PLC for lasers
 < Koyo.cmd
-
-#MN May-29-2002
-# LVP Theta (temperature ramping) controller
-dbLoadRecords("$(CARS)/CARSApp/Db/RampScan.db","P=13IDD:,R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
 
 # Experiment description
 dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
@@ -169,8 +159,6 @@ create_monitor_set("auto_positions.req",5,"P=13IDD:")
 create_monitor_set("auto_settings.req",30,"P=13IDD:")
 
 seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, channels=20, model=2700, stack=10000"
-seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM3, stack=10000"
-seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM4, stack=10000"
 
 seq &IDD_LVP_Detector, "P=13IDD:,PMR=pm9,PMT=pm10,PMC=pm11,X=m33,Y=m34,Z=m35,TX=m38,TZ=m39"
 
