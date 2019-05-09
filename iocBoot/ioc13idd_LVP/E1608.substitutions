@@ -1,0 +1,157 @@
+file "$(MEASCOMP)/measCompApp/Db/measCompLongIn.template"
+{
+pattern
+{        P,           R,   MASK,     PORT,  ADDR}
+{   13IDD:LVP:MC1:,  Li,   0xFF,  E1608_1,     0}
+{   13IDD:LVP:MC2:,  Li,   0xFF,  E1608_2,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompBinaryIn.template"
+{
+pattern
+{        P,           R,   MASK,      PORT,  ADDR}
+{   13IDD:LVP:MC1:,  Bi1,  0x01,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi2,  0x02,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi3,  0x04,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi4,  0x08,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi5,  0x10,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi6,  0x20,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi7,  0x40,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bi8,  0x80,   E1608_1,     0}
+{   13IDD:LVP:MC2:,  Bi1,  0x01,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi2,  0x02,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi3,  0x04,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi4,  0x08,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi5,  0x10,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi6,  0x20,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi7,  0x40,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bi8,  0x80,   E1608_2,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompLongOut.template"
+{
+pattern
+{        P,           R,   MASK,     PORT,  ADDR}
+{   13IDD:LVP:MC1:,  Lo,   0xFF,  E1608_1,     0}
+{   13IDD:LVP:MC2:,  Lo,   0xFF,  E1608_2,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompBinaryOut.template"
+{
+pattern
+{        P,            R,  MASK,      PORT,  ADDR}
+{   13IDD:LVP:MC1:,  Bo1,  0x01,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo2,  0x02,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo3,  0x04,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo4,  0x08,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo5,  0x10,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo6,  0x20,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo7,  0x40,   E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bo8,  0x80,   E1608_1,     0}
+{   13IDD:LVP:MC2:,  Bo1,  0x01,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo2,  0x02,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo3,  0x04,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo4,  0x08,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo5,  0x10,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo6,  0x20,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo7,  0x40,   E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bo8,  0x80,   E1608_2,     0}
+}
+
+# Direction bits on binary I/O
+#  VAL 0=input, 1=output
+file "$(MEASCOMP)/measCompApp/Db/measCompBinaryDir.template"
+{
+pattern
+{        P,           R,   MASK,  VAL,     PORT,  ADDR}
+{   13IDD:LVP:MC1:,  Bd1,  0x01,    0,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd2,  0x02,    0,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd3,  0x04,    0,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd4,  0x08,    0,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd5,  0x10,    1,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd6,  0x20,    1,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd7,  0x40,    1,  E1608_1,     0}
+{   13IDD:LVP:MC1:,  Bd8,  0x80,    1,  E1608_1,     0}
+{   13IDD:LVP:MC2:,  Bd1,  0x01,    0,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd2,  0x02,    0,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd3,  0x04,    0,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd4,  0x08,    0,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd5,  0x10,    1,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd6,  0x20,    1,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd7,  0x40,    1,  E1608_2,     0}
+{   13IDD:LVP:MC2:,  Bd8,  0x80,    1,  E1608_2,     0}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompCounter.template"
+{
+pattern
+{         P,             R,       PORT,    ADDR}
+{   13IDD:LVP:MC1:,  Counter1,  E1608_1,      0}
+{   13IDD:LVP:MC2:,  Counter1,  E1608_2,      0}
+}
+
+# Analog inputs
+file "$(MEASCOMP)/measCompApp/Db/measCompAnalogIn.template"
+{
+pattern
+{        P,             R,   PORT,   ADDR,  EGUL, LOPR, EGUF, HOPR,  RANGE,   SCAN,   PREC}
+{   13IDD:LVP:MC1:,   Ai1, E1608_1,    0,  -10., -10.,  10.,  10.,    3,  "1 second",   4}
+{   13IDD:LVP:MC1:,   Ai2, E1608_1,    1,  -10., -10.,  10.,  10.,    3,  "1 second",   4}
+{   13IDD:LVP:MC1:,   Ai3, E1608_1,    2,   -5.,  -5.,   5.,   5.,    2,  "1 second",   4}
+{   13IDD:LVP:MC1:,   Ai4, E1608_1,    3,   -5.,  -5.,   5.,   5.,    2,  "1 second",   4}
+{   13IDD:LVP:MC2:,   Ai1, E1608_2,    0,  -10., -10.,  10.,  10.,    3,  "1 second",   4}
+{   13IDD:LVP:MC2:,   Ai2, E1608_2,    1,  -10., -10.,  10.,  10.,    3,  "1 second",   4}
+{   13IDD:LVP:MC2:,   Ai3, E1608_2,    2,   -5.,  -5.,   5.,   5.,    2,  "1 second",   4}
+{   13IDD:LVP:MC2:,   Ai4, E1608_2,    3,   -5.,  -5.,   5.,   5.,    2,  "1 second",   4}
+}
+
+# Waveform digitzer
+file "$(MEASCOMP)/measCompApp/Db/measCompWaveformDig.template"
+{
+pattern
+{         P,           R,          PORT,    ADDR,  MAX_POINTS,  PREC}
+{   13IDD:LVP:MC1:,  WaveDig,    E1608_1,     0,       4096,       4}
+{   13IDD:LVP:MC2:,  WaveDig,    E1608_2,     0,       4096,       4}
+}
+
+file "$(MEASCOMP)/measCompApp/Db/measCompWaveformDigN.template"
+{
+pattern
+{        P,             R,          PORT,  ADDR,  MAX_POINTS,  PREC}
+{   13IDD:LVP:MC1:,  WaveDig1,   E1608_1,     0,    4096,       4}
+{   13IDD:LVP:MC1:,  WaveDig2,   E1608_1,     1,    4096,       4}
+{   13IDD:LVP:MC1:,  WaveDig3,   E1608_1,     2,    4096,       4}
+{   13IDD:LVP:MC1:,  WaveDig4,   E1608_1,     3,    4096,       4}
+{   13IDD:LVP:MC2:,  WaveDig1,   E1608_2,     0,    4096,       4}
+{   13IDD:LVP:MC2:,  WaveDig2,   E1608_2,     1,    4096,       4}
+{   13IDD:LVP:MC2:,  WaveDig3,   E1608_2,     2,    4096,       4}
+{   13IDD:LVP:MC2:,  WaveDig4,   E1608_2,     3,    4096,       4}
+}
+
+# Analog outputs
+file "$(MEASCOMP)/measCompApp/Db/measCompAnalogOut.template"
+{
+pattern
+{        P,           R,   VAL,   PORT,   ADDR, EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC}
+    # MC1:Ao1 is used for LVP radial pump speed control - set range  0V to 10V=0% to 100%
+    # NOTE: The range is really 0 to -10V for 0 to 100%.  We do this by reversing plus and minus wires at
+    # motor driver.
+{   13IDD:LVP:MC1:,  Ao1,   0,  E1608_1,    0, -100.,   0.,   0., 100.,  10., 100.,    4}
+    # MC1:Ao2 is used for LVP syringe pump speed control - set range  -10V to +10V=-100% to 100%
+{   13IDD:LVP:MC1:,  Ao2,   0,  E1608_1,    1, -100., -10.,-100., 100.,  10., 100.,    4}
+    # MC2:Ao1 is used for LVP furnace current limit - set range  0V to +10V
+{   13IDD:LVP:MC2:,  Ao1,   0,  E1608_2,    0,  -10.,   0.,   0.,  10.,  10.,  10.,    4}
+    # MC2;Ao2 is used for LVP furnace voltage control - set range 0V to +10V = 0 to 100%
+{   13IDD:LVP:MC2:,  Ao2,   0,  E1608_2,    1, -100.,   0.,   0., 100.,  10., 100.,    4}
+}
+
+
+# Trigger
+file "$(MEASCOMP)/measCompApp/Db/measCompTrigger.template"
+{
+pattern
+{         P,           R,          PORT,    ADDR}
+{   13IDD:LVP:MC1:,  Trig,       E1608_1,      0}
+{   13IDD:LVP:MC2:,  Trig,       E1608_2,      0}
+}
+
