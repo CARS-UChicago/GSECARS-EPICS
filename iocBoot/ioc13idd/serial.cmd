@@ -47,8 +47,6 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A2,PORT=serial2")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,PORT=serial3")
 # Laser power controller
 dbLoadRecords("$(CARS)/CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM3,PORT=serial5")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM4,PORT=serial6")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,PORT=serial7")
 #dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13IDD:,R=LAE500,PORT=serial8")
 
