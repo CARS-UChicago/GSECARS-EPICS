@@ -46,14 +46,14 @@ grecord(transform,"$(P)$(PID)_limits") {
 grecord(transform,"$(P)LVP_furnace_calcs") {
         field(DESC,"LVP furnace calcs")
         field(CMTA,"Heater V")
-        field(INPA,"$(P)DMM4Ch1_calc.VAL  NPP NMS")
+        field(INPA,"$(P)$(INPV)  NPP NMS")
         field(CMTB,"Heater A")
-        field(INPB,"$(P)DMM4Ch2_calc.VAL CPP NMS")
+        field(INPB,"$(P)$(INPI) CPP NMS")
         field(CMTC,"Resistance")
         field(CLCC,"A/B")
         field(CMTD,"Power")
         field(CLCD,"A*B")
-        field(INPE,"$(P)DMM3Ch8_calc.VAL CPP NMS")
+        field(INPE,"$(P)$(INP) CPP NMS")
         field(CMTE,"Temperature")
         field(PREC,"3")
 }
@@ -147,7 +147,7 @@ grecord(seq,"$(P)LVP_mode_reset") {
 # These records display the current mode (current control or voltage control)
 grecord(calcout,"$(P)VoltModeCalc") {
         field(PINI,"YES")
-        field(INPA,"$(P)IP330_5.VAL CP MS")
+        field(INPA,"$(P)$(INPVMODE).VAL CP MS")
         field(CALC,"A > 3.0")
         field(OUT, "$(P)VoltageMode PP MS")
 }
