@@ -11,7 +11,7 @@ epicsEnvSet("PORT",   "EIG")
 epicsEnvSet("QSIZE",  "20")
 epicsEnvSet("XSIZE",  "1030")
 epicsEnvSet("YSIZE",  "1065")
-epicsEnvSet("NCHANS", "2048")
+epicsEnvSet("NCHANS", "8192")
 epicsEnvSet("CBUFFS", "500")
 epicsEnvSet("EIGERIP", "164.54.160.234")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
@@ -33,6 +33,12 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image2:,PORT=I
 # Load all other plugins using commonPlugins.cmd
 < $(ADCORE)/iocBoot/commonPlugins.cmd
 set_requestfile_path("$(ADEIGER)/eigerApp/Db")
+
+# Create a second transform plugin to allow rotation of an ROI
+# -- this will be used by the TIFF plugin to save a trimmed, rotated image
+NDTransformConfigure("TRANS2", $(QSIZE), 0, "$(PORT)", 0, 0, 0, 0, 0, $(MAX_THREADS=5))
+dbLoadRecords("NDTransform.template", "P=$(PREFIX),R=Trans2:,  PORT=TRANS2,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT)")
+
 
 iocInit()
 
