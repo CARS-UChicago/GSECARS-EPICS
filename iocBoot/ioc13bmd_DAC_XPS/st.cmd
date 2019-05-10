@@ -13,12 +13,12 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.83", 5001, 4, 10, 500, 1, 500)
+XPSCreateController("XPS1", "164.54.160.211", 5001, 3, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.83", 5001, 50)
+#XPSAuxConfig("XPS_AUX1", "164.54.160.211", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -26,7 +26,7 @@ XPSAuxConfig("XPS_AUX1", "164.54.160.83", 5001, 50)
 XPSCreateAxis("XPS1",0,"GROUP1.POSITIONER",  "10000")  
 XPSCreateAxis("XPS1",1,"GROUP2.POSITIONER",  "10000")  
 XPSCreateAxis("XPS1",2,"GROUP3.POSITIONER",  "50000")  
-XPSCreateAxis("XPS1",3,"GROUP5.POSITIONER",  "2000")  
+#XPSCreateAxis("XPS1",3,"GROUP5.POSITIONER",  "2000")  
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -40,10 +40,10 @@ XPSEnableSetPosition(0)
 dbLoadTemplate("motors.template")
 
 # Auxillary I/O records
-dbLoadTemplate("XPSAux.substitutions")
+#dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.83:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "164.54.160.211:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMD:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
