@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13Raman.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13Raman.adl"
 	version=030109
 }
 display {
 	object {
-		x=816
-		y=3230
+		x=435
+		y=3006
 		width=1490
 		height=1026
 	}
@@ -3198,8 +3198,8 @@ text {
 }
 text {
 	object {
-		x=1392
-		y=517
+		x=1388
+		y=524
 		width=25
 		height=20
 	}
@@ -3237,7 +3237,7 @@ oval {
 }
 polyline {
 	object {
-		x=1150
+		x=1153
 		y=447
 		width=328
 		height=563
@@ -3246,14 +3246,14 @@ polyline {
 		clr=14
 	}
 	points {
-		(1372,447)
-		(1372,654)
-		(1150,654)
-		(1150,1010)
-		(1478,1010)
-		(1478,447)
-		(1371,447)
-		(1371,451)
+		(1375,447)
+		(1375,654)
+		(1153,654)
+		(1153,1010)
+		(1481,1010)
+		(1481,447)
+		(1374,447)
+		(1374,451)
 	}
 }
 "text entry" {
@@ -3678,8 +3678,8 @@ text {
 }
 text {
 	object {
-		x=1371
-		y=472
+		x=1453
+		y=473
 		width=25
 		height=30
 	}
@@ -3691,8 +3691,8 @@ text {
 }
 text {
 	object {
-		x=1444
-		y=458
+		x=1372
+		y=462
 		width=25
 		height=30
 	}
@@ -5944,7 +5944,7 @@ polygon {
 		height=26
 	}
 	control {
-		chan="13RamanPS1:cam1:AcquireTime"
+		chan="13RamanPG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -5959,7 +5959,7 @@ polygon {
 		height=17
 	}
 	control {
-		chan="13RamanPS1:cam1:AcquireTime"
+		chan="13RamanPG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -5974,7 +5974,7 @@ polygon {
 		height=17
 	}
 	control {
-		chan="13RamanPS1:cam1:AcquireTime"
+		chan="13RamanPG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -5989,7 +5989,7 @@ polygon {
 		height=17
 	}
 	control {
-		chan="13RamanPS1:cam1:AcquireTime"
+		chan="13RamanPG2:cam1:AcquireTime"
 		clr=14
 		bclr=19
 	}
@@ -6070,8 +6070,8 @@ text {
 		height=18
 	}
 	display[0] {
-		name="prosilica.adl"
-		args="P=13RamanPS1:, R=cam1:"
+		name="Pointgrey.adl"
+		args="P=13RamanPG2:, R=cam1:"
 	}
 	clr=0
 	bclr=54
@@ -6184,7 +6184,7 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A<300&&A>180"
+		calc="A>-300&&A<-180"
 		chan="13RAMAN2:m1.RBV"
 	}
 }
@@ -6390,7 +6390,7 @@ image {
 	"image name"="DAC.gif"
 	"dynamic attribute" {
 		vis="calc"
-		calc="A<160&&A>100"
+		calc="A>-160&&A<100"
 		chan="13RAMAN2:m1.RBV"
 	}
 }
@@ -7081,4 +7081,19 @@ composite {
 		vis="if zero"
 		chan="rpi_4:Switch02"
 	}
+}
+"message button" {
+	object {
+		x=840
+		y=590
+		width=63
+		height=26
+	}
+	control {
+		chan="13RamanPG2:TIFF1:WriteFile"
+		clr=14
+		bclr=33
+	}
+	label="Image"
+	press_msg="1"
 }
