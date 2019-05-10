@@ -15,7 +15,7 @@ dbLoadTemplate  "motors.template"
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.210", 5001, 6, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.210", 5001, 7, 10, 500, 0, 500)
 # asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -32,6 +32,7 @@ XPSCreateAxis("XPS1", 2, "COARSEZ.Pos",   "2000") # ILS200CC
 XPSCreateAxis("XPS1", 3, "VORTEXZ.Pos",   "2000") # ILS150CC
 XPSCreateAxis("XPS1", 4, "EIGERY.Pos",    "2000") # ILS100PP
 XPSCreateAxis("XPS1", 5, "ILS150.Pos",    "2000") # ILS150CC
+XPSCreateAxis("XPS1", 6, "RV160.Pos",     "1000") # RV160CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
