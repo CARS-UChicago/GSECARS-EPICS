@@ -444,27 +444,27 @@ text {
 	display[3] {
 		label="Keithley #1"
 		name="Keithley2kDMM_mf.adl"
-		args="P=13IDD:, Dmm=DMM3"
+		args="P=13IDD:LVP:, Dmm=DMM3"
 	}
 	display[4] {
 		label="Keithley #2"
 		name="Keithley2kDMM_mf.adl"
-		args="P=13IDD:, Dmm=DMM4"
+		args="P=13IDD:LVP:, Dmm=DMM4"
 	}
 	display[5] {
 		label="Furnace control"
 		name="1000_Ton_LVP_furnace.adl"
-		args="P=13IDD:, PID=LVP:PID1, OUT=DAC1_5, VOLT=DAC1_6, RESET=DAC1_7"
+		args="P=13IDD:LVP:, PID=PID1, OUT=MC2:Ao1, VOLT=MC2:Ao2, RESET=xxx"
 	}
 	display[6] {
 		label="Pressure control"
 		name="ID_LVP_pressure.adl"
-		args="P=13IDD:,R=Press_, RADIAL_DAC=DAC1_4, SYRINGE_DAC=DAC1_8"
+		args="P=13IDD:LVP:,R=Press_, RADIAL_DAC=MC1:Ao1, SYRINGE_DAC=MC1:Ao2"
 	}
 	display[7] {
 		label="Temperature Ramp"
 		name="LVP_Theta.adl"
-		args="P=13IDD:,R=Theta1_,RBV=13IDD:LVP:PID1.VAL,DRV=13IDD:Theta1_RampOut.E, PID=LVP:PID1"
+		args="P=13IDD:LVP:,R=Theta1_,RBV=13IDD:LVP:PID1.VAL,DRV=13IDD:Theta1_RampOut.E, PID=LVP:PID1"
 	}
 	display[9] {
 		label="Joerger Scaler"
@@ -1031,6 +1031,21 @@ text {
 		label="Serial 8"
 		name="asynOctet.adl"
 		args="P=13IDD:, R=serial8"
+	}
+	display[8] {
+		label="LVP serial 1"
+		name="asynOctet.adl"
+		args="P=13IDD:LVP:, R=serial1"
+	}
+	display[9] {
+		label="LVP serial 2"
+		name="asynOctet.adl"
+		args="P=13IDD:LVP:, R=serial2"
+	}
+	display[10] {
+		label="LVP serial 3"
+		name="asynOctet.adl"
+		args="P=13IDD:LVP:, R=serial3"
 	}
 	clr=14
 	bclr=4
