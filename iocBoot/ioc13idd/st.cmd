@@ -29,8 +29,6 @@ dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
-#AIMConfig("NI3ED/1", 0x3ED, 1, 4000, 1, 1,"dc0")
-#AIMConfig("NI3ED/2", 0x3ED, 2, 4000, 1, 1,"dc0")
 AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"dc0")
 AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"dc0")
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
