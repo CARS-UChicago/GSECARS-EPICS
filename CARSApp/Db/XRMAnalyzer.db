@@ -1,0 +1,64 @@
+# This database helps set a busy flag when
+# putting to Analyzer:Energy
+
+record(ao,"$(P)$(ANA):Energy") {
+    field(DESC, "Energy")
+    field(PREC, "3")
+    field(EGU, "eV")
+    field(FLNK, "$(P)$(ANA):PutMoving.PROC PP MS")
+}
+
+record(ao,"$(P)$(ANA):Energy_RBV") {
+    field(DESC, "Energy Readback")
+    field(PREC, "3")
+    field(EGU, "eV")
+}
+
+record(bo,"$(P)$(ANA):PutMoving") {
+    field(DOL,"1")
+    field(OUT,"$(P)$(ANA):Moving.VAL  PP MS")
+}
+
+record(busy,"$(P)$(ANA):Moving") {
+    field(DESC,"Energy moving (external)")
+}
+
+grecord(ao,"$(P)$(ANA):h") {
+    field(DESC,"Analyzer H")
+    field(PREC,"1")
+    field(VAL,"0")
+}
+
+grecord(ao,"$(P)$(ANA):k") {
+    field(DESC,"Analyzer K")
+    field(PREC,"1")
+    field(VAL,"0")
+}
+
+grecord(ao,"$(P)$(ANA):l") {
+    field(DESC,"Analyzer L")
+    field(PREC,"1")
+    field(VAL,"0")
+}
+
+grecord(ao,"$(P)$(ANA):dspace") {
+    field(DESC,"Analyzer d spacing")
+    field(PREC,"5")
+    field(VAL,"5.4309")
+}
+
+grecord(mbbo,"$(P)$(ANA):xtal") {
+    field(DESC,"Analyzer Xtal")
+    field(VAL, "0")
+    field(ZRVL,"0")
+    field(ZRST,"Si")
+    field(ONVL,"1")
+    field(ONST,"Ge")
+}
+
+grecord(ao,"$(P)$(ANA):diam") {
+    field(DESC,"Analyzer diameter (mm)")
+    field(PREC,"2")
+    field(VAL,"1000")
+}
+
