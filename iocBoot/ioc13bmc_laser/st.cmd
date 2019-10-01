@@ -51,7 +51,7 @@ dbLoadTemplate("asynRecord.substitutions")
 
 # AG_UCCreateController(asyn port, serial port, number of axes, 
 #                        active poll period (ms), idle poll period (ms)) 
-AG_UCCreateController("Agilis1", "serial4", 5, 50, 500)
+AG_UCCreateController("Agilis1", "serial4", 6, 50, 500)
 asynSetTraceIOMask("Agilis1", 0, 2)
 #asynSetTraceMask("Agilis1", 0, 255)
 
@@ -60,7 +60,8 @@ AG_UCCreateAxis("Agilis1", 0, 1, 50, -50)
 AG_UCCreateAxis("Agilis1", 1, 1, 50, -50)
 AG_UCCreateAxis("Agilis1", 2, 1, 50, -50)
 AG_UCCreateAxis("Agilis1", 3, 1, 50, -50)
-AG_UCCreateAxis("Agilis1", 4, 0, 50, -50)
+AG_UCCreateAxis("Agilis1", 4, 1, 50, -50)
+AG_UCCreateAxis("Agilis1", 5, 1, 50, -50)
 
 ### Motors
 dbLoadTemplate  "motors.template"
