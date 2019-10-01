@@ -15,7 +15,7 @@ dbLoadTemplate  "motors.template"
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
 # This is newport-xps9
-XPSCreateController("XPS1", "164.54.160.41", 5001, 2, 10, 200, 0, 500)
+XPSCreateController("XPS1", "164.54.160.41", 5001, 1, 10, 200, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -25,8 +25,7 @@ asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.M1",  "10000")  
-XPSCreateAxis("XPS1",1,"GROUP1.M2",  "10000")  
+XPSCreateAxis("XPS1",0,"GROUP1.GPD_Z",  "10000")   
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
