@@ -3,12 +3,6 @@ TOP=../..
 include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
-#=============================
-
-# For Kate Feng's implementation of devScaler.c, which uses Till
-# Straumann's basicIoOps.h to bridge any mismatch between endianness
-# of Joerger scaler hardware and endianness of processor.
-#USR_CFLAGS += -DHAS_IOOPS_H
 
 LIBRARY_IOC += CARS
 
@@ -177,25 +171,24 @@ endif
 
 ifdef MOTOR
   $(DBD_NAME)_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
-  $(DBD_NAME)_DBD += devAttocube.dbd devFaulhaberMotor.dbd devImsMotor.dbd
-  $(DBD_NAME)_DBD += devKohzuMotor.dbd devMclennanMotor.dbd devMicos.dbd
-  $(DBD_NAME)_DBD += devMicroMo.dbd devNewFocus.dbd devNewport.dbd
+  $(DBD_NAME)_DBD += devFaulhaberMotor.dbd
+  $(DBD_NAME)_DBD += devMclennanMotor.dbd
+  $(DBD_NAME)_DBD += devNewFocus.dbd devNewport.dbd
   ifdef SNCSEQ
   $(DBD_NAME)_DBD += devAerotechSeq.dbd devNewportSeq.dbd
   endif
-  $(DBD_NAME)_DBD += devOriel.dbd devPC6K.dbd devPIJena.dbd devPIMotor.dbd
-  $(DBD_NAME)_DBD += devSPiiPlus.dbd devSmartMotorMotor.dbd devSoftMotor.dbd
-  $(DBD_NAME)_DBD += devThorLabs.dbd motorSimSupport.dbd
+  $(DBD_NAME)_DBD += devSoftMotor.dbd
+  $(DBD_NAME)_DBD += motorSimSupport.dbd
 
   $(PROD_NAME)_LIBS := motor $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := ACRMotor Acs acsTech80 Aerotech Attocube Faulhaber Ims KohzuMotor $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := Mclennan Micos MicroMo NewFocus Newport Oriel PI PIJena $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := Parker SmartMotor ThorLabs softMotor motorSimSupport $($(PROD_NAME)_LIBS)
+  $(PROD_NAME)_LIBS := ACRMotor Acs Aerotech Faulhaber  $($(PROD_NAME)_LIBS)
+  $(PROD_NAME)_LIBS := Mclennan NewFocus Newport $($(PROD_NAME)_LIBS)
+  $(PROD_NAME)_LIBS := Parker softMotor motorSimSupport $($(PROD_NAME)_LIBS)
 endif
 
 ifdef STREAM
-  $(DBD_NAME)_DBD += stream.dbd streamSynApps.dbd
-  $(PROD_NAME)_LIBS := stream streamSynApps $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD += stream.dbd 
+  $(PROD_NAME)_LIBS := stream $($(PROD_NAME)_LIBS)
 endif
 
 ifdef DEVIOCSTATS
@@ -378,6 +371,7 @@ ifeq ($(OS_CLASS), Linux)
     $(PROD_NAME)_LIBS := measCompLinuxDrivers $($(PROD_NAME)_LIBS)
     $(PROD_NAME)_LIBS := cbw_linux $($(PROD_NAME)_LIBS)
     $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_SYS_LIBS += hidapi-libusb usb-1.0
   endif
 
   ifdef MCA
