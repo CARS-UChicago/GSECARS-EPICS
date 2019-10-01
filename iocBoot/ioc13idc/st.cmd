@@ -36,10 +36,10 @@ dbLoadTemplate("motors.template")
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
 # This AIM moved to 13BMC.  No AIM in IDC now.
-AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "dc0")
-AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI6E6/1 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI6E6/2 0),NCHAN=2048")
+##AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "dc0")
+##AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "dc0")
+##dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI6E6/1 0),NCHAN=2048")
+##dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI6E6/2 0),NCHAN=2048")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -51,8 +51,8 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@
 #      2 = HVPS
 #      3 = TCA
 #      4 = DSP
-icbConfig("icbAdc1", 0x6e6, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
+##icbConfig("icbAdc1", 0x6e6, 5, 0)
+##dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
 #icbConfig("icbAmp1", 0x6e6, 3, 1)
 #dbLoadRecords"$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,PORT=icbAmp1")
 #icbConfig("icbHvps1", 0x6e6, 2, 2)
