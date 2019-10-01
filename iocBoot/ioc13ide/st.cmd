@@ -140,4 +140,14 @@ dbpf "13IDE:EnableUserTrans.PROC","1"
 dbpf "13IDE:EnableUserSCalcs.PROC","1"
 dbpf "13IDE:EnableuserACalcs.PROC","1"
 
+dbpf "13IDE:Unidig1Bo0.ZNAM","Out"
+dbpf "13IDE:Unidig1Bo1.ZNAM","Out"
+dbpf "13IDE:Unidig1Bo2.ZNAM","Out"
+dbpf "13IDE:Unidig1Bo3.ZNAM","Out"
+dbpf "13IDE:Unidig1Bo0.ONAM","In"
+dbpf "13IDE:Unidig1Bo1.ONAM","In"
+dbpf "13IDE:Unidig1Bo2.ONAM","In"
+dbpf "13IDE:Unidig1Bo3.ONAM","In"
+
+
 motorUtilInit("13IDE:")
