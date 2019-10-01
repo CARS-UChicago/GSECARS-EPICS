@@ -15,7 +15,17 @@ dbLoadTemplate  "motors.template"
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.210", 5001, 7, 10, 500, 0, 500)
+XPSCreateController("XPS1", "164.54.160.210", 5001, 6, 10, 500, 0, 500)
+
+# XPS asyn port,  axis, groupName.positionerName, stepSize
+# card,  axis, groupName.positionerName, stepsPerUnit
+XPSCreateAxis("XPS1", 0, "FINE.X",      "100000") # VP-25XL
+XPSCreateAxis("XPS1", 1, "FINEZ.Pos",   "100000") # VP-25XL
+XPSCreateAxis("XPS1", 2, "FINE.Y",       "50000") # VP-5ZA
+XPSCreateAxis("XPS1", 3, "FINE.THETA",    "2000") # URS75CC
+XPSCreateAxis("XPS1", 4, "COARSEX.Pos",   "2000") # ILS100PP
+XPSCreateAxis("XPS1", 5, "COARSEY.Pos",   "5000") # IMS300CC
+
 # asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -24,16 +34,6 @@ XPSCreateController("XPS1", "164.54.160.210", 5001, 7, 10, 500, 0, 500)
 # asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
-# XPS asyn port,  axis, groupName.positionerName, stepSize
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS1", 0, "COARSEX.Pos",   "2000") # ILS200CC
-XPSCreateAxis("XPS1", 1, "COARSEY.Pos",   "5000") # IMS300CC
-XPSCreateAxis("XPS1", 2, "COARSEZ.Pos",   "2000") # ILS200CC
-XPSCreateAxis("XPS1", 3, "VORTEXZ.Pos",   "2000") # ILS150CC
-XPSCreateAxis("XPS1", 4, "EIGERY.Pos",    "2000") # ILS100PP
-XPSCreateAxis("XPS1", 5, "ILS150.Pos",    "2000") # ILS150CC
-XPSCreateAxis("XPS1", 6, "RV160.Pos",     "1000") # RV160CC
-
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
 XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
@@ -41,18 +41,19 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 # Disable setting position
 XPSEnableSetPosition(0)
 
-XPSCreateController("XPS2", "164.54.160.180", 5001, 4, 10, 500, 0, 500)
+# XPSCreateController("XPS2", "164.54.160.180", 5001, 5, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS2", 0, "FINE.X",      "100000") # VP-25XL
-XPSCreateAxis("XPS2", 1, "FINE.Y",       "50000") # VP-5ZA
-XPSCreateAxis("XPS2", 2, "FINE.THETA",    "2000") # URS75CC
-XPSCreateAxis("XPS2", 3, "FINE.Z",      "100000") # VP-25XL
+# XPSCreateAxis("XPS2", 0, "EigerY.Pos",    "2000") # ILS200CC
+# XPSCreateAxis("XPS2", 1, "EigerX.Pos",     "400") # UTS150PP
+# XPSCreateAxis("XPS2", 2, "EigerZ.Pos",     "400") # UTS150PP
+# XPSCreateAxis("XPS2", 3, "AnalTheta.Pos", "1000") # RV160CC
+# XPSCreateAxis("XPS2", 4, "AnalY.Pos",     "2000") # ILS150CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
-XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
+# XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
 
 
 # A set of scan parameters for each positioner.  This is a convenience
@@ -99,12 +100,15 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDD:, Q=edb")
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDE:, Q=edb")
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMA:, Q=edb")
 dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMC:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMD:, Q=edb")
-
+# dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMD:, Q=edb")
 
 #
 # XRF Spectra Collector 
 dbLoadRecords("$(CARS)/CARSApp/Db/XRF_Collect.db","P=13XRM:,Q=XRF")
+
+
+# XRM Analyzer control
+dbLoadRecords("$(CARS)/CARSApp/Db/XRMAnalyzer.db","P=13XRM:,ANA=ANA")
 
 ## For FTomo at BMC:
 dbLoadRecords("$(CARS)/CARSApp/Db/FluorTomo.db","P=13XRM:,Q=FT")
