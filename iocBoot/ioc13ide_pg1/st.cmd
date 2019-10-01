@@ -1,51 +1,119 @@
 < envPaths
 errlogInit(20000)
 
-dbLoadDatabase("$(ADPOINTGREY)/iocs/pointGreyIOC/dbd/pointGreyApp.dbd")
-pointGreyApp_registerRecordDeviceDriver(pdbbase) 
+dbLoadDatabase("$(ADSPINNAKER)/iocs/spinnakerIOC/dbd/spinnakerApp.dbd")
+spinnakerApp_registerRecordDeviceDriver(pdbbase) 
 
-epicsEnvSet("PREFIX", "13IDEPG1:")
+# Prefix for all records
 
-# Use this line for the first Point Grey camera in the system
-#epicsEnvSet("CAMERA_ID", "0")
-# Use this line for a specific camera by serial number, in this case a Flea2 Firewire camera
-#epicsEnvSet("CAMERA_ID", "9211601")
-# Use this line for a specific camera by serial number, in this case a Grasshopper3 USB-3.0 cameras
-# epicsEnvSet("CAMERA_ID", "13510305")
-# Use this line for a specific camera by serial number, in this case a BlackFly GigE cameras
-#epicsEnvSet("CAMERA_ID", "13481965")
+# Use this line for a specific camera by serial number, in this case a BlackFlyS GigE
 
-# Use this line for a specific camera by serial number, in this case a Flea3 GigE camera
-
-epicsEnvSet("CAMERA_ID", "14273040")
+epicsEnvSet("CAMERA_ID", "18575701")
 
 # Prefix for all records
 epicsEnvSet("PREFIX", "13IDEPG1:")
+
+
 # The port name for the detector
-epicsEnvSet("PORT",   "PG1")
-# The queue size for all plugins. Really large queue so we can stream to disk at full camera speed
-epicsEnvSet("QSIZE",  "2000")
+epicsEnvSet("PORT",   "SP1")
+# Really large queue so we can stream to disk at full camera speed
+epicsEnvSet("QSIZE",  "2000")   
 # The maximim image width; used for row profiles in the NDPluginStats plugin
 epicsEnvSet("XSIZE",  "2048")
 # The maximim image height; used for column profiles in the NDPluginStats plugin
 epicsEnvSet("YSIZE",  "2048")
-# The maximum number of time seried points in the NDPluginStats plugin
+# The maximum number of time series points in the NDPluginStats plugin
 epicsEnvSet("NCHANS", "2048")
 # The maximum number of frames buffered in the NDPluginCircularBuff plugin
 epicsEnvSet("CBUFFS", "500")
 # The search path for database files
-epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db;$(ADSPINNAKER)/db")
+# Define NELEMENTS to be enough for a 2448x2048x3 (color) image
+epicsEnvSet("NELEMENTS", "16000000")
 
-# Define NELEMENTS to be enough for a 1928x1448x3 (color) image
-epicsEnvSet("NELEMENTS", "8375232")
-
-pointGreyConfig("$(PORT)", $(CAMERA_ID), 0x0, 0)
+# ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
+#                 int maxBuffers, size_t maxMemory, int priority, int stackSize)
+ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
 asynSetTraceIOMask($(PORT), 0, 2)
-#asynSetTraceMask($(PORT), 0, 0x29)
+# Set ASYN_TRACE_WARNING and ASYN_TRACE_ERROR
+#asynSetTraceMask($(PORT), 0, 0x21)
+#asynSetTraceFile($(PORT), 0, "asynTrace.out")
 #asynSetTraceInfoMask($(PORT), 0, 0xf)
 
-dbLoadRecords("$(ADPOINTGREY)/db/pointGrey.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
-dbLoadTemplate("pointGrey.substitutions")
+# Main database.  This just loads and modifies ADBase.template
+dbLoadRecords("$(ADSPINNAKER)/db/spinnaker.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT)")
+
+# Video mode
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=VideoMode,PN=SP_VIDEO_MODE")
+
+# Frame rate
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template",   "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=FrameRate,PN=SP_FRAME_RATE,VAL=10.,READBACK=1")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",    "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=FrameRate,PN=SP_FRAME_RATE")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropEnable.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=FrameRate,PN=SP_FRAME_RATE")
+
+# Acquire time
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",     "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=AcquireTime,PN=ACQ_TIME")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatMinMax.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=AcquireTime,PN=ACQ_TIME")
+
+# Gain
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",     "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Gain,PN=GAIN")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatMinMax.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Gain,PN=GAIN")
+
+# Black level
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=BlackLevel,PN=SP_BLACK_LEVEL,VAL=0.0")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=BlackLevel,PN=SP_BLACK_LEVEL")
+
+# Black level balance.  No value, only auto
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=BlackLevelBalance,PN=SP_BLACK_LEVEL_BALANCE")
+
+# White balance controls
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=WhiteBalanceRatio,    PN=SP_WHITE_BALANCE_RATIO,VAL=0.0")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=WhiteBalanceSelector, PN=SP_WHITE_BALANCE_SELECTOR")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=WhiteBalance,         PN=SP_WHITE_BALANCE")
+
+# Saturation
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Saturation,PN=SP_SATURATION,VAL=0.1")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropEnable.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Saturation,PN=SP_SATURATION")
+
+# Gamma
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Gamma,PN=SP_GAMMA,VAL=1.0")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropEnable.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Gamma,PN=SP_GAMMA")
+
+# Sharpening
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template",   "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Sharpening,PN=SP_SHARPENING")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropAuto.template",    "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Sharpening,PN=SP_SHARPENING")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropEnable.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=Sharpening,PN=SP_SHARPENING")
+
+# Pixel format
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=PixelFormat,PN=SP_PIXEL_FORMAT")
+
+# Convert pixel format.  This has a non-generic template file because we constrain the menu choices.
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerConvertPixelFormat.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=ConvertPixelFormat,PN=SP_CONVERT_PIXEL_FORMAT")
+
+# Trigger source
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=TriggerSource,PN=SP_TRIGGER_SOURCE")
+
+# Trigger activation
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=TriggerActivation,PN=SP_TRIGGER_ACTIVATION")
+
+# Trigger delay
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerFloatProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=TriggerDelay,PN=SP_TRIGGER_DELAY,VAL=0.01")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerPropEnable.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=TriggerDelay,PN=SP_TRIGGER_DELAY")
+
+# Trigger overlap
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=TriggerOverlap,PN=SP_TRIGGER_OVERLAP")
+
+# Exposure mode
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerMenuProp.template",  "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=ExposureMode,PN=SP_EXPOSURE_MODE")
+
+# Software trigger
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerCmdProp.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=SoftwareTrigger,PN=SP_SOFTWARE_TRIGGER")
+
+# Transport diagnostics
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerIntReadback.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=TransmitFailureCount,PN=SP_TRANSMIT_FAILURE_COUNT")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerIntReadback.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=BufferUnderrunCount, PN=SP_BUFFER_UNDERRUN_COUNT")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerIntReadback.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=FailedBufferCount,   PN=SP_FAILED_BUFFER_COUNT")
+dbLoadRecords("$(ADSPINNAKER)/db/spinnakerIntReadback.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),PROP=FailedPacketCount,   PN=SP_FAILED_PACKET_COUNT")
 
 # Create a standard arrays plugin
 NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, 0)
@@ -56,7 +124,7 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=I
 
 # Load all other plugins using commonPlugins.cmd
 < $(ADCORE)/iocBoot/commonPlugins.cmd
-set_requestfile_path("$(ADPOINTGREY)/pointGreyApp/Db")
+set_requestfile_path("$(ADSPINNAKER)/spinnakerApp/Db")
 
 iocInit()
 
@@ -66,16 +134,9 @@ create_monitor_set("auto_settings.req", 30,"P=$(PREFIX)")
 # Wait for enum callbacks to complete
 epicsThreadSleep(1.0)
 
-# Records with dynamic enums need to be processed again because the enum values are not available during iocInit.  
-dbpf("$(PREFIX)cam1:Format7Mode.PROC", "1")
-dbpf("$(PREFIX)cam1:PixelFormat.PROC", "1")
-
 # Wait for callbacks on the property limits (DRVL, DRVH) to complete
 epicsThreadSleep(1.0)
 
-# Records that depend on the state of the dynamic enum records or property limits also need to be processed again
-# Other property records may need to be added to this list
-dbpf("$(PREFIX)cam1:FrameRate.PROC", "1")
-dbpf("$(PREFIX)cam1:FrameRateValAbs.PROC", "1")
-dbpf("$(PREFIX)cam1:AcquireTime.PROC", "1")
+
+
 
