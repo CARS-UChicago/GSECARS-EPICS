@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13BM_monochromator.adl"
-	version=030105
+	version=030109
 }
 display {
 	object {
@@ -559,489 +559,231 @@ text {
 	}
 	textix="BMD"
 }
-composite {
+text {
+	object {
+		x=352
+		y=98
+		width=45
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tweak"
+}
+text {
+	object {
+		x=471
+		y=98
+		width=45
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Track/Scan"
+}
+text {
 	object {
 		x=4
-		y=98
-		width=611
-		height=452
+		y=120
+		width=54
+		height=20
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="Energy"
+}
+"text update" {
+	object {
+		x=16
+		y=143
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(EN):E_RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=441
+		y=123
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P1)$(EN):SET"
+		clr=54
+		bclr=33
+	}
+}
+"message button" {
+	object {
+		x=312
+		y=138
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):tweak.A"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=412
+		y=138
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):tweak.B"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=334
+		y=138
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):tweakval"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=554
+		y=143
+		width=60
+		height=20
+	}
+	display[0] {
+		label="Mono parameters"
+		name="monoParms.adl"
+		args="P=$(P1), EN=$(EN), P2=$(P2), MONO=$(MONO)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(EN), PV=$(EN)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+text {
+	object {
+		x=75
+		y=121
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(EN):Moving"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=193
+		y=120
+		width=110
+		height=45
 	}
 	"composite name"=""
 	children {
-		text {
+		"text entry" {
 			object {
-				x=352
-				y=98
-				width=45
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Tweak"
-		}
-		text {
-			object {
-				x=471
-				y=98
-				width=45
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Track/Scan"
-		}
-		composite {
-			object {
-				x=4
-				y=120
-				width=610
-				height=45
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=4
-						y=120
-						width=54
-						height=20
-					}
-					"basic attribute" {
-						clr=23
-					}
-					textix="Energy"
-				}
-				"text update" {
-					object {
-						x=16
-						y=143
-						width=150
-						height=20
-					}
-					monitor {
-						chan="$(P1)$(EN):E_RBV"
-						clr=54
-						bclr=45
-					}
-					align="horiz. right"
-					limits {
-					}
-				}
-				"choice button" {
-					object {
-						x=441
-						y=123
-						width=50
-						height=40
-					}
-					control {
-						chan="$(P1)$(EN):SET"
-						clr=54
-						bclr=33
-					}
-				}
-				"message button" {
-					object {
-						x=312
-						y=138
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P1)$(EN):tweak.A"
-						clr=54
-						bclr=33
-					}
-					label="<"
-					press_msg="1"
-				}
-				"message button" {
-					object {
-						x=412
-						y=138
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P1)$(EN):tweak.B"
-						clr=54
-						bclr=33
-					}
-					label=">"
-					press_msg="1"
-				}
-				"text entry" {
-					object {
-						x=334
-						y=138
-						width=80
-						height=25
-					}
-					control {
-						chan="$(P1)$(EN):tweakval"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				"related display" {
-					object {
-						x=554
-						y=143
-						width=60
-						height=20
-					}
-					display[0] {
-						label="Mono parameters"
-						name="monoParms.adl"
-						args="P1=$(P1), EN=$(EN), P2=$(P2), MONO=$(MONO)"
-					}
-					display[1] {
-						label="Scan parameters"
-						name="scanParms.adl"
-						args="P=$(P1), Q=$(EN), PV=$(EN)"
-					}
-					clr=54
-					bclr=33
-					label="More"
-				}
-				text {
-					object {
-						x=75
-						y=121
-						width=100
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(EN):Moving"
-					}
-					textix="Moving"
-					align="horiz. centered"
-				}
-				composite {
-					object {
-						x=193
-						y=120
-						width=110
-						height=45
-					}
-					"composite name"=""
-					children {
-						"text entry" {
-							object {
-								x=198
-								y=138
-								width=100
-								height=25
-							}
-							control {
-								chan="$(P1)$(EN):Energy"
-								clr=14
-								bclr=51
-							}
-							limits {
-							}
-						}
-						rectangle {
-							object {
-								x=193
-								y=120
-								width=110
-								height=45
-							}
-							"basic attribute" {
-								clr=31
-								width=9
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(EN):SET"
-							}
-						}
-						text {
-							object {
-								x=193
-								y=120
-								width=110
-								height=15
-							}
-							"basic attribute" {
-								clr=14
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(EN):SET"
-							}
-							textix="SET"
-							align="horiz. centered"
-						}
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=4
-				y=175
-				width=611
-				height=45
-			}
-			"composite name"=""
-			children {
-				"choice button" {
-					object {
-						x=442
-						y=178
-						width=50
-						height=40
-					}
-					control {
-						chan="$(P1)$(MONO).SET"
-						clr=54
-						bclr=33
-					}
-				}
-				"text update" {
-					object {
-						x=16
-						y=198
-						width=150
-						height=20
-					}
-					monitor {
-						chan="$(P1)$(MONO).RBV"
-						clr=54
-						bclr=45
-					}
-					align="horiz. right"
-					limits {
-					}
-				}
-				"related display" {
-					object {
-						x=555
-						y=198
-						width=60
-						height=20
-					}
-					display[0] {
-						label="All"
-						name="motorx_all.adl"
-						args="P=$(P1), M=$(MONO)"
-					}
-					display[1] {
-						label="Scan parameters"
-						name="scanParms.adl"
-						args="P=$(P1), Q=$(MONO), PV=$(MONO)"
-					}
-					clr=54
-					bclr=33
-					label="More"
-				}
-				"message button" {
-					object {
-						x=313
-						y=193
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P1)$(MONO).TWR"
-						clr=54
-						bclr=33
-					}
-					label="<"
-					press_msg="1"
-				}
-				"message button" {
-					object {
-						x=413
-						y=193
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P1)$(MONO).TWF"
-						clr=54
-						bclr=33
-					}
-					label=">"
-					press_msg="1"
-				}
-				"text entry" {
-					object {
-						x=335
-						y=193
-						width=80
-						height=25
-					}
-					control {
-						chan="$(P1)$(MONO).TWV"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				text {
-					object {
-						x=4
-						y=175
-						width=100
-						height=20
-					}
-					"basic attribute" {
-						clr=24
-					}
-					textix="Mono Angle"
-				}
-				composite {
-					object {
-						x=193
-						y=175
-						width=110
-						height=45
-					}
-					"composite name"=""
-					children {
-						"text entry" {
-							object {
-								x=198
-								y=193
-								width=100
-								height=25
-							}
-							control {
-								chan="$(P1)$(MONO).VAL"
-								clr=14
-								bclr=51
-							}
-							limits {
-							}
-						}
-						rectangle {
-							object {
-								x=193
-								y=175
-								width=110
-								height=45
-							}
-							"basic attribute" {
-								clr=31
-								width=9
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(MONO).SET"
-							}
-						}
-						text {
-							object {
-								x=193
-								y=175
-								width=110
-								height=15
-							}
-							"basic attribute" {
-								clr=14
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(MONO).SET"
-							}
-							textix="SET"
-							align="horiz. centered"
-						}
-					}
-				}
-				composite {
-					object {
-						x=328
-						y=175
-						width=95
-						height=13
-					}
-					"composite name"=""
-					children {
-						oval {
-							object {
-								x=328
-								y=175
-								width=10
-								height=10
-							}
-							"basic attribute" {
-								clr=21
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(MONO).HLS"
-							}
-						}
-						text {
-							object {
-								x=343
-								y=175
-								width=70
-								height=13
-							}
-							"basic attribute" {
-								clr=30
-								fill="outline"
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(MONO).LVIO"
-							}
-							textix="Soft-Limit"
-						}
-						oval {
-							object {
-								x=413
-								y=175
-								width=10
-								height=10
-							}
-							"basic attribute" {
-								clr=21
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P1)$(MONO).LLS"
-							}
-						}
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=4
-				y=232
+				x=198
+				y=138
 				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="2nd Crystal Z"
-		}
-		"choice button" {
-			object {
-				x=441
-				y=233
-				width=50
-				height=41
+				height=25
 			}
 			control {
-				chan="$(P1)$(Z).SET"
+				chan="$(P1)$(EN):Energy"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		rectangle {
+			object {
+				x=193
+				y=120
+				width=110
+				height=45
+			}
+			"basic attribute" {
+				clr=31
+				width=9
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P1)$(EN):SET"
+			}
+		}
+		text {
+			object {
+				x=193
+				y=120
+				width=110
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P1)$(EN):SET"
+			}
+			textix="SET"
+			align="horiz. centered"
+		}
+	}
+}
+composite {
+	object {
+		x=4
+		y=175
+		width=611
+		height=45
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=442
+				y=178
+				width=50
+				height=40
+			}
+			control {
+				chan="$(P1)$(MONO).SET"
 				clr=54
 				bclr=33
 			}
@@ -1049,12 +791,12 @@ composite {
 		"text update" {
 			object {
 				x=16
-				y=253
+				y=198
 				width=150
 				height=20
 			}
 			monitor {
-				chan="$(P1)$(Z).RBV"
+				chan="$(P1)$(MONO).RBV"
 				clr=54
 				bclr=45
 			}
@@ -1064,20 +806,20 @@ composite {
 		}
 		"related display" {
 			object {
-				x=554
-				y=253
+				x=555
+				y=198
 				width=60
 				height=20
 			}
 			display[0] {
 				label="All"
 				name="motorx_all.adl"
-				args="P=$(P1), M=$(Z)"
+				args="P=$(P1), M=$(MONO)"
 			}
 			display[1] {
 				label="Scan parameters"
 				name="scanParms.adl"
-				args="P=$(P1), Q=$(Z), PV=$(Z)"
+				args="P=$(P1), Q=$(MONO), PV=$(MONO)"
 			}
 			clr=54
 			bclr=33
@@ -1085,13 +827,436 @@ composite {
 		}
 		"message button" {
 			object {
-				x=312
-				y=248
+				x=313
+				y=193
 				width=25
 				height=25
 			}
 			control {
-				chan="$(P1)$(Z).TWR"
+				chan="$(P1)$(MONO).TWR"
+				clr=54
+				bclr=33
+			}
+			label="<"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=413
+				y=193
+				width=25
+				height=25
+			}
+			control {
+				chan="$(P1)$(MONO).TWF"
+				clr=54
+				bclr=33
+			}
+			label=">"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=335
+				y=193
+				width=80
+				height=25
+			}
+			control {
+				chan="$(P1)$(MONO).TWV"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=4
+				y=175
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Mono Angle"
+		}
+		composite {
+			object {
+				x=193
+				y=175
+				width=110
+				height=45
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=198
+						y=193
+						width=100
+						height=25
+					}
+					control {
+						chan="$(P1)$(MONO).VAL"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=193
+						y=175
+						width=110
+						height=45
+					}
+					"basic attribute" {
+						clr=31
+						width=9
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P1)$(MONO).SET"
+					}
+				}
+				text {
+					object {
+						x=193
+						y=175
+						width=110
+						height=15
+					}
+					"basic attribute" {
+						clr=14
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P1)$(MONO).SET"
+					}
+					textix="SET"
+					align="horiz. centered"
+				}
+			}
+		}
+		composite {
+			object {
+				x=328
+				y=175
+				width=95
+				height=13
+			}
+			"composite name"=""
+			children {
+				oval {
+					object {
+						x=328
+						y=175
+						width=10
+						height=10
+					}
+					"basic attribute" {
+						clr=21
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P1)$(MONO).HLS"
+					}
+				}
+				text {
+					object {
+						x=343
+						y=175
+						width=70
+						height=13
+					}
+					"basic attribute" {
+						clr=30
+						fill="outline"
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P1)$(MONO).LVIO"
+					}
+					textix="Soft-Limit"
+				}
+				oval {
+					object {
+						x=413
+						y=175
+						width=10
+						height=10
+					}
+					"basic attribute" {
+						clr=21
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P1)$(MONO).LLS"
+					}
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=4
+		y=232
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="2nd Crystal Z"
+}
+"choice button" {
+	object {
+		x=441
+		y=233
+		width=50
+		height=41
+	}
+	control {
+		chan="$(P1)$(Z).SET"
+		clr=54
+		bclr=33
+	}
+}
+"text update" {
+	object {
+		x=16
+		y=253
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(Z).RBV"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=554
+		y=253
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="motorx_all.adl"
+		args="P=$(P1), M=$(Z)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(Z), PV=$(Z)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+"message button" {
+	object {
+		x=312
+		y=248
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(Z).TWR"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=412
+		y=248
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(Z).TWF"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=334
+		y=248
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P1)$(Z).TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=498
+		y=233
+		width=50
+		height=41
+	}
+	control {
+		chan="$(P1)$(EN):z2_track"
+		clr=54
+		bclr=33
+	}
+}
+oval {
+	object {
+		x=327
+		y=230
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(Z).HLS"
+	}
+}
+text {
+	object {
+		x=342
+		y=230
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(Z).LVIO"
+	}
+	textix="Soft-Limit"
+}
+oval {
+	object {
+		x=412
+		y=230
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(Z).LLS"
+	}
+}
+composite {
+	object {
+		x=193
+		y=230
+		width=110
+		height=45
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=198
+				y=248
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P1)$(Z).VAL"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		rectangle {
+			object {
+				x=193
+				y=230
+				width=110
+				height=45
+			}
+			"basic attribute" {
+				clr=31
+				width=9
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P1)$(Z).SET"
+			}
+		}
+		text {
+			object {
+				x=193
+				y=230
+				width=110
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P1)$(Z).SET"
+			}
+			textix="SET"
+			align="horiz. centered"
+		}
+	}
+}
+composite {
+	object {
+		x=4
+		y=340
+		width=610
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=4
+				y=340
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Tilt (Piezo)"
+		}
+		"message button" {
+			object {
+				x=312
+				y=359
+				width=25
+				height=25
+			}
+			control {
+				chan="$(P1)DAC$(D)_$(C)_tweak.A"
 				clr=54
 				bclr=33
 			}
@@ -1101,12 +1266,12 @@ composite {
 		"message button" {
 			object {
 				x=412
-				y=248
+				y=359
 				width=25
 				height=25
 			}
 			control {
-				chan="$(P1)$(Z).TWF"
+				chan="$(P1)DAC$(D)_$(C)_tweak.B"
 				clr=54
 				bclr=33
 			}
@@ -1116,546 +1281,34 @@ composite {
 		"text entry" {
 			object {
 				x=334
-				y=248
+				y=359
 				width=80
 				height=25
 			}
 			control {
-				chan="$(P1)$(Z).TWV"
+				chan="$(P1)DAC$(D)_$(C)_tweakVal"
 				clr=14
 				bclr=51
 			}
 			limits {
 			}
 		}
-		"choice button" {
-			object {
-				x=498
-				y=233
-				width=50
-				height=41
-			}
-			control {
-				chan="$(P1)$(EN):z2_track"
-				clr=54
-				bclr=33
-			}
-		}
-		oval {
-			object {
-				x=327
-				y=230
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=21
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P1)$(Z).HLS"
-			}
-		}
-		text {
-			object {
-				x=342
-				y=230
-				width=70
-				height=13
-			}
-			"basic attribute" {
-				clr=30
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P1)$(Z).LVIO"
-			}
-			textix="Soft-Limit"
-		}
-		oval {
-			object {
-				x=412
-				y=230
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=21
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P1)$(Z).LLS"
-			}
-		}
-		composite {
-			object {
-				x=193
-				y=230
-				width=110
-				height=45
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=198
-						y=248
-						width=100
-						height=25
-					}
-					control {
-						chan="$(P1)$(Z).VAL"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=193
-						y=230
-						width=110
-						height=45
-					}
-					"basic attribute" {
-						clr=31
-						width=9
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).SET"
-					}
-				}
-				text {
-					object {
-						x=193
-						y=230
-						width=110
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P1)$(Z).SET"
-					}
-					textix="SET"
-					align="horiz. centered"
-				}
-			}
-		}
-		composite {
-			object {
-				x=4
-				y=340
-				width=610
-				height=45
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=4
-						y=340
-						width=150
-						height=20
-					}
-					"basic attribute" {
-						clr=24
-					}
-					textix="Tilt (Piezo)"
-				}
-				"message button" {
-					object {
-						x=312
-						y=359
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P1)DAC$(D)_$(C)_tweak.A"
-						clr=54
-						bclr=33
-					}
-					label="<"
-					press_msg="1"
-				}
-				"message button" {
-					object {
-						x=412
-						y=359
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P1)DAC$(D)_$(C)_tweak.B"
-						clr=54
-						bclr=33
-					}
-					label=">"
-					press_msg="1"
-				}
-				"text entry" {
-					object {
-						x=334
-						y=359
-						width=80
-						height=25
-					}
-					control {
-						chan="$(P1)DAC$(D)_$(C)_tweakVal"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				"related display" {
-					object {
-						x=554
-						y=364
-						width=60
-						height=20
-					}
-					display[0] {
-						label="All"
-						name="singleDAC.adl"
-						args="P=$(P1),D=$(D),C=$(C)"
-					}
-					display[1] {
-						label="Scan parameters"
-						name="scanParms.adl"
-						args="P=$(P1),Q=DAC$(D)_$(C), PV=DAC$(D)_$(C)"
-					}
-					clr=54
-					bclr=33
-					label="More"
-				}
-				"message button" {
-					object {
-						x=493
-						y=364
-						width=60
-						height=21
-					}
-					control {
-						chan="$(P1)DAC$(D)_$(C):scanParms.GO"
-						clr=54
-						bclr=51
-					}
-					label="Scan"
-					press_msg="1"
-				}
-				valuator {
-					object {
-						x=153
-						y=359
-						width=150
-						height=25
-					}
-					control {
-						chan="$(P1)DAC$(D)_$(C).VAL"
-						clr=14
-						bclr=51
-					}
-					dPrecision=1.000000
-					limits {
-					}
-				}
-				"text entry" {
-					object {
-						x=34
-						y=364
-						width=100
-						height=20
-					}
-					control {
-						chan="$(P1)DAC$(D)_$(C).VAL"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-			}
-		}
 		"related display" {
 			object {
 				x=554
-				y=420
+				y=364
 				width=60
 				height=20
 			}
 			display[0] {
 				label="All"
-				name="table.adl"
-				args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
+				name="singleDAC.adl"
+				args="P=$(P1),D=$(D),C=$(C)"
 			}
 			display[1] {
 				label="Scan parameters"
 				name="scanParms.adl"
-				args="P=$(P1), Q=$(PITCH), PV=$(PITCH)"
-			}
-			clr=54
-			bclr=33
-			label="More"
-		}
-		composite {
-			object {
-				x=4
-				y=505
-				width=610
-				height=45
-			}
-			"composite name"=""
-			children {
-				"choice button" {
-					object {
-						x=498
-						y=508
-						width=50
-						height=40
-					}
-					control {
-						chan="$(P1)$(EN):xt_track"
-						clr=54
-						bclr=33
-					}
-				}
-				text {
-					object {
-						x=4
-						y=506
-						width=150
-						height=20
-					}
-					"basic attribute" {
-						clr=24
-					}
-					textix="BM-D Table Height"
-				}
-				"choice button" {
-					object {
-						x=441
-						y=508
-						width=50
-						height=40
-					}
-					control {
-						chan="$(P2)$(EXPTAB).SET"
-						clr=54
-						bclr=33
-					}
-				}
-				"text update" {
-					object {
-						x=16
-						y=528
-						width=150
-						height=20
-					}
-					monitor {
-						chan="$(P2)$(EXPTAB).RBV"
-						clr=54
-						bclr=45
-					}
-					align="horiz. right"
-					limits {
-					}
-				}
-				"message button" {
-					object {
-						x=312
-						y=523
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P2)$(EXPTAB).TWR"
-						clr=54
-						bclr=33
-					}
-					label="<"
-					press_msg="1"
-				}
-				"message button" {
-					object {
-						x=412
-						y=523
-						width=25
-						height=25
-					}
-					control {
-						chan="$(P2)$(EXPTAB).TWF"
-						clr=54
-						bclr=33
-					}
-					label=">"
-					press_msg="1"
-				}
-				"text entry" {
-					object {
-						x=334
-						y=523
-						width=80
-						height=25
-					}
-					control {
-						chan="$(P2)$(EXPTAB).TWV"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				composite {
-					object {
-						x=327
-						y=505
-						width=95
-						height=13
-					}
-					"composite name"=""
-					children {
-						oval {
-							object {
-								x=327
-								y=505
-								width=10
-								height=10
-							}
-							"basic attribute" {
-								clr=21
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P2)$(EXPTAB).HLS"
-							}
-						}
-						text {
-							object {
-								x=342
-								y=505
-								width=70
-								height=13
-							}
-							"basic attribute" {
-								clr=30
-								fill="outline"
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P2)$(EXPTAB).LVIO"
-							}
-							textix="Soft-Limit"
-						}
-						oval {
-							object {
-								x=412
-								y=505
-								width=10
-								height=10
-							}
-							"basic attribute" {
-								clr=21
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="$(P2)$(EXPTAB).LLS"
-							}
-						}
-					}
-				}
-				"related display" {
-					object {
-						x=554
-						y=528
-						width=60
-						height=20
-					}
-					display[0] {
-						label="All"
-						name="motorx_all.adl"
-						args="P=$(P2), M=$(EXPTAB)"
-					}
-					display[1] {
-						label="Scan parameters"
-						name="scanParms.adl"
-						args="P=$(P2), Q=$(EXPTAB), PV=$(EXPTAB)"
-					}
-					clr=54
-					bclr=33
-					label="More"
-				}
-				"text entry" {
-					object {
-						x=198
-						y=523
-						width=100
-						height=25
-					}
-					control {
-						chan="$(P2)$(EXPTAB).VAL"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=193
-						y=505
-						width=110
-						height=45
-					}
-					"basic attribute" {
-						clr=31
-						width=9
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P2)$(EXPTAB).SET"
-					}
-				}
-				text {
-					object {
-						x=193
-						y=505
-						width=110
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="$(P2)$(EXPTAB).SET"
-					}
-					textix="SET"
-					align="horiz. centered"
-				}
-			}
-		}
-		"related display" {
-			object {
-				x=554
-				y=309
-				width=60
-				height=20
-			}
-			display[0] {
-				label="All"
-				name="table.adl"
-				args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m14"
-			}
-			display[1] {
-				label="Scan parameters"
-				name="scanParms.adl"
-				args="P=$(P1), Q=$(TILT), PV=$(TILT)"
+				args="P=$(P1),Q=DAC$(D)_$(C), PV=DAC$(D)_$(C)"
 			}
 			clr=54
 			bclr=33
@@ -1664,7 +1317,7 @@ composite {
 		"message button" {
 			object {
 				x=493
-				y=309
+				y=364
 				width=60
 				height=21
 			}
@@ -1676,27 +1329,116 @@ composite {
 			label="Scan"
 			press_msg="1"
 		}
+		valuator {
+			object {
+				x=153
+				y=359
+				width=150
+				height=25
+			}
+			control {
+				chan="$(P1)DAC$(D)_$(C).VAL"
+				clr=14
+				bclr=51
+			}
+			dPrecision=1.000000
+			limits {
+			}
+		}
+		"text entry" {
+			object {
+				x=34
+				y=364
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P1)DAC$(D)_$(C).VAL"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+	}
+}
+"related display" {
+	object {
+		x=554
+		y=420
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="table.adl"
+		args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(PITCH), PV=$(PITCH)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+composite {
+	object {
+		x=4
+		y=505
+		width=610
+		height=45
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=498
+				y=508
+				width=50
+				height=40
+			}
+			control {
+				chan="$(P1)$(EN):xt_track"
+				clr=54
+				bclr=33
+			}
+		}
 		text {
 			object {
 				x=4
-				y=287
-				width=100
+				y=506
+				width=150
 				height=20
 			}
 			"basic attribute" {
 				clr=24
 			}
-			textix="Tilt (compound motors)"
+			textix="BM-D Table Height"
+		}
+		"choice button" {
+			object {
+				x=441
+				y=508
+				width=50
+				height=40
+			}
+			control {
+				chan="$(P2)$(EXPTAB).SET"
+				clr=54
+				bclr=33
+			}
 		}
 		"text update" {
 			object {
 				x=16
-				y=309
+				y=528
 				width=150
 				height=20
 			}
 			monitor {
-				chan="$(P1)$(TABLE)t1.EAX"
+				chan="$(P2)$(EXPTAB).RBV"
 				clr=54
 				bclr=45
 			}
@@ -1707,12 +1449,12 @@ composite {
 		"message button" {
 			object {
 				x=312
-				y=304
+				y=523
 				width=25
 				height=25
 			}
 			control {
-				chan="$(P1)$(TABLE)T1:ax_tweak.B"
+				chan="$(P2)$(EXPTAB).TWR"
 				clr=54
 				bclr=33
 			}
@@ -1722,12 +1464,12 @@ composite {
 		"message button" {
 			object {
 				x=412
-				y=304
+				y=523
 				width=25
 				height=25
 			}
 			control {
-				chan="$(P1)$(TABLE)T1:ax_tweak.A"
+				chan="$(P2)$(EXPTAB).TWF"
 				clr=54
 				bclr=33
 			}
@@ -1737,163 +1479,399 @@ composite {
 		"text entry" {
 			object {
 				x=334
-				y=304
+				y=523
 				width=80
 				height=25
 			}
 			control {
-				chan="$(P1)$(TABLE)T1:ax_tweakVal.VAL"
+				chan="$(P2)$(EXPTAB).TWV"
 				clr=14
 				bclr=51
 			}
 			limits {
 			}
 		}
-		"text entry" {
+		composite {
 			object {
-				x=198
-				y=304
-				width=100
-				height=25
-			}
-			control {
-				chan="$(P1)$(TABLE)t1.AX"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=4
-				y=397
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Crystal Gap"
-		}
-		"text update" {
-			object {
-				x=173
-				y=420
-				width=75
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(TABLE)t1.EAZ"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=147
-				y=397
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Crystal Roll"
-		}
-		"text update" {
-			object {
-				x=21
-				y=420
-				width=75
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(TABLE)t1.EY"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"choice button" {
-			object {
-				x=498
-				y=455
-				width=50
-				height=40
-			}
-			control {
-				chan="$(P1)$(EN):y2_track"
-				clr=54
-				bclr=33
-			}
-		}
-		text {
-			object {
-				x=4
-				y=450
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Beam Offset"
-		}
-		"text update" {
-			object {
-				x=16
-				y=475
-				width=150
-				height=20
-			}
-			monitor {
-				chan="$(P1)$(EN):height.VAL"
-				clr=54
-				bclr=45
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=198
-				y=470
-				width=100
-				height=25
-			}
-			control {
-				chan="$(P1)$(EN):height.VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=342
-				y=287
-				width=70
+				x=327
+				y=505
+				width=95
 				height=13
 			}
+			"composite name"=""
+			children {
+				oval {
+					object {
+						x=327
+						y=505
+						width=10
+						height=10
+					}
+					"basic attribute" {
+						clr=21
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P2)$(EXPTAB).HLS"
+					}
+				}
+				text {
+					object {
+						x=342
+						y=505
+						width=70
+						height=13
+					}
+					"basic attribute" {
+						clr=30
+						fill="outline"
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P2)$(EXPTAB).LVIO"
+					}
+					textix="Soft-Limit"
+				}
+				oval {
+					object {
+						x=412
+						y=505
+						width=10
+						height=10
+					}
+					"basic attribute" {
+						clr=21
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P2)$(EXPTAB).LLS"
+					}
+				}
+			}
+		}
+		"related display" {
+			object {
+				x=554
+				y=528
+				width=60
+				height=20
+			}
+			display[0] {
+				label="All"
+				name="motorx_all.adl"
+				args="P=$(P2), M=$(EXPTAB)"
+			}
+			display[1] {
+				label="Scan parameters"
+				name="scanParms.adl"
+				args="P=$(P2), Q=$(EXPTAB), PV=$(EXPTAB)"
+			}
+			clr=54
+			bclr=33
+			label="More"
+		}
+		"text entry" {
+			object {
+				x=198
+				y=523
+				width=100
+				height=25
+			}
+			control {
+				chan="$(P2)$(EXPTAB).VAL"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		rectangle {
+			object {
+				x=193
+				y=505
+				width=110
+				height=45
+			}
 			"basic attribute" {
-				clr=30
-				fill="outline"
+				clr=31
+				width=9
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(TABLE)t1.LVIO"
+				chan="$(P2)$(EXPTAB).SET"
 			}
-			textix="Soft-Limit"
+		}
+		text {
+			object {
+				x=193
+				y=505
+				width=110
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P2)$(EXPTAB).SET"
+			}
+			textix="SET"
+			align="horiz. centered"
 		}
 	}
+}
+"related display" {
+	object {
+		x=554
+		y=309
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="table.adl"
+		args="P=$(P1), Q=$(TABLE)T1, T=$(TABLE)t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m14"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1), Q=$(TILT), PV=$(TILT)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+"message button" {
+	object {
+		x=493
+		y=309
+		width=60
+		height=21
+	}
+	control {
+		chan="$(P1)DAC$(D)_$(C):scanParms.GO"
+		clr=54
+		bclr=51
+	}
+	label="Scan"
+	press_msg="1"
+}
+text {
+	object {
+		x=4
+		y=287
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Tilt (compound motors)"
+}
+"text update" {
+	object {
+		x=16
+		y=309
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(TABLE)t1.EAX"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=312
+		y=304
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)T1:ax_tweak.B"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=412
+		y=304
+		width=25
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)T1:ax_tweak.A"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=334
+		y=304
+		width=80
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)T1:ax_tweakVal.VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=198
+		y=304
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P1)$(TABLE)t1.AX"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=4
+		y=397
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Crystal Gap"
+}
+"text update" {
+	object {
+		x=173
+		y=420
+		width=75
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(TABLE)t1.EAZ"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=147
+		y=397
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Crystal Roll"
+}
+"text update" {
+	object {
+		x=21
+		y=420
+		width=75
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(TABLE)t1.EY"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=498
+		y=455
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P1)$(EN):y2_track"
+		clr=54
+		bclr=33
+	}
+}
+text {
+	object {
+		x=4
+		y=450
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Beam Offset"
+}
+"text update" {
+	object {
+		x=16
+		y=475
+		width=150
+		height=20
+	}
+	monitor {
+		chan="$(P1)$(EN):height.VAL"
+		clr=54
+		bclr=45
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=198
+		y=470
+		width=100
+		height=25
+	}
+	control {
+		chan="$(P1)$(EN):height.VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=342
+		y=287
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P1)$(TABLE)t1.LVIO"
+	}
+	textix="Soft-Limit"
 }
 composite {
 	object {
