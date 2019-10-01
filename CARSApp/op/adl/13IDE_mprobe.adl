@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=2797
-		y=1343
+		x=2941
+		y=1285
 		width=630
 		height=680
 	}
@@ -194,20 +194,15 @@ rectangle {
 		width=95
 		height=25
 	}
-	display[0] {
-		label="Scan 1"
-		name="scan_more.adl"
-		args="P=13IDE:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
-	}
-	display[1] {
-		label="Scan 2"
-		name="scan_more.adl"
-		args="P=13IDE:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
-	}
 	display[2] {
-		label="Lift Table Compound"
-		name="table_full.adl"
-		args="P=13IDE:, Q=XAS:T1, T=XAS:t1, M0X=m5,  M0Y=m2, M1Y=m3, M2X=m4, M2Y=m1, M2Z=junk"
+		label="Filters"
+		name="13IDE_filters.adl"
+		args="P=13IDE:, R=Unidig1"
+	}
+	display[3] {
+		label="Inelastic Analyzer"
+		name="13IDE_analyzer.adl"
+		args="P=13XRM:, R=ANA"
 	}
 	display[5] {
 		label="Fast Mapping "
@@ -252,11 +247,11 @@ rectangle {
 	display[0] {
 		label="Sample Stage"
 		name="13IDE_SampleStage.adl"
-		args="P=13XRM:, XF=m1, YF=m2, ZF=m10, TH=m3, ZC=m5, XC=m4, YC=m6"
+		args="P=13XRM:, XF=m1, YF=m2, ZF=m10, TH=m3, ZC=m4, XC=m5, YC=m6"
 	}
 	display[2] {
 		label="Table Top Slits"
-		name="13IDE_TableSlits.adl"
+		name="4motors.adl"
 		args="P=13IDE:, TITLE=Table_Top_Slits, SM1=sm1, SM2=sm2, SM3=sm3, SM4=sm4, M1=m21, M2=m22, M3=m23, M4=m24"
 	}
 	display[3] {
@@ -277,12 +272,12 @@ rectangle {
 	display[6] {
 		label="Eiger Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Eiger_Detector_Stages, M1=IDE:m20, M2=XRM:m8, M3=IDE:m19"
+		args="P=13, TITLE=Eiger_Detector_Stages, M1=XRM:m7, M2=XRM:m8, M3=XRM:m9"
 	}
 	display[7] {
 		label="Vortex Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Vortex_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=XRM:m7"
+		args="P=13, TITLE=Vortex_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=IDE:m19"
 	}
 	display[8] {
 		label="XPS UTS Stages"
@@ -294,6 +289,11 @@ rectangle {
 		name="1motors.adl"
 		args="P=13IDE:, TITLE=Spindle, M1=m35"
 	}
+	display[10] {
+		label="Sample Microscope"
+		name="3motors.adl"
+		args="P=13IDE:, TITLE=Microscope, M1=m17, M2=m18, M3=m5"
+	}
 	display[11] {
 		label="RPI Rotator"
 		name="RaspPiStepper.adl"
@@ -304,14 +304,14 @@ rectangle {
 		args="P=13IDE:, TITLE=CMA_Motors, M1=m35, M2=m36"
 	}
 	display[13] {
-		label="Analyzer Stages"
+		label="Analyzer Motors"
 		name="3motors.adl"
-		args="P=13, TITLE=AnalyzerMotors, M1=IDE:m4, M2=XRM:m9, M3=XRM:m11"
+		args="P=13, TITLE=Analyzer_Motors, M1=XRM:m10, M2=XRM:m11, M3=IDE:m4"
 	}
 	display[14] {
 		label="XPS-D Motors"
 		name="8motors.adl"
-		args="P=13XRM:, TITLE=XPS_D_Motors, M1=m4, M2=m5, M3=m6, M4=m7, M5=m8, M6=m9"
+		args="P=13XRM:, TITLE=XPS_D_Motors, M1=m5, M2=m6, M3=m7, M4=m8, M5=m9, M6=m10, M7=m11"
 	}
 	display[15] {
 		label="OSCAR Motors"
@@ -1505,8 +1505,8 @@ text {
 }
 "text update" {
 	object {
-		x=115
-		y=140
+		x=120
+		y=285
 		width=60
 		height=15
 	}
@@ -1519,70 +1519,10 @@ text {
 	limits {
 	}
 }
-"message button" {
-	object {
-		x=10
-		y=195
-		width=190
-		height=25
-	}
-	control {
-		chan="13XRM:QE2:ComputePosOffsetY.PROC"
-		clr=54
-		bclr=0
-	}
-	label="Set Pitch Position"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=10
-		y=225
-		width=190
-		height=25
-	}
-	control {
-		chan="13XRM:QE2:ComputePosOffsetX.PROC"
-		clr=54
-		bclr=0
-	}
-	label="Set Roll Position"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=140
-		y=160
-		width=50
-		height=25
-	}
-	control {
-		chan="13XRM:QE2:Acquire"
-		clr=54
-		bclr=30
-	}
-	label="Stop"
-	press_msg="0"
-}
-"message button" {
-	object {
-		x=85
-		y=160
-		width=50
-		height=25
-	}
-	control {
-		chan="13XRM:QE2:Acquire"
-		clr=54
-		bclr=60
-	}
-	label="Start"
-	press_msg="1"
-}
 text {
 	object {
-		x=15
-		y=140
+		x=10
+		y=285
 		width=70
 		height=18
 	}
@@ -1676,18 +1616,6 @@ text {
 		}
 	}
 }
-text {
-	object {
-		x=15
-		y=165
-		width=70
-		height=18
-	}
-	"basic attribute" {
-		clr=24
-	}
-	textix="BPM"
-}
 "text entry" {
 	object {
 		x=460
@@ -1760,4 +1688,120 @@ oval {
 		vis="if not zero"
 		chan="13IDE:userTran1.L"
 	}
+}
+text {
+	object {
+		x=10
+		y=140
+		width=190
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Filters & Shutter"
+}
+text {
+	object {
+		x=10
+		y=190
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Al  50um"
+}
+"choice button" {
+	object {
+		x=110
+		y=190
+		width=80
+		height=16
+	}
+	control {
+		chan="13IDE:Unidig1Bo1"
+		clr=14
+		bclr=31
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=10
+		y=215
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Al 100um"
+}
+"choice button" {
+	object {
+		x=110
+		y=215
+		width=80
+		height=16
+	}
+	control {
+		chan="13IDE:Unidig1Bo2"
+		clr=14
+		bclr=31
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=10
+		y=240
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Al 200um"
+}
+"choice button" {
+	object {
+		x=110
+		y=240
+		width=80
+		height=16
+	}
+	control {
+		chan="13IDE:Unidig1Bo3"
+		clr=14
+		bclr=31
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=10
+		y=165
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Shutter"
+}
+"choice button" {
+	object {
+		x=110
+		y=165
+		width=80
+		height=16
+	}
+	control {
+		chan="13IDE:Unidig1Bo0"
+		clr=14
+		bclr=31
+	}
+	stacking="column"
 }
