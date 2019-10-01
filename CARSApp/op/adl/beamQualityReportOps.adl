@@ -1,0 +1,643 @@
+
+file {
+	name="/home/helios/GFYSTRO/Medm/Checkedout/adlsys/site/beamQualityReportOps.adl"
+	version=030114
+}
+display {
+	object {
+		x=4
+		y=517
+		width=280
+		height=420
+	}
+	clr=14
+	bclr=2
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=145
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=16
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&&B=0"
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=16
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&&B=0"
+		chan="SRFB:xRMSmotion30HzAlarmM.SEVR"
+		chanB="SRFB:yRMSmotion30HzAlarmM.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=31
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A=1&&B#2)||(B=1&&A#2)"
+		chan="SRFB:xRMSmotion30HzAlarmM.SEVR"
+		chanB="SRFB:yRMSmotion30HzAlarmM.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=145
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=31
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A=1&&B#2)||(B=1&&A#2)"
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=5
+		width=270
+		height=90
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=5
+		width=270
+		height=90
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+"text update" {
+	object {
+		x=5
+		y=150
+		width=270
+		height=14
+	}
+	monitor {
+		chan="OPS:message4"
+		clr=14
+		bclr=3
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=21
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>1||B>1"
+		chan="SRFB:xRMSmotion30HzAlarmM.SEVR"
+		chanB="SRFB:yRMSmotion30HzAlarmM.SEVR"
+	}
+}
+text {
+	object {
+		x=5
+		y=102
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+	textix="30Hz Motion"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=145
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=21
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>1||B>1"
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+}
+text {
+	object {
+		x=145
+		y=102
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+	textix="Emittance"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=-1
+		y=170
+		width=282
+		height=7
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=-1
+				y=175
+				width=282
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(0,176)
+				(280,176)
+			}
+		}
+		polyline {
+			object {
+				x=-1
+				y=170
+				width=282
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(0,171)
+				(280,171)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=5
+		y=15
+		width=270
+		height=75
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=5
+				y=15
+				width=270
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="$(name) Beam"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=5
+				y=50
+				width=270
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Quality"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+composite {
+	object {
+		x=5
+		y=183
+		width=270
+		height=24
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=5
+				y=193
+				width=270
+				height=14
+			}
+			monitor {
+				chan="BeamQualityReport:$(pv):Comment"
+				clr=14
+				bclr=3
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=5
+				y=183
+				width=80
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ops Message to $(name):"
+		}
+	}
+}
+composite {
+	object {
+		x=-1
+		y=215
+		width=282
+		height=7
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=-1
+				y=220
+				width=282
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(0,221)
+				(280,221)
+			}
+		}
+		polyline {
+			object {
+				x=-1
+				y=215
+				width=282
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(0,216)
+				(280,216)
+			}
+		}
+	}
+}
+"shell command" {
+	object {
+		x=5
+		y=258
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'We are investigating.'"
+	}
+	clr=14
+	bclr=2
+	label="-We are investigating."
+}
+"shell command" {
+	object {
+		x=5
+		y=288
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'Cursory investigation found no issues.'"
+	}
+	clr=14
+	bclr=2
+	label="-Cursory investigation found no issues."
+}
+"shell command" {
+	object {
+		x=5
+		y=308
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'Further investigation found no issues.'"
+	}
+	clr=14
+	bclr=2
+	label="-Further investigation found no issues."
+}
+"shell command" {
+	object {
+		x=5
+		y=338
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'Potential issue found. Addressing.'"
+	}
+	clr=14
+	bclr=2
+	label="-Potential issue found. Addressing."
+}
+"text entry" {
+	object {
+		x=5
+		y=227
+		width=270
+		height=18
+	}
+	control {
+		chan="BeamQualityReport:$(pv):Comment"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"shell command" {
+	object {
+		x=5
+		y=378
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'Known issue(s) resolved.'"
+	}
+	clr=14
+	bclr=2
+	label="-Known issue(s) resolved."
+}
+"shell command" {
+	object {
+		x=5
+		y=358
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'Consulting with Ring Manager.'"
+	}
+	clr=14
+	bclr=2
+	label="-Consulting with CO/Ring Manager."
+}
+polyline {
+	object {
+		x=-1
+		y=280
+		width=281
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	"dynamic attribute" {
+		chan="BeamQualityReport:$(pv):Comment"
+	}
+	points {
+		(0,281)
+		(279,281)
+	}
+}
+polyline {
+	object {
+		x=-1
+		y=331
+		width=281
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	"dynamic attribute" {
+		chan="BeamQualityReport:$(pv):Comment"
+	}
+	points {
+		(0,332)
+		(279,332)
+	}
+}
+composite {
+	object {
+		x=15
+		y=131
+		width=262
+		height=15
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=15
+				y=134
+				width=260
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Number of beamlines reporting an issue:  "
+		}
+		"text update" {
+			object {
+				x=252
+				y=131
+				width=25
+				height=15
+			}
+			monitor {
+				chan="BeamQualityReport:Global:Count1or2"
+				clr=14
+				bclr=2
+			}
+			limits {
+			}
+		}
+	}
+}
+"shell command" {
+	object {
+		x=5
+		y=398
+		width=270
+		height=17
+	}
+	command[0] {
+		label="update"
+		name="caput BeamQualityReport:$(pv):Comment "
+		args="'Please call the MCR, 2-9424.'"
+	}
+	clr=14
+	bclr=2
+	label="-Please call the MCR, 2-9424."
+}

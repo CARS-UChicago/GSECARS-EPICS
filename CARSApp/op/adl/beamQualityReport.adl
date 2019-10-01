@@ -1,0 +1,811 @@
+
+file {
+	name="/home/helios/GFYSTRO/Projects/BeamQualityReport/beamQualityReport.adl"
+	version=030108
+}
+display {
+	object {
+		x=4
+		y=49
+		width=280
+		height=440
+	}
+	clr=14
+	bclr=2
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=145
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=16
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&&B=0"
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=16
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&&B=0"
+		chan="SRFB:xRMSmotion30HzAlarmM.SEVR"
+		chanB="SRFB:yRMSmotion30HzAlarmM.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=31
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A=1&&B#2)||(B=1&&A#2)"
+		chan="SRFB:xRMSmotion30HzAlarmM.SEVR"
+		chanB="SRFB:yRMSmotion30HzAlarmM.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=145
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=31
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A=1&&B#2)||(B=1&&A#2)"
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=5
+		width=270
+		height=90
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=5
+		width=270
+		height=90
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+"text update" {
+	object {
+		x=5
+		y=150
+		width=270
+		height=14
+	}
+	monitor {
+		chan="OPS:message4"
+		clr=14
+		bclr=3
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=21
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>1||B>1"
+		chan="SRFB:xRMSmotion30HzAlarmM.SEVR"
+		chanB="SRFB:yRMSmotion30HzAlarmM.SEVR"
+	}
+}
+text {
+	object {
+		x=5
+		y=102
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+	textix="30Hz Motion"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=145
+		y=100
+		width=130
+		height=25
+	}
+	"basic attribute" {
+		clr=21
+		width=4
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>1||B>1"
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+}
+text {
+	object {
+		x=145
+		y=102
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="S:VID1:XemittanceEff.SEVR"
+		chanB="S:VID1:YemittanceEff.SEVR"
+	}
+	textix="Emittance"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=5
+		y=420
+		width=270
+		height=14
+	}
+	monitor {
+		chan="BeamQualityReport:$(pv):Comment"
+		clr=14
+		bclr=3
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=-1
+		y=170
+		width=282
+		height=7
+	}
+	"composite name"=""
+	children {
+		polyline {
+			object {
+				x=-1
+				y=175
+				width=282
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(0,176)
+				(280,176)
+			}
+		}
+		polyline {
+			object {
+				x=-1
+				y=170
+				width=282
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(0,171)
+				(280,171)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=10
+		y=295
+		width=260
+		height=108
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=10
+				y=383
+				width=260
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="your beamline."
+		}
+		text {
+			object {
+				x=10
+				y=361
+				width=260
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="currently received at"
+		}
+		text {
+			object {
+				x=10
+				y=339
+				width=260
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="the quality of beam"
+		}
+		text {
+			object {
+				x=10
+				y=317
+				width=260
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="buttons above to report"
+		}
+		text {
+			object {
+				x=10
+				y=295
+				width=260
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Click on the colored "
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+composite {
+	object {
+		x=5
+		y=360
+		width=270
+		height=45
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=5
+				y=360
+				width=45
+				height=45
+			}
+			display[0] {
+				label="Form"
+				name="beamQualityReportForm.adl"
+				args="name=$(name),pv=$(pv)"
+			}
+			clr=14
+			bclr=50
+			label="-?"
+		}
+		composite {
+			object {
+				x=60
+				y=362
+				width=215
+				height=40
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=60
+						y=362
+						width=215
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="To receive a thorough investigation"
+				}
+				text {
+					object {
+						x=60
+						y=372
+						width=215
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="by Operations, you must click the"
+				}
+				text {
+					object {
+						x=60
+						y=382
+						width=215
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="button to the left, then fill out"
+				}
+				text {
+					object {
+						x=60
+						y=392
+						width=215
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="and submit the form."
+				}
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+text {
+	object {
+		x=5
+		y=410
+		width=80
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ops Message to $(name):"
+}
+composite {
+	object {
+		x=5
+		y=185
+		width=270
+		height=100
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=5
+				y=185
+				width=45
+				height=45
+			}
+			control {
+				chan="BeamQualityReport:$(pv):Status"
+				clr=14
+				bclr=16
+			}
+			press_msg="0"
+		}
+		"message button" {
+			object {
+				x=5
+				y=240
+				width=45
+				height=45
+			}
+			control {
+				chan="BeamQualityReport:$(pv):Status"
+				clr=14
+				bclr=21
+			}
+			press_msg="1"
+		}
+		text {
+			object {
+				x=60
+				y=195
+				width=215
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Acceptable Beam"
+		}
+		text {
+			object {
+				x=60
+				y=250
+				width=215
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Questionable Beam"
+		}
+	}
+}
+composite {
+	object {
+		x=58
+		y=280
+		width=217
+		height=73
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=60
+				y=305
+				width=100
+				height=20
+			}
+			control {
+				chan="BeamQualityReport:$(pv):Status"
+				clr=14
+				bclr=2
+			}
+			label="Investigated"
+			press_msg="2"
+		}
+		"message button" {
+			object {
+				x=165
+				y=305
+				width=100
+				height=20
+			}
+			control {
+				chan="BeamQualityReport:$(pv):Status"
+				clr=14
+				bclr=2
+			}
+			label="Not Yet"
+			press_msg="1"
+		}
+		composite {
+			object {
+				x=58
+				y=333
+				width=217
+				height=20
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=58
+						y=333
+						width=215
+						height=20
+					}
+					"basic attribute" {
+						clr=3
+					}
+				}
+				composite {
+					object {
+						x=60
+						y=335
+						width=215
+						height=15
+					}
+					"composite name"=""
+					children {
+						text {
+							object {
+								x=60
+								y=335
+								width=60
+								height=15
+							}
+							"basic attribute" {
+								clr=14
+							}
+							textix="State:"
+						}
+						text {
+							object {
+								x=120
+								y=335
+								width=155
+								height=15
+							}
+							"basic attribute" {
+								clr=14
+							}
+							"dynamic attribute" {
+								vis="calc"
+								calc="A=2"
+								chan="BeamQualityReport:$(pv):Status"
+							}
+							textix="Investigated"
+						}
+						text {
+							object {
+								x=120
+								y=335
+								width=155
+								height=15
+							}
+							"basic attribute" {
+								clr=14
+							}
+							"dynamic attribute" {
+								vis="calc"
+								calc="A=1"
+								chan="BeamQualityReport:$(pv):Status"
+							}
+							textix="Not Investigated"
+						}
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=60
+				y=280
+				width=215
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=60
+						y=280
+						width=215
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="If questionable, has the beamline"
+				}
+				text {
+					object {
+						x=60
+						y=290
+						width=215
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="been thoroughly investigated?"
+				}
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
+composite {
+	object {
+		x=15
+		y=131
+		width=262
+		height=15
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=15
+				y=134
+				width=260
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Number of beamlines reporting an issue:  "
+		}
+		"text update" {
+			object {
+				x=252
+				y=131
+				width=25
+				height=15
+			}
+			monitor {
+				chan="BeamQualityReport:Global:Count1or2"
+				clr=14
+				bclr=2
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=5
+		y=15
+		width=270
+		height=75
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=5
+				y=50
+				width=270
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Quality"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=5
+				y=15
+				width=270
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="$(name) Beam"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		chan="BeamQualityReport:$(pv):Status"
+	}
+}
