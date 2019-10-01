@@ -1,12 +1,17 @@
 errlogInit(5000)
 < envPaths
+epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "80000")
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-< industryPack.cmd
+epicsEnvSet("PREFIX", "HindsXray:")
+
+#< industryPack.cmd
+
+< USBCTR.cmd
 
 ##########################################################
 # Configure asyn device
@@ -33,7 +38,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13PMAC1:")
 
-dbLoadRecords("$(ASYN)/db/asynRecord.db","P=HindsXray:,R=serial1,PORT=PMAC_IP,ADDR=0,OMAX=80,IMAX=80")
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=PMAC_IP,ADDR=0,OMAX=80,IMAX=80")
 
 
 ### Scan-support software
@@ -42,26 +47,26 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=HindsXray:,R=serial1,PORT=PMAC_IP,AD
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=HindsXray:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX):,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=HindsXray:")
+dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=$(PREFIX)")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=HindsXray:")
+dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=$(PREFIX)")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=HindsXray:")
+dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("HindsXray:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=HindsXray:")
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 
 iocInit
 
 # save other things every thirty seconds
-create_monitor_set("auto_positions.req", 5, "P=HindsXray:")
-create_monitor_set("auto_settings.req", 30, "P=HindsXray:")
+create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
+create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
@@ -74,6 +79,6 @@ create_monitor_set("auto_settings.req", 30, "P=HindsXray:")
 #debug_saveData = 2
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=HindsXray:")
-#saveData_PrintScanInfo("HindsXray:scan1")
+saveData_Init("saveDataExtraPVs.req", "P=$(PREFIX)")
+#saveData_PrintScanInfo("$(PREFIX)scan1")
 

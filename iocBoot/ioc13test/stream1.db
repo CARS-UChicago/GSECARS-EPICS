@@ -1,0 +1,13 @@
+record(stringout,"$(P)$(R)testOut") {
+    field(DTYP, "stream")
+    field(OUT, "@stream1.proto stringOut $(PORT) 0 0")
+    field(SCAN, "1 second")
+    field(VAL, "Hello")
+    field(FLNK, "$(P)$(R)testIn")
+}
+
+record(stringin,"$(P)$(R)testIn") {
+    field(DTYP, "stream")
+    field(INP, "@stream1.proto stringIn $(PORT) 0 0")
+}
+

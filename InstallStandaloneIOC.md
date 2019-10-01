@@ -30,7 +30,7 @@ The instructions here use the Windows CARSApp.exe application as an example.  CA
 is an EPICS application built with support for most of the devices in the 
 [EPICS SynApps module](https://www.aps.anl.gov/BCDA/synApps).  This includes
 many motors, serial, TCP/IP, and USB devices.  It does not include
-support for any [EPICS areaDetector modules](http://cars.uchicago.edu/software/epics/areaDetector.html).
+support for any [EPICS areaDetector modules](https://cars.uchicago.edu/software/epics/areaDetector.html).
 Those are provided as separate pre-built IOC applications.
 
 With some modifications these instructions can be used for other pre-built EPICS IOCs,
@@ -70,7 +70,7 @@ That is done with Control Panel/System/Advanced/Environment Variables/Edit, addi
 ## Install the pre-built CARS package
 The pre-built package can be downloaded here:
 
-http://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip. 
+https://cars.uchicago.edu/epics/pub/epics_standalone_CARS.zip. 
 
 Create an installation directory for the module.
 I typically use C:\EPICS\support.  Unzip the downloaded file into the C:\EPICS\support directory, not into the 
@@ -207,7 +207,7 @@ settings these font aliases for MobaXterm and Exceed.  For other X11 servers the
 procedure will be different.
 
 #### MobaXterm
-Get the following zip file: http://cars.uchicago.edu/data/mobaxterm/linux_fonts.zip
+Get the following zip file: https://cars.uchicago.edu/data/mobaxterm/linux_fonts.zip
 
 Unzip this file and put the directories in C:\Users\[myAccount]\Documents\MobaXterm\slash\usr\share\fonts.
 This not only adds the font aliases, but adds standard Linux fonts to MobaXterm that are required for
