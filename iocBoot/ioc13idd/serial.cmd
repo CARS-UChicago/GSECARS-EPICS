@@ -12,6 +12,10 @@ tyGSAsynInit("serial11", "UART1", 2, 19200,'N',1,8,'N',">","\r")    /* PicoMotor
 tyGSAsynInit("serial12", "UART1", 3,  9600,'N',1,8,'N',"\r\n","\r\n") /* LQExcel laser */
 tyGSAsynInit("serial13", "UART1", 4,  9600,'N',1,8,'N',"\r","\r")   /* Pelco CM6700 video switch */
 tyGSAsynInit("serial14", "UART1", 5, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
+#LU IPG laser
+#drvAsynIPPortConfigure("serial14", "164.54.160.13:10001")
+#asynOctetSetInputEos("serial14",0,"\r")
+#asynOctetSetOutputEos("serial14",0,"\r")
 tyGSAsynInit("serial15", "UART1", 6, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser */
 tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r\n","\r\n")   /* BNC 505 Pulse Generator */
 
@@ -69,4 +73,3 @@ dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT
 
 # Tell StreamDevice where to find protocol files
 iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db:$(CARS)/CARSApp/Db)")
-
