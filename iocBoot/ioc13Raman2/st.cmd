@@ -11,8 +11,8 @@ epicsEnvSet(PREFIX, "13RAMAN2:")
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
 
-# Create serial ports 1-4 on COM4-7
-# Serial 1 is Laser Quantum laser
+# Create serial ports 1-4 on COM3-6
+# Serial 1 is Laser Quantum laser blue
 drvAsynSerialPortConfigure("serial1", "COM4", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r\n")
 asynOctetSetOutputEos("serial1",0,"\r\n")
@@ -25,7 +25,7 @@ asynSetOption("serial1",0,"crtscts","N")
 asynSetTraceIOMask("serial1", 0, 2)
 #asynSetTraceMask("serial1", 0, 9)
 
-# Serial 1 is Laser Quantum laser
+# Serial 2 is Laser Quantum laser red
 drvAsynSerialPortConfigure("serial2", "COM5", 0, 0, 0)
 asynOctetSetInputEos("serial2",0,"\r\n")
 asynOctetSetOutputEos("serial2",0,"\r\n")
@@ -52,7 +52,7 @@ asynSetTraceIOMask("serial3", 0, 2)
 #asynSetTraceMask("serial3", 0, 0x19)
 
 # Serial 4 is XXX laser
-drvAsynSerialPortConfigure("serial4", "COM7", 0, 0, 0)
+drvAsynSerialPortConfigure("serial4", "COM3", 0, 0, 0)
 asynOctetSetInputEos("serial4",0,"\r\n")
 asynOctetSetOutputEos("serial4",0,"\r\n")
 asynSetOption("serial4",0,"baud","921600")
