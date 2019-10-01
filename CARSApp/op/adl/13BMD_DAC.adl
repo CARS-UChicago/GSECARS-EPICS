@@ -4298,8 +4298,8 @@ text {
 }
 text {
 	object {
-		x=270
-		y=435
+		x=339
+		y=319
 		width=107
 		height=38
 	}
@@ -6440,4 +6440,166 @@ text {
 	}
 	label=".002"
 	press_msg=".002"
+}
+valuator {
+	object {
+		x=265
+		y=480
+		width=108
+		height=19
+	}
+	control {
+		chan="13BMDPG3:cam1:GC_Gain"
+		clr=14
+		bclr=59
+	}
+	dPrecision=1.000000
+	limits {
+		hoprSrc="default"
+		hoprDefault=48
+	}
+}
+"text entry" {
+	object {
+		x=301
+		y=434
+		width=70
+		height=26
+	}
+	control {
+		chan="13BMDPG3:cam1:AcquireTime"
+		clr=14
+		bclr=58
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=267
+		y=433
+		width=23
+		height=22
+	}
+	control {
+		chan="13BMDPG3:TIFF1:WriteFile"
+		clr=14
+		bclr=33
+	}
+	label="S"
+	press_msg="1"
+}
+"related display" {
+	object {
+		x=340
+		y=160
+		width=36
+		height=20
+	}
+	display[0] {
+		name="ADSpinnaker.adl"
+		args="P=13BMDPG3:, R=cam1:"
+	}
+	clr=0
+	bclr=54
+	label="- more"
+}
+"message button" {
+	object {
+		x=264
+		y=460
+		width=29
+		height=17
+	}
+	control {
+		chan="13BMDPG3:cam1:AcquireTime"
+		clr=14
+		bclr=57
+	}
+	label="1"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=297
+		y=463
+		width=32
+		height=17
+	}
+	control {
+		chan="13BMDPG3:cam1:AcquireTime"
+		clr=14
+		bclr=58
+	}
+	label=".1"
+	press_msg=".1"
+}
+"message button" {
+	object {
+		x=332
+		y=463
+		width=42
+		height=17
+	}
+	control {
+		chan="13BMDPG3:cam1:AcquireTime"
+		clr=14
+		bclr=59
+	}
+	label=".02"
+	press_msg=".02"
+}
+valuator {
+	object {
+		x=266
+		y=505
+		width=109
+		height=22
+	}
+	control {
+		chan="13BMDPG3:Over1:2:CenterX"
+		clr=14
+		bclr=54
+	}
+	dPrecision=1.000000
+	limits {
+		hoprSrc="default"
+		hoprDefault=2448
+	}
+}
+valuator {
+	object {
+		x=378
+		y=433
+		width=22
+		height=93
+	}
+	control {
+		chan="13BMDPG3:Over1:2:CenterY"
+		clr=14
+		bclr=54
+	}
+	direction="up"
+	dPrecision=1.000000
+	limits {
+		hoprSrc="default"
+		hoprDefault=2048
+	}
+}
+"text update" {
+	object {
+		x=262
+		y=532
+		width=144
+		height=18
+	}
+	monitor {
+		chan="13BMDPG3:TIFF1:FullFileName_RBV"
+		clr=19
+		bclr=14
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
 }
