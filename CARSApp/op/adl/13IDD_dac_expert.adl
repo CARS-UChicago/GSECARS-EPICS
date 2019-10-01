@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\cars\carsapp\op\adl\13IDD_dac_expert.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_expert.adl"
 	version=030109
 }
 display {
 	object {
-		x=410
-		y=294
+		x=385
+		y=1357
 		width=1432
 		height=788
 	}
@@ -8135,5 +8135,60 @@ composite {
 		vis="calc"
 		calc="A>-150"
 		chan="13IDD:m8.VAL"
+	}
+}
+composite {
+	object {
+		x=499
+		y=710
+		width=95
+		height=37
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=499
+				y=735
+				width=95
+				height=12
+			}
+			"basic attribute" {
+				clr=32
+			}
+			textix="Microscope Light"
+		}
+		valuator {
+			object {
+				x=499
+				y=710
+				width=95
+				height=20
+			}
+			control {
+				chan="13IDD:DAC2_7.VAL"
+				clr=34
+				bclr=34
+			}
+			dPrecision=1.000000
+			limits {
+			}
+		}
+	}
+}
+oval {
+	object {
+		x=569
+		y=578
+		width=18
+		height=26
+	}
+	"basic attribute" {
+		clr=31
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-0"
+		chan="13IDD:DAC2_7.VAL"
 	}
 }
