@@ -1,0 +1,19 @@
+errlogInit(5000)
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+drvAsynIPPortConfigure("BD","255.255.255.255:3957:3956 UDP*",0,0,0)
+
+asynSetTraceIOMask("BD", 0, 2)
+asynSetTraceMask("BD", 0, 9)
+iocInit
+
+asynOctetConnect BD1 BD 0 10  200  #address 0, timeout of 10 sec, buffer 200
+asynOctetRead BD1 100
+
+asynOctetWrite BD1 "test1"
+asynOctetWrite BD1 "test2"
+asynOctetWrite BD1 "test3"
