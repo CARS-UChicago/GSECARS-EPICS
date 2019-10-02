@@ -219,7 +219,7 @@ ifdef VAC
 endif
 
 ifdef TPMAC
-  $(DBD_NAME)_DBD += pmacAsynMotor.dbd
+  $(DBD_NAME)_DBD += pmacAsynMotor.dbd pmacAsynIPPort.dbd
   $(PROD_NAME)_LIBS := pmacAsynMotor pmacAsynIPPort $($(PROD_NAME)_LIBS)
 endif
 
