@@ -11,17 +11,9 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SUPPORT=/corvette/home/epics/devel
 
 ALLEN_BRADLEY=$(SUPPORT)/allenBradley-2-3
-# CARS requires areaDetector, and areaDetector/configure already defines
-# ASYN, EV4_BASE, libraries needed for plugins, etc.
-AREA_DETECTOR=$(SUPPORT)/areaDetector-3-7
--include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local
 
-# Unfortunately RELEASE_PATHS.local above redefines SUPPORT and AREA_DETECTOR
-# and this messes things up on Windows building on a Linux host.
-# Need to redefine them as above.
--include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
-AREA_DETECTOR=$(SUPPORT)/areaDetector-3-7
--include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
+AREA_DETECTOR=$(SUPPORT)/areaDetector-3-8
+-include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
 -include $(AREA_DETECTOR)/configure/RELEASE_PRODS.local
 
 ADCORE=$(AREA_DETECTOR)/ADCore
@@ -35,7 +27,7 @@ ADPILATUS=$(AREA_DETECTOR)/ADPilatus
 ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
 ADPOINTGREY=$(AREA_DETECTOR)/ADPointGrey
 ADEIGER=$(AREA_DETECTOR)/ADEiger
-ASYN=$(SUPPORT)/asyn-4-36
+ASYN=$(SUPPORT)/asyn-4-37
 AUTOSAVE=$(SUPPORT)/autosave-5-10
 BUSY=$(SUPPORT)/busy-1-7-2
 CALC=$(SUPPORT)/calc-3-7-3
