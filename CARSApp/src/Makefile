@@ -265,7 +265,7 @@ ifeq ($(OS_CLASS), WIN32)
     $(PROD_NAME)_LIBS := PlxApi $($(PROD_NAME)_LIBS)
     $(PROD_NAME)_SYS_LIBS += setupapi
   endif
-
+  
 endif
 
 ##################################################################
@@ -342,9 +342,10 @@ ifeq ($(OS_CLASS), vxWorks)
   endif
 
   ifdef MOTOR
-    $(DBD_NAME)_DBD += devDeltaTau.dbd
+#    $(DBD_NAME)_DBD += devDeltaTau.dbd
     $(DBD_NAME)_DBD += devOms.dbd
-    $(PROD_NAME)_LIBS := oms DeltaTau $($(PROD_NAME)_LIBS)
+#    $(PROD_NAME)_LIBS := DeltaTau $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_LIBS := oms $($(PROD_NAME)_LIBS)
   endif
 
 #  ifdef FLY
@@ -367,11 +368,13 @@ ifeq ($(OS_CLASS), Linux)
   endif
 
   ifdef MEASCOMP
-    $(DBD_NAME)_DBD += measCompSupport.dbd
-    $(PROD_NAME)_LIBS := measCompLinuxDrivers $($(PROD_NAME)_LIBS)
-    $(PROD_NAME)_LIBS := cbw_linux $($(PROD_NAME)_LIBS)
-    $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
-    $(PROD_NAME)_SYS_LIBS += hidapi-libusb usb-1.0
+    ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
+      $(DBD_NAME)_DBD += measCompSupport.dbd
+      $(PROD_NAME)_LIBS := measCompLinuxDrivers $($(PROD_NAME)_LIBS)
+      $(PROD_NAME)_LIBS := cbw_linux $($(PROD_NAME)_LIBS)
+      $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
+      $(PROD_NAME)_SYS_LIBS += hidapi-libusb usb-1.0
+    endif
   endif
 
   ifdef MCA
@@ -416,6 +419,7 @@ ifeq ($(OS_CLASS), Linux)
     $(DBD_NAME)_DBD += softGlueSupport.dbd
     $(PROD_NAME)_LIBS := softGlue $($(PROD_NAME)_LIBS)
   endif
+  
 endif
 
 $(PROD_NAME)_LIBS += $(EPICS_BASE_IOC_LIBS)
