@@ -1,4 +1,5 @@
-epicsEnvSet("MCS_PREFIX"                "$(PREFIX)MCS:")
+epicsEnvSet("USBCTR_PREFIX"             "$(PREFIX)USBCTR:")
+epicsEnvSet("MCS_PREFIX"                "$(USBCTR_PREFIX)MCS:")
 epicsEnvSet("RNAME",                    "mca")
 epicsEnvSet("MAX_COUNTERS",             "9")
 epicsEnvSet("MAX_POINTS",               "2048")
@@ -21,10 +22,10 @@ USBCTRConfig("$(PORT)", 0, 2048, .01)
 dbLoadTemplate("USBCTR.substitutions")
 
 # This loads the scaler record and supporting records
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=HindsXray:, S=scaler1, DTYP=Asyn Scaler, OUT=@asyn(USBCTR), FREQ=10000000")
+dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=$(USBCTR_PREFIX), S=scaler1, DTYP=Asyn Scaler, OUT=@asyn(USBCTR), FREQ=10000000")
 
 # This database provides the support for the MCS functions
-dbLoadRecords("$(MEASCOMP)/measCompApp/Db/measCompMCS.template", "P=$(MCS_PREFIX):, PORT=$(PORT)")
+dbLoadRecords("$(MEASCOMP)/measCompApp/Db/measCompMCS.template", "P=$(MCS_PREFIX), PORT=$(PORT)")
 
 # The number of records loaded must be the same as MAX_COUNTERS defined above
 
@@ -41,8 +42,3 @@ dbLoadRecords("$(MCA)/mcaApp/Db/SIS38XX_waveform.template", "P=$(MCS_PREFIX), R=
 asynSetTraceIOMask($(PORT),0,2)
 #asynSetTraceFile("$(PORT)",0,"$(MODEL).out")
 
-iocInit
-
-seq(USBCTR_SNL, "P=$(MCS_PREFIX), R=$(RNAME), NUM_COUNTERS=$(MAX_COUNTERS), FIELD=$(FIELD)")
-
-create_monitor_set("auto_settings.req",30)

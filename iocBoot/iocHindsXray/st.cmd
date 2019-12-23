@@ -15,8 +15,8 @@ epicsEnvSet("PREFIX", "HindsXray:")
 
 ##########################################################
 # Configure asyn device
-#
-pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
+# FOLLOWING 1 LINE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
+#pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
 #asynSetTraceMask("PMAC_IP",-1,0xFF)
 asynSetTraceIOMask("PMAC_IP",-1,0x1)
 #asynSetTraceMask("PMAC_IP",-1,0x1)
@@ -30,39 +30,36 @@ drvAsynMotorConfigure("PMAC1", "pmacAsynMotor", 0, 9)
 ### Motors
 dbLoadTemplate  "motors.template"
 
-# A set of scan parameters for each positioner.  This is a convenience
-# for the user.  It can contain an entry for each scannable thing in the
-# crate.
-dbLoadTemplate "scanParms.template"
-
-### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13PMAC1:")
-
-dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=PMAC_IP,ADDR=0,OMAX=80,IMAX=80")
-
-
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX):,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=$(PREFIX)")
+# A set of scan parameters for each positioner.  This is a convenience
+# for the user.  It can contain an entry for each scannable thing in the
+# crate.
+dbLoadTemplate("scanParms.template")
 
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=$(PREFIX)")
+# Miscellaneous PV's
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
 
-# Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=$(PREFIX)")
+< ../calc_GSECARS.iocsh
+
+### Allstop, alldone
+dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13PMAC1:")
+
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=PMAC_IP,ADDR=0,OMAX=80,IMAX=80")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 
 iocInit
+
+seq(USBCTR_SNL, "P=$(MCS_PREFIX), R=$(RNAME), NUM_COUNTERS=$(MAX_COUNTERS), FIELD=$(FIELD)")
 
 # save other things every thirty seconds
 create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")

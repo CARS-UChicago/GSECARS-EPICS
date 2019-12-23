@@ -8,21 +8,12 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-SUPPORT=/corvette/home/epics/support
--include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
+SUPPORT=/corvette/home/epics/devel
 
 ALLEN_BRADLEY=$(SUPPORT)/allenBradley-2-3
-# CARS requires areaDetector, and areaDetector/configure already defines
-# ASYN, EV4_BASE, libraries needed for plugins, etc.
-AREA_DETECTOR=$(SUPPORT)/areaDetector-3-3-2
--include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local
 
-# Unfortunately RELEASE_PATHS.local above redefines SUPPORT and AREA_DETECTOR
-# and this messes things up on Windows building on a Linux host.
-# Need to redefine them as above.
--include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
-AREA_DETECTOR=$(SUPPORT)/areaDetector-3-3-2
--include $(AREA_DETECTOR)/configure/RELEASE_PATHS.local.$(EPICS_HOST_ARCH)
+AREA_DETECTOR=$(SUPPORT)/areaDetector-3-8
+-include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
 -include $(AREA_DETECTOR)/configure/RELEASE_PRODS.local
 
 ADCORE=$(AREA_DETECTOR)/ADCore
@@ -36,41 +27,45 @@ ADPILATUS=$(AREA_DETECTOR)/ADPilatus
 ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
 ADPOINTGREY=$(AREA_DETECTOR)/ADPointGrey
 ADEIGER=$(AREA_DETECTOR)/ADEiger
-ASYN=$(SUPPORT)/asyn-4-33
-AUTOSAVE=$(SUPPORT)/autosave-5-9
-BUSY=$(SUPPORT)/busy-1-7
-CALC=$(SUPPORT)/calc-3-7-1
+ASYN=$(SUPPORT)/asyn-4-37
+AUTOSAVE=$(SUPPORT)/autosave-5-10
+BUSY=$(SUPPORT)/busy-1-7-2
+CALC=$(SUPPORT)/calc-3-7-3
 CAMAC=$(SUPPORT)/camac-2-7-1
 CARS=$(SUPPORT)/CARS
 DAC128V=$(SUPPORT)/dac128V-2-9
-DELAYGEN=$(SUPPORT)/delaygen-1-2-0
-DEVIOCSTATS=$(SUPPORT)/devIocStats-3-1-15
+DELAYGEN=$(SUPPORT)/delaygen-1-2-1
+DEVIOCSTATS=$(SUPPORT)/devIocStats-3-1-16
 DXP=$(SUPPORT)/dxp-5-0
 HY8522=$(SUPPORT)/Hy8522ip-asyn-4-4
-IP=$(SUPPORT)/ip-2-19-1
+IP=$(SUPPORT)/ip-2-20-1
 IPAC=$(SUPPORT)/ipac-2-15
 IP330=$(SUPPORT)/ip330-2-9
 IPUNIDIG=$(SUPPORT)/ipUnidig-2-11
 #LOVE=$(SUPPORT)/love-3-2-5
-MCA=$(SUPPORT)/mca-7-7
-MEASCOMP=$(SUPPORT)/measComp-2-1-1
-MODBUS=$(SUPPORT)/modbus-2-11
-MOTOR=$(SUPPORT)/motor-6-10-1
-OPTICS=$(SUPPORT)/optics-2-13-1
-QUADEM=$(SUPPORT)/quadEM-9-1
-SNCSEQ=$(SUPPORT)/seq-2-2-4
-SOFTGLUE=$(SUPPORT)/softGlue-2-8-1
-SSCAN=$(SUPPORT)/sscan-2-11-1
-STD=$(SUPPORT)/std-3-5
-STREAM=$(SUPPORT)/stream-2-7-7b
+MCA=$(SUPPORT)/mca-7-8
+MEASCOMP=$(SUPPORT)/measComp-2-4
+MODBUS=$(SUPPORT)/modbus-3-0
+MOTOR=$(SUPPORT)/motor-7-0
+OPTICS=$(SUPPORT)/optics-2-13-3
+QUADEM=$(SUPPORT)/quadEM-9-2-1
+SNCSEQ=$(SUPPORT)/seq-2-2-5
+SOFTGLUE=$(SUPPORT)/softGlue-2-8-2
+SSCAN=$(SUPPORT)/sscan-2-11-3
+STD=$(SUPPORT)/std-3-6
+STREAM=$(SUPPORT)/stream-2-8-8
 TPMAC=$(SUPPORT)/tpmac-3-11dls5
-VME=$(SUPPORT)/vme-2-9
+VME=$(SUPPORT)/vme-2-9-2
 VXSTATS=$(SUPPORT)/vxStats-1-7-2h
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/corvette/usr/local/epics/base-7.0.1
--include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
+EPICS_BASE=/corvette/usr/local/epics-devel/base-7.0.3
 
 #Capfast users may need the following definitions
 #CAPFAST_TEMPLATES=
 #SCH2EDIF_PATH=
+
+-include $(TOP)/../RELEASE.local
+-include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
+-include $(TOP)/configure/RELEASE.local
+
