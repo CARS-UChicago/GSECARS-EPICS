@@ -1,0 +1,49 @@
+file "$(CARS)/CARSApp/Db/asynMotor.db"
+{
+pattern
+{P,        M,        DTYP,   PORT, ADDR,  DESC,              EGU,    DIR, VELO,  VBAS, ACCL,  BDST,   BVEL,   BACC,    SREV,     UREV,  PREC,   DHLM, DLLM}
+{13XPS:,  m1, "asynMotor",   XPS1,    0, "M2Y (downstream)",  mm,    Neg,   .2,  .005,   .5,     0,      1,     .2,     1,    0.0001,     3,      50,     0}
+{13XPS:,  m2, "asynMotor",   XPS1,    1, "M1Y (inboard)",     mm,    Neg,   .2,  .005,   .5,     0,      1,     .2,     1,    0.0001,     3,      50,     0}
+{13XPS:,  m3, "asynMotor",   XPS1,    2, "M0Y (outboard)",    mm,    Neg,   .2,  .005,   .5,     0,      1,     .2,     1,    0.0001,     3,      50,     0}
+{13XPS:,  m4, "asynMotor",   XPS1,    3, "M0X (upstream)",    mm,    Pos,   .5,  .005,   .5,     0,      1,     .2,     1,    0.0001,     3,      79,   -52}
+{13XPS:,  m5, "asynMotor",   XPS1,    4, "M2X (downstream)",  mm,    Pos,   .5,  .005,   .5,     0,      1,     .2,     1,    0.0001,     3,      30,   -75}
+{13XPS:,  m6, "asynMotor",   XPS1,    5, "Base Y",            mm,    Pos,   .5,  .05,    .5,     0.05,   0.05,  .5,     1,    0.0001,     3,     200,     0}
+}
+
+file "$(MOTOR)/db/profileMoveController.template"
+{
+pattern
+{P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13XPS:,  Prof1:, XPS1,     2,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13XPS:,  Prof1:, XPS1,     2,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveAxis.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
+{13XPS:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13XPS:m1,   4,       1}
+{13XPS:,  Prof1:, 2,  XPS1,    1,   2000,      2000, 13XPS:m2,   4,       1}
+}
+
+file "$(MOTOR)/db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
+{13XPS:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    4,       1}
+{13XPS:,  Prof1:, 2,  XPS1,    1,   2000,      2000,    4,       1}
+}
+
+file "$(OPTICS)/opticsApp/Db/table.db"
+{
+pattern
+{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13XPS:, XAS:T1, XAS:t1,         m4,    m3,   m2,   m5,   m1,  junk, SRI}
+}
+
