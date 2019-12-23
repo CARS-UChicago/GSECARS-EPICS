@@ -41,20 +41,19 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 # Disable setting position
 XPSEnableSetPosition(0)
 
-# XPSCreateController("XPS2", "164.54.160.180", 5001, 5, 10, 500, 0, 500)
+XPSCreateController("XPS2", "164.54.160.180", 5001, 5, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-# XPSCreateAxis("XPS2", 0, "EigerY.Pos",    "2000") # ILS200CC
-# XPSCreateAxis("XPS2", 1, "EigerX.Pos",     "400") # UTS150PP
-# XPSCreateAxis("XPS2", 2, "EigerZ.Pos",     "400") # UTS150PP
-# XPSCreateAxis("XPS2", 3, "AnalTheta.Pos", "1000") # RV160CC
-# XPSCreateAxis("XPS2", 4, "AnalY.Pos",     "2000") # ILS150CC
+XPSCreateAxis("XPS2", 0, "EigerY.Pos",    "2000") # ILS200CC
+XPSCreateAxis("XPS2", 1, "EigerX.Pos",     "400") # UTS150PP
+XPSCreateAxis("XPS2", 2, "EigerZ.Pos",     "400") # UTS150PP
+XPSCreateAxis("XPS2", 3, "AnalTheta.Pos", "1000") # RV160CC
+XPSCreateAxis("XPS2", 4, "AnalY.Pos",     "2000") # ILS150CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
 # XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
-
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
