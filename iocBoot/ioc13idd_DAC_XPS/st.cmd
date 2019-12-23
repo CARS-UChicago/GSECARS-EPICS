@@ -45,10 +45,10 @@ XPSCreateAxis("XPS1",4,"G2.SLX",  "10000")
 #     yellow tape to output B
 #     
 # Used for normal DAC and LVP Setup
-XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")
+#XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")
   
 # used when xps plug 5 is setup for gpd x stage
-#XPSCreateAxis("XPS1",5,"G4.GPD_X",  "10000")
+XPSCreateAxis("XPS1",5,"G4.GPD_X",  "10000")
  
 # used when xps plug 5 is setup for gpd z stage
 #XPSCreateAxis("XPS1",5,"G4.GPD_Z",  "10000") 
