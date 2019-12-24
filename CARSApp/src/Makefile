@@ -368,7 +368,7 @@ ifeq ($(OS_CLASS), Linux)
   endif
 
   ifdef MEASCOMP
-    ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
+    ifeq ($(HAVE_HIDAPI), YES)
       $(DBD_NAME)_DBD += measCompSupport.dbd
       $(PROD_NAME)_LIBS := measCompLinuxDrivers $($(PROD_NAME)_LIBS)
       $(PROD_NAME)_LIBS := cbw_linux $($(PROD_NAME)_LIBS)
