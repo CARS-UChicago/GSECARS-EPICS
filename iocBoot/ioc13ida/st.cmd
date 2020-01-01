@@ -67,7 +67,7 @@ dbLoadTemplate("mirror_pid.template")
 dbLoadTemplate("auto_shutter.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

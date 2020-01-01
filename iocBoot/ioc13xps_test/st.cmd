@@ -37,7 +37,7 @@ XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XPS:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13XPS:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

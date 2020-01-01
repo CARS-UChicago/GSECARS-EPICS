@@ -34,7 +34,7 @@ ESP300Config(0, "serial1", 0)
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=$(PREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

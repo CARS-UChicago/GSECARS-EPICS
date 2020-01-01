@@ -75,7 +75,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_CDMONO:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_CDMONO:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA_CDMONO:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

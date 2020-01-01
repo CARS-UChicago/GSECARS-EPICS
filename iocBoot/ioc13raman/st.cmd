@@ -40,7 +40,7 @@ dbLoadTemplate "scanParms.template"
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
 #dbLoadRecords("$(STD)/stdApp/Db/all_com_4.db", "P=13Raman:")
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13Raman:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Raman:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

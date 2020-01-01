@@ -112,7 +112,7 @@ MCB4BConfig(1, "serial18")
 dbLoadTemplate "motors.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMD:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13BMD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

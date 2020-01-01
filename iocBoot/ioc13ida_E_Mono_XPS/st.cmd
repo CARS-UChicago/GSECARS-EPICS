@@ -111,7 +111,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_EMONO:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_EMONO:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA_EMONO:")
 
 dbLoadTemplate  "mono_energy.template"
 

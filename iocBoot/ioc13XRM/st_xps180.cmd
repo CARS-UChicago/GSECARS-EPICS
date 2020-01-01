@@ -49,7 +49,7 @@ XPSEnableSetPosition(0)
 dbLoadTemplate "scanParms.template"
 
 # Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XRM:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13XRM:")
 
 
 # Monochromator slow PID

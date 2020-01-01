@@ -72,7 +72,7 @@ dbLoadTemplate "scanParms.template"
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
 # dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Laser:")
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13Laser:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Laser:")
 
 
 ### Scan-support software

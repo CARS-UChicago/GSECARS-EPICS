@@ -75,7 +75,7 @@ dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13Mirror:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Mirror:")
 
 
 ### Scan-support software

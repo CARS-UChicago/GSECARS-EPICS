@@ -58,7 +58,7 @@ asynSetTraceIOMask("CONEX3", 0, 2)
 dbLoadTemplate("motor.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=Dera:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=Dera:")
 
 # Load asynRecords
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=serial1,ADDR=0,OMAX=80,IMAX=80")

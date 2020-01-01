@@ -110,7 +110,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 #str = malloc(500)
 #strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
 #strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
-#dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
+#dbLoadRecords("$(MOTOR)/db/trajectoryScan.db", str)
 ################################################################################
 
 ################################################################################

@@ -128,7 +128,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDD_XPS:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDD_XPS:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDD_XPS:")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13IDD:")

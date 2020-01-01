@@ -65,7 +65,7 @@ dbLoadTemplate("motors.template")
 iocsh "SIS3801_8.cmd"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDC:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDC:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

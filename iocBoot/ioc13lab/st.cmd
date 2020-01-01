@@ -130,7 +130,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,POR
 dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db", "P=13LAB:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db", "P=13LAB:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

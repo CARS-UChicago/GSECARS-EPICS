@@ -37,7 +37,7 @@ iocsh "SIS3820_32.cmd"
 # and it's time to trigger detectors.
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDE:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDE:")
 
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDE:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 

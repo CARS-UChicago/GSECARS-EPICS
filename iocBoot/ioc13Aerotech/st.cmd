@@ -42,7 +42,7 @@ dbLoadTemplate  "motors.template"
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13AERO1:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13AERO1:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

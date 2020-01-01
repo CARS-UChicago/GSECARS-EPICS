@@ -200,7 +200,7 @@ save_restoreSet_status_prefix("$(PREFIX)")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=$(PREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
