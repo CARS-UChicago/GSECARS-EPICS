@@ -46,13 +46,13 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDE:,MAXPTS1=2000,MAXPTS2=500,
 # crate.
 dbLoadTemplate("scanParms.template")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 # added 2-05 for split ion chmaber
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db","P=13IDE:")

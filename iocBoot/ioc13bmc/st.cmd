@@ -43,7 +43,7 @@ dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13BMC:,R=TC:")
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("AIM1/1", 0x8D7, 1, 2048, 1, 1, "dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
@@ -55,9 +55,9 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x8D7, 1, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x8D7, 4, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMC:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13BMC:,AMP=amp1,PORT=icbAmp1")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the

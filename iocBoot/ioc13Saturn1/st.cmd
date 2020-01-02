@@ -31,7 +31,7 @@ dbLoadRecords("$(DXP)/dxpApp/Db/dxpSaturn.template",   "P=13Saturn1:, R=dxp1:,IO
 dbLoadRecords("$(DXP)/dxpApp/Db/dxpLowLevel.template", "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
 dbLoadRecords("$(DXP)/dxpApp/Db/dxpSCA_16.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
 dbLoadRecords("$(DXP)/dxpApp/Db/mcaCallback.template", "P=13Saturn1:, R=mca1, IO=@asyn(DXP1 0 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db",               "P=13Saturn1:, M=mca1, DTYP=asynMCA,INP=@asyn(DXP1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db",               "P=13Saturn1:, M=mca1, DTYP=asynMCA,INP=@asyn(DXP1 0),NCHAN=2048")
 
 # Template to copy MCA ROIs to DXP SCAs
 dbLoadTemplate("roi_to_sca.substitutions")

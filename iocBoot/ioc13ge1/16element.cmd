@@ -4,7 +4,7 @@ AIMConfig("AIM1/1", 0x8d7, 1, 4096, 4, 1, "ei0", 100)
 AIMConfig("AIM1/2", 0x8d7, 2, 4096, 4, 1, "ei0", 100)
 AIMConfig("AIM2/1", 0x3ec, 1, 4096, 4, 1, "ei0", 100)
 AIMConfig("AIM2/2", 0x3ec, 2, 4096, 4, 1, "ei0", 100)
-dbLoadRecords("$(MCA)/mcaApp/Db/16element.db","P=13GE1:med:")
+dbLoadRecords("$(MCA)/db/16element.db","P=13GE1:med:")
 
 # Configure MPF server for amplifiers
 icbSetup("icb_amp/1", 16, 200)
@@ -42,4 +42,4 @@ dbLoadTemplate("16element.template")
 ### Struck/SIS as simple scaler for ICR
 STR7201Setup(1,0xA0000000,220,6)
 STR7201Config(0, 16, 100, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/STR7201scaler.db","P=13GE1:med:, S=scaler1, C=0")
+dbLoadRecords("$(MCA)/db/STR7201scaler.db","P=13GE1:med:, S=scaler1, C=0")

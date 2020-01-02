@@ -38,8 +38,8 @@ dbLoadTemplate("motors.template")
 # This AIM moved to 13BMC.  No AIM in IDC now.
 ##AIMConfig("NI6E6/1", 0x6E6, 1, 2048, 1, 1, "dc0")
 ##AIMConfig("NI6E6/2", 0x6E6, 2, 2048, 4, 1, "dc0")
-##dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI6E6/1 0),NCHAN=2048")
-##dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI6E6/2 0),NCHAN=2048")
+##dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI6E6/1 0),NCHAN=2048")
+##dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI6E6/2 0),NCHAN=2048")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -52,11 +52,11 @@ dbLoadTemplate("motors.template")
 #      3 = TCA
 #      4 = DSP
 ##icbConfig("icbAdc1", 0x6e6, 5, 0)
-##dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
+##dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13IDC:,ADC=adc1,PORT=icbAdc1")
 #icbConfig("icbAmp1", 0x6e6, 3, 1)
-#dbLoadRecords"$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDC:,AMP=amp1,PORT=icbAmp1")
+#dbLoadRecords"$(MCA)/db/icb_amp.db", "P=13IDC:,AMP=amp1,PORT=icbAmp1")
 #icbConfig("icbHvps1", 0x6e6, 2, 2)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+#dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13IDC:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
  
 # SIS3820 MCS
 ##<SIS3820_8.cmd
@@ -81,13 +81,13 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDC:,MAXPTS1=2000,MAXPTS2=500,
 # crate.
 dbLoadTemplate("scanParms.template")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 # added 2-05 for split ion chmaber
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDC:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/db/misc.db","P=13IDC:")

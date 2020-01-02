@@ -75,10 +75,10 @@ dbLoadTemplate "Ip330_ADC.template"
 # maxPoints  = maximum number of points in a sweep.  The amount of memory
 #              allocated will be maxPoints*maxSignals*4 bytes
 initFastSweep("Ip330Sweep1", "Ip330_1", 4, 2048)
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 
 # Initialize Greenspring IP-Unidig
 # initIpUnidig(char *portName,

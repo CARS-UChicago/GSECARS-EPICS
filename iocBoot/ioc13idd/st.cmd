@@ -31,8 +31,8 @@ dbLoadRecords("$(CARS)/db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"dc0")
 AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -45,11 +45,11 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x59E, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x59E, 3, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x59E, 2, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 # Struck MCS
 iocsh "SIS3820_32.cmd"

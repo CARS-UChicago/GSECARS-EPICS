@@ -89,17 +89,17 @@ dbLoadTemplate "scanParms.template"
 AIMConfig("AIM1/1", 0x3ED, 1, 2048, 1, 1, "fei0")
 AIMConfig("AIM1/2", 0x3ED, 2, 2048, 8, 1, "fei0")
 AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "fei0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYP=asynMCA,INP=@asyn(AIM1/2 2),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYP=asynMCA,INP=@asyn(AIM1/2 4),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYP=asynMCA,INP=@asyn(AIM1/2 6),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=dsa2000_1,DTYP=asynMCA,INP=@asyn(DSA2000 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc3,DTYP=asynMCA,INP=@asyn(AIM1/2 2),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc4,DTYP=asynMCA,INP=@asyn(AIM1/2 4),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc5,DTYP=asynMCA,INP=@asyn(AIM1/2 6),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=dsa2000_1,DTYP=asynMCA,INP=@asyn(DSA2000 0),NCHAN=2048")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -112,15 +112,15 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x3ED, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x3ED, 3, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
 #icbConfig("icbHvps1", 0x3ED, 2, 2)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=6000")
+#dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=6000")
 icbConfig("icbTca1", 0x3ED, 8, 3)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTca1")
+dbLoadRecords("$(MCA)/db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTca1")
 #icbConfig("icbDsp1", 0x8058, 0, 4)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
+#dbLoadRecords("$(MCA)/db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
 
 # SIS 3801 and SIS3820
 <SIS3801.cmd

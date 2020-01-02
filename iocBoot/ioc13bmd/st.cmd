@@ -41,8 +41,8 @@ dbLoadRecords("$(CARS)/db/MAR345_shutter_serial.db",st)
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("NI9CE/1", 0x9CE, 1, 2048, 1, 1,"dc0")
 AIMConfig("NI9CE/2", 0x9CE, 2, 2048, 4, 1,"dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=2048")
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
@@ -54,11 +54,11 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x9ce, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13BMD:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x9ce, 3, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13BMD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x9ce, 2, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 # CCD synchronization for older version of tomo_collect
 dbLoadRecords("$(CARS)/db/CCD.db", "P=13BMD:,C=CCD1")
