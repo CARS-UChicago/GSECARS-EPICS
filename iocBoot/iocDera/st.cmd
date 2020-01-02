@@ -27,7 +27,7 @@ MultiFunctionConfig("1608G", 0, $(INPUT_POINTS), $(OUTPUT_POINTS))
 dbLoadTemplate("1608G.substitutions")
 
 ## SR570 database
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=$(PREFIX),A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/SR570.db", "P=$(PREFIX),A=A1,PORT=serial1")
 
 # Newport CONEX-PP controllers
 # For Windows

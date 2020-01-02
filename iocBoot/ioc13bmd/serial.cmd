@@ -37,16 +37,16 @@ asynOctetSetOutputEos("serial19",0,"\r\n")
 
 # Load asyn records on all ports
 dbLoadTemplate("asynRecord.template")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A2,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A3,PORT=serial4")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMD:,A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,PORT=serial2")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMD:,A=A2,PORT=serial3")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMD:,A=A3,PORT=serial4")
 # LVP Omega meter on serial 5
 dbLoadTemplate "LVP_pressure_control.template"
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,PORT=serial7")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,PORT=serial7")
 dbLoadRecords("$(CARS)/db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,PORT=serial8")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,PORT=serial9")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,PORT=serial8")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,PORT=serial9")
 dbLoadRecords("$(OPTICS)/db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,PORT=serial10")
 # Serial 11 is Verdi Laser
 dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=13BMD:,R=Verdi1:,PORT=serial11")

@@ -18,7 +18,7 @@ asynSetTraceIOMask(serial1, 0, 4)
 # Load asyn record
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=HG100:Asyn, PORT=serial1, ADDR=0, OMAX=80, IMAX=80")
 
-dbLoadRecords("$(IP)/ipApp/Db/HG-100.db", "P=$(PREFIX), R=HG100:, PORT=serial1")
+dbLoadRecords("$(IP)/db/HG-100.db", "P=$(PREFIX), R=HG100:, PORT=serial1")
 
 <../calc_GSECARS.iocsh
 
@@ -35,7 +35,7 @@ epicsEnvSet("LOCATION","HG-100 humidity controller")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db)
 
 iocInit
 

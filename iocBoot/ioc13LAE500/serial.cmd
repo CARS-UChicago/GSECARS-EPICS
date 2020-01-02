@@ -15,6 +15,6 @@ asynOctetSetOutputEos("serial1",0,"\r")
 dbLoadTemplate("asynRecord.substitutions")
 
 # Newport LAE500
-dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAE500:,R=LAE500,PORT=serial1")
+dbLoadRecords("$(IP)/db/Newport_LAE500.db","P=13LAE500:,R=LAE500,PORT=serial1")
 
 # END serial.cmd --------------------------------------------------------------

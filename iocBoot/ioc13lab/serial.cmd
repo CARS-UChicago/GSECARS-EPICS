@@ -46,7 +46,7 @@ asynOctetConnect("gpib1:3", "gpib1", 3, 1, 80)
 dbLoadTemplate("asynRecord.template")
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
+#dbLoadRecords("$(IP)/db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
 
 # Port 3 Encoder readout unit
 #dbLoadRecords("$(CARS)/db/RSF715.db","P=13LAB:,ENCODER=RSF715,PORT=serial4")
@@ -63,10 +63,10 @@ MCB4BSetup(1, 10)
 MCB4BConfig(0, "serial4")
 
 # Serial 5, 6 Keithley Multimeter
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,PORT=serial5")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=gpib1:2")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=serial6")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,PORT=serial7")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,PORT=serial5")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=gpib1:2")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=serial6")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,PORT=serial7")
 
 # Serial 7 for the MM4000.
 # MM4000 driver setup parameters:
@@ -88,7 +88,7 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=seri
 #dbLoadRecords("$(CARS)/db/trajectoryScan.db", str, top)
 
 # Serial 8 Stanford Research Systems SR570 Current Preamplifier
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB:,A=A1,PORT=serial8")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB:,A=A1,PORT=serial8")
 
 # Serial 8 is Verdi Laser for testing
 #dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=13LAB:,R=Verdi1:,PORT=serial8")

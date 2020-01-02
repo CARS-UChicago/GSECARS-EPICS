@@ -4,7 +4,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(CARS)/db)
 
 dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)

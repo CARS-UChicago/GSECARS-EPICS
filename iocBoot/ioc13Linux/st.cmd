@@ -16,7 +16,7 @@ var
 dbLoadTemplate("asynRecord.template")
 
 # Serial 1 Keithley Multimeter
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13Linux:,Dmm=DMM1,C=0,SERVER=serial1")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13Linux:,Dmm=DMM1,C=0,SERVER=serial1")
 
 #PID slow
 dbLoadTemplate "pid_slow.template"

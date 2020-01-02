@@ -4,7 +4,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(CARS)/db)
 
 epicsEnvSet(PREFIX, "13RAMAN2:")
 

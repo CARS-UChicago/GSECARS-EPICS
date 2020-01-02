@@ -1,7 +1,7 @@
 errlogInit(5000)
 < envPaths
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/delaygenApp/Db)
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS

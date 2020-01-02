@@ -24,12 +24,12 @@ dbLoadTemplate("asynRecord.template")
 dbLoadRecords("asynTest.db","P=13Cygwin:, R=asynTest")
 
 # Serial 1 Keithley Multimeter
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13Cygwin:,Dmm=DMM1,C=0,PORT=serial1")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13Cygwin:,Dmm=DMM1,C=0,PORT=serial1")
 
 # Serial 1 is MCB4B motor controller
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13Cygwin:,R=LAE500,PORT=serial2")
+dbLoadRecords("$(IP)/db/Newport_LAE500.db", "P=13Cygwin:,R=LAE500,PORT=serial2")
 
 #PID slow
 dbLoadTemplate "pid_slow.template"

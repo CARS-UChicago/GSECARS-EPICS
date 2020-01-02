@@ -15,7 +15,7 @@ asynSetTraceIOMask("$(PORT)",0,2)
 #asynSetTraceMask("$(PORT)",0,0x9)
 # The GSETS9 terminal server must be configured for 9600, 8, 2, None
 
-dbLoadRecords("$(IP)/ipApp/Db/PHD2000.db", "P=$(PREFIX), R=S1:, PORT=$(PORT), PREC=4")
+dbLoadRecords("$(IP)/db/PHD2000.db", "P=$(PREFIX), R=S1:, PORT=$(PORT), PREC=4")
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=asyn1, PORT=$(PORT), ADDR=0, IMAX=80, OMAX=80")
 
 #var streamDebug 1
@@ -24,7 +24,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=asyn1, PORT=$(PORT), A
 save_restoreSet_status_prefix("$(PREFIX)")
 dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db)
 
 date
 

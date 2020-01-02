@@ -14,15 +14,15 @@ tyGSAsynInit("serial8", "UART0", 7,  9600,'N',2,8,'N',"\r","\r")   /* Pelco CM67
 dbLoadTemplate("asynRecord.template")
 
 # First Octal UART for microprobe experiments
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDE:,A=A1,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDE:,A=A2,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDE:,A=A3,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDE:,A=A4,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDE:,A=A5,PORT=serial5")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDE:,A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDE:,A=A2,PORT=serial2")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDE:,A=A3,PORT=serial3")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDE:,A=A4,PORT=serial4")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDE:,A=A5,PORT=serial5")
 
 # Serial 7 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDE:,Dmm=DMM1,PORT=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDE:,Dmm=DMM2,PORT=serial7")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13IDE:,Dmm=DMM1,PORT=serial6")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13IDE:,Dmm=DMM2,PORT=serial7")
 

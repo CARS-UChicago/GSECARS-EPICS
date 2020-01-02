@@ -19,13 +19,13 @@ CARSMini_registerRecordDeviceDriver(pdbbase)
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
 
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
 
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
 
 # Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
+#dbLoadRecords("$(IP)/db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
 
 # SIS3801 MCS
 #iocsh "SIS3801.iocsh"

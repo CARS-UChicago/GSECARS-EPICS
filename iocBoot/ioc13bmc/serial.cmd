@@ -13,17 +13,17 @@ tyGSAsynInit("serial8", "UART0", 7,19200,'N',1,8,'N',"\n","\r")  /* Keithley */
 
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A1,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A2,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A3,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A4,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A5,PORT=serial5")
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMC:,A=A6,PORT=serial6")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMC:,A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMC:,A=A2,PORT=serial2")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMC:,A=A3,PORT=serial3")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMC:,A=A4,PORT=serial4")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMC:,A=A5,PORT=serial5")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13BMC:,A=A6,PORT=serial6")
 
 # Serial 7 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
 # Port 8 can either be the LAE or the Keithley 
-#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13BMC:,R=LAE500,PORT=serial8")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13BMC:,Dmm=DMM1,PORT=serial8")
+#dbLoadRecords("$(IP)/db/Newport_LAE500.db","P=13BMC:,R=LAE500,PORT=serial8")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13BMC:,Dmm=DMM1,PORT=serial8")
 

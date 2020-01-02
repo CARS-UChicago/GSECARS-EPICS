@@ -42,11 +42,11 @@ asynOctetSetOutputEos("serial5",0,"\r")
 dbLoadTemplate("asynRecord.template")
 
 # Omega meters
-epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
+epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 dbLoadTemplate("Omega.substitutions")
 
 # Alcatel vacuum gauge
-dbLoadRecords("$(IP)/ipApp/Db/Alcatel_ACS1000.db", "P=13GasLoad:, R=ACS1000, PORT=serial4")
+dbLoadRecords("$(IP)/db/Alcatel_ACS1000.db", "P=13GasLoad:, R=ACS1000, PORT=serial4")
 
 ### Motors
 dbLoadTemplate  "motors.template"

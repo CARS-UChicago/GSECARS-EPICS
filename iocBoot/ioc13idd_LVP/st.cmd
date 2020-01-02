@@ -40,8 +40,8 @@ asynOctetSetInputEos("serial3",0,"\r\n")
 asynOctetSetOutputEos("serial3",0,"\n")
 dbLoadTemplate("asynRecord.template")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM3,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM4,PORT=serial3")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM3,PORT=serial2")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM4,PORT=serial3")
 
 # LVP pressure control.  This talks to the Omega meter.
 dbLoadTemplate("LVP_pressure_control.template")

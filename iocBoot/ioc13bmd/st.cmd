@@ -154,7 +154,7 @@ sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
 iocsh
-epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/ipApp/Db:$(CARS)/db")
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/db:$(CARS)/db")
 exit
 
 iocInit

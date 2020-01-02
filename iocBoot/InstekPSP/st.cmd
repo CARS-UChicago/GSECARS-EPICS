@@ -21,7 +21,7 @@ asynOctetSetOutputEos("serial1",0,"\r")
 dbLoadTemplate("asynRecord.template")
 
 # Omega meters
-epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
+epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 dbLoadTemplate("Omega.substitutions")
 
 # Free-standing user string/number calculations (sCalcout records)
