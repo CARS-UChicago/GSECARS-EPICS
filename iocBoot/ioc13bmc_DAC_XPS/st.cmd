@@ -96,7 +96,7 @@ set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
 save_restoreSet_status_prefix("13BMC_DAC_XPS:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC_DAC_XPS:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMC_DAC_XPS:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the

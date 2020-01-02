@@ -45,7 +45,7 @@ dbLoadRecords("$(SSCAN)/db/scan.db", "P=13xps3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13DDIA30:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13DDIA30:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13DDIA30:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

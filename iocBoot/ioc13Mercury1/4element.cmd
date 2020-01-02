@@ -20,7 +20,7 @@ callbackSetQueueSize(4000)
 # Setup for save_restore
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 set_pass0_restoreFile("auto_settings4.sav")
 set_pass1_restoreFile("auto_settings4.sav")
 

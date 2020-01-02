@@ -17,7 +17,7 @@ dbLoadTemplate("USB1208.substitutions")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13USB1208:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13USB1208:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13USB1208:")
 
 iocInit
 

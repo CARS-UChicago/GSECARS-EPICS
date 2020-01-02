@@ -29,7 +29,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13DAC_piezo:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13DAC_piezo:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13DAC_piezo:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13DAC_piezo:")
 
 iocInit
 

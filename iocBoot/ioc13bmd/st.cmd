@@ -147,7 +147,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMD:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMD:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMD:")
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1

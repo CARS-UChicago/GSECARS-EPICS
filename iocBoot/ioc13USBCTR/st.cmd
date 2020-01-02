@@ -31,7 +31,7 @@ dbLoadTemplate("USBCTR.substitutions")
 dbLoadRecords("$(STD)/db/scaler.db", "P=USBCTR:, S=scaler1, DTYP=Asyn Scaler, OUT=@asyn(USBCTR), FREQ=10000000")
 
 # This database provides the support for the MCS functions
-dbLoadRecords("$(MEASCOMP)/measCompApp/Db/measCompMCS.template", "P=$(PREFIX), PORT=$(PORT)")
+dbLoadRecords("$(MEASCOMP)/db/measCompMCS.template", "P=$(PREFIX), PORT=$(PORT)")
 
 # Load either MCA or waveform records below
 # The number of records loaded must be the same as MAX_COUNTERS defined above
@@ -62,7 +62,7 @@ asynSetTraceIOMask($(PORT),0,2)
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix($(PREFIX))
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 iocInit
 

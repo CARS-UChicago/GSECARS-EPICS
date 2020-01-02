@@ -27,7 +27,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13Hytec:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Hytec:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Hytec:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Hytec:")
 
 iocInit
 

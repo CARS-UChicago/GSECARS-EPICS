@@ -25,12 +25,12 @@ NDDxpConfig("DXP1", 1, 10, 42000000)
 asynSetTraceIOMask("DXP1", 0, 2)
 #asynSetTraceMask("DXP1", 0, 255)
 
-dbLoadRecords("$(DXP)/dxpApp/Db/dxpSystem.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
-dbLoadRecords("$(DXP)/dxpApp/Db/dxpHighLevel.template","P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
-dbLoadRecords("$(DXP)/dxpApp/Db/dxpSaturn.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
-dbLoadRecords("$(DXP)/dxpApp/Db/dxpLowLevel.template", "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
-dbLoadRecords("$(DXP)/dxpApp/Db/dxpSCA_16.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
-dbLoadRecords("$(DXP)/dxpApp/Db/mcaCallback.template", "P=13Saturn1:, R=mca1, IO=@asyn(DXP1 0 1)")
+dbLoadRecords("$(DXP)/db/dxpSystem.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
+dbLoadRecords("$(DXP)/db/dxpHighLevel.template","P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
+dbLoadRecords("$(DXP)/db/dxpSaturn.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
+dbLoadRecords("$(DXP)/db/dxpLowLevel.template", "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
+dbLoadRecords("$(DXP)/db/dxpSCA_16.template",   "P=13Saturn1:, R=dxp1:,IO=@asyn(DXP1 0 1)")
+dbLoadRecords("$(DXP)/db/mcaCallback.template", "P=13Saturn1:, R=mca1, IO=@asyn(DXP1 0 1)")
 dbLoadRecords("$(MCA)/db/mca.db",               "P=13Saturn1:, M=mca1, DTYP=asynMCA,INP=@asyn(DXP1 0),NCHAN=2048")
 
 # Template to copy MCA ROIs to DXP SCAs
@@ -39,7 +39,7 @@ dbLoadTemplate("roi_to_sca.substitutions")
 # Setup for save_restore
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Saturn1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Saturn1:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Saturn1:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

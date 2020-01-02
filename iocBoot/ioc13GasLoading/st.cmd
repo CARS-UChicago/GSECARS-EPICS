@@ -97,7 +97,7 @@ MCB4BConfig(0, "serial3")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13GasLoad:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13GasLoad:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13GasLoad:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

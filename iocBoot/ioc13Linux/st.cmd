@@ -98,7 +98,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13Linux:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Linux:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Linux:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Linux:")
 
 asynSetTraceMask serial3 0 3
 asynSetTraceIOMask serial3 0 2

@@ -39,7 +39,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=Instek:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("Instek:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=Instek:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=Instek:")
 
 iocInit
 

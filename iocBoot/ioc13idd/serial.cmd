@@ -65,11 +65,11 @@ dbLoadRecords("$(CARS)/db/LQExcel.db", "P=13IDD:,R=LQE1,PORT=serial12")
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
 # Serial 16 is the BNC 505 pulse generator
-dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505.db", "P=13IDD:,R=BNC1:,PORT=serial16")
-dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=1")
-dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=2")
-dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=3")
-dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=4")
+dbLoadRecords("$(DELAYGEN)/db/BNC_505.db", "P=13IDD:,R=BNC1:,PORT=serial16")
+dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=1")
+dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=2")
+dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=3")
+dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=4")
 
 # Tell StreamDevice where to find protocol files
-iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/delaygenApp/Db:$(CARS)/db)")
+iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/db:$(CARS)/db)")

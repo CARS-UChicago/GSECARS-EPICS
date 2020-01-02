@@ -8,7 +8,7 @@ dxp_registerRecordDeviceDriver(pdbbase)
 # Setup for save_restore
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13SDD2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13SDD2:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13SDD2:")
 set_pass0_restoreFile("auto_settings4.sav")
 set_pass1_restoreFile("auto_settings4.sav")
 

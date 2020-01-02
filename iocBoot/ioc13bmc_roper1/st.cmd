@@ -28,7 +28,7 @@ set_requestfile_path("$(AREA_DETECTOR)/ADApp/Db")
 set_pass0_restoreFile("auto_settings.sav")
 set_pass1_restoreFile("auto_settings.sav")
 save_restoreSet_status_prefix("13BMCRP1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMCRP1:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMCRP1:")
 
 iocInit()
 

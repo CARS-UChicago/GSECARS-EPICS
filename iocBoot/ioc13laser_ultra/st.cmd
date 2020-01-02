@@ -108,7 +108,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13LU:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13LU:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LU:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LU:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

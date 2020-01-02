@@ -63,7 +63,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR
 < ../save_restore_IOCSH.cmd
 
 save_restoreSet_status_prefix("13BMC_GPD_XPS:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC_GPD_XPS:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMC_GPD_XPS:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the

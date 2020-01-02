@@ -75,7 +75,7 @@ sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13LAB2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB2:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LAB2:")
 
 iocInit
 

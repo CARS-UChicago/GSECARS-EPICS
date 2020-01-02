@@ -65,7 +65,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13IDA_EMONO:")
 
 < ../../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13IDA_EMONO:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13IDA:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA_EMONO:,R=asyn1,PORT=PMAC_IP,ADDR=0,OMAX=256,IMAX=256")
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDA_EMONO:,R=asyn2,PORT=PMAC1,ADDR=0,OMAX=256,IMAX=256")

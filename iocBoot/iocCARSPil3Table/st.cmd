@@ -65,7 +65,7 @@ MCB4BCreateController("MCB4B_1", "serial1", 4, 100, 1000)
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("CARSPil3Table:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=CARSPil3Table:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=CARSPil3Table:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

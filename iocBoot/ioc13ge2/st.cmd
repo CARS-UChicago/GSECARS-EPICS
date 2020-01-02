@@ -115,7 +115,7 @@ dbLoadTemplate("vxStats.substitutions")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13GE2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13GE2:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13GE2:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.

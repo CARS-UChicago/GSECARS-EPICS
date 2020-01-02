@@ -16,7 +16,7 @@ dbLoadRecords("$(IP)/db/Tabor8024.db", "P=13Tabor1:, R=AWG:, NELM=64536, PORT=L0
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Tabor1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Tabor1:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Tabor1:")
 
 epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db)
 

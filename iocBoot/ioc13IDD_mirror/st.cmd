@@ -117,7 +117,7 @@ asynSetTraceIOMask("Agilis4", 0, 2)
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Mirror:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Mirror:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Mirror:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

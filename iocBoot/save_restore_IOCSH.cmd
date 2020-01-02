@@ -57,4 +57,4 @@ set_requestfile_path("$(SSCAN)",    "sscanApp/Db")
 set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
-#dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=xxx:")
+#dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=xxx:")

@@ -86,7 +86,7 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13XRM:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13XRM:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13XRM:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13XRM:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 

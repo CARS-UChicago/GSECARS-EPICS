@@ -57,7 +57,7 @@ set_requestfile_path(softglue, "softGlueApp/Db")
 set_requestfile_path(std,      "stdApp/Db")
 set_requestfile_path(vme,      "vmeApp/Db")
 
-#dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=xxx:")
+#dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=xxx:")
 
 # Date and time of boot
 date

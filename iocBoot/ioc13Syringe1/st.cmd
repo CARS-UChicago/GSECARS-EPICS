@@ -20,7 +20,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13Syringe1:, R=asyn1, PORT=L0, ADDR
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Syringe1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Syringe1:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Syringe1:")
 
 epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db)
 

@@ -163,7 +163,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13LAB:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13LAB:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LAB:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.
