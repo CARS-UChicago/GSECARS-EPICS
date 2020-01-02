@@ -144,13 +144,13 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200
 dbLoadRecords("$(STD)/db/misc.db","P=13BMD:")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13LAB:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13LAB:")
 
 # Free-standing user array calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13LAB:,N=10")
+dbLoadRecords("$(CALC)/db/userArrayCalcs10.db", "P=13LAB:,N=10")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13LAB:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13LAB:")
 
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB:,Q=vme1")

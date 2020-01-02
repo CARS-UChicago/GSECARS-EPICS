@@ -16,10 +16,10 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Keithley2:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Keithley2:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13Keithley2:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Keithley2:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13Keithley2:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db", "P=13Keithley2:")

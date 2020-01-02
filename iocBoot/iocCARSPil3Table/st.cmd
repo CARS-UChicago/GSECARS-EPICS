@@ -47,10 +47,10 @@ dbLoadRecords("$(STD)/db/all_com_4.db", "P=CARSPil3Table:")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=CARSPil3Table:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=CARSPil3Table:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=CARSPil3Table:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=CARSPil3Table:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=CARSPil3Table:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db", "P=CARSPil3Table:")

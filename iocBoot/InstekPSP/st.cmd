@@ -25,10 +25,10 @@ epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
 dbLoadTemplate("Omega.substitutions")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=Instek:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=Instek:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=Instek:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=Instek:")
 
 # sseq records
 dbLoadRecords("$(STD)/db/userStringSeqs10.db", "P=Instek:")

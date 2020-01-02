@@ -52,10 +52,10 @@ dbLoadRecords("$(STD)/db/all_com_8.db","P=13LAB2:")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13LAB2:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db","P=13LAB2:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13LAB2:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db","P=13LAB2:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")

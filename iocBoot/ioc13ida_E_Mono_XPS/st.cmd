@@ -116,10 +116,10 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA_EMONO:")
 dbLoadTemplate  "mono_energy.template"
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_EMONO:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13IDA_EMONO:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_EMONO:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13IDA_EMONO:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

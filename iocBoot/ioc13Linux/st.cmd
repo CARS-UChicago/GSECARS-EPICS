@@ -88,10 +88,10 @@ dbLoadRecords("$(STD)/db/all_com_8.db", "P=13Linux:")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Linux:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Linux:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13Linux:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Linux:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13Linux:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db", "P=13Linux:")

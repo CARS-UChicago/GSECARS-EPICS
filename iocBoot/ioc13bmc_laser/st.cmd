@@ -90,19 +90,19 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=
 
 
 # Free-standing user array calculations (aCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=$(PREFIX),N=10")
+dbLoadRecords("$(CALC)/db/userArrayCalcs10.db", "P=$(PREFIX),N=10")
 
 # Free-standing user calcOuts (calcOut records)
-dbLoadRecords("$(CALC)/calcApp/Db/userCalcOuts10.db", "P=$(PREFIX)")
+dbLoadRecords("$(CALC)/db/userCalcOuts10.db", "P=$(PREFIX)")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=$(PREFIX)")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=$(PREFIX)")
 
 # Free-standing user string sequence records (sseq records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=$(PREFIX)")
+dbLoadRecords("$(CALC)/db/userStringSeqs10.db", "P=$(PREFIX)")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=$(PREFIX)")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")

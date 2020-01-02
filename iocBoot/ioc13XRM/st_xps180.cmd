@@ -64,10 +64,10 @@ dbLoadTemplate("mono_pid.template")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13XRM:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=50,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XRM:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13XRM:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XRM:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13XRM:")
 # dbLoadRecords("$(CARS)/db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Miscellaneous PV's, such as burtResult

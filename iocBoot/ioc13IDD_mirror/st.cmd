@@ -87,12 +87,12 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Mirror:")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Mirror:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Mirror:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13Mirror:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Mirror:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13Mirror:")
 # Free-standing user string sequence records (sseq records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13Mirror:")
+dbLoadRecords("$(CALC)/db/userStringSeqs10.db", "P=13Mirror:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db", "P=13Mirror:")

@@ -70,10 +70,10 @@ dbLoadRecords("$(STD)/db/all_com_4.db", "P=13GasLoad:")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13GasLoad:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13GasLoad:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13GasLoad:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13GasLoad:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13GasLoad:")
 
 # sseq records
 dbLoadRecords("$(STD)/db/userStringSeqs10.db", "P=13GasLoad:")

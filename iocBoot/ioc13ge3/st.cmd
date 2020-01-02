@@ -66,10 +66,10 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13GE3:,MAXPTS1=2000,MAXPTS2=200,
 dbLoadTemplate "scanParms.template"
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13GE3:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db","P=13GE3:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13GE3:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db","P=13GE3:")
 
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13GE3:,Q=vme1")
