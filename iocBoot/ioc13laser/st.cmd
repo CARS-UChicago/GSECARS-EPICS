@@ -56,8 +56,8 @@ dbLoadTemplate  "motors.template"
 #drvAsynIPPortConfigure("serial5", "164.54.160.13:10001", 0, 0, 0)
 #asynOctetSetInputEos("serial5",0,"\r")
 #asynOctetSetOutputEos("serial5",0,"\r")
-#dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial5")
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial3")
+#dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial5")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial3")
 
 # BNC-505 Pulse/Delay Generator
 dbLoadTemplate("BNC_505.substitutions")

@@ -4,7 +4,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/CARSApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/db)
 
 epicsEnvSet(PREFIX, "13RAMAN2:")
 
@@ -101,14 +101,14 @@ AG_UCCreateAxis("Agilis1", 4, 1, 50, -50)
 dbLoadTemplate("asynRecord.template")
 
 # Laser Quantum Excel lasers on serial 1 and 2
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE2,PORT=serial2")
+dbLoadRecords("$(CARS)/db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
+dbLoadRecords("$(CARS)/db/LQVentus.db", "P=$(PREFIX),R=LQE2,PORT=serial2")
 
 # Serial 3 is Verdi Laser
-dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=$(PREFIX),R=Verdi1:,PORT=serial3")
+dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=$(PREFIX),R=Verdi1:,PORT=serial3")
 
 # IPG laser is serial 6
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial6")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial6")
 
 # Koyo PLC
 < Koyo.cmd

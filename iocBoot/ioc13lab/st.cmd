@@ -62,7 +62,7 @@ dbLoadTemplate "pid_slow.template"
 dbLoadTemplate "pid_fast.template"
 
 # Tomography data collection
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13LAB:,R=TC:")
+dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13LAB:,R=TC:")
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -71,11 +71,11 @@ dbLoadTemplate  "motors.template"
 #iocsh("APS_EM.cmd")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db", "P=13LAB:")
+dbLoadRecords("$(CARS)/db/experiment_info.db", "P=13LAB:")
 
 
 #MN----------------------------------------------------------------------
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13LAB:,Q=EDB")
+dbLoadRecords("$(CARS)/db/scanner.db", "P=13LAB:,Q=EDB")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the

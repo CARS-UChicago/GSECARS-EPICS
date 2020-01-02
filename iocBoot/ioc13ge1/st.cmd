@@ -37,7 +37,7 @@ save_restoreDebug = 0
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE1:")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13GE1:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13GE1:")
 
 # vxWorks statistics
 #dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13GE1:")

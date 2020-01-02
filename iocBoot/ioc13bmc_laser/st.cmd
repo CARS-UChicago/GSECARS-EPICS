@@ -4,7 +4,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/CARSApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/db)
 
 dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver(pdbbase)
@@ -72,10 +72,10 @@ dbLoadTemplate("asynRecord.template")
 #var streamDebug 1
 
 # Laser Quantum Excel lasers on serial 1
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
+dbLoadRecords("$(CARS)/db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
 
 # IPG laser is serial 2
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial2")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial2")
 
 # Laser PLC Modbus connection
 < Click.cmd

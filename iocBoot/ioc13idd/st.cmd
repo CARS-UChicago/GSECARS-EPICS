@@ -24,7 +24,7 @@ VSCSetup(1, 0xB0000000, 200)
 dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDD:,S=scaler2,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 # MAR345 shutter
-dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
+dbLoadRecords("$(CARS)/db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
 
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
@@ -59,16 +59,16 @@ iocsh "SIS3820_32.cmd"
 dbLoadTemplate("laser_pid.template")
 
 # Simple laser heating database
-dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
+dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13IDD:")
 
 # XRD File Base and relative paths
-dbLoadRecords("$(CARS)/CARSApp/Db/xrd_files.db", "P=13IDD:")
+dbLoadRecords("$(CARS)/db/xrd_files.db", "P=13IDD:")
 
 # Koyo PLC for lasers
 < Koyo.cmd
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDD:")
 
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),

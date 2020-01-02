@@ -40,8 +40,8 @@ asynOctetSetOutputEos("serial18",0,"\r")
 #asynOctetSetOutputEos("serial17",0,"\r")
 
 # IPG laser
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13IDD:,R=Laser1,PORT=serial14")
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13IDD:,R=Laser2,PORT=serial15")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13IDD:,R=Laser1,PORT=serial14")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13IDD:,R=Laser2,PORT=serial15")
 
 # asyn record on each serial port
 dbLoadTemplate("asynRecord.template")
@@ -50,16 +50,16 @@ dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A1,PORT=serial1")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A2,PORT=serial2")
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13IDD:,Dmm=DMM1,PORT=serial3")
 # Laser power controller
-dbLoadRecords("$(CARS)/CARSApp/Db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,PORT=serial4")
+dbLoadRecords("$(CARS)/db/lpc.db", "P=13IDD:,L=LPC1_,DAC=DAC1_2,PORT=serial4")
 dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDD:,A=A3,PORT=serial7")
 #dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13IDD:,R=LAE500,PORT=serial8")
 
-dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13IDD:,ENCODER=RSF715,PORT=serial10")
+dbLoadRecords("$(CARS)/db/RSF715.db","P=13IDD:,ENCODER=RSF715,PORT=serial10")
 # Serial 11 is picoMotors
 dbLoadTemplate("picoMotors.template")
 
 # Laser Quantum Excel laser
-dbLoadRecords("$(CARS)/CARSApp/Db/LQExcel.db", "P=13IDD:,R=LQE1,PORT=serial12")
+dbLoadRecords("$(CARS)/db/LQExcel.db", "P=13IDD:,R=LQE1,PORT=serial12")
 
 # Serial 13 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
@@ -72,4 +72,4 @@ dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT
 dbLoadRecords("$(DELAYGEN)/delaygenApp/Db/BNC_505_Pn.db", "P=13IDD:,R=BNC1:,PORT=serial16,N=4")
 
 # Tell StreamDevice where to find protocol files
-iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db:$(CARS)/CARSApp/Db)")
+iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delaygenApp/Db:$(CARS)/db)")

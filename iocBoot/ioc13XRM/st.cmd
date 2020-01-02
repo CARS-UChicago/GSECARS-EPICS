@@ -79,7 +79,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XRM:")
 
 # Free-standing user transforms (transform records)
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XRM:")
-# dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
+# dbLoadRecords("$(CARS)/db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XRM:")
@@ -91,29 +91,29 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13XRM:")
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 
 # scan communication and meta data
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13XRM:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDA:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDB:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDD:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDE:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMA:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMC:, Q=edb")
-# dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMD:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13XRM:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDA:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDB:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDC:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDD:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDE:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13BMA:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13BMC:, Q=edb")
+# dbLoadRecords("$(CARS)/db/scanner.db","P=13BMD:, Q=edb")
 
 #
 # XRF Spectra Collector 
-dbLoadRecords("$(CARS)/CARSApp/Db/XRF_Collect.db","P=13XRM:,Q=XRF")
+dbLoadRecords("$(CARS)/db/XRF_Collect.db","P=13XRM:,Q=XRF")
 
 
 # XRM Analyzer control
-dbLoadRecords("$(CARS)/CARSApp/Db/XRMAnalyzer.db","P=13XRM:,ANA=ANA")
+dbLoadRecords("$(CARS)/db/XRMAnalyzer.db","P=13XRM:,ANA=ANA")
 
 ## For FTomo at BMC:
-dbLoadRecords("$(CARS)/CARSApp/Db/FluorTomo.db","P=13XRM:,Q=FT")
+dbLoadRecords("$(CARS)/db/FluorTomo.db","P=13XRM:,Q=FT")
 
 # fast mapping
-dbLoadRecords("$(CARS)/CARSApp/Db/XRM_fastmap.db","P=13XRM:,Q=map")
+dbLoadRecords("$(CARS)/db/XRM_fastmap.db","P=13XRM:,Q=map")
 
 # fast XAFS 
 dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
@@ -141,23 +141,23 @@ dbLoadRecords("escandata.db","P=13XRM:,Q=ScanData")
 
 
 # Epics PyInstrument
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13XRM:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDE:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDD:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDC:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDA:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMA:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMC:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMD:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13XRM:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDE:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDD:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDC:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDA:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMA:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMC:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMD:,Q=Inst")
 
 # ion chamber calculations
-dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13XRM:,Q=ION")
+dbLoadRecords("$(CARS)/db/IonChamber.db","P=13XRM:,Q=ION")
 
 dbLoadRecords("pydebug.db", "P=Py:")
 
 dbLoadRecords("py_exapp.db", "P=Py:,Q=EXT")
 
-#dbLoadRecords("$(CARS)/CARSApp/Db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
+#dbLoadRecords("$(CARS)/db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
 
 asynSetTraceIOMask("XPS1",0,2)
 #asynSetTraceMask("XPS1",0,0x3)

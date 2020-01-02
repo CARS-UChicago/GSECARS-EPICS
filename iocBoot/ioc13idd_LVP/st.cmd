@@ -50,7 +50,7 @@ dbLoadTemplate("LVP_pressure_control.template")
 dbLoadTemplate("LVP_furnace_control.template")
 
 # LVP Theta (temperature ramping) controller
-dbLoadRecords("$(CARS)/CARSApp/Db/RampScan.db","P=$(PREFIX),R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
+dbLoadRecords("$(CARS)/db/RampScan.db","P=$(PREFIX),R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
 
 var aimDebug 1
 # Multichannel analyzer stuff

@@ -32,7 +32,7 @@ tyGSAsynInit("serial9",   "UART1", 0,19200,'N',1,8,'N',"\n","\r") /* Keithley 20
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,PORT=serial9")
 
 tyGSAsynInit("serial10",  "UART1", 1, 9600,'N',1,8,'N',"\r","\r") /* Oxford ILM cryometer; C/D mono */
-dbLoadRecords("$(CARS)/CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200_1,PORT=serial10")
+dbLoadRecords("$(CARS)/db/ILM200.db","P=13IDA:,R=ILM200_1,PORT=serial10")
 
 tyGSAsynInit("serial11",  "UART1", 2,19200,'E',1,8,'N',"\r","\r") /* MKS; PR7, CC7, PR8 */
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,PORT=serial11,CC1=cc7,CC2=cc8,PR1=pr7,PR2=pr8")
@@ -46,7 +46,7 @@ tyGSAsynInit("serial13",  "UART1", 4,19200,'N',1,8,'N',"\n","\r") /* Keithley 20
 dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,PORT=serial13")
 
 tyGSAsynInit("serial14",  "UART1", 5, 9600,'N',1,8,'N',"\r","\r") /* Oxford ILM cryometer; E mono */
-dbLoadRecords("$(CARS)/CARSApp/Db/ILM200.db","P=13IDA:,R=ILM200_2,PORT=serial14")
+dbLoadRecords("$(CARS)/db/ILM200.db","P=13IDA:,R=ILM200_2,PORT=serial14")
 
 tyGSAsynInit("serial15",  "UART1", 6,19200,'E',1,8,'N',"\r","\r") /* MKS; PR9, CC9, PR10 */
 dbLoadRecords("$(IP)/ipApp/Db/MKS.db","P=13IDA:,PORT=serial15,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")

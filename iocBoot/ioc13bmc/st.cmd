@@ -34,9 +34,9 @@ dbLoadTemplate("13bmc_pid.template")
 iocsh "SIS3801_8.cmd"
 
 # CCD synchronization for tomo.exe Visual Basic program
-dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMC:,C=CCD1")
+dbLoadRecords("$(CARS)/db/CCD.db", "P=13BMC:,C=CCD1")
 # Tomography data collection
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMC:,R=TC:")
+dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13BMC:,R=TC:")
 
 # Multichannel analyzer stuff
 # Multichannel analyzer stuff
@@ -77,7 +77,7 @@ epicsEnvSet("PREFIX", "13BMC:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Simple laser heating database
-dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13BMC:")
+dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13BMC:")
 
 # vme test record
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
@@ -86,7 +86,7 @@ dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
 
 # Dummy Energy PV for the filterDrive.st program
-dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_EnergyDummyPV.db")
+dbLoadRecords("$(CARS)/db/13BMC_EnergyDummyPV.db")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")

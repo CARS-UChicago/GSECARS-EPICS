@@ -14,6 +14,6 @@ asynOctetSetOutputEos("serial1",0,"\r\n")
 dbLoadTemplate("asynRecord.substitutions")
 
 # Laser Quantum Excel laser
-dbLoadRecords("$(CARS)/CARSApp/Db/LQExcel.db", "P=13LQE1:,R=L1,PORT=serial1")
+dbLoadRecords("$(CARS)/db/LQExcel.db", "P=13LQE1:,R=L1,PORT=serial1")
 
 # END serial.cmd --------------------------------------------------------------

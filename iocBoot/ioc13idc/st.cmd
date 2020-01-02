@@ -97,10 +97,10 @@ epicsEnvSet("PREFIX", "13IDC:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDC:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDC:")
 
 # SCA Window for Bede detector
-dbLoadRecords("$(CARS)/CARSApp/Db/sca_window.db","P=13IDC:,SCA=BEDE,DAC1=DAC1_1,DAC2=DAC1_2,MIN=0,MAX=3")
+dbLoadRecords("$(CARS)/db/sca_window.db","P=13IDC:,SCA=BEDE,DAC1=DAC1_1,DAC2=DAC1_2,MIN=0,MAX=3")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")

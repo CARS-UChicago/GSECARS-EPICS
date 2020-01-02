@@ -82,7 +82,7 @@ dbLoadTemplate  "motors.template"
 drvAsynIPPortConfigure("serial4", "164.54.160.13:10001", 0, 0, 0) 
 asynOctetSetInputEos("serial4",0,"\r")
 asynOctetSetOutputEos("serial4",0,"\r")
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13LU:,R=Laser1,PORT=serial4")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13LU:,R=Laser1,PORT=serial4")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the

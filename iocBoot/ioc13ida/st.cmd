@@ -28,7 +28,7 @@ abConfigVme 0,0xc00000,0x60,5
 abConfigAuto
 
 # Load database
-dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13IDA:")
+dbLoadRecords("$(CARS)/db/eps_valid.db", "P=13IDA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")

@@ -1,7 +1,7 @@
 errlogInit(5000)
 < envPaths
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/CARSApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/db)
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS

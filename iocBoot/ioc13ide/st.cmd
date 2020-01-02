@@ -58,7 +58,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_6,DTYP=asynMCA,NCHAN
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDE:")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13IDE:")

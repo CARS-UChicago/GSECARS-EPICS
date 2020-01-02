@@ -28,7 +28,7 @@ abConfigVme 0,0xc00000,0x60,5
 abConfigAuto
 
 # Load database
-dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13BMA:")
+dbLoadRecords("$(CARS)/db/eps_valid.db", "P=13BMA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
@@ -36,8 +36,8 @@ dbLoadTemplate("eps_valves.template")
 dbLoadTemplate("motors.template")
 
 # BMD and BMC filter racks
-dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_Filters.db","P=13BMA:,R=BMC_Filters,MOTOR=m6")
-dbLoadRecords("$(CARS)/CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
+dbLoadRecords("$(CARS)/db/13BMC_Filters.db","P=13BMA:,R=BMC_Filters,MOTOR=m6")
+dbLoadRecords("$(CARS)/db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
 
 # Monochromator PID
 dbLoadTemplate "mono_pid.template"
