@@ -14,6 +14,9 @@ include $(TOP)/configure/CONFIG
 #DB += dbExample2.db
 #DB += dbSubExample.db
 
+DB += $(patsubst ../%, %, $(wildcard ../*.template))
+DB += $(patsubst ../%, %, $(wildcard ../*.db))
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
