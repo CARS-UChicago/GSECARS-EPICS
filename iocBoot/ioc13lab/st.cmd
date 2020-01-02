@@ -127,7 +127,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,POR
 <SIS3820.cmd
 
 ### Scalers: Joerger VSC8/16
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+dbLoadRecords("$(STD)/db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/db/motorUtil.db", "P=13LAB:")
@@ -141,7 +141,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db", "P=13LAB:")
 dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10000")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
+dbLoadRecords("$(STD)/db/misc.db","P=13BMD:")
 
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13LAB:")

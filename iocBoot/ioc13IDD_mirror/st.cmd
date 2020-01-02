@@ -95,7 +95,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Mirror:")
 dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13Mirror:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Mirror:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Mirror:")
 
 # AG_CONEXCreateController(asyn port, serial port, controllerID, 
 #                          active poll period (ms), idle poll period (ms)) 

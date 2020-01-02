@@ -38,7 +38,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-#dbLoadRecords("$(STD)/stdApp/Db/all_com_4.db", "P=13Raman:")
+#dbLoadRecords("$(STD)/db/all_com_4.db", "P=13Raman:")
 ### motorUtil - for allstop, moving, etc.
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Raman:")
 
@@ -57,7 +57,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Raman:")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Raman:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Raman:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Raman:")
 
 # MCB-4B driver setup parameters:
 #     (1) maximum # of controllers,

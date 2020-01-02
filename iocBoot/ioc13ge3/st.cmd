@@ -75,10 +75,10 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13GE3:")
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13GE3:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE3:")
+dbLoadRecords("$(STD)/db/misc.db","P=13GE3:")
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13GE3:")
+#dbLoadRecords("$(STD)/db/VXstats.db","P=13GE3:")
 
 
 ################################################################################

@@ -44,7 +44,7 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=
 dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
+dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)", std)
 
 < ../calc_GSECARS.iocsh
 

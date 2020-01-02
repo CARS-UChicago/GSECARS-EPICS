@@ -41,7 +41,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in std/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db","P=13LAB2:")
+dbLoadRecords("$(STD)/db/all_com_8.db","P=13LAB2:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches

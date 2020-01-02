@@ -51,7 +51,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=$(PREFIX)")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=$(PREFIX)")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=$(PREFIX)")
+dbLoadRecords("$(STD)/db/misc.db", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")

@@ -55,7 +55,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_5,DTYP=asynMCA,NCHAN
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
+dbLoadRecords("$(STD)/db/misc.db","P=13IDE:")
 
 # Experiment description
 dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDE:")

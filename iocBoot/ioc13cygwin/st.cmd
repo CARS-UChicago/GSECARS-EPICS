@@ -57,7 +57,7 @@ dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Cygwin:, C=ccd1")
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Cygwin:")
+dbLoadRecords("$(STD)/db/all_com_8.db", "P=13Cygwin:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -74,7 +74,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Cygwin:")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Cygwin:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Cygwin:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Cygwin:")
 
 # MM4000 driver setup parameters: 
 #     (1) maximum # of controllers, 

@@ -31,10 +31,10 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=Instek:")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=Instek:")
 
 # sseq records
-dbLoadRecords("$(STD)/stdApp/Db/userStringSeqs10.db", "P=Instek:")
+dbLoadRecords("$(STD)/db/userStringSeqs10.db", "P=Instek:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=Instek:")
+dbLoadRecords("$(STD)/db/misc.db", "P=Instek:")
 
 
 < ../save_restore_IOCSH.cmd

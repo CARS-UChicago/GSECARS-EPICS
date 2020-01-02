@@ -56,7 +56,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_EMONO:")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_EMONO:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13IDA_EMONO:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13IDA_EMONO:")
 
 
 # Monochromator positions

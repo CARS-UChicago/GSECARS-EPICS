@@ -71,7 +71,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XRM:")
 # dbLoadRecords("$(CARS)/db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XRM:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13XRM:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13XRM:")

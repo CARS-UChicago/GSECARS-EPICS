@@ -34,13 +34,13 @@ save_restoreDebug = 0
 # and it's time to trigger detectors.
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE1:")
+dbLoadRecords("$(STD)/db/misc.db","P=13GE1:")
 
 # Experiment description
 dbLoadRecords("$(CARS)/db/experiment_info.db","P=13GE1:")
 
 # vxWorks statistics
-#dbLoadRecords("$(STD)/stdApp/Db/VXstats.db","P=13GE1:")
+#dbLoadRecords("$(STD)/db/VXstats.db","P=13GE1:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.

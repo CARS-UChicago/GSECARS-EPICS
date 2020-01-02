@@ -80,7 +80,7 @@ CAMACScalerSetup(1)
 #  int counter_type,                   /* 0=QS-450 */
 #  int counter_slot)                   /* Counter N */
 CAMACScalerConfig(0, 0, 0, 0, 20, 0, 21)
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db","P=13GE2:,S=scaler1,OUT=#C0 S0 @,DTYP=CAMAC scaler,FREQ=262144")
+dbLoadRecords("$(STD)/db/scaler.db","P=13GE2:,S=scaler1,OUT=#C0 S0 @,DTYP=CAMAC scaler,FREQ=262144")
 
 # Test record for scaler synchronization at X-26
 #dbLoadRecords("$(CARS)/db/X26_scaler_sync.db","P=13GE2:,M=med:mca1,S=scaler1")
@@ -108,7 +108,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13GE2:")
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13GE2:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13GE2:")
+dbLoadRecords("$(STD)/db/misc.db","P=13GE2:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")

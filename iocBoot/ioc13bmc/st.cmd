@@ -83,7 +83,7 @@ dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13BMC:")
 dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
+dbLoadRecords("$(STD)/db/misc.db","P=13BMC:")
 
 # Dummy Energy PV for the filterDrive.st program
 dbLoadRecords("$(CARS)/db/13BMC_EnergyDummyPV.db")

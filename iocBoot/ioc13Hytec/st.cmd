@@ -23,7 +23,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Hytec:")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Hytec:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Hytec:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Hytec:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Hytec:")

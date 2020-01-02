@@ -91,7 +91,7 @@ epicsEnvSet("PREFIX", "13IDA:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
+dbLoadRecords("$(STD)/db/misc.db","P=13IDA:")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")

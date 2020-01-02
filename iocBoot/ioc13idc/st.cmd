@@ -28,7 +28,7 @@ drvXPSC8Debug = 0
 asynXPSC8Debug = 0
 
 # Load database
-# dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+# dbLoadRecords("$(STD)/db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 dbLoadTemplate("motors.template")
 
@@ -90,7 +90,7 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_5,DTYP=asynMCA,NCHAN
 dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDC:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDC:")
+dbLoadRecords("$(STD)/db/misc.db","P=13IDC:")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13IDC:")

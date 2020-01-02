@@ -70,7 +70,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-# dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Laser:")
+# dbLoadRecords("$(STD)/db/all_com_8.db", "P=13Laser:")
 ### motorUtil - for allstop, moving, etc.
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Laser:")
 
@@ -92,7 +92,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Laser:")
 dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13Laser:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Laser:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Laser:")
 
 # MCB-4B driver setup parameters:
 #     (1) port name

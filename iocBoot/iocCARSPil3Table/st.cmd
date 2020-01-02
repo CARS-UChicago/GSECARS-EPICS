@@ -36,7 +36,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_4.db", "P=CARSPil3Table:")
+dbLoadRecords("$(STD)/db/all_com_4.db", "P=CARSPil3Table:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -53,7 +53,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=CARSPil3Table:")
 dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=CARSPil3Table:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=CARSPil3Table:")
+dbLoadRecords("$(STD)/db/misc.db", "P=CARSPil3Table:")
 
 # MCB-4B driver setup parameters:
 #     (1) port name

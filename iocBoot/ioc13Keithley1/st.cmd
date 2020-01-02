@@ -25,7 +25,7 @@ dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Keithley1:")
 dbLoadTemplate "pid_slow.substitutions"
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Keithley1:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Keithley1:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Keithley1:")

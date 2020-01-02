@@ -76,7 +76,7 @@ dbLoadTemplate("scanParms.template")
 <../calc_GSECARS.iocsh
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=$(PREFIX)")
+dbLoadRecords("$(STD)/db/misc.db", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
