@@ -83,8 +83,8 @@ dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,
 dbLoadTemplate("scanParms.template")
 
 #  load the databases for the MSL MRD100 module ...
-#dbLoadRecords ("$(VME)/vmeApp/Db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
-dbLoadRecords ("$(VME)/vmeApp/Db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
+#dbLoadRecords ("$(VME)/db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
+dbLoadRecords ("$(VME)/db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13IDA:")

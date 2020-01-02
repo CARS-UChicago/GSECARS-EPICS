@@ -65,15 +65,6 @@ dbLoadTemplate "scanParms.template"
 ##icbConfig("icbDsp1", 0x8058, 0, 4)
 #dbLoadRecords("$(MCA)/db/icbDsp.db", "P=13Linux:,DSP=dsp1,PORT=icbDsp1")
 
-# Roper CCD detector database
-#dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd1")
-
-# MAR CCD detector database
-#dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Linux:, C=ccd2")
-
-# DXP and mca records for the Vortex detector
-#< vortex.cmd
-
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
@@ -103,9 +94,6 @@ dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Linux:")
 asynSetTraceMask serial3 0 3
 asynSetTraceIOMask serial3 0 2
 iocInit
-
-dbpr "13Linux:ccd1ServerName"
-dbpr "13Linux:ccd1ServerPort"
 
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5, "P=13Linux:")

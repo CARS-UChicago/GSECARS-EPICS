@@ -80,7 +80,7 @@ iocsh("../calc_GSECARS.iocsh")
 dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13BMC:")
 
 # vme test record
-dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
+dbLoadRecords("$(VME)/db/vme.db", "P=13BMC:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db","P=13BMC:")

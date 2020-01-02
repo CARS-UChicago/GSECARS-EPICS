@@ -47,9 +47,9 @@ devMCA_softDebug = 0
 dbLoadRecords("bi_test.db", "P=13LAB:")
 
 # Heidenhain IK320 VME encoder interpolator
-#dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
-#dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3")
-#dbLoadRecords("$(VME)/vmeApp/Db/IK320group.db", "P=13LAB:,group=5")
+#dbLoadRecords("$(VME)/db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
+#dbLoadRecords("$(VME)/db/IK320card.db", "P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3")
+#dbLoadRecords("$(VME)/db/IK320group.db", "P=13LAB:,group=5")
 #drvIK320RegErrStr()
 
 # Heater control
@@ -153,7 +153,7 @@ dbLoadRecords("$(CALC)/db/userArrayCalcs10.db", "P=13LAB:,N=10")
 dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13LAB:")
 
 # vme test record
-dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB:,Q=vme1")
+dbLoadRecords("$(VME)/db/vme.db", "P=13LAB:,Q=vme1")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")

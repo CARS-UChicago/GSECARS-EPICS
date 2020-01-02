@@ -22,11 +22,7 @@ NDDxpConfig("DXP1",  8, -1, -1)
 
 dbLoadTemplate("8element.substitutions")
 
-# Create a netCDF file saving plugin
-NDFileNetCDFConfigure("DXP1NetCDF", 100, 0, "DXP1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=DXP1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileNetCDF.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
+# Need to include commonPlugins.cmd here if we want to use this file
 
 #xiaSetLogLevel(4)
 #asynSetTraceMask DXP1 0 255

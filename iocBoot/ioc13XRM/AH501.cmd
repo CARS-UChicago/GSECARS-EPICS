@@ -22,7 +22,7 @@ asynSetTraceIOMask("IP_$(PORT)",0,6)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=$(PORT)asyn1,PORT=IP_$(PORT),ADDR=0,OMAX=256,IMAX=256")
 
 drvAHxxxConfigure("$(PORT)", "IP_$(PORT)", $(RING_SIZE), "AH501D")
-dbLoadRecords("$(QUADEM)/quadEMApp/Db/$(TEMPLATE).template", "P=$(PREFIX), R=$(RECORD), PORT=$(PORT), ADDR=0, TIMEOUT=1")
+dbLoadRecords("$(QUADEM)/db/$(TEMPLATE).template", "P=$(PREFIX), R=$(RECORD), PORT=$(PORT), ADDR=0, TIMEOUT=1")
 
 asynSetTraceIOMask("$(PORT)",0,2)
 #asynSetTraceMask("$(PORT)",0,9)

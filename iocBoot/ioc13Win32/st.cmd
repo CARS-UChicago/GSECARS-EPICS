@@ -52,12 +52,6 @@ dbLoadRecords("$(CARS)/db/scanner.db", "P=13Win32:,Q=EDB")
 # crate.
 dbLoadTemplate "scanParms.template"
 
-# Roper CCD detector database
-dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Win32:, C=ccd1")
-
-# DXP and mca records for the Vortex detector
-#< vortex.cmd
-
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
