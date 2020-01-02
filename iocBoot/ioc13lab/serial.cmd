@@ -94,7 +94,7 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=seri
 #dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=13LAB:,R=Verdi1:,PORT=serial8")
 
 # Serial 8 XIA filter rack
-#dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13LAB:,S=filter1,ADDRESS=1,PORT=serial8")
+#dbLoadRecords("$(OPTICS)/db/XIA_shutter.db", "P=13LAB:,S=filter1,ADDRESS=1,PORT=serial8")
 
 # Serial 5 Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
