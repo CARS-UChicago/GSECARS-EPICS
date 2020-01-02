@@ -35,7 +35,7 @@ asynSetTraceIOMask DXP1 0 2
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13SDD1:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13SDD1:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
 
 iocInit
 

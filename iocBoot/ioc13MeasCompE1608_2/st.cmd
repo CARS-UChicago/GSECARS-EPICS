@@ -26,7 +26,7 @@ dbLoadTemplate("pid_slow.substitutions")
 < ../calc_GSECARS.iocsh
 
 ### Scan-support software
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=1$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=1$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 < ../save_restore_IOCSH.cmd
 

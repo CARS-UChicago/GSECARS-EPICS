@@ -138,7 +138,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db", "P=13LAB:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10000")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10000")
 
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/db/misc.db","P=13BMD:")

@@ -23,7 +23,7 @@ dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/EPICS_AD_Viewer.template", "P=13BMCRP1:
 
 set_requestfile_path("./")
 set_savefile_path("./autosave")
-set_requestfile_path("$(SSCAN)/sscanApp/Db")
+set_requestfile_path("$(SSCAN)/db")
 set_requestfile_path("$(AREA_DETECTOR)/ADApp/Db")
 set_pass0_restoreFile("auto_settings.sav")
 set_pass1_restoreFile("auto_settings.sav")

@@ -70,7 +70,7 @@ dbLoadTemplate "scanParms.template"
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13BMC:")

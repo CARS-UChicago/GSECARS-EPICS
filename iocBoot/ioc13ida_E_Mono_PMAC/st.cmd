@@ -47,7 +47,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA_EMONO:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13IDA_EMONO:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13IDA_EMONO:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
 dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13IDA_EMONO:")
