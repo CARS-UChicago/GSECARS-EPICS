@@ -17,6 +17,11 @@ include $(TOP)/configure/CONFIG
 DB += $(patsubst ../%, %, $(wildcard ../*.template))
 DB += $(patsubst ../%, %, $(wildcard ../*.db))
 
+DB += $(patsubst ../%, %, $(wildcard ../*.proto))
+DB += $(patsubst ../%, %, $(wildcard ../*.protocol))
+
+REQ += $(patsubst ../%, %, $(wildcard ../*.req))
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
