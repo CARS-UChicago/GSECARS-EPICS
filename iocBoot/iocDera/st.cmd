@@ -27,7 +27,7 @@ MultiFunctionConfig("1608G", 0, $(INPUT_POINTS), $(OUTPUT_POINTS))
 dbLoadTemplate("1608G.substitutions")
 
 ## SR570 database
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=$(PREFIX),A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/SR570.db", "P=$(PREFIX),A=A1,PORT=serial1")
 
 # Newport CONEX-PP controllers
 # For Windows
@@ -58,7 +58,7 @@ asynSetTraceIOMask("CONEX3", 0, 2)
 dbLoadTemplate("motor.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=Dera:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=Dera:")
 
 # Load asynRecords
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=serial1,ADDR=0,OMAX=80,IMAX=80")
@@ -70,17 +70,17 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial2,PORT=serial2,ADD
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 dbLoadTemplate("scanParms.template")
 
 <../calc_GSECARS.iocsh
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=$(PREFIX)")
+dbLoadRecords("$(STD)/db/misc.db", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Przemek Dera")

@@ -44,7 +44,6 @@ set_requestfile_path(cars,     "CARSApp/Db")
 set_requestfile_path(adcore,   "ADApp/Db")
 set_requestfile_path(autosave, "asApp/Db")
 set_requestfile_path(calc,     "calcApp/Db")
-set_requestfile_path(camac,    "camacApp/Db")
 set_requestfile_path(dac128v,  "dac128VApp/Db")
 set_requestfile_path(ip,       "ipApp/Db")
 set_requestfile_path(mca,      "mcaApp/Db")
@@ -57,7 +56,7 @@ set_requestfile_path(softglue, "softGlueApp/Db")
 set_requestfile_path(std,      "stdApp/Db")
 set_requestfile_path(vme,      "vmeApp/Db")
 
-#dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=xxx:")
+#dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=xxx:")
 
 # Date and time of boot
 date

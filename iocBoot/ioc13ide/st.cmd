@@ -37,28 +37,28 @@ iocsh "SIS3820_32.cmd"
 # and it's time to trigger detectors.
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDE:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDE:")
 
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDE:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDE:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=20,MAXPTS4=5,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
 dbLoadTemplate("scanParms.template")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 # added 2-05 for split ion chmaber
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDE:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_5,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 4)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDE:,M=mip330_6,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 5)")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDE:")
+dbLoadRecords("$(STD)/db/misc.db","P=13IDE:")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDE:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDE:")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13IDE:")
@@ -72,7 +72,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDE:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDE:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDE:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13IDE:")
 
 # Setup device/driver support addresses, interrupt vectors, etc.
 

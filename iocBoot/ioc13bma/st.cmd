@@ -28,7 +28,7 @@ abConfigVme 0,0xc00000,0x60,5
 abConfigAuto
 
 # Load database
-dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13BMA:")
+dbLoadRecords("$(CARS)/db/eps_valid.db", "P=13BMA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
@@ -36,8 +36,8 @@ dbLoadTemplate("eps_valves.template")
 dbLoadTemplate("motors.template")
 
 # BMD and BMC filter racks
-dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_Filters.db","P=13BMA:,R=BMC_Filters,MOTOR=m6")
-dbLoadRecords("$(CARS)/CARSApp/Db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
+dbLoadRecords("$(CARS)/db/13BMC_Filters.db","P=13BMA:,R=BMC_Filters,MOTOR=m6")
+dbLoadRecords("$(CARS)/db/13BMD_Filters.db","P=13BMA:,R=BMD_Filters,MOTOR=m5")
 
 # Monochromator PID
 dbLoadTemplate "mono_pid.template"
@@ -46,7 +46,7 @@ dbLoadTemplate "mono_pid.template"
 dbLoadTemplate("auto_shutter.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMA:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13BMA:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -54,7 +54,7 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMA:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13BMA:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -66,7 +66,7 @@ epicsEnvSet("PREFIX", "13BMA:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMA:")
+dbLoadRecords("$(STD)/db/misc.db","P=13BMA:")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -76,7 +76,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMA:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMA:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMA:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMA:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.

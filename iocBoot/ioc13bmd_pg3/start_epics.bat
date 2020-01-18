@@ -1,4 +1,6 @@
-J:\epics\support\areaDetector\ADSpinnaker\iocs\spinnakerIOC\bin\windows-x64-static\spinnakerApp st.cmd.BlackflyS_50S5C
+rem start medm -x -macro "P=13BMDPG3:, R=cam1:" ADSpinnaker.adl
+set PATH=C:\epics_windows_binaries\windows-x64-static;%PATH%
+spinnakerApp st.cmd
 pause
 
 

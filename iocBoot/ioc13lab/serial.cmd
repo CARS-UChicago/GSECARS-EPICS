@@ -46,10 +46,10 @@ asynOctetConnect("gpib1:3", "gpib1", 3, 1, 80)
 dbLoadTemplate("asynRecord.template")
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
+#dbLoadRecords("$(IP)/db/Newport_LAE500.db", "P=13LAB:,R=LAE500,PORT=serial2")
 
 # Port 3 Encoder readout unit
-#dbLoadRecords("$(CARS)/CARSApp/Db/RSF715.db","P=13LAB:,ENCODER=RSF715,PORT=serial4")
+#dbLoadRecords("$(CARS)/db/RSF715.db","P=13LAB:,ENCODER=RSF715,PORT=serial4")
 
 # Serial 4 MCB4B motor controller
 # MCB-4B driver setup parameters:
@@ -63,10 +63,10 @@ MCB4BSetup(1, 10)
 MCB4BConfig(0, "serial4")
 
 # Serial 5, 6 Keithley Multimeter
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,PORT=serial5")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=gpib1:2")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=serial6")
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,PORT=serial7")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM1,PORT=serial5")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=gpib1:2")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=serial6")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM3,PORT=serial7")
 
 # Serial 7 for the MM4000.
 # MM4000 driver setup parameters:
@@ -85,16 +85,16 @@ dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13LAB:,Dmm=DMM2,PORT=seri
 #str = malloc(300)
 #strcpy(str, "P=13LAB:,R=traj1,NAXES=6,NELM=1000,NPULSE=1000,PORT=serial7,")
 #strcat(str, "DONPV=13LAB:str:EraseStart,DONV=1,DOFFPV=13LAB:str:StopAll,DOFFV=1")
-#dbLoadRecords("$(CARS)/CARSApp/Db/trajectoryScan.db", str, top)
+#dbLoadRecords("$(CARS)/db/trajectoryScan.db", str, top)
 
 # Serial 8 Stanford Research Systems SR570 Current Preamplifier
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB:,A=A1,PORT=serial8")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB:,A=A1,PORT=serial8")
 
 # Serial 8 is Verdi Laser for testing
-#dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13LAB:,R=Verdi1:,PORT=serial8")
+#dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=13LAB:,R=Verdi1:,PORT=serial8")
 
 # Serial 8 XIA filter rack
-#dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13LAB:,S=filter1,ADDRESS=1,PORT=serial8")
+#dbLoadRecords("$(OPTICS)/db/XIA_shutter.db", "P=13LAB:,S=filter1,ADDRESS=1,PORT=serial8")
 
 # Serial 5 Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
@@ -103,5 +103,5 @@ dbLoadTemplate("Pelco_CM6700.substitutions")
 #dbLoadTemplate("SR630.substitutions")
 
 # GPIB 3 is Fluke multimeter
-#dbLoadRecords("$(CARS)/CARSApp/Db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
+#dbLoadRecords("$(CARS)/db/Fluke_8842A.db", "P=13LAB:,M=Fluke1,PORT=gpib1,A=3")
 

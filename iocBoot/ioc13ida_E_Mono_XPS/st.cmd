@@ -103,7 +103,7 @@ set_requestfile_path("$(STD)",      "stdApp/Db")
 set_requestfile_path("$(VME)",      "vmeApp/Db")
 
 save_restoreSet_status_prefix("13IDA_EMONO:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_EMONO:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13IDA_EMONO:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -111,15 +111,15 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA_EMONO:")
 dbLoadTemplate "scanParms.template"
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA_EMONO:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA_EMONO:")
 
 dbLoadTemplate  "mono_energy.template"
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13IDA_EMONO:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13IDA_EMONO:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13IDA_EMONO:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13IDA_EMONO:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

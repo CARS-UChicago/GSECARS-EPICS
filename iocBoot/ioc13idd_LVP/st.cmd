@@ -40,8 +40,8 @@ asynOctetSetInputEos("serial3",0,"\r\n")
 asynOctetSetOutputEos("serial3",0,"\n")
 dbLoadTemplate("asynRecord.template")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM3,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM4,PORT=serial3")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM3,PORT=serial2")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM4,PORT=serial3")
 
 # LVP pressure control.  This talks to the Omega meter.
 dbLoadTemplate("LVP_pressure_control.template")
@@ -50,7 +50,7 @@ dbLoadTemplate("LVP_pressure_control.template")
 dbLoadTemplate("LVP_furnace_control.template")
 
 # LVP Theta (temperature ramping) controller
-dbLoadRecords("$(CARS)/CARSApp/Db/RampScan.db","P=$(PREFIX),R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
+dbLoadRecords("$(CARS)/db/RampScan.db","P=$(PREFIX),R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
 
 var aimDebug 1
 # Multichannel analyzer stuff
@@ -58,8 +58,8 @@ var aimDebug 1
 #           maxSignals, maxSequences, ethernetDevice)
 #AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"p5p1")
 #AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"p5p1")
-#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
-#dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
+#dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
+#dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -72,17 +72,17 @@ var aimDebug 1
 #      3 = TCA
 #      4 = DSP
 #icbConfig("icbAdc1", 0x59E, 5, 0)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
+#dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
 #icbConfig("icbAmp1", 0x59E, 3, 1)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
+#dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
 #icbConfig("icbHvps1", 0x59E, 2, 2)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+#dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 
 < ../calc_GSECARS.iocsh
 
 ### Scan-support software
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 < ../save_restore_IOCSH.cmd
 

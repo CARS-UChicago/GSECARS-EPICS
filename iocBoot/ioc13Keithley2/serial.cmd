@@ -14,6 +14,6 @@ asynSetTraceIOMask("serial1",0,2)
 dbLoadTemplate("asynRecord.template")
 
 # Keithley 2700 DMM
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13Keithley2:,Dmm=DMM1,PORT=serial1")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13Keithley2:,Dmm=DMM1,PORT=serial1")
 
 # END serial.cmd --------------------------------------------------------------

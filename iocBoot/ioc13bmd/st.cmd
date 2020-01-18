@@ -23,9 +23,9 @@ cd startup
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
 VSCSetup(1, 0xB0000000, 200)
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13BMD:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+dbLoadRecords("$(STD)/db/scaler.db", "P=13BMD:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
-dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
+dbLoadRecords("$(CARS)/db/lvp_dmm.db", "P=13BMD:,Dmm=DMM1,DLY=0.1")
 dbLoadTemplate "heater_control.template"
 dbLoadTemplate "LVP_furnace_control.template"
 dbLoadTemplate "laser_pid.template"
@@ -34,15 +34,15 @@ dbLoadTemplate "laser_pid.template"
 st=malloc(256)
 strcpy(st,"P=13BMD:,R=MAR345,IN=13BMD:Unidig1Bi13,")
 strcat(st,"OUT=13BMD:filter1sendCommand.VAL")
-dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter_serial.db",st)
+dbLoadRecords("$(CARS)/db/MAR345_shutter_serial.db",st)
 
 # Multichannel analyzer stuff
 # AIMConfig(portName, card, ethernet_address, port, maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("NI9CE/1", 0x9CE, 1, 2048, 1, 1,"dc0")
 AIMConfig("NI9CE/2", 0x9CE, 2, 2048, 4, 1,"dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=2048")
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
@@ -54,16 +54,16 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x9ce, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMD:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13BMD:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x9ce, 3, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMD:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13BMD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x9ce, 2, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 # CCD synchronization for older version of tomo_collect
-dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMD:,C=CCD1")
+dbLoadRecords("$(CARS)/db/CCD.db", "P=13BMD:,C=CCD1")
 # Tomography data collection
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMDRP1:,R=TC:")
+dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13BMDRP1:,R=TC:")
 
 # Struck MCS as 32-channel multi-element detector
 iocsh "SIS3820_32.cmd"
@@ -112,7 +112,7 @@ MCB4BConfig(1, "serial18")
 dbLoadTemplate "motors.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMD:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13BMD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -120,9 +120,9 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13BMD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=4,MAXPTS4=3,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13BMD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=4,MAXPTS4=3,MAXPTSH=10")
 
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13BMD:,Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db", "P=13BMD:,Q=edb")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -130,14 +130,14 @@ dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13BMD:,Q=edb")
 dbLoadTemplate "scanParms.template"
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
+dbLoadRecords("$(STD)/db/misc.db","P=13BMD:")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13BMD:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13BMD:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13BMD:")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -147,14 +147,14 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMD:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMD:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMD:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMD:")
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 
 iocsh
-epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/ipApp/Db:$(CARS)/CARSApp/Db")
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/db:$(CARS)/db")
 exit
 
 iocInit

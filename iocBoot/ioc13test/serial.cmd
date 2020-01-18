@@ -13,6 +13,6 @@ asynOctetSetOutputEos("serial1",0,"\r")
 dbLoadTemplate("asynRecord.substitutions")
 
 # IPG laser
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13TEST:,R=Laser1,PORT=serial1")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13TEST:,R=Laser1,PORT=serial1")
 
 # END serial.cmd --------------------------------------------------------------

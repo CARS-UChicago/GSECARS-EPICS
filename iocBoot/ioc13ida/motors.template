@@ -1,4 +1,4 @@
-file "$(CARS)/CARSApp/Db/motor.db"
+file "$(CARS)/db/motor.db"
 {
 pattern
 {P,        M,   DTYP,          C,  S,   DESC,              EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,   SREV,    UREV,   PREC,   DHLM,   DLLM}
@@ -68,8 +68,8 @@ pattern
 {13IDA:,  m48,  "OMS MAXv",   1,  7, "Unused",               mm,      Neg,    1,    0,   .5,      0,     0,      0,     400,       .5,    3,     100,   -10}
   
 # Horizontal mirror in 13-ID-C
-{13IDA:,  m49,  "OMS MAXv",   2,  0, "Upstream moment",      mm,      Pos,  0.5,  .01,    1,      0,    .0,     .0,    2000,  -.34737,    4,      40,     0}
-{13IDA:,  m50,  "OMS MAXv",   2,  1, "Downstream moment",    mm,      Pos,  0.5,  .01,    1,      0,    .0,     .0,    2000,  -.34737,    4,      40,     0}
+{13IDA:,  m49,  "OMS MAXv",   2,  0, "Upstream moment",      mm,      Pos,  0.5,  .01,    1,      0,    .0,     .0,    1600,  -.34737,    4,      40,     0}
+{13IDA:,  m50,  "OMS MAXv",   2,  1, "Downstream moment",    mm,      Pos,  0.5,  .01,    1,      0,    .0,     .0,    1600,  -.34737,    4,      40,     0}
 {13IDA:,  m51,  "OMS MAXv",   2,  2, "Upstream Pitch",       mm,      Neg,  0.5,  .01,   2.,      0,    .0,     .0,     400,  .016071,    4,     100,     0}
 {13IDA:,  m52,  "OMS MAXv",   2,  3, "Downstream Pitch",     mm,      Neg,  0.5,  .01,   2.,      0,    .0,     .0,     400,  .016071,    4,     100,     0}
 {13IDA:,  m53,  "OMS MAXv",   2,  4, "Upstream jack",        mm,      Pos,  1.0,  .05,   .5,      0,    .0,     .0,     400,     .254,    3,     101,    -1}
@@ -86,7 +86,7 @@ pattern
 #  YANG = 180
 #  SX, SY, SZ = 115.50, 34.00, 94.50 mm puts S point at aperture
 #  
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,          Q,     T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
@@ -103,7 +103,7 @@ pattern
 #  Lx', Lz'  = 1000, 550 mm
 #  SX, SY, SZ = 524.3, 275, 486 mm 
 
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,           Q,      T,   M0X,  M0Y,   M1Y,   M2X,   M2Y,   M2Z,  GEOM}
@@ -112,7 +112,7 @@ pattern
 
 
 # C/D Horizontal Mirror
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,            Q,      T,   M0X,   M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
@@ -120,14 +120,14 @@ pattern
 }
 
 
-#file "$(CARS)/CARSApp/Db/Energy.db"
+#file "$(CARS)/db/Energy.db"
 #{
 #pattern
 #{P,      EN,   DESC,     EGU,  PREC,  SCANREC,     USEID,   ID,       TWEAK}
 #{13IDA:,  E,  "Energy",   eV,    5,   13IDA:scan1,     1,   ID13ds:,  1.00}
 #}
 
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,              EGU,  DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC,  MRES,    RRES, PREC,     DHLM,   DLLM}
@@ -155,7 +155,7 @@ pattern
 {13IDA:,  pm18,"13IDA:EM2P:Done NPP NMS", "13IDA:pm18DVAL.VAL PP MS","13IDA:EM2P:Readback.H NPP NMS", "13IDA:EM2P:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
 }
 
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}

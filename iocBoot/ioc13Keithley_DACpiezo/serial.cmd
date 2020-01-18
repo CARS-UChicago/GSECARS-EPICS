@@ -31,6 +31,6 @@ asynOctetSetOutputEos("serial4",0,"\r")
 
 
 # Keithley 2700 DMM
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13DAC_piezo:,Dmm=DMM1,PORT=serial1")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13DAC_piezo:,Dmm=DMM1,PORT=serial1")
 
 # END serial.cmd --------------------------------------------------------------

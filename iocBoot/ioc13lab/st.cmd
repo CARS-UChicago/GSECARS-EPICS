@@ -47,9 +47,9 @@ devMCA_softDebug = 0
 dbLoadRecords("bi_test.db", "P=13LAB:")
 
 # Heidenhain IK320 VME encoder interpolator
-#dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
-#dbLoadRecords("$(VME)/vmeApp/Db/IK320card.db", "P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3")
-#dbLoadRecords("$(VME)/vmeApp/Db/IK320group.db", "P=13LAB:,group=5")
+#dbLoadRecords("$(VME)/db/IK320card.db", "P=13LAB:,sw2=card0:,axis=1,switches=41344,irq=3")
+#dbLoadRecords("$(VME)/db/IK320card.db", "P=13LAB:,sw2=card0:,axis=2,switches=41344,irq=3")
+#dbLoadRecords("$(VME)/db/IK320group.db", "P=13LAB:,group=5")
 #drvIK320RegErrStr()
 
 # Heater control
@@ -62,7 +62,7 @@ dbLoadTemplate "pid_slow.template"
 dbLoadTemplate "pid_fast.template"
 
 # Tomography data collection
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13LAB:,R=TC:")
+dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13LAB:,R=TC:")
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -71,11 +71,11 @@ dbLoadTemplate  "motors.template"
 #iocsh("APS_EM.cmd")
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db", "P=13LAB:")
+dbLoadRecords("$(CARS)/db/experiment_info.db", "P=13LAB:")
 
 
 #MN----------------------------------------------------------------------
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13LAB:,Q=EDB")
+dbLoadRecords("$(CARS)/db/scanner.db", "P=13LAB:,Q=EDB")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -89,17 +89,17 @@ dbLoadTemplate "scanParms.template"
 AIMConfig("AIM1/1", 0x3ED, 1, 2048, 1, 1, "fei0")
 AIMConfig("AIM1/2", 0x3ED, 2, 2048, 8, 1, "fei0")
 AIMConfig("DSA2000", 0x8058, 1, 2048, 1, 1, "fei0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc3,DTYP=asynMCA,INP=@asyn(AIM1/2 2),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc4,DTYP=asynMCA,INP=@asyn(AIM1/2 4),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=aim_adc5,DTYP=asynMCA,INP=@asyn(AIM1/2 6),NCHAN=2048")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=dsa2000_1,DTYP=asynMCA,INP=@asyn(DSA2000 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc2,DTYP=asynMCA,INP=@asyn(AIM1/2 0),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc3,DTYP=asynMCA,INP=@asyn(AIM1/2 2),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc4,DTYP=asynMCA,INP=@asyn(AIM1/2 4),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=aim_adc5,DTYP=asynMCA,INP=@asyn(AIM1/2 6),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=dsa2000_1,DTYP=asynMCA,INP=@asyn(DSA2000 0),NCHAN=2048")
 
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_1,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 0)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_2,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 1)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_3,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 2)")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN=2048,INP=@asyn(Ip330Sweep1 3)")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -112,25 +112,25 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13LAB:,M=mip330_4,DTYP=asynMCA,NCHAN
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x3ED, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13LAB:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x3ED, 3, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13LAB:,AMP=amp1,PORT=icbAmp1")
 #icbConfig("icbHvps1", 0x3ED, 2, 2)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+#dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13LAB:,HVPS=hvps1,PORT=icbHvps1,LIMIT=6000")
 icbConfig("icbTca1", 0x3ED, 8, 3)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTca1")
+dbLoadRecords("$(MCA)/db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTca1")
 #icbConfig("icbDsp1", 0x8058, 0, 4)
-#dbLoadRecords("$(MCA)/mcaApp/Db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
+#dbLoadRecords("$(MCA)/db/icbDsp.db", "P=13LAB:,DSP=dsp1,PORT=icbDsp1")
 
 # SIS 3801 and SIS3820
 <SIS3801.cmd
 <SIS3820.cmd
 
 ### Scalers: Joerger VSC8/16
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+dbLoadRecords("$(STD)/db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db", "P=13LAB:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db", "P=13LAB:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -138,22 +138,22 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db", "P=13LAB:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10000")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13LAB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10000")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMD:")
+dbLoadRecords("$(STD)/db/misc.db","P=13BMD:")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13LAB:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13LAB:")
 
 # Free-standing user array calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userArrayCalcs10.db", "P=13LAB:,N=10")
+dbLoadRecords("$(CALC)/db/userArrayCalcs10.db", "P=13LAB:,N=10")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13LAB:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13LAB:")
 
 # vme test record
-dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13LAB:,Q=vme1")
+dbLoadRecords("$(VME)/db/vme.db", "P=13LAB:,Q=vme1")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -163,7 +163,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13LAB:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13LAB:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LAB:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.

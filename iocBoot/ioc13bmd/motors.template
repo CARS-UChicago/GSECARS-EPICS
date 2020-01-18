@@ -31,7 +31,7 @@
 #  33-40     4        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
 #  41-48     5        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
 
-file "$(CARS)/CARSApp/Db/motor.db"
+file "$(CARS)/db/motor.db"
 {
 pattern
 {P,       M,     DTYP,        C,  S,   DESC,              EGU,   DIR,   VELO,  VBAS,  ACCL,  BDST, BVEL, BACC, SREV,  UREV,  PREC,  DHLM,  DLLM}
@@ -243,7 +243,7 @@ pattern
 
 ##
 ## MAXv motor connectors bipolar microstep, BMC rack, patch panel labeled CC
-file "$(CARS)/CARSApp/Db/motor.db"
+file "$(CARS)/db/motor.db"
 {
 pattern
 {P,       M,     DTYP,        C,  S,   DESC,        EGU,   DIR,   VELO,  VBAS,  ACCL,  BDST, BVEL, BACC, SREV,  UREV,  PREC,  DHLM,  DLLM}
@@ -258,7 +258,7 @@ pattern
 {13BMD:,  m88, "OMS MAXv",   0,  7, "Unused",        mm,    Pos,   2.0,   0.0,   02,    0.0,  10,   .5,   400,  0.52,   3,     150,   -5}
 }
 
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
@@ -266,7 +266,7 @@ pattern
 {13BMD:, BMDH,   m30,   m29}
 }
 
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,       mXp,  mXn}
@@ -275,7 +275,7 @@ pattern
 }
 
 # LVP detector slits
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,      mXp,   mXn}
@@ -284,7 +284,7 @@ pattern
 }
 
 # LVP entrance slits (Dec 11, 2012)
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,      mXp,   mXn}
@@ -292,7 +292,7 @@ pattern
 {13BMD:, EntSlitH,  m110,   m109}
 }
 
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHp,POS=BMDHxp.VAL,RDBK=BMDHt2.A}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHn,POS=BMDHxn.VAL,RDBK=BMDHt2.B}
@@ -304,7 +304,7 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVcenter,POS=BMDVcenter.VAL,RDBK=BMDVt2.D}
 }
 
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
@@ -315,7 +315,7 @@ pattern
 #{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z}
 #{13BMD:, LVP:T1,     LVP:t1, m13,  m10,  m11,  m12,  m9,   m14}
 
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1X,POS=LVP:t1.X,RDBK=LVP:t1.XRB}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1Y,POS=LVP:t1.Y,RDBK=LVP:t1.YRB}
@@ -325,14 +325,14 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=LVP:T1AZ,POS=LVP:t1.AZ,RDBK=LVP:t1.AZRB}
 }
 
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
 {13BMD:, XAS:T1, XAS:t1,         m20,  m19,  m18,  m21,  m17,  junk, SRI}
 }
 
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
@@ -342,7 +342,7 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
 }
 
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -353,7 +353,7 @@ pattern
 {13BMD:,  pm4, "13BMD:pm3Done   NPP NMS", "13BMD:pm4Move     PP MS", "13BMD:pm4Readback     NPP NMS", "13BMD:pm3Stop   PP MS", "Compound Two-theta",        deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
 }
 
-file "$(MOTOR)/motorApp/Db/coordTrans2D.db"
+file "$(MOTOR)/db/coordTrans2D.db"
 {
 pattern
 {P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
@@ -362,7 +362,7 @@ pattern
 
 #<--
 #    KB mirror setup of pseudomotors  11-Sept-2000
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -372,7 +372,7 @@ pattern
 {13BMD:,  pm7, "13BMD:KBV:Done NPP NMS", "13BMD:pm7DVAL.VAL PP MS", "13BMD:KBV:Readback.G NPP NMS", "13BMD:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
 {13BMD:,  pm8, "13BMD:KBV:Done NPP NMS", "13BMD:pm8DVAL.VAL PP MS", "13BMD:KBV:Readback.H NPP NMS", "13BMD:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
 }
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -382,7 +382,7 @@ pattern
 #-->
 
 #  pseudomotors for LVP tomo
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,                        DESC,           EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,  RRES,   PREC, DHLM, DLLM}
@@ -390,7 +390,7 @@ pattern
 {13BMD:,  pm9,  "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm9DVAL.VAL PP MS",  "13BMD:LVPtomo:Readback.G NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Tomo Mode, deg.",     deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001730775,   1.0,  8,    10000, -10000}
 {13BMD:,  pm10, "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm10DVAL.VAL PP MS", "13BMD:LVPtomo:Readback.H NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Twist Mode, deg.",    deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001730775,   1.0,  8,    10000, -10000}
 }
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,         SUM, DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -398,7 +398,7 @@ pattern
 }
 
 #  pseudomotors for LVP table
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                        STOO,                DESC,       EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC,    DHLM, DLLM}
@@ -408,14 +408,14 @@ pattern
 }
 
 
-file "$(CARS)/CARSApp/Db/BMD_LVP_Detector.db"
+file "$(CARS)/db/BMD_LVP_Detector.db"
 {
 pattern
 {P,      X,   Y,   Z,  TH,    TV,  PMR,  PMT}
 {13BMD:, m9, m16, m10, m13,  m12,  pm3,  pm4}
 }
 
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13BMD:,SCANREC=13BMD:scan1,Q=pm1,POS=pm1.VAL,RDBK=pm1RBV}
 {P=13BMD:,SCANREC=13BMD:scan1,Q=pm2,POS=pm2.VAL,RDBK=pm2RBV}
@@ -428,7 +428,7 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 }
 
 #  pseudomotors for laser horizontal
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern  
 {P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
@@ -436,7 +436,7 @@ pattern
 {13BMD:,  pm13,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm13DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.G NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
 {13BMD:,  pm14,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm14DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.H NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
 }
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,            SUM, DIFF,   M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -444,7 +444,7 @@ pattern
 }
 
 #  pseudomotors for signal horizontal
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern  
 {P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
@@ -452,7 +452,7 @@ pattern
 {13BMD:,  pm15,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm15DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.G NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
 {13BMD:,  pm16,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm16DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.H NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
 }
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,             SUM,  DIFF,   M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}

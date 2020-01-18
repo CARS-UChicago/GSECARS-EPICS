@@ -5,11 +5,11 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 epicsEnvSet("PREFIX", "13BMDTC:"
 
 # Records
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=$(PREFIX),R=TC:")
+dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=$(PREFIX),R=TC:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13BMDTC:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 iocInit
 

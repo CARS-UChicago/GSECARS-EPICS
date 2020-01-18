@@ -21,25 +21,25 @@ asynOctetSetOutputEos("serial1",0,"\r")
 dbLoadTemplate("asynRecord.template")
 
 # Omega meters
-epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
+epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 dbLoadTemplate("Omega.substitutions")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=Instek:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=Instek:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=Instek:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=Instek:")
 
 # sseq records
-dbLoadRecords("$(STD)/stdApp/Db/userStringSeqs10.db", "P=Instek:")
+dbLoadRecords("$(STD)/db/userStringSeqs10.db", "P=Instek:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=Instek:")
+dbLoadRecords("$(STD)/db/misc.db", "P=Instek:")
 
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("Instek:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=Instek:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=Instek:")
 
 iocInit
 

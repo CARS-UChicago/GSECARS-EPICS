@@ -39,4 +39,4 @@ set_requestfile_path($(CALC),     "calcApp/Db")
 set_requestfile_path($(MCA),      "mcaApp/Db")
 set_requestfile_path($(SSCAN),    "sscanApp/Db")
 
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=mcaTest:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=mcaTest:")

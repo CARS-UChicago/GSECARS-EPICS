@@ -1,7 +1,7 @@
 errlogInit(5000)
 < envPaths
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delayGenApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/delayGenApp/Db)
 
 cd $(TOP)/iocBoot/$(IOC)
 
@@ -56,8 +56,8 @@ dbLoadTemplate  "motors.template"
 #drvAsynIPPortConfigure("serial5", "164.54.160.13:10001", 0, 0, 0)
 #asynOctetSetInputEos("serial5",0,"\r")
 #asynOctetSetOutputEos("serial5",0,"\r")
-#dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial5")
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial3")
+#dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial5")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13Laser:,R=Laser1,PORT=serial3")
 
 # BNC-505 Pulse/Delay Generator
 dbLoadTemplate("BNC_505.substitutions")
@@ -70,9 +70,9 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-# dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Laser:")
+# dbLoadRecords("$(STD)/db/all_com_8.db", "P=13Laser:")
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13Laser:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13Laser:")
 
 
 ### Scan-support software
@@ -81,18 +81,18 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13Laser:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Laser:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13Laser:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Laser:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13Laser:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Laser:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13Laser:")
 # Free-standing user string sequence records (sseq records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringSeqs10.db", "P=13Laser:")
+dbLoadRecords("$(CALC)/db/userStringSeqs10.db", "P=13Laser:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Laser:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Laser:")
 
 # MCB-4B driver setup parameters:
 #     (1) port name
@@ -111,7 +111,7 @@ asynSetTraceIOMask("Agilis1", 0, 2)
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Laser:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Laser:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Laser:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

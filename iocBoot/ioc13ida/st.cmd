@@ -28,7 +28,7 @@ abConfigVme 0,0xc00000,0x60,5
 abConfigAuto
 
 # Load database
-dbLoadRecords("$(CARS)/CARSApp/Db/eps_valid.db", "P=13IDA:")
+dbLoadRecords("$(CARS)/db/eps_valid.db", "P=13IDA:")
 dbLoadTemplate("eps_inputs.template")
 dbLoadTemplate("eps_outputs.template")
 dbLoadTemplate("eps_valves.template")
@@ -67,7 +67,7 @@ dbLoadTemplate("mirror_pid.template")
 dbLoadTemplate("auto_shutter.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -75,7 +75,7 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDA:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -83,15 +83,15 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MA
 dbLoadTemplate("scanParms.template")
 
 #  load the databases for the MSL MRD100 module ...
-#dbLoadRecords ("$(VME)/vmeApp/Db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
-dbLoadRecords ("$(VME)/vmeApp/Db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
+#dbLoadRecords ("$(VME)/db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
+dbLoadRecords ("$(VME)/db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13IDA:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDA:")
+dbLoadRecords("$(STD)/db/misc.db","P=13IDA:")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -101,7 +101,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDA:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDA:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDA:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13IDA:")
 
 ################################################################################
 # Setup device/driver support addresses, interrupt vectors, etc.

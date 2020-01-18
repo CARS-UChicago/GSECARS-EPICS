@@ -4,7 +4,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(CARS)/CARSApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(CARS)/db)
 
 epicsEnvSet(PREFIX, "13RAMAN2:")
 
@@ -101,14 +101,14 @@ AG_UCCreateAxis("Agilis1", 4, 1, 50, -50)
 dbLoadTemplate("asynRecord.template")
 
 # Laser Quantum Excel lasers on serial 1 and 2
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
-dbLoadRecords("$(CARS)/CARSApp/Db/LQVentus.db", "P=$(PREFIX),R=LQE2,PORT=serial2")
+dbLoadRecords("$(CARS)/db/LQVentus.db", "P=$(PREFIX),R=LQE1,PORT=serial1")
+dbLoadRecords("$(CARS)/db/LQVentus.db", "P=$(PREFIX),R=LQE2,PORT=serial2")
 
 # Serial 3 is Verdi Laser
-dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=$(PREFIX),R=Verdi1:,PORT=serial3")
+dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=$(PREFIX),R=Verdi1:,PORT=serial3")
 
 # IPG laser is serial 6
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial6")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial6")
 
 # Koyo PLC
 < Koyo.cmd
@@ -183,7 +183,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=trajAsyn1, PORT=xps, A
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -191,16 +191,16 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=
 dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
+dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)", std)
 
 < ../calc_GSECARS.iocsh
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=$(PREFIX)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

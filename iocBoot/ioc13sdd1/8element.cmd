@@ -8,7 +8,7 @@ CARS_registerRecordDeviceDriver(pdbbase)
 # Setup for save_restore
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13SDD1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13SDD1:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13SDD1:")
 set_pass0_restoreFile("auto_settings8.sav")
 set_pass1_restoreFile("auto_settings8.sav")
 
@@ -22,11 +22,7 @@ NDDxpConfig("DXP1",  8, -1, -1)
 
 dbLoadTemplate("8element.substitutions")
 
-# Create a netCDF file saving plugin
-NDFileNetCDFConfigure("DXP1NetCDF", 100, 0, "DXP1", 0)
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDPluginBase.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1,NDARRAY_PORT=DXP1,NDARRAY_ADDR=0")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFile.template",      "P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
-dbLoadRecords("$(AREA_DETECTOR)/ADApp/Db/NDFileNetCDF.template","P=13SDD1:,R=netCDF1:,PORT=DXP1NetCDF,ADDR=0,TIMEOUT=1")
+# Need to include commonPlugins.cmd here if we want to use this file
 
 #xiaSetLogLevel(4)
 #asynSetTraceMask DXP1 0 255
@@ -35,7 +31,7 @@ asynSetTraceIOMask DXP1 0 2
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13SDD1:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13SDD1:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
 
 iocInit
 

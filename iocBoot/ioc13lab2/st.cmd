@@ -19,13 +19,13 @@ CARSMini_registerRecordDeviceDriver(pdbbase)
 # Load asyn records on all serial ports
 dbLoadTemplate("asynRecord.template")
 
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,C=0,PORT=serial1")
 
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
-#dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A1,C=0,PORT=serial2")
+#dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A2,C=0,PORT=serial3")
 
 # Port 4 has Newport LAE500 Laser Autocollimator (and generic serial port)
-#dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
+#dbLoadRecords("$(IP)/db/Newport_LAE500.db","P=13LAB2:,R=LAE500,PORT=serial4")
 
 # SIS3801 MCS
 #iocsh "SIS3801.iocsh"
@@ -41,7 +41,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in std/stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db","P=13LAB2:")
+dbLoadRecords("$(STD)/db/all_com_8.db","P=13LAB2:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -49,13 +49,13 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db","P=13LAB2:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13LAB2:,MAXPTS1=2000,MAXPTS2=10,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db","P=13LAB2:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db","P=13LAB2:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db","P=13LAB2:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db","P=13LAB2:")
 
 # vxWorks statistics
 dbLoadTemplate("vxStats.substitutions")
@@ -75,7 +75,7 @@ sr_restore_incomplete_sets_ok = 1
 #reboot_restoreDebug=5
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13LAB2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LAB2:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LAB2:")
 
 iocInit
 

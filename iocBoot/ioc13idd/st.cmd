@@ -21,18 +21,18 @@ cd startup
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
 VSCSetup(1, 0xB0000000, 200)
-dbLoadRecords("$(STD)/stdApp/Db/scaler.db", "P=13IDD:,S=scaler2,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+dbLoadRecords("$(STD)/db/scaler.db", "P=13IDD:,S=scaler2,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 # MAR345 shutter
-dbLoadRecords("$(CARS)/CARSApp/Db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
+dbLoadRecords("$(CARS)/db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
 
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"dc0")
 AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
@@ -45,11 +45,11 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x59E, 5, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x59E, 3, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
 icbConfig("icbHvps1", 0x59E, 2, 2)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
+dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
 
 # Struck MCS
 iocsh "SIS3820_32.cmd"
@@ -59,16 +59,16 @@ iocsh "SIS3820_32.cmd"
 dbLoadTemplate("laser_pid.template")
 
 # Simple laser heating database
-dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13IDD:")
+dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13IDD:")
 
 # XRD File Base and relative paths
-dbLoadRecords("$(CARS)/CARSApp/Db/xrd_files.db", "P=13IDD:")
+dbLoadRecords("$(CARS)/db/xrd_files.db", "P=13IDD:")
 
 # Koyo PLC for lasers
 < Koyo.cmd
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db","P=13IDD:")
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDD:")
 
 # OMS VME58 driver setup parameters:
 #     (1)cards, (2)base address(short, 4k boundary),
@@ -113,7 +113,7 @@ MCB4BConfig(1, "serial18")
 dbLoadTemplate("motors.template")
 
 ### motorUtil - for allstop, moving, etc.
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDD:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -121,7 +121,7 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13IDD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=2000,MAXPTS3=2000,MAXPTS4=2000,MAXPTSH=2048")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=2000,MAXPTS3=2000,MAXPTS4=2000,MAXPTSH=2048")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -129,7 +129,7 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=2000
 dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13IDD:", std)
+dbLoadRecords("$(STD)/db/misc.db","P=13IDD:", std)
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -139,7 +139,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDD:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDD:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13IDD:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13IDD:")
 
 # dbrestore setup
 sr_restore_incomplete_sets_ok = 1

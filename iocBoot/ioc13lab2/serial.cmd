@@ -14,9 +14,9 @@ tyGSAsynInit("serial8", "UART0", 7, 19200,'N',1,8,'N',"\r\n","\n") /* Keithley 2
 dbLoadTemplate("asynRecord.template")
 
 # First Octal UART for microprobe experiments
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A1,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A2,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A3,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13LAB2:,A=A4,PORT=serial4")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,PORT=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM2,PORT=serial8")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A2,PORT=serial2")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A3,PORT=serial3")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13LAB2:,A=A4,PORT=serial4")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM1,PORT=serial6")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13LAB2:,Dmm=DMM2,PORT=serial8")

@@ -39,7 +39,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13SXD:")
+dbLoadRecords("$(STD)/db/all_com_8.db", "P=13SXD:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -47,20 +47,20 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13SXD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13SXD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13SXD:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13SXD:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13SXD:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13SXD:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13SXD:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13SXD:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13SXD:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13SXD:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13SXD:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13SXD:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13SXD:,R=asyn1,PORT=xps3,ADDR=0,IMAX=256,OMAX=256")
 

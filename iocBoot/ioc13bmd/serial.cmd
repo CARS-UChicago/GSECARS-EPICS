@@ -37,22 +37,22 @@ asynOctetSetOutputEos("serial19",0,"\r\n")
 
 # Load asyn records on all ports
 dbLoadTemplate("asynRecord.template")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A1,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A2,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13BMD:,A=A3,PORT=serial4")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMD:,A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM3,PORT=serial2")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMD:,A=A2,PORT=serial3")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13BMD:,A=A3,PORT=serial4")
 # LVP Omega meter on serial 5
 dbLoadTemplate "LVP_pressure_control.template"
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,PORT=serial7")
-dbLoadRecords("$(CARS)/CARSApp/Db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,PORT=serial8")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,PORT=serial9")
-dbLoadRecords("$(OPTICS)/opticsApp/Db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,PORT=serial10")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM2,PORT=serial7")
+dbLoadRecords("$(CARS)/db/lvp_dmm.db", "P=13BMD:,Dmm=DMM2,DLY=0.1")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM1,PORT=serial8")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13BMD:,Dmm=DMM4,PORT=serial9")
+dbLoadRecords("$(OPTICS)/db/XIA_shutter.db", "P=13BMD:,S=filter1,ADDRESS=1,PORT=serial10")
 # Serial 11 is Verdi Laser
-dbLoadRecords("$(CARS)/CARSApp/Db/VerdiLaser.db", "P=13BMD:,R=Verdi1:,PORT=serial11")
+dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=13BMD:,R=Verdi1:,PORT=serial11")
 
 # Serial 12 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
 # Serial 19 is Mitutoyo Digimatic
-dbLoadRecords("$(CARS)/CARSApp/Db/Mitutoyo_Digimatic.db","P=13BMD:,R=Mitu,PORT=serial19")
+dbLoadRecords("$(CARS)/db/Mitutoyo_Digimatic.db","P=13BMD:,R=Mitu,PORT=serial19")

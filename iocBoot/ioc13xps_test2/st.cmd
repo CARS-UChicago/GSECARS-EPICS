@@ -4,6 +4,7 @@ errlogInit(5000)
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
+#CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -15,7 +16,7 @@ dbLoadTemplate  "motors.template"
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
 # This is newport-xps9
-XPSCreateController("XPS1", "164.54.160.41", 5001, 1, 10, 200, 0, 500)
+XPSCreateController("XPS1", "164.54.160.124", 5001, 2, 10, 200, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
@@ -25,7 +26,8 @@ asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.GPD_Z",  "10000")   
+XPSCreateAxis("XPS1",0,"Group1.Pos1",  "10000")   
+XPSCreateAxis("XPS1",1,"Group1.Pos2",  "10000")   
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -37,7 +39,7 @@ XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XPS:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13XPS:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -45,25 +47,25 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XPS:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13XPS:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13XPS:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XPS:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13XPS:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XPS:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13XPS:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XPS:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13XPS:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13XPS:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13XPS:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13XPS:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XPS:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 
 asynSetTraceIOMask("XPS1",0,2)
-#asynSetTraceMask("XPS1",0,255)
+#asynSetTraceMask("XPS1",0,TRACE_ERROR|TRACE_FLOW)
 asynSetTraceIOTruncateSize("XPS1",0,200)
 iocInit
 

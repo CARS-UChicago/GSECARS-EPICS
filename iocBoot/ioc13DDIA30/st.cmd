@@ -41,11 +41,11 @@ asynSetTraceIOMask("ACR2", 0, 2)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13xps3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13xps3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13DDIA30:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13DDIA30:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13DDIA30:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

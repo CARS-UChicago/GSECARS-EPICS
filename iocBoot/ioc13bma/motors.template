@@ -1,4 +1,4 @@
-file "$(CARS)/CARSApp/Db/motor.db"
+file "$(CARS)/db/motor.db"
 {
 pattern
 {P,       M,    DTYP,          C,    S,   DESC,                 EGU,    DIR,   VELO,  VBAS,  ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
@@ -25,11 +25,11 @@ pattern
 {13BMA:,  m21,  "OMS VME58",   2,    3, "Downstream Pitch",       mm,   Neg,    .5,   .0,    2.,    0,      .0,    .0,     400,  .016071,   4,    100,      0}
 {13BMA:,  m22,  "OMS VME58",   2,    4, "Upstream Translation",   mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,   2,    101,     -1}
 {13BMA:,  m23,  "OMS VME58",   2,    5, "Downstream Translation", mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,   2,    101,     -1}
-{13BMA:,  m24,  "OMS VME58",   2,    6, "BMB top slit",           mm,   Neg,     1.,  .1,    .5,    0,      .1,   1.5,     400,     0.50,   3,     50,      0}
-{13BMA:,  m25,  "OMS VME58",   2,    7, "BMB bottom slit",        mm,   Neg,     1.,  .1,    .5,    0,      .1,   1.5,     400,     0.50,   3,     50,      0}
+{13BMA:,  m24,  "OMS VME58",   2,    6, "BMB top slit",           mm,   Neg,     1.,  .5,    .2,    0,      .1,   1.5,     400,     0.50,   3,     50,      0}
+{13BMA:,  m25,  "OMS VME58",   2,    7, "BMB bottom slit",        mm,   Neg,     1.,  .5,    .2,    0,      .1,   1.5,     400,     0.50,   3,     50,      0}
 }
 
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
@@ -37,44 +37,35 @@ pattern
 {13BMA:, Slit1H,   m4,   m3}
 }
 
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit2V,   m24,  m25}
 }
 
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit3V,  m15,  m16}
 }
 
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,    mXp,  mXn}
 {13BMA:, Slit4H,  m26,  m27}
 }
 
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
 {13BMA:, MON:T1, MON:t1, junk, junk,   junk,   m11,   m10,    m12,   junk,   SRI}
 }
 
-
-#file stdApp/Db/table.db, std
-#{
-#pattern
-#{P,            Q,      T,   M0X,   M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
-#{13BMA:, VMIR:T1,VMIR:t1,   m23,  junk,   junk,    m22,  junk,  junk,    SRI}
-#}
-
-
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hp,POS=Slit1Hxp.VAL,RDBK=Slit1Ht2.A}
 {P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hn,POS=Slit1Hxn.VAL,RDBK=Slit1Ht2.B}
@@ -86,14 +77,14 @@ file "$(SSCAN)/sscanApp/Db/scanParms.db"
 {P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Vcenter,POS=Slit1Vcenter.VAL,RDBK=Slit1Vt2.D}
 }
 
-file "$(CARS)/CARSApp/Db/Energy.db"
+file "$(CARS)/db/Energy.db"
 {
 pattern
 {P,      EN,   DESC,     EGU,  PREC,  SCANREC,       USEID,  ID,      TWEAK}
 {13BMA:,  E,  "Energy",   eV,    4,   13BMA:scan1,       0,  Dummy,    1.00}
 }
 
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,              EGU,  DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC, MRES, RRES, PREC, DHLM,   DLLM}
@@ -106,7 +97,7 @@ pattern
 
 }
 
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}

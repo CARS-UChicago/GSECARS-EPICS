@@ -11,12 +11,12 @@ drvAsynIPPortConfigure("PACE5000", "164.54.160.146:5025", 0, 0, 0)
 asynOctetSetInputEos ("PACE5000",0,"\r\n")
 asynOctetSetOutputEos("PACE5000",0,"\r\n")
 
-epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
-dbLoadRecords("$(IP)/ipApp/Db/PACE5000.db", "P=$(PREFIX),R=PC1:,PORT=PACE5000")
+epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
+dbLoadRecords("$(IP)/db/PACE5000.db", "P=$(PREFIX),R=PC1:,PORT=PACE5000")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

@@ -10,9 +10,9 @@
 # initIP_EP200_FPGA(ushort_t carrier, ushort_t slot, char *filename)
 
 # Standard softGlue 2.1
-initIP_EP200_FPGA(1, 2, "$(SOFTGLUE)/softGlueApp/Db/SoftGlue_2_2.hex")
+initIP_EP200_FPGA(1, 2, "$(SOFTGLUE)/db/SoftGlue_2_2.hex")
 # SoftGlue 2.0 with octupole additions (shift registers)
-#initIP_EP200_FPGA(1, 2, "$(SOFTGLUE)/softGlueApp/Db/SoftGlue_2_0_1_Octupole_0_0.hex")
+#initIP_EP200_FPGA(1, 2, "$(SOFTGLUE)/db/SoftGlue_2_0_1_Octupole_0_0.hex")
 
 # Each instance of a fieldIO_registerSet component is initialized as follows:
 #

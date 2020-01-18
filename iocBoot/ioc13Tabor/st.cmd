@@ -10,15 +10,15 @@ asynOctetSetInputEos("L0",0,"\n")
 asynSetTraceIOMask("L0",0,2)
 #asynSetTraceMask("L0",0,0x9)
 
-dbLoadRecords("$(IP)/ipApp/Db/Tabor8024.db", "P=13Tabor1:, R=AWG:, NELM=64536, PORT=L0, ADDR=0")
+dbLoadRecords("$(IP)/db/Tabor8024.db", "P=13Tabor1:, R=AWG:, NELM=64536, PORT=L0, ADDR=0")
 
 #var streamDebug 1
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Tabor1:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Tabor1:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Tabor1:")
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db)
 
 date
 

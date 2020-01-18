@@ -12,7 +12,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.41", 5001, 6, 10, 2000, 0, 500)
+XPSCreateController("XPS1", "164.54.160.83", 5001, 6, 10, 2000, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 XPSCreateController("XPS2", "164.54.160.131", 5001, 8, 10, 500, 0, 500)
@@ -20,7 +20,7 @@ asynSetTraceIOMask("XPS2", 0, 2)
 #asynSetTraceMask("XPS2", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.41", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "164.54.160.83", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 XPSAuxConfig("XPS_AUX2", "164.54.160.131", 5001, 50)
@@ -55,7 +55,7 @@ XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 dbLoadTemplate("motors.template")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.41:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "164.54.160.83:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
@@ -63,7 +63,7 @@ dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC:, R=trajAsyn1, PORT=xps, ADDR
 < ../save_restore_IOCSH.cmd
 
 save_restoreSet_status_prefix("13BMC_GPD_XPS:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC_GPD_XPS:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMC_GPD_XPS:")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -88,12 +88,12 @@ create_monitor_set("auto_positions.req",5,"P=13BMC:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13BMC:")
 
-#asynSetTraceIOMask(164.54.160.41:5001:0,0,2)
-#asynSetTraceIOMask(164.54.160.41:5001:1,0,2)
-#asynSetTraceIOMask(164.54.160.41:5001:2,0,2)
-#asynSetTraceMask(164.54.160.41:5001:0,0,9)
-#asynSetTraceMask(164.54.160.41:5001:1,0,9)
-#asynSetTraceMask(164.54.160.41:5001:2,0,9)
+#asynSetTraceIOMask(164.54.160.83:5001:0,0,2)
+#asynSetTraceIOMask(164.54.160.83:5001:1,0,2)
+#asynSetTraceIOMask(164.54.160.83:5001:2,0,2)
+#asynSetTraceMask(164.54.160.83:5001:0,0,9)
+#asynSetTraceMask(164.54.160.83:5001:1,0,9)
+#asynSetTraceMask(164.54.160.83:5001:2,0,9)
 
 # Set the NTM fields of the XPS motors to 0 (NO) so they don't get stopped when the motor changes direction due to PID
 dbpf("13BMC:m33.NTM","0")
@@ -115,8 +115,8 @@ dbpf("13BMC:m46.NTM","0")
 # not GroupStatusGet()
 XPSEnableMovingMode XPS1
 
-asynSetTraceIOMask 164.54.160.41:5001:0 0 2
-asynSetTraceMask 164.54.160.41:5001:0 0 9
-asynSetTraceFile 164.54.160.41:5001:0 0 /home/epics/logs/bmc_xps.txt
+asynSetTraceIOMask 164.54.160.83:5001:0 0 2
+asynSetTraceMask 164.54.160.83:5001:0 0 9
+asynSetTraceFile 164.54.160.83:5001:0 0 /home/epics/logs/bmc_xps.txt
 
 

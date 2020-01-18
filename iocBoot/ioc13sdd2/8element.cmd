@@ -8,7 +8,7 @@ dxp_registerRecordDeviceDriver(pdbbase)
 # Setup for save_restore
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13SDD2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13SDD2:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13SDD2:")
 set_pass0_restoreFile("auto_settings8.sav")
 set_pass1_restoreFile("auto_settings8.sav")
 
@@ -30,7 +30,7 @@ dbLoadTemplate("8element.template")
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (See 'saveData' below for that.)
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13SDD2:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13SDD2:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=2048")
 
 iocInit
 

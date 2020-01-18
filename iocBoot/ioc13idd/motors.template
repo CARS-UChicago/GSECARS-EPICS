@@ -12,7 +12,7 @@
 #  65-72     8        S         DAC Carbon Mirror (65-66), Microscope (67-69), Laser power control (70-72)
 
 
-file "$(CARS)/CARSApp/Db/motor.db"
+file "$(CARS)/db/motor.db"
 {
 pattern
 {P,       M,        DTYP,       C,    S,   DESC,                   EGU,      DIR,   VELO,  VBAS,  ACCL,  BDST,   BVEL,  BACC,   SREV,   UREV,   PREC,   DHLM,   DLLM}
@@ -204,7 +204,7 @@ pattern
 # NOTE: motors m93-m96 are in a Linux IOC for the Soller slits
 
 # Pseudomotors for LVP T-cup mode and rotation
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,                  EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
@@ -234,7 +234,7 @@ pattern
 }
 
 # 13IDD DAC TableTop Slit
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,   mXp,   mXn}
@@ -243,7 +243,7 @@ pattern
 }
 
 # LVP detector slits
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,      mXp,   mXn}
@@ -252,7 +252,7 @@ pattern
 }
 
 # LVP entrance slits (Dec 11, 2012)
-file "$(OPTICS)/opticsApp/Db/2slit.db"
+file "$(OPTICS)/db/2slit.db"
 {
 pattern
 {P,      SLIT,      mXp,   mXn}
@@ -260,7 +260,7 @@ pattern
 {13IDD:, EntSlitH,  m90,   m89}
 }
 # LVP T-cup mode
-file "$(MOTOR)/motorApp/Db/coordTrans2D.db"
+file "$(MOTOR)/db/coordTrans2D.db"
 {
 pattern
 {P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
@@ -268,7 +268,7 @@ pattern
 }
 
 # LVP rotation 
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,        SUM, DIFF,    M1DRV,    M1RBV,    M1STOP,   M1DONE,   M2DRV,  M2RBV,   M2STOP,   M2DONE,  PREC}
@@ -276,7 +276,7 @@ pattern
 }
 
 # K/B mirrors
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
@@ -285,14 +285,14 @@ pattern
 }
 
 # Laser splitter power
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
 pattern
 {P,      T,           SUM,  DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
 {13IDD:, LaserSplit:,  pm12, pm13,    m71.VAL,  m71.RBV,  m72.VAL, m72.RBV, m71.STOP, m71.DMOV, m72.STOP, m72.DMOV, 3}
 }
 
-file "$(CARS)/CARSApp/Db/IDD_LVP_Detector.db"
+file "$(CARS)/db/IDD_LVP_Detector.db"
 {
 pattern
 {P,      X,    Y,   Z,  TX,    TZ,  PMR,  PMT,  PMC}
@@ -300,14 +300,14 @@ pattern
 }
 
 # 13IDD DAC Lift Table
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,          Q,      T,  M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
 {13IDD:, DAC:T1, DAC:t1, m19,  m15,  m16,  m18,  m17,  junk, SRI}
 }
 
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1X,POS=DAC:t1.X,RDBK=DAC:t1.XRB}
 {P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1Y,POS=DAC:t1.Y,RDBK=DAC:t1.YRB}

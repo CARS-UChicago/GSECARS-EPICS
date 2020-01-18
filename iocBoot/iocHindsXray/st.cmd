@@ -49,13 +49,13 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
 < ../calc_GSECARS.iocsh
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13PMAC1:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13PMAC1:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=serial1,PORT=PMAC_IP,ADDR=0,OMAX=80,IMAX=80")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 iocInit
 

@@ -1,51 +1,38 @@
-file "$(CARS)/CARSApp/Db/asynMotor.db"
+file "$(CARS)/db/asynMotor.db"
 {
 pattern
-{P,         M,      DTYP,       PORT, ADDR,  DESC,     EGU,   DIR,     VELO,   VBAS,  ACCL,  BDST,   BVEL,  BACC,  SREV,    UREV,  PREC, DHLM, DLLM}
-{13XPS:,   m1,   "asynMotor",   XPS1, 0,     "GPD Z",    mm,  Pos,  5.,   1,   0.5,   0,    1, .2,      10000, 1,    3,    24.99,  -5}
-#{13XPS:,   m2,   "asynMotor",   XPS1, 1,     "M2",     step,    Pos,   1000,     .1,     .2,    0,      1,     .2,   200,     1,    4,  5000,  -5000}
+{P,         M,      DTYP,       PORT, ADDR,  DESC,     EGU,   DIR,     VELO,   VBAS,  ACCL,  BDST,   BVEL,  BACC,  SREV,  UREV,  PREC, DHLM, DLLM}
+{13XPS:,   m1,   "asynMotor",   XPS1, 0,     "M1",     rev,   Pos,      4.,     1,     0.2,   0,      1,     .2,  10000,    1,     4,  10000,  -10000}
+{13XPS:,   m2,   "asynMotor",   XPS1, 1,     "M2",     rev,   Pos,      4.,     1,     0.2,   0,      1,     .2,  10000,    1,     4,      5,  -5}
 }
 
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
-{
-pattern
-{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,          DESC,    EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
-
-#{13XPS:,  pm1, "13XPS:SD1:Done NPP NMS", "13XPS:pm1DVAL.VAL PP MS", "13XPS:SD1:Readback.G NPP NMS", "13XPS:SD1:Stop PP MS",    "Sum",    mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
-#{13XPS:,  pm2, "13XPS:SD1:Done NPP NMS", "13XPS:pm2DVAL.VAL PP MS", "13XPS:SD1:Readback.H NPP NMS", "13XPS:SD1:Stop PP MS",    "Diff",   mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
-}
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
-{
-pattern
-{P,      T,     SUM, DIFF,   M1DRV,    M1RBV,  M2DRV,  M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
-#{13XPS:, SD1:,  pm1, pm2,    m1.VAL,  m1.RBV,  m2.VAL, m2.RBV,  m1.STOP,  m1.DMOV,  m2.STOP,  m2.DMOV, 1}
-}
-
-file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+file "$(MOTOR)/db/profileMoveController.template"
 {
 pattern
 {P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
-{13XPS:,  Prof1:, XPS1,     1,    2000,    2000,       1}
+{13XPS:,  Prof1:, XPS1,     2,    2000,    2000,       1}
 }
 
 file "$(MOTOR)/db/profileMoveControllerXPS.template"
 {
 pattern
 {P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
-{13XPS:,  Prof1:, XPS1,     1,    2000,    2000,       1}
+{13XPS:,  Prof1:, XPS1,     2,    2000,    2000,       1}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+file "$(MOTOR)/db/profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
-{13XPS:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13XPS:m71,   3,       1}
+{13XPS:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13XPS:m1,   4,       1}
+{13XPS:,  Prof1:, 2,  XPS1,    1,   2000,      2000, 13XPS:m2,   4,       1}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+file "$(MOTOR)/db/profileMoveAxisXPS.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
-{13XPS:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    3,       1}
+{13XPS:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    4,       1}
+{13XPS:,  Prof1:, 2,  XPS1,    1,   2000,      2000,    4,       1}
 }
 

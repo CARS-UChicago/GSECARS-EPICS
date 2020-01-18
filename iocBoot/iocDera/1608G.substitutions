@@ -1,11 +1,11 @@
-file "$(MEASCOMP)/measCompApp/Db/measCompLongIn.template"
+file "$(MEASCOMP)/db/measCompLongIn.template"
 {
 pattern
 {    P,            R,   MASK,   PORT,    ADDR}
 {   Dera:1608G:,  Li,   0xFF,  1608G,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompBinaryIn.template"
+file "$(MEASCOMP)/db/measCompBinaryIn.template"
 {
 pattern
 {    P,            R,   MASK,   PORT,    ADDR}
@@ -19,14 +19,14 @@ pattern
 {   Dera:1608G:,  Bi8,  0x80   1608G,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompLongOut.template"
+file "$(MEASCOMP)/db/measCompLongOut.template"
 {
 pattern
 {    P,            R,   MASK,   PORT,    ADDR}
 {   Dera:1608G:,  Lo,   0xFF,  1608G,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompBinaryOut.template"
+file "$(MEASCOMP)/db/measCompBinaryOut.template"
 {
 pattern
 {    P,            R,   MASK,   PORT,    ADDR}
@@ -42,7 +42,7 @@ pattern
 
 # Direction bits on binary I/O
 #  VAL 0=input, 1=output
-file "$(MEASCOMP)/measCompApp/Db/measCompBinaryDir.template"
+file "$(MEASCOMP)/db/measCompBinaryDir.template"
 {
 pattern
 {    P,            R,   MASK,  VAL,  PORT,    ADDR}
@@ -56,14 +56,14 @@ pattern
 {   Dera:1608G:,  Bd8,  0x80    1,  1608G,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompPulseGen.template"
+file "$(MEASCOMP)/db/measCompPulseGen.template"
 {
 pattern
 {     P,         R,        PORT,    ADDR,  PREC}
 {   Dera:1608G:,  PulseGen1,  1608G,      0,     4}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/1608GCounter.template"
+file "$(MEASCOMP)/db/1608GCounter.template"
 {
 pattern
 {     P,              R,       PORT,    ADDR}
@@ -72,7 +72,7 @@ pattern
 }
 
 # Analog inputs
-file "$(MEASCOMP)/measCompApp/Db/measCompAnalogIn.template"
+file "$(MEASCOMP)/db/measCompAnalogIn.template"
 {
 pattern
 {    P,             R,   PORT,   ADDR,  EGUL, LOPR, EGUF, HOPR,  RANGE,   SCAN,   PREC}
@@ -87,14 +87,14 @@ pattern
 }
 
 # Waveform digitzer
-file "$(MEASCOMP)/measCompApp/Db/measCompWaveformDig.template"
+file "$(MEASCOMP)/db/measCompWaveformDig.template"
 {
 pattern
 {     P,            R,          PORT,    ADDR,  MAX_POINTS,  PREC}
 {   Dera:1608G:,  WaveDig,    1608G,     0,       2048,       4}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompWaveformDigN.template"
+file "$(MEASCOMP)/db/measCompWaveformDigN.template"
 {
 pattern
 {     P,            R,          PORT,    ADDR,  MAX_POINTS,  PREC}
@@ -109,7 +109,7 @@ pattern
 }
 
 # Trigger
-file "$(MEASCOMP)/measCompApp/Db/measCompTrigger.template"
+file "$(MEASCOMP)/db/measCompTrigger.template"
 {
 pattern
 {     P,            R,          PORT,    ADDR}

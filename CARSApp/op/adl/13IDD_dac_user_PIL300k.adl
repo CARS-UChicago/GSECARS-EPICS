@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user_PIL300k.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user_PIL300k.adl"
 	version=030109
 }
 display {
 	object {
-		x=450
-		y=323
+		x=498
+		y=1460
 		width=1318
 		height=688
 	}
@@ -10475,5 +10475,66 @@ composite {
 		vis="if not zero"
 		calc="A==1"
 		chan="13IDD:userStringCalc9.VAL"
+	}
+}
+composite {
+	object {
+		x=460
+		y=630
+		width=95
+		height=37
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=460
+				y=655
+				width=95
+				height=12
+			}
+			"basic attribute" {
+				clr=32
+			}
+			textix="Microscope Light"
+		}
+		valuator {
+			object {
+				x=460
+				y=630
+				width=95
+				height=20
+			}
+			control {
+				chan="13IDD:DAC2_7.VAL"
+				clr=34
+				bclr=34
+			}
+			dPrecision=1.000000
+			limits {
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-0 OR B>-60"
+		chan="13IDD:DAC2_7.VAL"
+		chanB="13IDD:m96.RBV"
+	}
+}
+oval {
+	object {
+		x=527
+		y=506
+		width=18
+		height=26
+	}
+	"basic attribute" {
+		clr=31
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-0"
+		chan="13IDD:DAC2_7.VAL"
 	}
 }

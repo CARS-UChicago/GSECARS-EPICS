@@ -1,4 +1,4 @@
-file "$(CARS)/CARSApp/Db/asynMotor.db"
+file "$(CARS)/db/asynMotor.db"
 {
 pattern
 {P,       N,  M,   DTYP,    PORT, ADDR,   DESC,  EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV, UREV, PREC,  DHLM,     DLLM}
@@ -9,15 +9,15 @@ pattern
 {13XRM:,  5,  m5, "asynMotor", XPS1, 4, "Coarse X", mm,  Neg,  5.,   1,   1.0,   0, 1, .5,    2000,  1,    4,    49.9,    -49.9}
 {13XRM:,  6,  m6, "asynMotor", XPS1, 5, "Coarse Y", mm,  Neg,  5.,   1,   1.0,   0, 2, .2,    5000,  1,    4,   292.9,    -9.9}
 
-# {13XRM:,  7,  m7, "asynMotor", XPS2, 0, "Eiger Y",  mm,  Neg,  5.,   1,   1.0,   0, 1, .5,    2000,  1,    4,    99.9,    -99.9}
-# {13XRM:,  8,  m8, "asynMotor", XPS2, 1, "Eiger X",  mm,  Neg,  5.,   1,   1.0,   0, 5, .5,     400,  0.5,    4,    74.9,    -74.9}
-# {13XRM:,  9,  m9, "asynMotor", XPS2, 2, "Eiger Z",  mm,  Neg,  5.,   1,   1.0,   0, 5, .5,     400,  0.5,    4,    74.9,    -74.9}
-# {13XRM:, 10, m10, "asynMotor", XPS2, 3, "Anal Theta", deg, Pos, 5.,   1,   1.0,   0, 1, .5,    1000,  1,    4,   169.9,   -169.9}
-# {13XRM:, 11, m11, "asynMotor", XPS2, 4, "Anal Y",   mm,  Neg,  5.,   1,   1.0,   0, 1, .5,    2000,  1,    4,    99.9,    -99.9}
+{13XRM:,  7,  m7, "asynMotor", XPS2, 0, "Eiger Y",  mm,  Neg,  5.,   1,   1.0,   0, 1, .5,    2000,  1,    4,    99.9,    -99.9}
+{13XRM:,  8,  m8, "asynMotor", XPS2, 1, "Eiger X",  mm,  Neg,  5.,   1,   1.0,   0, 5, .5,     400,  0.5,    4,    74.9,    -74.9}
+{13XRM:,  9,  m9, "asynMotor", XPS2, 2, "Eiger Z",  mm,  Neg,  5.,   1,   1.0,   0, 5, .5,     400,  0.5,    4,    74.9,    -74.9}
+{13XRM:, 10, m10, "asynMotor", XPS2, 3, "Anal Theta", deg, Pos, 5.,   1,   1.0,   0, 1, .5,    1000,  1,    4,   169.9,   -169.9}
+{13XRM:, 11, m11, "asynMotor", XPS2, 4, "Anal Y",   mm,  Neg,  5.,   1,   1.0,   0, 1, .5,    2000,  1,    4,    99.9,    -99.9}
 
 }
 
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,             OUT,    RDBL,  STOO,DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
@@ -25,14 +25,14 @@ pattern
 {13XRM:,pm2, "13XRM:PM:Done NPP NMS", "13XRM:pm2DVAL.VAL PP MS", "13XRM:PM:Readback.H NPP NMS", "13XRM:PM:Stop PP MS", "downstream", mm, Pos, 5, 1, 1, 0, 1, 0.5, 0.0003, 1, 4, 400, -400}
 }
 
-file "$(MOTOR)/motorApp/Db/sumDiff2D.db"
+file "$(MOTOR)/db/sumDiff2D.db"
 {
  pattern
  {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
  {13XRM:, PM:,  pm1, pm2,      m5.VAL,  m5.RBV,  m4.VAL, m4.RBV, m5.STOP, m5.DMOV, m4.STOP, m4.DMOV, 4}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+file "$(MOTOR)/db/profileMoveController.template"
 {
 pattern
 {P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
@@ -46,7 +46,7 @@ pattern
 {13XRM:,  Prof1:, XPS1,     6,    2000,    2000,       1}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+file "$(MOTOR)/db/profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
@@ -58,7 +58,7 @@ pattern
 {13XRM:,  Prof1:, 6,  XPS1,    5,   2000,      2000, 13XRM:m6,   4,       1}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+file "$(MOTOR)/db/profileMoveAxisXPS.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}

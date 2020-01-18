@@ -42,11 +42,11 @@ asynOctetSetOutputEos("serial5",0,"\r")
 dbLoadTemplate("asynRecord.template")
 
 # Omega meters
-epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/ipApp/Db
+epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 dbLoadTemplate("Omega.substitutions")
 
 # Alcatel vacuum gauge
-dbLoadRecords("$(IP)/ipApp/Db/Alcatel_ACS1000.db", "P=13GasLoad:, R=ACS1000, PORT=serial4")
+dbLoadRecords("$(IP)/db/Alcatel_ACS1000.db", "P=13GasLoad:, R=ACS1000, PORT=serial4")
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -59,7 +59,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_4.db", "P=13GasLoad:")
+dbLoadRecords("$(STD)/db/all_com_4.db", "P=13GasLoad:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -67,19 +67,19 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_4.db", "P=13GasLoad:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13GasLoad:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13GasLoad:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13GasLoad:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13GasLoad:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13GasLoad:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13GasLoad:")
 
 # sseq records
-dbLoadRecords("$(STD)/stdApp/Db/userStringSeqs10.db", "P=13GasLoad:")
+dbLoadRecords("$(STD)/db/userStringSeqs10.db", "P=13GasLoad:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13GasLoad:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13GasLoad:")
 
 # MCB-4B driver setup parameters:
 #     (1) maximum # of controllers,
@@ -97,7 +97,7 @@ MCB4BConfig(0, "serial3")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13GasLoad:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13GasLoad:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13GasLoad:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")

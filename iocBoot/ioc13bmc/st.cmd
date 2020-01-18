@@ -34,16 +34,16 @@ dbLoadTemplate("13bmc_pid.template")
 iocsh "SIS3801_8.cmd"
 
 # CCD synchronization for tomo.exe Visual Basic program
-dbLoadRecords("$(CARS)/CARSApp/Db/CCD.db", "P=13BMC:,C=CCD1")
+dbLoadRecords("$(CARS)/db/CCD.db", "P=13BMC:,C=CCD1")
 # Tomography data collection
-dbLoadRecords("$(CARS)/CARSApp/Db/TomoCollect.template", "P=13BMC:,R=TC:")
+dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13BMC:,R=TC:")
 
 # Multichannel analyzer stuff
 # Multichannel analyzer stuff
 # AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("AIM1/1", 0x8D7, 1, 2048, 1, 1, "dc0")
-dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(AIM1/1),NCHAN=2048")
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
@@ -55,9 +55,9 @@ dbLoadRecords("$(MCA)/mcaApp/Db/mca.db", "P=13BMC:,M=aim_adc1,DTYP=asynMCA,INP=@
 #      3 = TCA
 #      4 = DSP
 icbConfig("icbAdc1", 0x8D7, 1, 0)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
+dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13BMC:,ADC=adc1,PORT=icbAdc1")
 icbConfig("icbAmp1", 0x8D7, 4, 1)
-dbLoadRecords("$(MCA)/mcaApp/Db/icb_amp.db", "P=13BMC:,AMP=amp1,PORT=icbAmp1")
+dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13BMC:,AMP=amp1,PORT=icbAmp1")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -70,23 +70,23 @@ dbLoadTemplate "scanParms.template"
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db","P=13BMC:,MAXPTS1=2000,MAXPTS2=1000,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
 
 # User calc stuff
 epicsEnvSet("PREFIX", "13BMC:")
 iocsh("../calc_GSECARS.iocsh")
 
 # Simple laser heating database
-dbLoadRecords("$(CARS)/CARSApp/Db/laser_heating.db", "P=13BMC:")
+dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13BMC:")
 
 # vme test record
-dbLoadRecords("$(VME)/vmeApp/Db/vme.db", "P=13BMC:,Q=vme1")
+dbLoadRecords("$(VME)/db/vme.db", "P=13BMC:,Q=vme1")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=13BMC:")
+dbLoadRecords("$(STD)/db/misc.db","P=13BMC:")
 
 # Dummy Energy PV for the filterDrive.st program
-dbLoadRecords("$(CARS)/CARSApp/Db/13BMC_EnergyDummyPV.db")
+dbLoadRecords("$(CARS)/db/13BMC_EnergyDummyPV.db")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -96,7 +96,7 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13BMC:")
 
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13BMC:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13BMC:")
 
 # Setup device/driver support addresses, interrupt vectors, etc.
 
@@ -110,7 +110,7 @@ dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13BMC:")
 #str = malloc(500)
 #strcpy(str, "P=13BMC:,R=traj1,NAXES=6,NELM=2000,NPULSE=2000,PORT=5001")
 #strcat(str, ",DONPV=13BMC:str:EraseStart,DONV=1,DOFFPV=13BMC:str:StopAll,DOFFV=1")
-#dbLoadRecords("$(MOTOR)/motorApp/Db/trajectoryScan.db", str)
+#dbLoadRecords("$(MOTOR)/db/trajectoryScan.db", str)
 ################################################################################
 
 ################################################################################

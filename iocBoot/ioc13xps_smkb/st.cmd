@@ -40,7 +40,7 @@ XPSCreateProfile("XPS1", 2000, "Administrator", "Administrator")
 dbLoadTemplate "scanParms.template"
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13SMKB:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13SMKB:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -48,20 +48,20 @@ dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13SMKB:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13SMKB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13SMKB:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13SMKB:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13SMKB:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13SMKB:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13SMKB:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13SMKB:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13SMKB:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13SMKB:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13SMKB:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13SMKB:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13SMKB:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 

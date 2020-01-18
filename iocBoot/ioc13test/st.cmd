@@ -7,11 +7,11 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13TEST:")
 
-dbLoadRecords("$(STD)/stdApp/Db/yySseq.db", "P=13TEST:, S=SSEQ1")
+dbLoadRecords("$(STD)/db/yySseq.db", "P=13TEST:, S=SSEQ1")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13TEST:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13TEST:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13TEST:")
 
 <../calc_GSECARS.iocsh
 

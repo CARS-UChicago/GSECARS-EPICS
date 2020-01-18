@@ -1,4 +1,4 @@
-file "$(CARS)/CARSApp/Db/asynMotor.db"
+file "$(CARS)/db/asynMotor.db"
 {
 pattern
 {P,       M,      DTYP,    PORT, ADDR, DESC,              EGU,  DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC,   SREV,         UREV, PREC,   DHLM,   DLLM}
@@ -22,14 +22,14 @@ pattern
 }
 
 # Newport table using generic table-record
-file "$(OPTICS)/opticsApp/Db/table.db"
+file "$(OPTICS)/db/table.db"
 {
 pattern
 {P,          Q,      T,  M0X,   M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
 {13IDC:, DIF:T1, DIF:t1, m36,   m33,  m35, junk,  m34,  m37, NEWPORT}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveController.template"
+file "$(MOTOR)/db/profileMoveController.template"
 {
 pattern
 {P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
@@ -43,7 +43,7 @@ pattern
 {13IDC:,  Prof1:, XPS1,     6,    10010,    10010,       1}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveAxis.template"
+file "$(MOTOR)/db/profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
@@ -55,7 +55,7 @@ pattern
 {13IDC:,  Prof1:, 6,  XPS1,    5,   10010,      10010, 13IDC:m30,   4,       1}
 }
 
-file "$(MOTOR)/motorApp/Db/profileMoveAxisXPS.template"
+file "$(MOTOR)/db/profileMoveAxisXPS.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
@@ -70,7 +70,7 @@ pattern
 
 
 # Pseudo-motors
-file "$(MOTOR)/motorApp/Db/pseudoMotor.db"
+file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern
 {P,       M,           DINP,                        OUT,                     RDBL,                              STOO,     DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
@@ -86,7 +86,7 @@ pattern
 }
 
 # Newport table db for newport table snl
-file "$(CARS)/CARSApp/Db/newport_table.db"
+file "$(CARS)/db/newport_table.db"
 {
 pattern
 {P,         T,     M1,  M2,   M3,   M4,   M5,  PM1, PM2, PM3, PM4, PM5, PM6, PM7, PM8 }
@@ -94,7 +94,7 @@ pattern
 }
 
 #
-file "$(SSCAN)/sscanApp/Db/scanParms.db"
+file "$(SSCAN)/db/scanParms.db"
 {
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1X,POS=DIF:t1.X,RDBK=DIF:t1.XRB}
 {P=13IDC:,SCANREC=13IDC:scan1,Q=DIF:T1Y,POS=DIF:t1.Y,RDBK=DIF:t1.YRB}

@@ -12,16 +12,16 @@ drvAsynIPPortConfigure("L0","gsets4:2001",0,0,0)
 asynSetTraceIOMask("L0",0,2)
 #asynSetTraceMask("L0",0,0x9)
 
-dbLoadRecords("$(IP)/ipApp/Db/CPSyringe.db", "P=13Syringe2:, R=S1:, PORT=L0")
+dbLoadRecords("$(IP)/db/CPSyringe.db", "P=13Syringe2:, R=S1:, PORT=L0")
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13Syringe2:, R=asyn1, PORT=L0, ADDR=0, IMAX=80, OMAX=80")
 
 #var streamDebug 1
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Syringe2:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Syringe2:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Syringe2:")
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db)
 
 date
 

@@ -22,22 +22,22 @@ tyGSAsynInit("serial16","UART1", 7,  9600,'N',1,8,'N',"\r","\r") /* Unused */
 dbLoadTemplate("asynRecord.template")
 
 # First Octal UART for microprobe experiments
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A1,PORT=serial1")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A2,PORT=serial2")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A3,PORT=serial3")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A4,PORT=serial4")
-# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A5,PORT=serial5")
-# dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=A6,PORT=serial6")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=A1,PORT=serial1")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=A2,PORT=serial2")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=A3,PORT=serial3")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=A4,PORT=serial4")
+# dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=A5,PORT=serial5")
+# dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=A6,PORT=serial6")
 # Serial 7 is Pelco CM6700 video switch
 dbLoadTemplate("Pelco_CM6700.substitutions")
 
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDC:,Dmm=DMM1,PORT=serial6")
-dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db","P=13IDC:,Dmm=DMM2,PORT=serial8")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13IDC:,Dmm=DMM1,PORT=serial6")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13IDC:,Dmm=DMM2,PORT=serial8")
 
 # Second Octal UART for diffractometer experiments
 # Serial ports 1 thru 4 are for SR570 current amplifiers
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B1,PORT=serial9")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B2,PORT=serial10")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B3,PORT=serial11")
-dbLoadRecords("$(IP)/ipApp/Db/SR570.db", "P=13IDC:,A=B4,PORT=serial12")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=B1,PORT=serial9")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=B2,PORT=serial10")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=B3,PORT=serial11")
+dbLoadRecords("$(IP)/db/SR570.db", "P=13IDC:,A=B4,PORT=serial12")
 

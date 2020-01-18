@@ -1,11 +1,11 @@
-file "$(MEASCOMP)/measCompApp/Db/measCompLongIn.template"
+file "$(MEASCOMP)/db/measCompLongIn.template"
 {
 pattern
 {              P,   R,   MASK,       PORT,  ADDR}
 {   13USB2408_1:,  Li,   0xFF,  USB2408_1,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompBinaryIn.template"
+file "$(MEASCOMP)/db/measCompBinaryIn.template"
 {
 pattern
 {              P,    R,  MASK,        PORT,  ADDR}
@@ -19,14 +19,14 @@ pattern
 {   13USB2408_1:,  Bi8,  0x80,   USB2408_1,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompLongOut.template"
+file "$(MEASCOMP)/db/measCompLongOut.template"
 {
 pattern
 {              P,   R,   MASK,       PORT,  ADDR}
 {   13USB2408_1:,  Lo,   0xFF,  USB2408_1,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompBinaryOut.template"
+file "$(MEASCOMP)/db/measCompBinaryOut.template"
 {
 pattern
 {              P,    R,  MASK,        PORT,  ADDR}
@@ -42,7 +42,7 @@ pattern
 
 # Direction bits on binary I/O
 #  VAL 0=input, 1=output
-file "$(MEASCOMP)/measCompApp/Db/measCompBinaryDir.template"
+file "$(MEASCOMP)/db/measCompBinaryDir.template"
 {
 pattern
 {              P,    R,  MASK,  VAL,       PORT,  ADDR}
@@ -56,7 +56,7 @@ pattern
 {   13USB2408_1:,  Bd8,  0x80,    1,  USB2408_1,     0}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/1608GCounter.template"
+file "$(MEASCOMP)/db/MeasCompCounter.template"
 {
 pattern
 {              P,         R,       PORT,   ADDR}
@@ -65,7 +65,7 @@ pattern
 }
 
 # Analog inputs
-file "$(MEASCOMP)/measCompApp/Db/measCompAnalogIn.template"
+file "$(MEASCOMP)/db/measCompAnalogIn.template"
 {
 pattern
 {              P,     R,      PORT, ADDR,  EGUL, LOPR, EGUF, HOPR, RANGE,       SCAN, PREC}
@@ -80,7 +80,7 @@ pattern
 }
 
 # Temperature inputs
-file "$(MEASCOMP)/measCompApp/Db/measCompTemperatureIn.template"
+file "$(MEASCOMP)/db/measCompTemperatureIn.template"
 {
 pattern
 {              P,     R,      PORT, ADDR,       SCAN, PREC}
@@ -95,14 +95,14 @@ pattern
 }
 
 # Waveform digitzer
-file "$(MEASCOMP)/measCompApp/Db/measCompWaveformDig.template"
+file "$(MEASCOMP)/db/measCompWaveformDig.template"
 {
 pattern
 {              P,        R,         PORT,  ADDR, MAX_POINTS,    PREC}
 {   13USB2408_1:,  WaveDig,    USB2408_1,     0,       2048,       4}
 }
 
-file "$(MEASCOMP)/measCompApp/Db/measCompWaveformDigN.template"
+file "$(MEASCOMP)/db/measCompWaveformDigN.template"
 {
 pattern
 {              P,         R,        PORT,  ADDR, MAX_POINTS,    PREC}
@@ -118,7 +118,7 @@ pattern
 
 
 # Analog outputs
-file "$(MEASCOMP)/measCompApp/Db/measCompAnalogOut.template"
+file "$(MEASCOMP)/db/measCompAnalogOut.template"
 {
 pattern
 {              P,    R, VAL,       PORT, ADDR,  EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC}
@@ -127,13 +127,13 @@ pattern
 }
 
 # Waveform generator
-file "$(MEASCOMP)/measCompApp/Db/measCompWaveformGen.template"
+file "$(MEASCOMP)/db/measCompWaveformGen.template"
 {
 pattern
 {              P,        R,         PORT,  ADDR, MAX_POINTS,    PREC}
 {   13USB2408_1:,  WaveGen,    USB2408_1,     0,      2048,        4}
 }
-file "$(MEASCOMP)/measCompApp/Db/measCompWaveformGenN.template"
+file "$(MEASCOMP)/db/measCompWaveformGenN.template"
 {
 pattern
 {              P,         R,        PORT,  ADDR, MAX_POINTS,    PREC}

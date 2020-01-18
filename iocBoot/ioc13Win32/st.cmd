@@ -28,12 +28,12 @@ dbLoadTemplate("asynRecord.template")
 dbLoadRecords("asynTest.db","P=13Win32:, R=asynTest")
 
 # Serial 1 Keithley Multimeter
-#dbLoadRecords("$(IP)/ipApp/Db/Keithley2kDMM_mf.db", "P=13Win32:,Dmm=DMM1,C=0,PORT=serial1")
+#dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13Win32:,Dmm=DMM1,C=0,PORT=serial1")
 
 # Serial 1 is MCB4B motor controller
 
 # Serial 2 has Newport LAE500 Laser Autocollimator
-dbLoadRecords("$(IP)/ipApp/Db/Newport_LAE500.db", "P=13Win32:,R=LAE500,PORT=serial2")
+dbLoadRecords("$(IP)/db/Newport_LAE500.db", "P=13Win32:,R=LAE500,PORT=serial2")
 
 #PID slow
 dbLoadTemplate "pid_slow.template"
@@ -42,26 +42,20 @@ dbLoadTemplate "pid_slow.template"
 dbLoadTemplate  "motors.template"
 
 # Experiment description
-dbLoadRecords("$(CARS)/CARSApp/Db/experiment_info.db", "P=13Win32:")
+dbLoadRecords("$(CARS)/db/experiment_info.db", "P=13Win32:")
 
 #MN
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db", "P=13Win32:,Q=EDB")
+dbLoadRecords("$(CARS)/db/scanner.db", "P=13Win32:,Q=EDB")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
 dbLoadTemplate "scanParms.template"
 
-# Roper CCD detector database
-dbLoadRecords("$(CCD)/ccdApp/Db/ccd.db", "P=13Win32:, C=ccd1")
-
-# DXP and mca records for the Vortex detector
-#< vortex.cmd
-
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Win32:")
+dbLoadRecords("$(STD)/db/all_com_8.db", "P=13Win32:")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -69,16 +63,16 @@ dbLoadRecords("$(STD)/stdApp/Db/all_com_8.db", "P=13Win32:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13Win32:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13Win32:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13Win32:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13Win32:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13Win32:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13Win32:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13Win32:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13Win32:")
 
 # MM4000 driver setup parameters: 
 #     (1) maximum # of controllers, 
@@ -109,7 +103,7 @@ MCB4BConfig(0, "serial1")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13Win32:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13Win32:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13Win32:")
 
 iocInit
 

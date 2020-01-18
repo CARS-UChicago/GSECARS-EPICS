@@ -41,20 +41,19 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 # Disable setting position
 XPSEnableSetPosition(0)
 
-# XPSCreateController("XPS2", "164.54.160.180", 5001, 5, 10, 500, 0, 500)
+XPSCreateController("XPS2", "164.54.160.180", 5001, 5, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-# XPSCreateAxis("XPS2", 0, "EigerY.Pos",    "2000") # ILS200CC
-# XPSCreateAxis("XPS2", 1, "EigerX.Pos",     "400") # UTS150PP
-# XPSCreateAxis("XPS2", 2, "EigerZ.Pos",     "400") # UTS150PP
-# XPSCreateAxis("XPS2", 3, "AnalTheta.Pos", "1000") # RV160CC
-# XPSCreateAxis("XPS2", 4, "AnalY.Pos",     "2000") # ILS150CC
+XPSCreateAxis("XPS2", 0, "EigerY.Pos",    "2000") # ILS200CC
+XPSCreateAxis("XPS2", 1, "EigerX.Pos",     "400") # UTS150PP
+XPSCreateAxis("XPS2", 2, "EigerZ.Pos",     "400") # UTS150PP
+XPSCreateAxis("XPS2", 3, "AnalTheta.Pos", "1000") # RV160CC
+XPSCreateAxis("XPS2", 4, "AnalY.Pos",     "2000") # ILS150CC
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
 # XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
-
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -62,7 +61,7 @@ XPSEnableSetPosition(0)
 dbLoadTemplate "scanParms.template"
 
 # Allstop, alldone
-dbLoadRecords("$(MOTOR)/motorApp/Db/motorUtil.db","P=13XRM:")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13XRM:")
 
 # Monochromator slow PID
 dbLoadTemplate("mono_pid.template")
@@ -73,48 +72,48 @@ dbLoadTemplate("mono_pid.template")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13XRM:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=50,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13XRM:,MAXPTS1=2000,MAXPTS2=500,MAXPTS3=50,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13XRM:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13XRM:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13XRM:")
-# dbLoadRecords("$(CARS)/CARSApp/Db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13XRM:")
+# dbLoadRecords("$(CARS)/db/auto_shutter.db","P=13IDE:,SHUT=ShutterA:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13XRM:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13XRM:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13XRM:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13XRM:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13XRM:")
 
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
 
 # scan communication and meta data
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13XRM:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDA:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDB:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDC:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDD:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13IDE:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMA:, Q=edb")
-dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMC:, Q=edb")
-# dbLoadRecords("$(CARS)/CARSApp/Db/scanner.db","P=13BMD:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13XRM:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDA:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDB:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDC:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDD:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13IDE:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13BMA:, Q=edb")
+dbLoadRecords("$(CARS)/db/scanner.db","P=13BMC:, Q=edb")
+# dbLoadRecords("$(CARS)/db/scanner.db","P=13BMD:, Q=edb")
 
 #
 # XRF Spectra Collector 
-dbLoadRecords("$(CARS)/CARSApp/Db/XRF_Collect.db","P=13XRM:,Q=XRF")
+dbLoadRecords("$(CARS)/db/XRF_Collect.db","P=13XRM:,Q=XRF")
 
 
 # XRM Analyzer control
-dbLoadRecords("$(CARS)/CARSApp/Db/XRMAnalyzer.db","P=13XRM:,ANA=ANA")
+dbLoadRecords("$(CARS)/db/XRMAnalyzer.db","P=13XRM:,ANA=ANA")
 
 ## For FTomo at BMC:
-dbLoadRecords("$(CARS)/CARSApp/Db/FluorTomo.db","P=13XRM:,Q=FT")
+dbLoadRecords("$(CARS)/db/FluorTomo.db","P=13XRM:,Q=FT")
 
 # fast mapping
-dbLoadRecords("$(CARS)/CARSApp/Db/XRM_fastmap.db","P=13XRM:,Q=map")
+dbLoadRecords("$(CARS)/db/XRM_fastmap.db","P=13XRM:,Q=map")
 
 # fast XAFS 
 dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
@@ -142,23 +141,23 @@ dbLoadRecords("escandata.db","P=13XRM:,Q=ScanData")
 
 
 # Epics PyInstrument
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13XRM:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDE:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDD:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDC:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13IDA:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMA:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMC:,Q=Inst")
-dbLoadRecords("$(CARS)/CARSApp/Db/PyInstrument.db","P=13BMD:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13XRM:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDE:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDD:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDC:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDA:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMA:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMC:,Q=Inst")
+dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMD:,Q=Inst")
 
 # ion chamber calculations
-dbLoadRecords("$(CARS)/CARSApp/Db/IonChamber.db","P=13XRM:,Q=ION")
+dbLoadRecords("$(CARS)/db/IonChamber.db","P=13XRM:,Q=ION")
 
 dbLoadRecords("pydebug.db", "P=Py:")
 
 dbLoadRecords("py_exapp.db", "P=Py:,Q=EXT")
 
-#dbLoadRecords("$(CARS)/CARSApp/Db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
+#dbLoadRecords("$(CARS)/db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
 
 asynSetTraceIOMask("XPS1",0,2)
 #asynSetTraceMask("XPS1",0,0x3)

@@ -1,7 +1,7 @@
 errlogInit(5000)
 < envPaths
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/ipApp/Db:$(DELAYGEN)/delayGenApp/Db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/delayGenApp/Db)
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
@@ -82,7 +82,7 @@ dbLoadTemplate  "motors.template"
 drvAsynIPPortConfigure("serial4", "164.54.160.13:10001", 0, 0, 0) 
 asynOctetSetInputEos("serial4",0,"\r")
 asynOctetSetOutputEos("serial4",0,"\r")
-dbLoadRecords("$(CARS)/CARSApp/Db/IPG_YLR_laser.db","P=13LU:,R=Laser1,PORT=serial4")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=13LU:,R=Laser1,PORT=serial4")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -95,20 +95,20 @@ dbLoadTemplate "scanParms.template"
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=13LU:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=13LU:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/calcApp/Db/userStringCalcs10.db", "P=13LU:")
+dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13LU:")
 
 # Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/calcApp/Db/userTransforms10.db", "P=13LU:")
+dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13LU:")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/stdApp/Db/misc.db", "P=13LU:")
+dbLoadRecords("$(STD)/db/misc.db", "P=13LU:")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("13LU:")
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=13LU:")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LU:")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
