@@ -15,8 +15,8 @@ epicsEnvSet("PREFIX", "HindsXray:")
 
 ##########################################################
 # Configure asyn device
-# FOLLOWING 1 LINE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
-#pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
+# FOLLOWING 1 LINE CAN BE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
+pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
 #asynSetTraceMask("PMAC_IP",-1,0xFF)
 asynSetTraceIOMask("PMAC_IP",-1,0x1)
 #asynSetTraceMask("PMAC_IP",-1,0x1)
