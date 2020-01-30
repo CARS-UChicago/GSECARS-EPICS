@@ -111,7 +111,7 @@ dbLoadRecords("$(CARS)/db/VerdiLaser.db", "P=$(PREFIX),R=Verdi1:,PORT=serial3")
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db","P=$(PREFIX),R=IPG1,PORT=serial6")
 
 # Koyo PLC
-< Koyo.cmd
+#< Koyo.cmd
 
 ##############################################################################
 # Set up serial ports on Moxa box
