@@ -15,8 +15,8 @@ epicsEnvSet("PREFIX", "HindsXray:")
 
 ##########################################################
 # Configure asyn device
-# FOLLOWING 1 LINE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
-#pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
+# FOLLOWING 1 LINE CAN BE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
+pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
 #asynSetTraceMask("PMAC_IP",-1,0xFF)
 asynSetTraceIOMask("PMAC_IP",-1,0x1)
 #asynSetTraceMask("PMAC_IP",-1,0x1)
@@ -36,7 +36,7 @@ dbLoadTemplate  "motors.template"
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -44,7 +44,7 @@ dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPT
 dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)", std)
+dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
 
 < ../calc_GSECARS.iocsh
 
