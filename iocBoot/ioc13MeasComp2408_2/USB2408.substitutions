@@ -1,0 +1,142 @@
+file "$(MEASCOMP)/db/measCompLongIn.template"
+{
+pattern
+{              P,   R,   MASK,       PORT,  ADDR}
+{   13USB2408_2:,  Li,   0xFF,  USB2408_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompBinaryIn.template"
+{
+pattern
+{              P,    R,  MASK,        PORT,  ADDR}
+{   13USB2408_2:,  Bi1,  0x01,   USB2408_1,     0}
+{   13USB2408_2:,  Bi2,  0x02,   USB2408_1,     0}
+{   13USB2408_2:,  Bi3,  0x04,   USB2408_1,     0}
+{   13USB2408_2:,  Bi4,  0x08,   USB2408_1,     0}
+{   13USB2408_2:,  Bi5,  0x10,   USB2408_1,     0}
+{   13USB2408_2:,  Bi6,  0x20,   USB2408_1,     0}
+{   13USB2408_2:,  Bi7,  0x40,   USB2408_1,     0}
+{   13USB2408_2:,  Bi8,  0x80,   USB2408_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompLongOut.template"
+{
+pattern
+{              P,   R,   MASK,       PORT,  ADDR}
+{   13USB2408_2:,  Lo,   0xFF,  USB2408_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompBinaryOut.template"
+{
+pattern
+{              P,    R,  MASK,        PORT,  ADDR}
+{   13USB2408_2:,  Bo1,  0x01,   USB2408_1,     0}
+{   13USB2408_2:,  Bo2,  0x02,   USB2408_1,     0}
+{   13USB2408_2:,  Bo3,  0x04,   USB2408_1,     0}
+{   13USB2408_2:,  Bo4,  0x08,   USB2408_1,     0}
+{   13USB2408_2:,  Bo5,  0x10,   USB2408_1,     0}
+{   13USB2408_2:,  Bo6,  0x20,   USB2408_1,     0}
+{   13USB2408_2:,  Bo7,  0x40,   USB2408_1,     0}
+{   13USB2408_2:,  Bo8,  0x80,   USB2408_1,     0}
+}
+
+# Direction bits on binary I/O
+#  VAL 0=input, 1=output
+file "$(MEASCOMP)/db/measCompBinaryDir.template"
+{
+pattern
+{              P,    R,  MASK,  VAL,       PORT,  ADDR}
+{   13USB2408_2:,  Bd1,  0x01,    0,  USB2408_1,     0}
+{   13USB2408_2:,  Bd2,  0x02,    0,  USB2408_1,     0}
+{   13USB2408_2:,  Bd3,  0x04,    0,  USB2408_1,     0}
+{   13USB2408_2:,  Bd4,  0x08,    0,  USB2408_1,     0}
+{   13USB2408_2:,  Bd5,  0x10     1,  USB2408_1,     0}
+{   13USB2408_2:,  Bd6,  0x20,    1,  USB2408_1,     0}
+{   13USB2408_2:,  Bd7,  0x40,    1,  USB2408_1,     0}
+{   13USB2408_2:,  Bd8,  0x80,    1,  USB2408_1,     0}
+}
+
+file "$(MEASCOMP)/db/MeasCompCounter.template"
+{
+pattern
+{              P,         R,       PORT,   ADDR}
+{   13USB2408_2:,  Counter1,  USB2408_1,      0}
+{   13USB2408_2:,  Counter2,  USB2408_1,      1}
+}
+
+# Analog inputs
+file "$(MEASCOMP)/db/measCompAnalogIn.template"
+{
+pattern
+{              P,     R,      PORT, ADDR,  EGUL, LOPR, EGUF, HOPR, RANGE,       SCAN, PREC}
+{   13USB2408_2:,   Ai1, USB2408_1,    0,  -10., -10.,  10.,  10.,    3,  "1 second",   4}
+{   13USB2408_2:,   Ai2, USB2408_1,    1,  -10., -10.,  10.,  10.,    3,  "1 second",   4}
+{   13USB2408_2:,   Ai3, USB2408_1,    2,   -5.,  -5.,   5.,   5.,    2,  "1 second",   4}
+{   13USB2408_2:,   Ai4, USB2408_1,    3,   -5.,  -5.,   5.,   5.,    2,  "1 second",   4}
+{   13USB2408_2:,   Ai5, USB2408_1,    4,   -2.,  -2.,   2.,   2.,    1,  "1 second",   4}
+{   13USB2408_2:,   Ai6, USB2408_1,    5,   -2.,  -2.,   2.,   2.,    1,  "1 second",   4}
+{   13USB2408_2:,   Ai7, USB2408_1,    6,   -1.,  -1.,   1.,   1.,    0,  "1 second",   4}
+{   13USB2408_2:,   Ai8, USB2408_1,    7,   -1.,  -1.,   1.,   1.,    0,  "1 second",   4}
+}
+
+# Temperature inputs
+file "$(MEASCOMP)/db/measCompTemperatureIn.template"
+{
+pattern
+{              P,     R,      PORT, ADDR,       SCAN, PREC}
+{   13USB2408_2:,   Ti1, USB2408_1,    0, "1 second",   2}
+{   13USB2408_2:,   Ti2, USB2408_1,    1, "1 second",   2}
+{   13USB2408_2:,   Ti3, USB2408_1,    2, "1 second",   2}
+{   13USB2408_2:,   Ti4, USB2408_1,    3, "1 second",   2}
+{   13USB2408_2:,   Ti5, USB2408_1,    4, "1 second",   2}
+{   13USB2408_2:,   Ti6, USB2408_1,    5, "1 second",   2}
+{   13USB2408_2:,   Ti7, USB2408_1,    6, "1 second",   2}
+{   13USB2408_2:,   Ti8, USB2408_1,    7, "1 second",   2}
+}
+
+# Waveform digitzer
+file "$(MEASCOMP)/db/measCompWaveformDig.template"
+{
+pattern
+{              P,        R,         PORT,  ADDR, MAX_POINTS,    PREC}
+{   13USB2408_2:,  WaveDig,    USB2408_1,     0,       2048,       4}
+}
+
+file "$(MEASCOMP)/db/measCompWaveformDigN.template"
+{
+pattern
+{              P,         R,        PORT,  ADDR, MAX_POINTS,    PREC}
+{   13USB2408_2:,  WaveDig1,   USB2408_1,     0,       2048,       4}
+{   13USB2408_2:,  WaveDig2,   USB2408_1,     1,       2048,       4}
+{   13USB2408_2:,  WaveDig3,   USB2408_1,     2,       2048,       4}
+{   13USB2408_2:,  WaveDig4,   USB2408_1,     3,       2048,       4}
+{   13USB2408_2:,  WaveDig5,   USB2408_1,     4,       2048,       4}
+{   13USB2408_2:,  WaveDig6,   USB2408_1,     5,       2048,       4}
+{   13USB2408_2:,  WaveDig7,   USB2408_1,     6,       2048,       4}
+{   13USB2408_2:,  WaveDig8,   USB2408_1,     7,       2048,       4}
+}
+
+
+# Analog outputs
+file "$(MEASCOMP)/db/measCompAnalogOut.template"
+{
+pattern
+{              P,    R, VAL,       PORT, ADDR,  EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC}
+{   13USB2408_2:,  Ao1,   0,  USB2408_1,    0,  -10., -10., -10.,  10.,  10.,  10.,    4}
+{   13USB2408_2:,  Ao2,   0,  USB2408_1,    1,  -10., -10., -10.,  10.,  10.,  10.,    4}
+}
+
+# Waveform generator
+file "$(MEASCOMP)/db/measCompWaveformGen.template"
+{
+pattern
+{              P,        R,         PORT,  ADDR, MAX_POINTS,    PREC}
+{   13USB2408_2:,  WaveGen,    USB2408_1,     0,      2048,        4}
+}
+file "$(MEASCOMP)/db/measCompWaveformGenN.template"
+{
+pattern
+{              P,         R,        PORT,  ADDR, MAX_POINTS,    PREC}
+{   13USB2408_2:,  WaveGen1,   USB2408_1,     0,      2048,        4}
+{   13USB2408_2:,  WaveGen2,   USB2408_1,     1,      2048,        4}
+}

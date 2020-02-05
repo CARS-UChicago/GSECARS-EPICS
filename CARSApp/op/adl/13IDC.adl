@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
 	version=030109
 }
 display {
@@ -251,12 +251,12 @@ composite {
 	display[1] {
 		label="Sample Stage"
 		name="3motors.adl"
-		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m38,  M2=m39, M3=m40"
+		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m31,  M2=m32, M3=m40"
 	}
 	display[2] {
 		label="Goniometer readbacks"
 		name="diff_motors.adl"
-		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m38, M8=m39, M9=m40"
+		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m31, M8=m32, M9=m40"
 	}
 	display[3] {
 		label="Entrance Slits"
@@ -277,11 +277,6 @@ composite {
 		label="IDC GPD Det Slits (compound)"
 		name="4slitGraphic.adl"
 		args="P=13IDC:,V=Slit1V,H=Slit1H,mXp=m18,mXn=m17,mYp=m19,mYn=m20,SLIT=IDC_GPD_Det_Slits"
-	}
-	display[7] {
-		label="Sample Stage 2"
-		name="3motors.adl"
-		args="P= ,TITLE=GPD_Sample_Stage, M1=13IDD:m94,M2=13IDC:m39,M3=13IDC:m40"
 	}
 	clr=14
 	bclr=5
@@ -541,37 +536,24 @@ text {
 		args="P=13IDC:, S=scaler1"
 	}
 	display[1] {
-		label="16 element detector"
-		name="16element.adl"
-		args="P=13GE1:med:"
-	}
-	display[2] {
-		label="Si detector (AIM ADC)"
-		name="aim_adc.adl"
-	}
-	display[3] {
-		label="16 element dxp"
-		name="16element_dxp.adl"
-		args="P=13GE2:med:"
-	}
-	display[4] {
 		label="Vortex"
 		name="single_dxp_top.adl"
 		args="P=13XRM:,D=dxp1,M=mca1"
 	}
-	display[5] {
-		name="1element_dxp.adl"
-		args="P=13Saturn2:med:,D=dxp1,M=mca1"
-	}
-	display[6] {
+	display[2] {
 		label="XRF Collect"
 		name="XRF_Collect.adl"
 		args="P=13XRM:, Q=XRF, D=13SDD1:"
 	}
-	display[7] {
+	display[3] {
 		label="GSE-PILATUS1"
 		name="pilatusDetector.adl"
 		args="P=GSE-PIL1:, R=cam1:"
+	}
+	display[4] {
+		label="Dante 1"
+		name="dante.adl"
+		args="P=13IDC:, M=dante1:mca1, R=dante1:"
 	}
 	clr=14
 	bclr=5

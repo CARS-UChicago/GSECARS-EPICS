@@ -1,0 +1,25 @@
+file "$(DANTE)/db/dante.template" {
+{P=13BMD_Dante1:, R=dante1:, PORT=DANTE1, TRACE_LEN=16384}
+}
+
+file "$(DANTE)/db/danteN.template" {
+{P=13BMD_Dante1:, R=dante1:, PORT=DANTE1, TRACE_LEN=16384}
+}
+
+file "$(DANTE)/db/dante1CH.template" {
+{P=13BMD_Dante1:, R=dante1:, M=mca1, PORT=DANTE1}
+}
+
+file "$(MCA)/db/mca.db"
+{
+pattern
+{           P,      M,       DTYP,         INP,         PREC,    NCHAN}
+{13BMD_Dante1:,   mca1,  "asynMCA",  "@asyn(DANTE1,0)",   2,     4096}
+}
+
+file "$(ASYN)/db/asynRecord.db"
+{
+pattern
+{       P,             R,        PORT,   ADDR,  IMAX,  OMAX}
+{13BMD_Dante1:, dante1:AsynIO, DANTE1,      0,    80,    80}
+}
