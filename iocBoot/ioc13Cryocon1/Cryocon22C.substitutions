@@ -1,0 +1,19 @@
+file "$(CRYOCONM32)/db/M32_system.template"
+{
+pattern {egu }
+        {"K" }
+}
+
+file "$(CRYOCONM32)/db/M32_sensor.template"
+{
+pattern {record, sensor, scan, adel, egu, lolo, low, high, hihi}
+        {"T1", "A", 5, 0.02, "K", 0,  4,  8, 1000 }
+        {"T2", "B", 5, 0.02, "K" ,0, 10, 50, 1000 }
+}
+
+file "$(CRYOCONM32)/db/M32_control.template"
+{
+pattern {loop, scan }
+	{1, 5 }
+	{2, 5 }
+}
