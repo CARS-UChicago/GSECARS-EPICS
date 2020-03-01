@@ -8,6 +8,7 @@ dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "HindsXray:")
+epicsEnvSet("STREAM_PROTOCOL_PATH", "$(IP)/db")
 
 #< industryPack.cmd
 
@@ -74,7 +75,8 @@ asynOctetSetOutputEos("serial2",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
 asynSetTraceIOMask("serial2",0,2)
 asynSetTraceMask("serial2",0,9)
-#dbLoadRecords("$(CARS)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
+dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP1:,PORT=serial2,CHAN=1,HIGH=-6,HIHI=-4")
+dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP2:,PORT=serial2,CHAN=2,HIGH=-6,HIHI=-4")
 
 ## Other serial devices
 drvAsynIPPortConfigure("serial3", "10.100.160.105:4003 COM", 0, 0, 0)
