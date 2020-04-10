@@ -28,7 +28,8 @@ epicsEnvSet("MAX_THREADS", "8")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 
 # DanteConfig(portName, ipAddress, numDetectors, maxBuffers, maxMemory)
-DanteConfig("$(PORT)",  164.54.160.181, 1, 0, 0)
+# DanteConfig("$(PORT)",  164.54.160.181, 1, 0, 0)
+DanteConfig("$(PORT)",  164.54.160.186, 1, 0, 0)
 
 dbLoadTemplate("dante.substitutions")
 
