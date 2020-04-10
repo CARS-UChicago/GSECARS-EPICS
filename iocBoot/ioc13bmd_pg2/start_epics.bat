@@ -1,5 +1,6 @@
-rem start medm -x -macro "P=13BMDPG2:, R=cam1:" PointGrey.adl
+rem start medm -x -macro "P=13BMD_PG1:, R=cam1:" ADSpinnaker.adl
 set PATH=C:\epics_windows_binaries\windows-x64-static;%PATH%
-pointGreyApp st.cmd
+spinnakerApp st.cmd
 pause
+
 
