@@ -31,8 +31,8 @@ dbLoadRecords("$(CARS)/db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1
 #           maxSignals, maxSequences, ethernetDevice)
 AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"dc0")
 AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"dc0")
-dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
-dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4096")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4096")
 
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
