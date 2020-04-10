@@ -18,19 +18,19 @@ epicsEnvSet("STREAM_PROTOCOL_PATH", "$(IP)/db")
 ## JES commented out pmac for testing
 ## Configure asyn device
 ## FOLLOWING 1 LINE CAN BE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
-#pmacAsynIPConfigure("PMAC_IP","10.135.28.41:1025",0,0,0)
+pmacAsynIPConfigure("PMAC_IP","10.100.160.104:1025",0,0,0)
 ##asynSetTraceMask("PMAC_IP",-1,0xFF)
-#asynSetTraceIOMask("PMAC_IP",-1,0x1)
+asynSetTraceIOMask("PMAC_IP",-1,0x1)
 ##asynSetTraceMask("PMAC_IP",-1,0x1)
 ##asynSetTraceIOMask("PMAC_IP",-1,0x0)
 
-#pmacAsynMotorCreate("PMAC_IP", 0, 0, 9);
+pmacAsynMotorCreate("PMAC_IP", 0, 0, 9);
 
 ## Setup the motor Asyn layer (portname, low-level driver drvet name, card, number of axes on card)
-#drvAsynMotorConfigure("PMAC1", "pmacAsynMotor", 0, 9)
+drvAsynMotorConfigure("PMAC1", "pmacAsynMotor", 0, 9)
 
 ### Motors
-#dbLoadTemplate  "motors.template"
+dbLoadTemplate  "motors.template"
 
 ### Scan-support software
 ## crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -43,7 +43,7 @@ dbLoadRecords("$(SSCAN)/sscanApp/Db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=
 ## A set of scan parameters for each positioner.  This is a convenience
 ## for the user.  It can contain an entry for each scannable thing in the
 ## crate.
-#dbLoadTemplate("scanParms.template")
+dbLoadTemplate("scanParms.template")
 
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
@@ -63,7 +63,7 @@ asynOctetSetOutputEos("serial1",0,"\n")
 asynOctetSetInputEos("serial1",0,"\n")
 asynSetTraceIOMask("serial1",0,2)
 asynSetTraceMask("serial1",0,9)
-#dbLoadRecords("$(VAC)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
+dbLoadRecords("$(VAC)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
 
 ## Varian ion pump controllers
 drvAsynIPPortConfigure("serial2", "10.100.160.105:4002 COM", 0, 0, 0)
