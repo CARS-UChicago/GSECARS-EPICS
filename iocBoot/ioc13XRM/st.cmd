@@ -41,15 +41,16 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 # Disable setting position
 XPSEnableSetPosition(0)
 
-XPSCreateController("XPS2", "164.54.160.180", 5001, 5, 10, 500, 0, 500)
+XPSCreateController("XPS2", "164.54.160.180", 5001, 6, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS2", 0, "EigerY.Pos",    "2000") # ILS200CC
-XPSCreateAxis("XPS2", 1, "EigerX.Pos",     "400") # UTS150PP
-XPSCreateAxis("XPS2", 2, "EigerZ.Pos",     "400") # UTS150PP
-XPSCreateAxis("XPS2", 3, "AnalTheta.Pos", "1000") # RV160CC
-XPSCreateAxis("XPS2", 4, "AnalY.Pos",     "2000") # ILS150CC
+XPSCreateAxis("XPS2", 0, "GROUP1.POSITIONER",  "2000") # ILS200CC  Eiger 1
+XPSCreateAxis("XPS2", 1, "GROUP2.POSITIONER",   "400") # UTS150PP  Eiger 2
+XPSCreateAxis("XPS2", 2, "GROUP3.POSITIONER",   "400") # UTS150PP  Eiger 3
+XPSCreateAxis("XPS2", 3, "GROUP4.POSITIONER",  "1000") # RV160CC   Analyzer Theta
+XPSCreateAxis("XPS2", 4, "GROUP5.POSITIONER",  "2000") # ILS200CC  Analyzer Dist
+XPSCreateAxis("XPS2", 5, "GROUP6.POSITIONER",  "2000") # ILS150CC  Eiger 4
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
