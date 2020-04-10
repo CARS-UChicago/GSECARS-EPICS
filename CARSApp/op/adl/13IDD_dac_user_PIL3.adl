@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user_PIL3.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user_PIL3.adl"
 	version=030109
 }
 display {
@@ -10550,5 +10550,37 @@ composite {
 		vis="if zero"
 		calc="A=1"
 		chan="13PIL3:cam1:TriggerMode"
+	}
+}
+composite {
+	object {
+		x=815
+		y=375
+		width=28
+		height=12
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=815
+				y=375
+				width=28
+				height=12
+			}
+			control {
+				chan="13IDD:m22.VAL"
+				clr=14
+				bclr=25
+			}
+			label="10"
+			press_msg="10."
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-95&&A<-85&&B<-100"
+		chan="13IDD:m96.RBV"
+		chanB="13IDD:m23.RBV"
 	}
 }
