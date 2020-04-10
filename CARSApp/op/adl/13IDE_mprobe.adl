@@ -270,9 +270,9 @@ rectangle {
 		args="P=13IDE:, M1P=pm4,  M1H=pm3, M1C=pm1, M1E=pm2, M2P=pm8, M2H=pm7, M2C=pm5, M2E=pm6"
 	}
 	display[6] {
-		label="Eiger Stages"
+		label="Eiger XRD Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Eiger_Detector_Stages, M1=XRM:m7, M2=XRM:m8, M3=XRM:m9"
+		args="P=13, TITLE=Eiger_XRD_Stages, M1=XRM:m7, M2=XRM:m8, M3=XRM:m9"
 	}
 	display[7] {
 		label="Vortex Stages"
@@ -280,9 +280,9 @@ rectangle {
 		args="P=13, TITLE=Vortex_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=IDE:m19"
 	}
 	display[8] {
-		label="XPS UTS Stages"
-		name="2motors.adl"
-		args="P=13XRM:, TITLE=XPS_UTS_Stages, M1=m7, M2=m8"
+		label="Analyzer Stages"
+		name="5motors.adl"
+		args="P=13, TITLE=Analyzer_Stages, M1=XRM:m10, M2=XRM:m11, M3=IDE:m35, M4=IDE:m36,M5=IDE:m37"
 	}
 	display[9] {
 		label="Spindle Motor"
@@ -304,9 +304,9 @@ rectangle {
 		args="P=13IDE:, TITLE=CMA_Motors, M1=m35, M2=m36"
 	}
 	display[13] {
-		label="Analyzer Motors"
-		name="3motors.adl"
-		args="P=13, TITLE=Analyzer_Motors, M1=XRM:m10, M2=XRM:m11, M3=IDE:m6"
+		label="Eiger HERFD Stages"
+		name="2motors.adl"
+		args="P=13XRM:, TITLE=Eiger_HERFD, M1=m7, M2=m12"
 	}
 	display[14] {
 		label="XPS-D Motors"
@@ -1804,4 +1804,32 @@ text {
 		bclr=31
 	}
 	stacking="column"
+}
+text {
+	object {
+		x=10
+		y=265
+		width=80
+		height=18
+	}
+	"basic attribute" {
+		clr=23
+	}
+	textix="I0 Volts:"
+}
+"text update" {
+	object {
+		x=120
+		y=265
+		width=70
+		height=15
+	}
+	monitor {
+		chan="13IDE:IP330_1.VAL"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
 }
