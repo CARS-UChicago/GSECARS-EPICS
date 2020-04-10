@@ -39,10 +39,10 @@ dbLoadRecords("$(CARS)/db/MAR345_shutter_serial.db",st)
 # Multichannel analyzer stuff
 # AIMConfig(portName, card, ethernet_address, port, maxChans,
 #           maxSignals, maxSequences, ethernetDevice)
-AIMConfig("NI9CE/1", 0x9CE, 1, 2048, 1, 1,"dc0")
-AIMConfig("NI9CE/2", 0x9CE, 2, 2048, 4, 1,"dc0")
-dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=2048")
-dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=2048")
+AIMConfig("NI9CE/1", 0x9CE, 1, 4096, 1, 1,"dc0")
+AIMConfig("NI9CE/2", 0x9CE, 2, 4096, 4, 1,"dc0")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI9CE/1 0),NCHAN=4096")
+dbLoadRecords("$(MCA)/db/mca.db", "P=13BMD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI9CE/2 0),NCHAN=4096")
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
