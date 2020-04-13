@@ -1,6 +1,4 @@
-# Database for EPICS PVS corresponding to inputs in TOMO_COLLECT program
-# Daniel Citron
-# 12/9/2010
+# Database for EPICS PVS for tomography data collection software
 
 ######################
 # EPICS PVs Names
@@ -8,57 +6,52 @@
 
 record(stringout, "$(P)$(R)CameraPVName")
 {
-   field(VAL,  "Unknown")
-}
-
-record(stringout, "$(P)$(R)PulseGeneratorPVName")
-{
-   field(VAL,  "Unknown")
+   field(VAL,  "$(CAMERA)")
 }
 
 record(stringout, "$(P)$(R)MCSPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(MCS)")
 }
 
 record(stringout, "$(P)$(R)CloseShutterPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(CLOSE_SHUTTER)")
 }
 
 record(stringout, "$(P)$(R)CloseShutterValue")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(CLOSE_VALUE)")
 }
 
 record(stringout, "$(P)$(R)OpenShutterPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(OPEN_SHUTTER)")
 }
 
 record(stringout, "$(P)$(R)OpenShutterValue")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(OPEN_VALUE)")
 }
 
-record(stringout, "$(P)$(R)RotationMotorPVName")
+record(stringout, "$(P)$(R)RotationPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(ROTATION)")
 }
 
-record(stringout, "$(P)$(R)HorizontalMotorPVName")
+record(stringout, "$(P)$(R)SampleXPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(SAMPLE_X)")
 }
 
-record(stringout, "$(P)$(R)VerticalMotorPVName")
+record(stringout, "$(P)$(R)SampleYPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(SAMPLE_Y)")
 }
 
 record(stringout, "$(P)$(R)BeamReadyPVName")
 {
-   field(VAL,  "Unknown")
+   field(VAL,  "$(BEAM_READY)")
 }
 
 record(bo, "$(P)$(R)AcceptPVS")
@@ -67,63 +60,62 @@ record(bo, "$(P)$(R)AcceptPVS")
    field(ONAM,"Accept")
 }
 
-
-
 ######################
-# Experiment info
+# Energy information
 ######################
 
-record(stringout, "$(P)$(R)SampleName")
+record(mbbo, "$(P)$(R)EnergyMode")
+{
+   field(ZRVL, "0")
+   field(ZRST, "Mono")
+   field(ONVL, "1")
+   field(ONST, "Pink")
+   field(TWVL, "2")
+   field(TWST, "White")
+}
+
+######################
+# Optics information
+######################
+
+record(stringout, "$(P)$(R)ScintillatorType")
 {
    field(VAL,  "Unknown")
 }
 
-record(stringout, "$(P)$(R)Title")
+record(ao, "$(P)$(R)ScintillatorThickness")
+{
+   field(PREC,  "0")
+}
+
+record(ao, "$(P)$(R)ImagePixelSize")
+{
+   field(PREC, "2")
+   field(EGU,  "microns")
+}
+
+record(ao, "$(P)$(R)DetectorPixelSize")
+{
+   field(PREC, "2")
+   field(EGU,  "microns")
+}
+
+record(stringout, "$(P)$(R)CameraObjective")
 {
    field(VAL,  "Unknown")
 }
 
-record(stringout, "$(P)$(R)Operator")
+record(ao, "$(P)$(R)CameraTubeLength")
 {
-   field(VAL,  "Unknown")
+   field(PREC, "0")
+   field(EGU,  "mm")
 }
-
-record(stringout, "$(P)$(R)Camera")
-{
-   field(VAL,  "Unknown")
-}
-
-record(ao, "$(P)$(R)XPixelSize")
-{
-   field(PREC,  "3")
-}
-
-record(ao, "$(P)$(R)YPixelSize")
-{
-   field(PREC,  "3")
-}
-
-record(ao, "$(P)$(R)Energy")
-{
-   field(PREC,  "3")
-}
-
-record(ao, "$(P)$(R)DarkCurrent")
-{
-   field(PREC,  "1")
-}
-
 
 ######################
 # Rotation axis
 ######################
 
 record(ao, "$(P)$(R)RotationStart")
-{
-   field(PREC,  "3")
-}
-
-record(ao, "$(P)$(R)RotationStop")
 {
    field(PREC,  "3")
 }
@@ -137,11 +129,6 @@ record(longout, "$(P)$(R)NumAngles")
 {
 }
 
-record(ao, "$(P)$(R)RotationMotorSpeed")
-{
-   field(PREC,  "6")
-}
-
 record(bo, "$(P)$(R)LeaveRotationMotor")
 {
    field(ZNAM, "No")
@@ -149,82 +136,170 @@ record(bo, "$(P)$(R)LeaveRotationMotor")
 }
 
 ######################
-# Horizontal axis
+# Dark field control
 ######################
 
-record(ao, "$(P)$(R)HorizontalSampleIn")
+record(longout, "$(P)$(R)NumDarkFields")
 {
-   field(PREC,  "3")
 }
 
-record(ao, "$(P)$(R)HorizontalSampleOut")
+record(mbbo, "$(P)$(R)DarkFieldMode")
 {
-   field(PREC,  "3")
+   field(ZRVL, "0")
+   field(ZRST, "Start")
+   field(ONVL, "1")
+   field(ONST, "End")
+   field(TWVL, "2")
+   field(TWST, "Both")
+   field(THVL, "3")
+   field(THST, "None")
 }
 
-
-######################
-# Vertical axis
-######################
-
-record(ao, "$(P)$(R)VerticalSampleIn")
+record(ao, "$(P)$(R)DarkFieldValue")
 {
-   field(PREC,  "3")
+   field(PREC,  "0")
 }
-
-record(ao, "$(P)$(R)VerticalSampleOut")
-{
-   field(PREC,  "3")
-}
-
 
 ######################
 # Flat field control
 ######################
 
-record(mbbo, "$(P)$(R)FlatFieldAxis")
-{
-   field(ZRVL, "0")
-   field(ZRST, "Horizontal")
-   field(ONVL, "1")
-   field(ONST, "Vertical")
-   field(TWVL, "2")
-   field(TWST, "Both")
-}
-
-record(longout, "$(P)$(R)AnglesBetweenFlats")
-{
-}
-
 record(longout, "$(P)$(R)NumFlatFields")
 {
 }
 
-record(bo, "$(P)$(R)MoveSampleIn")
+record(mbbo, "$(P)$(R)FlatFieldMode")
 {
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
+   field(ZRVL, "0")
+   field(ZRST, "Start")
+   field(ONVL, "1")
+   field(ONST, "End")
+   field(TWVL, "2")
+   field(TWST, "Both")
+   field(THVL, "3")
+   field(THST, "None")
 }
 
-record(bo, "$(P)$(R)MoveSampleOut")
+record(mbbo, "$(P)$(R)FlatFieldAxis")
 {
-   field(ZNAM,"No")
-   field(ONAM,"Yes")
+   field(ZRVL, "1")
+   field(ZRST, "X")
+   field(ONVL, "2")
+   field(ONST, "Y")
+   field(TWVL, "3")
+   field(TWST, "Both")
 }
 
+record(ao, "$(P)$(R)FlatFieldValue")
+{
+   field(PREC,  "0")
+}
+
+record(ao, "$(P)$(R)SampleInX")
+{
+   field(PREC,  "3")
+}
+
+record(ao, "$(P)$(R)SampleOutX")
+{
+   field(PREC,  "3")
+}
+
+record(ao, "$(P)$(R)SampleInY")
+{
+   field(PREC,  "3")
+}
+
+record(ao, "$(P)$(R)SampleOutY")
+{
+   field(PREC,  "3")
+}
+
+record(sseq, "$(P)$(R)MoveSampleIn")
+{
+   field(SELL, "$(P)$(R)FlatFieldAxis.RVAL")
+   field(SELM, "Mask")
+   field(DOL1, "$(P)$(R)SampleInX")
+   field(LNK1, "$(SAMPLE_X) CA")
+   field(WAIT1,"Wait")
+   field(DOL2, "$(P)$(R)SampleInY")
+   field(LNK2, "$(SAMPLE_Y) CA")
+   field(WAIT2,"Wait")
+}
+
+record(sseq, "$(P)$(R)MoveSampleOut")
+{
+   field(SELL, "$(P)$(R)FlatFieldAxis.RVAL")
+   field(SELM, "Mask")
+   field(DOL1, "$(P)$(R)SampleOutX")
+   field(LNK1, "$(SAMPLE_X) CA")
+   field(WAIT1,"Wait")
+   field(DOL2, "$(P)$(R)SampleOutY")
+   field(LNK2, "$(SAMPLE_Y) CA")
+   field(WAIT2,"Wait")
+}
 
 ######################
-# Dark current control
+# Sample information
 ######################
 
-record(longout, "$(P)$(R)NumDarkCurrents")
+record(stringout, "$(P)$(R)SampleName")
 {
+   field(VAL,  "Unknown")
 }
 
-record(bo, "$(P)$(R)CollectDarkCurrent")
+record(stringout, "$(P)$(R)SampleDescription1")
 {
-   field(ZNAM,"Done")
-   field(ONAM,"Collect")
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)SampleDescription2")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)SampleDescription3")
+{
+   field(VAL,  "Unknown")
+}
+
+######################
+# User information
+######################
+
+record(stringout, "$(P)$(R)UserName")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)UserInstitution")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)UserBadge")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)UserEmail")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)ProposalNumber")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)ProposalTitle")
+{
+   field(VAL,  "Unknown")
+}
+
+record(stringout, "$(P)$(R)ESAFNumber")
+{
+   field(VAL,  "Unknown")
 }
 
 ######################
