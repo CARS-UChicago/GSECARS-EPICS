@@ -20,6 +20,7 @@
 
     <Attribute name="AcquireTime"                   type="EPICS_PV"     source="$(DET)cam1:AcquireTime_RBV"              dbrtype="DBR_NATIVE"  description="Exposure time"/>
     <Attribute name="AcquirePeriod"                 type="EPICS_PV"     source="$(DET)cam1:AcquirePeriod_RBV"            dbrtype="DBR_NATIVE"  description="Exposure period"/>
+    <Attribute name="ExposurePeriod"                type="EPICS_PV"     source="13BMD:SIS1:Dwell"                        dbrtype="DBR_NATIVE"  description="SIS Dwell=exposure period"/>
     <Attribute name="FrameRate"                     type="EPICS_PV"     source="$(DET)cam1:FrameRate_RBV"                dbrtype="DBR_NATIVE"  description="Frame rate"/>
     <Attribute name="FrameRateEnable"               type="EPICS_PV"     source="$(DET)cam1:FrameRateEnable_RBV"          dbrtype="DBR_STRING"  description="Frame rate enable"/>
     <Attribute name="Gain"                          type="EPICS_PV"     source="$(DET)cam1:Gain_RBV"                     dbrtype="DBR_NATIVE"  description="Gain"/>
@@ -44,16 +45,14 @@
     <Attribute name="SampleX"                       type="EPICS_PV"     source="13BMD:m85.RBV"                           dbrtype="DBR_NATIVE"  description="Bottom X stage translation"/>
     <Attribute name="SampleOmega"                   type="EPICS_PV"     source="13BMD:m38.RBV"                           dbrtype="DBR_NATIVE"  description="Sample rotation"/>
     <Attribute name="SampleY"                       type="EPICS_PV"     source="13BMD:m90.VAL"                           dbrtype="DBR_NATIVE"  description="Sample vertical height"/>
-    <Attribute name="SampleXCent"                   type="EPICS_PV"     source="13BMD:m91.VAL"                           dbrtype="DBR_NATIVE"  description="Sample X centering"/>
-    <Attribute name="SampleZCent"                   type="EPICS_PV"     source="13BMD:m89.VAL"                           dbrtype="DBR_NATIVE"  description="Sample Z centering"/>
+    <Attribute name="SampleXCent"                   type="EPICS_PV"     source="13BMD:m92.VAL"                           dbrtype="DBR_NATIVE"  description="Sample X centering"/>
+    <Attribute name="SampleZCent"                   type="EPICS_PV"     source="13BMD:m93.VAL"                           dbrtype="DBR_NATIVE"  description="Sample Z centering"/>
 
     <Attribute name="CameraX"                       type="EPICS_PV"     source="13BMD:m33.VAL"                           dbrtype="DBR_NATIVE"  description="Camera X position"/>
     <Attribute name="CameraY"                       type="EPICS_PV"     source="13BMD:m34.VAL"                           dbrtype="DBR_NATIVE"  description="Camera Y (focus) position"/>
     <Attribute name="CameraZ"                       type="EPICS_PV"     source="13BMD:m35.VAL"                           dbrtype="DBR_NATIVE"  description="Camera Z position"/>
     <Attribute name="CameraDistance"                type="EPICS_PV"     source="13BMD:m70.VAL"                           dbrtype="DBR_NATIVE"  description="Camera distance"/>
     <Attribute name="CameraRotation"                type="EPICS_PV"     source="13BMD:m37.VAL"                           dbrtype="DBR_NATIVE"  description="Camera rotation"/>
-
-    <Attribute name="ExposurePeriod"                type="EPICS_PV"     source="13BMD:SIS1:Dwell"                        dbrtype="DBR_NATIVE"  description="SIS Dwell=exposure period"/>
 
     <Attribute name="ScintillatorType"              type="EPICS_PV"     source="$(TC)ScintillatorType"                   dbrtype="DBR_STRING"  description="Scintillator type"/>
     <Attribute name="ScintillatorThickness"         type="EPICS_PV"     source="$(TC)ScintillatorThickness"              dbrtype="DBR_NATIVE"  description="Scintillator thickness (microns)"/>
@@ -96,8 +95,7 @@
     <Attribute name="RotationStep"                  type="EPICS_PV"     source="$(TC)RotationStep"                       dbrtype="DBR_NATIVE"  description="Rotation step size"/>
     <Attribute name="RotationSpeed"                 type="EPICS_PV"     source="13BMD:m38.VELO"                          dbrtype="DBR_NATIVE"  description="Rotation speed"/>
     <Attribute name="NumAngles"                     type="EPICS_PV"     source="$(TC)NumAngles"                          dbrtype="DBR_NATIVE"  description="Number of projections"/>
-    <Attribute name="RotationMotorName"             type="EPICS_PV"     source="$(TC)RotationMotorPVName"                dbrtype="DBR_STRING"  description="Rotation motor PV name"/>
-    <Attribute name="LeaveRotationMotor"            type="EPICS_PV"     source="$(TC)LeaveRotationMotor"                 dbrtype="DBR_STRING"  description="Leave rotation at end of scan"/>
+    <Attribute name="ReturnRotation"                type="EPICS_PV"     source="$(TC)ReturnRotation"                     dbrtype="DBR_STRING"  description="Return rotation to start after scan"/>
 
     <Attribute name="NumDarkFields"                 type="EPICS_PV"     source="$(TC)NumDarkFields"                      dbrtype="DBR_NATIVE"  description="Number of dark fields"/>
     <Attribute name="DarkFieldMode"                 type="EPICS_PV"     source="$(TC)DarkFieldMode"                      dbrtype="DBR_STRING"  description="Dark field mode"/>
