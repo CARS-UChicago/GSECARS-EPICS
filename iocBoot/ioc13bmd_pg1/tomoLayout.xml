@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no" ?>
-<hdf_layout>
+<hdf5_layout>
   <global name="detector_data_destination" ndattribute="FrameType" />
     <group name="exchange">
       <dataset name="frame_type" source="ndattribute" ndattribute="FrameType" when="OnFileClose" />       
@@ -77,7 +77,6 @@
         
         <group name="monochromator">
           <dataset name="name" source="constant" value="13-BM-D DCM" type="string" when="OnFileClose" />   
-
           <dataset name="energy" source="ndattribute" ndattribute="Energy" when="OnFileClose">
             <attribute name="units" source="constant" value="eV" type="string"></attribute>
           </dataset>
@@ -165,7 +164,7 @@
               <attribute name="units" source="constant" value="deg" type="string" />
             </dataset>
           </group><!-- /setup -->
-        </group><!-- /sample -->
+        </group><!-- /lift table -->
         
         <group name="camera">
           <dataset name="name" source="constant" value="Camera motors" type="string" when="OnFileClose" />        
@@ -186,7 +185,7 @@
               <attribute name="units" source="constant" value="deg" type="string" />
             </dataset>
           </group><!-- /setup -->
-        </group><!-- /sample -->
+        </group><!-- /camera -->
         
         <group name="detector">
           <dataset name="manufacturer" source="ndattribute" ndattribute="DetectorManufacturer" when="OnFileClose" />
@@ -218,25 +217,24 @@
           <dataset name="pixel_size" source="ndattribute" ndattribute="DetectorPixelSize" when="OnFileClose">
             <attribute name="units" source="constant" value="microns" type="string"></attribute>
           </dataset>
-
           <group name="roi">
             <dataset name="min_x" source="ndattribute" ndattribute="MinX" when="OnFileClose" />
             <dataset name="size_x" source="ndattribute" ndattribute="SizeX" when="OnFileClose" />
             <dataset name="min_y" source="ndattribute" ndattribute="MinY" when="OnFileClose" />
             <dataset name="size_y" source="ndattribute" ndattribute="SizeY" when="OnFileClose" />
-          </group><!-- /roi -->
-          
+          </group><!-- /roi -->    
         </group><!-- /detector -->
+
         <group name="detection_system">
           <group name="objective">
             <dataset name="camera_objective" source="ndattribute" ndattribute="CameraObjective" when="OnFileClose" />
             <dataset name="camera_tube_length" source="ndattribute" ndattribute="CameraTubeLength" when="OnFileClose">
               <attribute name="units" source="constant" value="mm" type="string"></attribute>
             </dataset>
+            <dataset name="resolution" source="ndattribute" ndattribute="ImagePixelSize" when="OnFileClose">
+              <attribute name="units" source="constant" value="microns" type="string"></attribute>
+            </dataset>
           </group><!-- /objective -->
-          <dataset name="resolution" source="ndattribute" ndattribute="ImagePixelSize" when="OnFileClose">
-            <attribute name="units" source="constant" value="microns" type="string"></attribute>
-          </dataset>
           <group name="scintillator">
             <dataset name="name" source="ndattribute" ndattribute="ScintillatorType" when="OnFileClose" />
             <dataset name="scintillating_thickness" source="ndattribute" ndattribute="ScintillatorThickness" when="OnFileClose" >
@@ -244,6 +242,7 @@
             </dataset>
           </group><!-- /scintillator -->
         </group><!-- /detection_system -->
+
       </group><!-- /instrument -->
 
       <group name="sample">
@@ -318,4 +317,4 @@
     <group name="defaults" ndattr_default="true">
     </group><!-- /defaults -->
 
-</hdf_layout>
+</hdf5_layout>
