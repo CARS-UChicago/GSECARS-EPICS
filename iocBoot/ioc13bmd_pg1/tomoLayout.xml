@@ -2,6 +2,7 @@
 <hdf_layout>
   <global name="detector_data_destination" ndattribute="FrameType" />
     <group name="exchange">
+      <dataset name="frame_type" source="ndattribute" ndattribute="FrameType" when="OnFileClose" />       
       <dataset name="data" source="detector">
         <!-- SaveDest = 0 : /exchange/data -->
         <attribute name="description" source="constant" value="ImageData" type="string" />
@@ -33,7 +34,7 @@
     
     <group name="measurement">
       <group name="instrument">
-        <dataset name="name" source="constant" value="13-BM-F micro-tomography system using PG cameras" type="string" when="OnFileClose" />   
+        <dataset name="name" source="constant" value="13-BM-D micro-tomography system using PG cameras" type="string" when="OnFileClose" />   
              
         <group name="source">
           <dataset name="beamline" source="constant" value="13-BM-D" type="string" when="OnFileClose" />        
@@ -206,7 +207,8 @@
           <dataset name="frame_rate" source="ndattribute" ndattribute="FrameRate" when="OnFileClose" /> 
           <dataset name="frame_rate_enable" source="ndattribute" ndattribute="FrameRateEnable" when="OnFileClose" /> 
           <dataset name="exposure_time" source="ndattribute" ndattribute="AcquireTime" when="OnFileClose" />
-          <dataset name="acquisition_period" source="ndattribute" ndattribute="AcquirePeriod" when="OnFileClose" />
+          <dataset name="acquire_period" source="ndattribute" ndattribute="AcquirePeriod" when="OnFileClose" />
+          <dataset name="exposure_period" source="ndattribute" ndattribute="ExposurePeriod" when="OnFileClose" />
           <dataset name="pixel_format" source="ndattribute" ndattribute="PixelFormat" when="OnFileClose" />       
           <dataset name="convert_pixel_format" source="ndattribute" ndattribute="ConvertPixelFormat" when="OnFileClose" />       
           <dataset name="array_counter" source="ndattribute" ndattribute="ArrayCounter" when="OnFileClose" />       
@@ -249,8 +251,9 @@
         <dataset name="description_1" source="ndattribute" ndattribute="SampleDescription1" when="OnFileClose" />        
         <dataset name="description_2" source="ndattribute" ndattribute="SampleDescription2" when="OnFileClose" />        
         <dataset name="description_3" source="ndattribute" ndattribute="SampleDescription3" when="OnFileClose" />        
-        <dataset name="full_file_name" source="ndattribute" ndattribute="FullFileName" when="OnFileClose" />         
+        <dataset name="file_name" source="ndattribute" ndattribute="FileName" when="OnFileClose" />         
         <dataset name="file_path" source="ndattribute" ndattribute="FilePath" when="OnFileClose" />        
+        <dataset name="full_file_name" source="ndattribute" ndattribute="FullFileName" when="OnFileClose" />         
         <group name="experimenter">
            <dataset name="name" source="ndattribute" ndattribute="UserName" when="OnFileClose" />
            <dataset name="affiliation" source="ndattribute" ndattribute="UserAffiliation" when="OnFileClose" />
@@ -280,7 +283,7 @@
                 <attribute name="units" source="constant" value="degrees/s" type="string" />
           </dataset>
           <dataset name="num_angles" source="ndattribute" ndattribute="NumAngles" when="OnFileClose" />
-          <dataset name="leave_rotation_motor" source="ndattribute" ndattribute="LeaveRotationMotor" when="OnFileClose" />
+          <dataset name="return_rotation" source="ndattribute" ndattribute="ReturnRotation" when="OnFileClose" />
        </group><!-- /rotation -->
         <group name="dark_fields">
           <dataset name="num_dark_fields" source="ndattribute" ndattribute="NumDarkFields" when="OnFileClose" />
