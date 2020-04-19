@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/devel/CARS/CARSApp/op/adl/TomoCollect_EPICS_PVS.adl"
-	version=030107
+	name="/home/epics/support/CARS/CARSApp/op/adl/TomoCollect_EPICS_PVS.adl"
+	version=030109
 }
 display {
 	object {
 		x=70
 		y=71
 		width=560
-		height=365
+		height=340
 	}
 	clr=14
 	bclr=4
@@ -139,10 +139,38 @@ text {
 	limits {
 	}
 }
+rectangle {
+	object {
+		x=5
+		y=40
+		width=550
+		height=260
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"message button" {
+	object {
+		x=215
+		y=310
+		width=130
+		height=20
+	}
+	control {
+		chan="$(P)$(R)AcceptPVS"
+		clr=14
+		bclr=51
+	}
+	label="Accept"
+	press_msg="1"
+	release_msg="0"
+}
 "text entry" {
 	object {
 		x=325
-		y=225
+		y=200
 		width=225
 		height=20
 	}
@@ -158,7 +186,7 @@ text {
 text {
 	object {
 		x=145
-		y=225
+		y=200
 		width=170
 		height=20
 	}
@@ -170,7 +198,7 @@ text {
 text {
 	object {
 		x=155
-		y=200
+		y=175
 		width=160
 		height=20
 	}
@@ -182,7 +210,7 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=200
+		y=175
 		width=225
 		height=20
 	}
@@ -198,7 +226,7 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=175
+		y=150
 		width=225
 		height=20
 	}
@@ -214,7 +242,7 @@ text {
 text {
 	object {
 		x=175
-		y=175
+		y=150
 		width=140
 		height=20
 	}
@@ -226,12 +254,12 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=150
+		y=125
 		width=225
 		height=20
 	}
 	control {
-		chan="$(P)$(R)VerticalMotorPVName"
+		chan="$(P)$(R)SampleYPVName"
 		clr=14
 		bclr=51
 	}
@@ -242,7 +270,7 @@ text {
 text {
 	object {
 		x=45
-		y=150
+		y=125
 		width=270
 		height=20
 	}
@@ -254,7 +282,7 @@ text {
 text {
 	object {
 		x=25
-		y=125
+		y=100
 		width=290
 		height=20
 	}
@@ -266,12 +294,12 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=125
+		y=100
 		width=225
 		height=20
 	}
 	control {
-		chan="$(P)$(R)HorizontalMotorPVName"
+		chan="$(P)$(R)SampleXPVName"
 		clr=14
 		bclr=51
 	}
@@ -282,12 +310,12 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=100
+		y=75
 		width=225
 		height=20
 	}
 	control {
-		chan="$(P)$(R)RotationMotorPVName"
+		chan="$(P)$(R)RotationPVName"
 		clr=14
 		bclr=51
 	}
@@ -298,7 +326,7 @@ text {
 text {
 	object {
 		x=165
-		y=100
+		y=75
 		width=150
 		height=20
 	}
@@ -309,36 +337,8 @@ text {
 }
 text {
 	object {
-		x=125
-		y=75
-		width=190
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Pulse generator PV:"
-}
-"text entry" {
-	object {
-		x=325
-		y=75
-		width=225
-		height=20
-	}
-	control {
-		chan="$(P)$(R)PulseGeneratorPVName"
-		clr=14
-		bclr=51
-	}
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
 		x=195
-		y=250
+		y=225
 		width=120
 		height=20
 	}
@@ -351,7 +351,7 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=250
+		y=225
 		width=225
 		height=20
 	}
@@ -367,7 +367,7 @@ text {
 text {
 	object {
 		x=125
-		y=275
+		y=250
 		width=190
 		height=20
 	}
@@ -380,7 +380,7 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=275
+		y=250
 		width=225
 		height=20
 	}
@@ -396,7 +396,7 @@ text {
 text {
 	object {
 		x=115
-		y=300
+		y=275
 		width=200
 		height=20
 	}
@@ -409,7 +409,7 @@ text {
 "text entry" {
 	object {
 		x=325
-		y=300
+		y=275
 		width=225
 		height=20
 	}
@@ -421,32 +421,4 @@ text {
 	format="string"
 	limits {
 	}
-}
-rectangle {
-	object {
-		x=5
-		y=40
-		width=550
-		height=285
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-"message button" {
-	object {
-		x=215
-		y=335
-		width=130
-		height=20
-	}
-	control {
-		chan="$(P)$(R)AcceptPVS"
-		clr=14
-		bclr=51
-	}
-	label="Accept"
-	press_msg="1"
-	release_msg="0"
 }

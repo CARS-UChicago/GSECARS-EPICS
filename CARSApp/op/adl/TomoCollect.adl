@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/devel/CARS/CARSApp/op/adl/TomoCollect.adl"
-	version=030107
+	name="/home/epics/support/CARS/CARSApp/op/adl/TomoCollect.adl"
+	version=030109
 }
 display {
 	object {
-		x=83
-		y=103
+		x=226
+		y=98
 		width=700
-		height=815
+		height=765
 	}
 	clr=14
 	bclr=4
@@ -144,381 +144,279 @@ composite {
 		}
 	}
 }
-composite {
+"related display" {
+	object {
+		x=510
+		y=90
+		width=100
+		height=20
+	}
+	display[0] {
+		label="Sample information"
+		name="TomoCollectSampleInfo.adl"
+		args="P=$(P), R=$(R)"
+	}
+	display[1] {
+		label="User information"
+		name="TomoCollectUserInfo.adl"
+		args="P=$(P), R=$(R)"
+	}
+	display[2] {
+		label="Configuration information"
+		name="TomoCollectConfigInfo.adl"
+		args="P=$(P), R=$(R)"
+	}
+	clr=14
+	bclr=51
+}
+"related display" {
+	object {
+		x=160
+		y=90
+		width=50
+		height=20
+	}
+	display[0] {
+		label="Epics PV Names"
+		name="TomoCollect_EPICS_PVS.adl"
+		args="P=$(P), R=$(R)"
+	}
+	clr=14
+	bclr=51
+}
+text {
+	object {
+		x=15
+		y=92
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Epics PV Names"
+}
+text {
+	object {
+		x=335
+		y=91
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Other information"
+}
+rectangle {
 	object {
 		x=5
 		y=50
 		width=690
 		height=65
 	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=290
+		y=55
+		width=120
+		height=25
+	}
 	"composite name"=""
 	children {
-		"related display" {
-			object {
-				x=510
-				y=90
-				width=50
-				height=20
-			}
-			display[0] {
-				label="Experiment Information"
-				name="TomoCollectExpInfo.adl"
-				args="P=$(P), R=$(R)"
-			}
-			clr=14
-			bclr=51
-		}
-		"related display" {
-			object {
-				x=160
-				y=90
-				width=50
-				height=20
-			}
-			display[0] {
-				label="Epics PV Names"
-				name="TomoCollect_EPICS_PVS.adl"
-				args="P=$(P), R=$(R)"
-			}
-			clr=14
-			bclr=51
-		}
-		text {
-			object {
-				x=15
-				y=92
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Epics PV Names"
-		}
-		text {
-			object {
-				x=285
-				y=91
-				width=220
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Experiment information"
-		}
 		rectangle {
-			object {
-				x=5
-				y=50
-				width=690
-				height=65
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		composite {
 			object {
 				x=290
 				y=55
 				width=120
 				height=25
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=290
-						y=55
-						width=120
-						height=25
-					}
-					"basic attribute" {
-						clr=2
-					}
-				}
-				text {
-					object {
-						x=320
-						y=55
-						width=60
-						height=25
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Setup"
-					align="horiz. centered"
-				}
+			"basic attribute" {
+				clr=2
 			}
+		}
+		text {
+			object {
+				x=320
+				y=55
+				width=60
+				height=25
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Setup"
+			align="horiz. centered"
 		}
 	}
 }
-composite {
+rectangle {
 	object {
 		x=5
 		y=120
 		width=690
-		height=120
+		height=95
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=25
+		y=185
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Angle step"
+}
+text {
+	object {
+		x=15
+		y=160
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Start angle"
+}
+"text entry" {
+	object {
+		x=130
+		y=185
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)$(R)RotationStep"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=130
+		y=160
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)$(R)RotationStart"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+composite {
+	object {
+		x=275
+		y=125
+		width=150
+		height=27
 	}
 	"composite name"=""
 	children {
 		rectangle {
 			object {
-				x=5
-				y=120
-				width=690
-				height=120
+				x=275
+				y=125
+				width=150
+				height=25
+			}
+			"basic attribute" {
+				clr=2
+			}
+		}
+		text {
+			object {
+				x=302
+				y=127
+				width=96
+				height=25
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Rotation"
+		}
+	}
+}
+composite {
+	object {
+		x=305
+		y=160
+		width=335
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=305
+				y=185
+				width=180
+				height=20
 			}
 			"basic attribute" {
 				clr=14
-				fill="outline"
 			}
+			textix="Leave motor at end"
 		}
-		composite {
+		text {
 			object {
-				x=15
+				x=325
 				y=160
-				width=110
-				height=70
+				width=160
+				height=20
 			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=25
-						y=210
-						width=100
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Scan speed"
-					align="horiz. right"
-				}
-				text {
-					object {
-						x=25
-						y=185
-						width=100
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Angle step"
-				}
-				text {
-					object {
-						x=15
-						y=160
-						width=110
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Start angle"
-				}
+			"basic attribute" {
+				clr=14
 			}
+			textix="Number of Angles"
 		}
-		composite {
-			object {
-				x=130
-				y=160
-				width=150
-				height=70
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=130
-						y=185
-						width=150
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RotationStep"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				"text entry" {
-					object {
-						x=130
-						y=210
-						width=150
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RotationMotorSpeed"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				"text entry" {
-					object {
-						x=130
-						y=160
-						width=150
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RotationStart"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=305
-				y=160
-				width=180
-				height=70
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=305
-						y=210
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Leave motor at end"
-				}
-				text {
-					object {
-						x=325
-						y=185
-						width=160
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Number of Angles"
-				}
-				text {
-					object {
-						x=385
-						y=160
-						width=100
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Stop angle"
-				}
-			}
-		}
-		composite {
+		"text entry" {
 			object {
 				x=490
 				y=160
 				width=150
-				height=70
+				height=20
 			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=490
-						y=185
-						width=150
-						height=20
-					}
-					control {
-						chan="$(P)$(R)NumAngles"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				"text entry" {
-					object {
-						x=490
-						y=160
-						width=150
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RotationStop"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				menu {
-					object {
-						x=490
-						y=210
-						width=80
-						height=20
-					}
-					control {
-						chan="$(P)$(R)LeaveRotationMotor"
-						clr=14
-						bclr=51
-					}
-				}
+			control {
+				chan="$(P)$(R)NumAngles"
+				clr=14
+				bclr=51
+			}
+			format="string"
+			limits {
 			}
 		}
-		composite {
+		menu {
 			object {
-				x=275
-				y=125
-				width=150
-				height=27
+				x=490
+				y=185
+				width=80
+				height=20
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=275
-						y=125
-						width=150
-						height=25
-					}
-					"basic attribute" {
-						clr=2
-					}
-				}
-				text {
-					object {
-						x=302
-						y=127
-						width=96
-						height=25
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Rotation"
-				}
+			control {
+				chan="$(P)$(R)LeaveRotationMotor"
+				clr=14
+				bclr=51
 			}
 		}
 	}
@@ -526,7 +424,7 @@ composite {
 rectangle {
 	object {
 		x=5
-		y=245
+		y=220
 		width=690
 		height=145
 	}
@@ -537,25 +435,25 @@ rectangle {
 }
 text {
 	object {
-		x=25
-		y=285
-		width=180
+		x=75
+		y=260
+		width=130
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Horiz. In Position"
+	textix="X In Position"
 }
 "text entry" {
 	object {
 		x=215
-		y=285
+		y=260
 		width=100
 		height=20
 	}
 	control {
-		chan="$(P)$(R)HorizontalSampleIn"
+		chan="$(P)$(R)SampleInX"
 		clr=14
 		bclr=51
 	}
@@ -566,12 +464,12 @@ text {
 "text entry" {
 	object {
 		x=215
-		y=310
+		y=285
 		width=100
 		height=20
 	}
 	control {
-		chan="$(P)$(R)HorizontalSampleOut"
+		chan="$(P)$(R)SampleOutX"
 		clr=14
 		bclr=51
 	}
@@ -581,20 +479,20 @@ text {
 }
 text {
 	object {
-		x=15
-		y=310
-		width=190
+		x=65
+		y=285
+		width=140
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Horiz. Out Position"
+	textix="X Out Position"
 }
 menu {
 	object {
 		x=215
-		y=335
+		y=310
 		width=100
 		height=20
 	}
@@ -607,7 +505,7 @@ menu {
 text {
 	object {
 		x=55
-		y=335
+		y=310
 		width=150
 		height=20
 	}
@@ -619,7 +517,7 @@ text {
 "message button" {
 	object {
 		x=190
-		y=360
+		y=335
 		width=120
 		height=20
 	}
@@ -634,7 +532,7 @@ text {
 "message button" {
 	object {
 		x=40
-		y=360
+		y=335
 		width=120
 		height=20
 	}
@@ -646,131 +544,93 @@ text {
 	label="Move Sample In"
 	press_msg="1"
 }
-composite {
+text {
 	object {
-		x=330
+		x=410
 		y=285
-		width=355
-		height=95
+		width=140
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=340
-				y=310
-				width=210
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Vertical Out Position"
-		}
-		"text entry" {
-			object {
-				x=555
-				y=310
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P)$(R)VerticalSampleOut"
-				clr=14
-				bclr=51
-			}
-			format="string"
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=555
-				y=285
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P)$(R)VerticalSampleIn"
-				clr=14
-				bclr=51
-			}
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=350
-				y=285
-				width=200
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Vertical In Position"
-		}
-		"text entry" {
-			object {
-				x=615
-				y=360
-				width=70
-				height=20
-			}
-			control {
-				chan="$(P)$(R)NumFlatFields"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=380
-				y=360
-				width=230
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="# Images per flat field"
-		}
-		text {
-			object {
-				x=330
-				y=335
-				width=280
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="# Angles between flat fields"
-		}
-		"text entry" {
-			object {
-				x=615
-				y=335
-				width=70
-				height=20
-			}
-			control {
-				chan="$(P)$(R)AnglesBetweenFlats"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=14
 	}
+	textix="Y Out Position"
+}
+"text entry" {
+	object {
+		x=555
+		y=285
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)SampleOutY"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=260
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(R)SampleInY"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=420
+		y=260
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y In Position"
+}
+"text entry" {
+	object {
+		x=615
+		y=335
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(R)NumFlatFields"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=380
+		y=335
+		width=230
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Images per flat field"
 }
 composite {
 	object {
 		x=220
-		y=250
+		y=225
 		width=260
 		height=25
 	}
@@ -779,7 +639,7 @@ composite {
 		rectangle {
 			object {
 				x=220
-				y=250
+				y=225
 				width=260
 				height=25
 			}
@@ -790,7 +650,7 @@ composite {
 		text {
 			object {
 				x=242
-				y=250
+				y=225
 				width=216
 				height=25
 			}
@@ -802,25 +662,10 @@ composite {
 		}
 	}
 }
-"message button" {
-	object {
-		x=270
-		y=435
-		width=160
-		height=20
-	}
-	control {
-		chan="$(P)$(R)CollectDarkCurrent"
-		clr=14
-		bclr=51
-	}
-	label="Collect Dark Current"
-	press_msg="1"
-}
 rectangle {
 	object {
 		x=5
-		y=395
+		y=370
 		width=690
 		height=70
 	}
@@ -832,7 +677,7 @@ rectangle {
 composite {
 	object {
 		x=220
-		y=400
+		y=375
 		width=260
 		height=25
 	}
@@ -841,7 +686,7 @@ composite {
 		rectangle {
 			object {
 				x=220
-				y=400
+				y=375
 				width=260
 				height=25
 			}
@@ -852,7 +697,7 @@ composite {
 		text {
 			object {
 				x=230
-				y=400
+				y=375
 				width=240
 				height=24
 			}
@@ -867,7 +712,7 @@ composite {
 rectangle {
 	object {
 		x=5
-		y=570
+		y=545
 		width=690
 		height=70
 	}
@@ -879,7 +724,7 @@ rectangle {
 composite {
 	object {
 		x=250
-		y=576
+		y=551
 		width=200
 		height=25
 	}
@@ -888,7 +733,7 @@ composite {
 		rectangle {
 			object {
 				x=250
-				y=576
+				y=551
 				width=200
 				height=25
 			}
@@ -899,7 +744,7 @@ composite {
 		text {
 			object {
 				x=260
-				y=576
+				y=551
 				width=180
 				height=25
 			}
@@ -911,226 +756,57 @@ composite {
 		}
 	}
 }
-composite {
+rectangle {
 	object {
 		x=5
-		y=645
+		y=620
 		width=690
-		height=165
+		height=140
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=305
+		y=625
+		width=90
+		height=25
 	}
 	"composite name"=""
 	children {
 		rectangle {
 			object {
-				x=5
-				y=645
-				width=690
-				height=165
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		composite {
-			object {
-				x=15
-				y=680
-				width=180
-				height=118
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=15
-						y=680
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Sample Description"
-				}
-				text {
-					object {
-						x=55
-						y=778
-						width=140
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Remaining Time"
-				}
-				text {
-					object {
-						x=85
-						y=705
-						width=110
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Scan Status"
-				}
-				text {
-					object {
-						x=95
-						y=730
-						width=100
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Scan Point"
-				}
-				text {
-					object {
-						x=75
-						y=755
-						width=120
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Elapsed Time"
-				}
-			}
-		}
-		composite {
-			object {
-				x=200
-				y=680
-				width=401
-				height=120
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=201
-						y=680
-						width=400
-						height=20
-					}
-					monitor {
-						chan="$(P)$(R)SampleName"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=201
-						y=730
-						width=230
-						height=20
-					}
-					monitor {
-						chan="$(P)$(R)ScanPoint"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=201
-						y=755
-						width=187
-						height=20
-					}
-					monitor {
-						chan="$(P)$(R)ElapsedTime"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=201
-						y=705
-						width=400
-						height=20
-					}
-					monitor {
-						chan="$(P)$(R)ScanStatus"
-						clr=14
-						bclr=51
-					}
-					format="string"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=200
-						y=780
-						width=152
-						height=20
-					}
-					monitor {
-						chan="$(P)$(R)RemainingTime"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
 				x=305
-				y=650
+				y=625
 				width=90
 				height=25
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=305
-						y=650
-						width=90
-						height=25
-					}
-					"basic attribute" {
-						clr=2
-					}
-				}
-				text {
-					object {
-						x=314
-						y=650
-						width=72
-						height=25
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Status"
-					align="horiz. centered"
-				}
+			"basic attribute" {
+				clr=2
 			}
+		}
+		text {
+			object {
+				x=314
+				y=625
+				width=72
+				height=25
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Status"
+			align="horiz. centered"
 		}
 	}
 }
 composite {
 	object {
 		x=520
-		y=610
+		y=585
 		width=155
 		height=20
 	}
@@ -1139,7 +815,7 @@ composite {
 		text {
 			object {
 				x=520
-				y=610
+				y=585
 				width=130
 				height=20
 			}
@@ -1151,7 +827,7 @@ composite {
 		byte {
 			object {
 				x=655
-				y=610
+				y=585
 				width=20
 				height=20
 			}
@@ -1168,7 +844,7 @@ composite {
 composite {
 	object {
 		x=250
-		y=610
+		y=585
 		width=245
 		height=20
 	}
@@ -1177,7 +853,7 @@ composite {
 		"message button" {
 			object {
 				x=250
-				y=610
+				y=585
 				width=120
 				height=20
 			}
@@ -1192,7 +868,7 @@ composite {
 		"message button" {
 			object {
 				x=375
-				y=610
+				y=585
 				width=120
 				height=20
 			}
@@ -1206,48 +882,10 @@ composite {
 		}
 	}
 }
-composite {
-	object {
-		x=15
-		y=435
-		width=225
-		height=20
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=15
-				y=435
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="# Dark currents"
-		}
-		"text entry" {
-			object {
-				x=170
-				y=435
-				width=70
-				height=20
-			}
-			control {
-				chan="$(P)$(R)NumDarkCurrents"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-	}
-}
 text {
 	object {
 		x=15
-		y=610
+		y=585
 		width=130
 		height=20
 	}
@@ -1259,7 +897,7 @@ text {
 "text entry" {
 	object {
 		x=150
-		y=610
+		y=585
 		width=70
 		height=20
 	}
@@ -1274,7 +912,7 @@ text {
 text {
 	object {
 		x=15
-		y=510
+		y=485
 		width=140
 		height=20
 	}
@@ -1286,7 +924,7 @@ text {
 "text entry" {
 	object {
 		x=160
-		y=510
+		y=485
 		width=500
 		height=20
 	}
@@ -1302,7 +940,7 @@ text {
 text {
 	object {
 		x=15
-		y=535
+		y=510
 		width=140
 		height=20
 	}
@@ -1314,7 +952,7 @@ text {
 "text entry" {
 	object {
 		x=160
-		y=535
+		y=510
 		width=500
 		height=20
 	}
@@ -1330,7 +968,7 @@ text {
 rectangle {
 	object {
 		x=5
-		y=470
+		y=445
 		width=690
 		height=95
 	}
@@ -1342,7 +980,7 @@ rectangle {
 composite {
 	object {
 		x=250
-		y=475
+		y=450
 		width=200
 		height=25
 	}
@@ -1351,7 +989,7 @@ composite {
 		rectangle {
 			object {
 				x=250
-				y=475
+				y=450
 				width=200
 				height=25
 			}
@@ -1362,7 +1000,7 @@ composite {
 		text {
 			object {
 				x=260
-				y=475
+				y=450
 				width=180
 				height=25
 			}
@@ -1371,6 +1009,241 @@ composite {
 			}
 			textix="File Control"
 			align="horiz. centered"
+		}
+	}
+}
+text {
+	object {
+		x=10
+		y=410
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="# Dark fields"
+}
+"text entry" {
+	object {
+		x=145
+		y=410
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(R)NumDarkFields"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=226
+		y=410
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Dark value"
+}
+"text entry" {
+	object {
+		x=331
+		y=410
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(R)DarkFieldValue"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=360
+		y=310
+		width=295
+		height=20
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=360
+				y=310
+				width=190
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Collect flat fields"
+		}
+		menu {
+			object {
+				x=555
+				y=310
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(R)FlatFieldMode"
+				clr=14
+				bclr=51
+			}
+		}
+	}
+}
+text {
+	object {
+		x=415
+		y=410
+		width=190
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Collect dark fields"
+}
+menu {
+	object {
+		x=610
+		y=410
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(R)DarkFieldMode"
+		clr=14
+		bclr=51
+	}
+}
+composite {
+	object {
+		x=55
+		y=655
+		width=546
+		height=95
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=55
+				y=728
+				width=140
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Remaining Time"
+		}
+		text {
+			object {
+				x=85
+				y=655
+				width=110
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Scan Status"
+		}
+		text {
+			object {
+				x=95
+				y=680
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Scan Point"
+		}
+		text {
+			object {
+				x=75
+				y=705
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Elapsed Time"
+		}
+		"text update" {
+			object {
+				x=201
+				y=680
+				width=230
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)ScanPoint"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=201
+				y=705
+				width=187
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)ElapsedTime"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=201
+				y=655
+				width=400
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)ScanStatus"
+				clr=14
+				bclr=51
+			}
+			format="string"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=200
+				y=730
+				width=152
+				height=20
+			}
+			monitor {
+				chan="$(P)$(R)RemainingTime"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
 		}
 	}
 }
