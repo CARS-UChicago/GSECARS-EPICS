@@ -4,12 +4,12 @@
 # EPICS PVs Names
 ######################
 
-record(stringout, "$(P)$(R)CameraPVName")
+record(stringout, "$(P)$(R)CameraPVPrefix")
 {
    field(VAL,  "$(CAMERA)")
 }
 
-record(stringout, "$(P)$(R)MCSPVName")
+record(stringout, "$(P)$(R)MCSPVPrefix")
 {
    field(VAL,  "$(MCS)")
 }
@@ -34,6 +34,20 @@ record(stringout, "$(P)$(R)OpenShutterValue")
    field(VAL,  "$(OPEN_VALUE)")
 }
 
+record(stringout, "$(P)$(R)CloseShutterValue")
+{
+   field(VAL,  "$(CLOSE_VALUE)")
+}
+
+record(stringout, "$(P)$(R)OpenShutterPVName")
+{
+   field(VAL,  "$(OPEN_SHUTTER)")
+}
+
+record(stringout, "$(P)$(R)OpenShutterValue")
+{
+   field(VAL,  "$(OPEN_VALUE)")
+}
 record(stringout, "$(P)$(R)RotationPVName")
 {
    field(VAL,  "$(ROTATION)")
@@ -54,10 +68,9 @@ record(stringout, "$(P)$(R)BeamReadyPVName")
    field(VAL,  "$(BEAM_READY)")
 }
 
-record(bo, "$(P)$(R)AcceptPVS")
+record(stringout, "$(P)$(R)BeamReadyValue")
 {
-   field(ZNAM,"Done")
-   field(ONAM,"Accept")
+   field(VAL,  "$(READY_VALUE)")
 }
 
 ######################
