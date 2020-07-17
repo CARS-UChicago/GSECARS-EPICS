@@ -63,7 +63,7 @@ dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13BMD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=
 # CCD synchronization for older version of tomo_collect
 dbLoadRecords("$(CARS)/db/CCD.db", "P=13BMD:,C=CCD1")
 # Tomography data collection
-dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13BMDRP1:,R=TC:")
+#dbLoadRecords("$(CARS)/db/TomoCollect.template", "P=13BMDRP1:,R=TC:")
 
 # Struck MCS as 32-channel multi-element detector
 iocsh "SIS3820_32.cmd"
