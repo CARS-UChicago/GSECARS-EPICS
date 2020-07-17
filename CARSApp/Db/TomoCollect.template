@@ -9,6 +9,11 @@ record(stringout, "$(P)$(R)CameraPVPrefix")
    field(VAL,  "$(CAMERA)")
 }
 
+record(stringout, "$(P)$(R)FilePluginPVPrefix")
+{
+   field(VAL,  "$(FILE_PLUGIN)")
+}
+
 record(stringout, "$(P)$(R)MCSPVPrefix")
 {
    field(VAL,  "$(MCS)")
@@ -34,20 +39,6 @@ record(stringout, "$(P)$(R)OpenShutterValue")
    field(VAL,  "$(OPEN_VALUE)")
 }
 
-record(stringout, "$(P)$(R)CloseShutterValue")
-{
-   field(VAL,  "$(CLOSE_VALUE)")
-}
-
-record(stringout, "$(P)$(R)OpenShutterPVName")
-{
-   field(VAL,  "$(OPEN_SHUTTER)")
-}
-
-record(stringout, "$(P)$(R)OpenShutterValue")
-{
-   field(VAL,  "$(OPEN_VALUE)")
-}
 record(stringout, "$(P)$(R)RotationPVName")
 {
    field(VAL,  "$(ROTATION)")
@@ -135,6 +126,15 @@ record(ao, "$(P)$(R)RotationStart")
 
 record(ao, "$(P)$(R)RotationStep")
 {
+   field(PREC,  "3")
+}
+
+record(calc, "$(P)$(R)RotationStop")
+{
+   field(INPA, "$(P)$(R)RotationStart CP")
+   field(INPB, "$(P)$(R)RotationStep CP")
+   field(INPC, "$(P)$(R)NumAngles CP")
+   field(CALC, "A+B*(C-1)")
    field(PREC,  "3")
 }
 
@@ -228,28 +228,16 @@ record(ao, "$(P)$(R)SampleOutY")
    field(PREC,  "3")
 }
 
-record(sseq, "$(P)$(R)MoveSampleIn")
+record(bo, "$(P)$(R)MoveSampleIn")
 {
-   field(SELL, "$(P)$(R)FlatFieldAxis.RVAL")
-   field(SELM, "Mask")
-   field(DOL1, "$(P)$(R)SampleInX")
-   field(LNK1, "$(SAMPLE_X) CA")
-   field(WAIT1,"Wait")
-   field(DOL2, "$(P)$(R)SampleInY")
-   field(LNK2, "$(SAMPLE_Y) CA")
-   field(WAIT2,"Wait")
+   field(ZNAM, "Done")
+   field(ONAM, "Move")
 }
 
 record(sseq, "$(P)$(R)MoveSampleOut")
 {
-   field(SELL, "$(P)$(R)FlatFieldAxis.RVAL")
-   field(SELM, "Mask")
-   field(DOL1, "$(P)$(R)SampleOutX")
-   field(LNK1, "$(SAMPLE_X) CA")
-   field(WAIT1,"Wait")
-   field(DOL2, "$(P)$(R)SampleOutY")
-   field(LNK2, "$(SAMPLE_Y) CA")
-   field(WAIT2,"Wait")
+   field(ZNAM, "Done")
+   field(ONAM, "Move")
 }
 
 ######################
@@ -319,26 +307,17 @@ record(stringout, "$(P)$(R)ESAFNumber")
 # Data collection
 ######################
 
-record(longin,"$(P)$(R)OTFGroups") {
-}
-
 record(ao, "$(P)$(R)ExposureTime")
 {
    field(PREC,  "3")
 }
 
-record(bi, "$(P)$(R)ScanReady") {
-   field(ZNAM,"Ready")
-   field(ZSV, "NO_ALARM")
-   field(ONAM,"Not ready")
-   field(OSV, "MAJOR")
-}
-
-
 record(busy,"$(P)$(R)StartScan")
 {
    field(ZNAM,"Done")
-   field(ONAM,"Start")
+   field(ZSV, "NO_ALARM")
+   field(ONAM,"Acquire")
+   field(OSV, "MINOR")
    field(VAL, "0")
 }
 
@@ -376,7 +355,11 @@ record(waveform,"$(P)$(R)ScanStatus")
    field(NELM, "256")
 }
 
-record(stringout,"$(P)$(R)ScanPoint")
+record(stringout,"$(P)$(R)ImagesCollected")
+{
+}
+
+record(stringout,"$(P)$(R)ImagesSaved")
 {
 }
 
