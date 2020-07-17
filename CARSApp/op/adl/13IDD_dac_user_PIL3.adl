@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user_PIL3.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_user_PIL3.adl"
 	version=030109
 }
 display {
 	object {
-		x=55
-		y=100
+		x=223
+		y=182
 		width=1318
 		height=688
 	}
@@ -914,21 +914,6 @@ oval {
 	clr=54
 	bclr=16
 	label="-more"
-}
-"message button" {
-	object {
-		x=139
-		y=448
-		width=40
-		height=24
-	}
-	control {
-		chan="13IDD:Unidig1Bo9"
-		clr=14
-		bclr=45
-	}
-	label="Out"
-	press_msg="1"
 }
 "message button" {
 	object {
@@ -2050,8 +2035,10 @@ composite {
 		}
 	}
 	"dynamic attribute" {
-		vis="if not zero"
+		vis="calc"
+		calc="A&&!B"
 		chan="13IDD:Unidig1Bi11.VAL"
+		chanB="13IDD:Unidig1Bi9.VAL"
 	}
 }
 composite {
@@ -10582,5 +10569,50 @@ composite {
 		calc="A>-95&&A<-85&&B<-100"
 		chan="13IDD:m96.RBV"
 		chanB="13IDD:m23.RBV"
+	}
+}
+rectangle {
+	object {
+		x=1035
+		y=408
+		width=50
+		height=25
+	}
+	"basic attribute" {
+		clr=23
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:Unidig1Bi11.VAL"
+	}
+}
+composite {
+	object {
+		x=139
+		y=448
+		width=40
+		height=24
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=139
+				y=448
+				width=40
+				height=24
+			}
+			control {
+				chan="13IDD:Unidig1Bo9"
+				clr=14
+				bclr=45
+			}
+			label="Out"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:Unidig1Bi11.VAL"
 	}
 }
