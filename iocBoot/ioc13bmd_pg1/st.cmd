@@ -52,12 +52,13 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=I
 
 # Load all other plugins using commonPlugins.cmd
 < $(ADCORE)/iocBoot/commonPlugins.cmd
+
+< ../save_restore_IOCSH.cmd
 set_requestfile_path("$(ADGENICAM)/db")
 set_requestfile_path("$(ADSPINNAKER)/db")
-set_requestfile_path("$(CARS)/db")
 
 # Tomography data collection
-dbLoadTemplate("TomoCollect.substitutions")
+dbLoadTemplate("tomoScan.substitutions")
 
 iocInit()
 
