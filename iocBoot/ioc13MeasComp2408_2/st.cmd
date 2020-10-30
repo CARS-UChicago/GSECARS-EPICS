@@ -1,7 +1,7 @@
 < envPaths
 
 ## Register all support components
-dbLoadDatabase "$(MEASCOMP)/dbd/measCompApp.dbd"
+dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet("PREFIX", "13USB2408_2:")
@@ -11,7 +11,7 @@ epicsEnvSet("PREFIX", "13USB2408_2:")
 #                     boardNum,        # The number of this board assigned by the Measurement Computing Instacal program 
 #                     maxInputPoints,  # Maximum number of input points for waveform digitizer
 #                     maxOutputPoints) # Maximum number of output points for waveform generator
-MultiFunctionConfig("USB2408_1", 0, 2048, 2048)
+MultiFunctionConfig("USB2408_1", 1, 2048, 2048)
 
 dbLoadTemplate("USB2408.substitutions")
 
