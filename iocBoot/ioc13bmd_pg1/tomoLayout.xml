@@ -49,16 +49,16 @@
         <group name="mirror">
           <dataset name="name" source="constant" value="13-BM-D Mirror" type="string" when="OnFileClose" />        
           <group name="setup">
-             <dataset name="mirror_x" source="ndattribute" ndattribute="MirrorHeight" when="OnFileClose">       
+             <dataset name="mirror_height" source="ndattribute" ndattribute="MirrorHeight" when="OnFileClose">       
                <attribute name="units" source="constant" value="mm" type="string" />
              </dataset>
-             <dataset name="mirror_y" source="ndattribute" ndattribute="MirrorPitch" when="OnFileClose">       
+             <dataset name="mirror_pitch" source="ndattribute" ndattribute="MirrorPitch" when="OnFileClose">       
                <attribute name="units" source="constant" value="mrad" type="string" />
              </dataset>  
-             <dataset name="mirror_usy" source="ndattribute" ndattribute="MirrorCurvature" when="OnFileClose">       
+             <dataset name="mirror_curvature" source="ndattribute" ndattribute="MirrorCurvature" when="OnFileClose">       
                <attribute name="units" source="constant" value="mm" type="string" />
              </dataset> 
-             <dataset name="mirror_dsy" source="ndattribute" ndattribute="MirrorEllipticity" when="OnFileClose">       
+             <dataset name="mirror_ellipticity" source="ndattribute" ndattribute="MirrorEllipticity" when="OnFileClose">       
                <attribute name="units" source="constant" value="mm" type="string" />             
              </dataset>
           </group><!-- /setup -->
@@ -67,9 +67,9 @@
         <group name="attenuator">
           <dataset name="name" source="constant" value="13-BM-D filters" type="string" when="OnFileClose" />  
           <group name="setup">
-          <dataset name="user_filter_us" source="ndattribute" ndattribute="Filter" when="OnFileClose"> 
+          <dataset name="user_filter_name" source="ndattribute" ndattribute="Filter" when="OnFileClose"> 
           </dataset>
-          <dataset name="user_filter_ds" source="ndattribute" ndattribute="FilterMotor" when="OnFileClose"> 
+          <dataset name="user_filter_position" source="ndattribute" ndattribute="FilterMotor" when="OnFileClose"> 
             <attribute name="units" source="constant" value="mm" type="string" />
           </dataset>
           </group><!-- /setup -->
