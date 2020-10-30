@@ -13,12 +13,12 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.34", 5001, 8, 10, 500, 1, 500)
+XPSCreateController("XPS1", "newport-xps3", 5001, 8, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.34", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "newport-xps3", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -45,10 +45,10 @@ XPSCreateAxis("XPS1",4,"G2.SLX",  "10000")
 #     yellow tape to output B
 #     
 # Used for normal DAC and LVP Setup
-#XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")
+XPSCreateAxis("XPS1",5,"G2.SLZ",  "10000")
   
 # used when xps plug 5 is setup for gpd x stage
-XPSCreateAxis("XPS1",5,"G4.GPD_X",  "10000")
+#XPSCreateAxis("XPS1",5,"G4.GPD_X",  "10000")
  
 # used when xps plug 5 is setup for gpd z stage
 #XPSCreateAxis("XPS1",5,"G4.GPD_Z",  "10000") 
@@ -71,7 +71,7 @@ dbLoadTemplate("motors.template")
 dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.34:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "newport-xps3:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13IDD:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
