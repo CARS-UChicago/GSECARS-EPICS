@@ -1,8 +1,8 @@
 < envPaths
 
 ## Register all support components
-dbLoadDatabase "$(MEASCOMP)/dbd/measCompApp.dbd"
-measCompApp_registerRecordDeviceDriver pdbbase
+dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
+CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 # Configure port driver
 # MultiFunctionConfig(portName,        # The name to give to this asyn port driver
