@@ -62,7 +62,7 @@ asynSetOption("serial1", 0, "parity", "none")
 asynOctetSetOutputEos("serial1",0,"\n")
 asynOctetSetInputEos("serial1",0,"\n")
 asynSetTraceIOMask("serial1",0,2)
-asynSetTraceMask("serial1",0,9)
+#asynSetTraceMask("serial1",0,9)
 dbLoadRecords("$(VAC)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
 
 ## Varian ion pump controllers
@@ -74,7 +74,7 @@ asynSetOption("serial2", 0, "parity", "none")
 asynOctetSetOutputEos("serial2",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
 asynSetTraceIOMask("serial2",0,2)
-asynSetTraceMask("serial2",0,9)
+#asynSetTraceMask("serial2",0,9)
 dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP1:,PORT=serial2,CHAN=1,HIGH=-6,HIHI=-4")
 dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP2:,PORT=serial2,CHAN=2,HIGH=-6,HIHI=-4")
 
@@ -87,7 +87,7 @@ asynSetOption("serial3", 0, "parity", "none")
 asynOctetSetOutputEos("serial3",0,"\n")
 asynOctetSetInputEos("serial3",0,"\n")
 asynSetTraceIOMask("serial3",0,2)
-asynSetTraceMask("serial3",0,9)
+#asynSetTraceMask("serial3",0,9)
 #dbLoadRecords("$(CARS)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
 
 
