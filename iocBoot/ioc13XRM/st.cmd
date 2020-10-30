@@ -15,7 +15,8 @@ dbLoadTemplate  "motors.template"
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.210", 5001, 6, 10, 500, 0, 500)
+#MN newport-xsp14 = 10.54.160.210, XPS-D
+XPSCreateController("XPS1", "newport-xps14", 5001, 6, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
@@ -30,7 +31,7 @@ XPSCreateAxis("XPS1", 5, "COARSEY.Pos",   "5000") # IMS300CC
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-# XPSAuxConfig("XPS_AUX1", "164.54.160.210", 5001, 50)
+# XPSAuxConfig("XPS_AUX1", "newport-xps14", 5001, 50)
 # asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -41,20 +42,21 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 # Disable setting position
 XPSEnableSetPosition(0)
 
-XPSCreateController("XPS2", "164.54.160.180", 5001, 6, 10, 500, 0, 500)
+#MN newport-xsp4 = 10.54.160.180, XPS-C
+XPSCreateController("XPS2", "newport-xps4", 5001, 4, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS2", 0, "GROUP1.POSITIONER",  "2000") # ILS200CC  Eiger 1
-XPSCreateAxis("XPS2", 1, "GROUP2.POSITIONER",   "400") # UTS150PP  Eiger 2
-XPSCreateAxis("XPS2", 2, "GROUP3.POSITIONER",   "400") # UTS150PP  Eiger 3
-XPSCreateAxis("XPS2", 3, "GROUP4.POSITIONER",  "1000") # RV160CC   Analyzer Theta
-XPSCreateAxis("XPS2", 4, "GROUP5.POSITIONER",  "2000") # ILS200CC  Analyzer Dist
-XPSCreateAxis("XPS2", 5, "GROUP6.POSITIONER",  "2000") # ILS150CC  Eiger 4
+XPSCreateAxis("XPS2", 0, "GROUP1.POSITIONER",  "2000") # ILS200CC  EigerHR_X
+XPSCreateAxis("XPS2", 1, "GROUP2.POSITIONER",  "2000") # ILS150CC  Eiger_Y
+XPSCreateAxis("XPS2", 2, "GROUP3.POSITIONER",  "2000") # ILS200CC  Analyzer_Z
+XPSCreateAxis("XPS2", 3, "GROUP4.POSITIONER",  "1000") # RV160CC   Analyzer_Theta
+# XPSCreateAxis("XPS2", 4, "GROUP5.POSITIONER",   "400") # UTS150CC  Eiger_XRD_X
+# XPSCreateAxis("XPS2", 5, "GROUP6.POSITIONER",   "400") # UTS150CC  Eiger_XRD_Y
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
-# XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
+XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
