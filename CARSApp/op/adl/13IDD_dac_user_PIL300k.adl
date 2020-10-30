@@ -8050,7 +8050,7 @@ composite {
 	}
 	display[3] {
 		label="PoinGrey"
-name="ADSpinnaker.adl"
+		name="ADSpinnaker.adl"
 		args="P=13IDD_PG1:, R=cam1:, C=PGR_GS3_PGE_23S6C"
 	}
 	display[4] {
@@ -10296,8 +10296,8 @@ composite {
 }
 composite {
 	object {
-		x=64
-		y=25
+		x=5
+		y=30
 		width=51
 		height=24
 	}
@@ -10305,8 +10305,8 @@ composite {
 	children {
 		"message button" {
 			object {
-				x=64
-				y=25
+				x=5
+				y=30
 				width=51
 				height=24
 			}
@@ -10536,5 +10536,177 @@ oval {
 		vis="calc"
 		calc="A>-0"
 		chan="13IDD:DAC2_7.VAL"
+	}
+}
+composite {
+	object {
+		x=70
+		y=27
+		width=127
+		height=36
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=70
+				y=27
+				width=127
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Laser-Emission"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=70
+				y=45
+				width=27
+				height=18
+			}
+			"basic attribute" {
+				clr=57
+			}
+			textix="DS:"
+		}
+		text {
+			object {
+				x=138
+				y=45
+				width=27
+				height=18
+			}
+			"basic attribute" {
+				clr=57
+			}
+			textix="US:"
+		}
+		composite {
+			object {
+				x=166
+				y=43
+				width=30
+				height=18
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=166
+						y=43
+						width=30
+						height=18
+					}
+					control {
+						chan="13IDD:LaserPLC:L1EmissionRequest"
+						clr=14
+						bclr=22
+					}
+					label="ON"
+					press_msg="0"
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDD:LaserPLC:L1EmissionRequest"
+			}
+		}
+		composite {
+			object {
+				x=166
+				y=43
+				width=30
+				height=18
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=166
+						y=43
+						width=30
+						height=18
+					}
+					control {
+						chan="13IDD:LaserPLC:L1EmissionRequest"
+						clr=22
+						bclr=14
+					}
+					label="OFF"
+					press_msg="1"
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13IDD:LaserPLC:L1EmissionRequest"
+			}
+		}
+		composite {
+			object {
+				x=99
+				y=42
+				width=30
+				height=18
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=99
+						y=42
+						width=30
+						height=18
+					}
+					control {
+						chan="13IDD:LaserPLC:L2EmissionRequest"
+						clr=23
+						bclr=14
+					}
+					label="OFF"
+					press_msg="1"
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13IDD:LaserPLC:L2EmissionRequest"
+			}
+		}
+		composite {
+			object {
+				x=99
+				y=43
+				width=30
+				height=18
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=99
+						y=43
+						width=30
+						height=18
+					}
+					control {
+						chan="13IDD:LaserPLC:L2EmissionRequest"
+						clr=14
+						bclr=22
+					}
+					label="ON"
+					press_msg="0"
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDD:LaserPLC:L2EmissionRequest"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:LaserPLC:UserModeEnableRequest"
 	}
 }
