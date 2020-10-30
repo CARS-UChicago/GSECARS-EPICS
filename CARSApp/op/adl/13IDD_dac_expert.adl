@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_expert.adl"
+	name="P:\epics\adl\13IDD_dac_expert.adl"
 	version=030109
 }
 display {
 	object {
-		x=385
-		y=1357
+		x=377
+		y=1305
 		width=1432
 		height=788
 	}
@@ -3594,7 +3594,7 @@ text {
 }
 "text entry" {
 	object {
-		x=585
+		x=588
 		y=223
 		width=80
 		height=25
@@ -3610,7 +3610,7 @@ text {
 }
 "text entry" {
 	object {
-		x=585
+		x=588
 		y=261
 		width=51
 		height=23
@@ -3625,7 +3625,7 @@ text {
 }
 "message button" {
 	object {
-		x=587
+		x=590
 		y=285
 		width=50
 		height=17
@@ -3640,7 +3640,7 @@ text {
 }
 "message button" {
 	object {
-		x=586
+		x=589
 		y=249
 		width=51
 		height=17
@@ -3655,7 +3655,7 @@ text {
 }
 oval {
 	object {
-		x=635
+		x=638
 		y=250
 		width=15
 		height=14
@@ -3670,7 +3670,7 @@ oval {
 }
 oval {
 	object {
-		x=635
+		x=638
 		y=285
 		width=15
 		height=14
@@ -3701,7 +3701,7 @@ oval {
 }
 "text entry" {
 	object {
-		x=465
+		x=462
 		y=224
 		width=80
 		height=25
@@ -3717,7 +3717,7 @@ oval {
 }
 "text entry" {
 	object {
-		x=490
+		x=487
 		y=261
 		width=51
 		height=23
@@ -3732,7 +3732,7 @@ oval {
 }
 "message button" {
 	object {
-		x=492
+		x=489
 		y=285
 		width=50
 		height=17
@@ -3747,7 +3747,7 @@ oval {
 }
 "message button" {
 	object {
-		x=491
+		x=488
 		y=249
 		width=51
 		height=17
@@ -3762,7 +3762,7 @@ oval {
 }
 oval {
 	object {
-		x=475
+		x=472
 		y=250
 		width=15
 		height=14
@@ -3777,7 +3777,7 @@ oval {
 }
 oval {
 	object {
-		x=475
+		x=472
 		y=285
 		width=15
 		height=14
@@ -8190,5 +8190,39 @@ oval {
 		vis="calc"
 		calc="A>-0"
 		chan="13IDD:DAC2_7.VAL"
+	}
+}
+composite {
+	object {
+		x=541
+		y=255
+		width=45
+		height=25
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=541
+				y=255
+				width=45
+				height=25
+			}
+			control {
+				chan="13IDD:userTran4.PROC"
+				clr=14
+				bclr=33
+			}
+			label="L/D"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1||B>-1||C>0||D>0"
+		chan="13IDD:m24.VAL"
+		chanB="13IDD:m23.VAL"
+		chanC="13IDD:Unidig1Bi22.VAL"
+		chanD="13IDD:Unidig1Bi20.VAL"
 	}
 }
