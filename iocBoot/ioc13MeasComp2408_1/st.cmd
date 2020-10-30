@@ -1,7 +1,7 @@
 < envPaths
 
 ## Register all support components
-dbLoadDatabase "$(MEASCOMP)/dbd/measCompApp.dbd"
+dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet("PREFIX", "13USB2408_1:")
