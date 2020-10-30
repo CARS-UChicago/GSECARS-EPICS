@@ -1,12 +1,6 @@
 # This file contains the motor definitions for motors in 13BMD.
 # Here is the correspondence of motor numbers, cards and patch panel positions
-# These definitions were changed on Jan. 16, 2001 by Mark Rivers.  This was done for the following reasons:
-#     - Move the motors which are on top of the XAS lift table (tomography, etc.) to patch panel A.  This is the
-#       only panel (of A-C) which has black, fully wired motor cables, required for home and active limits
-#     - Add a seventh OMS so that all 5 patch panels (A-E) and 2 BP8000 units can be used at once.
-# This change was done mostly in hardware, so that the motor numbers for a given motor did not change.  The motor numbers which
-# did change were the ones for the tomography stages (previously 25-28), the K/B mirrors (previously 33-40), 
-# Bruker shutter and crystal X-Y (previously 41-44).
+
 # Current definitions:
 # Motors   Card    Patch panel  Common use
 #  1-8       0        D         LVP lift table (1-6)
@@ -21,15 +15,11 @@
 #  73-80     9        NA        3rd CARS BP8000  
 #  81-88    10        CC        bipolar microstep stepPack (BM-C rack on roof, front of XAS lift table)
 
-#19-Jul-2004,YW
-# Previous definitions:
-# Motors   Card    Patch panel  Common use
-#  1-8       0        D         LVP lift table (1-6), LVP slits (7-8)
-#  9-16      1        E         LVP detector (9,10,12,13,16), CCD detector (11,14,15)
-#  17-24     2        A         XAS lift table (17-22), monochromator(23), sample Y (24)
-#  25-32     3        C         Tomography, XAS, DAC sample stages (25-28), hutch slits (29-32)
-#  33-40     4        NA        K/B mirror DC stages (33-36), K/B mirror stages (37-38), Bruker shutter (39-40)
-#  41-48     5        NA        2nd CARS BP8000  add 20-Sept-2000  PJE
+#  89-96    NA        NA        Newport XPS for DAC and tomography stages (ioc13bmd_DAC_XPS)
+#  97-104   NA        NA        Newport XPS for DAC and tomography stages (ioc13bmd_LVP_XPS)
+# 105-112   NA        NA        ACS MCB-4B for LVP entrance and detector slits
+# 113-120   NA        NA        Aerotech HEX RC for tomography stages (ioc13bmd_aerotech)
+
 
 file "$(CARS)/db/motor.db"
 {
