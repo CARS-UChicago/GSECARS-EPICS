@@ -194,44 +194,53 @@ rectangle {
 		width=95
 		height=25
 	}
+	display[0] {
+		label="QXAFS Status"
+		name="XRM_qxafs.adl"
+	}
+	display[1] {
+		label="Expt Info"
+		name="scanner.adl"
+		args="P=13XRM:, Q=edb"
+	}
 	display[2] {
 		label="Filters"
 		name="13IDE_filters.adl"
 		args="P=13IDE:, R=Unidig1"
 	}
 	display[3] {
-		label="Inelastic Analyzer"
+		label="I0 Transform "
+		name="userTransform_full.adl"
+		args="P=13IDE:, T=userTran"
+	}
+	display[4] {
+		label="HERFD Analyzer"
 		name="13IDE_analyzer.adl"
 		args="P=13XRM:, R=ANA"
-	}
-	display[5] {
-		label="Fast Mapping "
-		name="XRM_map.adl"
-		args="P=13XRM:, Q=map"
 	}
 	display[6] {
 		label="Scan Server"
 		name="XRM_scandb.adl"
 		args="P=13XRM:, Q=SCANDB"
 	}
-	display[7] {
-		label="QXAFS Status"
-		name="XRM_qxafs.adl"
-	}
 	display[8] {
-		label="Expt Info"
-		name="scanner.adl"
-		args="P=13XRM:, Q=edb"
+		label="OSCAR Motors"
+		name="3motors.adl"
+		args="P=13IDE:, TITLE=Offline_Microscope, M1=m1, M2=m2, M3=m3"
+	}
+	display[9] {
+		label="RPI Rotator "
+		name="RaspPiStepper.adl"
 	}
 	display[10] {
-		label="Instruments"
-		name="PyInstrument.adl"
-		args="P=13XRM:, Q=Inst"
+		label="Spindle Motor "
+		name="1motors.adl"
+		args=" P=13IDE:, TITLE=Spindle, M1=m3"
 	}
 	display[11] {
-		label="I0 Transform "
-		name="userTransform_full.adl"
-		args="P=13IDE:, T=userTran1"
+		label="DAC centering Stages"
+		name="centering Stages"
+		args="P=13IDE:, TITLE=CMA_Motors, M1=m35, M2=m36"
 	}
 	clr=54
 	bclr=1
@@ -248,6 +257,11 @@ rectangle {
 		label="Sample Stage"
 		name="13IDE_SampleStage.adl"
 		args="P=13XRM:, XF=m1, YF=m2, ZF=m10, TH=m3, ZC=m4, XC=m5, YC=m6"
+	}
+	display[1] {
+		label="Sample Microscope"
+		name="3motors.adl"
+		args="P=13IDE:, TITLE=Microscope, M1=m17, M2=m18, M3=m5"
 	}
 	display[2] {
 		label="Table Top Slits"
@@ -272,46 +286,22 @@ rectangle {
 	display[6] {
 		label="Eiger XRD Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Eiger_XRD_Stages, M1=XRM:m7, M2=XRM:m8, M3=XRM:m9"
+		args="P=13, TITLE=Eiger_XRD_Stages, M1=XRM:m12, M2=XRM:m8, M3=XRM:m9"
 	}
 	display[7] {
-		label="Vortex Stages"
+		label="XRF Detector Stages"
 		name="3motors.adl"
 		args="P=13, TITLE=Vortex_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=IDE:m19"
 	}
 	display[8] {
-		label="Analyzer Stages"
-		name="5motors.adl"
-		args="P=13, TITLE=Analyzer_Stages, M1=XRM:m10, M2=XRM:m11, M3=IDE:m35, M4=IDE:m36,M5=IDE:m37"
+		label="Analyzer Fine Stages"
+		name="6motors.adl"
+		args="P=13IDE:, TITLE=Analyzer_Stages, M1=m35, M2=m36, M3=m37, M4=m38,M5=m39,M6=m40"
 	}
 	display[9] {
-		label="Spindle Motor"
-		name="1motors.adl"
-		args="P=13IDE:, TITLE=Spindle, M1=m35"
-	}
-	display[10] {
-		label="Sample Microscope"
-		name="3motors.adl"
-		args="P=13IDE:, TITLE=Microscope, M1=m17, M2=m18, M3=m5"
-	}
-	display[11] {
-		label="RPI Rotator"
-		name="RaspPiStepper.adl"
-	}
-	display[12] {
-		label="centering Stages"
-		name="2motors.adl"
-		args="P=13IDE:, TITLE=CMA_Motors, M1=m35, M2=m36"
-	}
-	display[13] {
-		label="Eiger HERFD Stages"
-		name="2motors.adl"
-		args="P=13XRM:, TITLE=Eiger_HERFD, M1=m7, M2=m12"
-	}
-	display[14] {
-		label="XPS-D Motors"
-		name="8motors.adl"
-		args="P=13XRM:, TITLE=XPS_D_Motors, M1=m5, M2=m6, M3=m7, M4=m8, M5=m9, M6=m10, M7=m11"
+		label="HERFD Stages"
+		name="4motors.adl"
+		args="P=13XRM:, TITLE=HERFD_Stages, M1=m9, M2=m10, M3=m7, M4=m8"
 	}
 	display[15] {
 		label="OSCAR Motors"
@@ -422,7 +412,7 @@ rectangle {
 	object {
 		x=318
 		y=15
-		width=60
+		width=75
 		height=15
 	}
 	monitor {
@@ -876,7 +866,7 @@ text {
 	object {
 		x=318
 		y=260
-		width=100
+		width=150
 		height=20
 	}
 	monitor {
@@ -1595,7 +1585,7 @@ text {
 		x=0
 		y=365
 		width=620
-		height=306
+		height=300
 	}
 	plotcom {
 		title="IO (Blue) // BPM Sum (Red)"
@@ -1608,7 +1598,7 @@ text {
 		limits {
 			loprSrc="default"
 			hoprSrc="default"
-			hoprDefault=10
+			hoprDefault=5
 		}
 	}
 	pen[1] {
@@ -1617,7 +1607,7 @@ text {
 		limits {
 			loprSrc="default"
 			hoprSrc="default"
-			hoprDefault=10
+			hoprDefault=5
 		}
 	}
 }
