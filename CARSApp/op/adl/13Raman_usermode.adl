@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13Raman_usermode_test.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13Raman_usermode.adl"
 	version=030109
 }
 display {
@@ -2487,8 +2487,8 @@ rectangle {
 }
 polygon {
 	object {
-		x=1314
-		y=596
+		x=1175
+		y=595
 		width=30
 		height=30
 	}
@@ -2500,10 +2500,10 @@ polygon {
 		chan="rpi_4:Switch13"
 	}
 	points {
-		(1329,626)
-		(1314,596)
-		(1344,596)
-		(1329,626)
+		(1190,625)
+		(1175,595)
+		(1205,595)
+		(1190,625)
 	}
 }
 "message button" {
@@ -7415,5 +7415,21 @@ composite {
 		vis="calc"
 		calc="A>-330&&A<-180"
 		chan="13RAMAN2:m1.RBV"
+	}
+}
+valuator {
+	object {
+		x=1310
+		y=600
+		width=100
+		height=30
+	}
+	control {
+		chan="rpi_dac:Chan2Volt"
+		clr=30
+		bclr=34
+	}
+	dPrecision=1.000000
+	limits {
 	}
 }
