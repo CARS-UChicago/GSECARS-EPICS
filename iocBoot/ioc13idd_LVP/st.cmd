@@ -10,9 +10,9 @@ epicsEnvSet(OUTPUT_POINTS, "4096")
 epicsEnvSet("PREFIX", "13IDD:LVP:")
 
 # This is the unit labeled NET DEV 1 on the box. It will be boardNum 0.
-cbAddBoard("E-1608", "164.54.160.2")
+cbAddBoard("E-1608", "10.54.160.193")
 # This is the unit labeled NET DEV 2 on the box.  It will be boardNum 1.
-cbAddBoard("E-1608", "164.54.160.10")
+cbAddBoard("E-1608", "10.54.160.10")
 
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
