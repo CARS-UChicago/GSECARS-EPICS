@@ -14,12 +14,12 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
 #  newport-xps11.cars.aps.anl.gov
-XPSCreateController("XPS1", "164.54.160.190", 5001, 7, 10, 500, 0, 500)
+XPSCreateController("XPS1", "newport-xps11", 5001, 7, 10, 500, 0, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.190", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "newport-xps11", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -47,7 +47,7 @@ dbLoadTemplate("motors.template")
 dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.34:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "newport-xps11:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMC_DAC_XPS:, R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
