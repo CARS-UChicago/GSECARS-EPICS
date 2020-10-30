@@ -139,12 +139,12 @@ MCB4BCreateController("MCB4B_1", "serial7", 4, 100, 0)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "164.54.160.147", 5001, 7, 10, 500, 1, 500)
+XPSCreateController("XPS1", "newport-xps12", 5001, 7, 10, 500, 1, 500)
 asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "164.54.160.147", 5001, 50)
+XPSAuxConfig("XPS_AUX1", "newport-xps12", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -172,7 +172,7 @@ dbLoadTemplate("motors.template")
 dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
-drvAsynIPPortConfigure("xps", "164.54.160.147:5001", 0, 0, 0)
+drvAsynIPPortConfigure("xps", "newport-xps12:5001", 0, 0, 0)
 asynSetTraceIOMask("xps",0,2)
 asynSetTraceMask("xps",0,9)
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=trajAsyn1, PORT=xps, ADDR=0, OMAX=300, IMAX=32000")
