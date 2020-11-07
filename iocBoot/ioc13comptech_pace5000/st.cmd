@@ -29,3 +29,7 @@ iocInit
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
 
+asynSetTraceIOMask PACE5000 0 2
+#asynSetTraceFile PACE5000 0 pace_1.txt
+#asynSetTraceMask PACE5000 0 9
+
