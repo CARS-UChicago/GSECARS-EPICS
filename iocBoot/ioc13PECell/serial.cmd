@@ -21,6 +21,8 @@ asynSetOption(serial2,0,baud,19200)
 asynSetOption(serial2,0,bits,8)
 asynSetOption(serial2,0,stop,1)
 asynSetOption(serial2,0,parity,none)
+asynSetOption(serial2,0,crtscts,Y)
+#asynSetOption(serial2,0,clocal,N)
 
 #asynOctetSetInputEos(const char *portName, int addr,
 #                     const char *eosin,const char *drvInfo)
@@ -28,6 +30,8 @@ asynOctetSetInputEos("serial2",0,"\n")
 # asynOctetSetOutputEos(const char *portName, int addr,
 #                       const char *eosin,const char *drvInfo)
 asynOctetSetOutputEos("serial2",0,"\n")
+asynSetTraceIOMask("serial2",0,2)
+#asynSetTraceMask("serial2",0,9)
 
 # Keithley
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=13PECELL:,Dmm=DMM1:,PORT=serial1")
