@@ -27,10 +27,12 @@ epicsEnvSet("LOCATION","Sector 13 portable")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
+asynSetTraceMask("serial2",0,9)
 
 ###############################################################################
 iocInit
 
+asynSetTraceMask("serial2",0,9)
 
 # Keithley 2700 series DMM
 # channels: 10, 20, or 22;  model: 2000 or 2700
