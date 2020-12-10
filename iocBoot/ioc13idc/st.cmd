@@ -28,7 +28,7 @@ drvXPSC8Debug = 0
 asynXPSC8Debug = 0
 
 # Load database
-# dbLoadRecords("$(STD)/db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+# dbLoadRecords("$(SCALER)/db/scaler.db", "P=13IDC:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 dbLoadTemplate("motors.template")
 
