@@ -1,0 +1,37 @@
+# This IOC is an example of using the soft device support of the MCA record,
+# plus the aCalcOut record to have an mca record get its data from another source
+
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+epicsEnvSet("PREFIX", "13Test:")
+epicsEnvSet("M", "mca1")
+epicsEnvSet("SCAN_RATE" "1 second")
+epicsEnvSet("NCHANS", "2048")
+epicsEnvSet("ARRAY_INPUT", "13IDBPS1:Stats1:TSCentroidTotal")
+
+dbLoadRecords("$(MCA)/db/mca.db", "P=$(PREFIX), M=$(M), DTYP=Soft Channel, NCHAN=$(NCHANS), INP="}
+
+dbLoadRecords("$(CALC)/db/userCalcGlobalEnable.db","P=$(PREFIX)")
+dbLoadRecords("$(CALC)/db/userArrayCalcs10.db","P=$(PREFIX),N=$(NCHANS)")
+
+iocInit
+
+# Enable the array calcs
+dbpf("$(PREFIX)userCalcGlobalEnable", "1")
+dbpf("$(PREFIX)userArrayCalcEnable", "1")
+
+# The first ArrayCalc copies the waveform to the MCA record
+dbpf("$(PREFIX)userArrayCalc1.INAA", "$(ARRAY_INPUT)")
+dbpf("$(PREFIX)userArrayCalc1.CALC", "AA")
+dbpf("$(PREFIX)userArrayCalc1.OUT", "$(PREFIX)$(M)")
+dbpf("$(PREFIX)userArrayCalc1.SCAN", "$(SCAN_RATE)")
+
+# The second ArrayCalc forces the MCA record to read the array
+dbpf("$(PREFIX)userArrayCalc2.A", "1")
+dbpf("$(PREFIX)userArrayCalc2.CALC", "A")
+dbpf("$(PREFIX)userArrayCalc2.OUT", "$(PREFIX)$(M).READ PP")
+dbpf("$(PREFIX)userArrayCalc2.SCAN", "$(SCAN_RATE)")
