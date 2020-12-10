@@ -17,7 +17,7 @@ epicsEnvSet("FIELD",                    "READ")
 drvSIS3820Config($(PORT), 0xA8000000, 224, 6, $(MAX_CHANS), $(MAX_SIGNALS), 1, 0x20000)
 
 # This loads the scaler record and supporting records
-dbLoadRecords("$(STD)/db/scaler32.db", "P=13IDE:, S=scaler1, DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=50000000")
+dbLoadRecords("$(SCALER)/db/scaler32.db", "P=13IDE:, S=scaler1, DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=50000000")
 
 # This database provides the support for the MCS functions
 dbLoadRecords("$(MCA)/db/SIS38XX.template", "P=$(PREFIX), PORT=$(PORT), SCALER=13IDE:scaler1")
