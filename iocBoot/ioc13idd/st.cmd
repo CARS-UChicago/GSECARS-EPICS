@@ -21,7 +21,7 @@ cd startup
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
 #     (3)interrupt vector (0=disable or  64 - 255)
 VSCSetup(1, 0xB0000000, 200)
-dbLoadRecords("$(STD)/db/scaler.db", "P=13IDD:,S=scaler2,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+dbLoadRecords("$(SCALER)/db/scaler.db", "P=13IDD:,S=scaler2,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 # MAR345 shutter
 dbLoadRecords("$(CARS)/db/MAR345_shutter.db","P=13IDD:,R=MAR345,IN=13IDD:Unidig1Bi14,OUT=13IDD:Unidig1Bo11")
