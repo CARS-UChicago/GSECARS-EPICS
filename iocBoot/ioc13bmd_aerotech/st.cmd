@@ -12,6 +12,9 @@ asynSetTraceIOMask("HEX_TCP", 0, ESCAPE)
 #asynSetTraceMask("HEX_TCP", 0, ERROR|DRIVER|FLOW)
 asynReport 10 HEX_TCP
 
+# asyn record
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMD:, R=HEX1:Asyn, PORT=HEX_TCP, ADDR=0, OMAX=80, IMAX=80")
+
 A3200AsynSetup(1)   /* number of A3200 controllers in system.  */
 
 # Aerotech A3200 asyn motor driver configure parameters.
@@ -62,3 +65,7 @@ iocInit
 create_monitor_set("auto_positions.req",5,"P=13BMD:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13BMD:")
+
+# Enable Cartesian motion on the hexapod.
+# Send EnableTool via asyn record
+dbpf("13BMD:HEX1:Asyn.AOUT", "EnableTool")
