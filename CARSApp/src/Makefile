@@ -103,7 +103,7 @@ ifdef ASYN
   ifndef ADCORE
     $(DBD_NAME)_DBD += asyn.dbd
   endif
-  $(DBD_NAME)_DBD += drvAsynSerialPort.dbd drvAsynIPPort.dbd drvVxi11.dbd devGpib.dbd
+  $(DBD_NAME)_DBD += drvAsynSerialPort.dbd drvAsynIPPort.dbd drvVxi11.dbd drvPrologixGPIB.dbd devGpib.dbd
   $(PROD_NAME)_LIBS := asyn $($(PROD_NAME)_LIBS)
 endif
 
