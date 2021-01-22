@@ -22,7 +22,7 @@ USBCTRConfig("$(PORT)", 0, 2048, .01)
 dbLoadTemplate("USBCTR.substitutions")
 
 # This loads the scaler record and supporting records
-dbLoadRecords("$(STD)/db/scaler.db", "P=$(USBCTR_PREFIX), S=scaler1, DTYP=Asyn Scaler, OUT=@asyn(USBCTR), FREQ=10000000")
+dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(USBCTR_PREFIX), S=scaler1, DTYP=Asyn Scaler, OUT=@asyn(USBCTR), FREQ=10000000")
 
 # This database provides the support for the MCS functions
 dbLoadRecords("$(MEASCOMP)/db/measCompMCS.template", "P=$(MCS_PREFIX), PORT=$(PORT), MAX_POINTS=$(MAX_POINTS)")

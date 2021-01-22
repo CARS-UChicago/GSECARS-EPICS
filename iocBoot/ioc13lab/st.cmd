@@ -127,7 +127,7 @@ dbLoadRecords("$(MCA)/db/icb_tca.db", "P=13LAB:,TCA=tca1,MCA=aim_adc1,PORT=icbTc
 <SIS3820.cmd
 
 ### Scalers: Joerger VSC8/16
-dbLoadRecords("$(STD)/db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
+dbLoadRecords("$(SCALER)/db/scaler.db", "P=13LAB:,S=scaler1,OUT=#C0 S0 @,FREQ=1e7,DTYP=Joerger VSC8/16")
 
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/db/motorUtil.db", "P=13LAB:")
