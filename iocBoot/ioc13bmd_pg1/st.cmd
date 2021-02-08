@@ -57,9 +57,6 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=I
 set_requestfile_path("$(ADGENICAM)/db")
 set_requestfile_path("$(ADSPINNAKER)/db")
 
-# Tomography data collection
-dbLoadTemplate("tomoScan.substitutions")
-
 iocInit()
 
 # save things every thirty seconds
