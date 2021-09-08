@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2069
-		y=1626
-		width=490
-		height=210
+		x=1951
+		y=1511
+		width=580
+		height=200
 	}
 	clr=14
 	bclr=4
@@ -113,8 +113,8 @@ text {
 }
 text {
 	object {
-		x=20
-		y=70
+		x=210
+		y=40
 		width=100
 		height=20
 	}
@@ -125,8 +125,8 @@ text {
 }
 "text entry" {
 	object {
-		x=120
-		y=70
+		x=275
+		y=40
 		width=30
 		height=20
 	}
@@ -140,8 +140,8 @@ text {
 }
 "text entry" {
 	object {
-		x=210
-		y=70
+		x=345
+		y=40
 		width=30
 		height=20
 	}
@@ -155,8 +155,8 @@ text {
 }
 "text entry" {
 	object {
-		x=165
-		y=70
+		x=310
+		y=40
 		width=30
 		height=20
 	}
@@ -183,7 +183,7 @@ menu {
 }
 text {
 	object {
-		x=200
+		x=385
 		y=40
 		width=100
 		height=20
@@ -195,9 +195,9 @@ text {
 }
 "text entry" {
 	object {
-		x=300
+		x=480
 		y=40
-		width=80
+		width=75
 		height=20
 	}
 	control {
@@ -211,20 +211,20 @@ text {
 text {
 	object {
 		x=20
-		y=175
-		width=100
-		height=20
+		y=110
+		width=150
+		height=18
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Energy = "
+	textix="Analyzer Energy:"
 }
 "text entry" {
 	object {
-		x=120
-		y=175
-		width=80
+		x=175
+		y=110
+		width=100
 		height=20
 	}
 	control {
@@ -237,9 +237,9 @@ text {
 }
 "text update" {
 	object {
-		x=210
-		y=175
-		width=80
+		x=300
+		y=110
+		width=100
 		height=18
 	}
 	monitor {
@@ -254,133 +254,162 @@ text {
 text {
 	object {
 		x=20
-		y=105
-		width=100
+		y=70
+		width=150
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Track Y:"
+	textix="Track Detector:"
 }
 menu {
 	object {
-		x=120
-		y=105
+		x=180
+		y=70
 		width=75
 		height=20
 	}
 	control {
-		chan="$(P)$(R):ytrack"
+		chan="$(P)$(R):det_track"
 		clr=54
 		bclr=1
 	}
 }
 text {
 	object {
-		x=220
-		y=105
-		width=60
+		x=300
+		y=70
+		width=150
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Y1="
+	textix="Simulation Mode:"
 }
-"text entry" {
+menu {
 	object {
-		x=260
-		y=105
-		width=80
+		x=480
+		y=70
+		width=75
 		height=20
 	}
 	control {
-		chan="$(P)$(R):ypos1"
-		clr=14
+		chan="$(P)$(R):sim_mode"
+		clr=54
 		bclr=1
 	}
+}
+text {
+	object {
+		x=20
+		y=140
+		width=150
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Analyzer Theta:"
+}
+"text update" {
+	object {
+		x=175
+		y=140
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R):theta"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
-		x=345
-		y=105
-		width=60
-		height=20
+		x=300
+		y=140
+		width=100
+		height=18
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="E1="
+	textix="Analyzer Z:"
 }
-"text entry" {
+"text update" {
 	object {
-		x=385
-		y=105
-		width=80
-		height=20
+		x=420
+		y=140
+		width=100
+		height=18
 	}
-	control {
-		chan="$(P)$(R):yen1"
-		clr=14
-		bclr=1
+	monitor {
+		chan="$(P)$(R):ana_dist"
+		clr=54
+		bclr=2
 	}
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
-		x=220
-		y=140
-		width=60
-		height=20
+		x=20
+		y=170
+		width=100
+		height=18
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Y2="
+	textix="Detector X:"
 }
-"text entry" {
+"text update" {
 	object {
-		x=260
-		y=140
-		width=80
-		height=20
+		x=175
+		y=170
+		width=100
+		height=18
 	}
-	control {
-		chan="$(P)$(R):ypos2"
-		clr=14
-		bclr=1
+	monitor {
+		chan="$(P)$(R):det_x"
+		clr=54
+		bclr=2
 	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=385
-		y=140
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(R):yen2"
-		clr=14
-		bclr=1
-	}
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
-		x=345
-		y=140
-		width=60
-		height=20
+		x=300
+		y=170
+		width=100
+		height=18
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="E2="
+	textix="Detector Y:"
+}
+"text update" {
+	object {
+		x=420
+		y=170
+		width=100
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R):det_y"
+		clr=54
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
 }

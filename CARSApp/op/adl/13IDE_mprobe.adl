@@ -134,9 +134,9 @@ oval {
 }
 rectangle {
 	object {
-		x=318
+		x=320
 		y=45
-		width=60
+		width=70
 		height=15
 	}
 	"basic attribute" {
@@ -256,7 +256,7 @@ rectangle {
 	display[0] {
 		label="Sample Stage"
 		name="13IDE_SampleStage.adl"
-		args="P=13XRM:, XF=m1, YF=m2, ZF=m10, TH=m3, ZC=m4, XC=m5, YC=m6"
+		args="P=13XRM:, XF=m1, YF=m2, ZF=m4, TH=m3, ZC=m4, XC=m5, YC=m6"
 	}
 	display[1] {
 		label="Sample Microscope"
@@ -284,24 +284,29 @@ rectangle {
 		args="P=13IDE:, M1P=pm4,  M1H=pm3, M1C=pm1, M1E=pm2, M2P=pm8, M2H=pm7, M2C=pm5, M2E=pm6"
 	}
 	display[6] {
-		label="Eiger XRD Stages"
+		label="XRD Detector Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Eiger_XRD_Stages, M1=XRM:m12, M2=XRM:m8, M3=XRM:m9"
+		args="P=13, TITLE=XRD_Detector_Stages, M1=XRM:m13, M2=XRM:m11, M3=XRM:m12"
 	}
 	display[7] {
 		label="XRF Detector Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=Vortex_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=IDE:m19"
+		args="P=13, TITLE=XRF_Detector_Stages, M1=IDE:m34, M2=IDE:m4, M3=IDE:m19"
 	}
 	display[8] {
 		label="Analyzer Fine Stages"
-		name="6motors.adl"
-		args="P=13IDE:, TITLE=Analyzer_Stages, M1=m35, M2=m36, M3=m37, M4=m38,M5=m39,M6=m40"
+		name="9motors.adl"
+		args="P=13IDE:, TITLE=Analyzer_Stages, M1=m25, M2=m26, M3=m27, M4=m28,M5=m29,M6=m30,M7=m36,M8=m37,M9=m38"
 	}
 	display[9] {
 		label="HERFD Stages"
 		name="4motors.adl"
 		args="P=13XRM:, TITLE=HERFD_Stages, M1=m9, M2=m10, M3=m7, M4=m8"
+	}
+	display[11] {
+		label="Other BP8000 Motors"
+		name="8motors.adl"
+		args="P=13IDE:, TITLE=BP800_1, M1=m33, M2=m34, M3=m35, M4=m39, M5=m40, M6=m31, M7=m32 "
 	}
 	display[15] {
 		label="OSCAR Motors"
@@ -370,7 +375,7 @@ rectangle {
 }
 "text update" {
 	object {
-		x=515
+		x=530
 		y=15
 		width=60
 		height=15
@@ -410,9 +415,9 @@ rectangle {
 }
 "text update" {
 	object {
-		x=318
+		x=320
 		y=15
-		width=75
+		width=70
 		height=15
 	}
 	monitor {
@@ -426,9 +431,9 @@ rectangle {
 }
 text {
 	object {
-		x=318
+		x=320
 		y=45
-		width=60
+		width=70
 		height=15
 	}
 	"basic attribute" {
@@ -443,9 +448,9 @@ text {
 }
 text {
 	object {
-		x=318
+		x=320
 		y=45
-		width=60
+		width=70
 		height=15
 	}
 	"basic attribute" {
@@ -472,7 +477,7 @@ text {
 }
 text {
 	object {
-		x=383
+		x=405
 		y=15
 		width=30
 		height=15
@@ -822,29 +827,24 @@ rectangle {
 		args="P=13QX4"
 	}
 	display[4] {
-		label="XRD Eiger"
+		label="Eiger500K"
 		name="eigerDetector.adl"
 		args="P=13EIG1:, R=cam1:"
+	}
+	display[5] {
+		label="Eiger500K ROIStats"
+		name="NDROIStat8.adl"
+		args="P=13EIG1:, R=ROIStat1:, ROI1=1:, ROI2=2:, ROI3=3:, ROI4=4:, ROI5=5:, ROI6=6:, ROI7=7:, ROI8=8:"
 	}
 	display[6] {
 		label="Ion Chamber"
 		name="IonChamber.adl"
 		args="P=13XRM:, Q=ION"
 	}
-	display[9] {
-		label="Quad Vortex xMAP"
-		name="4element_dxp.adl"
-		args="P=13SDD1:, D=dxp, M=mca"
-	}
 	display[10] {
 		label="Quad Vortex Mercury"
 		name="4element_dxp.adl"
 		args="P=dxpMercury:, D=dxp, M=mca"
-	}
-	display[13] {
-		label="XRD Collection (PE1)"
-		name="XRM_AD_Control.adl"
-		args="P=13PE1:"
 	}
 	clr=54
 	bclr=1
@@ -881,7 +881,7 @@ text {
 }
 text {
 	object {
-		x=435
+		x=445
 		y=15
 		width=80
 		height=18
