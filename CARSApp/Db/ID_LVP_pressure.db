@@ -3,24 +3,17 @@
 # the Omega controller and Rockland's PLC.
 # It still uses the Omega, but only to read the pressure.
 
-# Serial record for the current value
-grecord(asyn, "$(P)$(R)ReadValue") {
-        field(PORT,"$(PORT)")
-        field(AOUT,"*V01")
+# The current pressure value
+record(ai,"$(P)$(R)Value") {
         field(SCAN,"1 second")
-        field(FLNK,"$(P)$(R)Value.PROC PP MS")
-}
-
-# The current value
-grecord(scalcout,"$(P)$(R)Value") {
-        field(INAA,"$(P)$(R)ReadValue.AINP NPP NMS")
-        field(CALC,"SSCANF(AA, '%*3c%f')")
+        field(DTYP,"stream")
+        field(INP, "@ID_LVP_pressure.proto Read $(PORT)")
         field(PREC,"1")
         field(FLNK,"$(P)$(R)PID.PROC PP MS")
 }
 
 # EPID record for feedback to control the pressure
-grecord(epid,"$(P)$(R)PID") {
+record(epid,"$(P)$(R)PID") {
         field(INP,"$(P)$(R)Value")
         field(OUTL,"$(P)$(R)Switch.A PP NMS")
         field(KP,"$(KP)")
@@ -35,7 +28,7 @@ grecord(epid,"$(P)$(R)PID") {
 }
 
 # If the pressure drops by more than a certain amount then turn off both motors
-grecord(calcout,"$(P)$(R)Blowout") {
+record(calcout,"$(P)$(R)Blowout") {
         field(INPA, "$(P)$(R)Blowout.B NPP NMS")
         field(INPB, "$(P)$(R)Value NPP NMS")
         field(INPC, "10.")
@@ -44,7 +37,7 @@ grecord(calcout,"$(P)$(R)Blowout") {
         field(OUT, "$(P)$(R)BlowoutLatch.VAL PP MS")
 }
 
-grecord(bo,"$(P)$(R)BlowoutLatch") {
+record(bo,"$(P)$(R)BlowoutLatch") {
         field(ZNAM, "OK")
         field(ZSV, "NO_ALARM")
         field(ONAM, "Blowout!")
@@ -54,7 +47,7 @@ grecord(bo,"$(P)$(R)BlowoutLatch") {
 
 # Transform record to control switching between radial piston pump and
 # syringe pump
-grecord(transform,"$(P)$(R)Switch") {
+record(transform,"$(P)$(R)Switch") {
         field(INPA,"0")
         field(CMTA,"PID output")
         field(INPB,"100")
@@ -70,19 +63,19 @@ grecord(transform,"$(P)$(R)Switch") {
 }
 
 # These records are for tweaking the pressure setpoint
-grecord(ao,"$(P)$(R)PID_tweak") {
+record(ao,"$(P)$(R)PID_tweak") {
         field(VAL, "1")
         field(PREC,"1")
 }
 
-grecord(calcout,"$(P)$(R)PID_tweak_down") {
+record(calcout,"$(P)$(R)PID_tweak_down") {
         field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
         field(INPB,"$(P)$(R)PID.VAL NPP NMS")
         field(CALC,"B-A")
         field(OUT, "$(P)$(R)PID.VAL PP NMS")
 }
 
-grecord(calcout,"$(P)$(R)PID_tweak_up") {
+record(calcout,"$(P)$(R)PID_tweak_up") {
         field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
         field(INPB,"$(P)$(R)PID.VAL NPP NMS")
         field(CALC,"B+A")
@@ -93,7 +86,7 @@ grecord(calcout,"$(P)$(R)PID_tweak_up") {
 # Records to ramp the load using an EPICS SSCAN record.
 # This record starts the ramp after computing the delay time and copying the
 # start and end points of the scan to the scan record
-grecord(dfanout,"$(P)$(R)StartRamp") {
+record(dfanout,"$(P)$(R)StartRamp") {
       field(VAL,"1")
       field(OUTA,"$(P)$(R)RampTime.PROC PP MS")
       field(OUTB,"$(P)$(R)RampSP.PROC PP MS")
@@ -103,7 +96,7 @@ grecord(dfanout,"$(P)$(R)StartRamp") {
 
 # The ramp time in hours is in field A of this record. It computes
 # the delay time per point of the scan.
-grecord(calcout,"$(P)$(R)RampTime") {
+record(calcout,"$(P)$(R)RampTime") {
       field(PINI,"YES")
       field(INPA,"1")
       field(INPB,"$(P)$(R)RampScan.NPTS NPP NMS")
@@ -114,7 +107,7 @@ grecord(calcout,"$(P)$(R)RampTime") {
 
 # This record copies the current value of the load into the
 # starting point of the scan
-grecord(calcout,"$(P)$(R)RampSP") {
+record(calcout,"$(P)$(R)RampSP") {
       field(INPA,"$(P)$(R)Value NPP NMS")
       field(CALC,"A")
       field(OUT,"$(P)$(R)RampScan.P1SP NPP NMS")
@@ -122,14 +115,14 @@ grecord(calcout,"$(P)$(R)RampSP") {
 
 # This record copies the desired final value of the load into the
 # ending point of the scan
-grecord(calcout,"$(P)$(R)RampFinal") {
+record(calcout,"$(P)$(R)RampFinal") {
       field(CALC,"A")
       field(OUT,"$(P)$(R)RampScan.P1EP NPP NMS")
       field(PREC,"1")
 }
 
 # The scan record that ramps the load
-grecord(sscan,"$(P)$(R)RampScan") {
+record(sscan,"$(P)$(R)RampScan") {
         field(DESC,"Load ramp")
         field(PINI,"YES")
         field(PRIO,"HIGH")
@@ -144,14 +137,14 @@ grecord(sscan,"$(P)$(R)RampScan") {
 # the .PAUS field of the scan record, but there seems to be a bug and it only resumes
 # 50% of the time if we do that.
 # ending point of the scan
-grecord(bo,"$(P)$(R)RampPause") {
+record(bo,"$(P)$(R)RampPause") {
       field(OUT,"$(P)$(R)RampScan.PAUS PP MS")
 }
 
 # Turn off both motors
 # Note we use a transform, rather than seq record so that it processes
 # synchronously, turning off feedback immediately.
-grecord(transform,"$(P)$(R)StopBoth") {
+record(transform,"$(P)$(R)StopBoth") {
         field(INPA, "1")
         field(OUTA,"$(P)$(R)StopRadial.PROC PP MS")
         field(INPB, "1")
@@ -160,7 +153,7 @@ grecord(transform,"$(P)$(R)StopBoth") {
 
 # Turn off radial motor
 # This record turns off feedback
-grecord(ao,"$(P)$(R)StopRadial") {
+record(ao,"$(P)$(R)StopRadial") {
         field(VAL,"0")
         field(OUT, "$(P)$(R)PID.FBON PP NMS")
         field(FLNK,"$(P)$(R)StopRadial1")
@@ -168,21 +161,21 @@ grecord(ao,"$(P)$(R)StopRadial") {
 
 # This record stops the motor by writing 0 to the DAC
 # writing to it from the PID record too.  The CA output will be buffered.
-grecord(ao,"$(P)$(R)StopRadial1") {
+record(ao,"$(P)$(R)StopRadial1") {
         field(VAL,"0.0")
         field(OUT, "$(P)$(RADIAL_DAC) CA NMS")
 }
 
 # Turn off syringe motor
 # This record turns off feedback
-grecord(ao,"$(P)$(R)StopSyringe") {
+record(ao,"$(P)$(R)StopSyringe") {
         field(VAL,"0")
         field(OUT, "$(P)$(R)PID.FBON PP NMS")
         field(FLNK,"$(P)$(R)StopSyringe1")
 }
 
 # This record stops the motor by writing 0 to the DAC
-grecord(ao,"$(P)$(R)StopSyringe1") {
+record(ao,"$(P)$(R)StopSyringe1") {
         field(VAL,"0.0")
         field(OUT, "$(P)$(SYRINGE_DAC) CA NMS")
 }
