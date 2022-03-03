@@ -1,0 +1,15 @@
+record(seq,"$(P)OpenCloseShutter") {
+    field(PINI, "YES")
+    field(DLY0,"$(DELAY)")
+    field(DOL0,"1")
+    field(LNK0,"$(P)Shutter PP MS")
+    field(DLY1,"$(DELAY)")
+    field(DOL1,"0")
+    field(LNK1,"$(P)Shutter PP MS")
+    field(FLNK,"$(P)OpenCloseShutter.PROC CA")
+}
+
+record(bo, "$(P)Shutter") {
+    field(ZNAM, "Done")
+    field(ONAM, "Moving")
+}
