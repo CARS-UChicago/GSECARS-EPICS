@@ -1,0 +1,923 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/MjolnirGraphic.adl"
+	version=030109
+}
+display {
+	object {
+		x=370
+		y=354
+		width=695
+		height=425
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=275
+		y=5
+		width=144
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Mjolnir Cell"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=489
+		y=220
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(AP)Run_RBV"
+		clr=53
+		bclr=2
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=445
+		y=245
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(AP)Run"
+		clr=14
+		bclr=20
+	}
+	label="Stop"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=510
+		y=245
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(AP)Run"
+		clr=14
+		bclr=15
+	}
+	label="Pump"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=573
+		y=245
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(AP)Refill"
+		clr=14
+		bclr=30
+	}
+	label="Refill"
+	press_msg="1"
+}
+menu {
+	object {
+		x=487
+		y=195
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(AP)Mode"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=442
+		y=195
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. right"
+}
+text {
+	object {
+		x=355
+		y=70
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pump pressure"
+	align="horiz. right"
+}
+text {
+	object {
+		x=355
+		y=95
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Line pressure"
+	align="horiz. right"
+}
+text {
+	object {
+		x=365
+		y=120
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure set"
+	align="horiz. right"
+}
+text {
+	object {
+		x=375
+		y=145
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Flow actual"
+	align="horiz. right"
+}
+text {
+	object {
+		x=405
+		y=170
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Flow set"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=595
+		y=120
+		width=90
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(AP)PressureSP_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=595
+		y=170
+		width=90
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(AP)FlowRateSP_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=490
+		y=70
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(AP)Pressure_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=490
+		y=95
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(E1608)$(ALP)"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=490
+		y=120
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(AP)PressureSP"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=490
+		y=145
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(AP)FlowRate_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=490
+		y=170
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(AP)FlowRateSP"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=350
+		y=35
+		width=340
+		height=265
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"related display" {
+	object {
+		x=489
+		y=270
+		width=100
+		height=20
+	}
+	display[0] {
+		label="Pump full"
+		name="ISCO_SinglePump.adl"
+		args="P=$(P)$(ISCO),PUMP=$(AP)"
+	}
+	display[1] {
+		label="Controller"
+		name="ISCO_Controller.adl"
+		args="P=$(P)$(ISCO)"
+	}
+	display[2] {
+		label="Pump more"
+		name="ISCO_SinglePumpMore.adl"
+		args="P=$(P)$(ISCO),PUMP=$(AP)"
+	}
+	clr=14
+	bclr=51
+	label="More"
+}
+"text update" {
+	object {
+		x=144
+		y=220
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)Run_RBV"
+		clr=53
+		bclr=2
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=144
+		y=270
+		width=100
+		height=20
+	}
+	display[0] {
+		label="Pump full"
+		name="ISCO_SinglePump.adl"
+		args="P=$(P)$(ISCO),PUMP=$(CP)"
+	}
+	display[1] {
+		label="Controller"
+		name="ISCO_Controller.adl"
+		args="P=$(P)$(ISCO)"
+	}
+	display[2] {
+		label="Pump more"
+		name="ISCO_SinglePumpMore.adl"
+		args="P=$(P)$(ISCO),PUMP=$(CP)"
+	}
+	clr=14
+	bclr=51
+	label="More"
+}
+"message button" {
+	object {
+		x=100
+		y=245
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)Run"
+		clr=14
+		bclr=20
+	}
+	label="Stop"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=165
+		y=245
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)Run"
+		clr=14
+		bclr=15
+	}
+	label="Pump"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=228
+		y=245
+		width=60
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)Refill"
+		clr=14
+		bclr=30
+	}
+	label="Refill"
+	press_msg="1"
+}
+menu {
+	object {
+		x=142
+		y=195
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)Mode"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=97
+		y=195
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. right"
+}
+text {
+	object {
+		x=10
+		y=70
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pump pressure"
+	align="horiz. right"
+}
+text {
+	object {
+		x=10
+		y=95
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Line pressure"
+	align="horiz. right"
+}
+text {
+	object {
+		x=20
+		y=120
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure set"
+	align="horiz. right"
+}
+text {
+	object {
+		x=30
+		y=145
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Flow actual"
+	align="horiz. right"
+}
+text {
+	object {
+		x=60
+		y=170
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Flow set"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=250
+		y=120
+		width=90
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)PressureSP_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=250
+		y=170
+		width=90
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)FlowRateSP_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=70
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)Pressure_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=95
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(E1608)$(CLP)"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=145
+		y=120
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)PressureSP"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=145
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)FlowRate_RBV"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=145
+		y=170
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)FlowRateSP"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=35
+		width=340
+		height=265
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=67
+		y=40
+		width=216
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Confining Pressure"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=436
+		y=40
+		width=168
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Axial Pressure"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=390
+		y=305
+		width=245
+		height=110
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=478
+		y=310
+		width=84
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Loading"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=530
+		y=340
+		width=100
+		height=45
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=530
+				y=340
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(P)$(E1608)$(LVDT)"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=530
+				y=365
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(P)$(E1608)$(LC)"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+	}
+}
+"related display" {
+	object {
+		x=477
+		y=390
+		width=100
+		height=20
+	}
+	display[0] {
+		label="E1608"
+		name="E1608_module.adl"
+		args="P=$(P)$(E1608),Bi=Bi,Li=Li,Bo=Bo,Lo=Lo,Bd=Bd,Ai=Ai,Ao=Ao,Ct=Counter,Wd=WaveDig,Tg=Trig"
+	}
+	clr=14
+	bclr=51
+	label="More"
+}
+composite {
+	object {
+		x=395
+		y=340
+		width=130
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=435
+				y=340
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LVDT (mm)"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=395
+				y=365
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Load cell (N)"
+			align="horiz. right"
+		}
+	}
+}
+rectangle {
+	object {
+		x=51
+		y=305
+		width=245
+		height=85
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=151
+		y=310
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Units"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=191
+		y=340
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)PressUnits"
+		clr=53
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=191
+		y=365
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)FlowUnits"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=96
+		y=340
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. right"
+}
+text {
+	object {
+		x=56
+		y=365
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Flow rate"
+	align="horiz. right"
+}
