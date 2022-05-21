@@ -42,7 +42,7 @@ set_pass1_restoreFile("auto_settings.sav")
 set_requestfile_path("./")
 set_requestfile_path(cars,     "db")
 set_requestfile_path(adcore,   "db")
-set_requestfile_path(autosave, "db"
+set_requestfile_path(autosave, "db")
 set_requestfile_path(calc,     "db")
 set_requestfile_path(dac128v,  "db")
 set_requestfile_path(ip,       "db")
@@ -58,6 +58,13 @@ set_requestfile_path(vme,      "db")
 
 #dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=xxx:")
 
+# Set the timezone
+tz2timezone()
+
 # Date and time of boot
 date
+
+# Increase the callback queue size
+callbackSetQueueSize(5000)
+
 
