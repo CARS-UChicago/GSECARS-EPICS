@@ -107,14 +107,14 @@ ifdef ASYN
   $(PROD_NAME)_LIBS := asyn $($(PROD_NAME)_LIBS)
 endif
 
-ifdef STD
-  $(DBD_NAME)_DBD += stdSupport.dbd
-  $(PROD_NAME)_LIBS := std $($(PROD_NAME)_LIBS)
-endif
-
 ifdef SCALER
   $(DBD_NAME)_DBD += scalerSupport.dbd
   $(PROD_NAME)_LIBS := scaler $($(PROD_NAME)_LIBS)
+endif
+
+ifdef STD
+  $(DBD_NAME)_DBD += stdSupport.dbd
+  $(PROD_NAME)_LIBS := std $($(PROD_NAME)_LIBS)
 endif
 
 ifdef CALC
@@ -375,10 +375,8 @@ ifeq ($(OS_CLASS), Linux)
   ifdef MEASCOMP
     ifeq ($(HAVE_HIDAPI), YES)
       $(DBD_NAME)_DBD += measCompSupport.dbd
-      $(PROD_NAME)_LIBS := measCompLinuxDrivers $($(PROD_NAME)_LIBS)
-      $(PROD_NAME)_LIBS := cbw_linux $($(PROD_NAME)_LIBS)
       $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
-      $(PROD_NAME)_SYS_LIBS += hidapi-libusb usb-1.0
+      $(PROD_NAME)_SYS_LIBS += uldaq usb-1.0
     endif
   endif
 
