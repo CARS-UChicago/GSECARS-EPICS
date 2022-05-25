@@ -20,10 +20,10 @@ tyGSAsynInit("serial15", "UART1", 6, 38400,'N',1,8,'N',"\r","\r")   /* YLR laser
 tyGSAsynInit("serial16", "UART1", 7,  9600,'N',1,8,'N',"\r\n","\r\n")   /* BNC 505 Pulse Generator */
 
 # Set up 2 serial ports on Moxa terminal server which is inside the MCB-4B slit controller box
-drvAsynIPPortConfigure("serial17", "164.54.160.30:4001")
+drvAsynIPPortConfigure("serial17", "10.54.160.54:4001")
 #asynSetOption(serial1,0,baud,19200)
 #asynSetOption(serial1,0,parity,none)
-drvAsynIPPortConfigure("serial18", "164.54.160.30:4002")
+drvAsynIPPortConfigure("serial18", "10.54.160.54:4002")
 #asynSetOption(serial2,0,baud,19200)
 #asynSetOption(serial2,0,parity,none)
 asynOctetSetInputEos("serial17",0,"\r")
