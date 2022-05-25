@@ -9,6 +9,9 @@ epicsEnvSet(PREFIX, 13MNIR:)
 epicsEnvSet(E1608_PREFIX,  $(PREFIX)E1608:)
 epicsEnvSet(ISCO_PREFIX,   $(PREFIX)ISCO:)
 epicsEnvSet(VINDUM_PREFIX, $(PREFIX)VINDUM:)
+epicsEnvSet(PACE_PREFIX,   $(PREFIX)PACE:)
+
+epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 
 # E1608 used for pressure transducers, LVDT, and strain gauge
 < E1608.cmd
@@ -18,6 +21,9 @@ epicsEnvSet(VINDUM_PREFIX, $(PREFIX)VINDUM:)
 
 # Vindum pump, used for fluid flow
 < Vindum.cmd
+
+# PACE5000 used for gas confining pressure
+< PACE5000.cmd
 
 < ../calc_GSECARS.iocsh
 
