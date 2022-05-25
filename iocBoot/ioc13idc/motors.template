@@ -46,7 +46,8 @@ pattern
 {13IDC:, m14, "OMS VME58", 1, 5, "Vortex Y",              mm, Pos,   10.,   1.,   .5,    0,    5,   .5,  400,  0.52,    4,   80,  -80}
 {13IDC:, m15, "OMS VME58", 1, 6, "Vortex Z",              mm, Pos,   10.,   1.,   .5,    0,    5,   .5,  400,  0.52,    4,   80,  -80}
 #{13IDC:, m15, "OMS VME58", 1, 6, "PE Cleanup Z",           mm, Neg,    2.,  .01,   .5,    0,    5,   .5,  400,  .200,    4,   100,  0}
-{13IDC:, m16, "OMS VME58", 1, 7, "YAG Focus",        microns, Pos,  200.0,  10,   .2,    0,  200,   .2, 10240,  500,    1, 27000, -150}
+#{13IDC:, m16, "OMS VME58", 1, 7, "YAG Focus",        microns, Pos,  200.0,  10,   .2,    0,  200,   .2, 10240,  500,    1, 27000, -150}
+{13IDC:, m16, "OMS VME58",  1  7,  "CRL Cleanup Y",         mm, Pos,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
 #{13IDC:, m16, "OMS VME58", 1, 7, "PE Cleanup Y",           mm, Neg, 0.100,  .01,   .2,    0,    1,   .2,   48, .003546,    1,  8,    0}
 
 # P,      M,    DTYP,       C, S,     DESC,               EGU,  DIR,VELO, VBAS,ACCL,BDST,BVEL,BACC,SREV,  UREV, PREC,  DHLM, DLLM
@@ -93,14 +94,16 @@ pattern
 {13IDC:, m56, "OMS VME58",  4  7,  "YAG Focus"      ,  microns, Pos,  200.0,  10, .2,  0, 10,  .2,  10240,  500,   1,    27000,  -150}
 
 # PE Cell motors pannel C:
-{13IDC:, m57, "OMS VME58",  5, 0,  "PE Cleanup X",          mm, Pos,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
+# PE Cleanup X changed Pos to Neg for CRL, Change it back for PE cell
+#{13IDC:, m57, "OMS VME58",  5, 0,  "PE Cleanup X",          mm, Neg,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
+{13IDC:, m57, "OMS VME58",  5, 0,  "PE Cleanup X",         mm, Pos,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
 {13IDC:, m58, "OMS VME58",  5, 1,  "PE Cleanup Y",          mm, Pos,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
 {13IDC:, m59, "OMS VME58",  5, 2,  "PE Cleanup Z",          mm, Neg,     2., .01, .5,  0,  5,   .5,   400,    .200,  3,  100,    0}
 {13IDC:, m60, "OMS VME58",  5, 3,  "PE Cell X",             mm, Pos,     2.,  1., .5,  0,  5,  1.0,  1600,     1.0,  3,   80,  -80}
 {13IDC:, m61, "OMS VME58",  5, 4,  "PE Cell Y",             mm, Pos,     .2, .03, .5,  0, 1.,   .2,   400,    -.02,  3,   40,    0}
 {13IDC:, m62, "OMS VME58",  5, 5,  "PE Cell Z",             mm, Pos,     2.,  1., .5,  0,  5,  1.0,  1600,     1.0,  3,   80,  -80}
-{13IDC:, m63, "OMS VME58",  5, 6,  "unused",                mm, Neg,     2., .01, .5,  0,  5,   .5,   400,    .200,  3,  100,    0}
-{13IDC:, m64, "OMS VME58",  5  7,  "unused",                mm, Neg,     2., .01, .5,  0,  5,   .5,   400,    .200,  3,  100,    0}
+{13IDC:, m63, "OMS VME58",  5, 6,  "CRL Cleanup X",         mm, Pos,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
+{13IDC:, m64, "OMS VME58",  5  7,  "CRL Cleanup Y",         mm, Pos,   .100, .01, .2,  0,  1,   .2,    48, .003546,  3,    8,    0}
 }
 
 # Horizontal detector slit
