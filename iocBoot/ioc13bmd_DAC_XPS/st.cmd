@@ -13,8 +13,8 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # asyn port, IP address, IP port, number of axes, 
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
-XPSCreateController("XPS1", "newport-xps15", 5001, 5, 10, 500, 1, 500)
-asynSetTraceIOMask("XPS1", 0, 2)
+XPSCreateController("XPS1", "newport-xps15", 5001, 6, 10, 500, 1, 500)
+asynSetTraceIOMask("XPS1", 0, 8)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
@@ -23,11 +23,12 @@ asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
-XPSCreateAxis("XPS1",0,"GROUP1.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",1,"GROUP2.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",2,"GROUP3.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",3,"GROUP4.POSITIONER",  "10000")  
-XPSCreateAxis("XPS1",4,"GROUP5.POSITIONER",  "10000")  
+XPSCreateAxis("XPS1", 0, "G1.STX",  "10000")  
+XPSCreateAxis("XPS1", 1, "G2.STY",  "10000")  
+XPSCreateAxis("XPS1", 2, "G3.STZ",  "10000")  
+XPSCreateAxis("XPS1", 3, "G4.OM",   "10000")  
+XPSCreateAxis("XPS1", 4, "G5.DETX", "10000")  
+XPSCreateAxis("XPS1", 5, "G6.DETZ", "10000")
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -125,5 +126,8 @@ create_monitor_set("auto_settings.req",30,"P=13BMD:")
 dbpf("13BMD:m89.NTM","0")
 dbpf("13BMD:m90.NTM","0")
 dbpf("13BMD:m91.NTM","0")
+dbpf("13BMD:m92.NTM","0")
+dbpf("13BMD:m93.NTM","0")
+dbpf("13BMD:m94.NTM","0")
 
 motorUtilInit("13BMD_DAC_XPS:")
