@@ -146,7 +146,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)ReadValue.SCAN"
+		chan="$(P)$(R)Value.SCAN"
 		clr=14
 		bclr=51
 	}
@@ -185,7 +185,7 @@ rectangle {
 	monitor {
 		chan="$(P)$(R)Value"
 		clr=54
-		bclr=3
+		bclr=4
 	}
 	align="horiz. centered"
 	limits {
@@ -1294,4 +1294,21 @@ text {
 	}
 	label="Reset"
 	press_msg="0"
+}
+text {
+	object {
+		x=291
+		y=74
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(R)Value.STAT"
+	}
+	textix="Limit"
+	align="horiz. centered"
 }
