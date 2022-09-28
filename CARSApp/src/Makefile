@@ -175,20 +175,33 @@ ifdef MODBUS
 endif
 
 ifdef MOTOR
-  $(DBD_NAME)_DBD += motorSupport.dbd ACRMotorSupport.dbd devAcsMotor.dbd devAerotech.dbd
-  $(DBD_NAME)_DBD += devFaulhaberMotor.dbd
-  $(DBD_NAME)_DBD += devMclennanMotor.dbd
-  $(DBD_NAME)_DBD += devNewFocus.dbd devNewport.dbd
-  ifdef SNCSEQ
-  $(DBD_NAME)_DBD += devAerotechSeq.dbd devNewportSeq.dbd
-  endif
-  $(DBD_NAME)_DBD += devSoftMotor.dbd
-  $(DBD_NAME)_DBD += motorSimSupport.dbd
-
+  $(DBD_NAME)_DBD   += motorSupport.dbd 
   $(PROD_NAME)_LIBS := motor $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := ACRMotor Acs Aerotech Faulhaber  $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := Mclennan NewFocus Newport $($(PROD_NAME)_LIBS)
-  $(PROD_NAME)_LIBS := Parker softMotor motorSimSupport $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += ACRMotorSupport.dbd 
+  $(PROD_NAME)_LIBS := ACRMotor $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devAcsMotor.dbd 
+  $(PROD_NAME)_LIBS := Acs $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devAerotech.dbd
+  $(PROD_NAME)_LIBS := Aerotech $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devFaulhaberMotor.dbd
+  $(PROD_NAME)_LIBS := Faulhaber  $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devMclennanMotor.dbd
+  $(PROD_NAME)_LIBS := Mclennan $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devNewFocus.dbd 
+  $(PROD_NAME)_LIBS := NewFocus $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devNewport.dbd
+  $(PROD_NAME)_LIBS := Newport $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devSmarActMCS2Motor.dbd
+  $(PROD_NAME)_LIBS := smarActMotor $($(PROD_NAME)_LIBS)
+  ifdef SNCSEQ
+    $(DBD_NAME)_DBD += devAerotechSeq.dbd 
+    $(DBD_NAME)_DBD += devNewportSeq.dbd
+  endif
+  $(DBD_NAME)_DBD   += devSoftMotor.dbd
+  $(PROD_NAME)_LIBS := softMotor $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += motorSimSupport.dbd
+  $(PROD_NAME)_LIBS := motorSimSupport $($(PROD_NAME)_LIBS)
+
 endif
 
 ifdef STREAM
@@ -223,9 +236,9 @@ ifdef VAC
   $(PROD_NAME)_LIBS := vac $($(PROD_NAME)_LIBS)
 endif
 
-ifdef TPMAC
-  $(DBD_NAME)_DBD += pmacAsynMotor.dbd pmacAsynIPPort.dbd
-  $(PROD_NAME)_LIBS := pmacAsynMotor pmacAsynIPPort $($(PROD_NAME)_LIBS)
+ifdef PMAC
+  $(DBD_NAME)_DBD += pmacAsynMotorPort.dbd pmacAsynIPPort.dbd
+  $(PROD_NAME)_LIBS := pmacAsynMotorPort pmacAsynIPPort $($(PROD_NAME)_LIBS)
 endif
 
 #ifdef FLY
@@ -347,10 +360,8 @@ ifeq ($(OS_CLASS), vxWorks)
   endif
 
   ifdef MOTOR
-#    $(DBD_NAME)_DBD += devDeltaTau.dbd
     $(DBD_NAME)_DBD += devOms.dbd
-#    $(PROD_NAME)_LIBS := DeltaTau $($(PROD_NAME)_LIBS)
-    $(PROD_NAME)_LIBS := oms $($(PROD_NAME)_LIBS)
+  $(PROD_NAME)_LIBS := oms $($(PROD_NAME)_LIBS)
   endif
 
 #  ifdef FLY
@@ -363,19 +374,19 @@ endif
 ##################################################################
 ifeq ($(OS_CLASS), Linux) 
   ifdef DXP
+    $(DBD_NAME)_DBD += dxpSupport.dbd
+    $(PROD_NAME)_LIBS  := dxp handel $($(PROD_NAME)_LIBS)
     # If your host supports parallel port or USB interfaces to Saturn DXP, set
     # LINUX_USB_INSTALLED to YES in <synApps>/configure/CONFIG_SITE.
     ifeq ($(LINUX_USB_INSTALLED), YES)
-      $(DBD_NAME)_DBD += dxpSupport.dbd
-      $(PROD_NAME)_LIBS  := dxp handel $($(PROD_NAME)_LIBS)
       $(PROD_NAME)_SYS_LIBS += usb 
     endif
   endif
 
   ifdef MEASCOMP
-    ifeq ($(HAVE_HIDAPI), YES)
-      $(DBD_NAME)_DBD += measCompSupport.dbd
-      $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
+    $(DBD_NAME)_DBD += measCompSupport.dbd
+    $(PROD_NAME)_LIBS := measComp $($(PROD_NAME)_LIBS)
+    ifeq ($(HAVE_ULDAQ_LINUX), YES)
       $(PROD_NAME)_SYS_LIBS += uldaq usb-1.0
     endif
   endif
@@ -383,9 +394,9 @@ ifeq ($(OS_CLASS), Linux)
   ifdef MCA
     # If your host supports libpcap and libnet and you want to build Canberra network
     # support, set LINUX_NET_INSTALLED to YES in <synApps>/configure/CONFIG_SITE.
+    $(DBD_NAME)_DBD += mcaCanberraSupport.dbd
+    $(PROD_NAME)_LIBS := mcaCanberra $($(PROD_NAME)_LIBS)
     ifeq ($(LINUX_NET_INSTALLED), YES)
-      $(DBD_NAME)_DBD += mcaCanberraSupport.dbd
-      $(PROD_NAME)_LIBS := mcaCanberra $($(PROD_NAME)_LIBS)
       $(PROD_NAME)_SYS_LIBS += net pcap
     endif
 
@@ -396,6 +407,11 @@ ifeq ($(OS_CLASS), Linux)
       $(PROD_NAME)_LIBS := mcaAmptek $($(PROD_NAME)_LIBS)
       $(PROD_NAME)_SYS_LIBS += usb-1.0
     endif
+  endif
+  
+  ifdef MOTOR
+    $(DBD_NAME)_DBD   += GalilSupport.dbd
+    $(PROD_NAME)_LIBS := GalilSupport $($(PROD_NAME)_LIBS)
   endif
 
   ifdef IPAC
