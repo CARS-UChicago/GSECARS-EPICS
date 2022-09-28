@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
 	version=030109
 }
 display {
 	object {
-		x=212
-		y=148
+		x=339
+		y=99
 		width=316
-		height=619
+		height=627
 	}
 	clr=46
 	bclr=3
@@ -183,6 +183,11 @@ composite {
 		name="1motors.adl"
 		args="P=13XPS:, TITLE=Sample Z Temp, M1=m1"
 	}
+	display[5] {
+		label="CRL X, Y"
+		name="2motors.adl"
+		args="P=13IDC:, TITLE=CRL_X_Y, M1=m63, M2=m16"
+	}
 	clr=14
 	bclr=5
 }
@@ -277,6 +282,16 @@ composite {
 		label="IDC GPD Det Slits (compound)"
 		name="4slitGraphic.adl"
 		args="P=13IDC:,V=Slit1V,H=Slit1H,mXp=m18,mXn=m17,mYp=m19,mYn=m20,SLIT=IDC_GPD_Det_Slits"
+	}
+	display[7] {
+		label="Bora hexapod main"
+		name="SymetrieHexapodMain.adl"
+		args="P=13IDC:,R=BORA1:"
+	}
+	display[8] {
+		label="Bora hexapod motors"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=BORA_Hexapod, M1=m65,M2=m66,M3=m67,M4=m68,M5=m69,M6=m70"
 	}
 	clr=14
 	bclr=5
