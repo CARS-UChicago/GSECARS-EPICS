@@ -14,8 +14,11 @@ epicsEnvSet("STREAM_PROTOCOL_PATH", "$(IP)/db")
 
 < USBCTR.cmd
 
+## JES commented out serial devices 7/25/22 while testing
+## lines ~55-93; double comments (##) denote lines that were already commented out
+
+
 ##########################################################
-## JES commented out pmac for testing
 ## Configure asyn device
 ## FOLLOWING 1 LINE CAN BE COMMENTED OUT WHILE TESTING AT APS BECAUSE IT LEADS TO VERY LONG TIMEOUT
 pmacAsynIPConfigure("PMAC_IP","10.100.160.104:1025",0,0,0)
@@ -24,10 +27,14 @@ asynSetTraceIOMask("PMAC_IP",-1,0x1)
 ##asynSetTraceMask("PMAC_IP",-1,0x1)
 ##asynSetTraceIOMask("PMAC_IP",-1,0x0)
 
-pmacAsynMotorCreate("PMAC_IP", 0, 0, 9);
+# New Model 3 PMAC driver
+pmacCreateController("PMAC1", "PMAC_IP", 0, 9, 20, 1000);
+pmacCreateAxes("PMAC1", 9)
 
+# Old Model 2 PMAC driver
+#pmacAsynMotorCreate("PMAC_IP", 0, 0, 9);
 ## Setup the motor Asyn layer (portname, low-level driver drvet name, card, number of axes on card)
-drvAsynMotorConfigure("PMAC1", "pmacAsynMotor", 0, 9)
+#drvAsynMotorConfigure("PMAC1", "pmacAsynMotor", 0, 9)
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -53,42 +60,45 @@ dbLoadRecords("$(STD)/stdApp/Db/misc.db","P=$(PREFIX)", std)
 ### Allstop, alldone
 #dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13PMAC1:")
 
+## JES commented out GP controller 7/25/22
 ## Granville Phillips GP307 gauge controller
-drvAsynIPPortConfigure("serial1", "10.100.160.105:4001 COM", 0, 0, 0)
-asynSetOption("serial1", 0, "baud", "9600")
-asynSetOption("serial1", 0, "bits", "7")
-asynSetOption("serial1", 0, "stop", "2")
-asynSetOption("serial1", 0, "parity", "none")
-asynOctetSetOutputEos("serial1",0,"\n")
-asynOctetSetInputEos("serial1",0,"\n")
-asynSetTraceIOMask("serial1",0,2)
-#asynSetTraceMask("serial1",0,9)
-dbLoadRecords("$(VAC)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
+#drvAsynIPPortConfigure("serial1", "10.100.160.105:4001 COM", 0, 0, 0)
+#asynSetOption("serial1", 0, "baud", "9600")
+#asynSetOption("serial1", 0, "bits", "7")
+#asynSetOption("serial1", 0, "stop", "2")
+#asynSetOption("serial1", 0, "parity", "none")
+#asynOctetSetOutputEos("serial1",0,"\n")
+#asynOctetSetInputEos("serial1",0,"\n")
+#asynSetTraceIOMask("serial1",0,2)
+##asynSetTraceMask("serial1",0,9)
+#dbLoadRecords("$(VAC)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
 
+## JES commented out IP controller 7/25/22
 ## Varian ion pump controllers
-drvAsynIPPortConfigure("serial2", "10.100.160.105:4002 COM", 0, 0, 0)
-asynSetOption("serial2", 0, "baud", "9600")
-asynSetOption("serial2", 0, "bits", "8")
-asynSetOption("serial2", 0, "stop", "1")
-asynSetOption("serial2", 0, "parity", "none")
-asynOctetSetOutputEos("serial2",0,"\r")
-asynOctetSetInputEos("serial2",0,"\r")
-asynSetTraceIOMask("serial2",0,2)
-#asynSetTraceMask("serial2",0,9)
-dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP1:,PORT=serial2,CHAN=1,HIGH=-6,HIHI=-4")
-dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP2:,PORT=serial2,CHAN=2,HIGH=-6,HIHI=-4")
+#drvAsynIPPortConfigure("serial2", "10.100.160.105:4002 COM", 0, 0, 0)
+#asynSetOption("serial2", 0, "baud", "9600")
+#asynSetOption("serial2", 0, "bits", "8")
+#asynSetOption("serial2", 0, "stop", "1")
+#asynSetOption("serial2", 0, "parity", "none")
+#asynOctetSetOutputEos("serial2",0,"\r")
+#asynOctetSetInputEos("serial2",0,"\r")
+#asynSetTraceIOMask("serial2",0,2)
+##asynSetTraceMask("serial2",0,9)
+#dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP1:,PORT=serial2,CHAN=1,HIGH=-6,HIHI=-4")
+#dbLoadRecords("$(IP)/db/VarianDualIP.db","P=$(PREFIX),R=IP2:,PORT=serial2,CHAN=2,HIGH=-6,HIHI=-4")
 
+## JES commented out other serial 7/25/22
 ## Other serial devices
-drvAsynIPPortConfigure("serial3", "10.100.160.105:4003 COM", 0, 0, 0)
-asynSetOption("serial3", 0, "baud", "9600")
-asynSetOption("serial3", 0, "bits", "8")
-asynSetOption("serial3", 0, "stop", "1")
-asynSetOption("serial3", 0, "parity", "none")
-asynOctetSetOutputEos("serial3",0,"\n")
-asynOctetSetInputEos("serial3",0,"\n")
-asynSetTraceIOMask("serial3",0,2)
-#asynSetTraceMask("serial3",0,9)
-#dbLoadRecords("$(CARS)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
+#drvAsynIPPortConfigure("serial3", "10.100.160.105:4003 COM", 0, 0, 0)
+#asynSetOption("serial3", 0, "baud", "9600")
+#asynSetOption("serial3", 0, "bits", "8")
+#asynSetOption("serial3", 0, "stop", "1")
+#asynSetOption("serial3", 0, "parity", "none")
+#asynOctetSetOutputEos("serial3",0,"\n")
+#asynOctetSetInputEos("serial3",0,"\n")
+#asynSetTraceIOMask("serial3",0,2)
+##asynSetTraceMask("serial3",0,9)
+##dbLoadRecords("$(CARS)/db/vs.db","P=$(PREFIX),GAUGE=VGC1,PORT=serial1,DEV=GP307,ADDR=0,STN=0")
 
 
 dbLoadTemplate("asynRecord.substitutions")
