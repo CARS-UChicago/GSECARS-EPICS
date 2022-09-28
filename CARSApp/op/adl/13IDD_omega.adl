@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=459
-		y=200
+		x=315
+		y=153
 		width=291
 		height=238
 	}
@@ -108,7 +108,7 @@ text {
 		height=25
 	}
 	monitor {
-		chan="13IDD:m96.RBV"
+		chan="13IDD:m84.RBV"
 		clr=0
 		bclr=44
 	}
@@ -159,7 +159,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13IDD:m96.DMOV"
+		chan="13IDD:m84.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -172,7 +172,7 @@ text {
 		height=41
 	}
 	control {
-		chan="13IDD:m96.VAL"
+		chan="13IDD:m84.VAL"
 		clr=30
 		bclr=43
 	}
@@ -187,7 +187,7 @@ text {
 		height=29
 	}
 	control {
-		chan="13IDD:m96.TWV"
+		chan="13IDD:m84.TWV"
 		clr=14
 		bclr=27
 	}
@@ -202,7 +202,7 @@ text {
 		height=33
 	}
 	control {
-		chan="13IDD:m96.TWR"
+		chan="13IDD:m84.TWR"
 		clr=14
 		bclr=26
 	}
@@ -217,7 +217,7 @@ text {
 		height=34
 	}
 	control {
-		chan="13IDD:m96.TWF"
+		chan="13IDD:m84.TWF"
 		clr=14
 		bclr=27
 	}
@@ -274,7 +274,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13IDD:m96.VAL"
+		chan="13IDD:m84.VAL"
 		clr=14
 		bclr=52
 	}
@@ -289,7 +289,7 @@ text {
 		height=11
 	}
 	control {
-		chan="13IDD:m96.TWV"
+		chan="13IDD:m84.TWV"
 		clr=0
 		bclr=53
 	}
@@ -304,7 +304,7 @@ text {
 		height=11
 	}
 	control {
-		chan="13IDD:m96.TWV"
+		chan="13IDD:m84.TWV"
 		clr=0
 		bclr=53
 	}
@@ -319,7 +319,7 @@ text {
 		height=11
 	}
 	control {
-		chan="13IDD:m96.TWV"
+		chan="13IDD:m84.TWV"
 		clr=0
 		bclr=53
 	}
@@ -338,27 +338,12 @@ composite {
 		"message button" {
 			object {
 				x=11
-				y=63
-				width=32
-				height=15
-			}
-			control {
-				chan="13IDD:m96.VAL"
-				clr=14
-				bclr=37
-			}
-			label="-110"
-			press_msg="-110"
-		}
-		"message button" {
-			object {
-				x=11
 				y=113
 				width=32
 				height=15
 			}
 			control {
-				chan="13IDD:m96.VAL"
+				chan="13IDD:m84.VAL"
 				clr=14
 				bclr=37
 			}
@@ -404,6 +389,21 @@ composite {
 				}
 			}
 		}
+		"message button" {
+			object {
+				x=11
+				y=63
+				width=32
+				height=15
+			}
+			control {
+				chan="13IDD:m84.VAL"
+				clr=14
+				bclr=37
+			}
+			label="-110"
+			press_msg="-110"
+		}
 		rectangle {
 			object {
 				x=20
@@ -421,9 +421,9 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A<-110&&B<-100&&C>-111&&C<-69"
+		calc="A<-110&&B<-100&&C>--111&&C<-69"
 		chan="13IDD:m23.RBV"
 		chanB="13IDD:m24.RBV"
-		chanC="13IDD:m96"
+		chanC="13IDD:m84"
 	}
 }
