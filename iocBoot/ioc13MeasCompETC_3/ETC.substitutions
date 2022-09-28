@@ -1,0 +1,79 @@
+file "$(MEASCOMP)/db/measCompLongIn.template"
+{
+pattern
+{          P,   R,   MASK,   PORT,  ADDR}
+{   13ETC_1:,  Li,   0xFF,  ETC_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompBinaryIn.template"
+{
+pattern
+{          P,   R,   MASK,    PORT,  ADDR}
+{   13ETC_1:,  Bi1,  0x01,   ETC_1,     0}
+{   13ETC_1:,  Bi2,  0x02,   ETC_1,     0}
+{   13ETC_1:,  Bi3,  0x04,   ETC_1,     0}
+{   13ETC_1:,  Bi4,  0x08,   ETC_1,     0}
+{   13ETC_1:,  Bi5,  0x10,   ETC_1,     0}
+{   13ETC_1:,  Bi6,  0x20,   ETC_1,     0}
+{   13ETC_1:,  Bi7,  0x40,   ETC_1,     0}
+{   13ETC_1:,  Bi8,  0x80,   ETC_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompLongOut.template"
+{
+pattern
+{          P,   R,   MASK,   PORT,  ADDR}
+{   13ETC_1:,  Lo,   0xFF,  ETC_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompBinaryOut.template"
+{
+pattern
+{          P,    R,  MASK,    PORT,  ADDR}
+{   13ETC_1:,  Bo1,  0x01,   ETC_1,     0}
+{   13ETC_1:,  Bo2,  0x02,   ETC_1,     0}
+{   13ETC_1:,  Bo3,  0x04,   ETC_1,     0}
+{   13ETC_1:,  Bo4,  0x08,   ETC_1,     0}
+{   13ETC_1:,  Bo5,  0x10,   ETC_1,     0}
+{   13ETC_1:,  Bo6,  0x20,   ETC_1,     0}
+{   13ETC_1:,  Bo7,  0x40,   ETC_1,     0}
+{   13ETC_1:,  Bo8,  0x80,   ETC_1,     0}
+}
+
+# Direction bits on binary I/O
+#  VAL 0=input, 1=output
+file "$(MEASCOMP)/db/measCompBinaryDir.template"
+{
+pattern
+{          P,    R,  MASK,  VAL,   PORT,  ADDR}
+{   13ETC_1:,  Bd1,  0x01,    0,  ETC_1,     0}
+{   13ETC_1:,  Bd2,  0x02,    0,  ETC_1,     0}
+{   13ETC_1:,  Bd3,  0x04,    0,  ETC_1,     0}
+{   13ETC_1:,  Bd4,  0x08,    0,  ETC_1,     0}
+{   13ETC_1:,  Bd5,  0x10,    1,  ETC_1,     0}
+{   13ETC_1:,  Bd6,  0x20,    1,  ETC_1,     0}
+{   13ETC_1:,  Bd7,  0x40,    1,  ETC_1,     0}
+{   13ETC_1:,  Bd8,  0x80,    1,  ETC_1,     0}
+}
+
+file "$(MEASCOMP)/db/measCompCounter.template"
+{
+pattern
+{          P,         R,   PORT,   ADDR}
+{   13ETC_1:,  Counter1,  ETC_1,      0}
+}
+
+# Temperature inputs
+file "$(MEASCOMP)/db/measCompTemperatureIn.template"
+{
+pattern
+{          P,    R,    PORT, ADDR,        SCAN, PREC}
+{   13ETC_1:,   Ti0,  ETC_1,    0,  "1 second",    2}
+{   13ETC_1:,   Ti1,  ETC_1,    1,  "1 second",    2}
+{   13ETC_1:,   Ti2,  ETC_1,    2,  "1 second",    2}
+{   13ETC_1:,   Ti3,  ETC_1,    3,  "1 second",    2}
+{   13ETC_1:,   Ti4,  ETC_1,    4,  "1 second",    2}
+{   13ETC_1:,   Ti5,  ETC_1,    5,  "1 second",    2}
+{   13ETC_1:,   Ti6,  ETC_1,    6,  "1 second",    2}
+{   13ETC_1:,   Ti7,  ETC_1,    7,  "1 second",    2}
+}
