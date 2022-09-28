@@ -1,0 +1,57 @@
+# Description:
+# Profile axes substitution file. 
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Contact details:
+# Mark Clift
+# email: padmoz@tpg.com.au
+
+# Profile axes
+#
+# P    - PV prefix
+# R    - Record Name
+# M    - Motor number 1-8
+# NPOINTS - Number of profile points
+# NREADBACK - Number of readback points
+# MOTOR - Motor PV name
+
+file "$(MOTOR)/db/profileMoveAxis.template"
+{
+pattern
+{M,  ADDR, MOTOR,        PREC,    TIMEOUT}
+{1,  0,    13GasLoad:m1,  4,       1}
+{2,  1,    13GasLoad:m2,  4,       1}
+{3,  2,    13GasLoad:m3,  4,       1}
+{4,  3,    13GasLoad:m4,  4,       1}
+{5,  4,    13GasLoad:m5,  4,       1}
+{6,  5,    13GasLoad:m6,  4,       1}
+{7,  6,    13GasLoad:m7,  4,       1}
+{8,  7,    13GasLoad:m8,  4,       1}
+}
+
+file "$(GALIL)/db/galil_profileMoveAxis.template"
+{
+pattern
+{M,  ADDR,   ZNAM,       ONAM,      PREC,    TIMEOUT }
+{1,  0,     "Relative", "Absolute", 4,       1       }
+{2,  1,     "Relative", "Absolute", 4,       1       }
+{3,  2,     "Relative", "Absolute", 4,       1       }
+{4,  3,     "Relative", "Absolute", 4,       1       }
+{5,  4,     "Relative", "Absolute", 4,       1       }
+{6,  5,     "Relative", "Absolute", 4,       1       }
+{7,  6,     "Relative", "Absolute", 4,       1       }
+{8,  7,     "Relative", "Absolute", 4,       1       }
+}
