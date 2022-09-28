@@ -3,10 +3,10 @@ errlogInit(5000)
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARSWin32.dbd")
-CARSWin32_registerRecordDeviceDriver(pdbbase)
-#dbLoadDatabase("../../dbd/CARSLinux.dbd")
-#CARSLinux_registerRecordDeviceDriver(pdbbase)
+#dbLoadDatabase("../../dbd/CARSWin32.dbd")
+#CARSWin32_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 # Set up 5 serial ports on Moxa terminal server
 
@@ -25,8 +25,8 @@ drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
 # Serial 4 is the SensaVac vaccum gauge controller
 # Settings: 19200, 8, 1, None, None
 drvAsynIPPortConfigure("serial4", "164.54.160.163:4004", 0, 0, 0)
-# Serial 5 is an Omega meter.  See above.
-drvAsynIPPortConfigure("serial5", "164.54.160.163:4005", 0, 0, 0)
+# Serial 5 is an Omega meter.  See above. Switched from port 5 to port 6 because port 5 seems bad
+drvAsynIPPortConfigure("serial5", "164.54.160.163:4006", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
@@ -76,7 +76,7 @@ dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13GasLoad:")
 dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13GasLoad:")
 
 # sseq records
-dbLoadRecords("$(STD)/db/userStringSeqs10.db", "P=13GasLoad:")
+dbLoadRecords("$(CALC)/db/userStringSeqs10.db", "P=13GasLoad:")
 
 # Miscellaneous PV's, such as burtResult
 dbLoadRecords("$(STD)/db/misc.db", "P=13GasLoad:")
