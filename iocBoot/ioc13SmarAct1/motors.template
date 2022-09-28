@@ -1,0 +1,15 @@
+file "$(CARS)/db/asynMotor.db"
+{
+pattern
+{P,         M,      DTYP,       PORT, ADDR,  DESC,          EGU,   DIR, VELO,   VBAS,  ACCL,  BDST, BVEL,  BACC,  SREV,    UREV,  PREC, DHLM, DLLM}
+{13SA1:,   m1,   "asynMotor",   MCS2, 0,     "SmarAct X",   mm,    Pos,  20.,     0,   0.5,    0,    1,     .2,   1000000,   1,       6,    10,  -10}
+{13SA1:,   m2,   "asynMotor",   MCS2, 1,     "SmarAct Y",   mm,    Pos,  20.,     0,   0.5,    0,    1,     .2,   1000000,   1,       6,    10,  -10}
+}
+
+file "$(MOTOR)/db/MCS2_Extra.db"
+{
+pattern
+{P,     N,  M,        PORT,  ADDR,  TIMEOUT}
+{IOC:,  1,  "m$(N):",  MCS2,  0,     1.0}
+{IOC:,  2,  "m$(N):",  MCS2,  1,     1.0}
+}
