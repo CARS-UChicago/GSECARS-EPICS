@@ -29,9 +29,9 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db;$(ADGENICAM)/db;$(ADSPINNAKER
 # Define NELEMENTS to be enough for a 1920x1200x3 (color) image
 epicsEnvSet("NELEMENTS", "7000000")
 
-# ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
+# ADSpinnakerConfig(const char *portName, const char *cameraId, int numSPBuffers,
 #                   size_t maxMemory, int priority, int stackSize)
-ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+ADSpinnakerConfig("$(PORT)", $(CAMERA_ID))
 asynSetTraceIOMask($(PORT), 0, 2)
 # Set ASYN_TRACE_WARNING and ASYN_TRACE_ERROR
 #asynSetTraceMask($(PORT), 0, 0xff)
@@ -64,3 +64,8 @@ create_monitor_set("auto_settings.req", 30,"P=$(PREFIX)")
 # Set limits for sliders
 dbpf $(PREFIX)cam1:Gain.HOPR 30
 
+dbpf $(PREFIX)cam1:Gain.HOPR 30
+dbpf $(PREFIX)cam1:GC_BalanceWhiteAuto.PROC 1
+dbpf $(PREFIX)cam1:GC_BlackLevel.PROC 1
+dbpf $(PREFIX)cam1:GC_AcqFrameRateAuto.PROC 1
+dbpf $(PREFIX)cam1:GC_GevSCPSPacketSize.PROC 1
