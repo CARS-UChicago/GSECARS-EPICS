@@ -4,25 +4,24 @@
 dbLoadDatabase "../../dbd/CARSLinux.dbd"
 CARSLinux_registerRecordDeviceDriver pdbbase
 
-epicsEnvSet(INPUT_POINTS, "4096")
-epicsEnvSet(OUTPUT_POINTS, "4096")
-
-cbAddBoard("E-TC", "164.54.160.218")
+epicsEnvSet(PREFIX, "13ETC_1:")
+epicsEnvSet(PORT, "ETC_1")
+epicsEnvSet(UNIQUE_ID, "10.54.160.218")
 
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
-#                      boardNum,        # The number of this board assigned by the Measurement Computing Instacal program 
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
 #                      maxInputPoints,  # Maximum number of input points for waveform digitizer
 #                      maxOutputPoints) # Maximum number of output points for waveform generator
-MultiFunctionConfig("ETC_1", 0, $(INPUT_POINTS), $(OUTPUT_POINTS))
+MultiFunctionConfig("$(PORT)", "$(UNIQUE_ID)", 1, 1)
 
-#asynSetTraceMask ETC_1 -1 255
+#asynSetTraceMask $(PORT) -1 255
 
-dbLoadTemplate("ETC.substitutions")
+dbLoadTemplate("$(MEASCOMP)/db/ETC.substitutions", "P=$(PREFIX), PORT=$(PORT)")
 
 < ../save_restore_IOCSH.cmd
 
 iocInit
 
-create_monitor_set("auto_settings.req",30)
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 
