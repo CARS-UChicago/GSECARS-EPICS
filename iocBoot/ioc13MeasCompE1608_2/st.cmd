@@ -4,29 +4,27 @@
 dbLoadDatabase "../../dbd/CARSLinux.dbd"
 CARSLinux_registerRecordDeviceDriver pdbbase
 
-epicsEnvSet(INPUT_POINTS, "4096")
-epicsEnvSet(OUTPUT_POINTS, "4096")
-
 epicsEnvSet("PREFIX", "13E1608_2:")
-
-cbAddBoard("E-1608", "164.54.160.96")
+epicsEnvSet(PORT, "E1608_1")
+epicsEnvSet(WDIG_POINTS, "4096")
+epicsEnvSet(UNIQUE_ID, "10.54.160.96")
 
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
-#                      boardNum,        # The number of this board assigned by the Measurement Computing Instacal program 
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
 #                      maxInputPoints,  # Maximum number of input points for waveform digitizer
 #                      maxOutputPoints) # Maximum number of output points for waveform generator
-MultiFunctionConfig("E1608_1", 0, $(INPUT_POINTS), $(OUTPUT_POINTS))
+MultiFunctionConfig("$(PORT)", $(UNIQUE_ID), $(WDIG_POINTS), 1)
 
 #asynSetTraceMask E1608_1 -1 255
 
-dbLoadTemplate("E1608.substitutions")
+dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(PREFIX),PORT=$(PORT),WDIG_POINTS=$(WDIG_POINTS)")
 dbLoadTemplate("pid_slow.substitutions")
 
 < ../calc_GSECARS.iocsh
 
 ### Scan-support software
-dbLoadRecords("$(SSCAN)/db/scan.db", "P=1$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
 < ../save_restore_IOCSH.cmd
 
