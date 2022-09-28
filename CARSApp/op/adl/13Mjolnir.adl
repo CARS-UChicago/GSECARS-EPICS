@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13Mjolnir.adl"
-	version=030109
+	version=030117
 }
 display {
 	object {
@@ -91,35 +91,35 @@ display {
 	object {
 		x=15
 		y=151
-		width=72
+		width=80
 		height=24
 	}
 	display[0] {
 		label="Scan 1"
 		name="scan_more.adl"
-		args="P=$(P):, S=scan1, N=1"
+		args="P=13MNIR:, S=scan1, N=1"
 	}
 	display[1] {
 		label="Scan 2"
 		name="scan_more.adl"
-		args="P=$(P), S=scan2, N=2"
+		args="P=13MNIR:, S=scan2, N=2"
 	}
 	display[2] {
 		label="Scan 3"
 		name="scan_more.adl"
-		args="P=$(P), S=scan3, N=2"
+		args="P=13MNIR:, S=scan3, N=3"
 	}
 	display[3] {
 		label="Scan 4"
 		name="scan_more.adl"
-		args="P=$(P), S=scan4, N=2"
+		args="P=13MNIR:, S=scan4, N=4"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=92
+		x=100
 		y=151
 		width=40
 		height=20
@@ -134,20 +134,20 @@ text {
 	object {
 		x=15
 		y=124
-		width=72
+		width=80
 		height=24
 	}
 	display[0] {
 		label="Serial 1"
 		name="asynOctet.adl"
-		args="P=$(P), R=serial1"
+		args="P=13MNIR:, R=serial1"
 	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=92
+		x=100
 		y=124
 		width=120
 		height=20
@@ -173,7 +173,7 @@ rectangle {
 	object {
 		x=15
 		y=70
-		width=74
+		width=80
 		height=24
 	}
 	display[0] {
@@ -211,14 +211,19 @@ rectangle {
 		name="MjolnirGraphic.adl"
 		args="P=13MNIR:,ISCO=ISCO:,CP=A:,AP=B:,E1608=E1608:,CLP=Ai1,ALP=Ai4,LVDT=Ai5,LC=Ai6"
 	}
+	display[7] {
+		label="GE PACE5000"
+		name="PACE5000.adl"
+		args="P=13MNIR:PACE:, R=PC1:"
+	}
 	clr=14
 	bclr=4
 }
 text {
 	object {
-		x=94
+		x=100
 		y=70
-		width=200
+		width=110
 		height=20
 	}
 	"basic attribute" {
@@ -227,29 +232,9 @@ text {
 	}
 	textix="Electronics"
 }
-"related display" {
-	object {
-		x=15
-		y=97
-		width=74
-		height=24
-	}
-	display[0] {
-		label="User transforms"
-		name="userTrans10.adl"
-		args="P=$(P)"
-	}
-	display[1] {
-		label="User sCalcOut1"
-		name="yysCalcoutRecord.adl"
-		args="P=$(P), C=userStringCalc1"
-	}
-	clr=14
-	bclr=4
-}
 text {
 	object {
-		x=94
+		x=100
 		y=97
 		width=220
 		height=20
@@ -272,4 +257,39 @@ text {
 	}
 	textix="Mjolnir cell"
 	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=15
+		y=97
+		width=80
+		height=24
+	}
+	display[0] {
+		label="User arrayCalcs"
+		name="userArrayCalcs10.adl"
+		args="P=13MNIR:"
+	}
+	display[1] {
+		label="User calcOuts"
+		name="userCalcOuts10.adl"
+		args="P=13MNIR:"
+	}
+	display[2] {
+		label="User stringCalcs"
+		name="userStringCalcs10.adl"
+		args="P=13MNIR:"
+	}
+	display[3] {
+		label="User stringSeqs"
+		name="userStringSeqs10.adl"
+		args="P=13MNIR:"
+	}
+	display[4] {
+		label="User transforms"
+		name="userTransforms10.adl"
+		args="P=13MNIR:"
+	}
+	clr=14
+	bclr=4
 }
