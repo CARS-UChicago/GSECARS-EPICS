@@ -5,15 +5,20 @@ dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
 CARSWin32_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet("PREFIX", "13USB2408_1:")
+epicsEnvSet(PORT, "USB2408_1")
+epicsEnvSet(WDIG_POINTS, "4096")
+epicsEnvSet(WGEN_POINTS, "4096")
+epicsEnvSet(UNIQUE_ID, "01AAA83C")
+#epicsEnvSet(UNIQUE_ID, "01AAA83E") #USB2408_2
 
-# Configure port driver
-# MultiFunctionConfig(portName,        # The name to give to this asyn port driver
-#                     boardNum,        # The number of this board assigned by the Measurement Computing Instacal program 
-#                     maxInputPoints,  # Maximum number of input points for waveform digitizer
-#                     maxOutputPoints) # Maximum number of output points for waveform generator
-MultiFunctionConfig("USB2408_1", 0, 2048, 2048)
+## Configure port driver
+# MultiFunctionConfig((portName,        # The name to give to this asyn port driver
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
+#                      maxInputPoints,  # Maximum number of input points for waveform digitizer
+#                      maxOutputPoints) # Maximum number of output points for waveform generator
+MultiFunctionConfig("$(PORT)", $(UNIQUE_ID), $(WDIG_POINTS), 1)
 
-dbLoadTemplate("USB2408.substitutions")
+dbLoadTemplate("$(MEASCOMP)/db/USB2408.substitutions", "P=$(PREFIX), PORT=$(PORT), WDIG_POINTS=$(WDIG_POINTS), WGEN_POINTS=$(WGEN_POINTS)")
 
 #PID slow
 dbLoadTemplate "pid_slow.substitutions"
