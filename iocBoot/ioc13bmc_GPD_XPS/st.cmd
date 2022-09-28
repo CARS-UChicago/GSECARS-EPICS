@@ -20,10 +20,10 @@ asynSetTraceIOMask("XPS2", 0, 2)
 #asynSetTraceMask("XPS2", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "newport-xps8", 5001, 50)
+#XPSAuxConfig("XPS_AUX1", "newport-xps8", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
-XPSAuxConfig("XPS_AUX2", "newport-xps2", 5001, 50)
+#XPSAuxConfig("XPS_AUX2", "newport-xps2", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
