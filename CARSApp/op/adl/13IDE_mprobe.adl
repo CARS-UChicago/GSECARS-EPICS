@@ -255,8 +255,8 @@ rectangle {
 	}
 	display[0] {
 		label="Sample Stage"
-		name="13IDE_SampleStage.adl"
-		args="P=13XRM:, XF=m1, YF=m2, ZF=m4, TH=m3, ZC=m4, XC=m5, YC=m6"
+		name="8motors.adl"
+		args="P=13XRM:, TITLE=SampleStages, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m14, M8=m15"
 	}
 	display[1] {
 		label="Sample Microscope"
@@ -1333,8 +1333,8 @@ text {
 }
 "text entry" {
 	object {
-		x=320
-		y=200
+		x=300
+		y=205
 		width=30
 		height=20
 	}
@@ -1462,27 +1462,27 @@ text {
 }
 text {
 	object {
-		x=370
-		y=202
-		width=130
+		x=430
+		y=205
+		width=120
 		height=15
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="ID Tracks Mono:"
+	textix="Track Mono:"
 }
 text {
 	object {
-		x=370
-		y=227
-		width=171
+		x=430
+		y=228
+		width=120
 		height=15
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="Mono waits for ID:"
+	textix="Wait for ID:"
 }
 "choice button" {
 	object {
@@ -1823,6 +1823,22 @@ text {
 		chan="13IDE:IP330_1.VAL"
 		clr=54
 		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=335
+		y=205
+		width=80
+		height=15
+	}
+	monitor {
+		chan="ID13us:EncoderSelect.VAL"
+		clr=54
+		bclr=1
 	}
 	align="horiz. right"
 	limits {
