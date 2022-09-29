@@ -27,6 +27,7 @@ set_pass1_restoreFile("auto_settings4.sav")
 # Set logging level (1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG)
 xiaSetLogLevel(2)
 xiaInit("mercury4.ini")
+#xiaInit("Mercury4_usb2.ini")
 xiaStartSystem
 
 # DXPConfig(serverName, ndetectors, maxBuffers, maxMemory)
