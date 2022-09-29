@@ -13,12 +13,12 @@ epicsEnvSet("XSIZE",  "1030")
 epicsEnvSet("YSIZE",  "1065")
 epicsEnvSet("NCHANS", "8192")
 epicsEnvSet("CBUFFS", "500")
-epicsEnvSet("EIGERIP", "164.54.160.234")
-epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
+epicsEnvSet("EIGERIP", "10.54.160.234")
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(ADEIGER)/db")
 epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "5000000")
 
 eigerDetectorConfig("$(PORT)", "$(EIGERIP)", 0, 0)
-dbLoadRecords("$(ADEIGER)/db/eiger.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(ADEIGER)/db/eiger1.template", "P=$(PREFIX),R=cam1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 # Debug
 #asynSetTraceMask("$(PORT)", 0, 0x11)
