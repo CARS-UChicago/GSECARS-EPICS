@@ -25,7 +25,7 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db")
 # Create the asyn port to talk to the Pilatus on port 41234.
 drvAsynIPPortConfigure("camserver","gse-pilatus1:41234")
 # Set the input and output terminators.
-asynOctetSetInputEos("camserver", 0, "\030")
+asynOctetSetInputEos("camserver", 0, "\x18")
 asynOctetSetOutputEos("camserver", 0, "\n")
 
 pilatusDetectorConfig("$(PORT)", "camserver", $(XSIZE), $(YSIZE), 0, 0)
