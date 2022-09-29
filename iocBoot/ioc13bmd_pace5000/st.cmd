@@ -1,18 +1,22 @@
 < envPaths
 
-epicsEnvSet("PREFIX", "13CT_PACE5000:")
+epicsEnvSet("PREFIX", "13BMD_PACE5000:")
 
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-drvAsynIPPortConfigure("PACE5000", "164.54.160.76:5025", 0, 0, 0)
+drvAsynIPPortConfigure("PACE5000", "gse-pace5000-2:5025", 0, 0, 0)
 asynOctetSetInputEos ("PACE5000",0,"\r\n")
 asynOctetSetOutputEos("PACE5000",0,"\r\n")
+#drvAsynIPPortConfigure("PACE5000", "gsets4:2001", 0, 0, 0)
+#asynOctetSetInputEos ("PACE5000",0,"\r")
+#asynOctetSetOutputEos("PACE5000",0,"\r")
 
 epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 dbLoadRecords("$(IP)/db/PACE5000.db", "P=$(PREFIX),R=PC1:,PORT=PACE5000")
+#dbLoadRecords("$(IP)/db/PACE5000_serial.db", "P=$(PREFIX),R=PC1:,PORT=PACE5000")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
