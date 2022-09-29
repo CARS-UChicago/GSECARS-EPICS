@@ -61,6 +61,11 @@ create_monitor_set("auto_settings.req", 30, "PREFIX=$(PREFIX), E1608_PREFIX=$(E1
 
 dbpf $(E1608_PREFIX)WaveDigDwell.PROC 1
 
+# The ISCO pumps should be in Independent mode.
+# This is in autosave, but it seems to need to be set again.
+
+dbpf $(ISCO_PREFIX)AB:Independent 1
+
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message
