@@ -194,11 +194,10 @@ record(bi,"$(P)bi1") {
 	field(VAL,  "1")
 }
 
-
 ## Subarrays Copied from a Tech-Talk conversation, March 2011
 
 record(subArray, "$(P)subArr1") {
-  field(DESC, "ayb array 1")
+  field(DESC, "sub array 1")
   field(NELM, "16")
   field(INP, "$(P)wave_test.VAL")
   field(INDX, "0")
@@ -207,7 +206,7 @@ record(subArray, "$(P)subArr1") {
 }
 
 record(subArray, "$(P)subArr2") {
-  field(DESC, "ayb array 2")
+  field(DESC, "sub array 2")
   field(NELM, "16")
   field(INP, "$(P)wave_test.VAL")
   field(INDX, "16")
@@ -216,7 +215,7 @@ record(subArray, "$(P)subArr2") {
 }
 
 record(subArray, "$(P)subArr3") {
-  field(DESC, "ayb array 3")
+  field(DESC, "sub array 3")
   field(NELM, "16")
   field(INP, "$(P)wave_test.VAL")
   field(INDX, "32")
@@ -225,7 +224,7 @@ record(subArray, "$(P)subArr3") {
 }
 
 record(subArray, "$(P)subArr4") {
-  field(DESC, "ayb array 4")
+  field(DESC, "sub array 4")
   field(NELM, "16")
   field(INP, "$(P)wave_test.VAL")
   field(INDX, "48")
@@ -234,7 +233,7 @@ record(subArray, "$(P)subArr4") {
 }
 
 record(subArray, "$(P)ZeroLenSubArr1") {
-  field(DESC, "sub array 1")
+  field(DESC, "zero length subarray")
   field(NELM, "0")
   field(INP, "$(P)wave_test.VAL")
   field(INDX, "10")
@@ -250,7 +249,6 @@ record(fanout, "$(P)mylinker") {
   field(LNK4, "$(P)ZeroLenSubArr1")
 }
 
-
 record(waveform, "$(P)wave_test") {
   field(NELM, "64")
   field(FTVL, "DOUBLE")
@@ -258,7 +256,6 @@ record(waveform, "$(P)wave_test") {
   field(SCAN, "Passive")
   field(FLNK, "$(P)mylinker")
 }
-
 
 
 record(bi,"$(P)xbi") {
@@ -273,14 +270,5 @@ record(bi,"$(P)xbo") {
   field(VAL,  "0")
 }
 
-## compress 
-record(ao, "$(P)signal1") {
-    field(FLNK, "$(P)compress1")
-}
 
-record(compress, "$(P)compress1") {
-    field(INP, "$(P)signal1")
-    field(ALG, "Circular Buffer")
-    field(NSAM, 25)
-    field(N, 1)
-}
+
