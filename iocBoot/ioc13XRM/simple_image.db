@@ -1,17 +1,28 @@
+# This database contains fields used for simple 2d array data
 
-record(ao,"$(P)$(R):ArraySize0_RBV") {
+record(longin,"$(P)$(R):ArraySize0_RBV") {
 	field(DESC, "arraysize 0")
 	field(VAL,  "1024")
 }
 
-record(ao,"$(P)$(R):ArraySize1_RBV") {
+record(longin,"$(P)$(R):ArraySize1_RBV") {
 	field(DESC, "arraysize 1")
 	field(VAL,  "1024")
 }
 
-record(ao,"$(P)$(R):ArraySize2_RBV") {
+record(longin,"$(P)$(R):ArraySize2_RBV") {
 	field(DESC, "arraysize 2")
-	field(VAL,  "1")
+	field(VAL,  "3")
+}
+
+record(longin,"$(P)$(R):NDimensions_RBV") {
+	field(DESC, "array dimension")
+	field(VAL,  "0")
+}
+
+record(longin,"$(P)$(R):UniqueId_RBV") {
+	field(DESC, "array id")
+	field(VAL,  "0")
 }
 
 record(mbbo,"$(P)$(R):ColorMode_RBV") {
@@ -30,3 +41,17 @@ record(waveform,"$(P)$(R):ArrayData")  {
        field(NELM,"16777216")
        field(FTVL,"UCHAR")
 }
+
+record(ai,"$(P)$(R):RequestTStamp") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp of last request")
+	field(VAL,  0)
+}
+
+record(ai,"$(P)$(R):PublishTStamp") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "timestamp of last publish")
+	field(VAL,  0)
+}
+
+
