@@ -31,7 +31,7 @@ epicsEnvSet("NELEMENTS", "15040512")
 
 # ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
 #                 int maxBuffers, size_t maxMemory, int priority, int stackSize)
-ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+ADSpinnakerConfig("$(PORT)", $(CAMERA_ID))
 asynSetTraceIOMask($(PORT), 0, 2)
 #asynSetTraceMask($(PORT), 0, 0x29)
 #asynSetTraceInfoMask($(PORT), 0, 0xf)
