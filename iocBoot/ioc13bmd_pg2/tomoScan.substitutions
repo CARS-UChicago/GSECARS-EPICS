@@ -1,0 +1,13 @@
+file "$(TOMOSCAN)/db/tomoScan.template"
+{
+pattern
+{  P,       R,    CAMERA,    FILE_PLUGIN,   ROTATION,   SAMPLE_X,  SAMPLE_Y,      CLOSE_SHUTTER,        CLOSE_VALUE,        OPEN_SHUTTER,         OPEN_VALUE}
+{13BMDPG2:, TS:, 13BMDPG2:, 13BMDPG2:HDF1:, 13BMD:pm9, 13BMD:m99, 13BMD:m98, 13BMA:CloseBMDShutter.PROC,    1,        13BMA:OpenBMDShutter.PROC,      1}
+}
+
+file "$(TOMOSCAN)/db/tomoScan_13BM.template"
+{
+pattern
+{  P,       R,      MCS,         BEAM_READY,      READY_VALUE,}
+{13BMDPG2:, TS:, 13BMD:SIS1:, 13BMA:mono_pid1Locked,     1,}
+}
