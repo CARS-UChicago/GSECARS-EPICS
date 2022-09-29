@@ -20,10 +20,10 @@ XPSCreateController("XPS2", "newport-xps7", 5001, 8, 10, 500, 0, 500)
 #asynSetTraceMask("XPS2", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "newport-xps9", 5001, 50)
+#XPSAuxConfig("XPS_AUX1", "newport-xps9", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
-XPSAuxConfig("XPS_AUX2", "newport-xps7", 5001, 50)
+#XPSAuxConfig("XPS_AUX2", "newport-xps7", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -60,7 +60,7 @@ XPSEnableSetPosition(0)
 dbLoadTemplate("motors.template")
 
 # Auxillary I/O records
-dbLoadTemplate("XPSAux.substitutions")
+#dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
 drvAsynIPPortConfigure("xps", "newport-xps9:5001", 0, 0, 0)
