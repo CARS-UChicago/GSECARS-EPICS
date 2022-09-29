@@ -16,16 +16,18 @@ dbLoadTemplate  "motors.template"
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
 #MN newport-xsp14 = 10.54.160.210, XPS-D
-XPSCreateController("XPS1", "newport-xps14", 5001, 6, 10, 500, 0, 500)
+XPSCreateController("XPS1", "newport-xps14", 5001, 8, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS1", 0, "FINE.X",      "100000") # VP-25XL
-XPSCreateAxis("XPS1", 1, "FINEZ.Pos",   "100000") # VP-25XL
-XPSCreateAxis("XPS1", 2, "FINE.Y",       "50000") # VP-5ZA
-XPSCreateAxis("XPS1", 3, "FINE.THETA",    "2000") # URS75CC
-XPSCreateAxis("XPS1", 4, "COARSEX.Pos",   "2000") # ILS100PP
-XPSCreateAxis("XPS1", 5, "COARSEY.Pos",   "5000") # IMS300CC
+XPSCreateAxis("XPS1", 0, "DETY.Pos",  "2000") # ILS200CC  HRF_DET_Y
+XPSCreateAxis("XPS1", 1, "DETX.Pos",  "2000") # ILS150CC  HRF_DET_X
+XPSCreateAxis("XPS1", 2, "ANAZ.Pos",  "2000") # ILS200CC  HRF_ANA_Z
+XPSCreateAxis("XPS1", 3, "ANATh.Pos", "1000") # RV160CC   HRF_ANA_Th
+XPSCreateAxis("XPS1", 4, "XRDX.Pos",   "400") # UTS150CC  XRD_DET_X
+XPSCreateAxis("XPS1", 5, "XRDZ.Pos",   "400") # UTS150CC  XRD_DET_Z
+XPSCreateAxis("XPS1", 6, "XRDY.Pos",  "2000") # ILS150CC  XRD_DET_Y
+XPSCreateAxis("XPS1", 7, "FINEZ.Pos", "50000") # VP-5ZA   FINEZ
 
 # asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
@@ -43,16 +45,20 @@ XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
 XPSEnableSetPosition(0)
 
 #MN newport-xsp4 = 10.54.160.180, XPS-C
-XPSCreateController("XPS2", "newport-xps4", 5001, 4, 10, 500, 0, 500)
+XPSCreateController("XPS2", "newport-xps4", 5001, 7, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS2", 0, "GROUP1.POSITIONER",  "2000") # ILS200CC  EigerHR_X
-XPSCreateAxis("XPS2", 1, "GROUP2.POSITIONER",  "2000") # ILS150CC  Eiger_Y
-XPSCreateAxis("XPS2", 2, "GROUP3.POSITIONER",  "2000") # ILS200CC  Analyzer_Z
-XPSCreateAxis("XPS2", 3, "GROUP4.POSITIONER",  "1000") # RV160CC   Analyzer_Theta
-# XPSCreateAxis("XPS2", 4, "GROUP5.POSITIONER",   "400") # UTS150CC  Eiger_XRD_X
-# XPSCreateAxis("XPS2", 5, "GROUP6.POSITIONER",   "400") # UTS150CC  Eiger_XRD_Y
+XPSCreateAxis("XPS2", 0, "FINE.X",      "100000") # VP-25XL
+XPSCreateAxis("XPS2", 1, "FINE.Y",      "100000") # VP-25XL
+XPSCreateAxis("XPS2", 2, "FINE.THETA",    "2000") # URS75CC
+XPSCreateAxis("XPS2", 3, "FOCUS.Pos",   "100000") # VP-25XA
+XPSCreateAxis("XPS2", 4, "COARSEX.Pos",   "2000") # ILS100PP
+XPSCreateAxis("XPS2", 5, "COARSEY.Pos",   "5000") # IMS300CC
+XPSCreateAxis("XPS2", 6, "COARSEZ.Pos", "100000") # VP-25XA
+
+# XPSCreateAxis("XPS2", 3, "FINEZ.Pos",  "50000") # VP-5ZA
+
 
 # XPS asyn port,  max points, FTP username, FTP password
 # Note: this must be done after configuring axes
@@ -122,10 +128,10 @@ dbLoadRecords("$(CARS)/db/XRM_fastmap.db","P=13XRM:,Q=map")
 dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
 
 # simple Image (to push Point Grey image)
-dbLoadRecords("simple_image.db","P=13XRM:,R=PG")
+dbLoadRecords("simple_image.db","P=13XRM:,R=image1")
 
 # status of Eiger copying
-dbLoadRecords("eigercopy.db","P=13XRM:,Q=EIGER")
+# dbLoadRecords("eigercopy.db","P=13XRM:,Q=EIGER")
 
 # scan server
 dbLoadRecords("larchscan.db","P=13XRM:,Q=SCANDB")
@@ -156,7 +162,7 @@ dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMD:,Q=Inst")
 # ion chamber calculations
 dbLoadRecords("$(CARS)/db/IonChamber.db","P=13XRM:,Q=ION")
 
-dbLoadRecords("pydebug.db", "P=Py:")
+dbLoadRecords("pydebug.db", "P=PyTest:")
 
 dbLoadRecords("py_exapp.db", "P=Py:,Q=EXT")
 
