@@ -28,9 +28,10 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db;$(ADGENICAM)/db;$(ADSPINNAKER
 # Define NELEMENTS to be enough for a 1920x1200x3 (color) image
 epicsEnvSet("NELEMENTS", "7000000")
 
-# ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
+# ADSpinnakerConfig(const char *portName, const char *cameraId, int numSPBuffers,
 #                   size_t maxMemory, int priority, int stackSize)
-ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+# This system does not allow using the default of numSPBuffers=100, it is limited to 83 for some reason.
+ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 70)
 asynSetTraceIOMask($(PORT), 0, 2)
 # Set ASYN_TRACE_WARNING and ASYN_TRACE_ERROR
 #asynSetTraceMask($(PORT), 0, 0xff)
@@ -56,9 +57,6 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=I
 < ../save_restore_IOCSH.cmd
 set_requestfile_path("$(ADGENICAM)/db")
 set_requestfile_path("$(ADSPINNAKER)/db")
-
-# Tomography data collection
-dbLoadTemplate("tomoScan.substitutions")
 
 iocInit()
 
