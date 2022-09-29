@@ -27,6 +27,9 @@ epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 
 < ../calc_GSECARS.iocsh
 
+# PID record
+dbLoadTemplate("pid_slow.substitutions")
+
 ### Scan-support software
 dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
@@ -51,10 +54,23 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # Save things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "E1608_PREFIX=$(E1608_PREFIX), ISCO_PREFIX=$(ISCO_PREFIX), VINDUM_PREFIX=$(VINDUM_PREFIX)")
+create_monitor_set("auto_settings.req", 30, "PREFIX=$(PREFIX), E1608_PREFIX=$(E1608_PREFIX), ISCO_PREFIX=$(ISCO_PREFIX), VINDUM_PREFIX=$(VINDUM_PREFIX)")
 
 # Need to force the time arrays to process because the records are scan=I/O Intr
 # but asynPortDriver does not do array callbacks before iocInit.
 
 dbpf $(E1608_PREFIX)WaveDigDwell.PROC 1
+
+### Start the saveData task.
+# saveData_MessagePolicy
+# 0: wait forever for space in message queue, then send message
+# 1: send message only if queue is not full
+# 2: send message only if queue is not full and specified time has passed (SetCptWait()
+#    sets this time.)
+# 3: if specified time has passed, wait for space in queue, then send message
+# else: don't send message
+#debug_saveData = 2
+saveData_MessagePolicy = 2
+saveData_SetCptWait_ms(10)
+saveData_Init("saveDataExtraPVs.req", "P=$(PREFIX)")
 
