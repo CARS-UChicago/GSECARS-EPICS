@@ -3,13 +3,15 @@ errlogInit(5000)
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
-CARSLinux_registerRecordDeviceDriver(pdbbase)
+CARSWin32_registerRecordDeviceDriver(pdbbase)
+#CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 ### Motors
 dbLoadTemplate  "motors.template"
 
 
-drvAsynIPPortConfigure("ARIES1", "gse-aries1:5002", 0, 0, 0)
+#drvAsynIPPortConfigure("ARIES1", "gse-aries1:5002", 0, 0, 0)
+drvAsynIPPortConfigure("ARIES1", "192.168.0.2:5002", 0, 0, 0)
 asynWaitConnect("ARIES1", 10.)
 #asynSetTraceMask("ARIES1", 0, 9)
 asynSetTraceIOMask("ARIES1", 0, 2)
@@ -17,7 +19,8 @@ asynOctetSetInputEos("ARIES1",0,"\r")
 asynOctetSetOutputEos("ARIES1",0,"\r")
 asynSetOption("ARIES1", 0, "disconnectOnReadTimeout", "Y")
 
-drvAsynIPPortConfigure("ARIES2", "gse-aries2:5002", 0, 0, 0)
+#drvAsynIPPortConfigure("ARIES2", "gse-aries2:5002", 0, 0, 0)
+drvAsynIPPortConfigure("ARIES2", "192.168.1.2:5002", 0, 0, 0)
 asynWaitConnect("ARIES2", 10.)
 #asynSetTraceMask("ARIES2", 0, 9)
 asynSetTraceIOMask("ARIES2", 0, 2)
