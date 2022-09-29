@@ -18,7 +18,7 @@ asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "newport-xps10", 5001, 50)
+#XPSAuxConfig("XPS_AUX1", "newport-xps10", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -42,7 +42,7 @@ XPSCreateProfile("XPS1", 10010, "Administrator", "Administrator")
 dbLoadTemplate("motors.template")
 
 # Auxillary I/O records
-dbLoadTemplate("XPSAux.substitutions")
+#dbLoadTemplate("XPSAux.substitutions")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
