@@ -7,8 +7,9 @@ spinnakerApp_registerRecordDeviceDriver(pdbbase)
 # Prefix for all records
 epicsEnvSet("PREFIX", "13BMCPG1:")
 epicsEnvSet("GENICAM_DB_FILE", "$(ADGENICAM)/db/PGR_GS3_U3_23S6M.template")
-e# Use this line for a specific camera by serial number, in this case the BMC Grasshopper3 USB-3.0 cameras
-epicsEnvSet("CAMERA_ID", "17476170")
+# Use this line for a specific camera by serial number, in this case the BMC Grasshopper3 USB-3.0 cameras
+#epicsEnvSet("CAMERA_ID", "17476170")
+epicsEnvSet("CAMERA_ID", "17476158")
 
 # The port name for the detector
 epicsEnvSet("PORT",   "PG1")
@@ -30,7 +31,7 @@ epicsEnvSet("NELEMENTS", "7000000")
 
 # ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
 #                   size_t maxMemory, int priority, int stackSize)
-ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+ADSpinnakerConfig("$(PORT)", $(CAMERA_ID))
 asynSetTraceIOMask($(PORT), 0, 2)
 # Set ASYN_TRACE_WARNING and ASYN_TRACE_ERROR
 #asynSetTraceMask($(PORT), 0, 0xff)
