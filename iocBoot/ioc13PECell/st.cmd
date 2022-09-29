@@ -27,8 +27,6 @@ epicsEnvSet("LOCATION","Sector 13 portable")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
-asynSetTraceMask("serial2",0,9)
-
 ###############################################################################
 iocInit
 
@@ -47,6 +45,8 @@ seq &Keithley2kDMM,("P=$(PREFIX), Dmm=DMM1:, channels=22, model=2700")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 
-dbcar(0,1)
+#asynSetTraceMask("serial2",15,9)
+
+
 
 
