@@ -32,9 +32,9 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db;$(ADGENICAM)/db;$(ADSPINNAKER
 # Define NELEMENTS to be enough for a 2448x2048x3 (color) image
 epicsEnvSet("NELEMENTS", "16000000")
 
-# ADSpinnakerConfig(const char *portName, const char *cameraId, int traceMask, int memoryChannel,
-#                 int maxBuffers, size_t maxMemory, int priority, int stackSize)
-ADSpinnakerConfig("$(PORT)", $(CAMERA_ID), 0x1, 0)
+# ADSpinnakerConfig(const char *portName, const char *cameraId, int numSPBuffers,
+#                   size_t maxMemory, int priority, int stackSize)
+ADSpinnakerConfig("$(PORT)", $(CAMERA_ID))
 asynSetTraceIOMask($(PORT), 0, 2)
 # Set ASYN_TRACE_WARNING and ASYN_TRACE_ERROR
 #asynSetTraceMask($(PORT), 0, 0x21)
