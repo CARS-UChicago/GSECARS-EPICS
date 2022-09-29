@@ -16,7 +16,7 @@ epicsEnvSet("PREFIX", "13BMC_Laser:")
 
 
 # Serial 1 is Laser Quantum laser
-drvAsynIPPortConfigure("serial1", "164.54.160.53:4001", 0, 0, 0)
+drvAsynIPPortConfigure("serial1", "10.54.160.58:4001", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r\n")
 asynOctetSetOutputEos("serial1",0,"\r\n")
 asynSetTraceIOMask("serial1", 0, 2)
