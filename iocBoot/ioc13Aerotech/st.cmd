@@ -9,7 +9,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # Configure asyn device
 #
 #!EnsemblePort = "tcp1"
-drvAsynIPPortConfigure(EnsemblePort,"164.54.160.249:8000", 0, 0, 0)
+drvAsynIPPortConfigure(EnsemblePort,"hexapod-1:8000", 0, 0, 0)
 #asynSetTraceMask("EnsemblePort",-1,0xFF)
 asynSetTraceIOMask("EnsemblePort",-1,0x1)
 # The Ensemble driver does not set end of string (EOS).
