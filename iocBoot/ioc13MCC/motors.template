@@ -1,0 +1,53 @@
+# XPS Stages
+file "$(CARS)/db/asynMotor.db"
+{
+pattern
+{P,      M,       DTYP,   PORT, ADDR,  DESC,        EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,    SREV,UREV, PREC,  DHLM,     DLLM}
+{13MCC:, m2, "asynMotor", XPS1, 0,   "Soller Z",     mm,  Pos,  5.,  .1,   0.5,   0,    1, .5,      10000, 1,    4,    25,        -25}
+{13MCC:, m1, "asynMotor", XPS1, 1,   "Soller X",     mm,  Pos,  5.,  .1,   0.5,   0,    1, .5,      10000, 1,    4,   75,        -75}
+{13MCC:, m3, "asynMotor", XPS1, 2,   "Soller Theta", mm,  Pos,  5.,  .1,   0.5,   0,    1, .5,      10000, 1,    4,    45.0,    -45.0}
+}
+
+file "$(MOTOR)/db/XPS_extra.db"
+{
+pattern
+{P,         R, PORT,  ADDR}
+{13MCC:,  m2, XPS1,  0}
+{13MCC:,  m1, XPS1,  1}
+{13MCC:,  m3, XPS1,  2}
+}
+
+
+file "$(MOTOR)/db/profileMoveController.template"
+{
+pattern
+{P,       R,      PORT, NAXES,  NPOINTS,  NPULSES, TIMEOUT}
+{13MCC:,  Prof1:, XPS1,    3,     2048,     2048,       1}
+}
+
+file "$(MOTOR)/db/profileMoveControllerXPS.template"
+{
+pattern
+{P,         R,    PORT, NAXES,  NPOINTS,  NPULSES, TIMEOUT}
+{13MCC:,  Prof1:, XPS1,     3,     2048,     2048,       1}
+}
+
+file "$(MOTOR)/db/profileMoveAxis.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR, NPOINTS,  NREADBACK,     MOTOR, PREC, TIMEOUT}
+{13MCC:,  Prof1:, 1,  XPS1,    0,    2048,       2048, 13MCC:m2,   4,       1}
+{13MCC:,  Prof1:, 2,  XPS1,    1,    2048,       2048, 13MCC:m1,   4,       1}
+{13MCC:,  Prof1:, 3,  XPS1,    2,    2048,       2048, 13MCC:m3,   4,       1}
+}
+
+file "$(MOTOR)/db/profileMoveAxisXPS.template"
+{
+pattern
+{P,       R,      M,  PORT, ADDR ,NPOINTS,  NREADBACK, PREC, TIMEOUT}
+{13MCC:,  Prof1:, 1,  XPS1,    0,    2048,       2048,    4,       1}
+{13MCC:,  Prof1:, 2,  XPS1,    1,    2048,       2048,    4,       1}
+{13MCC:,  Prof1:, 3,  XPS1,    2,    2048,       2048,    4,       1}
+}
+
+
