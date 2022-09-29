@@ -9,6 +9,7 @@ dbLoadTemplate  "scanParms.template"
 # Aerotech A3200
 drvAsynIPPortConfigure("HEX_TCP","hexapod-1:8000",0,0,0)
 asynSetTraceIOMask("HEX_TCP", 0, ESCAPE)
+asynSetTraceIOTruncateSize("HEX_TCP", 0, 256)
 #asynSetTraceMask("HEX_TCP", 0, ERROR|DRIVER|FLOW)
 asynReport 10 HEX_TCP
 
@@ -26,7 +27,7 @@ A3200AsynSetup(1)   /* number of A3200 controllers in system.  */
 #     (6) Time to poll (msec) when an axis is idle. 0 for no polling *
 #     (7) The 1st Aerotech task number of the two used by this driver.** **
 #     (8) Use linear (1) or single-axis (0) move commands.*
-A3200AsynConfig(0,"HEX_TCP", 0, 13, 100, 1000, 3, 1)
+A3200AsynConfig(0,"HEX_TCP", 0, 13, 100, 1000, 3, 0)
 
 # Asyn-based Motor Record support
 #   (1) Asyn port
@@ -65,6 +66,8 @@ iocInit
 create_monitor_set("auto_positions.req",5,"P=13BMD:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13BMD:")
+
+motorUtilInit("13BMD_AEROTECH:")
 
 # Enable Cartesian motion on the hexapod.
 # Send EnableTool via asyn record
