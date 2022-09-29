@@ -15,11 +15,10 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # and it's time to trigger detectors.
 dbLoadRecords("$(SSCAN)/db/scan.db", "P=13Keithley3:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13Keithley3:")
+# User calc stuff
+epicsEnvSet("PREFIX", "13Keithley3:")
+< ../calc_GSECARS.iocsh
 
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13Keithley3:")
 
 #PID slow
 dbLoadTemplate "pid_slow.substitutions"
