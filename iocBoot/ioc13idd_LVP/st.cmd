@@ -1,31 +1,32 @@
 < envPaths
 
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(CARS)/db")
+
 ## Register all support components
 dbLoadDatabase "../../dbd/CARSLinux.dbd"
 CARSLinux_registerRecordDeviceDriver pdbbase
 
-epicsEnvSet(INPUT_POINTS, "4096")
-epicsEnvSet(OUTPUT_POINTS, "4096")
+epicsEnvSet(WDIG_POINTS, "4096")
+# This is the unit labeled NET DEV 1 on the box.
+epicsEnvSet(UNIQUE_ID1, "10.54.160.193")
+# This is the unit labeled NET DEV 2 on the box. 
+epicsEnvSet(UNIQUE_ID2, "10.54.160.10")
 
 epicsEnvSet("PREFIX", "13IDD:LVP:")
 
-# This is the unit labeled NET DEV 1 on the box. It will be boardNum 0.
-cbAddBoard("E-1608", "10.54.160.193")
-# This is the unit labeled NET DEV 2 on the box.  It will be boardNum 1.
-cbAddBoard("E-1608", "10.54.160.10")
-
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
-#                      boardNum,        # The number of this board assigned by the Measurement Computing Instacal program 
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
 #                      maxInputPoints,  # Maximum number of input points for waveform digitizer
 #                      maxOutputPoints) # Maximum number of output points for waveform generator
-MultiFunctionConfig("E1608_1", 0, $(INPUT_POINTS), $(OUTPUT_POINTS))
-MultiFunctionConfig("E1608_2", 1, $(INPUT_POINTS), $(OUTPUT_POINTS))
+MultiFunctionConfig("E1608_1", $(UNIQUE_ID1), $(WDIG_POINTS), 1)
+MultiFunctionConfig("E1608_2", $(UNIQUE_ID2), $(WDIG_POINTS), 1)
 
 #asynSetTraceMask E1608_1 -1 255
 #asynSetTraceMask E1608_2 -1 255
 
-dbLoadTemplate("E1608.substitutions")
+dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(PREFIX)MC1:,PORT=E1608_1,WDIG_POINTS=$(WDIG_POINTS)")
+dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(PREFIX)MC2:,PORT=E1608_2,WDIG_POINTS=$(WDIG_POINTS)")
 dbLoadTemplate("pid_slow.substitutions")
 
 # Serial ports on on Moxa 4 port terminal server at 164.54.160.88
@@ -64,6 +65,7 @@ var aimDebug 1
 #icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
 #   portName to give to this asyn port
 #   ethernetAddress - Ethernet address of module, low order 16 bits
+#   ethernetAddress - Ethernet address of module, low order 16 bits
 #   icbAddress - rotary switch setting inside ICB module
 #   moduleType
 #      0 = ADC
@@ -86,6 +88,7 @@ dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPT
 
 < ../save_restore_IOCSH.cmd
 
+var recDynLinkQsize 1024
 iocInit
 
 seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM3, stack=10000"
