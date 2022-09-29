@@ -4,7 +4,7 @@
 # erroneous "Interrupted system call" message on Linux OS.
 errlogInit(0)
 
-epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(CARS)/db)
+epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db;$(CARS)/db)
 
 epicsEnvSet(PREFIX, "13RAMAN2:")
 
@@ -144,7 +144,7 @@ asynSetTraceIOMask("XPS1", 0, 2)
 #asynSetTraceMask("XPS1", 0, 255)
 
 # asynPort, IP address, IP port, poll period (ms)
-XPSAuxConfig("XPS_AUX1", "newport-xps12", 5001, 50)
+#XPSAuxConfig("XPS_AUX1", "newport-xps12", 5001, 50)
 #asynSetTraceIOMask("XPS_AUX1", 0, 2)
 #asynSetTraceMask("XPS_AUX1", 0, 255)
 
@@ -169,7 +169,7 @@ XPSEnableSetPosition(0)
 dbLoadTemplate("motors.template")
 
 # Auxillary I/O records
-dbLoadTemplate("XPSAux.substitutions")
+#dbLoadTemplate("XPSAux.substitutions")
 
 # asyn record for debugging
 drvAsynIPPortConfigure("xps", "newport-xps12:5001", 0, 0, 0)
