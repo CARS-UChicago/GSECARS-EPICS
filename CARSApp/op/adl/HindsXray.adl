@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/HindsXray.adl"
-	version=030109
+	version=030117
 }
 display {
 	object {
@@ -244,6 +244,11 @@ text {
 		name="VarianDualIP.adl"
 		args="P=HindsXray:, R=IP2:"
 	}
+	display[3] {
+		label="PID"
+		name="pid_control.adl"
+		args="P=HindsXray:, PID=PID1, TITLE=Temperature_Control"
+	}
 	clr=14
 	bclr=4
 }
@@ -309,9 +314,19 @@ text {
 		height=24
 	}
 	display[0] {
-		label="USBCTR"
+		label="USB-CTR"
 		name="USBCTR.adl"
 		args="P=HindsXray:USBCTR:,Bo=Bo,Bi=Bi,Lo=Lo,Li=Li,Bd=Bd,Pg=PulseGen"
+	}
+	display[1] {
+		label="USB-2408"
+		name="USB2408_module.adl"
+		args="P=HindsXray:USB2408:,Bo=Bo,Bi=Bi,Lo=Lo,Li=Li,Bd=Bd,Ai=Ai,Ao=Ao,Ti=Ti,Ct=Counter,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[2] {
+		label="E-TC"
+		name="ETC_module.adl"
+		args="P=HindsXray:ETC:,Bo=Bo,Bi=Bi,Lo=Lo,Li=Li,Ti=Ti,Bd=Bd,Ct=Counter"
 	}
 	clr=14
 	bclr=4
@@ -320,14 +335,14 @@ text {
 	object {
 		x=91
 		y=75
-		width=100
+		width=210
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 		width=2
 	}
-	textix="USBCTR"
+	textix="Measurement Computing"
 }
 "related display" {
 	object {
