@@ -1,6 +1,8 @@
 epicsEnvSet(ETC_PREFIX, "$(PREFIX)ETC:")
 epicsEnvSet(PORT, "ETC_1")
-epicsEnvSet(UNIQUE_ID, "10.54.160.218")
+# We can set the UNIQUE_ID either to the MAC address or the IP address
+#epicsEnvSet(UNIQUE_ID, "10.100.160.11")
+epicsEnvSet(UNIQUE_ID, "00:80:2F:34:F4:79")
 
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
