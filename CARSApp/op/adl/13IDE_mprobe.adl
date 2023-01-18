@@ -1,12 +1,12 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13IDE_mprobe.adl"
-	version=030109
+	version=030117
 }
 display {
 	object {
-		x=600
-		y=285
+		x=522
+		y=1292
 		width=630
 		height=680
 	}
@@ -209,14 +209,9 @@ rectangle {
 		args="P=13IDE:, R=Unidig1"
 	}
 	display[3] {
-		label="I0 Transform "
+		label="Intensity Transform "
 		name="userTransform_full.adl"
-		args="P=13IDE:, T=userTran"
-	}
-	display[4] {
-		label="HERFD Analyzer"
-		name="13IDE_analyzer.adl"
-		args="P=13XRM:, R=ANA"
+		args="P=13IDE:, T=userTran1"
 	}
 	display[6] {
 		label="Scan Server"
@@ -241,6 +236,11 @@ rectangle {
 		label="DAC centering Stages"
 		name="centering Stages"
 		args="P=13IDE:, TITLE=CMA_Motors, M1=m35, M2=m36"
+	}
+	display[12] {
+		label="HERFD Analyzer"
+		name="13IDE_analyzer.adl"
+		args="P=13XRM:, R=ANA"
 	}
 	clr=54
 	bclr=1
@@ -821,11 +821,6 @@ rectangle {
 		name="xspress3_7chan.adl"
 		args="P=13QX7"
 	}
-	display[3] {
-		label="Vortex ME-4 (Xspress3)"
-		name="xspress3_4chan.adl"
-		args="P=13QX4"
-	}
 	display[4] {
 		label="Eiger500K"
 		name="eigerDetector.adl"
@@ -837,14 +832,22 @@ rectangle {
 		args="P=13EIG1:, R=ROIStat1:, ROI1=1:, ROI2=2:, ROI3=3:, ROI4=4:, ROI5=5:, ROI6=6:, ROI7=7:, ROI8=8:"
 	}
 	display[6] {
-		label="Ion Chamber"
+		label="I0 Flux Calculation"
 		name="IonChamber.adl"
 		args="P=13XRM:, Q=ION"
 	}
+	display[7] {
+		label="Ion Chamber Setup"
+		name="13IDE_ionchambers.adl"
+	}
 	display[10] {
-		label="Quad Vortex Mercury"
+		label="-"
 		name="4element_dxp.adl"
 		args="P=dxpMercury:, D=dxp, M=mca"
+	}
+	display[13] {
+		name="xspress3_4chan.adl"
+		args="P=13Q"
 	}
 	clr=54
 	bclr=1
