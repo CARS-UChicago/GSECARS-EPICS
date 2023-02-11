@@ -1,0 +1,117 @@
+# This file must be loaded with P and PORT defined
+file "$(CARS)/db/eps_inputs.template"
+{
+pattern
+{N,   DESC,                            OFFSET,   ZNAM,                  ZSV,        ONAM,                    OSV}
+{ 1,   "DCM user status",               11,   "Reboot needed",       "MAJOR",    "Ok",                    "NO_ALARM"}
+{ 2,   "DCM status",                     8,   "Ok",                  "NO_ALARM", "PLC not RUNning",       "MAJOR"}
+{ 4,   "13-BM shutter",                 17,   "Closed",              "MAJOR",    "Open",                  "NO_ALARM"}
+{ 5,   "EPS status",                    18,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{ 6,   "PLC run mode",                  19,   "Ok",                  "NO_ALARM", "PLC not running",       "MAJOR"}
+{ 7,   "PLC keyswitch",                 20,   "Remote",              "NO_ALARM", "Local",                 "NO_ALARM"}
+{ 8,   "PLC overrides",                 21,   "Ok",                  "NO_ALARM", "Overrides on",          "MAJOR"}
+{ 9,   "PLC forces present",            22,   "Ok",                  "NO_ALARM", "Forces exist",          "NO_ALARM"}
+{10,   "PLC battery low",               23,   "Ok",                  "NO_ALARM", "Battery low",           "MAJOR"}
+{11,   "Remote inputs",                 24,   "Ok",                  "NO_ALARM", "Comm fault",            "MAJOR"}
+{12,   "Aperture plate (BM-A) water",   32,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{13,   "Aperture plate water (latch)",  33,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{14,   "Beamstops (BM-A) water",        34,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{15,   "Beamstops water (latched)",     35,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{16,   "Filters (BM-A) water",          36,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{17,   "Filters water (latched)",       37,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{18,   "BMD vert slits (BM-A) water",   38,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{19,   "BMD vertical slits water lat",  39,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{20,   "BMD horiz slits (BM-A) water",  40,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{21,   "BMD horizontal slits water l",  41,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{22,   "BMC vert slits (BM-A) water",   42,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{23,   "BMC vertical slits water lat",  43,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{24,   "BMC horiz vee (BM-A) water",    44,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{25,   "BMC horizontal vee water lat",  45,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{26,   "Slit tank (BM-A) vacuum (CC)",  64,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{27,   "Slit tank vacuum (CC) (lat)",   65,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{28,   "Slit tank (BM-A) vacuum (PG)",  66,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{29,   "Slit tank vacuum (PG) (lat)",   67,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+#{30,   "BMC beamstop (BM-A) position",  96,   "Closed",              "NO_ALARM", "Fault",                 "MAJOR"}
+#{31,   "BMC beamstop position (lat)",   97,   "Closed",              "NO_ALARM", "Fault",                 "MAJOR"}
+#{32,   "BMD beamstop (BM-A) position",  98,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+#{33,   "BMD beamstop position (lat)",   99,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{42,   "Front end valve (APS)",        100,   "Open",                "NO_ALARM", "Closed",                "MAJOR"}
+{43,   "Front end valve (latched)",    101,   "Open",                "NO_ALARM", "Closed",                "MAJOR"}
+{44,   "BMD slits SL3 (BM-B) water",   160,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{45,   "BMD slits SL3  (latched)",     161,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{46,   "BMD slits SL4 (BM-D) water",    48,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{47,   "BMD slits SL4  (latched)",      49,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{48,   "BMD slits SL5 (BM-D) water",    50,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{49,   "BMD slits SL5  (latched)",      51,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{50,   "Station (BM-D) water 1",        52,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{51,   "Station (BM-D) water 1 (lat)",  53,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{52,   "Station (BM-D) water 2",        54,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{53,   "Station (BM-D) water 2 (lat)",  55,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{54,   "Diagnostic tank vacuum (CC)",   68,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{55,   "Diagnostic tank (CC) (lat)",    69,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{56,   "Diagnostic tank vacuum (PG)",   70,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{57,   "Diagnostic tank (PG) (lat)",    71,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{58,   "Transport pipe vacuum (CC)",    72,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{59,   "Transport pipe (CC) (lat)",     73,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{60,   "Transport pipe vacuum (PG)",    74,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{61,   "Transport pipe (PG) (lat)",     75,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{62,   "Station BM-D vacuum (CC)",      76,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{63,   "Station BM-D (CC) (latch)",     77,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{64,   "Station BM-D vacuum (PG)",      78,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{65,   "Station BM-D (PG) (latch))",    79,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{66,   "Valve V1 (BM-A) position",     102,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{67,   "Valve V1 position (latched)",  103,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{68,   "Valve V3 (BM-A) position",     104,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{69,   "Valve V3 position (latched)",  105,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{70,   "Valve V4D (BM-B) position",    106,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{71,   "Valve V4D position (latch)",   107,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{72,   "BMD water resistivity",         25,   "Ok",                  "NO_ALARM", "Low resistivity",       "MAJOR"}
+{73,   "Be window (BM-C) helium",      176,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{74,   "Be window (BM-C) he (latch)",  177,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{75,   "Mono tank vacuum (CC)",         92,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{76,   "Mono tank (CC) (latch)",        93,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{77,   "Mono tank vacuum (PG)",         94,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{78,   "Mono tank (PG) (latch)",        95,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{79,   "Valve V2 (BM-A) position",     108,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{80,   "Valve V2 position (latched)",  109,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{81,   "Fixed mask 2 (BM-A) water",     58,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{82,   "Fixed mask 2 water latched",    59,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{83,   "Monochromator (BM-A) water",    60,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{84,   "Monochromator water latched",   61,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{85,   "Be window (BM-D) water",        56,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{86,   "Be wind. (BM-D) water (lat)",   57,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{87,   "Station (BM-D) water 3",        62,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{88,   "Station (BM-D) water 3 (lat)",  63,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{89,   "BM-D mirror vacuum (CC)",       88,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{90,   "BM-D mirror (CC) (latch)",      89,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{91,   "BM-D mirror vacuum (PG)",       90,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{92,   "BM-D mirror (PG) (latch))",     91,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{93,   "BMD mirror mask water",        162,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{94,   "BMD mirror mask (latched)",    163,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{95,   "BMD mirror water",             164,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{96,   "BMD mirr. water(latched)",     165,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{97,   "BMD shutter water",            166,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{98,   "BMD shut. water(latched)",     167,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{99,   "BMD shutter",                   26,   "Closed",              "MAJOR",    "Open",                  "NO_ALARM"}
+{100,  "BMC shutter",                   27,   "Closed",              "MAJOR",    "Open",                  "NO_ALARM"}
+{101,  "BMD transport vacuum (PG)",     86,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{102,  "BMD transport (PG) (latch))",   87,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{103,  "BM-C mono vacuum (CC)",         80,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{104,  "BM-C mono (CC) (latch)",        81,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{105,  "BM-C mono vacuum (PG)",         82,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{106,  "BM-C mono (PG) (latch))",       33,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{107,  "BMC mirror mask water",        168,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{108,  "BMC mirror mask (latched)",    169,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{109,  "BMC mirror water",             174,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{110,  "BMC mirr. water(latched)",     175,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{111,  "BMC mono water",               170,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{112,  "BMC mono water(latched)",      171,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{113,  "BMC mono backstop water",      172,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{114,  "BMC mono bs water(latched)",   173,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{115,  "Valve V4C (BM-B) position",    110,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{116,  "Valve V4C position (latched)", 111,   "Open",                "NO_ALARM", "Fault",                 "MAJOR"}
+{117,  "BM-C EPS status",               28,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{118,  "BM-D EPS status",               29,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+{119,  "BM-D Pump Status",             178,   "Off",                 "MAJOR",    "On",                    "NO_ALARM"}
+{120,  "BM-D Vent Status",             179,   "Closed",              "NO_ALARM", "Open",                  "MAJOR"}
+} 

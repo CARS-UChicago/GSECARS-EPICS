@@ -1,0 +1,31 @@
+file "$(CARS)/db/eps_outputs.template"
+{
+pattern
+{ N,   DESC,                       OFFSET, ZNAM,             ZSV,         ONAM,               OSV}
+{ 1,   "FE shutter disable",       16,    "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
+{ 2,   "EPS reset",                17,    "Reset_off",      "NO_ALARM",  "Reset_on",         "NO_ALARM"}
+{ 3,   "FE shutter open",          18,    "Close",          "NO_ALARM",  "Open"              "NO_ALARM"}
+{ 4,   "FE shutter close",         19,    "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
+{ 5,   "BMD shutter open",         20,    "Close",          "NO_ALARM",  "Open"              "NO_ALARM"}
+{ 6,   "BMD shutter close",        21,    "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
+{ 7,   "BMC shutter open",         22,    "Close",          "NO_ALARM",  "Open"              "NO_ALARM"}
+{ 8,   "BMC shutter close",        23,    "Open",           "NO_ALARM",  "Close"             "NO_ALARM"}
+{ 9,   "BMD shutter disable",      24,    "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
+{10,   "BMC shutter disable",      25,    "Enable",         "NO_ALARM",  "Disable",          "MAJOR"}
+{15,   "BMD pump request",         46,    "Off",            "MAJOR",     "On",               "NO_ALARM"}
+{16,   "BMD vent request",         47,    "Close",          "NO_ALARM",  "Open",             "MAJOR"}
+}
+
+file "$(CARS)/db/eps_pulse.db"
+{
+pattern
+{       R,         N,   DESC             }
+{ OpenFEShutter,   3,  "Open FE shutter"  }
+{ CloseFEShutter,  4,  "Close FE shutter" }
+{ OpenBMDShutter,  5,  "Open BMD shutter"  }
+{ CloseBMDShutter, 6,  "Close BMD shutter" }
+{ OpenBMCShutter,  7,  "Open BMC shutter"  }
+{ CloseBMCShutter, 8,  "Close BMC shutter" }
+{ DPumpRequest,   15,  "BM-D pump request" }
+{ DVentRequest,   16,  "BM-D vent request" }
+}
