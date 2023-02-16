@@ -2,6 +2,8 @@
 file "$(CARS)/db/eps_inputs.template"
 {
 pattern
+
+# PLC status
 {N,   DESC,                            OFFSET,   ZNAM,                  ZSV,        ONAM,                    OSV}
 { 1,   "DCM user status",               11,   "Reboot needed",       "MAJOR",    "Ok",                    "NO_ALARM"}
 { 2,   "DCM status",                     8,   "Ok",                  "NO_ALARM", "PLC not RUNning",       "MAJOR"}
@@ -13,6 +15,8 @@ pattern
 { 9,   "PLC forces present",            22,   "Ok",                  "NO_ALARM", "Forces exist",          "NO_ALARM"}
 {10,   "PLC battery low",               23,   "Ok",                  "NO_ALARM", "Battery low",           "MAJOR"}
 {11,   "Remote inputs",                 24,   "Ok",                  "NO_ALARM", "Comm fault",            "MAJOR"}
+
+# Water status 1
 {12,   "Aperture plate (BM-A) water",   32,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {13,   "Aperture plate water (latch)",  33,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {14,   "Beamstops (BM-A) water",        34,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
@@ -27,6 +31,8 @@ pattern
 {23,   "BMC vertical slits water lat",  43,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {24,   "BMC horiz vee (BM-A) water",    44,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {25,   "BMC horizontal vee water lat",  45,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
+
+# Vacuum status
 {26,   "Slit tank (BM-A) vacuum (CC)",  64,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {27,   "Slit tank vacuum (CC) (lat)",   65,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
 {28,   "Slit tank (BM-A) vacuum (PG)",  66,   "Ok",                  "NO_ALARM", "Fault",                 "MAJOR"}
