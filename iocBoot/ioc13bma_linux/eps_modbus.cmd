@@ -25,7 +25,7 @@ drvModbusAsynConfigure("MVI46_Out_Word", "$(PORT)", 0, 6, 0, 10, 0, 100, "MVI46"
 # Write 200 bits starting at address 0.  Function code=5.
 drvModbusAsynConfigure("MVI46_Out_Bit", "$(PORT)", 0, 5, 0, 200, 0, 100, "MVI46")
 
-dbLoadRecords("$(CARS)/db/eps_valid.db", "P=$(PREFIX)")
+dbLoadRecords("$(CARS)/db/eps_valid.template", "P=$(PREFIX)")
 dbLoadTemplate("eps_inputs.substitutions", "P=$(PREFIX), PORT=MVI46_In_Bit")
 dbLoadTemplate("eps_outputs.substitutions", "P=$(PREFIX), PORT=MVI46_Out_Bit")
 dbLoadTemplate("eps_valves.substitutions", "P=$(PREFIX), IN_PORT=MVI46_In_Bit, OUT_PORT=MVI46_Out_Bit")
