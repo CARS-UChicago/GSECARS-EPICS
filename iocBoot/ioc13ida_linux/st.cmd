@@ -5,7 +5,7 @@
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-epicsEnvSet("PREFIX", "13BMA_TEST:")
+epicsEnvSet("PREFIX", "13IDA_TEST:")
 #< serial.cmd
 
 < eps_modbus.cmd
@@ -41,7 +41,6 @@ dbLoadRecords("$(SSCAN)/db/scan.db","P=$(PREFIX),MAXPTS1=500,MAXPTS2=50,MAXPTS3=
 #dbLoadTemplate("scanParms.template")
 
 # User calc stuff
-epicsEnvSet("PREFIX", "13IDA:")
 <../calc_GSECARS.iocsh
 
 # Miscellaneous PV's
