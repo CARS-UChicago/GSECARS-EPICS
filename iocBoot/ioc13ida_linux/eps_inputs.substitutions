@@ -1,0 +1,154 @@
+file "$(CARS)/db/eps_inputs.template"
+{
+pattern
+{N,   DESC,                             OFFSET,   ZNAM,              ZSV,        ONAM,                OSV}
+
+# PLC status
+{  1,   "DCM user status",                11,   "Reboot needed",   "MAJOR",    "Ok",                "NO_ALARM"}
+{  2,   "DCM status",                      8,   "Ok",              "NO_ALARM", "PLC not RUNning",   "MAJOR"}
+{  6,   "PLC run mode",                   19,   "Ok",              "NO_ALARM", "PLC not running",   "MAJOR"}
+{  7,   "PLC keyswitch",                  20,   "Remote",          "NO_ALARM", "Local",             "NO_ALARM"}
+{  8,   "PLC overrides",                  21,   "Ok",              "NO_ALARM", "Overrides on",      "MAJOR"}
+{  9,   "PLC forces present",             22,   "Ok",              "NO_ALARM", "Forces exist",      "NO_ALARM"}
+{ 10,   "PLC battery low",                23,   "Ok",              "NO_ALARM", "Battery low",       "MAJOR"}
+{ 11,   "Remote inputs",                  24,   "Ok",              "NO_ALARM", "Comm fault",        "MAJOR"}
+
+# Shutter status
+{ 25,   "Front end shutter"               25,   "Closed",          "MAJOR",    "Open",              "NO_ALARM"}
+{ 26,   "C/D shutter"                     26,   "Closed",          "MAJOR",    "Open"               "NO_ALARM"}
+{ 27,   "E shutter",                      27,   "Closed",          "MAJOR",    "Open",              "NO_ALARM"}
+{ 28,   "White mode",                     28,   "No",              "NO_ALARM", "Yes",               "MINOR"}
+{ 29,   "Mono mode",                      29,   "No",              "MINOR",    "Yes",               "NO_ALARM"}
+
+# Water status 1
+{ 32,   "C/D horiz. slits water",         32,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 33,   "C/D horiz. slits water (lat)",   33,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 34,   "C/D vert. slits water",          34,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 35,   "C/D vert. slits water (lat)",    35,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 36,   "E horiz. slits water",           36,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 37,   "E horiz. slits water (lat)",     37,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 38,   "E vert. slits water",            38,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 39,   "E vert. slits water (lat)",      39,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 40,   "E WBS water",                    40,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 41,   "E WBS water (latch)",            41,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 42,   "E viewer water",                 42,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 43,   "E viewer water (latch)",         43,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 44,   "100W horiz. water",              44,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 45,   "100W horiz. water (latch)",      45,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 46,   "100W vert. water",               46,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 47,   "100W vert. water (latch)",       47,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Water status 2
+{ 48,   "C/D WBS water",                  48,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 49,   "C/D WBS water (latch)",          49,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 50,   "C/D viewer water",               50,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 51,   "C/D viewer water (latch)",       51,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 52,   "IDC Be window water",            52,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 53,   "IDC Be window water (latch)",    53,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 54,   "IDC horiz. mirror water",        54,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 55,   "IDC horiz. mirror water (lat)",  55,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{100,   "IDC horiz. mirror mask water",  100,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{101,   "IDC horiz. mir msk wat(lat)",   101,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 56,   "IDC backstop water",             56,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 57,   "IDC backstop water (latch)",     57,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 58,   "IDD backstop water",             58,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 59,   "IDD backstop water (latch)",     59,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Vacuum status 1
+{ 64,   "Slit tank vacuum (CC1)",         64,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 65,   "Slit tank vacuum (CC1) (lat)",   65,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 66,   "Slit tank vacuum (PG1)",         66,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 67,   "Slit tank vacuum (PG1) (lat)",   67,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 68,   "C/D mono vacuum (CC2)",          68,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 69,   "C/D mono vacuum (CC2) (lat)",    69,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 70,   "C/D mono vacuum (PG2)",          70,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 71,   "C/D mono vacuum (PG2) (lat)",    71,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 72,   "E mono vacuum (CC3)",            72,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 73,   "E mono vacuum (CC3) (lat)",      73,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 74,   "E mono vacuum (PG3)",            74,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 75,   "E mono vacuum (PG3) (lat)",      75,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 76,   "E mirror vacuum (CC4)",          76,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 77,   "E mirror vacuum (CC4) (lat)",    77,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 78,   "E mirror vacuum (PG4)",          78,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 79,   "E mirror vacuum (PG4) (lat)",    79,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Vacuum status 2
+{ 80,   "SSA tank vacuum (CC5)",          80,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 81,   "SSA tank vacuum (CC5) (lat)",    81,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 82,   "SSA tank vacuum (PG5)",          82,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 83,   "SSA tank vacuum (PG5) (lat)",    83,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 84,   "C/D vert. mirror (CC6)",         84,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 85,   "C/D vert. mirror (CC6) (lat)",   85,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 86,   "C/D vert. mirror (PG6)",         86,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 87,   "C/D vert. mirror (PG6) (lat)",   87,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 88,   "E shutter vacuum (CC7)",         88,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 89,   "E shutter vacuum (CC7) (lat)",   89,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 90,   "E shutter vacuum (PG7)",         90,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 91,   "E shutter vacuum (PG7) (lat)",   91,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 92,   "E transport vac. (PG8)",         92,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 93,   "E transport vac. (PG8) (lat)",   93,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 94,   "C/D horiz. mirror (CC9)",        94,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 95,   "C/D horiz. mirror (CC9)(lat)",   95,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Vacuum status 3
+{ 96,   "C/D horiz. mirror (PG9)",        96,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 97,   "C/D horiz. mirror (PG9) (lat)",  97,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 98,   "C/D trans. vac. (PG10)",         98,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{ 99,   "C/D trans. vac. (PG10) (lat)",   99,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+
+# Valve status
+{112,   "Valve V2 position",             112,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{113,   "Valve V2 position (latched)",   113,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{114,   "Valve V3 position",             114,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{115,   "Valve V3 position (latched)",   115,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{116,   "Valve V4 position",             116,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{117,   "Valve V4 position (latched)",   117,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{118,   "Valve V5 position",             118,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{119,   "Valve V5 position (latched)",   119,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{120,   "Valve V6 position",             120,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{121,   "Valve V6 position (latched)",   121,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{122,   "Valve V7 position",             122,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{123,   "Valve V7 position (latched)",   123,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{124,   "Valve V8 position",             124,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{125,   "Valve V8 position (latched)",   125,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{126,   "Front end valve position",      126,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+{127,   "Front end valve pos. (lat)",    127,   "Open",            "NO_ALARM", "Closed",            "MAJOR"}
+
+
+# Other status
+{192,   "FOE EPS status",                192,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{193,   "C/D EPS status",                193,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{194,   "E EPS status",                  194,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{195,   "Vacuum status",                 195,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{200,   "E vert. low power",             200,   "Normal",          "NO_ALARM", "Low power",         "MINOR"}
+{201,   "E horiz. low power",            201,   "Normal",          "NO_ALARM", "Low power",         "MINOR"}
+{202,   "C/D vert. low power",           202,   "Normal",          "NO_ALARM", "Low power",         "MINOR"}
+{203,   "C/D horiz. low power",          203,   "Normal",          "NO_ALARM", "Low power",         "MINOR"}
+{204,   "C/D Mono 111 position",         204,   "Out",             "NO_ALARM", "In",                "MINOR"}
+{205,   "C/D Mono 311 position",         205,   "Out",             "NO_ALARM", "In",                "MINOR"}
+{206,   "C/D Mono center position",      206,   "Out",             "NO_ALARM", "In",                "MINOR"}
+{207,   "E viewer position",             207,   "In",                 "MINOR", "Out",            "NO_ALARM"}
+{208,   "C/D viewer position",           208,   "In",                 "MINOR", "Out",            "NO_ALARM"}
+{209,   "SSA viewer position",           209,   "In",                 "MINOR", "Out",            "NO_ALARM"}
+{210,   "He gas farm pressure (left)"    210,   "Ok",              "NO_ALARM", "<200 psig",         "MAJOR"}
+{211,   "He gas farm pressure (right)"   211,   "Ok",              "NO_ALARM", "<200 psig"          "MAJOR"}
+{212,   "C/D QBPM position",             212,   "In",                 "MINOR", "Out",            "NO_ALARM"}
+{213,   "C/D Pump Status",               213,   "Off",                "MAJOR", "On",             "NO_ALARM"}
+{214,   "C/D Vent Status",               214,   "Closed",          "NO_ALARM", "Open",              "MAJOR"}
+{215,   "E Pump Status",                 215,   "Off",                "MAJOR", "On",             "NO_ALARM"}
+{216,   "E Vent Status",                 216,   "Closed",          "NO_ALARM", "Open",              "MAJOR"}
+# Air pressure not currently used
+#{217,   "Air pressure status",           217,   "Low",                "MAJOR", "OK",             "NO_ALARM"}
+{218,   "SSA viewer",                    218,   "OK",              "NO_ALARM", "Fault",             "MAJOR"}
+{219,   "SSA viewer (latched)",          219,   "OK",              "NO_ALARM", "Fault",             "MAJOR"}
+{220,   "Battery switch Status",         220,   "Battery A",       "NO_ALARM", "Battery B",      "NO_ALARM"}
+{221,   "IDD CO2 laser water",           221,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{222,   "IDD CO2 polarizer water",       222,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{223,   "IDD LVP slits water",           223,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{224,   "IDD fiber laser water",         224,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{225,   "IDD DAC stage water",           225,   "Ok",              "NO_ALARM", "Fault",             "MAJOR"}
+{226,   "IDE gas pressure (left)"        226,   "Ok",              "NO_ALARM", "Low",               "MAJOR"}
+{227,   "IDE gas pressure (right)"       227,   "Ok",              "NO_ALARM", "Low"                "MAJOR"}
+{228,   "E Mono E-Stop"                  228,   "Fault",              "MAJOR", "OK"              "NO_ALARM"}
+{229,   "Water shutoff valves"           229,   "Closed",             "MAJOR", "Open",           "NO_ALARM"}
+}

@@ -1,0 +1,38 @@
+record(bi,"$(P)eps_bi$(N)")
+{
+	field(DESC, "$(DESC)")
+  field(DTYP, "asynUInt32Digital")
+  field(INP,  "@asynMask($(PORT) $(OFFSET) 0x1)")
+	field(ZNAM, "$(ZNAM)")
+	field(ZSV,  "$(ZSV)")
+	field(ONAM, "$(ONAM)")
+	field(OSV,  "$(OSV)")
+	field(SCAN, "I/O Intr")
+}
+record(calcout,"$(P)eps_wait$(N)")
+{
+	field(DESC, "EPS input calc")
+	field(INPA, "$(P)eps_bi$(N).VAL CP NMS")
+	field(INPB, "$(P)eps_invalid.VAL CP NMS")
+	field(OUT,  "$(P)eps_mbbi$(N).VAL PP NMS")
+	field(CALC, "MAX(A,2*B)")
+}
+record(mbbi,"$(P)eps_mbbi$(N)")
+{
+	field(DESC, "$(DESC)")
+	field(ZRST, "$(ZNAM)")
+	field(ONST, "$(ONAM)")
+	field(TWST, "Invalid")
+	field(ZRSV, "$(ZSV)")
+	field(ONSV, "$(OSV)")
+	field(TWSV, "MAJOR")
+	field(UNSV, "MAJOR")
+}
+record(seq,"$(P)eps_wait_seq$(N)")
+{
+	field(DESC, "Sequencer for EPS input")
+	field(PINI, "YES")
+	field(DLY1, "7")
+	field(DOL1, "1")
+	field(LNK1, "$(P)eps_wait$(N).PROC")
+}
