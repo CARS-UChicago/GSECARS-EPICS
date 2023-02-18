@@ -5,11 +5,12 @@ dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13BMA_TEST:")
-#< serial.cmd
+
+iocshLoad("serial.cmd", "P=$(PREFIX), TS=gsets16")
 
 < eps_modbus.cmd
 
-#LoadTemplate("motors.template")
+#dbLoadTemplate("motors.template")
 
 # BMD and BMC filter racks
 #dbLoadRecords("$(CARS)/db/13BMC_Filters.db","P=$(PREFIX),R=BMC_Filters,MOTOR=m6")
