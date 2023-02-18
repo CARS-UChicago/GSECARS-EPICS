@@ -1,74 +1,51 @@
-# int tyGSAsynInit(char *port, int uart, int channel, int baud, char parity, int sbits,
-#                 int dbits, char handshake, char *inputEos, char *outputEos)
-tyGSAsynInit("serial1",   "UART0", 0,19200,'E',1,8,'N',"\r","\r") /* MKS; PR1, CC1, PR2, CC2 */
-dbLoadRecords("$(IP)/db/MKS.db","P=13IDA:,PORT=serial1,CC1=cc1,CC2=cc2,PR1=pr1,PR2=pr2")
+# $(TS).cars.aps.anl.gov is the Moxa NPort 6650-16 for 13-ID-A
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial1,  IPADDR=$(TS):4001, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial2,  IPADDR=$(TS):4002, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial3,  IPADDR=$(TS):4003, IEOS=,        OEOS=\\r"   # Digitel     9600,'E',1,7,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial4,  IPADDR=$(TS):4004, IEOS=,        OEOS=\\r"   # Digitel     9600,'E',1,7,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial5,  IPADDR=$(TS):4005, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial6,  IPADDR=$(TS):4006, IEOS=,        OEOS=\\r"   # Digitel     9600,'E',1,7,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial7,  IPADDR=$(TS):4007, IEOS=\\r,     OEOS=\\r"   # MPC         9600,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial8,  IPADDR=$(TS):4008, IEOS=\\r,     OEOS=\\r"   # MPC         9600,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial9,  IPADDR=$(TS):4009, IEOS=\\n,     OEOS=\\r"   # Keithley   19200,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial10, IPADDR=$(TS):4010, IEOS=\\r,     OEOS=\\r"   # Oxford ILM cryometer; C/D mono; 9600,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial11, IPADDR=$(TS):4011, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial12, IPADDR=$(TS):4012, IEOS=\\r,     OEOS=\\r"   # MPC         9600,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial13, IPADDR=$(TS):4013, IEOS=\\n,     OEOS=\\r"   # Keithley 2000; C/D vertical mirror temps; 19200,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial14, IPADDR=$(TS):4014, IEOS=\\r,     OEOS=\\r"   # Oxford ILM cryometer; E mono;             9600,'N',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial15, IPADDR=$(TS):4015, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial16, IPADDR=$(TS):4016, IEOS=\\r,     OEOS=\\r"   # SR-570; E WBS/BPM blade current; 9600,'N',1,8,'N'
+#iocshLoad ../asynIPPortConfig.cmd "PORT=serial17, IPADDR=$(TS):4017, IEOS=\\r,     OEOS=\\r"   # SR-570; C/D pinhole BPM blade current;  9600,'N',1,8,'N'
 
-tyGSAsynInit("serial2",   "UART0", 1,19200,'E',1,8,'N',"\r","\r") /* MKS; PR3, CC3, PR4, CC4 */
-dbLoadRecords("$(IP)/db/MKS.db","P=13IDA:,PORT=serial2,CC1=cc3,CC2=cc4,PR1=pr3,PR2=pr4")
 
-tyGSAsynInit("serial3",   "UART0", 2, 9600,'E',1,7,'N',"",  "\r") /* Digitel; IP1, IP5 */
-dbLoadRecords("$(IP)/db/Digitel.db","P=13IDA:,PUMP=ip1,PORT=serial3")
-dbLoadRecords("$(IP)/db/Digitel.db","P=13IDA:,PUMP=ip5,PORT=serial3")
-
-tyGSAsynInit("serial4",   "UART0", 3, 9600,'E',1,7,'N',"",  "\r") /* Digitel; IP3 */
-dbLoadRecords("$(IP)/db/Digitel.db","P=13IDA:,PUMP=ip3,PORT=serial4")
-
-tyGSAsynInit("serial5",   "UART0", 4,19200,'E',1,8,'N',"\r","\r") /* MKS; P5, CC5, PR6, CC6 */
-dbLoadRecords("$(IP)/db/MKS.db","P=13IDA:,PORT=serial5,CC1=cc5,CC2=cc6,PR1=pr5,PR2=pr6")
-
-tyGSAsynInit("serial6",   "UART0", 5, 9600,'E',1,7,'N',"",  "\r") /* Digitel; IP6, IP7 */
-dbLoadRecords("$(IP)/db/Digitel.db","P=13IDA:,PUMP=ip6,PORT=serial6")
-dbLoadRecords("$(IP)/db/Digitel.db","P=13IDA:,PUMP=ip7,PORT=serial6")
-
-tyGSAsynInit("serial7",   "UART0", 6, 9600,'N',1,8,'N',"\r","\r") /* MPC; IP2, IP4 */
-dbLoadRecords("$(IP)/db/MPC.db","P=13IDA:,PUMP=ip2,PORT=serial7,PA=0,PN=2")
-dbLoadRecords("$(IP)/db/MPC.db","P=13IDA:,PUMP=ip4,PORT=serial7,PA=0,PN=1")
-
-tyGSAsynInit("serial8",   "UART0", 7, 9600,'N',1,8,'N',"\r","\r") /* MPC; IP9, IP10 */
-dbLoadRecords("$(IP)/db/MPC.db","P=13IDA:,PUMP=ip9,PORT=serial8,PA=0,PN=1")
-dbLoadRecords("$(IP)/db/MPC.db","P=13IDA:,PUMP=ip10,PORT=serial8,PA=0,PN=2")
-
-tyGSAsynInit("serial9",   "UART1", 0,19200,'N',1,8,'N',"\n","\r") /* Keithley 2000; monos, E mirror, pinhole temps */
-dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM1,PORT=serial9")
-
-tyGSAsynInit("serial10",  "UART1", 1, 9600,'N',1,8,'N',"\r","\r") /* Oxford ILM cryometer; C/D mono */
-dbLoadRecords("$(CARS)/db/ILM200.db","P=13IDA:,R=ILM200_1,PORT=serial10")
-
-tyGSAsynInit("serial11",  "UART1", 2,19200,'E',1,8,'N',"\r","\r") /* MKS; PR7, CC7, PR8 */
-dbLoadRecords("$(IP)/db/MKS.db","P=13IDA:,PORT=serial11,CC1=cc7,CC2=cc8,PR1=pr7,PR2=pr8")
-
-tyGSAsynInit("serial12",  "UART1", 3, 9600,'N',1,8,'N',"\r","\r") /* MPC; IP8, IP11 */
-dbLoadRecords("$(IP)/db/MPC.db","P=13IDA:,PUMP=ip8,PORT=serial12,PA=0,PN=1")
-dbLoadRecords("$(IP)/db/MPC.db","P=13IDA:,PUMP=ip11,PORT=serial12,PA=0,PN=2")
-dbLoadRecords("$(IP)/db/TSP.db","P=13IDA:,TSP=tsp1,PORT=serial12,PA=0")
-
-tyGSAsynInit("serial13",  "UART1", 4,19200,'N',1,8,'N',"\n","\r") /* Keithley 2000; C/D vertical mirror temps */
-dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db","P=13IDA:,Dmm=DMM2,PORT=serial13")
-
-tyGSAsynInit("serial14",  "UART1", 5, 9600,'N',1,8,'N',"\r","\r") /* Oxford ILM cryometer; E mono */
-dbLoadRecords("$(CARS)/db/ILM200.db","P=13IDA:,R=ILM200_2,PORT=serial14")
-
-tyGSAsynInit("serial15",  "UART1", 6,19200,'E',1,8,'N',"\r","\r") /* MKS; PR9, CC9, PR10 */
-dbLoadRecords("$(IP)/db/MKS.db","P=13IDA:,PORT=serial15,CC1=cc9,CC2=cc10,PR1=pr9,PR2=pr10")
-
-tyGSAsynInit("serial16",  "UART1", 7, 9600,'N',1,8,'N',"\r","\r") /* SR-570; E WBS/BPM blade current */
-dbLoadRecords("$(IP)/db/SR570.db", "P=13IDA:,A=A1,PORT=serial16")
-
-tyGSAsynInit("serial17",  "UART2", 0, 9600,'N',1,8,'N',"\r","\r") /* SR-570; C/D pinhole BPM blade current */
-dbLoadRecords("$(IP)/db/SR570.db", "P=13IDA:,A=A2,PORT=serial17")
-
-tyGSAsynInit("serial18",  "UART2", 1, 9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial19",  "UART2", 2, 9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial20",  "UART2", 3, 9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial21",  "UART2", 4, 9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial22",  "UART2", 5, 9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial23",  "UART2", 6, 9600,'N',1,8,'N',"\r","\r") /* Unused */
-tyGSAsynInit("serial24",  "UART2", 7, 9600,'N',1,8,'N',"\r","\r") /* Unused */
+dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial1,  CC1=cc1, CC2=cc2, PR1=pr1, PR2=pr2")
+dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial2,  CC1=cc3, CC2=cc4, PR1=pr3, PR2=pr4")
+dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial3,  PUMP=ip1")
+dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial3,  PUMP=ip5")
+dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial4,  PUMP=ip3")
+dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial5,  CC1=cc5, CC2=cc6, PR1=pr5, PR2=pr6")
+dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial6,  PUMP=ip6")
+dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial6,  PUMP=ip7")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial7,  PUMP=ip2, PA=0, PN=2")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial7,  PUMP=ip4, PA=0, PN=1")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial8,  PUMP=ip9,   PA=0 ,PN=1")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial8,  PUMP=ip10, PORT=serial8, PA=0, PN=2")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(P), PORT=serial9,  Dmm=DMM1")
+dbLoadRecords("$(CARS)/db/ILM200.db",         "P=$(P), PORT=serial10, R=ILM200_1,")
+dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial11, CC1=cc7, CC2=cc8, PR1=pr7, PR2=pr8")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial12, PUMP=ip8,  PA=0, PN=1")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial12, PUMP=ip11, PA=0, PN=2")
+dbLoadRecords("$(IP)/db/TSP.db",              "P=$(P), PORT=serial12, TSP=tsp1,  PA=0")
+dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(P), PORT=serial13, Dmm=DMM2")
+dbLoadRecords("$(CARS)/db/ILM200.db",         "P=$(P), PORT=serial14, R=ILM200_2")
+dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial15, CC1=cc9, CC2=cc10, PR1=pr9, PR2=pr10")
+dbLoadRecords("$(IP)/db/SR570.db",            "P=$(P), PORT=serial16, A=A1,")
+#dbLoadRecords("$(IP)/db/SR570.db",            "P=$(P), PORT=serial17, A=A2,")
 
 # Load asyn records on all serial ports
-dbLoadTemplate("asynRecord.template")
+dbLoadTemplate("asynRecord.template", P=$(P))
 
-
+# Disable error messages from MPC controllers.  WHY?
 asynSetTraceMask("serial7",0,0)
 asynSetTraceMask("serial8",0,0)
 asynSetTraceMask("serial12",0,0)
