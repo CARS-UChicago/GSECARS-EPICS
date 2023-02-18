@@ -6,7 +6,8 @@ dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13IDA_TEST:")
-#< serial.cmd
+
+iocshLoad("serial.cmd", "P=$(PREFIX), TS=gsets17")
 
 < eps_modbus.cmd
 
@@ -16,7 +17,7 @@ epicsEnvSet("PREFIX", "13IDA_TEST:")
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(QUADEM)/db")
 
 # Quad BPM foils
-dbLoadTemplate("13ID_BPM_Foil.substitutions")
+dbLoadTemplate("13ID_BPM_Foil.substitutions", P=$(PREFIX))
 
 # Large KB Mirror PID
 #dbLoadTemplate("mirror_pid.substitutions")
