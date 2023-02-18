@@ -6,9 +6,9 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13BMA_TEST:")
 
-iocshLoad("serial.cmd", "P=$(PREFIX), TS=gsets16")
+iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets16")
+iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-1")
 
-< eps_modbus.cmd
 
 #dbLoadTemplate("motors.template")
 
