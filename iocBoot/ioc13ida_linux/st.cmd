@@ -9,6 +9,7 @@ epicsEnvSet("PREFIX", "13IDA_TEST:")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets17")
 iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-2")
+iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
 
 #LoadTemplate("motors.template")
 
