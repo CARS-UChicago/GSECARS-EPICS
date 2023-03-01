@@ -1,0 +1,27 @@
+# This database contains fields used for Esensor temperature, humidity sensors
+# during-scan data for epicsscan
+
+ 
+grecord(ao,"$(P)$(Q):Temp") {
+        field(DTYP, "Soft Channel") 
+	field(DESC, "Temperature (F)")
+	field(VAL,  "0")
+}
+
+grecord(ao,"$(P)$(Q):TempC") {
+        field(DTYP, "Soft Channel") 
+	field(DESC, "Temperature (C)")
+	field(VAL,  "0")
+}
+
+grecord(ao,"$(P)$(Q):Humid") {
+        field(DTYP, "Soft Channel") 
+	field(DESC, "Humidity (percent)")
+	field(VAL,  "0")
+}
+
+grecord(stringin, "$(P)$(Q):TimeStamp") {
+        field(DTYP, "Soft Channel") 
+	field(DESC, "Timestamp of last update")
+	field(VAL,  "")
+}
