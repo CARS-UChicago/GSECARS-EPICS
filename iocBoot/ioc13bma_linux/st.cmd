@@ -4,11 +4,11 @@
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-epicsEnvSet("PREFIX", "13BMA_TEST:")
+epicsEnvSet("PREFIX", "13BMA:")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets16")
-iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-1")
-
+#iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-1")
+#iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
 
 #dbLoadTemplate("motors.template")
 
@@ -23,7 +23,7 @@ iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-1
 #dbLoadTemplate("auto_shutter.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
+#dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -39,20 +39,20 @@ dbLoadRecords("$(SSCAN)/db/scan.db","P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS
 #dbLoadTemplate("scanParms.template")
 
 # User calc stuff
-<../calc_GSECARS.iocsh
+#<../calc_GSECARS.iocsh
 
 # Miscellaneous PV's
-dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)")
+#dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)")
 
 # devIocStats
-epicsEnvSet("ENGINEER", "Mark Rivers")
-epicsEnvSet("LOCATION", "13-BM-A roof")
-epicsEnvSet("GROUP", "GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdmin.db","IOC=$(PREFIX)")
+#epicsEnvSet("ENGINEER", "Mark Rivers")
+#epicsEnvSet("LOCATION", "13-BM-A roof")
+#epicsEnvSet("GROUP", "GSECARS")
+#dbLoadRecords("$(DEVIOCSTATS)/db/iocAdmin.db","IOC=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
+#save_restoreSet_status_prefix("$(PREFIX)")
+#dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 
 iocInit
@@ -71,9 +71,9 @@ create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 #seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM2, stack=10000"
 
 # Enable user string calcs and user transforms
-dbpf "$(PREFIX)EnableUserTrans.PROC","1"
-dbpf "$(PREFIX)EnableUserSCalcs.PROC","1"
-dbpf "$(PREFIX)EnableuserACalcs.PROC","1"
+#dbpf "$(PREFIX)EnableUserTrans.PROC","1"
+#dbpf "$(PREFIX)EnableUserSCalcs.PROC","1"
+#dbpf "$(PREFIX)EnableuserACalcs.PROC","1"
 
 
 #seq &BM13_Energy, "E=$(PREFIX)E, MONO=$(PREFIX)m17, EXPTAB_Z=13BMD:m22, YXTAL=$(PREFIX)MON:, ZXTAL=$(PREFIX)m14" 
@@ -82,5 +82,5 @@ dbpf "$(PREFIX)EnableuserACalcs.PROC","1"
 #  this reduces the readback following error for the McLennan mono controller.
 var drvPM304ReadbackDelay 0.25
 
-motorUtilInit("$(PREFIX)")
+#motorUtilInit("$(PREFIX)")
 
