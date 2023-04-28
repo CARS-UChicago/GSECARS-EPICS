@@ -49,3 +49,7 @@ dbLoadTemplate("asynRecord.template", P=$(P))
 asynSetTraceMask("serial7",0,0)
 asynSetTraceMask("serial8",0,0)
 asynSetTraceMask("serial12",0,0)
+
+asynSetTraceMask("serial11",0,ERROR|DRIVER)
+asynSetTraceIOMask("serial11",0,ESCAPE)
+
