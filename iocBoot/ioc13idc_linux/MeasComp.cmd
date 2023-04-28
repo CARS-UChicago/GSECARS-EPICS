@@ -1,31 +1,30 @@
-# E1608
-epicsEnvSet("PORT",          "E1608")
-epicsEnvSet("UNIQUE_ID",     "gse-e1608-4.cars.aps.anl.gov")
+# USB-1808X
+epicsEnvSet("PORT",          "USB1808")
+epicsEnvSet("UNIQUE_ID",     "021514C5")
 epicsEnvSet("MAX_POINTS",    "4096")
-epicsEnvSet("E1608_PREFIX",  "$(P)E1608:")
+epicsEnvSet("USB1808_PREFIX",  "$(P)USB1808:")
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
 #                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
 #                      maxInputPoints,  # Maximum number of input points for waveform digitizer
 #                      maxOutputPoints) # Maximum number of output points for waveform generator
 
-MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
-dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(E1608_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), $(MAX_POINTS))
+dbLoadTemplate("$(MEASCOMP)/db/USB1808.substitutions", "P=$(USB1808_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS), WGEN_POINTS=$(MAX_POINTS)")
 
 # USB3104
 epicsEnvSet("PORT",           "USB3104")
-epicsEnvSet("UNIQUE_ID",      "01FE4A60")
+epicsEnvSet("UNIQUE_ID",      "0209CC85")
 epicsEnvSet("USB3104_PREFIX", "$(P)USB3104:")
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), 1, 1)
 dbLoadTemplate("$(MEASCOMP)/db/USB3104.substitutions", "P=$(USB3104_PREFIX), PORT=$(PORT)")
 
 # USBCTR
 epicsEnvSet("PORT",          "USBCTR")
-epicsEnvSet("UNIQUE_ID",     "01E538A2")
+epicsEnvSet("UNIQUE_ID",     "0213F59E")
 epicsEnvSet("USBCTR_PREFIX", "$(P)USBCTR:")
-epicsEnvSet("MCS_PREFIX",    "$(P)MCS:")
+epicsEnvSet("MCS_PREFIX",    "$(USBCTR_PREFIX)MCS:")
 epicsEnvSet("SCALER_NAME",   "scaler1")
-epicsEnvSet("MCS_PREFIX",    "$(P)MCS:")
 epicsEnvSet("RNAME",         "mca")
 epicsEnvSet("MAX_COUNTERS",  "9")
 epicsEnvSet("MAX_POINTS",    "4096")
@@ -42,7 +41,7 @@ USBCTRConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), $(POLL_TIME))
 dbLoadTemplate("$(MEASCOMP)/db/USBCTR.substitutions", "P=$(USBCTR_PREFIX), PORT=$(PORT)")
 
 # This loads the scaler record and supporting records
-dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(P), S=$(SCALER_NAME), DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=10000000")
+dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(USBCTR_PREFIX), S=$(SCALER_NAME), DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=10000000")
 
 # This database provides the support for the MCS functions
 dbLoadRecords("$(MEASCOMP)/db/measCompMCS.template", "P=$(MCS_PREFIX), PORT=$(PORT), MAX_POINTS=$(MAX_POINTS)")
