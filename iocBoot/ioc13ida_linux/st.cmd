@@ -5,13 +5,14 @@
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-epicsEnvSet("PREFIX", "13IDA_TEST:")
+epicsEnvSet("PREFIX", "13IDA:")
+epicsEnvSet("LINUX_PREFIX", "13IDA_Linux:")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets17")
 iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-2")
 iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
 
-#LoadTemplate("motors.template")
+#dbLoadTemplate("motors.template")
 
 # For areaDetector and quadEM
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(QUADEM)/db")
@@ -20,13 +21,13 @@ epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(QUADEM)/db")
 dbLoadTemplate("13ID_BPM_Foil.substitutions", P=$(PREFIX))
 
 # Large KB Mirror PID
-#dbLoadTemplate("mirror_pid.substitutions")
+dbLoadTemplate("mirror_pid.substitutions")
 
 # Auto-shutters
-#dbLoadTemplate("auto_shutter.substitutions")
+dbLoadTemplate("auto_shutter.substitutions")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
+#dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -39,10 +40,10 @@ dbLoadRecords("$(SSCAN)/db/scan.db","P=$(PREFIX),MAXPTS1=500,MAXPTS2=50,MAXPTS3=
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
-#dbLoadTemplate("scanParms.template")
+dbLoadTemplate("scanParms.template")
 
 # User calc stuff
-<../calc_GSECARS.iocsh
+iocshLoad("../calc_GSECARS.iocsh","P=$(PREFIX)")
 
 # Miscellaneous PV's
 dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)")
@@ -51,11 +52,11 @@ dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)")
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION", "13-ID-A roof")
 epicsEnvSet("GROUP", "GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdmin.db","IOC=$(PREFIX)")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdmin.db","IOC=$(LINUX_PREFIX)")
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
+save_restoreSet_status_prefix("$(LINUX_PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(LINUX_PREFIX)")
 
 iocInit
 
@@ -73,32 +74,6 @@ seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM2, stack=10000"
 dbpf "$(PREFIX)V8_status.ONSV","MAJOR"
 dbpf "$(PREFIX)V8_status.TWSV","NO_ALARM"
 
-# Enable user string calcs and user transforms
-dbpf "$(PREFIX)EnableUserTrans.PROC","1"
-dbpf "$(PREFIX)EnableUserSCalcs.PROC","1"
-dbpf "$(PREFIX)EnableuserACalcs.PROC","1"
-
-#
-# MN/MR 27/Nov/01
-# set readback delay for McLennan monochromator controller.
-# We found empirically the following maximum error (in encoder pulses)
-# for the following ReadbackDelay values.   In all cases, the maximum
-# errors were rare (say, 2 out of 50)
-#   ReadbackDelay     Max Encoder Errors 
-#     0.0                  4
-#     0.1                  3 
-#     0.2                  2
-#     0.5                  1
-#
-# Note: 1 encoder step ~= 0.05eV at 10keV.
-# (double) drvPM304ReadbackDelay = 0.25
-# Note, the above has been replaced with the .DLY field of the motor record, which
-# we now have in save/restore.  Change the .DLY field in medm.
-
-# 2009-May-28: Set the NTM fields of the DC/PID motors to 0 (NO) so they don't 
-#              get stopped when the motor changes direction due to PID
-dbpf("$(PREFIX)m17.NTM","0")
-
 ### Start the saveData task.
 # saveData_MessagePolicy
 # 0: wait forever for space in message queue, then send message
@@ -108,10 +83,10 @@ dbpf("$(PREFIX)m17.NTM","0")
 # 3: if specified time has passed, wait for space in queue, then send message
 # else: don't send message
 #debug_saveData = 2
-saveData_MessagePolicy = 2
-saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=$(PREFIX)")
+#saveData_MessagePolicy = 2
+#saveData_SetCptWait_ms(100)
+#saveData_Init("saveDataExtraPVs.req", "P=$(PREFIX)")
 #saveData_PrintScanInfo("$(PREFIX)scan1")
 
-motorUtilInit("$(PREFIX)")
+#motorUtilInit("$(PREFIX)")
 
