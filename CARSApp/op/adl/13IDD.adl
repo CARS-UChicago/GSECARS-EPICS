@@ -1,7 +1,7 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDD.adl"
+	version=030117
 }
 display {
 	object {
@@ -291,6 +291,15 @@ text {
 		name="4slitGraphic.adl"
 		args="P=13IDD:, V=EntSlitV, H=EntSlitH, mYp=m92, mYn=m91, mXn=m89, mXp=m90, SLIT=LVP_Ent  "
 	}
+	display[11] {
+		label="Press/Camera Combo (RAW)"
+		name="4motors.adl"
+		args="P=13IDD:, TITLE=LVP_Press/Camera Combo, M1=pm14, M2=pm15, M3=pm16, M4=pm17"
+	}
+	display[12] {
+		label="Press/Camera Combo"
+		name="13IDD_LVP_PressCameraCombo.adl"
+	}
 	clr=14
 	bclr=4
 }
@@ -425,6 +434,11 @@ text {
 		label="Eiger2 1M CdTe"
 		name="eigerDetector.adl"
 		args="P=dp_eiger_xrd91:, R=cam1:"
+	}
+	display[11] {
+		label="EDIO24_1"
+		name="EDIO24_module.adl"
+		args="P=13IDD:EDIO24_1:,Bd=Bd,Bi=Bi,Bo=Bo,Ct=Counter,Li=Li,Lo=Lo"
 	}
 	clr=14
 	bclr=4
@@ -673,7 +687,7 @@ text {
 	display[7] {
 		label="Soller slits"
 		name="3motors.adl"
-		args="P=13IDD:, TITLE=SollerSlits, M1=m93, M2=m94, M3=m95"
+		args="P=13MCC:, TITLE=SollerSlits, M1=m1, M2=m2, M3=m3"
 	}
 	display[8] {
 		label="Profile move"
@@ -1377,6 +1391,10 @@ text {
 	display[2] {
 		label="13IDD LVP Shutter"
 		name="13IDD_LVP_Shutter.adl"
+	}
+	display[3] {
+		label="Press Camera Combo"
+		name="13IDD_LVP_PressCameraCombo.adl"
 	}
 	clr=14
 	bclr=4
