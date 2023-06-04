@@ -1,4 +1,4 @@
-$ Joanne says that only 2 SR570 units are being used, B1 and B4.
+# Joanne says that only 2 SR570 units are being used, B1 and B4.
 
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial1,  IPADDR=$(TS):4001, IEOS=\\r,     OEOS=\\r"    # SRS570;      9600,'N',2,8,'N'
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial2,  IPADDR=$(TS):4002, IEOS=\\r,     OEOS=\\r"    # SRS570;      9600,'N',2,8,'N'
@@ -31,3 +31,5 @@ dbLoadRecords("$(IP)/db/SR570.db",                       "P=$(P), PORT=serial9, 
 dbLoadRecords("$(IP)/db/SR570.db",                       "P=$(P), PORT=serial10, A=B2")
 dbLoadRecords("$(IP)/db/SR570.db",                       "P=$(P), PORT=serial11, A=B3")
 dbLoadRecords("$(IP)/db/SR570.db",                       "P=$(P), PORT=serial12, A=B4")
+
+doAfterIocInit 'seq("Keithley2kDMM", "P=$(PREFIX), Dmm=DMM1")'
