@@ -16,13 +16,13 @@ drvAsynIPPortConfigure("$(PORT)", "10.54.160.222:502", 0, 0, 0)
 asynSetTraceIOMask("$(PORT)", 0, HEX)
 
 # Enable ASYN_TRACE_ERROR and ASYN_TRACEIO_DRIVER on octet server
-asynSetTraceMask("$(PORT)", 0, ERROR|DRIVER)
+#asynSetTraceMask("$(PORT)", 0, ERROR|DRIVER)
 
 # Set maximum number of bytes to save
 asynSetTraceIOTruncateSize("$(PORT)", 0, 256)
 
 # Send output to a text file
-asynSetTraceFile("$(PORT)", 0, "Vindum_Modbus_comms.txt")
+#asynSetTraceFile("$(PORT)", 0, "Vindum_Modbus_comms.txt")
 
 #asynSetOption($(PORT), 0, "disconnectOnReadTimeout", "Y")
 
