@@ -1,14 +1,14 @@
 
 file {
-	name="/people/epics/R3.13.0/CARS/CARSApp/op/adl/2motors.adl"
-	version=020304
+	name="/home/epics/support/CARS/CARSApp/op/adl/2motors.adl"
+	version=030117
 }
 display {
 	object {
-		x=498
-		y=251
-		width=808
-		height=210
+		x=359
+		y=254
+		width=800
+		height=200
 	}
 	clr=14
 	bclr=4
@@ -87,10 +87,448 @@ display {
 		1a7309,
 	}
 }
+text {
+	object {
+		x=0
+		y=5
+		width=800
+		height=26
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="$(TITLE)"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=0
+		y=34
+		width=800
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	points {
+		(0,34)
+		(800,34)
+	}
+}
+text {
+	object {
+		x=558
+		y=46
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Mode"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=473
+		y=40
+		width=50
+		height=36
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=481
+				y=56
+				width=30
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+				fill="outline"
+			}
+			textix="Jog"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=473
+				y=40
+				width=50
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+				fill="outline"
+			}
+			textix="Tweak"
+			align="horiz. centered"
+		}
+	}
+}
+text {
+	object {
+		x=347
+		y=56
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Absolute"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=367
+		y=40
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Move"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=230
+		y=56
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Readback"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=240
+		y=40
+		width=60
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Limits"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=55
+		y=56
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Description"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=85
+		y=40
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="Motor"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=733
+		y=46
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	textix="More"
+	align="horiz. centered"
+}
+"choice button" {
+	object {
+		x=553
+		y=87
+		width=50
+		height=40
+	}
+	control {
+		chan="$(P)$(M1).SET"
+		clr=14
+		bclr=51
+	}
+}
+composite {
+	object {
+		x=449
+		y=85
+		width=99
+		height=42
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=449
+				y=85
+				width=99
+				height=42
+			}
+			"composite name"=""
+			children {
+				composite {
+					object {
+						x=453
+						y=85
+						width=90
+						height=20
+					}
+					"composite name"=""
+					children {
+						"message button" {
+							object {
+								x=528
+								y=85
+								width=15
+								height=20
+							}
+							control {
+								chan="$(P)$(M1).TWF"
+								clr=14
+								bclr=51
+							}
+							label=">"
+							press_msg="1"
+						}
+						"message button" {
+							object {
+								x=453
+								y=85
+								width=15
+								height=20
+							}
+							control {
+								chan="$(P)$(M1).TWR"
+								clr=14
+								bclr=51
+							}
+							label="<"
+							press_msg="1"
+						}
+						"text entry" {
+							object {
+								x=468
+								y=85
+								width=60
+								height=20
+							}
+							control {
+								chan="$(P)$(M1).TWV"
+								clr=14
+								bclr=51
+							}
+							limits {
+							}
+						}
+					}
+				}
+				composite {
+					object {
+						x=449
+						y=107
+						width=99
+						height=20
+					}
+					"composite name"=""
+					children {
+						"message button" {
+							object {
+								x=449
+								y=107
+								width=47
+								height=20
+							}
+							control {
+								chan="$(P)$(M1).JOGR"
+								clr=14
+								bclr=51
+							}
+							label="JogR"
+							press_msg="1"
+							release_msg="0"
+						}
+						"message button" {
+							object {
+								x=501
+								y=107
+								width=47
+								height=20
+							}
+							control {
+								chan="$(P)$(M1).JOGF"
+								clr=14
+								bclr=51
+							}
+							label="JogF"
+							press_msg="1"
+							release_msg="0"
+						}
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=331
+		y=80
+		width=113
+		height=49
+	}
+	"composite name"=""
+	children {
+		"text entry" {
+			object {
+				x=335
+				y=99
+				width=105
+				height=25
+			}
+			control {
+				chan="$(P)$(M1).VAL"
+				clr=14
+				bclr=51
+			}
+			clrmod="discrete"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=365
+				y=80
+				width=46
+				height=15
+			}
+			"basic attribute" {
+				clr=30
+				fill="outline"
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P)$(M1).SET"
+			}
+			textix="SET"
+			align="horiz. centered"
+		}
+		rectangle {
+			object {
+				x=331
+				y=94
+				width=113
+				height=35
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P)$(M1).SET"
+			}
+		}
+	}
+}
+text {
+	object {
+		x=238
+		y=87
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=30
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(M1).LVIO"
+	}
+	textix="Soft-Limit"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=215
+		y=86
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(M1).LLS"
+	}
+}
+oval {
+	object {
+		x=311
+		y=86
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(M1).HLS"
+	}
+}
 "text update" {
 	object {
-		x=8
-		y=91
+		x=218
+		y=103
+		width=105
+		height=18
+	}
+	monitor {
+		chan="$(P)$(M1).RBV"
+		clr=54
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=96
 		width=200
 		height=20
 	}
@@ -99,25 +537,54 @@ display {
 		clr=14
 		bclr=45
 	}
-}
-rectangle {
-	object {
-		x=4
-		y=75
-		width=790
-		height=55
+	limits {
 	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
+}
+composite {
+	object {
+		x=608
+		y=97
+		width=105
+		height=20
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=608
+				y=97
+				width=40
+				height=20
+			}
+			control {
+				chan="$(P)$(M1).STOP"
+				clr=31
+				bclr=20
+			}
+			label="Stop"
+			press_msg="1"
+		}
+		menu {
+			object {
+				x=653
+				y=97
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(M1).SPMG"
+				clr=14
+				bclr=51
+			}
+		}
 	}
 }
 "related display" {
 	object {
-		x=721
-		y=91
+		x=718
+		y=96
 		width=70
-		height=21
+		height=20
 	}
 	display[0] {
 		label="more"
@@ -137,125 +604,58 @@ rectangle {
 	clr=12
 	bclr=4
 }
-"choice button" {
+rectangle {
 	object {
-		x=613
-		y=84
-		width=100
-		height=35
+		x=5
+		y=80
+		width=790
+		height=55
 	}
-	control {
-		chan="$(P)$(M1).SPMG"
-		clr=31
-		bclr=20
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
-	stacking="row column"
 }
 "choice button" {
 	object {
-		x=556
-		y=82
+		x=553
+		y=147
 		width=50
 		height=40
 	}
 	control {
-		chan="$(P)$(M1).SET"
+		chan="$(P)$(M2).SET"
 		clr=14
 		bclr=51
 	}
 }
-text {
-	object {
-		x=242
-		y=82
-		width=75
-		height=13
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(M1).LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=221
-		y=81
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(M1).HLS"
-	}
-}
-oval {
-	object {
-		x=317
-		y=81
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(M1).LLS"
-	}
-}
-"text update" {
-	object {
-		x=224
-		y=98
-		width=105
-		height=18
-	}
-	monitor {
-		chan="$(P)$(M1).RBV"
-		clr=54
-		bclr=3
-	}
-}
 composite {
 	object {
-		x=453
-		y=80
+		x=449
+		y=145
 		width=99
 		height=42
 	}
 	"composite name"=""
-	vis="static"
-	chan="$(P)$(M1).LLS"
 	children {
 		composite {
 			object {
-				x=457
-				y=80
+				x=453
+				y=145
 				width=90
 				height=20
 			}
 			"composite name"=""
-			vis="static"
-			chan="$(P)$(M1).LLS"
 			children {
 				"message button" {
 					object {
-						x=532
-						y=80
+						x=528
+						y=145
 						width=15
 						height=20
 					}
 					control {
-						chan="$(P)$(M1).TWF"
+						chan="$(P)$(M2).TWF"
 						clr=14
 						bclr=51
 					}
@@ -264,13 +664,13 @@ composite {
 				}
 				"message button" {
 					object {
-						x=457
-						y=80
+						x=453
+						y=145
 						width=15
 						height=20
 					}
 					control {
-						chan="$(P)$(M1).TWR"
+						chan="$(P)$(M2).TWR"
 						clr=14
 						bclr=51
 					}
@@ -279,95 +679,84 @@ composite {
 				}
 				"text entry" {
 					object {
-						x=472
-						y=80
+						x=468
+						y=145
 						width=60
 						height=20
 					}
 					control {
-						chan="$(P)$(M1).TWV"
+						chan="$(P)$(M2).TWV"
 						clr=14
 						bclr=51
+					}
+					limits {
 					}
 				}
 			}
 		}
-		composite {
+		"message button" {
 			object {
-				x=453
-				y=102
-				width=99
+				x=449
+				y=167
+				width=47
 				height=20
 			}
-			"composite name"=""
-			vis="static"
-			chan="$(P)$(M1).LLS"
-			children {
-				"message button" {
-					object {
-						x=453
-						y=102
-						width=47
-						height=20
-					}
-					control {
-						chan="$(P)$(M1).JOGR"
-						clr=14
-						bclr=51
-					}
-					label="JogR"
-					press_msg="1"
-					release_msg="0"
-				}
-				"message button" {
-					object {
-						x=505
-						y=102
-						width=47
-						height=20
-					}
-					control {
-						chan="$(P)$(M1).JOGF"
-						clr=14
-						bclr=51
-					}
-					label="JogF"
-					press_msg="1"
-					release_msg="0"
-				}
+			control {
+				chan="$(P)$(M2).JOGR"
+				clr=14
+				bclr=51
 			}
+			label="JogR"
+			press_msg="1"
+			release_msg="0"
+		}
+		"message button" {
+			object {
+				x=501
+				y=167
+				width=47
+				height=20
+			}
+			control {
+				chan="$(P)$(M2).JOGF"
+				clr=14
+				bclr=51
+			}
+			label="JogF"
+			press_msg="1"
+			release_msg="0"
 		}
 	}
 }
 composite {
 	object {
-		x=336
-		y=75
+		x=331
+		y=140
 		width=113
 		height=49
 	}
 	"composite name"=""
-	vis="static"
-	chan="$(P)$(M1).LLS"
 	children {
 		"text entry" {
 			object {
-				x=340
-				y=94
+				x=335
+				y=159
 				width=105
 				height=25
 			}
 			control {
-				chan="$(P)$(M1).VAL"
+				chan="$(P)$(M2).VAL"
 				clr=14
 				bclr=51
 			}
 			clrmod="discrete"
+			limits {
+			}
 		}
 		text {
 			object {
-				x=370
-				y=75
+				x=365
+				y=140
 				width=46
 				height=15
 			}
@@ -377,15 +766,15 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P)$(M1).SET"
+				chan="$(P)$(M2).SET"
 			}
 			textix="SET"
 			align="horiz. centered"
 		}
 		rectangle {
 			object {
-				x=336
-				y=89
+				x=331
+				y=154
 				width=113
 				height=35
 			}
@@ -394,199 +783,78 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P)$(M1).SET"
+				chan="$(P)$(M2).SET"
 			}
 		}
 	}
 }
 text {
 	object {
-		x=702
-		y=56
-		width=100
-		height=20
+		x=236
+		y=147
+		width=75
+		height=13
 	}
 	"basic attribute" {
-		clr=54
+		clr=30
 		fill="outline"
 	}
-	textix="Controls"
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(M2).LVIO"
+	}
+	textix="Soft-Limit"
 	align="horiz. centered"
 }
-text {
+oval {
 	object {
-		x=702
-		y=40
-		width=100
-		height=20
+		x=215
+		y=146
+		width=15
+		height=15
 	}
 	"basic attribute" {
-		clr=54
-		fill="outline"
+		clr=20
 	}
-	textix="More"
-	align="horiz. centered"
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(M2).LLS"
+	}
 }
-text {
+oval {
 	object {
-		x=450
-		y=56
-		width=100
-		height=20
+		x=311
+		y=146
+		width=15
+		height=15
 	}
 	"basic attribute" {
-		clr=54
-		fill="outline"
+		clr=20
 	}
-	textix="Jog"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=344
-		y=56
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Absolute"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=227
-		y=56
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Readback"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=33
-		y=56
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Description"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=529
-		y=46
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Mode"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=452
-		y=40
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Tweak"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=342
-		y=40
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Move"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=229
-		y=40
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Limits"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=38
-		y=40
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-		fill="outline"
-	}
-	textix="Motor"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=228
-		y=5
-		width=286
-		height=26
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-	textix="$(TITLE)"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=2
-		y=34
-		width=790
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-	points {
-		(2,34)
-		(792,34)
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(M2).HLS"
 	}
 }
 "text update" {
 	object {
-		x=8
-		y=160
+		x=218
+		y=163
+		width=105
+		height=18
+	}
+	monitor {
+		chan="$(P)$(M2).RBV"
+		clr=54
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=10
+		y=156
 		width=200
 		height=20
 	}
@@ -595,25 +863,54 @@ polyline {
 		clr=14
 		bclr=45
 	}
-}
-rectangle {
-	object {
-		x=4
-		y=144
-		width=790
-		height=55
+	limits {
 	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
+}
+composite {
+	object {
+		x=608
+		y=157
+		width=105
+		height=20
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=608
+				y=157
+				width=40
+				height=20
+			}
+			control {
+				chan="$(P)$(M1).STOP"
+				clr=31
+				bclr=20
+			}
+			label="Stop"
+			press_msg="1"
+		}
+		menu {
+			object {
+				x=653
+				y=157
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(M1).SPMG"
+				clr=14
+				bclr=51
+			}
+		}
 	}
 }
 "related display" {
 	object {
-		x=721
-		y=160
+		x=718
+		y=156
 		width=70
-		height=21
+		height=20
 	}
 	display[0] {
 		label="more"
@@ -633,239 +930,15 @@ rectangle {
 	clr=12
 	bclr=4
 }
-"choice button" {
+rectangle {
 	object {
-		x=613
-		y=153
-		width=100
-		height=35
-	}
-	control {
-		chan="$(P)$(M2).SPMG"
-		clr=31
-		bclr=20
-	}
-	stacking="row column"
-}
-"choice button" {
-	object {
-		x=556
-		y=151
-		width=50
-		height=40
-	}
-	control {
-		chan="$(P)$(M2).SET"
-		clr=14
-		bclr=51
-	}
-}
-text {
-	object {
-		x=242
-		y=151
-		width=75
-		height=13
+		x=5
+		y=140
+		width=790
+		height=55
 	}
 	"basic attribute" {
-		clr=30
+		clr=14
 		fill="outline"
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(M2).LVIO"
-	}
-	textix="Soft-Limit"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=221
-		y=150
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(M2).HLS"
-	}
-}
-oval {
-	object {
-		x=317
-		y=150
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(P)$(M2).LLS"
-	}
-}
-"text update" {
-	object {
-		x=224
-		y=167
-		width=105
-		height=18
-	}
-	monitor {
-		chan="$(P)$(M2).RBV"
-		clr=54
-		bclr=3
-	}
-}
-composite {
-	object {
-		x=457
-		y=149
-		width=90
-		height=20
-	}
-	"composite name"=""
-	vis="static"
-	chan="$(P)$(M2).LLS"
-	children {
-		"message button" {
-			object {
-				x=532
-				y=149
-				width=15
-				height=20
-			}
-			control {
-				chan="$(P)$(M2).TWF"
-				clr=14
-				bclr=51
-			}
-			label=">"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=457
-				y=149
-				width=15
-				height=20
-			}
-			control {
-				chan="$(P)$(M2).TWR"
-				clr=14
-				bclr=51
-			}
-			label="<"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=472
-				y=149
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(M2).TWV"
-				clr=14
-				bclr=51
-			}
-		}
-	}
-}
-"message button" {
-	object {
-		x=453
-		y=171
-		width=47
-		height=20
-	}
-	control {
-		chan="$(P)$(M2).JOGR"
-		clr=14
-		bclr=51
-	}
-	label="JogR"
-	press_msg="1"
-	release_msg="0"
-}
-"message button" {
-	object {
-		x=505
-		y=171
-		width=47
-		height=20
-	}
-	control {
-		chan="$(P)$(M2).JOGF"
-		clr=14
-		bclr=51
-	}
-	label="JogF"
-	press_msg="1"
-	release_msg="0"
-}
-composite {
-	object {
-		x=336
-		y=144
-		width=113
-		height=49
-	}
-	"composite name"=""
-	vis="static"
-	chan="$(P)$(M2).LLS"
-	children {
-		"text entry" {
-			object {
-				x=340
-				y=163
-				width=105
-				height=25
-			}
-			control {
-				chan="$(P)$(M2).VAL"
-				clr=14
-				bclr=51
-			}
-			clrmod="discrete"
-		}
-		text {
-			object {
-				x=370
-				y=144
-				width=46
-				height=15
-			}
-			"basic attribute" {
-				clr=30
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P)$(M2).SET"
-			}
-			textix="SET"
-			align="horiz. centered"
-		}
-		rectangle {
-			object {
-				x=336
-				y=158
-				width=113
-				height=35
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P)$(M2).SET"
-			}
-		}
 	}
 }
