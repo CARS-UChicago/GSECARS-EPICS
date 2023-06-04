@@ -9,20 +9,33 @@ epicsEnvSet(PREFIX, "13CryoJet1:")
 
 epicsEnvSet(STREAM_PROTOCOL_PATH, "$(IP)/db:$(CARS)/db")
 
-# Set up port on Digi box
-#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
-#                        noProcessEos)
-drvAsynIPPortConfigure("serial1", "gsets15:2101", 0, 0, 0)
-#drvAsynIPPortConfigure("serial1", "gsets21:4001", 0, 0, 0)
+# Set up ports on Moxa box
+#drvAsynIPPortConfigure("portName", "hostInfo", priority, noAutoConnect, noProcessEos)
+# First port is for CryoJet
+drvAsynIPPortConfigure("serial1", "gsets22:4001", 0, 0, 0)
 asynSetTraceIOMask serial1 0 ESCAPE
-asynSetTraceMask serial1 0 ERROR|DRIVER
+#asynSetTraceMask serial1 0 ERROR|DRIVER
 asynOctetSetInputEos("serial1", 0, "\r")
 asynOctetSetOutputEos("serial1", 0, "\r")
 
+# Second port is for the ILM 201
+drvAsynIPPortConfigure("serial2", "gsets22:4002", 0, 0, 0)
+asynSetTraceIOMask serial2 0 ESCAPE
+#asynSetTraceMask serial2 0 ERROR|DRIVER
+asynOctetSetInputEos("serial2", 0, "\r")
+asynOctetSetOutputEos("serial2", 0, "\r")
+
 dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=serial1, PORT=serial1, ADDR=0, OMAX=256, IMAX=256")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX), R=serial2, PORT=serial2, ADDR=0, OMAX=256, IMAX=256")
 
 # Oxford CryoJet
-dbLoadRecords("$(IP)/db/oxfordCryoRead_Stream.db", "P=$(PREFIX)Cryo1:, PORT=serial1")
+dbLoadRecords("$(IP)/db/Oxford_CryoJet.db", "P=$(PREFIX)Cryo1:, PORT=serial1")
+
+# Oxford ILM 201
+dbLoadRecords("$(IP)/db/Oxford_ILM200.db", "P=$(PREFIX)Cryo1:, R=ILM, PORT=serial2")
+
+# PVHistory
+dbLoadRecords("$(STD)/db/pvHistory.db", "P=$(PREFIX)Cryo1:, N=1, MAXSAMPLES=2000")
 
 
 ### Scan-support software
@@ -54,6 +67,6 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 iocInit
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
+#create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
