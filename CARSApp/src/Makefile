@@ -13,7 +13,6 @@ CARS_SRCS += IDD_LVP_Detector.st
 CARS_SRCS += Energy_CC.st
 CARS_SRCS += Energy.st
 CARS_SRCS += GSE_MonoEnergy.st
-CARS_SRCS += tomoCollect.st
 CARS_SRCS += GSE_MonoSupport.cpp
 CARS_SRCS += BM13_Energy.st
 CARS_SRCS += Analyzer.st
@@ -185,6 +184,8 @@ ifdef MOTOR
   $(PROD_NAME)_LIBS := Aerotech $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devFaulhaberMotor.dbd
   $(PROD_NAME)_LIBS := Faulhaber  $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += GalilSupport.dbd
+  $(PROD_NAME)_LIBS := GalilSupport $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devMclennanMotor.dbd
   $(PROD_NAME)_LIBS := Mclennan $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devNewFocus.dbd 
