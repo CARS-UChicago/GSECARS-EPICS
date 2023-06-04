@@ -4,13 +4,24 @@
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-epicsEnvSet("PREFIX", "13BMD_TEST:")
+epicsEnvSet("PREFIX", "13BMD:")
+epicsEnvSet("LINUX_PREFIX", "13BMD_Linux:")
 
-iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets16")
-iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
-iocshLoad("Koyo.cmd",       "P=$(PREFIX)LaserPLC:")
+#iocshLoad("serial.cmd", "P=$(PREFIX), TS=gsets16")
+iocshLoad("MeasComp_EDIO24.cmd", "P=$(PREFIX)")
+#iocshLoad("Koyo.cmd", "P=$(PREFIX)LaserPLC:")
 
 #dbLoadTemplate("motors.template")
+
+< ../save_restore_IOCSH.cmd
+save_restoreSet_status_prefix("$(LINUX_PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(LINUX_PREFIX)")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","13-BM-D")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(LINUX_PREFIX)")
 
 iocInit
 
@@ -22,5 +33,5 @@ iocInit
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5,"P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX),EDIO24_PREFIX=$(EDIO24_PREFIX)")
 
