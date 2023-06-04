@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
+	version=030117
 }
 display {
 	object {
-		x=339
-		y=99
+		x=492
+		y=104
 		width=316
 		height=627
 	}
@@ -188,6 +188,11 @@ composite {
 		name="2motors.adl"
 		args="P=13IDC:, TITLE=CRL_X_Y, M1=m63, M2=m16"
 	}
+	display[6] {
+		label="gse-galil1 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil1:,M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m14,M7=m15,M8=m16"
+	}
 	clr=14
 	bclr=5
 }
@@ -347,6 +352,21 @@ composite {
 		label="Bede SCA Control"
 		name="sca_bede_control.adl"
 		args="P=13IDC:, SCA=BEDE"
+	}
+	display[9] {
+		label="USB-CTR08"
+		name="USBCTR.adl"
+		args="P=13IDC:USBCTR:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[10] {
+		label="USB-1808X"
+		name="USB1808_module.adl"
+		args="P=13IDC:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[11] {
+		label="USB-3104"
+		name="USB3104_module.adl"
+		args="P=13IDC:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	clr=14
 	bclr=5
