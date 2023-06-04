@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
+	version=030117
 }
 display {
 	object {
-		x=205
-		y=214
+		x=126
+		y=126
 		width=399
 		height=385
 	}
@@ -156,6 +156,16 @@ text {
 		name="beamQualityReport.adl"
 		args="name=13BM, pv=BM13"
 	}
+	display[9] {
+		label="ESAF/Proposal 13BM-C"
+		name="apsbss.adl"
+		args="P=13BMC:bss:"
+	}
+	display[10] {
+		label="ESAF/Proposal 13BM-D"
+		name="apsbss.adl"
+		args="P=13BMD:bss:"
+	}
 	clr=14
 	bclr=4
 	label="- BM Main Control"
@@ -194,6 +204,16 @@ text {
 		label="13 BMD Tomo XRD"
 		name="13BMD_Tomo_XRD.adl"
 		args="P=13BMD:, Title=Tomo_XRD"
+	}
+	display[10] {
+		label="13 BMD DAC Pil300K"
+		name="13BMD_DAC_PIL300K.adl"
+		args="P=13BMD:, C=Pelco1"
+	}
+	display[11] {
+		label="13 BMD Brill PIL300K"
+		name="13BMD_brill_PIL300K.adl"
+		args="P=13BMD:, TITLE=Brillouin, R=Unidig2, D=1, C=Pelco1"
 	}
 	clr=14
 	bclr=4
@@ -360,6 +380,16 @@ text {
 		label="Beam Qaulity 13ID C/D"
 		name="beamQualityReport.adl"
 		args="name=13ID-DS, pv=ID13ds"
+	}
+	display[9] {
+		label="ESAF/Proposal 13ID-C/D"
+		name="apsbss.adl"
+		args="P=13IDCD:bss:"
+	}
+	display[10] {
+		label="ESAF/Proposal 13ID-E"
+		name="apsbss.adl"
+		args="P=13IDE:bss:"
 	}
 	clr=14
 	bclr=4
@@ -872,6 +902,10 @@ text {
 	display[3] {
 		label="SmarAct #1"
 		name="13SmarAct1.adl"
+	}
+	display[4] {
+		label="CryoJet #1"
+		name="13CryoJet1.adl"
 	}
 	display[5] {
 		label="SMKB XPS"
