@@ -6,13 +6,15 @@
 dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-epicsEnvSet("PREFIX", "13IDC_TEST:")
+epicsEnvSet("PREFIX", "13IDC:")
+epicsEnvSet("P", "13IDC:")
 
-#iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets19")
-iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
+iocshLoad("serial.cmd",   "P=$(PREFIX), TS=gsets20")
+iocshLoad("MeasComp.cmd", "P=$(PREFIX)")
+iocshLoad("motors.cmd",   "P=$(PREFIX)")
 
-
-#dbLoadTemplate("motors.template")
+# User calc stuff
+iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX))
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
@@ -34,5 +36,13 @@ iocInit
 # save positions every five seconds
 #create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "USB3104_PREFIX=$(USB3104_PREFIX), USB1808_PREFIX=$(USB1808_PREFIX),USBCTR_PREFIX=$(USBCTR_PREFIX), MCS_PREFIX=$(MCS_PREFIX)")
+create_monitor_set("auto_settings.req", 30, "P3104=$(USB3104_PREFIX), P1808=$(USB1808_PREFIX), PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
+
+# Filter seq program
+#seq(filterDrive, "NAME=filterDrive,P=$(PREFIX),R=filter:,NUM_FILTERS=8")
+
+# Our beamline is in eV, so change the calc to divide by 1000.
+#dbpf("$(PREFIX)filter:Energy.CALC", "(A==0)?B/1000.:C")
+
+motorUtilInit("$(PREFIX)")
 
