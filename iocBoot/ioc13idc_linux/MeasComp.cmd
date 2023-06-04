@@ -1,6 +1,7 @@
 # USB-1808X
 epicsEnvSet("PORT",          "USB1808")
-epicsEnvSet("UNIQUE_ID",     "021514C5")
+#epicsEnvSet("UNIQUE_ID",     "021514C5")
+epicsEnvSet("UNIQUE_ID",     "02151405")
 epicsEnvSet("MAX_POINTS",    "4096")
 epicsEnvSet("USB1808_PREFIX",  "$(P)USB1808:")
 ## Configure port driver
@@ -14,16 +15,19 @@ dbLoadTemplate("$(MEASCOMP)/db/USB1808.substitutions", "P=$(USB1808_PREFIX), POR
 
 # USB3104
 epicsEnvSet("PORT",           "USB3104")
-epicsEnvSet("UNIQUE_ID",      "0209CC85")
+#epicsEnvSet("UNIQUE_ID",      "0209CC85")
+epicsEnvSet("UNIQUE_ID",      "0209CC90")
 epicsEnvSet("USB3104_PREFIX", "$(P)USB3104:")
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), 1, 1)
 dbLoadTemplate("$(MEASCOMP)/db/USB3104.substitutions", "P=$(USB3104_PREFIX), PORT=$(PORT)")
 
 # USBCTR
 epicsEnvSet("PORT",          "USBCTR")
-epicsEnvSet("UNIQUE_ID",     "0213F59E")
+#epicsEnvSet("UNIQUE_ID",     "0213F59E")
+epicsEnvSet("UNIQUE_ID",     "0214D588")
 epicsEnvSet("USBCTR_PREFIX", "$(P)USBCTR:")
 epicsEnvSet("MCS_PREFIX",    "$(USBCTR_PREFIX)MCS:")
+epicsEnvSet("SCALER_PREFIX", "$(P)"
 epicsEnvSet("SCALER_NAME",   "scaler1")
 epicsEnvSet("RNAME",         "mca")
 epicsEnvSet("MAX_COUNTERS",  "9")
@@ -41,7 +45,8 @@ USBCTRConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), $(POLL_TIME))
 dbLoadTemplate("$(MEASCOMP)/db/USBCTR.substitutions", "P=$(USBCTR_PREFIX), PORT=$(PORT)")
 
 # This loads the scaler record and supporting records
-dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(USBCTR_PREFIX), S=$(SCALER_NAME), DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=10000000")
+# We use the IOC prefix, without the USBCTR: for backwards compatibility
+dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(SCALER_PREFIX), S=$(SCALER_NAME), DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=10000000")
 
 # This database provides the support for the MCS functions
 dbLoadRecords("$(MEASCOMP)/db/measCompMCS.template", "P=$(MCS_PREFIX), PORT=$(PORT), MAX_POINTS=$(MAX_POINTS)")
