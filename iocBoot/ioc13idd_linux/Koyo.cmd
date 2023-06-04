@@ -27,4 +27,4 @@ asynSetTraceIOMask("Koyo",0,4)
 # Turn on asynError and asynTraceIODriver on TCP server
 #asynSetTraceMask("Koyo",0,255)
 
-dbLoadTemplate("Koyo.substitutions")
+dbLoadTemplate("Koyo.substitutions", "P=$(P)")
