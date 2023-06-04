@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/devel/CARS/CARSApp/op/adl/13BM_EPS.adl"
+	name="/home/epics/support/CARS/CARSApp/op/adl/13BM_EPS.adl"
 	version=030117
 }
 display {
 	object {
-		x=203
-		y=77
+		x=1091
+		y=60
 		width=1200
 		height=1099
 	}
@@ -149,9 +149,9 @@ oval {
 }
 text {
 	object {
-		x=426
+		x=464
 		y=14
-		width=317
+		width=240
 		height=30
 	}
 	"basic attribute" {
@@ -300,7 +300,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr9"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -318,7 +318,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc9"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -329,9 +329,9 @@ oval {
 }
 text {
 	object {
-		x=742
+		x=735
 		y=767
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -461,7 +461,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip10_Volts"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -478,7 +478,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip10_Current"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -496,7 +496,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip10_Pressure"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -998,7 +998,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:pr10"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -1009,9 +1009,9 @@ rectangle {
 }
 text {
 	object {
-		x=610
+		x=600
 		y=966
-		width=84
+		width=105
 		height=14
 	}
 	"basic attribute" {
@@ -1050,9 +1050,9 @@ polyline {
 }
 text {
 	object {
-		x=595
+		x=565
 		y=740
-		width=84
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -1091,55 +1091,44 @@ oval {
 		chan="13BMA:eps_mbbi101"
 	}
 }
-composite {
+rectangle {
 	object {
-		x=552
+		x=554
 		y=918
-		width=97
+		width=95
 		height=26
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=554
-				y=918
-				width=95
-				height=26
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		text {
-			object {
-				x=552
-				y=923
-				width=45
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Temp:"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=596
-				y=923
-				width=50
-				height=15
-			}
-			monitor {
-				chan="G:AHU:FP5095Ai"
-				clr=53
-				bclr=56
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=552
+		y=923
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temp:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=596
+		y=923
+		width=50
+		height=15
+	}
+	monitor {
+		chan="G:AHU:FP5095Ai"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
 	}
 }
 rectangle {
@@ -1219,9 +1208,9 @@ text {
 }
 text {
 	object {
-		x=280
+		x=250
 		y=65
-		width=84
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -1244,9 +1233,9 @@ rectangle {
 }
 text {
 	object {
-		x=1108
+		x=1102
 		y=54
-		width=60
+		width=72
 		height=18
 	}
 	"basic attribute" {
@@ -1386,9 +1375,9 @@ menu {
 }
 text {
 	object {
-		x=1116
+		x=1106
 		y=87
-		width=49
+		width=70
 		height=14
 	}
 	"basic attribute" {
@@ -1452,9 +1441,9 @@ rectangle {
 }
 text {
 	object {
-		x=1033
+		x=1023
 		y=120
-		width=35
+		width=56
 		height=14
 	}
 	"basic attribute" {
@@ -1538,146 +1527,135 @@ rectangle {
 		fill="outline"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=212
 		y=297
 		width=127
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=212
-				y=297
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=276
-				y=320
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip1_Volts"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=276
-				y=338
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip1_Current"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=276
-				y=356
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip1_Pressure"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=247
-				y=301
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=237
-				y=320
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=223
-				y=338
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=216
-				y=356
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=212
-				y=318
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(212,318)
-				(339,318)
-			}
-		}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=276
+		y=320
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip1_Volts"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=276
+		y=338
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip1_Current"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=276
+		y=356
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip1_Pressure"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=247
+		y=301
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=237
+		y=320
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=223
+		y=338
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=216
+		y=356
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=212
+		y=318
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(212,318)
+		(339,318)
 	}
 }
 rectangle {
@@ -1715,7 +1693,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr3"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -1733,7 +1711,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc3"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -1744,9 +1722,9 @@ oval {
 }
 text {
 	object {
-		x=239
+		x=232
 		y=103
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -1891,7 +1869,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr2"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -1909,7 +1887,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc2"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -1920,9 +1898,9 @@ oval {
 }
 text {
 	object {
-		x=447
+		x=440
 		y=103
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -2148,9 +2126,9 @@ rectangle {
 }
 text {
 	object {
-		x=364
+		x=357
 		y=120
-		width=35
+		width=49
 		height=14
 	}
 	"basic attribute" {
@@ -2207,147 +2185,125 @@ oval {
 		chan="13BMA:eps_mbbi79"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=215
-		y=211
+		y=225
 		width=120
-		height=85
+		height=57
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=215
-				y=225
-				width=120
-				height=57
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=225
-				y=235
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Diagnostic"
-		}
-		rectangle {
-			object {
-				x=265
-				y=282
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=265
-				y=211
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=255
-				y=255
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Tank"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
-composite {
+text {
+	object {
+		x=225
+		y=235
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Diagnostic"
+}
+rectangle {
+	object {
+		x=265
+		y=282
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=265
+		y=211
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=255
+		y=255
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tank"
+}
+rectangle {
 	object {
 		x=419
-		y=211
+		y=225
 		width=140
-		height=85
+		height=57
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=419
-				y=225
-				width=140
-				height=57
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=424
-				y=235
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Monochromator"
-		}
-		rectangle {
-			object {
-				x=479
-				y=282
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=479
-				y=211
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=469
-				y=255
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Tank"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
+}
+text {
+	object {
+		x=424
+		y=235
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Monochromator"
+}
+rectangle {
+	object {
+		x=479
+		y=282
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=479
+		y=211
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=469
+		y=255
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tank"
 }
 rectangle {
 	object {
@@ -2453,9 +2409,9 @@ rectangle {
 }
 text {
 	object {
-		x=169
+		x=162
 		y=120
-		width=35
+		width=49
 		height=14
 	}
 	"basic attribute" {
@@ -2532,7 +2488,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip2_Volts"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -2549,7 +2505,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip2_Current"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -2567,7 +2523,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip2_Pressure"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -2656,9 +2612,9 @@ rectangle {
 }
 text {
 	object {
-		x=57
+		x=60
 		y=122
-		width=77
+		width=70
 		height=14
 	}
 	"basic attribute" {
@@ -2682,254 +2638,221 @@ polyline {
 		(144,140)
 	}
 }
-composite {
+oval {
 	object {
-		x=49
+		x=127
 		y=165
-		width=93
+		width=15
 		height=15
 	}
-	"composite name"=""
-	children {
-		oval {
-			object {
-				x=127
-				y=165
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi84"
-			}
-		}
-		oval {
-			object {
-				x=130
-				y=168
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi83"
-			}
-		}
-		text {
-			object {
-				x=49
-				y=166
-				width=77
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Monochrom."
-			align="horiz. centered"
-		}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi84"
 	}
 }
-composite {
+oval {
+	object {
+		x=130
+		y=168
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi83"
+	}
+}
+text {
+	object {
+		x=52
+		y=166
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Monochrom."
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=127
+		y=145
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi82"
+	}
+}
+oval {
+	object {
+		x=130
+		y=148
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi81"
+	}
+}
+text {
 	object {
 		x=49
-		y=145
-		width=93
-		height=15
+		y=146
+		width=77
+		height=13
 	}
-	"composite name"=""
-	children {
-		oval {
-			object {
-				x=127
-				y=145
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi82"
-			}
-		}
-		oval {
-			object {
-				x=130
-				y=148
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi81"
-			}
-		}
-		text {
-			object {
-				x=49
-				y=146
-				width=77
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Finger mask"
-			align="horiz. centered"
-		}
+	"basic attribute" {
+		clr=13
 	}
+	textix="Finger mask"
+	align="horiz. centered"
 }
-composite {
+rectangle {
 	object {
 		x=749
 		y=297
 		width=127
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=749
-				y=297
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=813
-				y=320
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip1_Volts"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=813
-				y=338
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip1_Current"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=813
-				y=356
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip1_Pressure"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=784
-				y=301
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=774
-				y=320
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=760
-				y=338
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=753
-				y=356
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=749
-				y=318
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(749,318)
-				(876,318)
-			}
-		}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=813
+		y=320
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip1_Volts"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=813
+		y=338
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip1_Current"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=813
+		y=356
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip1_Pressure"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=784
+		y=301
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=774
+		y=320
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=760
+		y=338
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=753
+		y=356
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=749
+		y=318
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(749,318)
+		(876,318)
 	}
 }
 rectangle {
@@ -2967,7 +2890,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr1"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -2985,7 +2908,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc1"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -2996,9 +2919,9 @@ oval {
 }
 text {
 	object {
-		x=918
+		x=911
 		y=103
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -3180,356 +3103,345 @@ text {
 	}
 	textix="Slit Tanks"
 }
-composite {
+rectangle {
 	object {
 		x=776
 		y=56
 		width=130
 		height=155
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=776
-				y=56
-				width=130
-				height=155
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		oval {
-			object {
-				x=888
-				y=85
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi13"
-			}
-		}
-		text {
-			object {
-				x=803
-				y=63
-				width=77
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Water Flow"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=891
-				y=88
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi12"
-			}
-		}
-		polyline {
-			object {
-				x=776
-				y=81
-				width=130
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(776,81)
-				(906,81)
-			}
-		}
-		text {
-			object {
-				x=828
-				y=86
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Aperture"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=888
-				y=103
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi15"
-			}
-		}
-		oval {
-			object {
-				x=891
-				y=106
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi14"
-			}
-		}
-		text {
-			object {
-				x=814
-				y=104
-				width=70
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Beam Stops"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=888
-				y=121
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi17"
-			}
-		}
-		oval {
-			object {
-				x=891
-				y=124
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi16"
-			}
-		}
-		text {
-			object {
-				x=835
-				y=122
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Filters"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=888
-				y=139
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi19"
-			}
-		}
-		oval {
-			object {
-				x=891
-				y=142
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi18"
-			}
-		}
-		text {
-			object {
-				x=779
-				y=140
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Vert. Slits"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=888
-				y=157
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi21"
-			}
-		}
-		oval {
-			object {
-				x=891
-				y=160
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi20"
-			}
-		}
-		text {
-			object {
-				x=786
-				y=158
-				width=98
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Hor. Slits"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=888
-				y=175
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi23"
-			}
-		}
-		oval {
-			object {
-				x=891
-				y=178
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi22"
-			}
-		}
-		text {
-			object {
-				x=779
-				y=176
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMC Vert. Slits"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=888
-				y=193
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi25"
-			}
-		}
-		oval {
-			object {
-				x=891
-				y=196
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi24"
-			}
-		}
-		text {
-			object {
-				x=814
-				y=194
-				width=70
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMC Hor. V"
-			align="horiz. centered"
-		}
+	"basic attribute" {
+		clr=56
 	}
+}
+oval {
+	object {
+		x=888
+		y=85
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi13"
+	}
+}
+text {
+	object {
+		x=806
+		y=63
+		width=70
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Water Flow"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=891
+		y=88
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi12"
+	}
+}
+polyline {
+	object {
+		x=776
+		y=81
+		width=130
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(776,81)
+		(906,81)
+	}
+}
+text {
+	object {
+		x=828
+		y=86
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Aperture"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=888
+		y=103
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi15"
+	}
+}
+oval {
+	object {
+		x=891
+		y=106
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi14"
+	}
+}
+text {
+	object {
+		x=814
+		y=104
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Beam Stops"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=888
+		y=121
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi17"
+	}
+}
+oval {
+	object {
+		x=891
+		y=124
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi16"
+	}
+}
+text {
+	object {
+		x=835
+		y=122
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Filters"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=888
+		y=139
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi19"
+	}
+}
+oval {
+	object {
+		x=891
+		y=142
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi18"
+	}
+}
+text {
+	object {
+		x=779
+		y=140
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Vert. Slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=888
+		y=157
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi21"
+	}
+}
+oval {
+	object {
+		x=891
+		y=160
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi20"
+	}
+}
+text {
+	object {
+		x=786
+		y=158
+		width=98
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Hor. Slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=888
+		y=175
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi23"
+	}
+}
+oval {
+	object {
+		x=891
+		y=178
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi22"
+	}
+}
+text {
+	object {
+		x=779
+		y=176
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC Vert. Slits"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=888
+		y=193
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi25"
+	}
+}
+oval {
+	object {
+		x=891
+		y=196
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi24"
+	}
+}
+text {
+	object {
+		x=814
+		y=194
+		width=70
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC Hor. V"
+	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -3620,9 +3532,9 @@ rectangle {
 }
 text {
 	object {
-		x=565
+		x=558
 		y=120
-		width=35
+		width=49
 		height=14
 	}
 	"basic attribute" {
@@ -3783,9 +3695,9 @@ rectangle {
 }
 text {
 	object {
-		x=720
+		x=706
 		y=120
-		width=35
+		width=63
 		height=14
 	}
 	"basic attribute" {
@@ -3916,9 +3828,9 @@ rectangle {
 }
 text {
 	object {
-		x=643
+		x=629
 		y=120
-		width=35
+		width=63
 		height=14
 	}
 	"basic attribute" {
@@ -4039,9 +3951,9 @@ text {
 }
 text {
 	object {
-		x=1020
+		x=990
 		y=405
-		width=84
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -4085,7 +3997,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr7"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -4103,7 +4015,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc7"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -4114,9 +4026,9 @@ oval {
 }
 text {
 	object {
-		x=1043
+		x=1036
 		y=433
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -4226,217 +4138,195 @@ oval {
 		chan="13BMA:eps_mbbi58"
 	}
 }
-composite {
+rectangle {
 	object {
-		x=1025
+		x=1075
 		y=541
-		width=120
-		height=85
+		width=20
+		height=14
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=1075
-				y=541
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=1045
-				y=565
-				width=80
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="BMC Slit"
-		}
-		rectangle {
-			object {
-				x=1025
-				y=555
-				width=120
-				height=57
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=1065
-				y=585
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Tank"
-		}
-		rectangle {
-			object {
-				x=1075
-				y=612
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
-composite {
+text {
+	object {
+		x=1045
+		y=565
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMC Slit"
+}
+rectangle {
+	object {
+		x=1025
+		y=555
+		width=120
+		height=57
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=1065
+		y=585
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tank"
+}
+rectangle {
+	object {
+		x=1075
+		y=612
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
 	object {
 		x=1022
 		y=627
 		width=127
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=1022
-				y=627
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=1086
-				y=650
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip7_Volts"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1086
-				y=668
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip7_Current"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=1086
-				y=686
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip7_Pressure"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=1057
-				y=631
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=1047
-				y=650
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=1033
-				y=668
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=1026
-				y=686
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=1022
-				y=648
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(1022,648)
-				(1149,648)
-			}
-		}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=1086
+		y=650
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip7_Volts"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1086
+		y=668
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip7_Current"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1086
+		y=686
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip7_Pressure"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=1057
+		y=631
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1047
+		y=650
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1033
+		y=668
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1026
+		y=686
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=1022
+		y=648
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(1022,648)
+		(1149,648)
 	}
 }
 rectangle {
@@ -4452,9 +4342,9 @@ rectangle {
 }
 text {
 	object {
-		x=874
+		x=877
 		y=405
-		width=77
+		width=70
 		height=14
 	}
 	"basic attribute" {
@@ -4518,9 +4408,9 @@ rectangle {
 }
 text {
 	object {
-		x=1065
+		x=1063
 		y=735
-		width=80
+		width=84
 		height=25
 	}
 	"basic attribute" {
@@ -4529,55 +4419,44 @@ text {
 	textix="13-BM-C"
 	align="horiz. centered"
 }
-composite {
+rectangle {
 	object {
-		x=912
+		x=914
 		y=767
-		width=93
+		width=91
 		height=26
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=914
-				y=767
-				width=91
-				height=26
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		text {
-			object {
-				x=912
-				y=772
-				width=43
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Temp:"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=954
-				y=772
-				width=48
-				height=15
-			}
-			monitor {
-				chan="G:AHU:FP5095Ai"
-				clr=53
-				bclr=56
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=911
+		y=772
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temp:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=954
+		y=772
+		width=48
+		height=15
+	}
+	monitor {
+		chan="G:AHU:FP5095Ai"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
 	}
 }
 rectangle {
@@ -4706,9 +4585,9 @@ rectangle {
 }
 text {
 	object {
-		x=297
+		x=287
 		y=450
-		width=35
+		width=56
 		height=14
 	}
 	"basic attribute" {
@@ -4869,9 +4748,9 @@ rectangle {
 }
 text {
 	object {
-		x=771
+		x=761
 		y=425
-		width=35
+		width=56
 		height=14
 	}
 	"basic attribute" {
@@ -5168,146 +5047,135 @@ text {
 	textix="BMC Mono stop"
 	align="horiz. centered"
 }
-composite {
+rectangle {
 	object {
 		x=858
 		y=627
 		width=127
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=858
-				y=627
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=922
-				y=650
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip7_Volts"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=922
-				y=668
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip7_Current"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=922
-				y=686
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip7_Pressure"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=893
-				y=631
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=883
-				y=650
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=869
-				y=668
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=862
-				y=686
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=858
-				y=648
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(858,648)
-				(985,648)
-			}
-		}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=922
+		y=650
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip7_Volts"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=922
+		y=668
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip7_Current"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=922
+		y=686
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip7_Pressure"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=893
+		y=631
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=883
+		y=650
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=869
+		y=668
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=862
+		y=686
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=858
+		y=648
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(858,648)
+		(985,648)
 	}
 }
 oval {
@@ -5355,9 +5223,9 @@ text {
 }
 text {
 	object {
-		x=910
+		x=880
 		y=739
-		width=84
+		width=144
 		height=15
 	}
 	"basic attribute" {
@@ -5366,52 +5234,42 @@ text {
 	textix="Station Searched"
 	align="horiz. centered"
 }
-composite {
+text {
 	object {
-		x=99
+		x=91
+		y=787
+		width=80
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EPS fault:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=174
 		y=786
-		width=145
+		width=70
 		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=99
-				y=787
-				width=64
-				height=18
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="EPS fault:"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=174
-				y=786
-				width=70
-				height=20
-			}
-			monitor {
-				chan="13BMA:eps_mbbi5"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
+	monitor {
+		chan="13BMA:eps_mbbi5"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
 	}
 }
 text {
 	object {
-		x=99
+		x=91
 		y=812
-		width=64
+		width=80
 		height=18
 	}
 	"basic attribute" {
@@ -5434,14 +5292,15 @@ text {
 	}
 	clrmod="alarm"
 	align="horiz. centered"
+	format="string"
 	limits {
 	}
 }
 text {
 	object {
-		x=99
+		x=91
 		y=837
-		width=64
+		width=80
 		height=18
 	}
 	"basic attribute" {
@@ -5464,448 +5323,427 @@ text {
 	}
 	clrmod="alarm"
 	align="horiz. centered"
+	format="string"
 	limits {
 	}
 }
-composite {
+rectangle {
 	object {
-		x=187
+		x=240
 		y=611
-		width=127
-		height=100
+		width=20
+		height=14
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=240
-				y=611
-				width=20
-				height=14
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		rectangle {
-			object {
-				x=187
-				y=626
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=251
-				y=649
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip9:VOLT"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=251
-				y=667
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip9:CUR"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=251
-				y=685
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:ip9:PRES"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=205
-				y=630
-				width=56
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=212
-				y=649
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=198
-				y=667
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=191
-				y=685
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=187
-				y=647
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(187,647)
-				(314,647)
-			}
-		}
-		"related display" {
-			object {
-				x=271
-				y=628
-				width=40
-				height=18
-			}
-			display[0] {
-				label="MPC Ion Pump"
-				name="MPC.adl"
-				args="P=13BMA:, PUMP=ip9"
-			}
-			display[1] {
-				label="MPC TSP"
-				name="MPC_TSP.adl"
-				args="P=13BMA:, TSP=tsp1"
-			}
-			clr=13
-			bclr=52
-			label="More"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
-composite {
+rectangle {
+	object {
+		x=187
+		y=626
+		width=127
+		height=85
+	}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=251
+		y=649
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip9:VOLT"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=251
+		y=667
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip9:CUR"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=251
+		y=685
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:ip9:PRES"
+		clr=15
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=205
+		y=630
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=212
+		y=649
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=198
+		y=667
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=191
+		y=685
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=187
+		y=647
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(187,647)
+		(314,647)
+	}
+}
+"related display" {
+	object {
+		x=271
+		y=628
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Ion Pump"
+		name="MPC.adl"
+		args="P=13BMA:, PUMP=ip9"
+	}
+	display[1] {
+		label="MPC TSP"
+		name="MPC_TSP.adl"
+		args="P=13BMA:, TSP=tsp1"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+rectangle {
 	object {
 		x=363
 		y=400
 		width=135
 		height=130
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=363
-				y=400
-				width=135
-				height=130
-			}
-			"basic attribute" {
-				clr=56
-			}
-		}
-		text {
-			object {
-				x=394
-				y=405
-				width=77
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Water Flow"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=363
-				y=423
-				width=135
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(363,423)
-				(498,423)
-			}
-		}
-		oval {
-			object {
-				x=480
-				y=427
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi112"
-			}
-		}
-		oval {
-			object {
-				x=483
-				y=430
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi111"
-			}
-		}
-		text {
-			object {
-				x=387
-				y=428
-				width=91
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMC mono xtal"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=480
-				y=447
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi94"
-			}
-		}
-		oval {
-			object {
-				x=483
-				y=450
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi93"
-			}
-		}
-		text {
-			object {
-				x=373
-				y=448
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Mirror Mask"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=480
-				y=487
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi98"
-			}
-		}
-		oval {
-			object {
-				x=483
-				y=490
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi97"
-			}
-		}
-		text {
-			object {
-				x=401
-				y=488
-				width=77
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Shutter"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=480
-				y=507
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi74"
-			}
-		}
-		oval {
-			object {
-				x=483
-				y=510
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi73"
-			}
-		}
-		text {
-			object {
-				x=373
-				y=507
-				width=105
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMC mono helium"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=480
-				y=467
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi96"
-			}
-		}
-		oval {
-			object {
-				x=483
-				y=470
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13BMA:eps_mbbi95"
-			}
-		}
-		text {
-			object {
-				x=366
-				y=468
-				width=112
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="BMD Vert. Mirror"
-			align="horiz. centered"
-		}
+	"basic attribute" {
+		clr=56
 	}
+}
+text {
+	object {
+		x=397
+		y=405
+		width=80
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Water Flow"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=363
+		y=423
+		width=135
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(363,423)
+		(498,423)
+	}
+}
+oval {
+	object {
+		x=480
+		y=427
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi112"
+	}
+}
+oval {
+	object {
+		x=483
+		y=430
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi111"
+	}
+}
+text {
+	object {
+		x=387
+		y=428
+		width=91
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC mono xtal"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=480
+		y=447
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi94"
+	}
+}
+oval {
+	object {
+		x=483
+		y=450
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi93"
+	}
+}
+text {
+	object {
+		x=373
+		y=448
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Mirror Mask"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=480
+		y=487
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi98"
+	}
+}
+oval {
+	object {
+		x=483
+		y=490
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi97"
+	}
+}
+text {
+	object {
+		x=401
+		y=488
+		width=77
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Shutter"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=480
+		y=507
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi74"
+	}
+}
+oval {
+	object {
+		x=483
+		y=510
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi73"
+	}
+}
+text {
+	object {
+		x=373
+		y=507
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMC mono helium"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=480
+		y=467
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi96"
+	}
+}
+oval {
+	object {
+		x=483
+		y=470
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi95"
+	}
+}
+text {
+	object {
+		x=366
+		y=468
+		width=112
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="BMD Vert. Mirror"
+	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -5942,7 +5780,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr4"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -5960,7 +5798,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc4"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -5971,9 +5809,9 @@ oval {
 }
 text {
 	object {
-		x=179
+		x=172
 		y=432
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -6099,7 +5937,7 @@ text {
 	object {
 		x=181
 		y=564
-		width=80
+		width=100
 		height=20
 	}
 	"basic attribute" {
@@ -6131,158 +5969,147 @@ text {
 	}
 	textix="Tank"
 }
-composite {
+rectangle {
 	object {
 		x=59
 		y=409
 		width=80
-		height=189
+		height=120
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=59
-				y=409
-				width=80
-				height=120
-			}
-			"basic attribute" {
-				clr=45
-			}
-		}
-		rectangle {
-			object {
-				x=97
-				y=568
-				width=15
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMA:eps_mbbi99"
-			}
-		}
-		rectangle {
-			object {
-				x=97
-				y=538
-				width=15
-				height=30
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMA:eps_mbbi99"
-			}
-		}
-		rectangle {
-			object {
-				x=91
-				y=533
-				width=26
-				height=41
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		polyline {
-			object {
-				x=64
-				y=437
-				width=70
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(64,437)
-				(134,437)
-			}
-		}
-		"text update" {
-			object {
-				x=69
-				y=508
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi99"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=77
-				y=460
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:CloseBMDShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Close"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=77
-				y=440
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:OpenBMDShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Open"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=75
-				y=416
-				width=49
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="BMD Shutter"
-			align="horiz. centered"
-		}
-		menu {
-			object {
-				x=69
-				y=483
-				width=60
-				height=20
-			}
-			control {
-				chan="13BMA:eps_bo9"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-		}
+	"basic attribute" {
+		clr=45
 	}
+}
+rectangle {
+	object {
+		x=97
+		y=568
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMA:eps_mbbi99"
+	}
+}
+rectangle {
+	object {
+		x=97
+		y=538
+		width=15
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMA:eps_mbbi99"
+	}
+}
+rectangle {
+	object {
+		x=91
+		y=533
+		width=26
+		height=41
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+polyline {
+	object {
+		x=64
+		y=437
+		width=70
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(64,437)
+		(134,437)
+	}
+}
+"text update" {
+	object {
+		x=69
+		y=508
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi99"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=77
+		y=460
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:CloseBMDShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Close"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=77
+		y=440
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:OpenBMDShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Open"
+	press_msg="1"
+}
+text {
+	object {
+		x=61
+		y=416
+		width=77
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="BMD Shutter"
+	align="horiz. centered"
+}
+menu {
+	object {
+		x=69
+		y=483
+		width=60
+		height=20
+	}
+	control {
+		chan="13BMA:eps_bo9"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
 }
 rectangle {
 	object {
@@ -6331,7 +6158,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:pr8"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -6349,7 +6176,7 @@ oval {
 	}
 	monitor {
 		chan="13BMA:cc8"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -6360,9 +6187,9 @@ oval {
 }
 text {
 	object {
-		x=651
+		x=644
 		y=401
-		width=84
+		width=98
 		height=14
 	}
 	"basic attribute" {
@@ -6540,7 +6367,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip8:VOLT"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -6557,7 +6384,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip8:CUR"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -6575,7 +6402,7 @@ rectangle {
 	}
 	monitor {
 		chan="13BMA:ip8:PRES"
-		clr=0
+		clr=15
 		bclr=14
 	}
 	clrmod="alarm"
@@ -6697,244 +6524,222 @@ rectangle {
 		fill="outline"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=520
 		y=400
 		width=80
-		height=164
+		height=120
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=520
-				y=400
-				width=80
-				height=120
-			}
-			"basic attribute" {
-				clr=45
-			}
-		}
-		rectangle {
-			object {
-				x=558
-				y=544
-				width=15
-				height=20
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMA:eps_mbbi100"
-			}
-		}
-		rectangle {
-			object {
-				x=558
-				y=525
-				width=15
-				height=20
-			}
-			"basic attribute" {
-				clr=12
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMA:eps_mbbi100"
-			}
-		}
-		rectangle {
-			object {
-				x=552
-				y=518
-				width=25
-				height=31
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		polyline {
-			object {
-				x=525
-				y=428
-				width=70
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(525,428)
-				(595,428)
-			}
-		}
-		"text update" {
-			object {
-				x=530
-				y=499
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi100"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=538
-				y=451
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:CloseBMCShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Close"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=538
-				y=431
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:OpenBMCShutter.PROC"
-				clr=15
-				bclr=0
-			}
-			label="Open"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=536
-				y=407
-				width=49
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="BMC Shutter"
-			align="horiz. centered"
-		}
-		menu {
-			object {
-				x=530
-				y=474
-				width=60
-				height=20
-			}
-			control {
-				chan="13BMA:eps_bo10"
-				clr=14
-				bclr=0
-			}
-			clrmod="alarm"
-		}
+	"basic attribute" {
+		clr=45
 	}
 }
-composite {
+rectangle {
+	object {
+		x=558
+		y=544
+		width=15
+		height=20
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMA:eps_mbbi100"
+	}
+}
+rectangle {
+	object {
+		x=558
+		y=525
+		width=15
+		height=20
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMA:eps_mbbi100"
+	}
+}
+rectangle {
+	object {
+		x=552
+		y=518
+		width=25
+		height=31
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+polyline {
+	object {
+		x=525
+		y=428
+		width=70
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(525,428)
+		(595,428)
+	}
+}
+"text update" {
+	object {
+		x=530
+		y=499
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi100"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=538
+		y=451
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:CloseBMCShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Close"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=538
+		y=431
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:OpenBMCShutter.PROC"
+		clr=15
+		bclr=0
+	}
+	label="Open"
+	press_msg="1"
+}
+text {
+	object {
+		x=522
+		y=407
+		width=77
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="BMC Shutter"
+	align="horiz. centered"
+}
+menu {
+	object {
+		x=530
+		y=474
+		width=60
+		height=20
+	}
+	control {
+		chan="13BMA:eps_bo10"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+}
+text {
+	object {
+		x=1098
+		y=277
+		width=81
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Auto-open"
+}
+rectangle {
 	object {
 		x=1093
 		y=275
 		width=90
 		height=110
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=1098
-				y=277
-				width=81
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Auto-open"
-		}
-		rectangle {
-			object {
-				x=1093
-				y=275
-				width=90
-				height=110
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=1120
-				y=297
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-		}
-		text {
-			object {
-				x=1111
-				y=342
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Period"
-		}
-		menu {
-			object {
-				x=1101
-				y=314
-				width=75
-				height=20
-			}
-			control {
-				chan="13BMA:FOEAutoOpenMode"
-				clr=14
-				bclr=51
-			}
-		}
-		"text entry" {
-			object {
-				x=1101
-				y=359
-				width=75
-				height=20
-			}
-			control {
-				chan="13BMA:FOEAutoOpenPeriod.DLY1"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=1120
+		y=297
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+}
+text {
+	object {
+		x=1111
+		y=342
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Period"
+}
+menu {
+	object {
+		x=1101
+		y=314
+		width=75
+		height=20
+	}
+	control {
+		chan="13BMA:FOEAutoOpenMode"
+		clr=14
+		bclr=51
+	}
+}
+"text entry" {
+	object {
+		x=1101
+		y=359
+		width=75
+		height=20
+	}
+	control {
+		chan="13BMA:FOEAutoOpenPeriod.DLY1"
+		clr=14
+		bclr=51
+	}
+	limits {
 	}
 }
 text {
@@ -7089,71 +6894,60 @@ menu {
 	limits {
 	}
 }
-composite {
+text {
+	object {
+		x=161
+		y=955
+		width=91
+		height=13
+	}
+	"basic attribute" {
+		clr=13
+	}
+	textix="Water shutoff"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=260
+		y=954
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13IDA:eps_mbbi229"
+	}
+}
+text {
+	object {
+		x=114
+		y=929
+		width=161
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Emergency Water Shutoff"
+	align="horiz. centered"
+}
+polyline {
 	object {
 		x=104
-		y=929
+		y=948
 		width=180
-		height=40
+		height=0
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=161
-				y=955
-				width=91
-				height=13
-			}
-			"basic attribute" {
-				clr=13
-			}
-			textix="Water shutoff"
-			align="horiz. centered"
-		}
-		oval {
-			object {
-				x=260
-				y=954
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				clr="alarm"
-				chan="13IDA:eps_mbbi229"
-			}
-		}
-		text {
-			object {
-				x=114
-				y=929
-				width=161
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Emergency Water Shutoff"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=104
-				y=948
-				width=180
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(104,948)
-				(284,948)
-			}
-		}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(104,948)
+		(284,948)
 	}
 }
 text {
@@ -7184,79 +6978,70 @@ polyline {
 		(518,916)
 	}
 }
-composite {
+"text update" {
+	object {
+		x=387
+		y=923
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi119"
+		clr=54
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"message button" {
 	object {
 		x=385
-		y=923
-		width=93
-		height=40
+		y=943
+		width=45
+		height=20
 	}
-	"composite name"=""
-	children {
-		"text update" {
-			object {
-				x=387
-				y=923
-				width=41
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi119"
-				clr=15
-				bclr=4
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=385
-				y=943
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:DPumpRequest.PROC"
-				clr=14
-				bclr=51
-			}
-			label="Pump"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=433
-				y=943
-				width=45
-				height=20
-			}
-			control {
-				chan="13BMA:DVentRequest.PROC"
-				clr=14
-				bclr=51
-			}
-			label="Vent"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=435
-				y=923
-				width=41
-				height=15
-			}
-			monitor {
-				chan="13BMA:eps_mbbi120"
-				clr=15
-				bclr=4
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
+	control {
+		chan="13BMA:DPumpRequest.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Pump"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=433
+		y=943
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:DVentRequest.PROC"
+		clr=14
+		bclr=51
+	}
+	label="Vent"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=435
+		y=923
+		width=41
+		height=15
+	}
+	monitor {
+		chan="13BMA:eps_mbbi120"
+		clr=54
+		bclr=4
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
 	}
 }
 text {
