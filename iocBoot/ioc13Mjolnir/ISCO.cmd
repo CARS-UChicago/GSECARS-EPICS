@@ -1,6 +1,6 @@
 epicsEnvSet("PORT", "SP1")
 epicsEnvSet("POLL_MS", "1000")
-epicsEnvSet("TIMEOUT_MS", "2000")
+epicsEnvSet("TIMEOUT_MS", "5000")
 
 # Use the following commands for TCP/IP
 #drvAsynIPPortConfigure(const char *portName, 
@@ -10,7 +10,8 @@ epicsEnvSet("TIMEOUT_MS", "2000")
 #                       int noProcessEos);
 
 # Change IP address for your device
-drvAsynIPPortConfigure("$(PORT)", "gse-isco1:502", 0, 0, 0)
+#drvAsynIPPortConfigure("$(PORT)", "gse-isco1:502", 0, 0, 0)
+drvAsynIPPortConfigure("$(PORT)", "192.168.0.3:502", 0, 0, 0)
 
 # Enable ASYN_TRACEIO_HEX on octet server
 asynSetTraceIOMask("$(PORT)", 0, HEX)
