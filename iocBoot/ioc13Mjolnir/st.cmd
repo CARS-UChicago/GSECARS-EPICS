@@ -2,8 +2,10 @@ errlogInit(5000)
 < envPaths
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-dbLoadDatabase("../../dbd/CARSLinux.dbd")
-CARSLinux_registerRecordDeviceDriver(pdbbase)
+#dbLoadDatabase("../../dbd/CARSLinux.dbd")
+#CARSLinux_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("../../dbd/CARSWin32.dbd")
+CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet(PREFIX, 13MNIR:)
 epicsEnvSet(E1608_PREFIX,  $(PREFIX)E1608:)
@@ -63,8 +65,35 @@ dbpf $(E1608_PREFIX)WaveDigDwell.PROC 1
 
 # The ISCO pumps should be in Independent mode.
 # This is in autosave, but it seems to need to be set again.
-
 dbpf $(ISCO_PREFIX)AB:Independent 1
+
+# Set the calibration of the load cell
+# This is for the 5000N cell, serial number 712651
+# 5000 N = 12.931 mV
+# The Omega amplifier is set to a gain of 500. 
+# So 5000 N = 6.1955 V
+# 10 V = 8070.3 N
+#dbpf 13MNIR:E1608:Ai6.EGUF 8070.3
+#dbpf 13MNIR:E1608:Ai6.EGUL -8070.3
+
+# Set the calibration of the load cell
+# This is for the 10N cell, serial number 730960
+# 10 N = 4.810 mV
+# The Omega amplifier is set to a gain of 500. 
+# So 10 N = 2.405 V
+# 10 V = 41.58 N
+#dbpf 13MNIR:E1608:Ai6.EGUF 41.58
+#dbpf 13MNIR:E1608:Ai6.EGUL -41.58
+
+# Set the calibration of the load cell
+# This is for the 50N cell, serial number 743453
+# 50 N = 9.839 mV
+# The Omega amplifier is set to a gain of 500. 
+# So 50 N = 4.920 V
+# 10 V = 101.65 N
+dbpf 13MNIR:E1608:Ai6.EGUF 101.65
+dbpf 13MNIR:E1608:Ai6.EGUL -101.65
+
 
 ### Start the saveData task.
 # saveData_MessagePolicy
