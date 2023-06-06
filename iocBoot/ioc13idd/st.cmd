@@ -15,7 +15,7 @@ CARSVX_registerRecordDeviceDriver(pdbbase)
 
 cd startup
 < industryPack.cmd
-< serial.cmd
+#< serial.cmd
 
 # Joerger VSC setup parameters: 
 #     (1)cards, (2)base address(ext, 256-byte boundary), 
@@ -42,7 +42,7 @@ dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13IDD:")
 dbLoadRecords("$(CARS)/db/xrd_files.db", "P=13IDD:")
 
 # Koyo PLC for lasers
-< Koyo.cmd
+#< Koyo.cmd
 
 # Experiment description
 dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDD:")
@@ -98,7 +98,7 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDD:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=2000,MAXPTS3=2000,MAXPTS4=2000,MAXPTSH=2048")
+#dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDD:,MAXPTS1=2000,MAXPTS2=2000,MAXPTS3=2000,MAXPTS4=2000,MAXPTSH=2048")
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -133,7 +133,7 @@ create_monitor_set("auto_positions.req",5,"P=13IDD:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDD:")
 
-seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, channels=20, model=2700, stack=10000"
+#seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, channels=20, model=2700, stack=10000"
 
 seq &IDD_LVP_Detector, "P=13IDD:,PMR=pm9,PMT=pm10,PMC=pm11,X=m33,Y=m34,Z=m35,TX=m38,TZ=m39"
 
@@ -161,5 +161,9 @@ dbpf "13IDD:LPC1_power_scale.B","1.0"
 
 # Set the encoder resolution for the LVP detector Y stages
 dbpf("13IDD:m34.ERES",".001")
+
+# Set the scale factor for the LVP Press Camera DIFF calculation
+# This causes a move pm17 of 1 unit to move each real motor by 1 unit, rather than 0.5 units
+dbpf("13IDD:pm17C1.VAL", "0.5")
 
 motorUtilInit("13IDD:")
