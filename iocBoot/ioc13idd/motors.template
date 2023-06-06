@@ -74,7 +74,8 @@ pattern
 # LVP front slits
 #{13IDD:,  m25,   "OMS VME58",   3,    0, "beam filter for DAC",     deg,       Pos,   5.0,   0.2,   .2,    0,      1,     .2,     200,    -.1,     3,      360,    -360}
 {13IDD:,  m25,   "OMS VME58",   3,    0, "Vert. slit pos. (Y)",     mm,     Pos,   0.5,   .1,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
-{13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
+#{13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     400,       1.0,  3,     25,   -25}
+{13IDD:,  m26,   "OMS VME58",   3,    1, "Hori. slit Pos. (X)",       mm,     Pos,   1.0,   .2,   .05,   0.1,  .1,       .2,     200,       1.0,  3,     25,   -25}
 
 # LVP CCD camera stage
 #20210306 replaced m27 stage (new stage: Newport UTS150PP), switched step pak card from SPD6U to SPD32M
@@ -235,6 +236,12 @@ pattern
 {13IDD:,  pm12, "13IDD:LaserSplit:Done NPP NMS", "13IDD:pm12DVAL.VAL PP MS", "13IDD:LaserSplit:Readback.G NPP NMS", "13IDD:LaserSplit:Stop PP MS", "Split Sum",   deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .01,  1.0,  3,    10000, -10000}
 {13IDD:,  pm13, "13IDD:LaserSplit:Done NPP NMS", "13IDD:pm13DVAL.VAL PP MS", "13IDD:LaserSplit:Readback.H NPP NMS", "13IDD:LaserSplit:Stop PP MS", "Split Difference",   deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .01,  1.0,  3,    10000, -10000}
 
+# LVP press and camera combo (horiz and vert)
+{13IDD:, pm14, "13IDD:LVPCAMH:Done  NPP NMS",   "13IDD:pm14DVAL.VAL  PP MS", "13IDD:LVPCAMH:Readback.G   NPP NMS",   "13IDD:LVPCAMH:Stop   PP MS",   "LVPCAM_H_Sum",      mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm15, "13IDD:LVPCAMH:Done  NPP NMS",   "13IDD:pm15DVAL.VAL  PP MS", "13IDD:LVPCAMH:Readback.H   NPP NMS",   "13IDD:LVPCAMH:Stop   PP MS",   "LVPCAM_H_Diff",     mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm16, "13IDD:LVPCAMV:Done  NPP NMS",   "13IDD:pm16DVAL.VAL  PP MS", "13IDD:LVPCAMV:Readback.G   NPP NMS",   "13IDD:LVPCAMV:Stop   PP MS",   "LVPCAM_V_Sum",      mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm17, "13IDD:LVPCAMV:Done  NPP NMS",   "13IDD:pm17DVAL.VAL  PP MS", "13IDD:LVPCAMV:Readback.H   NPP NMS",   "13IDD:LVPCAMV:Stop   PP MS",   "LVPCAM_V_Diff",     mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+
 }
 
 # 13IDD DAC TableTop Slit
@@ -277,6 +284,15 @@ file "$(MOTOR)/db/sumDiff2D.db"
 pattern
 {P,      T,        SUM, DIFF,    M1DRV,    M1RBV,    M1STOP,   M1DONE,   M2DRV,  M2RBV,   M2STOP,   M2DONE,  PREC}
 {13IDD:, LVPROT:,  pm3, pm4,    m47.VAL,  m47.RBV,  m47.STOP, m47.DMOV, m48.VAL, m48.RBV, m48.STOP, m48.DMOV, 3}
+}
+
+# LVP press and camera combo
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LVPCAMH:,  pm14, pm15,   m46.VAL,  m46.RBV,  m30.VAL, m30.RBV, m46.STOP, m46.DMOV, m30.STOP, m30.DMOV, 3}
+{13IDD:, LVPCAMV:,  pm16, pm17,   m45.VAL,  m45.RBV,  m29.VAL, m29.RBV, m45.STOP, m45.DMOV,  m29.STOP, m29.DMOV, 3}
 }
 
 # K/B mirrors
