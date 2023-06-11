@@ -12,7 +12,7 @@ epicsEnvSet("LINUX_PREFIX", "13IDD_Linux:")
 iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/db:$(CARS)/db)")
 
 iocshLoad("serial.cmd",          "P=$(PREFIX), TS=gsets19")
-iocshLoad("MeasComp_EDIO24.cmd", "P=$(PREFIX)")
+iocshLoad("MeasComp.cmd",        "P=$(PREFIX)")
 iocshLoad("Koyo.cmd",            "P=$(PREFIX)LaserPLC:")
 iocshLoad("motors.cmd",          "P=$(PREFIX)")
 
@@ -39,5 +39,10 @@ iocInit
 # save positions every five seconds
 create_monitor_set("auto_positions.req",5,"P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req",30,"P=$(PREFIX), EDIO24_PREFIX=$(EDIO24_PREFIX)")
+create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),P3104=$(USB3104_PREFIX),P1808=$(USB1808_PREFIX),PEDIO24=$(EDIO24_PREFIX),PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
+
+# There is a bug in dbLoadRecords, it does not correctly remove \ from \"
+#dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
+# The scale factor from LPC power reading to actual laser watts
+dbpf "13IDD:LPC1_power_scale.B","1.0"
 
