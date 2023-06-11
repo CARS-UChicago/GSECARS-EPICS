@@ -27,7 +27,7 @@ dbLoadTemplate("asynRecord.template", "P=$(P)
 
 dbLoadTemplate("picoMotors.substitutions",              "P=$(P), PORT=serial1,  S=pico")
 # LQExcel needs modified connector
-#dbLoadRecords("$(CARS)/db/LQExcel.db",                  "P=$(P), PORT=serial2,  R=LQE1")
+dbLoadRecords("$(CARS)/db/LQExcel.db",                  "P=$(P), PORT=serial2,  R=LQE1")
 #                                                                     serial3   Unused
 dbLoadRecords("$(CARS)/db/lpc.db",                      "P=$(P), PORT=serial4,  L=LPC1_, DAC=DAC1_2")
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db",           "P=$(P), PORT=serial5,  Dmm=DMM1")
@@ -47,5 +47,7 @@ dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial13, 
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial14, R=Laser2")
 #                                                                     serial15  Unused
 #                                                                     serial16  Unused
+
+dbLoadTemplate("asynRecord.template", P="$(P)")
 
 doAfterIocInit 'seq &Keithley2kDMM, "P=13IDD:, Dmm=DMM1, channels=20, model=2700, stack=10000"'
