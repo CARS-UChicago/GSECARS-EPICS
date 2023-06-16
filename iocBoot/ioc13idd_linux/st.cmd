@@ -17,7 +17,7 @@ iocshLoad("Koyo.cmd",            "P=$(PREFIX)LaserPLC:")
 iocshLoad("motors.cmd",          "P=$(PREFIX)")
 
 # User calc stuff
-iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX))
+iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
