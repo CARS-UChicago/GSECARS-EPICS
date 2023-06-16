@@ -3,7 +3,7 @@ iocshLoad("MCB4B.cmd", "P=$(P)")
 #iocshLoad("Galil.cmd", "P=$(P)")
 
 ### Allstop, alldone
-dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(P)")
+dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(LINUX_PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
