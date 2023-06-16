@@ -1,21 +1,37 @@
 file "$(CARS)/db/binary_alias.template"
 {
 pattern
-{      REC,         RTYP,      ALIAS,            ZNAM,    ONAM,        DESC}
-{13IDD:USBCTR:Bo1,   bo,   13IDD:XIA_F1_Control,  Out,     In,   "XIA filter 1 control"}
-{13IDD:USBCTR:Bo2,   bo,   13IDD:XIA_F2_Control,  Out,     In,   "XIA filter 2 control"}
-{13IDD:USBCTR:Bo4,   bo,   13IDD:XIA_F3_Control,  Out,     In,   "XIA filter 3 control"}
-{13IDD:USBCTR:Bo4,   bo,   13IDD:XIA_F4_Control,  Out,     In,   "XIA filter 4 control"}
-{13IDD:USBCTR:Bi5,   bi,   13IDD:XIA_F1_Status,   Out,     In,   "XIA filter 1 status"}
-{13IDD:USBCTR:Bi6,   bi,   13IDD:XIA_F2_Status,   Out,     In,   "XIA filter 2 status"}
-{13IDD:USBCTR:Bi7,   bi,   13IDD:XIA_F3_Status,   Out,     In,   "XIA filter 3 status"}
-{13IDD:USBCTR:Bi8,   bi,   13IDD:XIA_F4_Status,   Out,     In,   "XIA filter 4 status"}
+{      REC,          RTYP,      ALIAS,                   ZNAM,    ONAM,        DESC}
+{13IDD:USBCTR:Bo1,    bo,   13IDD:Photodiode,            Out,     In,   "Photodiode control"}
+{13IDD:USBCTR:Bo2,    bo,   13IDD:US_SpectShutter,       Close,   Open, "Upstream spectrometer shutter"}
+{13IDD:USBCTR:Bo3,    bo,   13IDD:DS_SpectShutter,       Close,   Open, "Downstream spectrometer shutter"}
+{13IDD:USBCTR:Bo4,    bo,   13IDD:TableShutter,          Close,   Open, "Table X-ray shutter"}
+{13IDD:USBCTR:Bi5,    bi,   13IDD:Photodiode_RBV,        Out,     In,   "Photodiode status"}
+{13IDD:USBCTR:Bi6,    bi,   13IDD:US_SpectShutter_RBV,   Close,   Open, "Upstream spectrometer shutter status"}
+{13IDD:USBCTR:Bi7,    bi,   13IDD:DS_SpectShutter_RBV,   Close,   Open, "Upstream spectrometer shutter  status"}
+{13IDD:USBCTR:Bi8,    bi,   13IDD:TableShutter_RBV,      Close,   Open, "Table X-ray shutter status"}  
 
-{13IDD:USB3104:Bo1,  bo,   13IDD:US_IllumOnOff,   Off,     On,   "Upstream illuminator on/off"}
-{13IDD:USB3104:Bo2,  bo,   13IDD:DS_IllumOnOff,   Off,     On,   "Downstream illuminator on/off"}
-{13IDD:USB3104:Bo3,  bo,   13IDD:US_Splitter,     Out,     In,   "Upstream splitter"}
-{13IDD:USB3104:Bo4,  bo,   13IDD:DS_Splitter,     Out,     In,   "Downstream splitter"}
-{13IDD:USB3104:Bo5,  bo,   13IDD:US_IllumMirror,  Out,     In,   "Upstream illuminator mirror"}
-{13IDD:USB3104:Bo6,  bo,   13IDD:DS_IllumMirror,  Out,     In,   "Downstream illuminator mirror"}
+{13IDD:USB3104:Bo1,   bo,   13IDD:US_IllumSplitter,      Out,     In,   "Upstream illuminator splitter"}
+{13IDD:USB3104:Bo2,   bo,   13IDD:DS_IllumSplitter,      Out,     In,   "Downstream illuminator splitter"}
+{13IDD:USB3104:Bo3,   bo,   13IDD:ND_Filter,             Out,     In,   "Neutral density filter"}
+{13IDD:USB3104:Bo4,   bo,   13IDD:IR_Mirror,             Out,     In,   "Infrared mirror"}
+{13IDD:USB3104:Bo5,   bo,   13IDD:US_IllumOnOff,         Off,     On,   "Upstream illuminator on/off"}
+{13IDD:USB3104:Bo6,   bo,   13IDD:DS_IllumOnOff,         Off,     On,   "Downstream illuminator on/off"}
 
+{13IDD:EDIO24_1:Bo5,  bo,   13IDD:LaserShutter,          Close,   Open, "Laser shutter"}
+{13IDD:EDIO24_1:Bo6,  bo,   13IDD:SmallBeamstop,         Out,     In,   "Small beamstop for MCC"}
+{13IDD:EDIO24_1:Bo11, bo,   13IDD:XRDShutter,            Close,   Open, "Downstream illuminator mirror"}
+
+}
+
+file "$(CARS)/db/analog_out_alias.template"
+{
+pattern
+{      REC,              ALIAS,            EGUL,  DRVL,  LOPR,  EGUF,  DRVH,  HOPR, PREC,       DESC}
+{13IDD:USB3104:Ao1,  13IDD:US_IllumPower,  -200,   0,      0,   200,    100,   100,  3,   "Upstream illuminator power"}
+{13IDD:USB3104:Ao2,  13IDD:DS_IllumPower,  -200,   0,      0,   200,    100,   100,  3,   "Downstream illuminator power"}
+{13IDD:USB3104:Ao3,  13IDD:US_LaserPower,  -100,   0,      0,   100,    100,   100,  3,   "Upstream laser power"}
+{13IDD:USB3104:Ao4,  13IDD:DS_LaserPower,  -100,   0,      0,   100,    100,   100,  3,   "Downstream laser power"}
+{13IDD:USB3104:Ao5,  13IDD:HeaterPower,     -33,   0,      0,    33,     33,    33,  3,   "Resistance heater power"}
+{13IDD:USB3104:Ao6,  13IDD:FiberIllumPower, -10,   0,      0,    10,      5,     5,  3,   "Microscope fiber illuminator"}
 }
