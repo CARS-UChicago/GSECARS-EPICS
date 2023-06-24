@@ -16,6 +16,14 @@ iocshLoad("MeasComp.cmd",        "P=$(PREFIX)")
 iocshLoad("Koyo.cmd",            "P=$(PREFIX)LaserPLC:")
 iocshLoad("motors.cmd",          "P=$(PREFIX)")
 
+### Scan-support software
+# crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
+# 1D data, but it doesn't store anything to disk.  (You need the data catcher
+# or the equivalent for that.)  This database is configured to use the
+# "alldone" database (above) to figure out when motors have stopped moving
+# and it's time to trigger detectors.
+dbLoadRecords("$(SSCAN)/db/scan.db","P=$(PREFIX),MAXPTS1=2000,MAXPTS2=2000,MAXPTS3=100,MAXPTS4=100,MAXPTSH=2048")
+
 # User calc stuff
 iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX)")
 
@@ -44,5 +52,5 @@ create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),P3104=$(USB3104_PREFIX)
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
 #dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
 # The scale factor from LPC power reading to actual laser watts
-dbpf "13IDD:LPC1_power_scale.B","1.0"
+#dbpf "13IDD:LPC1_power_scale.B","1.0"
 
