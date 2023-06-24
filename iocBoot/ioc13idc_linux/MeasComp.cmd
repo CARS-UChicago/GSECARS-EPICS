@@ -76,3 +76,17 @@ dbLoadRecords("$(MCA)/mcaApp/Db/SIS38XX_waveform.template", "P=$(MCS_PREFIX), R=
 dbLoadRecords("$(MCA)/mcaApp/Db/SIS38XX_waveform.template", "P=$(MCS_PREFIX), R=$(RNAME)9,  INP=@asyn($(PORT) 8),  CHANS=$(MAX_POINTS)")
 
 doAfterIocInit 'seq(USBCTR_SNL, "P=$(MCS_PREFIX), R=$(RNAME), NUM_COUNTERS=$(MAX_COUNTERS), FIELD=$(FIELD)")'
+
+# EDIO24
+epicsEnvSet("PORT",          "EDIO24")
+epicsEnvSet("UNIQUE_ID",     "gse-edio24-5.cars.aps.anl.gov")
+epicsEnvSet("MAX_POINTS",    "1")
+epicsEnvSet("EDIO24_PREFIX",  "$(P)EDIO24_1:")
+## Configure port driver
+# MultiFunctionConfig((portName,        # The name to give to this asyn port driver
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
+#                      maxInputPoints,  # Maximum number of input points for waveform digitizer
+#                      maxOutputPoints) # Maximum number of output points for waveform generator
+
+MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
+dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
