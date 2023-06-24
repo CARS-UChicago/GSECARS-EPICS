@@ -8,6 +8,8 @@ errlogInit(5000)
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
+epicsEnvSet("PREFIX", "13GasLoad:")
+
 # Set up 5 serial ports on Moxa terminal server
 
 # Serial 1 and 2 are the Omega meters.  They are nominally
@@ -46,7 +48,7 @@ epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 dbLoadTemplate("Omega.substitutions")
 
 # Alcatel vacuum gauge
-dbLoadRecords("$(IP)/db/Alcatel_ACS1000.db", "P=13GasLoad:, R=ACS1000, PORT=serial4")
+dbLoadRecords("$(IP)/db/Alcatel_ACS1000.db", "P=$(PREFIX), R=ACS1000, PORT=serial4")
 
 ### Motors
 dbLoadTemplate  "motors.template"
@@ -59,7 +61,7 @@ dbLoadTemplate "scanParms.template"
 ### Allstop, alldone
 # This database must agree with the motors you've actually loaded.
 # Several versions (e.g., all_com_32.db) are in stdApp/Db
-dbLoadRecords("$(STD)/db/all_com_4.db", "P=13GasLoad:")
+dbLoadRecords("$(STD)/db/all_com_4.db", "P=$(PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -67,19 +69,13 @@ dbLoadRecords("$(STD)/db/all_com_4.db", "P=13GasLoad:")
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/db/scan.db", "P=13GasLoad:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13GasLoad:")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13GasLoad:")
-
-# sseq records
-dbLoadRecords("$(CALC)/db/userStringSeqs10.db", "P=13GasLoad:")
+# User calc stuff
+iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX)")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/db/misc.db", "P=13GasLoad:")
+dbLoadRecords("$(STD)/db/misc.db", "P=$(PREFIX)")
 
 # MCB-4B driver setup parameters:
 #     (1) maximum # of controllers,
@@ -96,14 +92,14 @@ MCB4BConfig(0, "serial3")
 < Koyo.cmd
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("13GasLoad:")
-dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13GasLoad:")
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION","Gas loading system")
 epicsEnvSet("GROUP","GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13GasLoad:")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 iocInit
 
@@ -113,7 +109,7 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5, "P=13GasLoad:")
+create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "P=13GasLoad:")
+create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
 
