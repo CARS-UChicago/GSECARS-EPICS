@@ -23,7 +23,7 @@ dbLoadTemplate("$(MEASCOMP)/db/USB3104.substitutions", "P=$(USB3104_PREFIX), POR
 epicsEnvSet("PORT",          "USBCTR")
 epicsEnvSet("UNIQUE_ID",     "0213F59E")
 epicsEnvSet("USBCTR_PREFIX", "$(P)USBCTR:")
-epicsEnvSet("MCS_PREFIX",    "$(USBCTR_PREFIX)MCS:")
+epicsEnvSet("MCS_PREFIX",    "$(P)MCS1:")
 epicsEnvSet("SCALER_PREFIX", "$(P)"
 epicsEnvSet("SCALER_NAME",   "scaler1")
 epicsEnvSet("RNAME",         "mca")
@@ -95,3 +95,4 @@ doAfterIocInit "dbpf $(EDIO24_PREFIX)Lo2 255"
 doAfterIocInit "dbpf $(EDIO24_PREFIX)Lo3 255"
 
 dbLoadTemplate("MeasCompAliases.substitutions")
+dbLoadRecords("$(CARS)/db/13IDD_laser_tweak.db", "P=$(P), R=Lasers, DAC1=$(P)US_LaserPower, DAC2=$(P)DS_LaserPower")
