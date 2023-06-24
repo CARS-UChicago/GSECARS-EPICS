@@ -15,8 +15,8 @@ iocshLoad ../asynIPPortConfig.cmd "PORT=serial11, IPADDR=$(TS):4011, IEOS=\\r\\n
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial12, IPADDR=$(TS):4012, IEOS=\\r,     OEOS=\\r"    # Unused;       9600,'N',1,8,'N'  PP C01
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial13, IPADDR=$(TS):4013, IEOS=\\r,     OEOS=\\r"    # YLR laser;   38400,'N',1,8,'N'  Direct wire
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial14, IPADDR=$(TS):4014, IEOS=\\r,     OEOS=\\r"    # YLR laser;   38400,'N',1,8,'N'  Direct wire
-iocshLoad ../asynIPPortConfig.cmd "PORT=serial15, IPADDR=$(TS):4015, IEOS=\\r,     OEOS=\\r"    # Unused;       9600,'N',1,8,'N'  N.C.
-iocshLoad ../asynIPPortConfig.cmd "PORT=serial16, IPADDR=$(TS):4016, IEOS=\\r,     OEOS=\\r"    # Unused;       9600,'N',1,8,'N'  N.C.
+#iocshLoad ../asynIPPortConfig.cmd "PORT=serial15, IPADDR=$(TS):4015, IEOS=\\r,     OEOS=\\r"    # Unused;       9600,'N',1,8,'N'  N.C.
+#iocshLoad ../asynIPPortConfig.cmd "PORT=serial16, IPADDR=$(TS):4016, IEOS=\\r,     OEOS=\\r"    # VME console;  9600,'N',1,8,'N'  N.C.
 
 # Set up 2 serial ports on Moxa terminal server which is inside the MCB-4B slit controller box
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial17, IPADDR=10.54.160.54:4001,   IEOS=\\r,     OEOS=\\r"    # MCB-4B slit ; 19200,'N',1,8,'N'
@@ -29,7 +29,8 @@ dbLoadTemplate("picoMotors.substitutions",              "P=$(P), PORT=serial1,  
 # LQExcel needs modified connector
 dbLoadRecords("$(CARS)/db/LQExcel.db",                  "P=$(P), PORT=serial2,  R=LQE1")
 #                                                                     serial3   Unused
-dbLoadRecords("$(CARS)/db/lpc.db",                      "P=$(P), PORT=serial4,  L=LPC1_, DAC=DAC1_2")
+# Laser power controller database currently prevents clean reboot, and it is not currently used.  Comment out for now.
+#dbLoadRecords("$(CARS)/db/lpc.db",                      "P=$(P), PORT=serial4,  L=LPC1_, DAC=DAC1_2")
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db",           "P=$(P), PORT=serial5,  Dmm=DMM1")
 dbLoadTemplate("$(CARS)/db/Pelco_CM6700.substitutions", "P=$(P), PORT=serial6,  R=Pelco1")
 dbLoadRecords("$(IP)/db/SR570.db",                      "P=$(P), PORT=serial7,  A=A3")
@@ -46,7 +47,7 @@ dbLoadRecords("$(IP)/db/SR570.db",                      "P=$(P), PORT=serial10, 
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial13, R=Laser1,")
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial14, R=Laser2")
 #                                                                     serial15  Unused
-#                                                                     serial16  Unused
+#                                                                     serial16  VME console
 
 dbLoadTemplate("asynRecord.template", P="$(P)")
 
