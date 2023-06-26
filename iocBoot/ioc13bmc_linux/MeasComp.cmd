@@ -77,11 +77,12 @@ dbLoadRecords("$(MCA)/mcaApp/Db/SIS38XX_waveform.template", "P=$(MCS_PREFIX), R=
 
 doAfterIocInit 'seq(USBCTR_SNL, "P=$(MCS_PREFIX), R=$(RNAME), NUM_COUNTERS=$(MAX_COUNTERS), FIELD=$(FIELD)")'
 
-# EDIO24
-epicsEnvSet("PORT",          "EDIO24")
+# E-DIO24
+# This E-DIO24 controls the relay boards which moves the pneumatic actuators
+epicsEnvSet("PORT",          "EDIO24_1")
 epicsEnvSet("UNIQUE_ID",     "gse-edio24-6.cars.aps.anl.gov")
 epicsEnvSet("MAX_POINTS",    "1")
-epicsEnvSet("EDIO24_PREFIX",  "$(P)EDIO24_1:")
+epicsEnvSet("EDIO24_1_PREFIX",  "$(P)EDIO24_1:")
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
 #                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
@@ -89,6 +90,21 @@ epicsEnvSet("EDIO24_PREFIX",  "$(P)EDIO24_1:")
 #                      maxOutputPoints) # Maximum number of output points for waveform generator
 
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
-dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_1_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+
+# E-DIO24
+# This E-DIO24 controls the 2 XIA PFCU-4 shutter controllers
+epicsEnvSet("PORT",          "EDIO24_2")
+epicsEnvSet("UNIQUE_ID",     "gse-edio24-3.cars.aps.anl.gov")
+epicsEnvSet("MAX_POINTS",    "1")
+epicsEnvSet("EDIO24_2_PREFIX",  "$(P)EDIO24_2:")
+## Configure port driver
+# MultiFunctionConfig((portName,        # The name to give to this asyn port driver
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
+#                      maxInputPoints,  # Maximum number of input points for waveform digitizer
+#                      maxOutputPoints) # Maximum number of output points for waveform generator
+
+MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
+dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_2_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
 
 dbLoadTemplate("MeasCompAliases.substitutions")
