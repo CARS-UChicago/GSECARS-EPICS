@@ -41,5 +41,5 @@ iocInit
 # save positions every five seconds
 create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),P3104=$(USB3104_PREFIX),P1808=$(USB1808_PREFIX),PEDIO24=$(EDIO24_PREFIX),PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
+create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),P3104=$(USB3104_PREFIX),P1808=$(USB1808_PREFIX),PEDIO24_1=$(EDIO24_1_PREFIX),PEDIO24_2=$(EDIO24_2_PREFIX),PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
 
