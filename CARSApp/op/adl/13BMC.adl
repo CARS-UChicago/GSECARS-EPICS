@@ -1,6 +1,6 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13BMC.adl"
 	version=030109
 }
 display {
@@ -349,36 +349,46 @@ text {
 		args="P=13BMC:, S=scaler1"
 	}
 	display[1] {
-		label="SIS MCS"
-		name="SIS38XX.adl"
-		args="P=13BMC:SIS1:"
+		label="MCS"
+		name="USBCTR_MCS.adl"
+		args="P=13BMC:MCS1:"
 	}
 	display[2] {
-		label="IP-Unidig #1"
-		name="IpUnidig.adl"
-		args="P=13BMC:, R=Unidig1"
+		label="USB-CTR08"
+		name="USBCTR.adl"
+		args="P=13BMC:USBCTR:,SP=13BMC:,S=scaler1,MP=13BMC:MCS1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	display[3] {
-		label="IP-Unidig #2"
-		name="IpUnidig.adl"
-		args="P=13BMC:, R=Unidig2"
+		label="USB-1808X"
+		name="USB1808_module.adl"
+		args="P=13BMC:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	display[4] {
-		label="Acromag IP330 ADC"
-		name="Ip330Scan.adl"
-		args="P=13BMC:, R=IP330_"
+		label="USB-3104"
+		name="USB3104_module.adl"
+		args="P=13BMC:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	display[5] {
+		label="E-DIO24_1"
+		name="EDIO24_module.adl"
+		args="P=13BMC:EDIO24_1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[6] {
+		label="E-DIO24_2"
+		name="EDIO24_module.adl"
+		args="P=13BMC:EDIO24_2:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[7] {
 		label="Keithley 2000 DMM #1"
 		name="Keithley2kDMM_mf.adl"
 		args="P=13BMC:, Dmm=DMM1"
 	}
-	display[6] {
+	display[8] {
 		label="LAE500"
 		name="LAE500.adl"
 		args="P=13BMC:, R=LAE500"
 	}
-	display[7] {
+	display[9] {
 		label="Dante 1"
 		name="dante.adl"
 		args="P=13BMC_Dante1:, M=mca1, R=dante1:"
@@ -505,87 +515,19 @@ text {
 "related display" {
 	object {
 		x=10
-		y=296
-		width=71
-		height=24
-	}
-	display[0] {
-		label="DAC #1"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=1"
-	}
-	display[1] {
-		label="DAC #2"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=2"
-	}
-	display[2] {
-		label="DAC #3"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=3"
-	}
-	display[3] {
-		label="DAC #4"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=4"
-	}
-	display[4] {
-		label="DAC #5"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=5"
-	}
-	display[5] {
-		label="DAC #6"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=6"
-	}
-	display[6] {
-		label="DAC #7"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=7"
-	}
-	display[7] {
-		label="DAC #8"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1, C=8"
-	}
-	display[8] {
-		label="All 8 DACs"
-		name="8_DACs.adl"
-		args="P=13BMC:, D=1"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=86
-		y=296
-		width=132
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="DACs"
-}
-"related display" {
-	object {
-		x=10
 		y=269
 		width=71
 		height=24
 	}
 	display[0] {
 		label="Bench Attenuators"
-		name="13BMC_Unidig_atten_bench.adl"
-		args="P=13BMC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13BMC:, R=Bench"
 	}
 	display[1] {
 		label="Arm Attenuators"
-		name="13BMC_Unidig_atten_arm.adl"
-		args="P=13BMC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13BMC:, R=Arm"
 	}
 	clr=14
 	bclr=4
@@ -820,44 +762,6 @@ text {
 	}
 	textix="Tomo Motors"
 }
-"related display" {
-	object {
-		x=10
-		y=242
-		width=71
-		height=24
-	}
-	display[0] {
-		label="AIM MCA #1"
-		name="mca.adl"
-		args="P=13BMC:, M=aim_adc1"
-	}
-	display[1] {
-		label="Canberrra ADC"
-		name="xxIcbAdc.adl"
-		args="P=13BMC:, ADC=adc1"
-	}
-	display[2] {
-		label="Canberra Amp"
-		name="xxIcbAmp.adl"
-		args="P=13BMC:, AMP=amp1"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=86
-		y=242
-		width=132
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Canberra electronics"
-}
 composite {
 	object {
 		x=13
@@ -966,34 +870,6 @@ composite {
 			textix="Moving"
 		}
 	}
-}
-"related display" {
-	object {
-		x=10
-		y=539
-		width=71
-		height=24
-	}
-	display[0] {
-		label="softGlue"
-		name="softGlueMenu.adl"
-		args="P=13BMC:, H=softGlue:"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=86
-		y=539
-		width=132
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="softGlue"
 }
 text {
 	object {
