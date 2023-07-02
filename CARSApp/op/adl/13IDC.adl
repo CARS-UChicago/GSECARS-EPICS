@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
-	version=030117
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
+	version=030109
 }
 display {
 	object {
@@ -228,11 +228,6 @@ composite {
 		name="SR570.adl"
 		args="P=13IDC:, A=A5"
 	}
-	display[5] {
-		label="Acromag IP300 ADC"
-		name="Ip330Scan.adl"
-		args="P=13IDC:, R=IP330_"
-	}
 	display[6] {
 		label="Keithley Multimeter (IDC)"
 		name="Keithley2kDMM_mf.adl"
@@ -334,39 +329,29 @@ composite {
 		args="P=13IDC:, S=scaler1"
 	}
 	display[5] {
-		label="SIS3801 MCS"
-		name="SIS38XX.adl"
-		args="P=13IDC:SIS1:"
+		label="MCS"
+		name="USBCTR_MCS.adl"
+		args="P=13IDC:MCS1:"
 	}
 	display[6] {
-		label="IP-Unidig #1"
-		name="IpUnidig.adl"
-		args="P=13IDC:, R=Unidig1"
-	}
-	display[7] {
-		label="IP-Unidig #2"
-		name="IpUnidig.adl"
-		args="P=13IDC:, R=Unidig2"
-	}
-	display[8] {
-		label="Bede SCA Control"
-		name="sca_bede_control.adl"
-		args="P=13IDC:, SCA=BEDE"
-	}
-	display[9] {
 		label="USB-CTR08"
 		name="USBCTR.adl"
-		args="P=13IDC:USBCTR:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+		args="P=13IDC:USBCTR:,MP=13IDC:MCS1:,SP=13IDC:,S=scaler1,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
-	display[10] {
+	display[7] {
 		label="USB-1808X"
 		name="USB1808_module.adl"
 		args="P=13IDC:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
-	display[11] {
+	display[8] {
 		label="USB-3104"
 		name="USB3104_module.adl"
 		args="P=13IDC:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[9] {
+		label="E-DIO24_1"
+		name="EDIO24_module.adl"
+		args="P=13IDC:EDIO24_1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	clr=14
 	bclr=5
@@ -776,72 +761,6 @@ text {
 "related display" {
 	object {
 		x=10
-		y=559
-		width=75
-		height=26
-	}
-	display[0] {
-		label="softGlue"
-		name="softGlueMenu.adl"
-		args="P=13IDC:, H=softGlue:"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=559
-		width=80
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="softGlue"
-}
-"related display" {
-	object {
-		x=10
-		y=391
-		width=75
-		height=26
-	}
-	display[0] {
-		label="AIM MCA #1"
-		name="mca.adl"
-		args="P=13IDC:, M=aim_adc1"
-	}
-	display[1] {
-		label="Canberrra ADC"
-		name="xxIcbAdc.adl"
-		args="P=13IDC:, ADC=adc1"
-	}
-	display[2] {
-		label="Canberra Amp"
-		name="xxIcbAmp.adl"
-		args="P=13IDC:, AMP=amp1"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=391
-		width=200
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Canberra electronics"
-}
-"related display" {
-	object {
-		x=10
 		y=531
 		width=75
 		height=26
@@ -876,74 +795,6 @@ text {
 		width=2
 	}
 	textix="User calcs, transforms"
-}
-"related display" {
-	object {
-		x=10
-		y=363
-		width=75
-		height=26
-	}
-	display[0] {
-		label="DAC #1"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=1"
-	}
-	display[1] {
-		label="DAC #2"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=2"
-	}
-	display[2] {
-		label="DAC #3"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=3"
-	}
-	display[3] {
-		label="DAC #4"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=4"
-	}
-	display[4] {
-		label="DAC #5"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=5"
-	}
-	display[5] {
-		label="DAC #6"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=6"
-	}
-	display[6] {
-		label="DAC #7"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=7"
-	}
-	display[7] {
-		label="DAC #8"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=8"
-	}
-	display[8] {
-		label="All 8 DACs"
-		name="8_DACs.adl"
-		args="P=13IDC:, D=1"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=363
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="DACs"
 }
 "related display" {
 	object {
@@ -1033,13 +884,13 @@ text {
 	}
 	display[0] {
 		label="Bench Attenuators"
-		name="13IDC_Unidig_atten_bench.adl"
-		args="P=13IDC:, R=Unidig2"
+		name="CARS_attenuator.adl"
+		args="P=13IDC:, R=Bench"
 	}
 	display[1] {
 		label="Arm Attenuators"
-		name="13IDC_Unidig_atten_arm.adl"
-		args="P=13IDC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13IDC:, R=Arm"
 	}
 	display[2] {
 		label="Filter"
