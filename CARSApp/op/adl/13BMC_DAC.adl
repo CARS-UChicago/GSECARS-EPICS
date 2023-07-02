@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13BMC_DAC.adl"
+	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC_DAC.adl"
 	version=030109
 }
 display {
 	object {
-		x=1975
-		y=85
+		x=50
+		y=223
 		width=1000
 		height=618
 	}
@@ -606,7 +606,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMC:Unidig1Bo15"
+		chan="13BMC:BeamFilter"
 	}
 }
 oval {
@@ -621,7 +621,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMC:Unidig1Bo15"
+		chan="13BMC:BeamFilter"
 	}
 }
 text {
@@ -644,7 +644,7 @@ text {
 		height=19
 	}
 	control {
-		chan="13BMC:Unidig1Bo15"
+		chan="13BMC:BeamFilter"
 		clr=60
 		bclr=53
 	}
@@ -947,13 +947,13 @@ rectangle {
 	}
 	display[0] {
 		label="Bench Attenuators"
-		name="13BMC_Unidig_atten_bench.adl"
-		args="P=13BMC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13BMC:, R=Bench"
 	}
 	display[1] {
 		label="Arm Attenuators"
-		name="13BMC_Unidig_atten_arm.adl"
-		args="P=13BMC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13BMC:, R=Arm"
 	}
 	display[2] {
 		label="Filters"
@@ -1016,7 +1016,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMC:Unidig1Bo12"
+		chan="13BMC:BenchShutter"
 	}
 	textix="OPEN"
 }
@@ -1032,7 +1032,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMC:Unidig1Bo12"
+		chan="13BMC:BenchShutter"
 	}
 	textix="CLOSED"
 }
@@ -1044,7 +1044,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13BMC:Unidig1Bo12"
+		chan="13BMC:BenchShutter"
 		clr=20
 		bclr=53
 	}
@@ -1163,9 +1163,9 @@ composite {
 		args="P=13IDD:, PID=PID1, TITLE=BMC_Temp_Feedback"
 	}
 	display[3] {
-		label="Acromag ADC"
-		name="Ip330Scan.adl"
-		args="P=13BMC:, R=IP330_"
+		label="USB-1808 ADC"
+		name="USB1808_module.adl"
+		args="P=13BMC:USB1808:"
 	}
 	clr=14
 	bclr=4
@@ -1184,9 +1184,9 @@ composite {
 		args="P=13BMC:, S=scaler1"
 	}
 	display[1] {
-		label="SIS MCS"
-		name="SIS38XX.adl"
-		args="P=13BMC:SIS1:"
+		label="MCS"
+		name="USBCTR_MCS.adl"
+		args="P=13BMC:MCS1:"
 	}
 	display[2] {
 		label="Stanford #1"
@@ -1867,18 +1867,18 @@ text {
 	}
 	display[0] {
 		label="Prosilica Illum"
-		name="singleDAC.adl"
-		args="P=13BMC:, R=DAC, D=1, C=2"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13BMC:, R=DACIllumPower"
 	}
 	display[1] {
 		label="Laser Power"
-		name="singleDAC.adl"
-		args="P=13BMC:, R=DAC, D=1, C=3"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13BMC:, R=IPGLaserPower"
 	}
 	display[2] {
 		label="Resistive Power"
-		name="singleDAC.adl"
-		args="P=13BMC:, R=DAC, D=1, C=4"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13BMC:, R=HeaterPower"
 	}
 	display[3] {
 		label="BMC PACE5000"
