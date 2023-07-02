@@ -239,13 +239,13 @@ composite {
 	}
 	display[0] {
 		label="Bench Attenuators"
-		name="13BMC_Unidig_atten_bench.adl"
-		args="P=13BMC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13BMC:, R=Bench"
 	}
 	display[1] {
 		label="Arm Attenuators"
-		name="13BMC_Unidig_atten_arm.adl"
-		args="P=13BMC:, R=Unidig1"
+		name="CARS_attenuator.adl"
+		args="P=13BMC:, R=Arm"
 	}
 	display[2] {
 		label="Filters"
@@ -292,7 +292,7 @@ composite {
 	display[1] {
 		label="SIS MCS"
 		name="SIS38XX.adl"
-		args="P=13BMC:SIS1:"
+		args="P=13BMC:MCS1:"
 	}
 	display[2] {
 		label="Stanford #1"
@@ -636,14 +636,14 @@ composite {
 		args="P=13BMC:, PID=vert_pid, TITLE=BMC_Vert_Feedback"
 	}
 	display[1] {
-		label="DAC #1"
-		name="singleDAC.adl"
-		args="P=13BMC:, D=1,C=1"
+		label="DAC"
+		name="USB3104_module.adl"
+		args="P=13BMC:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	display[2] {
-		label="Acromag ADC"
-		name="Ip330Scan.adl"
-		args="P=13BMC:, R=IP330_"
+		label="USB-1808"
+		name="USB1808_module.adl"
+		args="P=13BMC:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	clr=14
 	bclr=4
@@ -657,9 +657,9 @@ composite {
 		height=25
 	}
 	display[0] {
-		label="Bench Attenuators"
+		label="Gas valves"
 		name="13BMC_gas_valves.adl"
-		args="P=13BMC:, R=Unidig2"
+		args="P=13BMC:"
 	}
 	display[1] {
 		args=" "
