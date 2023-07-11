@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=522
-		y=1292
+		x=234
+		y=98
 		width=630
 		height=680
 	}
@@ -183,6 +183,21 @@ rectangle {
 		name="SR570.adl"
 		args="P=13IDE:, A=A3"
 	}
+	display[3] {
+		label="USB-CTR08"
+		name="USBCTR.adl"
+		args="P=13IDE:USBCTR:,SP=13IDE:,S=scaler1,MP=13IDE:MCS1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[4] {
+		label="USB-1808X"
+		name="USB1808_module.adl"
+		args="P=13IDE:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[5] {
+		label="USB-3104"
+		name="USB3104_module.adl"
+		args="P=13IDE:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
 	clr=54
 	bclr=1
 	label="-Electronics"
@@ -206,7 +221,7 @@ rectangle {
 	display[2] {
 		label="Filters"
 		name="13IDE_filters.adl"
-		args="P=13IDE:, R=Unidig1"
+		args="P=13IDE:"
 	}
 	display[3] {
 		label="Intensity Transform "
@@ -241,6 +256,11 @@ rectangle {
 		label="HERFD Analyzer"
 		name="13IDE_analyzer.adl"
 		args="P=13XRM:, R=ANA"
+	}
+	display[14] {
+		label="APS Beamtime Info"
+		name="apsbss.adl"
+		args="P=13IDE:bss:"
 	}
 	clr=54
 	bclr=1
@@ -812,9 +832,9 @@ rectangle {
 		args="P=13IDE:, S=scaler1"
 	}
 	display[1] {
-		label="Struck MCS"
-		name="SIS38XX.adl"
-		args="P=13IDE:SIS1:"
+		label="MCS"
+		name="USBCTR_MCS.adl"
+		args="P=13IDE:MCS1:"
 	}
 	display[2] {
 		label="SXD7  (Xspress3)"
@@ -1081,7 +1101,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_7_tweak.A"
+		chan="13IDA:E_MonoPiezoPitchTweakDown.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1096,7 +1116,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_7_tweak.B"
+		chan="13IDA:E_MonoPiezoPitchTweakUp.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1111,7 +1131,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_7_tweakVal"
+		chan="13IDA:E_MonoPiezoPitchTweakVal"
 		clr=14
 		bclr=0
 	}
@@ -1126,7 +1146,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_7.VAL"
+		chan="13IDA:E_MonoPiezoPitch.VAL"
 		clr=14
 		bclr=0
 	}
@@ -1142,7 +1162,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_8_tweak.A"
+		chan="13IDA:E_MonoPiezoRollTweakDown.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1157,7 +1177,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_8_tweak.B"
+		chan="13IDA:E_MonoPiezoRollTweakUp.PROC"
 		clr=54
 		bclr=0
 	}
@@ -1172,7 +1192,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_8_tweakVal"
+		chan="13IDA:E_MonoPiezoRollTweakVal"
 		clr=14
 		bclr=0
 	}
@@ -1187,7 +1207,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_8.VAL"
+		chan="13IDA:E_MonoPiezoRoll.VAL"
 		clr=14
 		bclr=0
 	}
@@ -1386,7 +1406,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_8.VAL"
+		chan="13IDA:E_MonoPiezoRoll.VAL"
 		clr=14
 		bclr=0
 	}
@@ -1401,7 +1421,7 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="13IDA:DAC1_7.VAL"
+		chan="13IDA:E_MonoPiezoPitch.VAL"
 		clr=14
 		bclr=0
 	}
@@ -1719,7 +1739,7 @@ text {
 		height=16
 	}
 	control {
-		chan="13IDE:Unidig1Bo1"
+		chan="13IDE:TableFilter1"
 		clr=14
 		bclr=31
 	}
@@ -1745,7 +1765,7 @@ text {
 		height=16
 	}
 	control {
-		chan="13IDE:Unidig1Bo2"
+		chan="13IDE:TableFilter2"
 		clr=14
 		bclr=31
 	}
@@ -1771,7 +1791,7 @@ text {
 		height=16
 	}
 	control {
-		chan="13IDE:Unidig1Bo3"
+		chan="13IDE:TableFilter3"
 		clr=14
 		bclr=31
 	}
@@ -1797,7 +1817,7 @@ text {
 		height=16
 	}
 	control {
-		chan="13IDE:Unidig1Bo0"
+		chan="13IDE:TableShutter"
 		clr=14
 		bclr=31
 	}
@@ -1823,7 +1843,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="13IDE:IP330_1.VAL"
+		chan="13IDE:I0_Volts"
 		clr=54
 		bclr=2
 	}
