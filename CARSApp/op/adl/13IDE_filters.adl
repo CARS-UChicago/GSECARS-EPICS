@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13IDE_filters.adl"
-	version=030109
+	version=030117
 }
 display {
 	object {
@@ -87,6 +87,66 @@ display {
 		1a7309,
 	}
 }
+oval {
+	object {
+		x=270
+		y=140
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)TableFilter3_RBV"
+	}
+}
+oval {
+	object {
+		x=270
+		y=110
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)TableFilter2_RBV"
+	}
+}
+oval {
+	object {
+		x=270
+		y=80
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)TableFilter1_RBV"
+	}
+}
+oval {
+	object {
+		x=270
+		y=50
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)TableShutter_RBV"
+	}
+}
 text {
 	object {
 		x=20
@@ -111,22 +171,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P)$(R)Bi1.VAL"
-	}
-}
-oval {
-	object {
-		x=270
-		y=80
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(P)$(R)Bi1.VAL"
+		chan="$(P)TableFilter1_RBV"
 	}
 }
 text {
@@ -149,7 +194,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)Bo1"
+		chan="$(P)TableFilter1"
 		clr=14
 		bclr=51
 	}
@@ -167,22 +212,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P)$(R)Bi2.VAL"
-	}
-}
-oval {
-	object {
-		x=270
-		y=110
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(P)$(R)Bi2.VAL"
+		chan="$(P)TableFilter2_RBV"
 	}
 }
 text {
@@ -205,7 +235,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)Bo2"
+		chan="$(P)TableFilter2"
 		clr=14
 		bclr=51
 	}
@@ -223,22 +253,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P)$(R)Bi3.VAL"
-	}
-}
-oval {
-	object {
-		x=270
-		y=140
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(P)$(R)Bi3.VAL"
+		chan="$(P)TableFilter3_RBV"
 	}
 }
 text {
@@ -261,7 +276,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)Bo3"
+		chan="$(P)TableFilter3"
 		clr=14
 		bclr=51
 	}
@@ -279,22 +294,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P)$(R)Bi0.VAL"
-	}
-}
-oval {
-	object {
-		x=270
-		y=50
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="$(P)$(R)Bi0.VAL"
+		chan="$(P)TableShutter_RBV"
 	}
 }
 text {
@@ -317,7 +317,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)Bo0"
+		chan="$(P)TableShutter"
 		clr=14
 		bclr=51
 	}
