@@ -1,7 +1,7 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/BM_LVP_pressure.adl"
-	version=030107
+	name="J:\epics\support\CARS\CARSApp\op\adl\BM_LVP_pressure.adl"
+	version=030109
 }
 display {
 	object {
@@ -1177,7 +1177,7 @@ text {
 		height=20
 	}
 	control {
-		chan="$(P)DAC$(D)_$(C).VAL"
+		chan="$(P)LVP_PressPump"
 		clr=14
 		bclr=51
 	}
@@ -1192,7 +1192,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="$(P)DAC$(D)_$(C).VAL"
+		chan="$(P)LVP_PressPump"
 		clr=14
 		bclr=51
 	}
@@ -1208,7 +1208,7 @@ valuator {
 		height=19
 	}
 	control {
-		chan="$(P)DAC$(D)_$(C)_tweak.A"
+		chan="$(P)LVP_PressPumpTweakDown.PROC"
 		clr=14
 		bclr=51
 	}
@@ -1223,7 +1223,7 @@ valuator {
 		height=19
 	}
 	control {
-		chan="$(P)DAC$(D)_$(C)_tweak.B"
+		chan="$(P)LVP_PressPumpTweakUp.PROC"
 		clr=14
 		bclr=51
 	}
@@ -1238,7 +1238,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="$(P)DAC$(D)_$(C)_tweakVal"
+		chan="$(P)LVP_PressPumpTweakVal"
 		clr=14
 		bclr=51
 	}
@@ -1284,70 +1284,59 @@ rectangle {
 	label="Stop motor"
 	press_msg="1"
 }
-composite {
+"text entry" {
 	object {
-		x=11
+		x=115
 		y=462
-		width=447
+		width=80
 		height=20
 	}
-	"composite name"=""
-	children {
-		"text entry" {
-			object {
-				x=115
-				y=462
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)$(R)LoadPID.DRVL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=270
-				y=462
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)$(R)LoadPID.DRVH"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=359
-				y=465
-				width=99
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Upper limit"
-		}
-		text {
-			object {
-				x=11
-				y=465
-				width=99
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Lower limit"
-		}
+	control {
+		chan="$(P)$(R)LoadPID.DRVL"
+		clr=14
+		bclr=51
 	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=270
+		y=462
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(R)LoadPID.DRVH"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=465
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Upper limit"
+}
+text {
+	object {
+		x=11
+		y=465
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Lower limit"
 }
 "text entry" {
 	object {
