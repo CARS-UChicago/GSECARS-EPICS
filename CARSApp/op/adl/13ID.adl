@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13ID.adl"
-	version=030109
+	version=030117
 }
 display {
 	object {
@@ -165,19 +165,19 @@ rectangle {
 		args="P=13IDA:, Dmm=DMM1"
 	}
 	display[1] {
-		label="IP-330 ADC"
-		name="Ip330Scan.adl"
-		args="P=13IDA:, R=IP330_"
-	}
-	display[2] {
 		label="Mirror Keithley 2000"
 		name="Keithley2kDMM_mf.adl"
 		args="P=13IDA:, Dmm=DMM2"
 	}
+	display[2] {
+		label="E-1608_1"
+		name="E1608_module.adl"
+		args="P=13IDA:E1608_1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
 	display[3] {
-		label="ipUnidig"
-		name="IpUnidig.adl"
-		args="P=13IDA:, R=Unidig1"
+		label="E-1608_2"
+		name="E1608_module.adl"
+		args="P=13IDA:E1608_2:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	clr=14
 	bclr=51
@@ -438,49 +438,24 @@ text {
 		height=20
 	}
 	display[0] {
-		label="DAC 1"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=1"
+		label="E mono piezo pitch"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:, R=E_MonoPiezoPitch"
 	}
 	display[1] {
-		label="DAC 2"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=2"
+		label="E mono piezo roll"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:, R=E_MonoPiezoRoll"
 	}
 	display[2] {
-		label="DAC 3"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=3"
+		label="CD mono piezo pitch"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:, R=CD_MonoPiezoPitch"
 	}
 	display[3] {
-		label="DAC 4"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=4"
-	}
-	display[4] {
-		label="DAC 5"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=5"
-	}
-	display[5] {
-		label="DAC 6"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=6"
-	}
-	display[6] {
-		label="DAC 7"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=7"
-	}
-	display[7] {
-		label="DAC 8"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=8"
-	}
-	display[8] {
-		label="All 8 DACs"
-		name="8_DACs.adl"
-		args="P=13IDA:, D=1"
+		label="CD mono piezo roll"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:, R=CD_MonoPiezoRoll"
 	}
 	clr=14
 	bclr=51
@@ -560,7 +535,7 @@ text {
 	display[3] {
 		label="ID-C/D Mono Feedback"
 		name="13ID_mono_feedback.adl"
-		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=CD_MonoPiezoPitch,ROLL_DAC=CD_MonoPiezoRoll,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2"
 	}
 	display[4] {
 		label="ID-C/D Cryo & Vacuum Status"
@@ -574,7 +549,7 @@ text {
 	display[6] {
 		label="ID-C/D Mono full"
 		name="13ID_mono_full.adl"
-		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2,ID=13ds:,EN=E"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=CD_MonoPiezoPitch,ROLL_DAC=CD_MonoPiezoPitch,FAST_PITCH_PID=fast_pitch_pid,FAST_ROLL_PID=fast_roll_pid,SLOW_PITCH_PID=mono_pid1,SLOW_ROLL_PID=mono_pid2,ID=13ds:,EN=E"
 	}
 	clr=14
 	bclr=51
@@ -774,8 +749,8 @@ text {
 	}
 	display[6] {
 		label="ID-C/D Vertical PZT"
-		name="singleDAC.adl"
-		args="P=13IDA:,D=1,C=5"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:,R=CD_MonoPiezoPitch"
 	}
 	clr=14
 	bclr=51
@@ -1077,23 +1052,13 @@ text {
 	}
 	display[8] {
 		label="DAC 2nd XTAL Pitch"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=7"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:,R=E_MonoPiezoPitch"
 	}
 	display[9] {
 		label="DAC 2nd XTAL Roll"
-		name="singleDAC.adl"
-		args="P=13IDA:, D=1, C=8"
-	}
-	display[10] {
-		label="Energy (Old)"
-		name="Energy.adl"
-		args="P1=13IDA:, TITLE=_ID-E_Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=m6"
-	}
-	display[11] {
-		label="asyn record PMAC"
-		name="asynOctet.adl"
-		args="P=13IDA_EMONO:, R=asyn1"
+		name="measCompSingleAnalogOut.adl"
+		args="P=13IDA:,R=E_MonoPiezoRoll"
 	}
 	clr=14
 	bclr=51
@@ -1476,31 +1441,4 @@ text {
 		width=2
 	}
 	textix="User calcs, transforms"
-}
-"related display" {
-	object {
-		x=381
-		y=505
-		width=75
-		height=20
-	}
-	display[0] {
-		label="Aerotech Driver"
-		name="1motors.adl"
-		args="P=13AERO1:,TITLE=Aerotech Motor,M1=m1"
-	}
-	clr=14
-	bclr=51
-}
-text {
-	object {
-		x=462
-		y=504
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="More Motors"
 }
