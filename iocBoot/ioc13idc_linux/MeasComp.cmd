@@ -20,13 +20,15 @@ epicsEnvSet("UNIQUE_ID",      "0209CC90")
 epicsEnvSet("USB3104_PREFIX", "$(P)USB3104:")
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), 1, 1)
 dbLoadTemplate("$(MEASCOMP)/db/USB3104.substitutions", "P=$(USB3104_PREFIX), PORT=$(PORT)")
+asynSetTraceIOMask($(PORT), -1, ESCAPE)
+#asynSetTraceMask($(PORT), -1, DRIVER|ERROR)
 
 # USBCTR
 epicsEnvSet("PORT",          "USBCTR")
 #epicsEnvSet("UNIQUE_ID",     "0213F59E")
 epicsEnvSet("UNIQUE_ID",     "0214D588")
 epicsEnvSet("USBCTR_PREFIX", "$(P)USBCTR:")
-epicsEnvSet("MCS_PREFIX",    "$(USBCTR_PREFIX)MCS:")
+epicsEnvSet("MCS_PREFIX",    "$(P)MCS1:")
 epicsEnvSet("SCALER_PREFIX", "$(P)"
 epicsEnvSet("SCALER_NAME",   "scaler1")
 epicsEnvSet("RNAME",         "mca")
@@ -42,7 +44,7 @@ epicsEnvSet("FIELD",         "PROC")
 #              maxTimePoints,  # Maximum number of time points for MCS
 #              pollTime,       # Time to sleep between polls
 USBCTRConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), $(POLL_TIME))
-dbLoadTemplate("$(MEASCOMP)/db/USBCTR.substitutions", "P=$(USBCTR_PREFIX), PORT=$(PORT)")
+dbLoadTemplate("$(MEASCOMP)/db/USBCTR.substitutions", "P=$(USBCTR_PREFIX),PORT=$(PORT)")
 
 # This loads the scaler record and supporting records
 # We use the IOC prefix, without the USBCTR: for backwards compatibility
@@ -79,7 +81,7 @@ doAfterIocInit 'seq(USBCTR_SNL, "P=$(MCS_PREFIX), R=$(RNAME), NUM_COUNTERS=$(MAX
 
 # EDIO24
 epicsEnvSet("PORT",          "EDIO24")
-epicsEnvSet("UNIQUE_ID",     "gse-edio24-5.cars.aps.anl.gov")
+epicsEnvSet("UNIQUE_ID",     "gse-edio24-3.cars.aps.anl.gov")
 epicsEnvSet("MAX_POINTS",    "1")
 epicsEnvSet("EDIO24_PREFIX",  "$(P)EDIO24_1:")
 ## Configure port driver
@@ -90,3 +92,5 @@ epicsEnvSet("EDIO24_PREFIX",  "$(P)EDIO24_1:")
 
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
 dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+
+dbLoadTemplate("MeasCompAliases.substitutions")
