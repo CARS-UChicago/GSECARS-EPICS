@@ -13,7 +13,7 @@
 GalilCreateController("GALIL1", "10.54.160.43", 8)  # gse-galil1  In IDC rack, Step-Pak
 GalilCreateController("GALIL2", "10.54.160.65", 8)  # gse-galil3  In IDC rack, Step-Pak
 GalilCreateController("GALIL3", "10.54.160.66", 8)  # gse-galil2  In IDC station, D4040 drives
-GalilCreateController("GALIL4", "10.54.160.69", 8)  # gse-galil5  In IDC station, D4040 drives
+GalilCreateController("GALIL4", "10.54.160.67", 8)  # gse-galil4  In IDC station, D4040 drives
 
 # GalilCreateAxis command parameters are:
 #
