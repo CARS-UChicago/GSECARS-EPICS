@@ -23,7 +23,7 @@ drvAsynIPPortConfigure("serial1", "164.54.160.163:4001", 0, 0, 0)
 drvAsynIPPortConfigure("serial2", "164.54.160.163:4002", 0, 0, 0)
 # Serial 3 is the ACS MCB-4B motor controller
 # Settings: 19200, 8, 1, None, None
-drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
+#drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
 # Serial 4 is the SensaVac vaccum gauge controller
 # Settings: 19200, 8, 1, None, None
 drvAsynIPPortConfigure("serial4", "164.54.160.163:4004", 0, 0, 0)
@@ -33,8 +33,8 @@ asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
 asynOctetSetOutputEos("serial2",0,"\r")
-asynOctetSetInputEos("serial3",0,"\r")
-asynOctetSetOutputEos("serial3",0,"\r")
+#asynOctetSetInputEos("serial3",0,"\r")
+#asynOctetSetOutputEos("serial3",0,"\r")
 asynOctetSetInputEos("serial4",0,"\r")
 asynOctetSetOutputEos("serial4",0,"\r")
 asynOctetSetInputEos("serial5",0,"\r")
@@ -51,7 +51,8 @@ dbLoadTemplate("Omega.substitutions")
 dbLoadRecords("$(IP)/db/Alcatel_ACS1000.db", "P=$(PREFIX), R=ACS1000, PORT=serial4")
 
 ### Motors
-dbLoadTemplate  "motors.template"
+iocshLoad("Galil.cmd", "P=$(PREFIX)")
+dbLoadTemplate  "Galil_motors.template"
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
@@ -81,12 +82,12 @@ dbLoadRecords("$(STD)/db/misc.db", "P=$(PREFIX)")
 #     (1) maximum # of controllers,
 #     (2) maximum # axis per controller
 #     (3) motor task polling rate (min=1Hz, max=60Hz)
-MCB4BSetup(1, 4, 10)
+#MCB4BSetup(1, 4, 10)
 
 # MCB-4B driver configuration parameters:
 #     (1) controller
 #     (2) asyn port name (e.g. serial1)
-MCB4BConfig(0, "serial3")
+#MCB4BConfig(0, "serial3")
 
 # Koyo PLC
 < Koyo.cmd
