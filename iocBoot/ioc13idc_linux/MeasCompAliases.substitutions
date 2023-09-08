@@ -1,0 +1,44 @@
+file "$(CARS)/db/binary_alias.template"
+{
+pattern
+{       REC,          RTYP,      ALIAS,                   ZNAM,    ONAM,        DESC}
+
+# This is the first XIA PFCU-4, bench attenuators
+{13IDC:EDIO24_1:Bo1,    bo,   13IDC:BenchAtten1,           Out,     In, "Bench attenuator 1 control"}
+{13IDC:EDIO24_1:Bi1,    bi,   13IDC:BenchAtten1_RBV,       Out,     In, "Bench attenuator 1 control readback"}
+{13IDC:EDIO24_1:Bi5,    bi,   13IDC:BenchAtten1_Status,    Out,     In, "Bench attenuator 1 actual status"}
+{13IDC:EDIO24_1:Bo2,    bo,   13IDC:BenchAtten2,           Out,     In, "Bench attenuator 2 control"}
+{13IDC:EDIO24_1:Bi2,    bi,   13IDC:BenchAtten2_RBV,       Out,     In, "Bench attenuator 2 control readback"}
+{13IDC:EDIO24_1:Bi6,    bi,   13IDC:BenchAtten2_Status,    Out,     In, "Bench attenuator 2 actual status"}
+{13IDC:EDIO24_1:Bo3,    bo,   13IDC:BenchAtten3,           Out,     In, "Bench attenuator 3 control"}
+{13IDC:EDIO24_1:Bi3,    bi,   13IDC:BenchAtten3_RBV,       Out,     In, "Bench attenuator 3 control readback"}
+{13IDC:EDIO24_1:Bi7,    bi,   13IDC:BenchAtten3_Status,    Out,     In, "Bench attenuator 3 actual status"}
+{13IDC:EDIO24_1:Bo4,    bo,   13IDC:BenchAtten4,           Out,     In, "Bench attenuator 4 control"}
+{13IDC:EDIO24_1:Bi4,    bi,   13IDC:BenchAtten4_RBV,       Out,     In, "Bench attenuator 4 control readback"}
+{13IDC:EDIO24_1:Bi8,    bi,   13IDC:BenchAtten4_Status,    Out,     In, "Bench attenuator 4 actual status"}
+
+# This is the second XIA PFCU-4, arm attenuators
+{13IDC:EDIO24_1:Bo9,     bo,   13IDC:ArmAtten1,           Out,     In, "Arm attenuator 1 control"}
+{13IDC:EDIO24_1:Bi9,     bi,   13IDC:ArmAtten1_RBV,       Out,     In, "Arm attenuator 1 control readback"}
+{13IDC:EDIO24_1:Bi13,    bi,   13IDC:ArmAtten1_Status,    Out,     In, "Arm attenuator 1 actual status"}
+{13IDC:EDIO24_1:Bo10,    bo,   13IDC:ArmAtten2,           Out,     In, "Arm attenuator 2 control"}
+{13IDC:EDIO24_1:Bi10,    bi,   13IDC:ArmAtten2_RBV,       Out,     In, "Arm attenuator 2 control readback"}
+{13IDC:EDIO24_1:Bi14,    bi,   13IDC:ArmAtten2_Status,    Out,     In, "Arm attenuator 2 actual status"}
+{13IDC:EDIO24_1:Bo11,    bo,   13IDC:ArmAtten3,           Out,     In, "Arm attenuator 3 control"}
+{13IDC:EDIO24_1:Bi11,    bi,   13IDC:ArmAtten3_RBV,       Out,     In, "Arm attenuator 3 control readback"}
+{13IDC:EDIO24_1:Bi15,    bi,   13IDC:ArmAtten3_Status,    Out,     In, "Arm attenuator 3 actual status"}
+{13IDC:EDIO24_1:Bo12,    bo,   13IDC:ArmAtten4,           Out,     In, "Arm attenuator 4 control"}
+{13IDC:EDIO24_1:Bi12,    bi,   13IDC:ArmAtten4_RBV,       Out,     In, "Arm attenuator 4 control readback"}
+{13IDC:EDIO24_1:Bi16,    bi,   13IDC:ArmAtten4_Status,    Out,     In, "Arm attenuator 4 actual status"}
+
+}
+
+file "$(CARS)/db/analog_out_alias.template"
+{
+pattern
+{      REC,              ALIAS,            EGUL,  DRVL,  LOPR,  EGUF,  DRVH,  HOPR, PREC,       DESC}
+{13IDC:USB3104:Ao2,  13IDC:DACIllumPower,  -100,   0,      0,   100,    100,   100,  3,   "DAC illuminator power"}
+{13IDC:USB3104:Ao3,  13IDC:IPGLaserPower,  -100,   0,      0,   100,    100,   100,  3,   "IPG laser power"}
+{13IDC:USB3104:Ao4,  13IDC:HeaterPower,     -33,   0,      0,    33,     33,    33,  3,   "Resistance heater power"}
+}
+
