@@ -1,0 +1,35 @@
+record(calcout, "$(P)$(M)ForwardPress") {
+  field(INPA, "$(P)$(BI0) CP")
+  field(CALC, "A")
+  field(OOPT, "Transition To Zero")
+  field(OUT,  "$(P)$(M).JOGF PP")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "1")
+}
+
+record(calcout, "$(P)$(M)ForwardRelease") {
+  field(INPA, "$(P)$(BI0) CP")
+  field(CALC, "A")
+  field(OOPT, "Transition To Non-zero")
+  field(OUT,  "$(P)$(M).JOGF PP")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "0")
+}
+
+record(calcout, "$(P)$(M)ReversePress") {
+  field(INPA, "$(P)$(BI1) CP")
+  field(CALC, "A")
+  field(OOPT, "Transition To Zero")
+  field(OUT,  "$(P)$(M).JOGR PP")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "1")
+}
+
+record(calcout, "$(P)$(M)ReverseRelease") {
+  field(INPA, "$(P)$(BI1) CP")
+  field(CALC, "A")
+  field(OOPT, "Transition To Non-zero")
+  field(OUT,  "$(P)$(M).JOGR PP")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "0")
+}
