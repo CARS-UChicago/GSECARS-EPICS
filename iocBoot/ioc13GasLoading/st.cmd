@@ -52,7 +52,6 @@ dbLoadRecords("$(IP)/db/Alcatel_ACS1000.db", "P=$(PREFIX), R=ACS1000, PORT=seria
 
 ### Motors
 iocshLoad("Galil.cmd", "P=$(PREFIX)")
-dbLoadTemplate  "Galil_motors.template"
 
 # A set of scan parameters for each positioner.  This is a convenience
 # for the user.  It can contain an entry for each scannable thing in the
