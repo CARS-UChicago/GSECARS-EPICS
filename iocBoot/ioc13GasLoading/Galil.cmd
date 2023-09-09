@@ -36,17 +36,20 @@ GalilCreateCSAxes("GALIL1")
 #Load motor records for real and coordinate system (CS) motors
 dbLoadTemplate("Galil_motors.template")
 
+#Remote control input
+dbLoadTemplate("remoteControl.substitutions", "P=$(P)")
+
 #Load digital IO databases
-#dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_dmc_digital_ports.substitutions", "P=DMC01:, PORT=Galil")
+dbLoadTemplate("$(GALIL)/db/galil_dmc_digital_ports.substitutions", "P=$(P), PORT=GALIL1")
 
 #Load analog IO databases
-#dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_dmc_analog_ports.substitutions", "P=DMC01:, PORT=Galil, PREC=3")
+#dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_dmc_analog_ports.substitutions", "P=$(P), PORT=Galil, PREC=3")
 
 #Load user defined functions
 #dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_userdef_records.substitutions")
 
 #Load user defined array support
-#dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_user_array.substitutions", "P=DMC01:, PORT=Galil, NELM=1000")
+#dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_user_array.substitutions", "P=$(P), PORT=Galil, NELM=1000")
 
 #Load profiles
 #dbLoadTemplate("$(TOP)/GalilTestApp/Db/galil_profileMoveController.substitutions")
