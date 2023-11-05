@@ -1,0 +1,93 @@
+# asyn record for the underlying asyn TCP port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{R,               PORT,      ADDR,   IMAX,    OMAX}
+{ClickAsyn,      Click,     0,      80,      80}
+}
+
+# These are the Xn inputs done with bit access
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{R,                 PORT,       OFFSET,     ZNAM,     ONAM,    ZSV,         OSV,    SCAN}
+{IO1ModuleError,   C1_Xn_Bit,    0x20,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO1Missing24V,    C1_Xn_Bit,    0x21,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO2ModuleError,   C1_Xn_Bit,    0x40,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO2Missing24V,    C1_Xn_Bit,    0x41,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3ModuleError,   C1_Xn_Bit,    0x60,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3ModuleConfig,  C1_Xn_Bit,    0x61,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch1Burnout,    C1_Xn_Bit,    0x62,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch1UnderRange, C1_Xn_Bit,    0x63,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch1OverRange,  C1_Xn_Bit,    0x64,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch2Burnout,    C1_Xn_Bit,    0x65,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch2UnderRange, C1_Xn_Bit,    0x66,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch2OverRange,  C1_Xn_Bit,    0x67,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch3Burnout,    C1_Xn_Bit,    0x68,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch3UnderRange, C1_Xn_Bit,    0x69,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch3OverRange,  C1_Xn_Bit,    0x6a,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch4Burnout,    C1_Xn_Bit,    0x6b,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch4UnderRange, C1_Xn_Bit,    0x6c,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+{IO3Ch4OverRange,  C1_Xn_Bit,    0x6d,       OK,     Error,  NO_ALARM,    MAJOR,  "I/O Intr"}
+}
+
+# These are the Cn inputs done with bit access
+file "$(MODBUS)/db/bi_bit.template" { pattern
+{R,                 PORT,        OFFSET,       ZNAM,        ONAM,      ZSV,       OSV,      SCAN}
+{VFD1StopStatus,   C1_Cn_In_Bit,  0x05,      NotStopped,  Stopped,  NO_ALARM,  MINOR,     "I/O Intr"}
+{VFD1RunStatus,    C1_Cn_In_Bit,  0x06,      NotRunning,  Running,  MINOR,     NO_ALARM,  "I/O Intr"}
+{VFD2StopStatus,   C1_Cn_In_Bit,  0x18,      NotStopped,  Stopped,  NO_ALARM,  MINOR,     "I/O Intr"}
+{VFD2RunStatus,    C1_Cn_In_Bit,  0x19,      NotRunning,  Running,  MINOR,     NO_ALARM,  "I/O Intr"}
+}
+
+# These are the Cn outputs done with bit access.
+file "$(MODBUS)/db/bo_bit.template" { pattern
+{R,                   PORT,           OFFSET,      ZNAM,    ONAM}
+{VFD1FreqCmd,        C1_Cn_Out_Bit,    0x00,       Done,    Request}
+{VFD1RunCmd,         C1_Cn_Out_Bit,    0x01,       Done,    Request}
+{VFD1StopCmd,        C1_Cn_Out_Bit,    0x02,       Done,    Request}
+{VFD1ResetReadTimer, C1_Cn_Out_Bit,    0x0A,       Done,    Request}
+{VFD2FreqCmd,        C1_Cn_Out_Bit,    0x13,       Done,    Request}
+{VFD2RunCmd,         C1_Cn_Out_Bit,    0x14,       Done,    Request}
+{VFD2StopCmd,        C1_Cn_Out_Bit,    0x15,       Done,    Request}
+}
+
+# These are the DDn inputs done with 32-bit integer access
+file "$(MODBUS)/db/longinInt32.template" { pattern
+{R,              PORT,         OFFSET,  DATA_TYPE,     SCAN}
+{FlowFreq1,   C1_DDn1_In_Word,  0x00,    INT32_LE,   "I/O Intr"}
+}
+
+# These are the DFn inputs done with 32-bit float access
+file "$(MODBUS)/db/aiFloat64.template" { pattern
+{R,              PORT,          OFFSET,  DATA_TYPE,   PREC,  SCAN}
+{RTD_Temp1,   C1_DFn1_In_Word,  0x12,    FLOAT32_LE,   1,   "I/O Intr"}
+{Pressure1,   C1_DFn1_In_Word,  0x3A,    FLOAT32_LE,   1,   "I/O Intr"}
+}
+
+# These are the DSn inputs done with 16-bit integer access
+file "$(MODBUS)/db/longin.template" { pattern
+{R,                     PORT,          OFFSET,  DATA_TYPE, SCAN}
+{VFD1SetFreq_RBV,    C1_DSn1_In_Word,  0x00,     INT16,    "I/O Intr"}
+{VFD1RunCmdCode,     C1_DSn1_In_Word,  0x01,     INT16,    "I/O Intr"}
+{VFD1StopCmdCode,    C1_DSn1_In_Word,  0x02,     INT16,    "I/O Intr"}
+{VFD1DisplaySetFreq, C1_DSn1_In_Word,  0x05,     INT16,    "I/O Intr"}
+{VFD1RecvErrCode,    C1_DSn1_In_Word,  0x09,     INT16,    "I/O Intr"}
+
+{VFD1Error,          C1_DSn2_In_Word,  0x00,     INT16,    "I/O Intr"}
+{VFD1Status,         C1_DSn2_In_Word,  0x01,     INT16,    "I/O Intr"}
+{VFD1Freq,           C1_DSn2_In_Word,  0x02,     INT16,    "I/O Intr"}
+{VFD1H,              C1_DSn2_In_Word,  0x03,     INT16,    "I/O Intr"}
+{VFD1Current,        C1_DSn2_In_Word,  0x04,     INT16,    "I/O Intr"}
+{VFD1DCBusVolts,     C1_DSn2_In_Word,  0x05,     INT16,    "I/O Intr"}
+{VFD1ACOutVolts,     C1_DSn2_In_Word,  0x06,     INT16,    "I/O Intr"}
+{VFD1MultiSpeed,     C1_DSn2_In_Word,  0x07,     INT16,    "I/O Intr"}
+{VFD1ActiveWarning,  C1_DSn2_In_Word,  0x08,     INT16,    "I/O Intr"}
+{VFD1D16Counter,     C1_DSn2_In_Word,  0x09,     INT16,    "I/O Intr"}
+{VFD1PowerFactor,    C1_DSn2_In_Word,  0x0A,     INT16,    "I/O Intr"}
+{VFD1PercentLoad,    C1_DSn2_In_Word,  0x0B,     INT16,    "I/O Intr"}
+{VFD1RPM,            C1_DSn2_In_Word,  0x0C,     INT16,    "I/O Intr"}
+{VFD1SendErrorCode,  C1_DSn2_In_Word,  0x13,     INT16,    "I/O Intr"}
+}
+
+# These are the DSn outputs done with 16-bit integer access
+file "$(MODBUS)/db/longout.template" { pattern
+{R,                 PORT,          OFFSET}
+{VFD1SetFreq,    C1_DSn1_Out_Word,  0x00}
+}
