@@ -1,4 +1,4 @@
-iocshLoad("XPS.cmd",   "P=$(P)")
+#iocshLoad("XPS.cmd",   "P=$(P)")
 iocshLoad("Galil.cmd", "P=$(P)")
 
 ### Allstop, alldone
