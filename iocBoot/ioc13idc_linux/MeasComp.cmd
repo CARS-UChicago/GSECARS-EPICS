@@ -25,7 +25,7 @@ asynSetTraceIOMask($(PORT), -1, ESCAPE)
 
 # USBCTR
 epicsEnvSet("PORT",          "USBCTR")
-#epicsEnvSet("UNIQUE_ID",     "0213F59E")
+#epicsEnvSet("UNIQUE_ID",    "0213F59E")
 epicsEnvSet("UNIQUE_ID",     "0214D588")
 epicsEnvSet("USBCTR_PREFIX", "$(P)USBCTR:")
 epicsEnvSet("MCS_PREFIX",    "$(P)MCS1:")
