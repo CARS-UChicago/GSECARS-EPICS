@@ -1,5 +1,5 @@
-drvAsynIPPortConfigure("Koyo","10.54.160.50:502",0,0,1)
-asynWaitConnect("Koyo",2)
+drvAsynIPPortConfigure("Koyo","10.54.160.50:502",0,0,0)
+asynSetOption("Koyo",0, "disconnectOnReadTimeout", "Y")
 modbusInterposeConfig("Koyo",0,0)
 
 # NOTE: We use octal numbers for the start address and length (leading zeros)
