@@ -8,7 +8,7 @@ iocshLoad ../asynIPPortConfig.cmd "PORT=serial7,  IPADDR=$(TS):4007, IEOS=\\r,  
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial8,  IPADDR=$(TS):4008, IEOS=\\n,     OEOS=\\r"    # Keithley    19200,'N',1,8,'N'
 
 # Load asyn records on all ports
-dbLoadTemplate("asynRecord.template")
+dbLoadTemplate("asynRecord.template", P="$(P)")
 
 dbLoadRecords("$(IP)/db/SR570.db",                       "P=$(P), PORT=serial1,A=A1")
 dbLoadRecords("$(IP)/db/SR570.db",                       "P=$(P), PORT=serial2,A=A2")
