@@ -64,25 +64,6 @@ grecord(transform,"$(P)LVP_furnace_calcs") {
         field(PREC,"3")
 }
 
-# These records are for tweaking the DAC
-grecord(ao,"$(P)LVP_DAC_tweak") {
-        field(PREC,"3")
-}
-
-grecord(calcout,"$(P)DAC_tweak_down") {
-        field(INPA,"$(P)LVP_DAC_tweak.VAL NPP NMS")
-        field(INPB,"$(P)$(OUT) NPP NMS")
-        field(CALC,"B-A")
-        field(OUT, "$(P)$(OUT) PP NMS")
-}
-
-grecord(calcout,"$(P)DAC_tweak_up") {
-        field(INPA,"$(P)LVP_DAC_tweak.VAL NPP NMS")
-        field(INPB,"$(P)$(OUT) NPP NMS")
-        field(CALC,"B+A")
-        field(OUT, "$(P)$(OUT) PP NMS")
-}
-
 # These records are for tweaking the temperature setpoint
 grecord(ao,"$(P)LVP_SP_tweak") {
         field(PREC,"3")
