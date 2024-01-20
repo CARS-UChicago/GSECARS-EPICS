@@ -37,6 +37,9 @@ epicsEnvSet("LOCATION","13IDD roof")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(LINUX_PREFIX)")
 
+# Experiment info
+dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDD:")
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
@@ -50,7 +53,7 @@ create_monitor_set("auto_positions.req",5,"P=$(PREFIX)")
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),P3104=$(USB3104_PREFIX),P1808=$(USB1808_PREFIX),PEDIO24=$(EDIO24_PREFIX),PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
 
 # There is a bug in dbLoadRecords, it does not correctly remove \ from \"
-#dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
+# dbpf "13IDD:LPC1_power_decode.CALC","AA[-3,-2]==\"mW\"?DBL(AA)/1e3:DBL(AA)"
 # The scale factor from LPC power reading to actual laser watts
-#dbpf "13IDD:LPC1_power_scale.B","1.0"
+# dbpf "13IDD:LPC1_power_scale.B","1.0"
 
