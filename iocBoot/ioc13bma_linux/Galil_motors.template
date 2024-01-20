@@ -1,0 +1,29 @@
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,          PORT,   CTRL,     ADDR,   DESC,                 EGU,   DIR,  PCOF,  ICOF,  DCOF, VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,    SREV,    UREV,   ERES  PREC,  DHLM,   DLLM}
+{13BMA:,  m9,   "asynMotor",   GALIL1, Galil1:,    0, "Monochromator",     degrees,   Neg,  0.2,   0.002, 0.3,    1.,   0.,    .2,    0,      1,     .2,   20000,        1, 0.00005, 4,     50,    -50}
+# Y-Out, Neg lim = 0 Pos lim = 8.8603
+{13BMA:,  m10,  "asynMotor",   GALIL1, Galil1:,    1, "Y-Out",                  mm,   Neg,  0.0,   0.0,   0.0,    .3,  .05,   1.5,    0,    .05,    1.5,    2000,  .347368,     0.0, 4,     10,      0}
+# Y-In, Neg lim = 0 Pos lim = 9.2185
+{13BMA:,  m11,  "asynMotor",   GALIL1, Galil1:,    2, "Y-In",                   mm,   Neg,  0.0,   0.0,   0.0,    .3,  .05,   1.5,    0,    .05,    1.5,    2000,  .347368,     0.0, 4,     10,      0}
+# Y-Up, Neg lim = 0 Pos lim = 9.2749
+{13BMA:,  m12,  "asynMotor",   GALIL1, Galil1:,    3, "Y-Up",                   mm,   Neg,  0.0,   0.0,   0.0,    .3,  .05,   1.5,    0,    .05,    1.5,    2000,  .882353,     0.0, 4,     10,      0}
+{13BMA:,  m13,  "asynMotor",   GALIL1, Galil1:,    4, "Cage Y",                 mm,   Neg,  0.0,   0.0,   0.0,    .5,   .0,   1.5,    0,     .1,    1.5,    1600,       2.,     0.0, 3,     25,      0}
+{13BMA:,  m14,  "asynMotor",   GALIL1, Galil1:,    5, "Xtal Z",                 mm,   Pos,  0.0,   0.0,   0.0,    4.,   .1,   1.5,    0,     .5,     .2,    2000,      2.0,     0.0, 3,    150,      0}
+{13BMA:,  m15,  "asynMotor",   GALIL1, Galil1:,    6, "Top slit",               mm,   Pos,  0.0,   0.0,   0.0,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,     0.0, 3,     50,      0}
+{13BMA:,  m16,  "asynMotor",   GALIL1, Galil1:,    7, "Bottom slit",            mm,   Pos,  0.0,   0.0,   0.0,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,     0.0, 3,     50,      0}
+
+{file "$(OPTICS)/db/table.db"
+{
+pattern
+{P,          Q,      T,  M0X,  M1X,    M2X,    M0Y,   M1Y,    M2Y,   M2Z,  GEOM}
+{13BMA:, MON:T1, MON:t1, junk, junk,   junk,   m11,   m10,    m12,   junk,   SRI}
+}
+
+file "$(CARS)/db/Energy.db"
+{
+pattern
+{P,      EN,   DESC,     EGU,  PREC,  SCANREC,       USEID,  ID,      TWEAK}
+{13BMA:,  E,  "Energy",   eV,    4,   13BMA:scan1,       0,  Dummy,    1.00}
+}
