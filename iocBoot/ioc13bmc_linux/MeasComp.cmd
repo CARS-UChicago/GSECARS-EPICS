@@ -95,7 +95,7 @@ dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_1_PREFIX), POR
 # E-DIO24
 # This E-DIO24 controls the 2 XIA PFCU-4 shutter controllers
 epicsEnvSet("PORT",          "EDIO24_2")
-epicsEnvSet("UNIQUE_ID",     "gse-edio24-3.cars.aps.anl.gov")
+epicsEnvSet("UNIQUE_ID",     "gse-edio24-4.cars.aps.anl.gov")
 epicsEnvSet("MAX_POINTS",    "1")
 epicsEnvSet("EDIO24_2_PREFIX",  "$(P)EDIO24_2:")
 ## Configure port driver
