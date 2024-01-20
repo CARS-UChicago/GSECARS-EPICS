@@ -25,3 +25,5 @@ epicsEnvSet("E1608_PREFIX_2",  "$(P)E1608_2:")
 
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
 dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(E1608_PREFIX_2), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+
+dbLoadTemplate("MeasCompAliases.substitutions", "P=$(P)")
