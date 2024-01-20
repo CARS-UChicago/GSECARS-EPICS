@@ -9,6 +9,7 @@ epicsEnvSet("LINUX_PREFIX", "13BMC_Linux:")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets1")
 iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
+iocshLoad("motors.cmd",     "P=$(PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
