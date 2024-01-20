@@ -4,6 +4,7 @@ iocshLoad("MCB4B.cmd", "P=$(P)")
 
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(LINUX_PREFIX)")
+doAfterIocInit('motorUtilInit("13IDD_Linux:")')
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
