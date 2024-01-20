@@ -1,0 +1,65 @@
+file "$(CARS)/db/binary_alias.template"
+{
+pattern
+{      REC,          RTYP,      ALIAS,                   ZNAM,    ONAM,        DESC}
+{13BMD:USBCTR:Bo1,    bo,   13BMD:XIAFilter1,             Out,     In,         "XIA filter 1 control"}
+{13BMD:USBCTR:Bi1,    bi,   13BMD:XIAFilter1_RBV,         Out,     In,         "XIA filter 1 control readback"}
+{13BMD:USBCTR:Bi5,    bi,   13BMD:XIAFilter1_Status,      Out,     In,         "XIA filter 1 actual status"}
+{13BMD:USBCTR:Bo2,    bo,   13BMD:XIAFilter2,             Out,     In,         "XIA filter 2 control"}
+{13BMD:USBCTR:Bi2,    bi,   13BMD:XIAFilter2_RBV,         Out,     In,         "XIA filter 2 control readback"}
+{13BMD:USBCTR:Bi6,    bi,   13BMD:XIAFilter2_Status,      Out,     In,         "XIA filter 2 actual status"}
+{13BMD:USBCTR:Bo3,    bo,   13BMD:XIAFilter3,             Out,     In,         "XIA filter 3 control"}
+{13BMD:USBCTR:Bi3,    bi,   13BMD:XIAFilter3_RBV,         Out,     In,         "XIA filter 3 control readback"}
+{13BMD:USBCTR:Bi7,    bi,   13BMD:XIAFilter3_Status,      Out,     In,         "XIA filter 3 actual status"}
+{13BMD:USBCTR:Bo4,    bo,   13BMD:XIAFilter4,             Out,     In,         "XIA filter 4 control"}
+{13BMD:USBCTR:Bi4,    bi,   13BMD:XIAFilter4_RBV,         Out,     In,         "XIA filter 4 control readback"}
+{13BMD:USBCTR:Bi8,    bi,   13BMD:XIAFilter4_Status,      Out,     In,         "XIA filter 4 actual status"}
+
+{13BMD:USB1808:Bo4,   bo,   13BMD:SchottIllumOffOn,       Off,     On,         "Schott illuminator off/on"}
+{13BMD:USB1808:Bi4,   bi,   13BMD:SchottIllumOffOn_RBV,   Off,     On,         "Schott illuminator off/on"}
+
+{13BMD:EDIO24_1:Bo2,  bo,   13BMD:DACRubyBrill,          Ruby,  Brill,         "DAC Ruby/Brillouin mode"}
+{13BMD:EDIO24_1:Bi2,  bi,   13BMD:DACRubyBrill_RBV,      Ruby,  Brill,         "DAC Ruby/Brillouin mode"}
+{13BMD:EDIO24_1:Bo3,  bo,   13BMD:DACBlock,               Out,     In,         "DAC beam block"}
+{13BMD:EDIO24_1:Bi3,  bi,   13BMD:DACBlock_RBV,           Out,     In,         "DAC beam block"}
+{13BMD:EDIO24_1:Bo4,  bo,   13BMD:DACDepolarizer,         Out,     In,         "DAC depolarizer"}
+{13BMD:EDIO24_1:Bi4,  bi,   13BMD:DACDepolarizer_RBV,     Out,     In,         "DAC depolarizer"}
+{13BMD:EDIO24_1:Bo5,  bo,   13BMD:DACFilter2,             Out,     In,         "DAC filter 2"}
+{13BMD:EDIO24_1:Bi5,  bi,   13BMD:DACFilter2_RBV,         Out,     In,         "DAC filter 2"}
+{13BMD:EDIO24_1:Bo6,  bo,   13BMD:DACFilter1,             Out,     In,         "DAC filter 1"}
+{13BMD:EDIO24_1:Bi6,  bi,   13BMD:DACFilter1_RBV,         Out,     In,         "DAC filter 1"}
+{13BMD:EDIO24_1:Bo7,  bo,   13BMD:DACRamanInOut,          Out,     In,         "DAC Raman In/Out"}
+{13BMD:EDIO24_1:Bi7,  bi,   13BMD:DACRamanInOut_RBV,      Out,     In,         "DAC Raman In/Out"}
+{13BMD:EDIO24_1:Bo11, bo,   13BMD:DetectorShield,         Out,     In,         "DAC detector shield"}
+{13BMD:EDIO24_1:Bi11, bi,   13BMD:DetectorShield_RBV,     Out,     In,         "DAC detector shield"}
+{13BMD:EDIO24_1:Bo12, bo,   13BMD:DACPellicle,            Out,     In,         "DAC pellicle"}
+{13BMD:EDIO24_1:Bi12, bi,   13BMD:DACPellicle_RBV,        Out,     In,         "DAC pellicle"}
+{13BMD:EDIO24_1:Bo14, bo,   13BMD:LVPUSIonChamber,        Out,     In,         "LVP upstream ion chamber control"}
+{13BMD:EDIO24_1:Bi14, bi,   13BMD:LVPUSIonChamber_RBV,    Out,     In,         "LVP upstream ion chamber readback"}
+{13BMD:EDIO24_1:Bo15, bo,   13BMD:LVPDSIonChamber,         In,    Out,         "LVP downstreamion chamber control"}
+{13BMD:EDIO24_1:Bi15, bi,   13BMD:LVPDSIonChamber_RBV,     In,    Out,         "LVP downstream ion chamber readback"}
+{13BMD:EDIO24_1:Bo19, bo,   13BMD:DACLaserShutter,     Closed,   Open,         "DAC laser shutter"}
+{13BMD:EDIO24_1:Bi19, bi,   13BMD:DACLaserShutter_RBV, Closed,   Open,         "DAC laser shutter"}
+}
+
+file "$(CARS)/db/analog_out_alias.template"
+{
+pattern
+{      REC,              ALIAS,            EGUL,  DRVL,  LOPR,  EGUF,  DRVH,  HOPR, PREC,       DESC}
+{13BMD:USB3104:Ao1,  13BMD:LVPFurnacePower, -10,   0,      0,    10,     10,    10,  3,   "LVP furnace control"}
+{13BMD:USB3104:Ao2,  13BMD:ExtHeatPower,   -200,   0,      0,   200,    100,   100,  3,   "External heating power"}
+{13BMD:USB3104:Ao3,  13BMD:DAC_LED1,       -100,   0,      0,   100,    100,   100,  3,   "DAC LED1"}
+{13BMD:USB3104:Ao4,  13BMD:DACPinholeLamp, -100,   0,      0,   100,     47,    47,  3,   "DAC pinhole lamp (LED2)"}
+{13BMD:USB3104:Ao5,  13BMD:DAC_LED3,       -100,   0,      0,   100,    100,   100,  3,   "DAC LED3"}
+{13BMD:USB3104:Ao6,  13BMD:SchottIllumPower,-10,   0,      0,    10,      5,     5,  3,   "Schott illuminator"}
+{13BMD:USB3104:Ao7,  13BMD:JennerIllumPower,-10,   0,      0,    10,      5,     5,  3,   "Jenner illuminator"}
+{13BMD:USB3104:Ao8,  13BMD:LVP_PressPump,  -100, -100,  -100,   100,    100,   100,  3,   "LVP press pump speed"}
+}
+
+file "$(CARS)/db/analog_in_alias.template"
+{
+pattern
+{      REC,              ALIAS,                   EGUL, LOPR, EGUF, HOPR, PREC,       DESC}
+{13BMD:USB1808:Ai1,  13BMD:I0IonChamber,          -10,  -10,   10,   10,    3,   "I0 ion chamber (SRS570 A3)"}
+{13BMD:USB1808:Ai3,  13BMD:LaserStabilize,        -10,  -10,   10,   10,    3,   "Laser photodiode stabilization"}
+}
