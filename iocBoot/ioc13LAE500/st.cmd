@@ -5,7 +5,9 @@ errlogInit(5000)
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-< serial.cmd
+epicsEnvSet("PREFIX", "13LAE500:")
+
+iocshLoad("serial.cmd", "P=$(PREFIX)")
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -13,33 +15,29 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 # or the equivalent for that.)  This database is configured to use the
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/db/scan.db", "P=13LAE500:,MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
 
-# Free-standing user string/number calculations (sCalcout records)
-dbLoadRecords("$(CALC)/db/userStringCalcs10.db", "P=13LAE500:")
-
-# Free-standing user transforms (transform records)
-dbLoadRecords("$(CALC)/db/userTransforms10.db", "P=13LAE500:")
+iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX)")
 
 # Miscellaneous PV's, such as burtResult
-dbLoadRecords("$(STD)/db/misc.db", "P=13LAE500:")
+dbLoadRecords("$(STD)/db/misc.db", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("13LAE500:")
-dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13LAE500:")
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION","Sector 13 portable")
 epicsEnvSet("GROUP","GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=13LAE500:")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 iocInit
 
 # save positions every five seconds
-create_monitor_set("auto_positions.req", 5, "P=13LAE500:")
+create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 # save other things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "P=13LAE500:")
+create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
 
 ### Start the saveData task.
 # saveData_MessagePolicy
@@ -52,6 +50,6 @@ create_monitor_set("auto_settings.req", 30, "P=13LAE500:")
 #debug_saveData = 2
 saveData_MessagePolicy = 2
 saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=13LAE500:")
-#saveData_PrintScanInfo("13LAE500:scan1")
+saveData_Init("saveDataExtraPVs.req", "P=$(PREFIX)")
+#saveData_PrintScanInfo("$(PREFIX)scan1")
 
