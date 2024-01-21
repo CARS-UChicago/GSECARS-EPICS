@@ -36,6 +36,25 @@ XPSCreateAxis("XPS1",7,"GROUP8.DET_ROT",  "4000")
 # Note: this must be done after configuring axes
 XPSCreateProfile("XPS1", 10010, "Administrator", "Administrator")
 
+################################################################################
+# MCB4B setup
+
+# Set up 2 serial ports on Moxa terminal server which is inside the MCB-4B slit controller box
+drvAsynIPPortConfigure("serial1", "10.54.160.57:4001", 0, 0, 0)
+asynOctetSetInputEos("serial1",0,"\r")
+asynOctetSetOutputEos("serial1",0,"\r")
+asynSetTraceIOMask(serial1, 0, ESCAPE)
+#asynSetTraceMask(serial1, 0, ERROR|DRIVER)
+MCB4BCreateController(MCB4B_1, serial1, 4, 100, 1000)
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMD_LVP_XPS:, R=serial1, PORT=serial1, ADDR=0, OMAX=256, IMAX=256")
+
+drvAsynIPPortConfigure("serial2", "10.54.160.57:4002", 0, 0, 0)
+asynOctetSetInputEos("serial2",0,"\r")
+asynOctetSetOutputEos("serial2",0,"\r")
+asynSetTraceIOMask(serial2, 0, ESCAPE)
+#asynSetTraceMask(serial2, 0, ERROR|DRIVER)
+MCB4BCreateController(MCB4B_2, serial2, 4, 100, 1000)
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13BMD_LVP_XPS:, R=serial2, PORT=serial1, ADDR=0, OMAX=256, IMAX=256")
 
 ################################################################################
 # Motor records
