@@ -58,36 +58,40 @@ file "$(MODBUS)/db/longinInt32.template" { pattern
 file "$(MODBUS)/db/aiFloat64.template" { pattern
 {R,              PORT,          OFFSET,  DATA_TYPE,   PREC,  SCAN}
 {RTD_Temp1,   C1_DFn1_In_Word,  0x12,    FLOAT32_LE,   1,   "I/O Intr"}
-{Pressure1,   C1_DFn1_In_Word,  0x3A,    FLOAT32_LE,   1,   "I/O Intr"}
+{Pressure1,   C1_DFn1_In_Word,  0x08,    FLOAT32_LE,   1,   "I/O Intr"}
 }
 
 # These are the DSn inputs done with 16-bit integer access
 file "$(MODBUS)/db/longin.template" { pattern
 {R,                     PORT,          OFFSET,  DATA_TYPE, SCAN}
-{VFD1SetFreq_RBV,    C1_DSn1_In_Word,  0x00,     INT16,    "I/O Intr"}
 {VFD1RunCmdCode,     C1_DSn1_In_Word,  0x01,     INT16,    "I/O Intr"}
 {VFD1StopCmdCode,    C1_DSn1_In_Word,  0x02,     INT16,    "I/O Intr"}
-{VFD1DisplaySetFreq, C1_DSn1_In_Word,  0x05,     INT16,    "I/O Intr"}
+{VFD1DisplaySetFreq_RBV, C1_DSn1_In_Word,  0x05,     INT16,    "I/O Intr"}
 {VFD1RecvErrCode,    C1_DSn1_In_Word,  0x09,     INT16,    "I/O Intr"}
-
+{VFD1SendErrorCode,  C1_DSn2_In_Word,  0x13,     INT16,    "I/O Intr"}
 {VFD1Error,          C1_DSn2_In_Word,  0x00,     INT16,    "I/O Intr"}
 {VFD1Status,         C1_DSn2_In_Word,  0x01,     INT16,    "I/O Intr"}
-{VFD1Freq,           C1_DSn2_In_Word,  0x02,     INT16,    "I/O Intr"}
-{VFD1H,              C1_DSn2_In_Word,  0x03,     INT16,    "I/O Intr"}
-{VFD1Current,        C1_DSn2_In_Word,  0x04,     INT16,    "I/O Intr"}
-{VFD1DCBusVolts,     C1_DSn2_In_Word,  0x05,     INT16,    "I/O Intr"}
-{VFD1ACOutVolts,     C1_DSn2_In_Word,  0x06,     INT16,    "I/O Intr"}
-{VFD1MultiSpeed,     C1_DSn2_In_Word,  0x07,     INT16,    "I/O Intr"}
-{VFD1ActiveWarning,  C1_DSn2_In_Word,  0x08,     INT16,    "I/O Intr"}
-{VFD1D16Counter,     C1_DSn2_In_Word,  0x09,     INT16,    "I/O Intr"}
-{VFD1PowerFactor,    C1_DSn2_In_Word,  0x0A,     INT16,    "I/O Intr"}
-{VFD1PercentLoad,    C1_DSn2_In_Word,  0x0B,     INT16,    "I/O Intr"}
-{VFD1RPM,            C1_DSn2_In_Word,  0x0C,     INT16,    "I/O Intr"}
-{VFD1SendErrorCode,  C1_DSn2_In_Word,  0x13,     INT16,    "I/O Intr"}
+}
+
+# These are the DSn inputs done with 16-bit integer access
+file "$(MODBUS)/db/ai.template" { pattern
+{R,                     PORT,          OFFSET,  BITS,   EGUL,   EGUF, PREC, SCAN}
+{VFD1SetFreq,        C1_DSn1_In_Word,  0x00,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1Freq_RBV,       C1_DSn2_In_Word,  0x02,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1FreqOut,        C1_DSn2_In_Word,  0x03,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1Current,        C1_DSn2_In_Word,  0x04,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1DCBusVolts,     C1_DSn2_In_Word,  0x05,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1ACOutVolts,     C1_DSn2_In_Word,  0x06,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1MultiSpeed,     C1_DSn2_In_Word,  0x07,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1ActiveWarning,  C1_DSn2_In_Word,  0x08,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1D16Counter,     C1_DSn2_In_Word,  0x09,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1PowerFactor,    C1_DSn2_In_Word,  0x0A,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1PercentLoad,    C1_DSn2_In_Word,  0x0B,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
+{VFD1RPM,            C1_DSn2_In_Word,  0x0C,    -16,  -327.68, 327.68, 2,  "I/O Intr"}
 }
 
 # These are the DSn outputs done with 16-bit integer access
 file "$(MODBUS)/db/longout.template" { pattern
-{R,                 PORT,          OFFSET}
-{VFD1SetFreq,    C1_DSn1_Out_Word,  0x00}
+{R,                     PORT,          OFFSET}
+{VFD1DisplaySetFreq, C1_DSn1_Out_Word,  0x05}
 }
