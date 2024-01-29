@@ -22,9 +22,6 @@ dbLoadTemplate "mono_pid.substitutions"
 # Auto-shutters
 dbLoadTemplate("auto_shutter.substitutions")
 
-### Allstop, alldone
-#dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
-
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
@@ -32,10 +29,6 @@ dbLoadTemplate("auto_shutter.substitutions")
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
 dbLoadRecords("$(SSCAN)/db/scan.db","P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
-
-# A set of scan parameters for each positioner.  This is a convenience
-# for the user.  It can contain an entry for each scannable thing in the crate.
-#dbLoadTemplate("scanParms.substitutions")
 
 # User calc stuff
 iocshLoad("../calc_GSECARS.iocsh", "P=($PREFIX)")
@@ -66,17 +59,8 @@ create_monitor_set("auto_positions.req",5,"P=$(PREFIX)")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=$(PREFIX), E1608_PREFIX=$(E1608_PREFIX)")
 
-seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM1, stack=10000"
-seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM2, stack=10000"
 
 # Enable user string calcs and user transforms
 #dbpf "$(PREFIX)EnableUserTrans.PROC","1"
 #dbpf "$(PREFIX)EnableUserSCalcs.PROC","1"
 #dbpf "$(PREFIX)EnableuserACalcs.PROC","1"
-
-
-# MONO should be m9, but that is causing problems when the controller is off. Use unused m9 for testing.
-seq BM13_Energy, "E=$(PREFIX)E, MONO=$(PREFIX)m9, EXPTAB_Z=13BMD:m22, YXTAL=$(PREFIX)MON:, ZXTAL=$(PREFIX)m14" 
-
-#motorUtilInit("$(PREFIX)")
-
