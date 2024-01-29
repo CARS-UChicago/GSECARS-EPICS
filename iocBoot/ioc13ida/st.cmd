@@ -14,84 +14,15 @@ errlogInit(20000)
 dbLoadDatabase("$(CARS)/dbd/CARSVX.dbd")
 CARSVX_registerRecordDeviceDriver(pdbbase)
 
-# For areaDetector and quadEM
-iocshCmd("epicsEnvSet(EPICS_DB_INCLUDE_PATH,$(ADCORE)/db:$(QUADEM)/db")
-
 cd startup
 
-# Debugging flags
-devA32VmeDebug=0
-
-# Set up the Allen-Bradley 6008 scanner
-abConfigNlinks 1
-abConfigVme 0,0xc00000,0x60,5
-abConfigAuto
-
-# Load database
-dbLoadRecords("$(CARS)/db/eps_valid.db", "P=13IDA:")
-dbLoadTemplate("eps_inputs.template")
-dbLoadTemplate("eps_outputs.template")
-dbLoadTemplate("eps_valves.template")
-
 dbLoadTemplate("motors.template")
-
-< industryPack.cmd
-< serial.cmd
-
-# APS electrometer for C/D branch
-#iocsh("APS_EM.cmd")
-
-# TetrAMM electrometer for C/D branch
-#iocsh("TetrAMM.cmd")
-
-# AH501 electrometer for E branch
-#MN 10-Oct-2016: move to softioc 13XRM
-## iocsh("AH501.cmd")
 
 # Monochromator positions
 #dbLoadTemplate("mono_position.template")
 
-# Quad BPM foils
-dbLoadTemplate("13ID_BPM_Foil.substitutions")
-
-# Monochromator PID
-#PJE 1-Oct-2018: moved to softioc 13IDCD_mono 
-#dbLoadTemplate("mono_pid.template")
-#MN 10-Oct-2016: move to softioc 13XRM
-## dbLoadTemplate("emono_pid.template")
-
-# Large KB Mirror PID
-dbLoadTemplate("mirror_pid.template")
-
-# Auto-shutters
-dbLoadTemplate("auto_shutter.substitutions")
-
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13IDA:")
-
-### Scan-support software
-# crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
-# 1D data, but it doesn't store anything to disk.  (You need the data catcher
-# or the equivalent for that.)  This database is configured to use the
-# "alldone" database (above) to figure out when motors have stopped moving
-# and it's time to trigger detectors.
-dbLoadRecords("$(SSCAN)/db/scan.db","P=13IDA:,MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
-
-# A set of scan parameters for each positioner.  This is a convenience
-# for the user.  It can contain an entry for each scannable thing in the
-# crate.
-dbLoadTemplate("scanParms.template")
-
-#  load the databases for the MSL MRD100 module ...
-#dbLoadRecords ("$(VME)/db/msl_mrd101.db","C=0,S=13,ID1=13,ID2=13us")
-dbLoadRecords ("$(VME)/db/MRD100_CantedID.db","C=0,S=13,ID1=13ds,ID2=13us")
-
-# User calc stuff
-epicsEnvSet("PREFIX", "13IDA:")
-iocsh("../calc_GSECARS.iocsh")
-
-# Miscellaneous PV's
-dbLoadRecords("$(STD)/db/misc.db","P=13IDA:")
 
 # devIocStats
 putenv("ENGINEER=Mark Rivers")
@@ -102,27 +33,6 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminVxWorks.db","IOC=13IDA:")
 < ../save_restore.cmd
 save_restoreSet_status_prefix("13IDA:")
 dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13IDA:")
-
-################################################################################
-# Setup device/driver support addresses, interrupt vectors, etc.
-
-# Machine Status Link (MSL) board (MRD 100)
-#####################################################
-# devAvmeMRDConfig( base, vector, level )
-#    base   = base address of card
-#    vector = interrupt vector
-#    level  = interrupt level
-# For Example
-#    devAvmeMRDConfig(0xA0000200, 0xA0, 5)
-#####################################################
-#  Configure the MSL MRD 100 module.....
-devAvmeMRDConfig(0xB0000200, 0xA0, 5)
-
-# OMS VME58 driver setup parameters:
-#     (1)cards, (2)base address(short, 4k boundary),
-#     (3)interrupt vector (0=disable or  64 - 255), (4)interrupt level (1 - 6),
-#     (5)motor task polling rate (min=1Hz,max=60Hz)
-oms58Setup(4, 0x4000, 190, 5, 10)
 
 ################################################################################
 # OMS MAXv driver setup parameters:
@@ -163,59 +73,4 @@ create_monitor_set("auto_positions.req",5,"P=13IDA:")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req",30,"P=13IDA:")
 
-seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM1, channels=22, model=2700, stack=10000"
-seq &Keithley2kDMM, "P=13IDA:, Dmm=DMM2, stack=10000"
-
-# For the bypass valve swap the severity of the open and closed states
-dbpf "13IDA:V8_status.ONSV","MAJOR"
-dbpf "13IDA:V8_status.TWSV","NO_ALARM"
-
-# Enable user string calcs and user transforms
-dbpf "13IDA:EnableUserTrans.PROC","1"
-dbpf "13IDA:EnableUserSCalcs.PROC","1"
-dbpf "13IDA:EnableuserACalcs.PROC","1"
-
-#
-# MN/MR 27/Nov/01
-# set readback delay for McLennan monochromator controller.
-# We found empirically the following maximum error (in encoder pulses)
-# for the following ReadbackDelay values.   In all cases, the maximum
-# errors were rare (say, 2 out of 50)
-#   ReadbackDelay     Max Encoder Errors 
-#     0.0                  4
-#     0.1                  3 
-#     0.2                  2
-#     0.5                  1
-#
-# Note: 1 encoder step ~= 0.05eV at 10keV.
-# (double) drvPM304ReadbackDelay = 0.25
-# Note, the above has been replaced with the .DLY field of the motor record, which
-# we now have in save/restore.  Change the .DLY field in medm.
-
-# 2009-May-28: Set the NTM fields of the DC/PID motors to 0 (NO) so they don't 
-#              get stopped when the motor changes direction due to PID
-dbpf("13IDA:m17.NTM","0")
-
-### Start the saveData task.
-# saveData_MessagePolicy
-# 0: wait forever for space in message queue, then send message
-# 1: send message only if queue is not full
-# 2: send message only if queue is not full and specified time has passed (SetCptWait()
-#    sets this time.)
-# 3: if specified time has passed, wait for space in queue, then send message
-# else: don't send message
-#debug_saveData = 2
-saveData_MessagePolicy = 2
-saveData_SetCptWait_ms(100)
-saveData_Init("saveDataExtraPVs.req", "P=13IDA:")
-#saveData_PrintScanInfo("13IDA:scan1")
-
 motorUtilInit("13IDA:")
-
-
-# 2016-Sep-27: set lower limit on QuadBPM values per read
-
-#dbpf("13IDA:QE1:ValuesPerRead.LOPR","15")
-
-# dbpf("13IDA:QE2:ValuesPerRead.LOPR","15")
-# dbpf("13IDA:QE2:ValuesPerRead","40")
