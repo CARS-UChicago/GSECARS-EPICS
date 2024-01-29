@@ -11,8 +11,7 @@ epicsEnvSet("LINUX_PREFIX", "13IDA_Linux:")
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets17")
 iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-2")
 iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
-
-#dbLoadTemplate("motors.template")
+iocshLoad("motors.cmd",     "P=$(PREFIX)")
 
 # For areaDetector and quadEM
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(QUADEM)/db")
@@ -26,9 +25,6 @@ dbLoadTemplate("mirror_pid.substitutions")
 # Auto-shutters
 dbLoadTemplate("auto_shutter.substitutions")
 
-### Allstop, alldone
-#dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(PREFIX)")
-
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
 # 1D data, but it doesn't store anything to disk.  (You need the data catcher
@@ -36,11 +32,6 @@ dbLoadTemplate("auto_shutter.substitutions")
 # "alldone" database (above) to figure out when motors have stopped moving
 # and it's time to trigger detectors.
 dbLoadRecords("$(SSCAN)/db/scan.db","P=$(PREFIX),MAXPTS1=500,MAXPTS2=50,MAXPTS3=10,MAXPTS4=10,MAXPTSH=10")
-
-# A set of scan parameters for each positioner.  This is a convenience
-# for the user.  It can contain an entry for each scannable thing in the
-# crate.
-dbLoadTemplate("scanParms.template")
 
 # User calc stuff
 iocshLoad("../calc_GSECARS.iocsh","P=$(PREFIX)")
@@ -87,6 +78,4 @@ dbpf "$(PREFIX)V8_status.TWSV","NO_ALARM"
 #saveData_SetCptWait_ms(100)
 #saveData_Init("saveDataExtraPVs.req", "P=$(PREFIX)")
 #saveData_PrintScanInfo("$(PREFIX)scan1")
-
-#motorUtilInit("$(PREFIX)")
 
