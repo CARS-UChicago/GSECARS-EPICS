@@ -56,3 +56,7 @@ dbLoadTemplate("asynRecord.template", "P=$(P)")
 # Debug McClennan
 # asynSetTraceMask("serial9",   0, ERROR|DRIVER)
 # asynSetTraceIOMask("serial9", 0, ESCAPE)
+
+# Start Keithly SNL programs after iocInit
+doAfterIocInit 'seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM1, stack=10000"'
+doAfterIocInit 'seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM2, stack=10000"'
