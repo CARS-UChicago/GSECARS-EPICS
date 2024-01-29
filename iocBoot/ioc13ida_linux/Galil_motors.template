@@ -1,0 +1,145 @@
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,         M,    DTYP,          PORT,   CTRL,   ADDR,   DESC,                 EGU,   DIR,  VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,    SREV,    UREV,   PREC,   DHLM,   DLLM}
+{13IDA:,   m1,  "asynMotor",   GALIL1, Galil1:,  0, "C/D hor. position",        mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400, .222222,      4,     10,    -10}
+{13IDA:,   m2,  "asynMotor",   GALIL1, Galil1:,  1, "C/D hor. width",           mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400,     1.0,      4,     10,    -10}
+{13IDA:,   m3,  "asynMotor",   GALIL1, Galil1:,  2, "C/D vert. position",       mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400, .222222,      4,     10,    -10}
+{13IDA:,   m4,  "asynMotor",   GALIL1, Galil1:,  3, "C/D vert. width",          mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400,     1.0,      4,     10,    -10}
+{13IDA:,   m5,  "asynMotor",   GALIL1, Galil1:,  4, "E hor. position",          mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400,   .1563,      4,     10,    -10}
+{13IDA:,   m6,  "asynMotor",   GALIL1, Galil1:,  5, "E hor. width",             mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400,   .1080,      4,     10,    -10}
+{13IDA:,   m7,  "asynMotor",   GALIL1, Galil1:,  6, "E vert. position",         mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400,   .1563,      4,     10,    -10}
+{13IDA:,   m8,  "asynMotor",   GALIL1, Galil1:,  7, "E vert. width",            mm,    Pos,   .5,  .01,    .2,     0,     0,      0,     400,   .1080,      4,     10,    -10}
+                                                         
+# E mirrors
+{13IDA:,   m9,  "asynMotor",   GALIL2, Galil2:,  0, "BPM1 Y",                   mm,    Neg,  1.0,  .05,    .2,     0,     1,     .2,   16000,       5,      4,     10,    -10}
+{13IDA:,  m10,  "asynMotor",   GALIL2, Galil2:,  1, "Jack up",                  mm,    Pos,  0.2, 0.01,   1.0,  0.00,  0.05,   0.50,    1600,    0.10,      4,  49.65,   0.00}
+{13IDA:,  m11,  "asynMotor",   GALIL2, Galil2:,  2, "Jack out",                 mm,    Pos,  0.2, 0.01,   1.0,  0.00,  0.05,   0.50,    1600,    0.10,      4,  49.65,   0.00}
+{13IDA:,  m12,  "asynMotor",   GALIL2, Galil2:,  3, "Jack in",                  mm,    Pos,  0.2, 0.01,   1.0,  0.00,  0.05,   0.50,    1600,    0.10,      4,  49.65,   0.00}
+
+{13IDA:,  m13,  "asynMotor",   GALIL2, Galil2:,  4, "M1 up pitch",              mm,    Pos,   .2,  .01,   2.0,    0.,     1,     .2,     400, -0.01607717,  4,     10,    -10}
+{13IDA:,  m14,  "asynMotor",   GALIL2, Galil2:,  5, "M1 dn pitch",              mm,    Pos,   .2,  .01,   2.0,    0.,     1,     .2,     400, -0.01607717,  4,     10,    -10}
+{13IDA:,  m15,  "asynMotor",   GALIL2, Galil2:,  6, "M2 up pitch",              mm,    Pos,   .2,  .01,   2.0,    0.,     1,     .2,     400, -0.01607717,  4,     10,    -10}
+{13IDA:,  m16,  "asynMotor",   GALIL2, Galil2:,  7, "M2 dn pitch",              mm,    Pos,   .2,  .01,   2.0,    0.,     1,     .2,     400, -0.01607717,  4,     10,    -10}
+
+# E mirrors, BeamViewer in Pinhole tank 
+{13IDA:,  m17,  "asynMotor",   GALIL3, Galil3:,  0, "M1 up moment",             mm,    Pos,   .5,  .01,    .2,     0,     1,     .2,     400,    0.02,      3,     10,    -10}
+{13IDA:,  m18,  "asynMotor",   GALIL3, Galil3:,  1, "M1 dn moment",             mm,    Pos,   .5,  .01,    .2,     0,     1,     .2,     400,    0.02,      3,     10,    -10}
+{13IDA:,  m19,  "asynMotor",   GALIL3, Galil3:,  2, "M2 up moment",             mm,    Pos,   .5,  .01,    .2,     0,     1,     .2,     400,    0.02,      3,     10,    -10}
+{13IDA:,  m20,  "asynMotor",   GALIL3, Galil3:,  3, "M2 dn moment",             mm,    Pos,   .5,  .01,    .2,     0,     1,     .2,     400,    0.02,      3,     10,    -10}
+{13IDA:,  m21,  "asynMotor",   GALIL3, Galil3:,  4, "BPM2 X",                   mm,    Neg,  1.0,  0.050,  0.2,    0., 1.00,    0.2,   16000,     5.0,      3, 217.675, -100.0}
+{13IDA:,  m22,  "asynMotor",   GALIL3, Galil3:,  5, "BPM2 Camera X",            mm,    Neg,  2.0,  0.010,  0.2,    0., 0.50,    0.2,      80,     1.0,      3,   0.000, -200.0}
+{13IDA:,  m23,  "asynMotor",   GALIL3, Galil3:,  6, "BPM2 Camera Y",            mm,    Pos,  2.0,  0.010,  0.2,    0., 0.50,    0.2,      80,     1.0,      3,  46.100,    0.0}
+{13IDA:,  m24,  "asynMotor",   GALIL3, Galil3:,  7, "BPM2 Camera Z",            mm,    Pos,  0.25, 0.005,  0.2,    0., 0.25,    0.2,    2064,     0.5,      3,  23.000,   -1.0}
+
+
+# Pinhole
+# The Y motors have belts with 2:1 gear reduction (15 teeth on motor, 30 teeth on drive shaft)
+#     Drive shaft thread is 0.5mm (NOTE it might be 48 threads/inch, rather than 0.5 threads/mm, must check), 
+#     so one rev of motor = .250 mm of travel
+# The X motors have 10:1 gear boxes and 24 thread per inch leadscrews, so one rev of motor is 25.4/24/10 = .1058333 mmm
+{13IDA:,  m25,  "asynMotor",   GALIL4, Galil4:,  0, "Pinhole upstream Y",       mm,    Pos,    .5,   .1,    .2,     0,     1,     .2,     400,   -.250,     3,     109,   104}
+{13IDA:,  m26,  "asynMotor",   GALIL4, Galil4:,  1, "Pinhole inboard Y",        mm,    Pos,    .5,   .1,    .2,     0,     1,     .2,     400,   -.250,     3,     106,   102}
+{13IDA:,  m27,  "asynMotor",   GALIL4, Galil4:,  2, "Pinhole outboard Y",       mm,    Pos,    .5,   .1,    .2,     0,     1,     .2,     400,   -.250,     3,     109,   105}
+{13IDA:,  m28,  "asynMotor",   GALIL4, Galil4:,  3, "BPM1 Camera Y",            mm,    Neg,  0.50, 0.005,  0.2,    0.,  0.25,    0.2,    2064,      0.5,    3,  23.000,   -1.0}
+{13IDA:,  m29,  "asynMotor",   GALIL4, Galil4:,  4, "Unused",                   mm,    Pos,  0.25, 0.005,  0.2,    0.,  0.25,    0.2,    2064,      0.5,    3,  23.000,   -1.0}
+{13IDA:,  m30,  "asynMotor",   GALIL4, Galil4:,  5, "Unused",                   mm,    Neg,    .5,   .0,   1.5,    0.,   .05,    1.5,     400, .347368,     4,      10,     0}
+{13IDA:,  m31,  "asynMotor",   GALIL4, Galil4:,  6, "Unused",                   mm,    Pos,    .5,   .0,   1.5,    0.,   .05,    1.5,    2000, .347368,     4,      10,     0}
+{13IDA:,  m32,  "asynMotor",   GALIL4, Galil4:,  7, "E Mono X",                 mm,    Pos,   .25,  .01,   0.1,    0.,   .05,    1.5,     400, .078125,     4,      10,     0}
+}
+
+# Pinhole Table, SRI Geom (MN 18-Apr-2012):
+# M0 = Inboard, M1 = Outboard, M2 = Upstream
+#
+#  13IDA:PINHOLE:t.
+#  RX, RY, RZ = 0,0,0 puts origin at M1 (downstream, outboard actuator)
+#  YANG = 180
+#  SX, SY, SZ = 115.50, 34.00, 94.50 mm puts S point at aperture
+#  
+file "$(OPTICS)/db/table.db"
+{
+pattern
+{P,          Q,     T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13IDA:, PINHOLE:T, PINHOLE:t,  m29,  m26,  m27,  m28,  m25,  junk,  SRI}
+}
+
+
+# HMirror Base Jack Table, GeoCARS Geom (MN 26-Apr-2012):
+# M0 = Upstream, M1 = Inboard, M2 = Outboard
+#
+#  13IDA:HMIR:t.
+#  RX, RY, RZ = 0,0,0 puts origin at (see weird GEOCARS picture)
+#  YANG = 90
+#  Lx', Lz'  = 1000, 550 mm
+#  SX, SY, SZ = 524.3, 275, 486 mm 
+
+file "$(OPTICS)/db/table.db"
+{
+pattern
+{P,           Q,      T,   M0X,  M0Y,   M1Y,   M2X,   M2Y,   M2Z,  GEOM}
+{13IDA:, EMIR:T, EMIR:t,  junk,  m10,   m12,  junk,   m11,  junk,  GEOCARS}
+}
+
+
+# C/D Horizontal Mirror
+#file "$(OPTICS)/db/table.db"
+#{
+#pattern
+#{P,            Q,      T,   M0X,   M0Y,    M1Y,    M2X,   M2Y,   M2Z,	GEOM}
+#{13IDA:, HMIR:T1, HMIR:t1,  junk,  m53,    m54,   junk,   m55,  junk, GEOCARS}
+#}
+
+
+#file "$(CARS)/db/Energy.db"
+#{
+#pattern
+#{P,      EN,   DESC,     EGU,  PREC,  SCANREC,     USEID,   ID,       TWEAK}
+#{13IDA:,  E,  "Energy",   eV,    5,   13IDA:scan1,     1,   ID13ds:,  1.00}
+#}
+
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,              EGU,  DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC,  MRES,    RRES, PREC,     DHLM,   DLLM}
+
+# C/D K/B mirrors
+#{13IDA:,  pm1, "13IDA:KBVB:Done NPP NMS", "13IDA:pm1DVAL.VAL PP MS", "13IDA:KBVB:Readback.G NPP NMS", "13IDA:KBVB:Stop PP MS",    "Curvature",          mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm2, "13IDA:KBVB:Done NPP NMS", "13IDA:pm2DVAL.VAL PP MS", "13IDA:KBVB:Readback.H NPP NMS", "13IDA:KBVB:Stop PP MS",    "Ellipticity",        mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm3, "13IDA:KBHB:Done NPP NMS", "13IDA:pm3DVAL.VAL PP MS", "13IDA:KBHB:Readback.G NPP NMS", "13IDA:KBHB:Stop PP MS",    "Curvature",          mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm4, "13IDA:KBHB:Done NPP NMS", "13IDA:pm4DVAL.VAL PP MS", "13IDA:KBHB:Readback.H NPP NMS", "13IDA:KBHB:Stop PP MS",    "Ellipticity",        mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm5, "13IDA:KBVP:Done NPP NMS", "13IDA:pm5DVAL.VAL PP MS", "13IDA:KBVP:Readback.G NPP NMS", "13IDA:KBVP:Stop PP MS",    "Height (Sum)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm6, "13IDA:KBVP:Done NPP NMS", "13IDA:pm6DVAL.VAL PP MS", "13IDA:KBVP:Readback.H NPP NMS", "13IDA:KBVP:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
+#{13IDA:,  pm7, "13IDA:KBHP:Done NPP NMS", "13IDA:pm7DVAL.VAL PP MS", "13IDA:KBHP:Readback.G NPP NMS", "13IDA:KBHP:Stop PP MS",    "Height (Sum)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm8, "13IDA:KBHP:Done NPP NMS", "13IDA:pm8DVAL.VAL PP MS", "13IDA:KBHP:Readback.H NPP NMS", "13IDA:KBHP:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
+#{13IDA:,  pm9, "13IDA:KBVT:Done NPP NMS", "13IDA:pm9DVAL.VAL PP MS", "13IDA:KBVT:Readback.G NPP NMS", "13IDA:KBVT:Stop PP MS",    "Translation (Sum)",  mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+#{13IDA:,  pm10,"13IDA:KBVT:Done NPP NMS", "13IDA:pm10DVAL.VAL PP MS","13IDA:KBVT:Readback.H NPP NMS", "13IDA:KBVT:Stop PP MS",    "Rotation (Diff)",    mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+
+# E horizontal mirrors
+{13IDA:,  pm11,"13IDA:EM1B:Done NPP NMS", "13IDA:pm11DVAL.VAL PP MS","13IDA:EM1B:Readback.G NPP NMS", "13IDA:EM1B:Stop PP MS",    "Curvature",          mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm12,"13IDA:EM1B:Done NPP NMS", "13IDA:pm12DVAL.VAL PP MS","13IDA:EM1B:Readback.H NPP NMS", "13IDA:EM1B:Stop PP MS",    "Ellipticity",        mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm13,"13IDA:EM2B:Done NPP NMS", "13IDA:pm13DVAL.VAL PP MS","13IDA:EM2B:Readback.G NPP NMS", "13IDA:EM2B:Stop PP MS",    "Curvature",          mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm14,"13IDA:EM2B:Done NPP NMS", "13IDA:pm14DVAL.VAL PP MS","13IDA:EM2B:Readback.H NPP NMS", "13IDA:EM2B:Stop PP MS",    "Ellipticity",        mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm15,"13IDA:EM1P:Done NPP NMS", "13IDA:pm15DVAL.VAL PP MS","13IDA:EM1P:Readback.G NPP NMS", "13IDA:EM1P:Stop PP MS",    "Height (Sum)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm16,"13IDA:EM1P:Done NPP NMS", "13IDA:pm16DVAL.VAL PP MS","13IDA:EM1P:Readback.H NPP NMS", "13IDA:EM1P:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
+{13IDA:,  pm17,"13IDA:EM2P:Done NPP NMS", "13IDA:pm17DVAL.VAL PP MS","13IDA:EM2P:Readback.G NPP NMS", "13IDA:EM2P:Stop PP MS",    "Height (Sum)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    3,    10000, -10000}
+{13IDA:,  pm18,"13IDA:EM2P:Done NPP NMS", "13IDA:pm18DVAL.VAL PP MS","13IDA:EM2P:Readback.H NPP NMS", "13IDA:EM2P:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,    1,    .1,   .1,    0,    1,   .1, .0001,     1.0,    4,    10000, -10000}
+}
+
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+
+# C/D K/B mirrors
+#{13IDA:, KBVB:,  pm1,  pm2,    m41.VAL,  m41.RBV,  m42.VAL, m42.RBV, m41.STOP, m41.DMOV, m42.STOP, m42.DMOV, 3}
+#{13IDA:, KBHB:,  pm3,  pm4,    m49.VAL,  m49.RBV,  m50.VAL, m50.RBV, m49.STOP, m49.DMOV, m50.STOP, m50.DMOV, 3}
+#{13IDA:, KBVP:,  pm5,  pm6,    m43.VAL,  m43.RBV,  m44.VAL, m44.RBV, m43.STOP, m43.DMOV, m44.STOP, m44.DMOV, 3}
+#{13IDA:, KBHP:,  pm7,  pm8,    m51.VAL,  m51.RBV,  m52.VAL, m52.RBV, m51.STOP, m51.DMOV, m52.STOP, m52.DMOV, 3}
+#{13IDA:, KBVT:,  pm9,  pm10,   m46.VAL,  m46.RBV,  m45.VAL, m45.RBV, m46.STOP, m46.DMOV, m45.STOP, m45.DMOV, 3}
+
+# E horizontal mirrors
+{13IDA:, EM1B:,  pm11, pm12,   m17.VAL,  m17.RBV,  m18.VAL, m18.RBV, m17.STOP, m17.DMOV, m18.STOP, m18.DMOV, 3}
+{13IDA:, EM2B:,  pm13, pm14,   m19.VAL,  m19.RBV,  m20.VAL, m20.RBV, m19.STOP, m19.DMOV, m20.STOP, m20.DMOV, 3}
+{13IDA:, EM1P:,  pm15, pm16,   m13.VAL,  m13.RBV,  m14.VAL, m14.RBV, m13.STOP, m13.DMOV, m14.STOP, m14.DMOV, 3}
+{13IDA:, EM2P:,  pm17, pm18,   m15.VAL,  m15.RBV,  m16.VAL, m16.RBV, m15.STOP, m15.DMOV, m16.STOP, m16.DMOV, 3}
+}
