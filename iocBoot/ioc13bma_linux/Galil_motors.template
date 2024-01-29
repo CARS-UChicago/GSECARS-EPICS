@@ -1,18 +1,45 @@
+# Mono servo motor, needs extra fields (PCOF, ICOF, DCOF, ERES)
 file "$(CARS)/db/galil_motor.template"
 {
 pattern
 {P,       M,    DTYP,          PORT,   CTRL,     ADDR,   DESC,                 EGU,   DIR,  PCOF,  ICOF,  DCOF, VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,    SREV,    UREV,   ERES  PREC,  DHLM,   DLLM}
 {13BMA:,  m9,   "asynMotor",   GALIL1, Galil1:,    0, "Monochromator",     degrees,   Neg,  0.2,   0.002, 0.3,    1.,   0.,    .2,    0,      1,     .2,   20000,        1, 0.00005, 4,     50,    -50}
+}
+
+# Stepper motors, fewer fields
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,          PORT,   CTRL,   ADDR,   DESC,                 EGU,   DIR,  VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,    SREV,    UREV,   PREC,  DHLM,   DLLM}
+{13BMA:,  m1,   "asynMotor",   GALIL2, Galil2:,  0, "Top slit",               mm,   Neg,   1.0,   .1,    .2,    0,      1,     .2,     400,     0.50,    3,     50,      0}
+{13BMA:,  m2,   "asynMotor",   GALIL2, Galil2:,  1, "Bottom slit",            mm,   Neg,   1.0,   .1,    .2,    0,      1,     .2,     400,     0.50,    3,     50,      0}
+{13BMA:,  m3,   "asynMotor",   GALIL2, Galil2:,  2, "Inboard slit",           mm,   Neg,   1.0,   .1,    .2,    0,      1,     .2,     400,     0.50,    3,     50,    -4.}
+{13BMA:,  m4,   "asynMotor",   GALIL2, Galil2:,  2, "Outboard slit",          mm,   Neg,   1.0,   .1,    .2,    0,      1,     .2,     400,     0.50,    3,     50,    -4.}
+{13BMA:,  m5,   "asynMotor",   GALIL2, Galil2:,  4, "BM-D filters",           mm,   Pos,   2.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,    3,    100,     -1}
+{13BMA:,  m6,   "asynMotor",   GALIL2, Galil2:,  5, "BM-C filters",           mm,   Pos,   2.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,    3,    100,     -1}
+{13BMA:,  m7,   "asynMotor",   GALIL2, Galil2:,  6, "Horizontal Vee",         mm,   Pos,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,    3,     50,      0}
+{13BMA:,  m8,   "asynMotor",   GALIL2, Galil2:,  7, "Diagnostic Flag",        mm,   Neg,   0.5,  0.5,    .2,    0,    0.5,     .2,     400,    0.635,    3,    1e6,   -1e6}
+
 # Y-Out, Neg lim = 0 Pos lim = 8.8603
-{13BMA:,  m10,  "asynMotor",   GALIL1, Galil1:,    1, "Y-Out",                  mm,   Neg,  0.0,   0.0,   0.0,    .3,  .05,   1.5,    0,    .05,    1.5,    2000,  .347368,     0.0, 4,     10,      0}
+{13BMA:,  m10,  "asynMotor",   GALIL1, Galil1:,  1, "Y-Out",                  mm,   Neg,   0.3,  .05,   1.5,    0,    .05,    1.5,    2000,  .347368,    4,     10,      0}
 # Y-In, Neg lim = 0 Pos lim = 9.2185
-{13BMA:,  m11,  "asynMotor",   GALIL1, Galil1:,    2, "Y-In",                   mm,   Neg,  0.0,   0.0,   0.0,    .3,  .05,   1.5,    0,    .05,    1.5,    2000,  .347368,     0.0, 4,     10,      0}
+{13BMA:,  m11,  "asynMotor",   GALIL1, Galil1:,  2, "Y-In",                   mm,   Neg,   0.3,  .05,   1.5,    0,    .05,    1.5,    2000,  .347368,    4,     10,      0}
 # Y-Up, Neg lim = 0 Pos lim = 9.2749
-{13BMA:,  m12,  "asynMotor",   GALIL1, Galil1:,    3, "Y-Up",                   mm,   Neg,  0.0,   0.0,   0.0,    .3,  .05,   1.5,    0,    .05,    1.5,    2000,  .882353,     0.0, 4,     10,      0}
-{13BMA:,  m13,  "asynMotor",   GALIL1, Galil1:,    4, "Cage Y",                 mm,   Neg,  0.0,   0.0,   0.0,    .5,   .0,   1.5,    0,     .1,    1.5,    1600,       2.,     0.0, 3,     25,      0}
-{13BMA:,  m14,  "asynMotor",   GALIL1, Galil1:,    5, "Xtal Z",                 mm,   Pos,  0.0,   0.0,   0.0,    4.,   .1,   1.5,    0,     .5,     .2,    2000,      2.0,     0.0, 3,    150,      0}
-{13BMA:,  m15,  "asynMotor",   GALIL1, Galil1:,    6, "Top slit",               mm,   Pos,  0.0,   0.0,   0.0,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,     0.0, 3,     50,      0}
-{13BMA:,  m16,  "asynMotor",   GALIL1, Galil1:,    7, "Bottom slit",            mm,   Pos,  0.0,   0.0,   0.0,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,     0.0, 3,     50,      0}
+{13BMA:,  m12,  "asynMotor",   GALIL1, Galil1:,  3, "Y-Up",                   mm,   Neg,   0.3,  .05,   1.5,    0,    .05,    1.5,    2000,  .882353,    4,     10,      0}
+{13BMA:,  m13,  "asynMotor",   GALIL1, Galil1:,  4, "Cage Y",                 mm,   Neg,   0.5,   .0,   1.5,    0,     .1,    1.5,    1600,      2.0,    3,     25,      0}
+{13BMA:,  m14,  "asynMotor",   GALIL1, Galil1:,  5, "Xtal Z",                 mm,   Pos,   4.0,   .1,   1.5,    0,     .5,     .2,    2000,      2.0,    3,    150,      0}
+{13BMA:,  m15,  "asynMotor",   GALIL1, Galil1:,  6, "Top slit",               mm,   Pos,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,    3,     50,      0}
+{13BMA:,  m16,  "asynMotor",   GALIL1, Galil1:,  7, "Bottom slit",            mm,   Pos,   1.0,   .1,    .2,    0,      1,     .2,     400,    -0.50,    3,     50,      0}
+
+{13BMA:,  m17,  "asynMotor",   GALIL3, Galil3:,  0, "Upstream moment",        mm,   Pos,   0.5,   .0,    .5,    0,      .0,    .0,    1600,  -.34737,    4,     40,      0}
+{13BMA:,  m18,  "asynMotor",   GALIL3, Galil3:,  1, "Downstream moment",      mm,   Pos,   0.5,   .0,    .5,    0,      .0,    .0,    1600,  -.34737,    4,     40,      0}
+{13BMA:,  m19,  "asynMotor",   GALIL3, Galil3:,  2, "Upstream Pitch",         mm,   Neg,    .5,   .0,    2.,    0,      .0,    .0,     400,  .016071,    4,    100,      0}
+{13BMA:,  m20,  "asynMotor",   GALIL3, Galil3:,  3, "Downstream Pitch",       mm,   Neg,    .5,   .0,    2.,    0,      .0,    .0,     400,  .016071,    4,    100,      0}
+{13BMA:,  m21,  "asynMotor",   GALIL3, Galil3:,  4, "Upstream Translation",   mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,    2,    101,     -1}
+{13BMA:,  m22,  "asynMotor",   GALIL3, Galil3:,  5, "Downstream Translation", mm,   Pos,     1,   .0,    .5,    0,      .0,    .0,     400,      .02,    2,    101,     -1}
+{13BMA:,  m23,  "asynMotor",   GALIL3, Galil3:,  6, "BMB top slit",           mm,   Neg,     1.,  .5,    .2,    0,      .1,   1.5,     400,     0.50,    3,     50,      0}
+{13BMA:,  m24,  "asynMotor",   GALIL3, Galil3:,  7, "BMB bottom slit",        mm,   Neg,     1.,  .5,    .2,    0,      .1,   1.5,     400,     0.50,    3,     50,      0}
+
 }
 
 file "$(OPTICS)/db/table.db"
@@ -28,3 +55,67 @@ pattern
 {P,      EN,   DESC,     EGU,  PREC,  SCANREC,       USEID,  ID,      TWEAK}
 {13BMA:,  E,  "Energy",   eV,    4,   13BMA:scan1,       0,  Dummy,    1.00}
 }
+
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,    mXp,  mXn}
+{13BMA:, Slit1V,   m1,   m2}
+{13BMA:, Slit1H,   m4,   m3}
+}
+
+file "$(SSCAN)/db/scanParms.db"
+{
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hp,POS=Slit1Hxp.VAL,RDBK=Slit1Ht2.A}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hn,POS=Slit1Hxn.VAL,RDBK=Slit1Ht2.B}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hsize,POS=Slit1Hsize.VAL,RDBK=Slit1Ht2.C}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Hcenter,POS=Slit1Hcenter.VAL,RDBK=Slit1Ht2.D}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Vp,POS=Slit1Vxp.VAL,RDBK=Slit1Vt2.A}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Vn,POS=Slit1Vxn.VAL,RDBK=Slit1Vt2.B}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Vsize,POS=Slit1Vsize.VAL,RDBK=Slit1Vt2.C}
+{P=13BMA:,SCANREC=13BMA:scan1,Q=Slit1Vcenter,POS=Slit1Vcenter.VAL,RDBK=Slit1Vt2.D}
+}
+
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,    mXp,  mXn}
+{13BMA:, Slit2V,  m23,  m24}
+}
+
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,    mXp,  mXn}
+{13BMA:, Slit3V,  m15,  m16}
+}
+
+#file "$(OPTICS)/db/2slit.db"
+#{
+#pattern
+#{P,      SLIT,    mXp,  mXn}
+#{13BMA:, Slit4H,  m26,  m27}
+}
+
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,              EGU,  DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC, MRES, RRES, PREC, DHLM,   DLLM}
+{13BMA:,  pm1, "13BMA:KBVB:Done NPP NMS", "13BMA:pm1DVAL.VAL PP MS", "13BMA:KBVB:Readback.G NPP NMS", "13BMA:KBVB:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  3,    10000, -10000}
+{13BMA:,  pm2, "13BMA:KBVB:Done NPP NMS", "13BMA:pm2DVAL.VAL PP MS", "13BMA:KBVB:Readback.H NPP NMS", "13BMA:KBVB:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  3,    10000, -10000}
+{13BMA:,  pm3, "13BMA:KBVP:Done NPP NMS", "13BMA:pm3DVAL.VAL PP MS", "13BMA:KBVP:Readback.G NPP NMS", "13BMA:KBVP:Stop PP MS",    "Height (Sum)",       mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  3,    10000, -10000}
+{13BMA:,  pm4, "13BMA:KBVP:Done NPP NMS", "13BMA:pm4DVAL.VAL PP MS", "13BMA:KBVP:Readback.H NPP NMS", "13BMA:KBVP:Stop PP MS",    "Pitch (Diff)",       mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  3,    10000, -10000}
+{13BMA:,  pm5, "13BMA:KBVT:Done NPP NMS", "13BMA:pm5DVAL.VAL PP MS", "13BMA:KBVT:Readback.G NPP NMS", "13BMA:KBVT:Stop PP MS",    "Translation (Sum)",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  3,    10000, -10000}
+{13BMA:,  pm6, "13BMA:KBVT:Done NPP NMS", "13BMA:pm6DVAL.VAL PP MS", "13BMA:KBVT:Readback.H NPP NMS", "13BMA:KBVT:Stop PP MS",    "Rotation (Diff)",    mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,  1.0,  3,    10000, -10000}
+
+}
+
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMA:, KBVB:,  pm1, pm2,    m18.VAL,  m18.RBV,  m17.VAL, m17.RBV, m18.STOP, m18.DMOV, m17.STOP, m17.DMOV, 3}
+{13BMA:, KBVP:,  pm3, pm4,    m19.VAL,  m19.RBV,  m20.VAL, m20.RBV, m19.STOP, m19.DMOV, m20.STOP, m20.DMOV, 3}
+{13BMA:, KBVT:,  pm5, pm6,    m22.VAL,  m22.RBV,  m21.VAL, m21.RBV, m22.STOP, m22.DMOV, m21.STOP, m21.DMOV, 3}
+}
+
