@@ -1,0 +1,38 @@
+record(ao, "$(P)$(R)Flow2Set") {
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT), $(ADDR))FLOW2_SET")
+    field(ASLO, $(ASLO))
+    field(PREC, "1")
+    field(FLNK, "$(P)$(R)Flow2HystCalc")
+}
+
+record(calcout, $(P)$(R)Flow2HystCalc) {
+    field(INPA, "$(P)$(R)Flow2Set")
+    field(CALC, "A*.95")
+    field(OUT,  "$(P)$(R)Flow2Reset PP")
+}
+
+record(ao, "$(P)$(R)Flow2Reset") {
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT), $(ADDR))FLOW2_RESET")
+    field(ASLO, $(ASLO))
+    field(PREC, "1")
+    field(FLNK, "$(P)$(R)Flow2Set_RBV")
+}
+
+record(ai, "$(P)$(R)Flow2Set_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT), $(ADDR))FLOW2_SET")
+    field(ASLO, $(ASLO))
+    field(PREC,  "1")
+    field(PINI,  "1")
+    field(FLNK, "$(P)$(R)Flow2Reset_RBV")
+}
+
+record(ai, "$(P)$(R)Flow2Reset_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT), $(ADDR))FLOW2_RESET")
+    field(ASLO, $(ASLO))
+    field(PREC,  "1")
+    field(PINI,  "1")
+}
