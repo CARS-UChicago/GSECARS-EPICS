@@ -1,7 +1,7 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13BMD_DAC_PIL.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13BMD_DAC_PIL.adl"
+	version=030117
 }
 display {
 	object {
@@ -100,7 +100,7 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMD:filter1Status4"
+		chan="13BMD:XIAFilter4_Status"
 	}
 }
 rectangle {
@@ -350,7 +350,7 @@ valuator {
 		height=22
 	}
 	control {
-		chan="13BMA:DAC1_3.VAL"
+		chan="13BMA:MonoPiezoPitch"
 		clr=14
 		bclr=14
 	}
@@ -379,7 +379,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13BMA:DAC1_3_tweak.A"
+		chan="13BMA:MonoPiezoPitchTweakDown.PROC"
 		clr=0
 		bclr=13
 	}
@@ -394,7 +394,7 @@ valuator {
 		height=20
 	}
 	control {
-		chan="13BMA:DAC1_3_tweak.B"
+		chan="13BMA:MonoPiezoPitchTweakUp.PROC"
 		clr=0
 		bclr=13
 	}
@@ -553,8 +553,8 @@ image {
 	}
 	display[0] {
 		label="XIA shutter/filter"
-		name="XIA_shutter.adl"
-		args="P=13BMD:, S=filter1"
+		name="CARS_attenuator.adl"
+		args="P=13BMD:, R=XIAFilter"
 	}
 	clr=54
 	bclr=61
@@ -628,7 +628,7 @@ composite {
 	display[0] {
 		label="Camera/monitor descriptions"
 		name="Pelco_CM6700.adl"
-		args="P=$(P),R=$(C)"
+		args="P=13BMD:,R=Pelco1"
 	}
 	clr=54
 	bclr=58
@@ -668,7 +668,7 @@ menu {
 		height=17
 	}
 	control {
-		chan="$(P)$(C)Mon1.VAL"
+		chan="13BMD:Pelco1Mon1.VAL"
 		clr=14
 		bclr=40
 	}
@@ -681,7 +681,7 @@ menu {
 		height=17
 	}
 	control {
-		chan="$(P)$(C)Mon2.VAL"
+		chan="13BMD:Pelco1Mon2.VAL"
 		clr=14
 		bclr=40
 	}
@@ -694,7 +694,7 @@ menu {
 		height=17
 	}
 	control {
-		chan="$(P)$(C)Mon3.VAL"
+		chan="13BMD:Pelco1Mon3.VAL"
 		clr=14
 		bclr=40
 	}
@@ -707,7 +707,7 @@ menu {
 		height=17
 	}
 	control {
-		chan="$(P)$(C)Mon4.VAL"
+		chan="13BMD:Pelco1Mon4.VAL"
 		clr=14
 		bclr=40
 	}
@@ -722,12 +722,12 @@ menu {
 	display[0] {
 		label="Camera/monitor descriptions"
 		name="Pelco_CM6700_names.adl"
-		args="P=$(P),R=$(C)"
+		args="P=13BMD:,R=Pelco1"
 	}
 	display[1] {
 		label="asynRecord"
 		name="asynOctet.adl"
-		args="P=$(P),R=$(C)Serial"
+		args="P=13BMD:,R=Pelco1Serial"
 	}
 	clr=54
 	bclr=60
@@ -817,9 +817,9 @@ text {
 		height=20
 	}
 	display[0] {
-		label="ompact Brillouin Window"
+		label="Compact Brillouin Window"
 		name="13BMD_brill_Compact.adl"
-		args="P=13BMD:, R=Unidig2, D=1, C=Pelco1"
+		args="P=13BMD:"
 	}
 	clr=50
 	bclr=53
@@ -835,7 +835,7 @@ text {
 	display[0] {
 		label="BMD_status"
 		name="13BMD_DAC_status.adl"
-		args="P=$(P),R=$(C)"
+		args="P=13BMD:,R=Pelco1"
 	}
 	clr=54
 	bclr=58
@@ -1312,8 +1312,8 @@ composite {
 				vis="calc"
 				calc="A>-70ORC<0.2ORB>0.2"
 				chan="13BMD:m23.RBV"
-				chanB="13BMD:filter1Status2"
-				chanC="13BMD:filter1Status4"
+				chanB="13BMD:XIAFilter2_Status"
+				chanC="13BMD:XIAFilter4_Status"
 			}
 		}
 		text {
@@ -1349,11 +1349,11 @@ composite {
 		height=40
 	}
 	control {
-		chan="13BMD:filter1sendCommand.VAL"
+		chan="13BMD:XIAFilter4"
 		clr=14
 		bclr=21
 	}
-	press_msg="R4"
+	press_msg="0"
 }
 composite {
 	object {
@@ -1372,16 +1372,16 @@ composite {
 				height=40
 			}
 			control {
-				chan="13BMD:filter1sendCommand.VAL"
+				chan="13BMD:XIAFilter4"
 				clr=14
 				bclr=15
 			}
-			press_msg="I4"
+			press_msg="1"
 		}
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMD:filter1Status4"
+		chan="13BMD:XIAFilter4_Status"
 	}
 }
 "related display" {
@@ -1517,7 +1517,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13BMD:DAC1_2.VAL"
+		chan="13BMD:ExtHeatPower"
 		clr=14
 		bclr=35
 	}
@@ -1573,7 +1573,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13BMD:DAC1_2_tweak.A"
+		chan="13BMD:ExtHeatPowerTweakDown.PROC"
 		clr=0
 		bclr=37
 	}
@@ -1588,7 +1588,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13BMD:DAC1_2_tweak.B"
+		chan="13BMD:ExtHeatPowerTweakUp.PROC"
 		clr=0
 		bclr=37
 	}
@@ -1603,7 +1603,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13BMD:DAC1_2_tweakVal"
+		chan="13BMD:ExtHeatPowerTweakVal"
 		clr=14
 		bclr=36
 	}
@@ -3322,7 +3322,7 @@ composite {
 				height=22
 			}
 			control {
-				chan="13BMD:DAC1_6.VAL"
+				chan="13BMD:SchottIllumPower"
 				clr=14
 				bclr=57
 			}
@@ -3351,7 +3351,7 @@ composite {
 				height=22
 			}
 			control {
-				chan="13BMD:DAC1_7.VAL"
+				chan="13BMD:JennerIllumPower"
 				clr=0
 				bclr=34
 			}
@@ -3383,7 +3383,7 @@ composite {
 				height=18
 			}
 			control {
-				chan="13BMD:Unidig1Bo23"
+				chan="13BMD:SchottIllumOffOn"
 				clr=39
 				bclr=57
 			}
@@ -3398,7 +3398,7 @@ composite {
 				height=18
 			}
 			control {
-				chan="13BMD:Unidig1Bo23"
+				chan="13BMD:SchottIllumOffOn"
 				clr=0
 				bclr=43
 			}
@@ -3410,8 +3410,8 @@ composite {
 		vis="calc"
 		calc="A>-1ORB#0ORC#0"
 		chan="13BMD:m23.RBV"
-		chanB="13BMD:DAC1_7.VAL"
-		chanC="13BMD:DAC1_6.VAL"
+		chanB="13BMD:JennerIllumPower"
+		chanC="13BMD:SchottIllumPower"
 	}
 }
 "related display" {
@@ -4886,12 +4886,12 @@ composite {
 				height=25
 			}
 			control {
-				chan="13BMD:filter1sendCommand.VAL"
+				chan="13BMD:XIAFilter2"
 				clr=14
 				bclr=55
 			}
 			label="Out"
-			press_msg="R2"
+			press_msg="0"
 		}
 		"message button" {
 			object {
@@ -4901,12 +4901,12 @@ composite {
 				height=25
 			}
 			control {
-				chan="13BMD:filter1sendCommand.VAL"
+				chan="13BMD:XIAFilter2"
 				clr=14
 				bclr=35
 			}
 			label="In"
-			press_msg="I2"
+			press_msg="1"
 		}
 		text {
 			object {
@@ -4984,7 +4984,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="13BMD:filter1Status2"
+				chan="13BMD:XIAFilter2_Status"
 			}
 		}
 		composite {
@@ -5036,7 +5036,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:filter1Status2"
+				chan="13BMD:XIAFilter2_Status"
 			}
 		}
 	}
@@ -5702,7 +5702,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:DAC1_7.VAL"
+				chan="13BMD:JennerIllumPower"
 			}
 			points {
 				(386,416)
@@ -5741,7 +5741,7 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:DAC1_7.VAL"
+		chan="13BMD:JennerIllumPower"
 	}
 }
 composite {
@@ -6064,7 +6064,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="13BMD:Unidig2Bo0.VAL"
+				chan="13BMD:DACRubyBrill_RBV"
 			}
 			textix="move Brillouin lamp out"
 		}
@@ -6150,7 +6150,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if zero"
-						chan="13BMD:filter1Status1"
+						chan="13BMD:XIAFilter1_Status"
 					}
 				}
 			}
@@ -6609,7 +6609,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="B>50&&C<-50&&(A<0ORA>0)"
-				chan="13BMD:Unidig2Bo0.VAL"
+				chan="13BMD:DACRubyBrill_RBV"
 				chanB="13BMD:m68.RBV"
 				chanC="13BMD:m23.RBV"
 			}
@@ -6628,7 +6628,7 @@ polygon {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:Unidig1Bi23"
+		chan="13BMD:SchottIllumOffOn_RBV"
 	}
 	points {
 		(894,407)
