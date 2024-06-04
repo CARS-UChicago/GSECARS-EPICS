@@ -14,7 +14,7 @@ iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/db:$(CARS)/db)"
 iocshLoad("serial.cmd",          "P=$(PREFIX), TS=gsets18")
 iocshLoad("MeasComp.cmd",        "P=$(PREFIX)")
 iocshLoad("Koyo.cmd",            "P=$(PREFIX)")
-#iocshLoad("motors.cmd",          "P=$(PREFIX)")
+iocshLoad("motors.cmd",          "P=$(PREFIX)")
 
 dbLoadTemplate "DAC_ExternalHeating.template"
 dbLoadTemplate "DAC_SparePID.template"
