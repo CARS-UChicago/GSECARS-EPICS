@@ -1,0 +1,224 @@
+# This file contains the motor definitions for motors in 13BMD.
+#
+# Motors   Galil    Patch panel     Common use
+
+#  1-8       1        D         LVP lift table
+#  9-16      NA       E         Unused
+#  17-24     2        B         XAS lift table
+#  25-32     3        C         LVP entrance slits, hutch slits
+#  33-40     4        A         Tomography, XAS, DAC sample stages
+#  41-48     5        CC        K/B mirror, DAC cleanup slit (number changed!)
+#  49-56     NA       NA        Not used
+#  57-64     6        F         LVP CCD stage (57-59), D-DIA diff. rams (60: bottom; 61: top), LVP Ion Chamber (62), High-P Tomo Rot. (63: top; 64: bott; both bipolar),
+#  65-72     7	      X	        DAC Brill (65-68), 69 free, Detector position(70), microscope zoom(71), LVP slit laser (72) 
+#  73-80     8        NA        Brillouin
+
+#  89-96    NA        NA        Newport XPS for DAC tomography stages (ioc13bmd_DAC_XPS)
+#  97-104   NA        NA        Newport XPS for LVP (ioc13bmd_LVP_XPS)
+# 105-112   NA        NA        ACS MCB-4B for LVP entrance and detector slits
+# 113-120   NA        NA        Aerotech HEX RC for tomography stages (ioc13bmd_aerotech)
+# 121-128   NA        NA        Newport XPS for tomography stages (ioc13bmd_TOMO_XPS)
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,         PORT,    CTRL,    ADDR,  DESC,                    EGU,      DIR,   VELO,  VBAS,  ACCL, BDST, BVEL, BACC,   SREV,  UREV,    PREC,  DHLM,  DLLM}
+
+# Patch panel D
+{13BMD:,  m1,   "asynMotor",  GALIL1,  Galil1:,  0, "Unused",                    mm,      Pos,     .2,  .005,   .2,  0.1,   .2,    .2,    400,       1.0,   3,     50,   -50}
+{13BMD:,  m2,   "asynMotor",  GALIL1,  Galil1:,  1, "Unused",                    mm,      Pos,     .2,  .005,   .2,  0.1,   .2,    .2,    400,       1.0,   3,     50,   -50}
+{13BMD:,  m3,   "asynMotor",  GALIL1,  Galil1:,  2, "Unused",                    mm,      Pos,     .2,  .005,   .2,  0.1,   .2,    .2,    400,       1.0,   3,     50,   -50}
+{13BMD:,  m4,   "asynMotor",  GALIL1,  Galil1:,  3, "Unused",                    mm,      Pos,     .2,  .005,  .05,  0.1,   .2,   .05,    400,       1.0,   3,     30,   -30}
+{13BMD:,  m5,   "asynMotor",  GALIL1,  Galil1:,  4, "Unused",                    mm,      Pos,     .2,  .005,  .05,  0.1,   .2,   .05,    400,       1.0,   3,     30,   -30}
+{13BMD:,  m6,   "asynMotor",  GALIL1,  Galil1:,  5, "Unused",                    mm,      Pos,     .2,  .005,  .05,  0.1,   .2,   .05,    400,       1.0,   3,     30,   -30}
+{13BMD:,  m7,   "asynMotor",  GALIL1,  Galil1:,  6, "Phosph. pos.",              mm,      Neg,    50.,   0.1,  2.0,    0,    1,    .2,    400,       2.0,   3,    150,     0}
+{13BMD:,  m8,   "asynMotor",  GALIL1,  Galil1:,  7, "Press rotation",            mm,      Neg,    0.5,   0.1,   .2,    0,    1,    .2,    400,       .05,   3,    360,  -360}
+
+# Patch panel B
+{13BMD:,  m17,  "asynMotor",  GALIL2,  Galil2:,  0, "M2Y (downstream)",          mm,      Pos,     .2,  .005,   .2,    0,    1,    .2,    400,  0.023813,   3,     50,     0}
+{13BMD:,  m18,  "asynMotor",  GALIL2,  Galil2:,  1, "M1Y (inboard)",             mm,      Pos,     .2,  .005,   .2,    0,    1,    .2,    400,  0.023813,   3,     50,     0}
+{13BMD:,  m19,  "asynMotor",  GALIL2,  Galil2:,  2, "M0Y (outboard)",            mm,      Pos,     .2,  .005,   .2,    0,    1,    .2,    400,  0.023813,   3,     50,     0}
+{13BMD:,  m20,  "asynMotor",  GALIL2,  Galil2:,  3, "M0X (upstream)",            mm,      Pos,     .5,  .005,   .2,    0,    1,    .2,    400, -0.035278,   3,     79,   -52}
+{13BMD:,  m21,  "asynMotor",  GALIL2,  Galil2:,  4, "M2X (downstream)",          mm,      Pos,     .5,  .005,   .2,    0,    1,    .2,    400,  0.035278,   3,     30,   -75}
+{13BMD:,  m22,  "asynMotor",  GALIL2,  Galil2:,  5, "Base Y",                    mm,      Pos,     .5,   .05,   .5, 0.05, 0.05,    .5,    400,  -0.10583,   3,    200,     0}
+{13BMD:,  m23,  "asynMotor",  GALIL2,  Galil2:,  6, "DAC microscope X",          mm,      Pos,    2.0,    .1,   .5,    0,    1,    .2,    200,     -0.10,   3,    100,     0}
+{13BMD:,  m24,  "asynMotor",  GALIL2,  Galil2:,  7, "Unused",                    mm,      Pos,    2.0,    .1,   .5,    0,    1,    .2,    200,     -0.10,   3,    100,     0}
+
+# Patch panel C;  m25-28 don't have home or +5V.
+{13BMD:,  m25,  "asynMotor",  GALIL3,  Galil3:,  0, "Unused",                    mm,      Pos,    0.2,  0.03,   .5,    0,    1,    .2,    400,      -.02,   3,     40,     0}
+{13BMD:,  m26,  "asynMotor",  GALIL3,  Galil3:,  1, "Vert. slit Y",              mm,      Pos,    0.5,    .1,  1.0,  0.1,   .1,    .2,    400,       1.0,   3,     25,   -25}
+{13BMD:,  m27,  "asynMotor",  GALIL3,  Galil3:,  2, "Hori. slit X",              mm,      Pos,    0.5,    .1,  1.0,  0.1,   .1,    .2,    400,       1.0,   3,     25,   -25}
+{13BMD:,  m28,  "asynMotor",  GALIL3,  Galil3:,  3, "Unused",                    mm,      Pos,    1.0,    .1,   .5,    0,    1,    .5,    400,       2.0,   4,     30,   -10}
+{13BMD:,  m29,  "asynMotor",  GALIL3,  Galil3:,  4, "Inboard slit",              mm,      Pos,    1.0,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,     85,   -4.}
+{13BMD:,  m30,  "asynMotor",  GALIL3,  Galil3:,  5, "Outboard slit",             mm,      Neg,    1.0,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,     85,   -4.}
+{13BMD:,  m31,  "asynMotor",  GALIL3,  Galil3:,  6, "Top slit",                  mm,      Neg,    1.5,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,    100,   -4.}
+{13BMD:,  m32,  "asynMotor",  GALIL3,  Galil3:,  7, "Bottom slit",               mm,      Neg,    1.5,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,    100,   -4.}
+
+# Patch panel A
+{13BMD:,  m33,  "asynMotor",  GALIL4,  Galil4:,  0, "Camera X",                  mm,      Pos,    2.0,    .1,   .5,    0,    1,    .2,    200,      -.10,   3,    100,     0}
+{13BMD:,  m34,  "asynMotor",  GALIL4,  Galil4:,  1, "Camera Y",                  mm,      Neg,    2.0,    .1,   .5,    0,    1,    .2,    200,      -.10,   3,    100,     0}
+{13BMD:,  m35,  "asynMotor",  GALIL4,  Galil4:,  2, "Camera Z",                  mm,      Neg,    2.0,    .1,   .5,    0,    1,    .2,    200,      -.10,   3,    100,     0}
+{13BMD:,  m36,  "asynMotor",  GALIL4,  Galil4:,  3, "Laser",                     mm,      Pos,    1.0,    .1,   .5,    0,    1,    .5,    400,       2.0,   4,     30,   -10}
+{13BMD:,  m37,  "asynMotor",  GALIL4,  Galil4:,  4, "Sample Chi",               deg,      Pos,    3.0,     0,   .5,    0,    1,    .2,    200,     -0.10,   3,    360,  -360}
+{13BMD:,  m38,  "asynMotor",  GALIL4,  Galil4:,  5, "Unused",                   deg,      Pos,   15.0,     0,   .5,    0,    1,    .2,    200,     -0.50,   3,    360,  -360}
+{13BMD:,  m39,  "asynMotor",  GALIL4,  Galil4:,  6, "Unused",                    mm,      Neg,   20.0,    .1,    1,    0,    1,    .2,    200,      -.01,   3,     50,   -50}
+{13BMD:,  m40,  "asynMotor",  GALIL4,  Galil4:,  7, "Unused",                    mm,      Neg,   20.0,    .1,    1,    0,    1,    .2,    200,       -.1,   3,    360,  -360}
+
+# Patch panel CC
+{13BMD:,  m41,  "asynMotor",  GALIL5,  Galil5:,  0, "Clean-up X",                mm,      Neg,     .2,   .01,   .2,    0,    1,    .2,     48,   .003546,   3,     24,     0}
+{13BMD:,  m42,  "asynMotor",  GALIL5,  Galil5:,  1, "Clean-up Y",                mm,      Pos,     .2,   .01,   .2,    0,    1,    .2,     48,   .003546,   3,     24,     0}
+{13BMD:,  m43,  "asynMotor",  GALIL5,  Galil5:,  2, "Clean-up Z",                mm,      Pos,    0.5,    .1,  1.0,  0.1,   .1,    .2,    400,       1.0,   3,     25,   -25}
+{13BMD:,  m44,  "asynMotor",  GALIL5,  Galil5:,  3, "Unused",                  mrad,      Pos,     10,    .1,   .2,    0,    1,    .2,     48,   -0.8868,   3,     30,   -30}
+{13BMD:,  m45,  "asynMotor",  GALIL5,  Galil5:,  4, "Hor. mirror X pos",     micron,      Pos,    150,    10,   .2,    0,    1,    .2,     48,     3.546,   1,    8e3,     0}
+{13BMD:,  m46,  "asynMotor",  GALIL5,  Galil5:,  5, "Hor. mirror rotation",    mrad,      Pos,     10,    .1,   .2,    0,    1,    .2,     48,   -0.8868,   3,     30,   -30}
+{13BMD:,  m47,  "asynMotor",  GALIL5,  Galil5:,  6, "Hor. force UpStream",   micron,      Pos,  100.0,    10,   .2,    0,    1,    .2,     48,     3.546,   1,    8e3,     0}
+{13BMD:,  m48,  "asynMotor",  GALIL5,  Galil5:,  7, "Hor. force DownStream", micron,      Pos,  100.0,    10,   .2,    0,    1,    .2,     48,     3.546,   1,    8e3,     0}
+
+# Patch panel F
+{13BMD:,  m57,  "asynMotor",  GALIL6,  Galil6:,  0, "LVP CCD X",                 mm,      Pos,    5.0,   0.1,  2.0,    0,    1,    .2,    200,      -.10,   3,    100,     0}
+{13BMD:,  m58,  "asynMotor",  GALIL6,  Galil6:,  1, "LVP CCD Y",                 mm,      Neg,    2.0,   0.1,   .5,    0,    1,    .2,    200,      -.10,   3,    100,     0}
+{13BMD:,  m59,  "asynMotor",  GALIL6,  Galil6:,  2, "LVP CCD Z",                 mm,      Pos,    2.0,   0.1,   .5,    0,    1,    .2,    200,      -.10,   3,    100,     0}
+# DDIA diff ram controllers: 14 revol/inch plus 30:1 gear ratio, planetary gear head 10:1
+{13BMD:,  m60,  "asynMotor",  GALIL6,  Galil6:,  3, "DIFF RAM Bot",              mm,      Pos,    0.1,   0.1,  1.0,    0,    1,    .2,    400, -0.006047619, 3,   150,     0}
+{13BMD:,  m61,  "asynMotor",  GALIL6,  Galil6:,  4, "DIFF RAM Top",              mm,      Pos,    0.1,   0.1,  1.0,    0,    1,    .2,    400, -0.006047619, 3,   150,     0}
+{13BMD:,  m62,  "asynMotor",  GALIL6,  Galil6:,  5, "Ion Chamber",               mm,      Pos,    1.0,   0.1,   .5,    0,    1,    .5,    400,       2.0,   4,     30,   -10}
+# Normal Hi-P Tomo rotation: 10:1 right angle gear; 260/80 coupling gear; 160:1 HarmonicDrive, total 5200:1. Angle=360/5200=0.069231 deg/motor rev
+{13BMD:,  m63,  "asynMotor",  GALIL6,  Galil6:,  6, "Top Rot., deg.",           deg,      Pos,   0.05,  0.01, 0.05,    0,    1,    .2,    400,  0.069231,   3,      0,     0}
+{13BMD:,  m64,  "asynMotor",  GALIL6,  Galil6:,  7, "Bot Rot., deg.",           deg,      Neg,   0.05,  0.01, 0.05,    0,    1,    .2,    400,  0.069231,   3,      0,     0}
+
+# Patch panel X
+{13BMD:,  m65,  "asynMotor",  GALIL7,  Galil7:,  0, "Vertical Brillouin",        mm,      Pos,    1.0,   0.1,   .2,    0,    1,    .2,  10000,         5,   3,    150,     0}
+{13BMD:,  m66,  "asynMotor",  GALIL7,  Galil7:,  1, "Horizontal Brillouin",      mm,      Neg,    1.0,   0.1,   .2,    0,    1,    .2,  10000,         5,   3,    450,     0}
+{13BMD:,  m67,  "asynMotor",  GALIL7,  Galil7:,  2, "Horizontal Laser",          mm,      Neg,    1.0,   0.1,   .2,    0,    1,    .2,  10000,         5,   3,    450,     0}
+{13BMD:,  m68,  "asynMotor",  GALIL7,  Galil7:,  3, "Vertical Laser",            mm,      Pos,    1.0,   0.1,   .2,    0,    1,    .2,  10000,         5,   3,    150,     0}
+{13BMD:,  m69,  "asynMotor",  GALIL7,  Galil7:,  4, "Chi large Newport",        deg,      Pos,    1.0,   0.1, 2.50,    0,    1,   1.0,    100,        1.,   3,    360,  -360}
+{13BMD:,  m70,  "asynMotor",  GALIL7,  Galil7:,  5, "Base Z",                    mm,      Pos,    3.0,   0.1,   .2,   .1,    1,    .2,    400,      0.20,   3,    450,     0}
+{13BMD:,  m71,  "asynMotor",  GALIL7,  Galil7:,  6, "Microscope-Zoom",           mm,      Neg,    1.0,   0.1,   .5, -0.2,    1,    .2,    200,       -.1,   3,    150,     0}
+{13BMD:,  m72,  "asynMotor",  GALIL7,  Galil7:,  7, "Ion chamber Z",             mm,      Pos,    1.0,   0.1,   .5,    0,    1,    .5,    400,         2,   4,     30,   -10}
+
+# Under lift table
+{13BMD:,  m73,  "asynMotor",  GALIL8,  Galil8:,  0, "Focus Laser",               mm,      Neg,    0.3,   .01,   .2,  .02,    1,    .2,     48,    0.0116,   3,    25.,     0}
+{13BMD:,  m74,  "asynMotor",  GALIL8,  Galil8:,  1, "Focus Brillouin",           mm,      Neg,    0.3,   .01,   .2,  .02,    1,    .2,     48,    0.0116,   3,    25.,     0}
+{13BMD:,  m75,  "asynMotor",  GALIL8,  Galil8:,  2, "Stabilization",            deg,      Pos,   10.0,   5.0,  10.,    0,    1,   5.0,     10,        .1,   3,   360., -360.}
+{13BMD:,  m76,  "asynMotor",  GALIL8,  Galil8:,  3, "Polarization",             deg,      Pos,   10.0,   5.0,  10.,    0,    1,   5.0,     10,        .1,   3,   360., -360.}
+{13BMD:,  m77,  "asynMotor",  GALIL8,  Galil8:,  4, "DAC microscope Z",          mm,      Neg,     .2,   .01,   .2,    0,    1,    .2,     48,   .003546,   3,     24,     0}
+{13BMD:,  m78,  "asynMotor",  GALIL8,  Galil8:,  5, "YAG Focus",             micron,      Pos,  200.0,   10.,   .2,    0,   10,    .2,  10240,       500,   1,  27000,  -150}
+{13BMD:,  m79,  "asynMotor",  GALIL8,  Galil8:,  6, "Top laser hor",             mm,      Pos,     .2,   .01,   .2,    0,    1,    .2,     48,   .003546,   3,     24,     0}
+{13BMD:,  m80,  "asynMotor",  GALIL8,  Galil8:,  7, "Top signal hor",            mm,      Pos,     .2,   .01,   .2,    0,    1,    .2,     48,   .003546,   3,     24,     0}
+
+}
+
+# BMD slits in vacuum
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,    mXp,  mXn}
+{13BMD:, BMDV,   m31,   m32}
+{13BMD:, BMDH,   m30,   m29}
+}
+
+file "$(SSCAN)/db/scanParms.db"
+{
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHp,POS=BMDHxp.VAL,RDBK=BMDHt2.A}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHn,POS=BMDHxn.VAL,RDBK=BMDHt2.B}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHsize,POS=BMDHsize.VAL,RDBK=BMDHt2.C}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDHcenter,POS=BMDHcenter.VAL,RDBK=BMDHt2.D}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVp,POS=BMDVxp.VAL,RDBK=BMDVt2.A}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVn,POS=BMDVxn.VAL,RDBK=BMDVt2.B}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVsize,POS=BMDVsize.VAL,RDBK=BMDVt2.C}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=BMDVcenter,POS=BMDVcenter.VAL,RDBK=BMDVt2.D}
+}
+
+file "$(OPTICS)/db/table.db"
+{
+pattern
+{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13BMD:, LVP:T1,      LVP:t1, m5,   m2,   m3,   m4,   m1,   m6,   GEOCARS}
+}
+
+file "$(OPTICS)/db/table.db"
+{
+pattern
+{P,          Q,      T,          M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z,  GEOM}
+{13BMD:, XAS:T1, XAS:t1,         m20,  m19,  m18,  m21,  m17,  junk, SRI}
+}
+
+file "$(SSCAN)/db/scanParms.db"
+{
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1X,POS=XAS:t1.X,RDBK=XAS:t1.XRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1Y,POS=XAS:t1.Y,RDBK=XAS:t1.YRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1Z,POS=XAS:t1.Z,RDBK=XAS:t1.ZRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AX,POS=XAS:t1.AX,RDBK=XAS:t1.AXRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AY,POS=XAS:t1.AY,RDBK=XAS:t1.AYRB}
+{P=13BMD:,SCANREC=13BMD:scan1,Q=XAS:T1AZ,POS=XAS:t1.AZ,RDBK=XAS:t1.AZRB}
+}
+
+#<--
+#    KB mirror setup of pseudomotors  11-Sept-2000
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,           EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+
+{13BMD:,  pm5, "13BMD:KBH:Done NPP NMS", "13BMD:pm5DVAL.VAL PP MS", "13BMD:KBH:Readback.G NPP NMS", "13BMD:KBH:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13BMD:,  pm6, "13BMD:KBH:Done NPP NMS", "13BMD:pm6DVAL.VAL PP MS", "13BMD:KBH:Readback.H NPP NMS", "13BMD:KBH:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13BMD:,  pm7, "13BMD:KBV:Done NPP NMS", "13BMD:pm7DVAL.VAL PP MS", "13BMD:KBV:Readback.G NPP NMS", "13BMD:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13BMD:,  pm8, "13BMD:KBV:Done NPP NMS", "13BMD:pm8DVAL.VAL PP MS", "13BMD:KBV:Readback.H NPP NMS", "13BMD:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+}
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, KBH:,  pm5, pm6,    m47.VAL,  m47.RBV,  m48.VAL, m48.RBV, m47.STOP, m47.DMOV, m48.STOP, m48.DMOV, 1}
+{13BMD:, KBV:,  pm7, pm8,    m43.VAL,  m43.RBV,  m44.VAL, m44.RBV, m43.STOP, m43.DMOV, m44.STOP, m44.DMOV, 1}
+}
+#-->
+
+#  pseudomotors for LVP tomo
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,                        DESC,           EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,  RRES,   PREC, DHLM, DLLM}
+
+{13BMD:,  pm9,  "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm9DVAL.VAL PP MS",  "13BMD:LVPtomo:Readback.G NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Tomo Mode, deg.",     deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001730775,   1.0,  8,    10000, -10000}
+{13BMD:,  pm10, "13BMD:LVPtomo:Done NPP NMS", "13BMD:pm10DVAL.VAL PP MS", "13BMD:LVPtomo:Readback.H NPP NMS", "13BMD:LVPtomo:Stop PP MS",  "Twist Mode, deg.",    deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001730775,   1.0,  8,    10000, -10000}
+}
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,         SUM, DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, LVPtomo:,  pm9, pm10,    m63.VAL,  m63.RBV,  m64.VAL, m64.RBV, m63.STOP, m63.DMOV, m64.STOP, m64.DMOV, 6}
+}
+
+#  pseudomotors for laser horizontal
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern  
+{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
+
+{13BMD:,  pm13,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm13DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.G NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+{13BMD:,  pm14,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm14DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.H NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+}
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,            SUM, DIFF,   M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, LaserHoriz:,  pm13, pm14,  m67.VAL,  m67.RBV,  m79.VAL, m79.RBV, m67.STOP, m67.DMOV, m79.STOP, m79.DMOV, 3}
+}
+
+#  pseudomotors for signal horizontal
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern  
+{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
+
+{13BMD:,  pm15,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm15DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.G NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+{13BMD:,  pm16,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm16DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.H NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+}
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,             SUM,  DIFF,   M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13BMD:, SignalHoriz:,  pm15, pm16,   m66.VAL,  m66.RBV,  m80.VAL, m80.RBV, m66.STOP, m66.DMOV, m80.STOP, m80.DMOV, 3}
+}
+
