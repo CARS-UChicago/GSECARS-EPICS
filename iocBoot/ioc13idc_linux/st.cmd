@@ -42,7 +42,8 @@ iocInit
 # will be saved by the task we're starting here are going to be restored.
 #
 # save positions every five seconds
-#create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
+create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
+
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX), P3104=$(USB3104_PREFIX), P1808=$(USB1808_PREFIX), PCTR=$(USBCTR_PREFIX), PEDIO24=$(EDIO24_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
 
