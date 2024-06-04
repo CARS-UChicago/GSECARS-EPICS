@@ -5,6 +5,8 @@ epicsEnvSet("STREAM_PROTOCOL_PATH","$(CARS)/db")
 ## Register all support components
 dbLoadDatabase "../../dbd/CARSLinux.dbd"
 CARSLinux_registerRecordDeviceDriver pdbbase
+#dbLoadDatabase "../../dbd/CARSWin32.dbd"
+#CARSWin32_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet(WDIG_POINTS, "4096")
 # This is the unit labeled NET DEV 1 on the box.
