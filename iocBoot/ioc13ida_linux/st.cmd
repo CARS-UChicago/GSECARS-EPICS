@@ -7,6 +7,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13IDA:")
 epicsEnvSet("LINUX_PREFIX", "13IDA_Linux:")
+epicsEnvSet("STREAM_PROTOCOL_PATH", "$(CARS)/db:$(IP)/db")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets17")
 iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-2")
