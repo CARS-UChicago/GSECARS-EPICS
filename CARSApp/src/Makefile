@@ -19,6 +19,7 @@ CARS_SRCS += Analyzer.st
 CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 CARS_SRCS += splint.c
+CARS_SRCS += drvIFM_AL1342.cpp
 CARS_SRCS_Linux   += testIpac.c
 CARS_SRCS_vxWorks += testIpac.c
 
