@@ -42,7 +42,7 @@ dbLoadRecords("$(DELAYGEN)/db/BNC_505.db",              "P=$(P), PORT=serial11, 
 dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=1")
 dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=2")
 dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=3")
-bLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=4")
+dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=4")
 #                                                                     serial12  Unused
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial13, R=Laser1,")
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial14, R=Laser2")
