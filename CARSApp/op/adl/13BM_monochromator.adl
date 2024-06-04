@@ -1,7 +1,7 @@
 
 file {
 	name="/home/epics/support/CARS/CARSApp/op/adl/13BM_monochromator.adl"
-	version=030109
+	version=030117
 }
 display {
 	object {
@@ -1227,139 +1227,113 @@ composite {
 		}
 	}
 }
-composite {
+text {
 	object {
 		x=4
 		y=340
-		width=610
-		height=45
+		width=150
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=4
-				y=340
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=24
-			}
-			textix="Tilt (Piezo)"
-		}
-		"message button" {
-			object {
-				x=312
-				y=359
-				width=25
-				height=25
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C)_tweak.A"
-				clr=54
-				bclr=33
-			}
-			label="<"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=412
-				y=359
-				width=25
-				height=25
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C)_tweak.B"
-				clr=54
-				bclr=33
-			}
-			label=">"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=334
-				y=359
-				width=80
-				height=25
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C)_tweakVal"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=554
-				y=364
-				width=60
-				height=20
-			}
-			display[0] {
-				label="All"
-				name="singleDAC.adl"
-				args="P=$(P1),D=$(D),C=$(C)"
-			}
-			display[1] {
-				label="Scan parameters"
-				name="scanParms.adl"
-				args="P=$(P1),Q=DAC$(D)_$(C), PV=DAC$(D)_$(C)"
-			}
-			clr=54
-			bclr=33
-			label="More"
-		}
-		"message button" {
-			object {
-				x=493
-				y=364
-				width=60
-				height=21
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C):scanParms.GO"
-				clr=54
-				bclr=51
-			}
-			label="Scan"
-			press_msg="1"
-		}
-		valuator {
-			object {
-				x=153
-				y=359
-				width=150
-				height=25
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C).VAL"
-				clr=14
-				bclr=51
-			}
-			dPrecision=1.000000
-			limits {
-			}
-		}
-		"text entry" {
-			object {
-				x=34
-				y=364
-				width=100
-				height=20
-			}
-			control {
-				chan="$(P1)DAC$(D)_$(C).VAL"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=24
+	}
+	textix="Tilt (Piezo)"
+}
+"message button" {
+	object {
+		x=312
+		y=359
+		width=25
+		height=25
+	}
+	control {
+		chan="13BMA:MonoPiezoPitchTweakDown.PROC"
+		clr=54
+		bclr=33
+	}
+	label="<"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=412
+		y=359
+		width=25
+		height=25
+	}
+	control {
+		chan="13BMA:MonoPiezoPitchTweakUp.PROC"
+		clr=54
+		bclr=33
+	}
+	label=">"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=334
+		y=359
+		width=80
+		height=25
+	}
+	control {
+		chan="13BMA:MonoPiezoPitchTweakVal"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=554
+		y=364
+		width=60
+		height=20
+	}
+	display[0] {
+		label="All"
+		name="singleDAC.adl"
+		args="P=$(P1),D=$(D),C=$(C)"
+	}
+	display[1] {
+		label="Scan parameters"
+		name="scanParms.adl"
+		args="P=$(P1),Q=DAC$(D)_$(C), PV=DAC$(D)_$(C)"
+	}
+	clr=54
+	bclr=33
+	label="More"
+}
+valuator {
+	object {
+		x=153
+		y=359
+		width=150
+		height=25
+	}
+	control {
+		chan="13BMA:MonoPiezoPitch.VAL"
+		clr=14
+		bclr=51
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=34
+		y=364
+		width=100
+		height=20
+	}
+	control {
+		chan="13BMA:MonoPiezoPitch.VAL"
+		clr=14
+		bclr=51
+	}
+	limits {
 	}
 }
 "related display" {
@@ -1640,21 +1614,6 @@ composite {
 	clr=54
 	bclr=33
 	label="More"
-}
-"message button" {
-	object {
-		x=493
-		y=309
-		width=60
-		height=21
-	}
-	control {
-		chan="$(P1)DAC$(D)_$(C):scanParms.GO"
-		clr=54
-		bclr=51
-	}
-	label="Scan"
-	press_msg="1"
 }
 text {
 	object {
