@@ -3,11 +3,14 @@ file "$(CARS)/db/asynMotor.db"
 pattern
 {P,          M,         DTYP,       PORT, ADDR,  DESC,     EGU,   DIR,     VELO,   VBAS,  ACCL,  BDST,   BVEL,  BACC,  SREV,    UREV,    PREC, DHLM, DLLM}
 {HindsXray:,   m1,   "asynMotor",  PMAC1, 1,   "Omega1",   deg,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
-{HindsXray:,   m2,   "asynMotor",  PMAC1, 2,   "2Theta1",  deg,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
+{HindsXray:,   m2,   "asynMotor",  PMAC1, 8,   "2Theta1",  deg,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
 {HindsXray:,   m3,   "asynMotor",  PMAC1, 3,   "Omega2",   deg,    Pos,    15,     .1,     .1,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
 {HindsXray:,   m4,   "asynMotor",  PMAC1, 4,   "Kappa",    deg,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
 {HindsXray:,   m5,   "asynMotor",  PMAC1, 5,   "Phi",      deg,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
 {HindsXray:,   m6,   "asynMotor",  PMAC1, 6,   "2Theta2",  deg,    Pos,    10,     .5,     .1,    0,     0.1,     .1,  6400,     1,       5,   25,    -25}
 {HindsXray:,   m7,   "asynMotor",  PMAC1, 7,   "SineBar",  deg,    Pos,  0.03,      0,     .2,    0,     0.1,     .1,  6400, 0.00347222,  6,   25,    -25}
-{HindsXray:,   m8,   "asynMotor",  PMAC1, 8,   "Z",         mm,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,    0.635,    5,   25,    -25}
+{HindsXray:,   m8,   "asynMotor",  PMAC1, 2,   "Z",         mm,    Pos,     1,      0,     .2,    0,     0.1,     .1,  6400,    0.635,    5,   25,    -25}
 }
+
+#7/11/23 JES swapped addresses 2 and 8.  2Theta1 is not in use and channel 8 of PMAC falsely showied and open negative limit.  
+# Channel 1 of the PMAC falsely showed an open positive limit, thus channel 2 was used.
