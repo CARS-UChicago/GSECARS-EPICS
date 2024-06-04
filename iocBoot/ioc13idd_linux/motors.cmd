@@ -1,6 +1,6 @@
-iocshLoad("XPS.cmd",   "P=$(P)")
-iocshLoad("MCB4B.cmd", "P=$(P)")
-#iocshLoad("Galil.cmd", "P=$(P)")
+#iocshLoad("XPS.cmd",   "P=$(P)")
+#iocshLoad("MCB4B.cmd", "P=$(P)")
+iocshLoad("Galil.cmd", "P=$(P)")
 
 ### Allstop, alldone
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(LINUX_PREFIX)")
