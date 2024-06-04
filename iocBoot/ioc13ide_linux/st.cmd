@@ -10,6 +10,7 @@ epicsEnvSet("LINUX_PREFIX", "13IDE_Linux:")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets2")
 iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
+iocshLoad("motors.cmd",     "P=$(PREFIX)")
 
 # User calc stuff
 iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX)")
