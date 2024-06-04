@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13GasLoading.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13GasLoading.adl"
+	version=030117
 }
 display {
 	object {
-		x=616
-		y=623
+		x=605
+		y=686
 		width=370
 		height=320
 	}
@@ -210,12 +210,17 @@ text {
 	display[0] {
 		label="Sample stage"
 		name="4motors.adl"
-		args="P=13GasLoad:, TITLE=Gas_Loading, M1=m1, M2=m2, M3=pm1,  M4=pm2"
+		args="P=13GasLoad:, TITLE=Gas_Loading, M1=m7, M2=m8, M3=pm1,  M4=pm2"
 	}
 	display[1] {
 		label="Laser stage"
-		name="2motors.adl"
-		args="P=13GasLoad:, TITLE=Gas_Loading_Laser, M1=m3, M2=m4"
+		name="3motors.adl"
+		args="P=13GasLoad:, TITLE=Gas_Loading_Laser, M1=m3, M2=m4, M3=m5"
+	}
+	display[2] {
+		label="Galil 1 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13GasLoad:Galil1:,R=Galil, M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6,M7=m7,M8=m8"
 	}
 	clr=14
 	bclr=4
