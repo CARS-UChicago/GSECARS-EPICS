@@ -814,15 +814,15 @@ oval {
 }
 text {
 	object {
-		x=556
+		x=573
 		y=825
-		width=105
+		width=84
 		height=13
 	}
 	"basic attribute" {
 		clr=13
 	}
-	textix="Station Water 1"
+	textix="BMD Backstop"
 	align="horiz. centered"
 }
 oval {
@@ -4486,18 +4486,6 @@ rectangle {
 }
 rectangle {
 	object {
-		x=845
-		y=549
-		width=12
-		height=25
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
 		x=279
 		y=443
 		width=70
@@ -4661,184 +4649,9 @@ polyline {
 }
 rectangle {
 	object {
-		x=753
-		y=418
-		width=70
-		height=90
-	}
-	"basic attribute" {
-		clr=45
-	}
-}
-rectangle {
-	object {
-		x=786
-		y=533
-		width=5
-		height=30
-	}
-	"basic attribute" {
-		clr=12
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13BMA:eps_mbbi115"
-	}
-}
-rectangle {
-	object {
-		x=786
-		y=514
-		width=5
-		height=30
-	}
-	"basic attribute" {
-		clr=12
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMA:eps_mbbi115"
-	}
-}
-rectangle {
-	object {
-		x=781
-		y=508
-		width=14
-		height=41
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-"message button" {
-	object {
-		x=766
-		y=466
-		width=45
-		height=20
-	}
-	control {
-		chan="13BMA:V4C_open_request"
-		clr=14
-		bclr=0
-	}
-	label="Open"
-	press_msg="Open_on"
-	release_msg="Open_off"
-	clrmod="alarm"
-}
-"message button" {
-	object {
-		x=766
-		y=486
-		width=45
-		height=20
-	}
-	control {
-		chan="13BMA:V4C_close_request"
-		clr=14
-		bclr=0
-	}
-	label="Close"
-	press_msg="Close_on"
-	release_msg="Close_off"
-	clrmod="alarm"
-}
-text {
-	object {
-		x=761
-		y=425
-		width=56
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Valve 4C"
-	align="horiz. centered"
-}
-"text update" {
-	object {
-		x=756
-		y=448
-		width=45
-		height=15
-	}
-	monitor {
-		chan="13BMA:V4C_status"
-		clr=14
-		bclr=0
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="string"
-	limits {
-	}
-}
-oval {
-	object {
-		x=806
-		y=448
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13BMA:eps_mbbi116"
-	}
-}
-oval {
-	object {
-		x=809
-		y=451
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13BMA:eps_mbbi115"
-	}
-}
-polyline {
-	object {
-		x=753
-		y=442
-		width=70
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(753,442)
-		(823,442)
-	}
-}
-rectangle {
-	object {
-		x=753
-		y=549
-		width=92
-		height=14
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
 		x=288
 		y=574
-		width=580
+		width=345
 		height=24
 	}
 	"basic attribute" {
@@ -6328,7 +6141,7 @@ rectangle {
 		x=633
 		y=523
 		width=120
-		height=45
+		height=90
 	}
 	"basic attribute" {
 		clr=14
@@ -7210,5 +7023,180 @@ polyline {
 	points {
 		(338,865)
 		(518,865)
+	}
+}
+rectangle {
+	object {
+		x=761
+		y=443
+		width=70
+		height=90
+	}
+	"basic attribute" {
+		clr=45
+	}
+}
+rectangle {
+	object {
+		x=794
+		y=569
+		width=5
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMA:eps_mbbi115"
+	}
+}
+rectangle {
+	object {
+		x=794
+		y=539
+		width=5
+		height=30
+	}
+	"basic attribute" {
+		clr=12
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13BMA:eps_mbbi115"
+	}
+}
+rectangle {
+	object {
+		x=789
+		y=533
+		width=14
+		height=41
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"message button" {
+	object {
+		x=774
+		y=491
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:V4C_open_request"
+		clr=14
+		bclr=0
+	}
+	label="Open"
+	press_msg="Open_on"
+	release_msg="Open_off"
+	clrmod="alarm"
+}
+"message button" {
+	object {
+		x=774
+		y=511
+		width=45
+		height=20
+	}
+	control {
+		chan="13BMA:V4C_close_request"
+		clr=14
+		bclr=0
+	}
+	label="Close"
+	press_msg="Close_on"
+	release_msg="Close_off"
+	clrmod="alarm"
+}
+text {
+	object {
+		x=769
+		y=450
+		width=56
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Valve 4C"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=764
+		y=473
+		width=45
+		height=15
+	}
+	monitor {
+		chan="13BMA:V4C_status"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+oval {
+	object {
+		x=814
+		y=473
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi116"
+	}
+}
+oval {
+	object {
+		x=817
+		y=476
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="13BMA:eps_mbbi115"
+	}
+}
+polyline {
+	object {
+		x=761
+		y=467
+		width=70
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(761,467)
+		(831,467)
+	}
+}
+rectangle {
+	object {
+		x=753
+		y=574
+		width=115
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
