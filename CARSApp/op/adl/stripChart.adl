@@ -1,14 +1,14 @@
 
 file {
-	name="j:\epics\R3.13.3\CARS\CARSApp\op\adl\stripChart.adl"
-	version=020306
+	name="/home/epics/support/CARS/CARSApp/op/adl/stripChart.adl"
+	version=030117
 }
 display {
 	object {
-		x=291
-		y=94
-		width=428
-		height=458
+		x=1178
+		y=1229
+		width=600
+		height=500
 	}
 	clr=14
 	bclr=4
@@ -89,55 +89,46 @@ display {
 }
 "strip chart" {
 	object {
-		x=16
-		y=81
-		width=372
-		height=356
+		x=10
+		y=140
+		width=580
+		height=350
 	}
 	plotcom {
 		clr=14
 		bclr=4
 	}
 	pen[0] {
-		chan="13IDD:userTran1.A"
+		chan="$(P)userTran1.A"
 		clr=14
 		limits {
 		}
 	}
-}
-"text entry" {
-	object {
-		x=86
-		y=11
-		width=171
-		height=23
+	pen[1] {
+		chan="$(P)userTran1.B"
+		clr=54
+		limits {
+		}
 	}
-	control {
-		chan="13IDD:userTran1.INPA"
-		clr=14
-		bclr=4
+	pen[2] {
+		chan="$(P)userTran1.C"
+		clr=20
+		limits {
+		}
 	}
-	limits {
+	pen[3] {
+		chan="$(P)userTran1.D"
+		clr=63
+		limits {
+		}
 	}
-}
-text {
-	object {
-		x=6
-		y=9
-		width=64
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="PV #1"
 }
 menu {
 	object {
-		x=314
-		y=14
+		x=493
+		y=10
 		width=100
-		height=21
+		height=20
 	}
 	control {
 		chan="13IDD:userTranEnable"
@@ -147,14 +138,122 @@ menu {
 }
 menu {
 	object {
-		x=314
-		y=40
+		x=493
+		y=35
 		width=100
-		height=19
+		height=20
 	}
 	control {
-		chan="13IDD:userTran1.SCAN"
+		chan="$(P)userTran1.SCAN"
 		clr=14
 		bclr=4
 	}
+}
+"text entry" {
+	object {
+		x=56
+		y=10
+		width=200
+		height=20
+	}
+	control {
+		chan="$(P)userTran1.INPA"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=6
+		y=13
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PV #1"
+}
+"text entry" {
+	object {
+		x=56
+		y=35
+		width=200
+		height=20
+	}
+	control {
+		chan="$(P)userTran1.INPB"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=6
+		y=38
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PV #2"
+}
+"text entry" {
+	object {
+		x=56
+		y=60
+		width=200
+		height=20
+	}
+	control {
+		chan="$(P)userTran1.INPC"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=6
+		y=63
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PV #3"
+}
+"text entry" {
+	object {
+		x=56
+		y=85
+		width=200
+		height=20
+	}
+	control {
+		chan="$(P)userTran1.INPD"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=6
+		y=88
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PV #4"
 }
