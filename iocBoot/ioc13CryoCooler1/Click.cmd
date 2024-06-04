@@ -32,7 +32,7 @@ drvModbusAsynConfigure("C1_DSn2_Out_Word", "Click", 0, 6, 0x0063,  40, "UINT16",
 
 # The Click has word access to the DDn words at Modbus offset 0x4000
 # Access the first 2 words as inputs.  Function code=3
-drvModbusAsynConfigure("C1_DDn1_In_Word",  "Click", 0, 3, 0x4000,   2, "UINT16", 100, "Click")
+drvModbusAsynConfigure("C1_DDn1_In_Word",  "Click", 0, 3, 0x4000,   6, "UINT16", 100, "Click")
 
 # The Click has word access to the DFn words at Modbus offset 0x7000
 # Access the first 100 words as inputs.  Function code=3
