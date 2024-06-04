@@ -1,0 +1,268 @@
+# Galil motor template file for 13-ID-D
+#
+# This IOC controls 7 Galil controllers with 4140 drivers on the roof, and 2 Galil controllers with 4040 driver in the hutch
+# A Newport XPS is used in another soft IOC.
+# An ACS MCB-48 is using in this IOC
+#
+# Motors   Galil   Patch panel     Common use
+#  1-8    GALIL1      R         DAC sample (1-6), DAC X-ray Detector (7-8), m6 gear box
+#  9-16   GALIL2      P         DAC slits (9-12), Open (13-14), DAC Table (15-16)
+#  17-24  GALIL3      N         DAC Table (17-19), DAC clean-up (20-22), Carbon Mirror (23-24)
+#  25-32  GALIL4      T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
+#  33-40  GALIL5      U         LVP Detector (33-39), DAC beam filter (40)
+#  41-48  GALIL6      V         LVP Press Table
+#  49-56  GALIL7     N.A.       DAC K/B mirrors
+#  57-64    N.A      N.A.       Unused, moved to ACS MCB-4B
+#  65-72  GALIL8      S         DAC Carbon Mirror (65-66), Microscope (67-69), Laser power control (70-72)
+#  73-80  GALIL9     N.A.       DAC laser expander
+
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,                          EGU,   DIR,  VELO,  VBAS,  ACCL,   BDST, BVEL,  BACC,   SREV,      UREV,   PREC,    DHLM,  DLLM}
+
+# DAC sample and detector stages
+{13IDD:,  m1,  "asynMotor",  GALIL1, Galil1:,  0, "X (in-out) stage",              mm,   Neg,   0.2,   0.2,   .1,   0.1,   0.1,    .1,     200,      -.096,    3,      25.,     0}
+{13IDD:,  m2,  "asynMotor",  GALIL1, Galil1:,  1, "Z (along beam) stage",          mm,   Neg,   1.0,   0.2,   .2,     0,     1,    .2,     200,        -.1,    3,      25.,     0}
+{13IDD:,  m3,  "asynMotor",  GALIL1, Galil1:,  2, "Y (vertical) stage",            mm,   Pos,   0.2,  0.03,   .5,     0,     1,    .2,     400,       -.02,    3,      40.,     0}
+{13IDD:,  m4,  "asynMotor",  GALIL1, Galil1:,  3, "Omega",                        deg,   Pos,   5.0,   0.2,   .2,     0,     1,    .2,     400,         4.,    3,      360,  -360}
+{13IDD:,  m5,  "asynMotor",  GALIL1, Galil1:,  4, "Pilatus Z",                     mm,   Pos,   1.0,   0.2,   .2,     0,     1,    .2,     200,        -.1,    3,      31.,  -49.}
+{13IDD:,  m6,  "asynMotor",  GALIL1, Galil1:,  5, "Gear box",                      mm,   Neg,   1.0,   0.2,   .2,     0,     1,    .2,     200,        -.1,    3,     100.,     0}
+{13IDD:,  m7,  "asynMotor",  GALIL1, Galil1:,  6, "Detector Z pos",                mm,   Pos,   0.5,    .1,   .5,    .0,     1,    .2,     200,       0.10,    3,       25,     0}
+{13IDD:,  m8,  "asynMotor",  GALIL1, Galil1:,  7, "Detector X Pos",                mm,   Neg,   2.0,    .5,   .5,   0.1,     1,    .2,    1600,         5.,    3,      10.,  -340}
+#
+# DAC Table top slits
+{13IDD:,  m9,  "asynMotor",  GALIL2, Galil2:,  0, "Bottom Slit",                   mm,   Neg,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,      29.,     0}
+{13IDD:,  m10, "asynMotor",  GALIL2, Galil2:,  1, "Top Slit",                      mm,   Neg,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,      29.,     0}
+{13IDD:,  m11, "asynMotor",  GALIL2, Galil2:,  2, "Inboard Slit",                  mm,   Pos,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,      29.,     0}
+{13IDD:,  m12, "asynMotor",  GALIL2, Galil2:,  3, "Outboard slit",                 mm,   Pos,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,      29.,     0}
+#
+# DAC multi-purpose motors
+{13IDD:,  m13, "asynMotor",  GALIL2, Galil2:,  4, "TEM01 Total Power",            deg,   Pos,  10.0,   5.0, 10.0,     0,     1,   5.0,      10,         .1,    3,     360.,  -360}
+{13IDD:,  m14, "asynMotor",  GALIL2, Galil2:,  5, "Microscope-zoom",               mm,   Neg,   1.0,   0.2,   .5,  -0.2,     1,    .2,     200,        -.1,    3,      150,     0}
+# DAC Lift Table
+{13IDD:,  m15, "asynMotor",  GALIL2, Galil2:,  6, "Inboard Y",                     mm,   Pos,    .5,   .05,   .2,   0.1,    .5,    .2,     400,   -0.10583,    3,       50,     0}
+{13IDD:,  m16, "asynMotor",  GALIL2, Galil2:,  7, "Outboard Y",                    mm,   Pos,    .5,   .05,   .2,   0.1,    .5,    .2,     400,   -0.10583,    3,       50,     0}
+
+{13IDD:,  m17, "asynMotor",  GALIL3, Galil3:,  0, "Downstream Y",                  mm,   Pos,    .5,   .05,   .2,   0.1,    .5,    .2,     400,   -0.10583,    3,       50,     0}
+{13IDD:,  m18, "asynMotor",  GALIL3, Galil3:,  1, "Downstream X",                  mm,   Neg,    .2,  .005,   .2,   0.1,     1,    .2,     400,  -0.035278,    3,       50,     0}
+{13IDD:,  m19, "asynMotor",  GALIL3, Galil3:,  2, "Inboard X",                     mm,   Neg,    .2,  .005,   .2,   0.1,     1,    .2,     400,  -0.035278,    3,       50,     0}
+# DAC clean-up slits
+{13IDD:,  m20, "asynMotor",  GALIL3, Galil3:,  3, "Clean_up X pos.",               mm,   Neg,  0.15,   .01,   .2,     0,     1,    .2,     480,     .03546,    3,      24.,     0}
+{13IDD:,  m21, "asynMotor",  GALIL3, Galil3:,  4, "Clean_up Y pos.",               mm,   Neg,  0.15,   .01,   .2,     0,     1,    .2,     480,     .03546,    3,      24.,     0}
+{13IDD:,  m22, "asynMotor",  GALIL3, Galil3:,  5, "Clean_up Z pos.",               mm,   Neg,   0.5,    .1,   .5,     0,     1,    .2,     200,      0.010,    3,       25,     0}
+# Newport UTS 150 PP stages for DAC mirrors
+{13IDD:,  m23, "asynMotor",  GALIL3, Galil3:,  6, "UpStream C-mirror",             mm,   Neg,    5.,    .1,  0.5,     0,     1,    .5,    1600,          2,    4,    150.0,     0}
+{13IDD:,  m24, "asynMotor",  GALIL3, Galil3:,  7, "DownStream C-mirror",           mm,   Neg,    5.,    .1,  0.5,     0,     1,    .5,    1600,          2,    4,    150.0,     0}
+
+# LVP front slits
+{13IDD:,  m25, "asynMotor",  GALIL4, Galil4:,  0, "Vert. slit pos. (Y)",           mm,   Pos,   0.5,    .1,  .05,   0.1,    .1,    .2,     400,        1.0,    3,       25,   -25}
+{13IDD:,  m26, "asynMotor",  GALIL4, Galil4:,  1, "Hori. slit Pos. (X)",           mm,   Pos,   1.0,    .2,  .05,   0.1,    .1,    .2,     200,        1.0,    3,       25,   -25}
+# LVP CCD camera stage
+{13IDD:,  m27, "asynMotor",  GALIL4, Galil4:,  2, "Phosphor X",                    mm,   Pos,   5.0,    .1,   .5,     0,     1,    .5,    1600,          2,    4,      150,     0}
+{13IDD:,  m28, "asynMotor",  GALIL4, Galil4:,  3, "Stage X",                       mm,   Pos,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,       95,     5}
+{13IDD:,  m29, "asynMotor",  GALIL4, Galil4:,  4, "Stage Y",                       mm,   Neg,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,       70,     0}
+{13IDD:,  m30, "asynMotor",  GALIL4, Galil4:,  5, "Stage Z",                       mm,   Neg,   1.0,    .1,   .5,     0,     1,    .2,     200,       -1.0,    3,       70,     0}
+{13IDD:,  m31, "asynMotor",  GALIL4, Galil4:,  6, "Unused"                         mm,   Pos,   1.0,   0.2,   .1,  -.02,     1,    .1,     200,        -.1,    3,      150,     0}
+{13IDD:,  m32, "asynMotor",  GALIL4, Galil4:,  7, "Laser stage X",                 mm,   Neg,   2.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,       70,     0}
+
+# Detector X: 100:1 gear reducer, 5 threads/inch leadscrew, UREV = 25.4/(100*5) = .0508
+{13IDD:,  m33, "asynMotor",  GALIL5, Galil5:,  0, "Detector X",                    mm,   Pos,   0.5,   .01,   .5,    .2,    1.,    .5,     400,      .0508,    3,      100,     0}
+# Detectot Y: 1:2 and 36:1 gear reducers, 5 thread/inch pitch leadscrew, UREV - 25.4/(.5*36*5) = 0.2822222
+{13IDD:,  m34, "asynMotor",  GALIL5, Galil5:,  1, "Detector Y",                    mm,   Neg,   0.2,   .05,   .2,     0,    .2,    .1,     400,  .28222222,    3,      100,     0}
+# Detector Z: 100:1 gear reducer, 5 thread/inch leadscrew, UREV = 25.4/(100*5) = .0508
+{13IDD:,  m35, "asynMotor",  GALIL5, Galil5:,  2, "Detector Z",                    mm,   Pos,   0.5,   .01,   .5,    .2,    1.,    .5,     400,     -.0508,    3,      100,     0}
+# Detector AY: 500:1 gear reducer, 80 mm lever arm, full rotation of shaft = 2*PI*80mm motion at end of arm, UREV = 502.655/(500) = 1.00531
+{13IDD:,  m36, "asynMotor",  GALIL5, Galil5:,  3, "Detector base AY",              mm,   Pos,    .5,   .01,   .5,    .2,    .5,    .5,     400,    1.00531,    3,      100,     0}
+# Detector AX : 100:1 gear reducer, 20:1 jack, 5 threads/inch leadscrew, UREV = 25.4/(100*20*5) = .00254
+{13IDD:,  m37, "asynMotor",  GALIL5, Galil5:,  4, "Detector base AX",              mm,   Pos,    .1,   .01,   .5,     0,    .1,    .5,     400,     .00254,    3,      100,     0}
+#note: m37 turned OFF and position set at 0.0, 9/30/2014
+# Detector theta: 1800:1 total gear reducer, UREV=360/1800. = .2
+{13IDD:,  m38, "asynMotor",  GALIL5, Galil5:,  5, "Gimbal AY/AX",             degrees,   Pos,    2.,   .01,   .5, -0.05,    2.,    .5,     400,        .20,    3,      360,  -360}
+# Detector tilt: 2000:1 total gear reducer, UREV=360/2000. = .18
+{13IDD:,  m39, "asynMotor",  GALIL5, Galil5:,  6, "Gimbal AZ",                degrees,   Pos,    2.,   .01,   .5, -0.01,    2.,    .5,     400,        .18,    3,       92,    -2}
+# used for DAC rotary stage, 8.6.2005, vitali
+{13IDD:,  m40, "asynMotor",  GALIL5, Galil5:,  7, "beam filter for DAC",          deg,   Pos,   1.0,   0.2,   .2,     0,     1,    .2,     200,        -.1,    3,      360,  -360} 
+
+{13IDD:,  m41, "asynMotor",  GALIL6, Galil6:,  0, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+{13IDD:,  m42, "asynMotor",  GALIL6, Galil6:,  1, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+{13IDD:,  m43, "asynMotor",  GALIL6, Galil6:,  2, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+{13IDD:,  m44, "asynMotor",  GALIL6, Galil6:,  3, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+# LVP Y (vertical).  4000 steps/rev microstepper, SREV=4000 (switch in position 7 = 20 microsteps/s)
+#                    10:1 gear reducer, 1 turn of jack = 1/16" (0.5" pitch, 8:1 gear ratio) UREV(mm) = 25.4/160 = .15875
+{13IDD:,  m45, "asynMotor",  GALIL6, Galil6:,  4, "LVP Y",                         mm,   Neg,  0.12,  .005,   .2,   -.2,    .1,    .1,    4000,   -0.15875,    3,      100,     0}
+# LVP X (inboard-outboard). 4000 steps/rev microstepper, SREV=4000
+#                           10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
+{13IDD:,  m46, "asynMotor",  GALIL6, Galil6:,  5, "LVP X",                         mm,   Neg,    .2,   .05,  2.0,    .2,    .1,    .1,    4000,       1.27,    3,      100,     0}
+# LVP Z outboard (upstream-downstream). 4000 steps/rev microstepper, SREV=4000
+#                                       10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
+{13IDD:,  m47, "asynMotor",  GALIL6, Galil6:,  6, "LVP Z outboard",                mm,   Neg,    .2,  .005,   .2,    .2,    .1,    .1,    4000,       1.27,    3,      100,     0}
+{13IDD:,  m48, "asynMotor",  GALIL6, Galil6:,  7, "LVP Z inboard",                 mm,   Neg,    .2,  .005,   .2,    .2,    .1,    .1,    4000,       1.27,    3,      100,     0}
+
+# K/B mirrors on DAC table.  Note these are full-step (UREV=24) not half-step (UREV=48)
+{13IDD:,  m49, "asynMotor",  GALIL7, Galil7:,  0, "Vert. mirror Y pos.",      microns,  Pos,  150.0,    10,   .2,     0,     1,     .2,     48,      3.546,    1,      8e3,     0}
+{13IDD:,  m50, "asynMotor",  GALIL7, Galil7:,  1, "Vert. mirror rotation",       mrad,  Pos,    5.0,   .01,   .2,     0,     1,     .2,     48,  -0.138932,    3,       30,   -30}
+{13IDD:,  m51, "asynMotor",  GALIL7, Galil7:,  2, "Vert. force upstream.",    microns,  Pos,  100.0,    10,   .2,     0,     1,     .2,     48,      3.546,    1,      8e3,     0}
+{13IDD:,  m52, "asynMotor",  GALIL7, Galil7:,  3, "Vert. force downstream.",  microns,  Pos,  100.0,    10,   .2,     0,     1,     .2,     48,      3.546,    1,      8e3,     0}
+{13IDD:,  m53, "asynMotor",  GALIL7, Galil7:,  4, "Hor. mirror X pos",        microns,  Pos,  150.0,    10,   .2,     0,     1,     .2,     48,      3.546,    1,      8e3,     0}
+{13IDD:,  m54, "asynMotor",  GALIL7, Galil7:,  5, "Hor. mirror rotation",        mrad,  Neg,    5.0,   .01,   .2,     0,     1,     .2,     48,  -0.138932,    3,       30,   -30}
+{13IDD:,  m55, "asynMotor",  GALIL7, Galil7:,  6, "Hor. force upstream",      microns,  Pos,  100.0,    10,   .2,     0,     1,     .2,     48,      3.546,    1,      8e3,     0}
+{13IDD:,  m56, "asynMotor",  GALIL7, Galil7:,  7, "Hor. force downstream",    microns,  Pos,  100.0,    10,   .2,     0,     1,     .2,     48,      3.546,    1,      8e3,     0}
+
+#13IDD DAC motors for carbon mirors
+{13IDD:,  m65, "asynMotor",  GALIL8, Galil8:,  0, "Upstream focus",                mm,  Neg,   0.15,   .01,   .2,  0.02,     1,     .2,    480,     .03546,    3,       8.,     0}
+{13IDD:,  m66, "asynMotor",  GALIL8, Galil8:,  1, "Downstream focus",              mm,  Neg,   0.15,   .01,   .2,  0.02,     1,     .2,    480,     .03546,    3,       8.,     0}
+#13IDD DAC microscope stages
+{13IDD:,  m67, "asynMotor",  GALIL8, Galil8:,  2, "DAC Microscope X pos",          mm,  Pos,    5.0,   0.2,   .2,  0.02,     1,     .2,    200,        -.1,    3,      100,     0}
+{13IDD:,  m68, "asynMotor",  GALIL8, Galil8:,  3, "DAC Microscope Y pos",          mm,  Neg,   0.15,   .01,   .2,   0.0,     1,     .2,    480,     .03546,    3,      24.,     0}
+{13IDD:,  m69, "asynMotor",  GALIL8, Galil8:,  4, "DAC Microscope Z pos",          mm,  Pos,   0.15,   .01,   .2,     0,     1,     .2,    480,     .03546,    3,      24.,     0}
+{13IDD:,  m70, "asynMotor",  GALIL8, Galil8:,  5, "CO2 Total Power",              deg,  Pos,    1.0,   0.2,   .2,     0,     1,     .2,    200,        -.1,    3,      360,  -360}
+{13IDD:,  m71, "asynMotor",  GALIL8, Galil8:,  6, "IR camera mirrors",             mm,  Pos,     1.,    1.,   .5,     0,     1,     .5,    400,          2,    3,       50,   -50}
+{13IDD:,  m72, "asynMotor",  GALIL8, Galil8:,  7, "Unused",                        mm,  Pos,     1.,    1.,   .5,     0,     1,     .5,    400,          2,    3,       50,   -50}
+
+{13IDD:,  m73, "asynMotor",  GALIL9, Galil9:,  0, "M73",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m74, "asynMotor",  GALIL9, Galil9:,  1, "M74",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m75, "asynMotor",  GALIL9, Galil9:,  2, "M75",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m76, "asynMotor",  GALIL9, Galil9:,  3, "M76",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m77, "asynMotor",  GALIL9, Galil9:,  4, "M77",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m78, "asynMotor",  GALIL9, Galil9:,  5, "M78",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m79, "asynMotor",  GALIL9, Galil9:,  6, "M79",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m80, "asynMotor",  GALIL9, Galil9:,  7, "M80",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+}
+
+# NOTE: motors m81-m84 and m93-m94 are in a Linux IOC for the Newport XPS (DAC sample stage and Cleanup slits)
+}
+
+# NOTE: motors m95-m96 are in a Linux IOC for the DAC XPS-16
+
+
+
+# Pseudomotors for LVP T-cup mode and rotation
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,                  EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+
+# LVP T-cup motion
+{13IDD:,  pm1, "13IDD:Tcup:Done NPP NMS",   "13IDD:pm1DVAL.VAL PP MS", "13IDD:Tcup:Readback.G NPP NMS",   "13IDD:Tcup:Stop PP MS",   "T-Cup X'",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13IDD:,  pm2, "13IDD:Tcup:Done NPP NMS",   "13IDD:pm2DVAL.VAL PP MS", "13IDD:Tcup:Readback.H NPP NMS",   "13IDD:Tcup:Stop PP MS",   "T-Cup Y'",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+# LVP Rotation
+{13IDD:,  pm3, "13IDD:LVPROT:Done NPP NMS", "13IDD:pm3DVAL.VAL PP MS", "13IDD:LVPROT:Readback.G NPP NMS", "13IDD:LVPROT:Stop PP MS", "LVP Z (compound)",   mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13IDD:,  pm4, "13IDD:LVPROT:Done NPP NMS", "13IDD:pm4DVAL.VAL PP MS", "13IDD:LVPROT:Readback.H NPP NMS", "13IDD:LVPROT:Stop PP MS", "Rotation",           deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+
+# K/B mirrors
+{13IDD:,  pm5, "13IDD:KBH:Done NPP NMS",    "13IDD:pm5DVAL.VAL PP MS", "13IDD:KBH:Readback.G NPP NMS",    "13IDD:KBH:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDD:,  pm6, "13IDD:KBH:Done NPP NMS",    "13IDD:pm6DVAL.VAL PP MS", "13IDD:KBH:Readback.H NPP NMS",    "13IDD:KBH:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDD:,  pm7, "13IDD:KBV:Done NPP NMS",    "13IDD:pm7DVAL.VAL PP MS", "13IDD:KBV:Readback.G NPP NMS",    "13IDD:KBV:Stop PP MS",    "Curvature",          mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+{13IDD:,  pm8, "13IDD:KBV:Done NPP NMS",    "13IDD:pm8DVAL.VAL PP MS", "13IDD:KBV:Readback.H NPP NMS",    "13IDD:KBV:Stop PP MS",    "Ellipticity",        mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .1,     1.0,  1,    10000, -10000}
+
+# LVP detector mount
+{13IDD:,  pm9, "13IDD:pm9Done  NPP NMS",   "13IDD:pm9Move      PP MS", "13IDD:pm9Readback     NPP NMS",   "13IDD:pm9Stop   PP MS",   "Radius",             mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,   1000, -100}
+{13IDD:, pm10, "13IDD:pm9Done  NPP NMS",   "13IDD:pm10Move     PP MS", "13IDD:pm10Readback    NPP NMS",   "13IDD:pm9Stop   PP MS",   "Compound Two-theta", deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13IDD:, pm11, "13IDD:pm9Done  NPP NMS",   "13IDD:pm11Move     PP MS", "13IDD:pm11Readback    NPP NMS",   "13IDD:pm9Stop   PP MS",   "Compound Chi",       deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+
+# DAC laser splitter power
+{13IDD:,  pm12, "13IDD:LaserSplit:Done NPP NMS", "13IDD:pm12DVAL.VAL PP MS", "13IDD:LaserSplit:Readback.G NPP NMS", "13IDD:LaserSplit:Stop PP MS", "Split Sum",   deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .01,  1.0,  3,    10000, -10000}
+{13IDD:,  pm13, "13IDD:LaserSplit:Done NPP NMS", "13IDD:pm13DVAL.VAL PP MS", "13IDD:LaserSplit:Readback.H NPP NMS", "13IDD:LaserSplit:Stop PP MS", "Split Difference",   deg,  Pos,   1,    .1,   .1,    0,    1,   .1, .01,  1.0,  3,    10000, -10000}
+
+# LVP press and camera combo (horiz and vert)
+{13IDD:, pm14, "13IDD:LVPCAMH:Done  NPP NMS",   "13IDD:pm14DVAL.VAL  PP MS", "13IDD:LVPCAMH:Readback.G   NPP NMS",   "13IDD:LVPCAMH:Stop   PP MS",   "LVPCAM_H_Sum",      mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm15, "13IDD:LVPCAMH:Done  NPP NMS",   "13IDD:pm15DVAL.VAL  PP MS", "13IDD:LVPCAMH:Readback.H   NPP NMS",   "13IDD:LVPCAMH:Stop   PP MS",   "LVPCAM_H_Diff",     mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm16, "13IDD:LVPCAMV:Done  NPP NMS",   "13IDD:pm16DVAL.VAL  PP MS", "13IDD:LVPCAMV:Readback.G   NPP NMS",   "13IDD:LVPCAMV:Stop   PP MS",   "LVPCAM_V_Sum",      mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm17, "13IDD:LVPCAMV:Done  NPP NMS",   "13IDD:pm17DVAL.VAL  PP MS", "13IDD:LVPCAMV:Readback.H   NPP NMS",   "13IDD:LVPCAMV:Stop   PP MS",   "LVPCAM_V_Diff",     mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+
+}
+
+# 13IDD DAC TableTop Slit
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,   mXp,   mXn}
+{13IDD:, DACV,   m10,    m9}
+{13IDD:, DACH,   m12,   m11}
+}
+
+# LVP detector slits
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13IDD:, DetSlitV,  m86,   m85}
+{13IDD:, DetSlitH,  m88,   m87}
+}
+
+# LVP entrance slits (Dec 11, 2012)
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13IDD:, EntSlitV,  m92,   m91}
+{13IDD:, EntSlitH,  m90,   m89}
+}
+# LVP T-cup mode
+file "$(MOTOR)/db/coordTrans2D.db"
+{
+pattern
+{P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
+{13IDD:, Tcup:, pm1, pm2,   m46.VAL,  m46.RBV,  m46.STOP,   m46.DMOV,    m45.VAL, m45.RBV     m45.STOP,    m45.DMOV,   3}
+}
+
+# LVP rotation 
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,        SUM, DIFF,    M1DRV,    M1RBV,    M1STOP,   M1DONE,   M2DRV,  M2RBV,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LVPROT:,  pm3, pm4,    m47.VAL,  m47.RBV,  m47.STOP, m47.DMOV, m48.VAL, m48.RBV, m48.STOP, m48.DMOV, 3}
+}
+
+# LVP press and camera combo
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LVPCAMH:,  pm14, pm15,   m46.VAL,  m46.RBV,  m30.VAL, m30.RBV, m46.STOP, m46.DMOV, m30.STOP, m30.DMOV, 3}
+{13IDD:, LVPCAMV:,  pm16, pm17,   m45.VAL,  m45.RBV,  m29.VAL, m29.RBV, m45.STOP, m45.DMOV,  m29.STOP, m29.DMOV, 3}
+}
+
+# K/B mirrors
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDD:, KBH:,  pm5, pm6,    m55.VAL,  m55.RBV,  m56.VAL, m56.RBV, m55.STOP, m55.DMOV, m56.STOP, m56.DMOV, 1}
+{13IDD:, KBV:,  pm7, pm8,    m51.VAL,  m51.RBV,  m52.VAL, m52.RBV, m51.STOP, m51.DMOV, m52.STOP, m52.DMOV, 1}
+}
+
+# Laser splitter power
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,           SUM,  DIFF,    M1DRV,    M1RBV,    M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LaserSplit:,  pm12, pm13,    m71.VAL,  m71.RBV,  m72.VAL, m72.RBV, m71.STOP, m71.DMOV, m72.STOP, m72.DMOV, 3}
+}
+
+file "$(CARS)/db/IDD_LVP_Detector.db"
+{
+pattern
+{P,      X,    Y,   Z,  TX,    TZ,  PMR,  PMT,  PMC}
+{13IDD:, m33, m34, m35, m38,  m39,  pm9,  pm10, pm11}
+}
+
+# 13IDD DAC Lift Table
+file "$(OPTICS)/db/table.db"
+{
+pattern
+{P,          Q,      T,  M0X,  M0Y,  M1Y,  M2X,  M2Y,  M2Z, GEOM}
+{13IDD:, DAC:T1, DAC:t1, m19,  m15,  m16,  m18,  m17,  junk, SRI}
+}
+
+file "$(SSCAN)/db/scanParms.db"
+{
+{P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1X,POS=DAC:t1.X,RDBK=DAC:t1.XRB}
+{P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1Y,POS=DAC:t1.Y,RDBK=DAC:t1.YRB}
+{P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1Z,POS=DAC:t1.Z,RDBK=DAC:t1.ZRB}
+{P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1AX,POS=DAC:t1.AX,RDBK=DAC:t1.AXRB}
+{P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1AY,POS=DAC:t1.AY,RDBK=DAC:t1.AYRB}
+{P=13IDD:,SCANREC=13IDD:scan1,Q=DAC:T1AZ,POS=DAC:t1.AZ,RDBK=DAC:t1.AZRB}
+}
