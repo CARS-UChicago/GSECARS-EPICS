@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13GasLoadingGraphic.adl"
-	version=030107
+	name="J:\epics\support\CARS\CARSApp\op\adl\13GasLoadingGraphic.adl"
+	version=030109
 }
 display {
 	object {
-		x=229
-		y=122
+		x=69
+		y=98
 		width=1075
 		height=990
 	}
@@ -1191,159 +1191,135 @@ composite {
 		}
 	}
 }
-composite {
+text {
+	object {
+		x=606
+		y=388
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="V3"
+}
+"text update" {
+	object {
+		x=612
+		y=409
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(P)V3_Status"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=612
+		y=427
+		width=60
+		height=15
+	}
+	monitor {
+		chan="$(P)V3_Output"
+		clr=14
+		bclr=11
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=554
+		y=409
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Switch"
+	align="horiz. right"
+}
+text {
+	object {
+		x=554
+		y=427
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Output"
+	align="horiz. right"
+}
+text {
 	object {
 		x=545
-		y=373
-		width=127
-		height=98
+		y=449
+		width=63
+		height=15
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=606
-				y=388
-				width=20
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="V3"
-		}
-		"text update" {
-			object {
-				x=612
-				y=409
-				width=60
-				height=15
-			}
-			monitor {
-				chan="$(P)V3_Status"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=612
-				y=427
-				width=60
-				height=15
-			}
-			monitor {
-				chan="$(P)V3_Output"
-				clr=14
-				bclr=11
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"choice button" {
-			object {
-				x=612
-				y=441
-				width=60
-				height=30
-			}
-			control {
-				chan="$(P)V3_Request"
-				clr=14
-				bclr=51
-			}
-		}
-		text {
-			object {
-				x=554
-				y=409
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Switch"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=554
-				y=427
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Output"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=545
-				y=449
-				width=63
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Request"
-			align="horiz. right"
-		}
-		rectangle {
-			object {
-				x=636
-				y=373
-				width=12
-				height=19
-			}
-			"basic attribute" {
-				clr=14
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(P)V3_Status"
-			}
-		}
-		rectangle {
-			object {
-				x=636
-				y=384
-				width=12
-				height=19
-			}
-			"basic attribute" {
-				clr=14
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P)V3_Status"
-			}
-		}
-		rectangle {
-			object {
-				x=634
-				y=383
-				width=15
-				height=26
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Request"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=636
+		y=373
+		width=12
+		height=19
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)V3_Status"
+	}
+}
+rectangle {
+	object {
+		x=636
+		y=384
+		width=12
+		height=19
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)V3_Status"
+	}
+}
+rectangle {
+	object {
+		x=634
+		y=383
+		width=15
+		height=26
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
 rectangle {
 	object {
 		x=542
-		y=255
+		y=247
 		width=120
 		height=45
 	}
@@ -1355,7 +1331,7 @@ rectangle {
 text {
 	object {
 		x=552
-		y=279
+		y=271
 		width=100
 		height=20
 	}
@@ -1367,7 +1343,7 @@ text {
 "choice button" {
 	object {
 		x=552
-		y=305
+		y=296
 		width=100
 		height=20
 	}
@@ -1381,7 +1357,7 @@ text {
 "text update" {
 	object {
 		x=569
-		y=233
+		y=225
 		width=67
 		height=20
 	}
@@ -2623,7 +2599,7 @@ rectangle {
 text {
 	object {
 		x=572
-		y=258
+		y=250
 		width=60
 		height=20
 	}
@@ -3563,5 +3539,64 @@ composite {
 				}
 			}
 		}
+	}
+}
+"message button" {
+	object {
+		x=607
+		y=352
+		width=60
+		height=19
+	}
+	control {
+		chan="13GasLoad:userStringSeq12.PROC"
+		clr=14
+		bclr=16
+	}
+	label="Safe \/"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=607
+		y=333
+		width=60
+		height=18
+	}
+	control {
+		chan="13GasLoad:userStringSeq12.DLY2"
+		clr=14
+		bclr=61
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=612
+		y=441
+		width=60
+		height=30
+	}
+	"composite name"=""
+	children {
+		"choice button" {
+			object {
+				x=612
+				y=441
+				width=60
+				height=30
+			}
+			control {
+				chan="$(P)V3_Request"
+				clr=14
+				bclr=51
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<10000"
+		chan="13GasLoad:Omega2Unfiltered"
 	}
 }
