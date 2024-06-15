@@ -1,0 +1,222 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/13InstekGPP.adl"
+	version=030117
+}
+display {
+	object {
+		x=1200
+		y=460
+		width=391
+		height=155
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=47
+		y=17
+		width=310
+		height=40
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+text {
+	object {
+		x=64
+		y=25
+		width=276
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(P)"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=18
+		y=94
+		width=72
+		height=24
+	}
+	display[0] {
+		label="Scan 1"
+		name="scan_more.adl"
+		args="P=$(P), S=scan1, N=1"
+	}
+	display[1] {
+		label="Scan 2"
+		name="scan_more.adl"
+		args="P=$(P), S=scan2, N=2"
+	}
+	display[2] {
+		label="Scan 3"
+		name="scan_more.adl"
+		args="P=$(P), S=scan3, N=2"
+	}
+	display[3] {
+		label="Scan 4"
+		name="scan_more.adl"
+		args="P=$(P), S=scan4, N=2"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=95
+		y=94
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Scan"
+}
+text {
+	object {
+		x=97
+		y=65
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="InstekGPP, PID"
+}
+"related display" {
+	object {
+		x=18
+		y=65
+		width=74
+		height=24
+	}
+	display[0] {
+		label="Instek GPP"
+		name="InstekGPP.adl"
+		args="P=$(P), R=Instek1:"
+	}
+	display[1] {
+		label="PID #1"
+		name="pid_control.adl"
+		args="P=$(P), TITLE=$(P)PID1, PID=PID1"
+	}
+	display[2] {
+		label="PID #2"
+		name="pid_control.adl"
+		args="P=$(P), TITLE=$(P)PID2, PID=PID2"
+	}
+	clr=14
+	bclr=4
+}
+"related display" {
+	object {
+		x=18
+		y=122
+		width=72
+		height=24
+	}
+	display[0] {
+		label="asyn record"
+		name="asynRecord.adl"
+		args="P=$(P), R=asyn1"
+	}
+	clr=14
+	bclr=4
+}
+text {
+	object {
+		x=95
+		y=122
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="asyn record"
+}
