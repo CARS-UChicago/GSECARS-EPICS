@@ -1,0 +1,1368 @@
+
+file {
+	name="/home/oxygen/JBUDZ/frontend/main/feApp/op/adl/FEEPS_Control.adl"
+	version=030118
+}
+display {
+	object {
+		x=2259
+		y=362
+		width=700
+		height=225
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=541
+		y=133
+		width=18
+		height=12
+	}
+	"basic attribute" {
+		clr=61
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:TripsExistM"
+	}
+}
+rectangle {
+	object {
+		x=541
+		y=133
+		width=18
+		height=12
+	}
+	"basic attribute" {
+		clr=20
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:TripsExistM"
+	}
+}
+rectangle {
+	object {
+		x=541
+		y=160
+		width=18
+		height=12
+	}
+	"basic attribute" {
+		clr=61
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:FaultsExistM"
+	}
+}
+composite {
+	object {
+		x=458
+		y=86
+		width=46
+		height=111
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=461
+				y=175
+				width=40
+				height=20
+			}
+			control {
+				chan="$(Z)-FEEPS:BIV:CloseRequestC"
+				clr=14
+				bclr=20
+			}
+			label="CLOSE"
+			press_msg="1"
+			release_msg="0"
+		}
+		"message button" {
+			object {
+				x=461
+				y=103
+				width=40
+				height=20
+			}
+			control {
+				chan="$(Z)-FEEPS:BIV:OpenRequestC"
+				clr=14
+				bclr=16
+			}
+			label="OPEN"
+			press_msg="1"
+			release_msg="0"
+		}
+		rectangle {
+			object {
+				x=471
+				y=91
+				width=23
+				height=8
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=458
+				y=157
+				width=45
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=458
+				y=86
+				width=45
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=459
+				y=132
+				width=45
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="BIV"
+			align="horiz. centered"
+		}
+		rectangle {
+			object {
+				x=474
+				y=93
+				width=18
+				height=5
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BIV:OpenedM"
+			}
+		}
+		rectangle {
+			object {
+				x=469
+				y=162
+				width=23
+				height=8
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=472
+				y=164
+				width=18
+				height=5
+			}
+			"basic attribute" {
+				clr=20
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BIV:ClosedM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BIV_PresentM"
+	}
+}
+composite {
+	object {
+		x=388
+		y=86
+		width=46
+		height=111
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=391
+				y=175
+				width=40
+				height=20
+			}
+			control {
+				chan="$(Z)-FEEPS:FEV:CloseRequestC"
+				clr=14
+				bclr=20
+			}
+			label="CLOSE"
+			press_msg="1"
+			release_msg="0"
+		}
+		"message button" {
+			object {
+				x=391
+				y=103
+				width=40
+				height=20
+			}
+			control {
+				chan="$(Z)-FEEPS:FEV:OpenRequestC"
+				clr=14
+				bclr=16
+			}
+			label="OPEN"
+			press_msg="1"
+			release_msg="0"
+		}
+		rectangle {
+			object {
+				x=401
+				y=91
+				width=23
+				height=8
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=388
+				y=157
+				width=45
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=388
+				y=86
+				width=45
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=389
+				y=132
+				width=45
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV"
+			align="horiz. centered"
+		}
+		rectangle {
+			object {
+				x=404
+				y=93
+				width=18
+				height=5
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV:OpenedM"
+			}
+		}
+		rectangle {
+			object {
+				x=399
+				y=162
+				width=23
+				height=8
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=402
+				y=164
+				width=18
+				height=5
+			}
+			"basic attribute" {
+				clr=20
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV:ClosedM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=318
+		y=86
+		width=46
+		height=111
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=321
+				y=175
+				width=40
+				height=20
+			}
+			control {
+				chan="$(Z)-FEEPS:SRV:CloseRequestC"
+				clr=14
+				bclr=20
+			}
+			label="CLOSE"
+			press_msg="1"
+			release_msg="0"
+		}
+		"message button" {
+			object {
+				x=321
+				y=103
+				width=40
+				height=20
+			}
+			control {
+				chan="$(Z)-FEEPS:SRV:OpenRequestC"
+				clr=14
+				bclr=16
+			}
+			label="OPEN"
+			press_msg="1"
+			release_msg="0"
+		}
+		rectangle {
+			object {
+				x=331
+				y=91
+				width=23
+				height=8
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=318
+				y=157
+				width=45
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=318
+				y=86
+				width=45
+				height=40
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=319
+				y=132
+				width=45
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV"
+			align="horiz. centered"
+		}
+		rectangle {
+			object {
+				x=334
+				y=93
+				width=18
+				height=5
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SRV:OpenedM"
+			}
+		}
+		rectangle {
+			object {
+				x=329
+				y=162
+				width=23
+				height=8
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=332
+				y=164
+				width=18
+				height=5
+			}
+			"basic attribute" {
+				clr=20
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SRV:ClosedM"
+			}
+		}
+	}
+}
+"message button" {
+	object {
+		x=253
+		y=103
+		width=40
+		height=20
+	}
+	control {
+		chan="$(Z)-FEEPS:PS1:OpenRequestC"
+		clr=14
+		bclr=16
+	}
+	label="OPEN"
+	press_msg="1"
+	release_msg="0"
+}
+rectangle {
+	object {
+		x=263
+		y=91
+		width=23
+		height=8
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=250
+		y=86
+		width=45
+		height=40
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=266
+		y=93
+		width=18
+		height=5
+	}
+	"basic attribute" {
+		clr=15
+		width=3
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PS1:OpenedM"
+	}
+}
+"message button" {
+	object {
+		x=253
+		y=175
+		width=40
+		height=20
+	}
+	control {
+		chan="$(Z)-FEEPS:PS1:CloseRequestC"
+		clr=14
+		bclr=20
+	}
+	label="CLOSE"
+	press_msg="0"
+	release_msg="1"
+}
+rectangle {
+	object {
+		x=250
+		y=157
+		width=45
+		height=40
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=261
+		y=162
+		width=23
+		height=8
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=264
+		y=164
+		width=18
+		height=5
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PS1:ClosedM"
+	}
+}
+text {
+	object {
+		x=258
+		y=132
+		width=35
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	textix="PS1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=250
+		y=132
+		width=48
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	textix="LPPS1"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=568
+		y=128
+		width=112
+		height=20
+	}
+	control {
+		chan="$(Z)-FEEPS:TripResetC"
+		clr=14
+		bclr=20
+	}
+	label="Trip Reset"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=568
+		y=155
+		width=112
+		height=20
+	}
+	control {
+		chan="$(Z)-FEEPS:FaultResetC"
+		clr=14
+		bclr=20
+	}
+	label="Fault Reset"
+	press_msg="1"
+}
+polyline {
+	object {
+		x=532
+		y=119
+		width=152
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(533,120)
+		(682,120)
+	}
+}
+rectangle {
+	object {
+		x=529
+		y=95
+		width=155
+		height=90
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+}
+text {
+	object {
+		x=556
+		y=102
+		width=104
+		height=16
+	}
+	"basic attribute" {
+		clr=10
+	}
+	textix="FEEPS RESET"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=539
+		y=158
+		width=21
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=541
+		y=160
+		width=18
+		height=12
+	}
+	"basic attribute" {
+		clr=20
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:FaultsExistM"
+	}
+}
+rectangle {
+	object {
+		x=539
+		y=131
+		width=21
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=15
+		y=10
+		width=137
+		height=25
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=15
+				y=10
+				width=80
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SECTOR:"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=128
+				y=10
+				width=24
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="ID"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=128
+				y=10
+				width=24
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="BM"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=98
+				y=10
+				width=25
+				height=25
+			}
+			monitor {
+				chan="$(Z)-FEEPS:Beamline:NumberM"
+				clr=14
+				bclr=4
+			}
+			align="horiz. centered"
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=198
+		y=10
+		width=400
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=198
+				y=10
+				width=400
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FRONT END EQUIPMENT PROTECTION SYSTEM"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=271
+				y=35
+				width=240
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=271
+						y=35
+						width=240
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="A=1&&B=1"
+						chan="$(Z)-FEEPS:Beamline:CantedM"
+						chanB="$(Z)-FEEPS:BIV_PresentM"
+					}
+					textix="(Canted ID FE with BIV)"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=271
+						y=35
+						width=240
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="A=1&&B=0"
+						chan="$(Z)-FEEPS:Beamline:CantedM"
+						chanB="$(Z)-FEEPS:BIV_PresentM"
+					}
+					textix="(Canted ID FE with BeW)"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=271
+						y=35
+						width=240
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="A=0&&B=1"
+						chan="$(Z)-FEEPS:Beamline:CantedM"
+						chanB="$(Z)-FEEPS:BIV_PresentM"
+					}
+					textix="(HHL ID FE with BIV)"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=271
+						y=35
+						width=240
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="A=0&&B=0"
+						chan="$(Z)-FEEPS:Beamline:CantedM"
+						chanB="$(Z)-FEEPS:BIV_PresentM"
+					}
+					textix="(HHL ID FE with BeW)"
+					align="horiz. centered"
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=163
+		y=57
+		width=113
+		height=14
+	}
+	"basic attribute" {
+		clr=20
+	}
+}
+rectangle {
+	object {
+		x=36
+		y=82
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:FES_PermitM"
+	}
+}
+rectangle {
+	object {
+		x=36
+		y=82
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:FES_PermitM"
+	}
+}
+text {
+	object {
+		x=55
+		y=80
+		width=100
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FES Permit"
+}
+rectangle {
+	object {
+		x=34
+		y=80
+		width=13
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=34
+		y=152
+		width=101
+		height=14
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=36
+				y=154
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS2:ClosedM"
+			}
+		}
+		text {
+			object {
+				x=55
+				y=153
+				width=80
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS2 Closed"
+		}
+		rectangle {
+			object {
+				x=34
+				y=152
+				width=13
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PS2:ClosedM"
+	}
+}
+composite {
+	object {
+		x=34
+		y=152
+		width=101
+		height=14
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=36
+				y=154
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=16
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS2:OpenedM"
+			}
+		}
+		rectangle {
+			object {
+				x=34
+				y=152
+				width=13
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=55
+				y=153
+				width=80
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS2 Open"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PS2:OpenedM"
+	}
+}
+composite {
+	object {
+		x=34
+		y=103
+		width=201
+		height=13
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=36
+				y=105
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:BLEPS_ShutterPermitM"
+			}
+		}
+		rectangle {
+			object {
+				x=34
+				y=103
+				width=13
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=34
+				y=103
+				width=13
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=55
+				y=103
+				width=180
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FES Permit from BLEPS"
+		}
+		rectangle {
+			object {
+				x=36
+				y=104
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BLEPS_ShutterPermitM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=34
+		y=128
+		width=145
+		height=15
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=94
+				y=130
+				width=85
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Open Request"
+		}
+		rectangle {
+			object {
+				x=36
+				y=130
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:OpenRequestM"
+			}
+		}
+		rectangle {
+			object {
+				x=34
+				y=128
+				width=13
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=36
+				y=130
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=16
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:OpenRequestM"
+			}
+		}
+		rectangle {
+			object {
+				x=34
+				y=128
+				width=13
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=36
+				y=130
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:PS1:OpenRequestM"
+			}
+		}
+		text {
+			object {
+				x=48
+				y=130
+				width=48
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="LPPS1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=55
+				y=129
+				width=35
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="PS1"
+			align="horiz. centered"
+		}
+	}
+}

@@ -1,0 +1,3334 @@
+
+file {
+	name="/home/helios/MLS/C2/iocs/frontend/feApp/op/adl/FEEPS_Engineering.adl"
+	version=030118
+}
+display {
+	object {
+		x=1024
+		y=72
+		width=1202
+		height=500
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=170
+		y=401
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PH_OR:StatusM"
+	}
+}
+text {
+	object {
+		x=123
+		y=7
+		width=80
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SECTOR:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=206
+		y=7
+		width=25
+		height=25
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Beamline:NumberM"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+composite {
+	object {
+		x=241
+		y=7
+		width=24
+		height=25
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=241
+				y=7
+				width=24
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="ID"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=241
+				y=7
+				width=24
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="BM"
+			align="horiz. centered"
+		}
+	}
+}
+text {
+	object {
+		x=117
+		y=88
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Inputs"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=697
+		y=88
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Internal Signals"
+}
+text {
+	object {
+		x=464
+		y=88
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Outputs"
+}
+text {
+	object {
+		x=193
+		y=172
+		width=120
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FE Air Pressure"
+}
+rectangle {
+	object {
+		x=170
+		y=172
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=3
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:FE:AirPressureM"
+	}
+}
+composite {
+	object {
+		x=170
+		y=187
+		width=113
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=193
+				y=187
+				width=90
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="ID Gap Open"
+		}
+		rectangle {
+			object {
+				x=170
+				y=187
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:ID_Gap:OpenedM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=27
+		y=187
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=187
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS2:OpenedM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=187
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS2 Opened"
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=202
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=27
+				y=202
+				width=143
+				height=10
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=27
+						y=202
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=3
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(Z)-FEEPS:PS2:ClosedM"
+					}
+				}
+				text {
+					object {
+						x=50
+						y=202
+						width=120
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="PS2 Closed"
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=262
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=262
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV Closed"
+		}
+		rectangle {
+			object {
+				x=27
+				y=262
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SRV:ClosedM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=277
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=277
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV Opened"
+		}
+		rectangle {
+			object {
+				x=27
+				y=277
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SRV:OpenedM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=298
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=298
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Closed"
+		}
+		rectangle {
+			object {
+				x=27
+				y=298
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV:ClosedM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=313
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=313
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Opened"
+		}
+		rectangle {
+			object {
+				x=27
+				y=313
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV:OpenedM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=371
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=371
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ion Pump 1"
+		}
+		rectangle {
+			object {
+				x=27
+				y=371
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:IP1:VacuumOKM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=386
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=386
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ion Pump 2"
+		}
+		rectangle {
+			object {
+				x=27
+				y=386
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:IP2:VacuumOKM"
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=27
+		y=401
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=3
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:IP3:VacuumOKM"
+	}
+}
+text {
+	object {
+		x=50
+		y=401
+		width=120
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ion Pump 3"
+}
+composite {
+	object {
+		x=27
+		y=416
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=416
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:IP4:VacuumOKM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=416
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ion Pump 4"
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=431
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=431
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:IP5:VacuumOKM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=431
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ion Pump 5"
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=446
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=446
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:IP6:VacuumOKM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=446
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ion Pump 6"
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=461
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=461
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:IP7:VacuumOKM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=461
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Ion Pump 7"
+		}
+	}
+}
+text {
+	object {
+		x=466
+		y=127
+		width=120
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SRV Open Command"
+}
+rectangle {
+	object {
+		x=444
+		y=127
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=3
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:SRV:OpenCommandM"
+	}
+}
+composite {
+	object {
+		x=444
+		y=142
+		width=142
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=466
+				y=142
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Open Command"
+		}
+		rectangle {
+			object {
+				x=444
+				y=142
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV:OpenCommandM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=444
+		y=157
+		width=142
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=466
+				y=157
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="BIV Open Command"
+		}
+		rectangle {
+			object {
+				x=444
+				y=157
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BIV:OpenCommandM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BIV_PresentM"
+	}
+}
+composite {
+	object {
+		x=444
+		y=244
+		width=163
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=466
+				y=245
+				width=141
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="MPS Permit (Slow Abort)"
+		}
+		rectangle {
+			object {
+				x=444
+				y=244
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:MPS:SlowPermitM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=444
+		y=260
+		width=163
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=466
+				y=260
+				width=141
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="MPS Permit (Fast Abort)"
+		}
+		rectangle {
+			object {
+				x=444
+				y=260
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:MPS:FastPermitM"
+			}
+		}
+	}
+}
+text {
+	object {
+		x=466
+		y=287
+		width=120
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="NO Beam Signal to BLEPS"
+}
+rectangle {
+	object {
+		x=444
+		y=287
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=3
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BLEPS:NoBeamM"
+	}
+}
+text {
+	object {
+		x=192
+		y=128
+		width=86
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PSS Test Key"
+}
+rectangle {
+	object {
+		x=170
+		y=127
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PSS_TestKeyM"
+	}
+}
+composite {
+	object {
+		x=953
+		y=127
+		width=187
+		height=26
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=953
+				y=127
+				width=187
+				height=11
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=975
+						y=128
+						width=165
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Remote MPS Test (Slow Abort)"
+				}
+				rectangle {
+					object {
+						x=953
+						y=127
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=1
+					}
+					"dynamic attribute" {
+						clr="alarm"
+						chan="$(Z)-FEEPS:MPS:SlowEPICS_TripM"
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=953
+				y=142
+				width=187
+				height=11
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=975
+						y=143
+						width=165
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Remote MPS Test (Fast Abort)"
+				}
+				rectangle {
+					object {
+						x=953
+						y=142
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=1
+					}
+					"dynamic attribute" {
+						clr="alarm"
+						chan="$(Z)-FEEPS:MPS:FastEPICS_TripM"
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=170
+		y=262
+		width=132
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=192
+				y=263
+				width=110
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV Override Close"
+		}
+		rectangle {
+			object {
+				x=170
+				y=262
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:SRV:Override:CloseM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=170
+		y=277
+		width=123
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=192
+				y=278
+				width=101
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV Override Open"
+		}
+		rectangle {
+			object {
+				x=170
+				y=277
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:SRV:Override:OpenM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=170
+		y=298
+		width=132
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=192
+				y=299
+				width=110
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Override Close"
+		}
+		rectangle {
+			object {
+				x=170
+				y=298
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:FEV:Override:CloseM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=170
+		y=313
+		width=123
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=192
+				y=314
+				width=101
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Override Open"
+		}
+		rectangle {
+			object {
+				x=170
+				y=313
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:FEV:Override:OpenM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=953
+		y=182
+		width=123
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=975
+				y=183
+				width=101
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PLC Forces Present"
+		}
+		rectangle {
+			object {
+				x=953
+				y=182
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:ForcesPresentWarnM"
+			}
+		}
+		rectangle {
+			object {
+				x=953
+				y=182
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=30
+				width=1
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:ForcesPresentWarnM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=953
+		y=197
+		width=108
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=975
+				y=198
+				width=86
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PLC Power Cycle"
+		}
+		rectangle {
+			object {
+				x=953
+				y=197
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(Z)-FEEPS:PowerUpTripM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=953
+		y=167
+		width=123
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=975
+				y=168
+				width=101
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PLC Key In Remote"
+		}
+		rectangle {
+			object {
+				x=953
+				y=167
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=30
+				width=1
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PLC_KeyRemoteWarnM"
+			}
+		}
+		rectangle {
+			object {
+				x=953
+				y=167
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:PLC_KeyRemoteWarnM"
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=170
+		y=371
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PH_PS1:StatusM"
+	}
+}
+text {
+	object {
+		x=192
+		y=372
+		width=126
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Phoenix PS1 Status"
+}
+text {
+	object {
+		x=192
+		y=387
+		width=126
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Phoenix PS2 Status"
+}
+rectangle {
+	object {
+		x=170
+		y=386
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:PH_PS2:StatusM"
+	}
+}
+text {
+	object {
+		x=192
+		y=402
+		width=126
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Phoenix ORing Status"
+}
+composite {
+	object {
+		x=708
+		y=127
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=730
+				y=128
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LPPS1 Open Permit"
+		}
+		rectangle {
+			object {
+				x=708
+				y=127
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1_OpenPermitM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=708
+		y=157
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=730
+				y=158
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS1 Open Permit"
+		}
+		rectangle {
+			object {
+				x=708
+				y=157
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1_OpenPermitM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=708
+		y=142
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=730
+				y=143
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LPPS1 Close Permit"
+		}
+		rectangle {
+			object {
+				x=708
+				y=142
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1_ClosePermitM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=708
+		y=172
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=730
+				y=173
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS1 Close Permit"
+		}
+		rectangle {
+			object {
+				x=708
+				y=172
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1_ClosePermitM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=708
+		y=187
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=187
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SRV_OpenPermitM"
+			}
+		}
+		text {
+			object {
+				x=730
+				y=188
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV Open Permit"
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=202
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=202
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SRV_ClosePermitM"
+			}
+		}
+		text {
+			object {
+				x=730
+				y=203
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SRV Close Permit"
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=217
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=217
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV_OpenPermitM"
+			}
+		}
+		text {
+			object {
+				x=730
+				y=218
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Open Permit"
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=232
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=232
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV_ClosePermitM"
+			}
+		}
+		text {
+			object {
+				x=730
+				y=233
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FEV Close Permit"
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=247
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=247
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BIV_OpenPermitM"
+			}
+		}
+		text {
+			object {
+				x=730
+				y=248
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="BIV Open Permit"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BIV_PresentM"
+	}
+}
+composite {
+	object {
+		x=708
+		y=262
+		width=142
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=262
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BIV_ClosePermitM"
+			}
+		}
+		text {
+			object {
+				x=730
+				y=263
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="BIV Close Permit"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BIV_PresentM"
+	}
+}
+composite {
+	object {
+		x=708
+		y=277
+		width=173
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=277
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FEV:VacuumPermitM"
+			}
+		}
+		text {
+			object {
+				x=731
+				y=277
+				width=150
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Vacuum Permit (FEV) from BLEPS"
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=292
+		width=173
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=708
+				y=292
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BIV:VacuumPermitM"
+			}
+		}
+		text {
+			object {
+				x=731
+				y=292
+				width=150
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Vacuum Permit (BIV) from BLEPS"
+		}
+	}
+}
+text {
+	object {
+		x=192
+		y=143
+		width=127
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FE Shutter Permit from BLEPS"
+}
+rectangle {
+	object {
+		x=170
+		y=142
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BLEPS_ShutterPermitM"
+	}
+}
+text {
+	object {
+		x=192
+		y=158
+		width=127
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Vacuum Permit from BLEPS"
+}
+rectangle {
+	object {
+		x=170
+		y=157
+		width=15
+		height=10
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1||B=1"
+		chan="$(Z)-FEEPS:FEV:VacuumPermitM"
+		chanB="$(Z)-FEEPS:BIV:VacuumPermitM"
+	}
+}
+composite {
+	object {
+		x=170
+		y=203
+		width=169
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=194
+				y=203
+				width=145
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Emergency FE Shutter Disable"
+		}
+		rectangle {
+			object {
+				x=170
+				y=203
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FES_DisablePBM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:PSS_GenerationM"
+	}
+}
+text {
+	object {
+		x=977
+		y=88
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Misc. Signals"
+}
+composite {
+	object {
+		x=976
+		y=218
+		width=169
+		height=12
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=976
+				y=219
+				width=86
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Software Version"
+		}
+		"text update" {
+			object {
+				x=1095
+				y=218
+				width=50
+				height=12
+			}
+			monitor {
+				chan="$(Z)-FEEPS:SoftwareVersionM"
+				clr=14
+				bclr=3
+			}
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=976
+		y=234
+		width=86
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Processor Version"
+}
+"text update" {
+	object {
+		x=1095
+		y=233
+		width=50
+		height=12
+	}
+	monitor {
+		chan="$(Z)-FEEPS:CPU:ProductCodeM"
+		clr=14
+		bclr=3
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=976
+		y=249
+		width=86
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Processor Revision"
+}
+"text update" {
+	object {
+		x=1095
+		y=248
+		width=50
+		height=12
+	}
+	monitor {
+		chan="$(Z)-FEEPS:CPU:ProductRevisionM"
+		clr=14
+		bclr=3
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=976
+		y=264
+		width=86
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Processor SN"
+}
+"text update" {
+	object {
+		x=1095
+		y=263
+		width=80
+		height=12
+	}
+	monitor {
+		chan="$(Z)-FEEPS:CPU:SerialNumberM"
+		clr=14
+		bclr=3
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=976
+		y=278
+		width=199
+		height=12
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=976
+				y=279
+				width=86
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Last Scan Time"
+		}
+		composite {
+			object {
+				x=1095
+				y=278
+				width=80
+				height=12
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=1095
+						y=278
+						width=50
+						height=12
+					}
+					monitor {
+						chan="$(Z)-FEEPS:ScanTime:LastM"
+						clr=14
+						bclr=3
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=1150
+						y=279
+						width=25
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="(mS)"
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=976
+		y=293
+		width=200
+		height=12
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=976
+				y=294
+				width=86
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Maximum Scan Time"
+		}
+		composite {
+			object {
+				x=1095
+				y=293
+				width=81
+				height=12
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=1095
+						y=293
+						width=50
+						height=12
+					}
+					monitor {
+						chan="$(Z)-FEEPS:ScanTime:LastM"
+						clr=14
+						bclr=3
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=1151
+						y=294
+						width=25
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="(mS)"
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=1031
+		y=314
+		width=120
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current PLC Time"
+}
+"text update" {
+	object {
+		x=1125
+		y=329
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Current:YearM"
+		clr=22
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1058
+		y=329
+		width=20
+		height=15
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Current:MonthM"
+		clr=22
+		bclr=4
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1090
+		y=329
+		width=26
+		height=15
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Current:DayM"
+		clr=22
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=1084
+		y=331
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="/"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1115
+		y=331
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="/"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=971
+		y=329
+		width=20
+		height=15
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Current:HourM"
+		clr=22
+		bclr=4
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1030
+		y=329
+		width=26
+		height=15
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Current:SecondM"
+		clr=22
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=999
+		y=329
+		width=26
+		height=15
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Current:MinuteM"
+		clr=22
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=994
+		y=331
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix=":"
+}
+text {
+	object {
+		x=1023
+		y=331
+		width=13
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix=":"
+}
+text {
+	object {
+		x=445
+		y=8
+		width=400
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FRONT END EQUIPMENT PROTECTION SYSTEM"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=518
+		y=33
+		width=240
+		height=20
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=518
+				y=33
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1&&B=1"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+			}
+			textix="(Canted ID FE with BIV)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=518
+				y=33
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1&&B=0"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+			}
+			textix="(Canted ID FE with BeW)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=518
+				y=33
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0&&B=1"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+			}
+			textix="(HHL ID FE with BIV)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=518
+				y=33
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0&&B=0"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+			}
+			textix="(HHL ID FE with BeW)"
+			align="horiz. centered"
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=232
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=50
+				y=232
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SS2 Opened"
+		}
+		composite {
+			object {
+				x=27
+				y=232
+				width=15
+				height=10
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=27
+						y=232
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=3
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(Z)-FEEPS:SS2:OpenedM"
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=217
+		width=143
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=217
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:SS1:OpenedM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=217
+				width=120
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="SS1 Opened"
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=331
+		width=143
+		height=25
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=27
+				y=331
+				width=143
+				height=10
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=50
+						y=331
+						width=120
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="BIV Closed"
+				}
+				rectangle {
+					object {
+						x=27
+						y=331
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=3
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(Z)-FEEPS:BIV:ClosedM"
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=27
+				y=346
+				width=143
+				height=10
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=50
+						y=346
+						width=120
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="BIV Opened"
+				}
+				rectangle {
+					object {
+						x=27
+						y=346
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=3
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(Z)-FEEPS:BIV:OpenedM"
+					}
+				}
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BIV_PresentM"
+	}
+}
+composite {
+	object {
+		x=170
+		y=331
+		width=132
+		height=26
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=170
+				y=331
+				width=132
+				height=11
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=192
+						y=332
+						width=110
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="BIV Override Close"
+				}
+				rectangle {
+					object {
+						x=170
+						y=331
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=1
+					}
+					"dynamic attribute" {
+						clr="alarm"
+						chan="$(Z)-FEEPS:BIV:Override:CloseM"
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=170
+				y=346
+				width=123
+				height=11
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=192
+						y=347
+						width=101
+						height=10
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="BIV Override Open"
+				}
+				rectangle {
+					object {
+						x=170
+						y=346
+						width=15
+						height=10
+					}
+					"basic attribute" {
+						clr=15
+						width=1
+					}
+					"dynamic attribute" {
+						clr="alarm"
+						chan="$(Z)-FEEPS:BIV:Override:OpenM"
+					}
+				}
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:BIV_PresentM"
+	}
+}
+composite {
+	object {
+		x=444
+		y=302
+		width=227
+		height=23
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=466
+				y=303
+				width=205
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Last Valve Closed signal to BLEPS"
+		}
+		rectangle {
+			object {
+				x=444
+				y=302
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:BLEPS:LV_ClosedM"
+			}
+		}
+		text {
+			object {
+				x=466
+				y=315
+				width=205
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="(FEV) or (BIV if present)"
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=322
+		width=94
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=732
+				y=323
+				width=70
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="BL Type: BM"
+		}
+		rectangle {
+			object {
+				x=708
+				y=322
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=708
+		y=307
+		width=93
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=731
+				y=308
+				width=70
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="BL Type: ID"
+		}
+		rectangle {
+			object {
+				x=708
+				y=307
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=27
+		y=157
+		width=103
+		height=25
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=157
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:OpenedM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=157
+				width=80
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS1 Opened"
+		}
+		rectangle {
+			object {
+				x=27
+				y=172
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:ClosedM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=172
+				width=80
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS1 Closed"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=27
+		y=127
+		width=103
+		height=25
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=27
+				y=127
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:OpenedM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=127
+				width=80
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LPPS1 Opened"
+		}
+		rectangle {
+			object {
+				x=27
+				y=142
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:ClosedM"
+			}
+		}
+		text {
+			object {
+				x=50
+				y=142
+				width=80
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="LPPS1 Closed"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=444
+		y=202
+		width=191
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=470
+				y=202
+				width=165
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="LPPS1 Open Request to PSS"
+		}
+		rectangle {
+			object {
+				x=444
+				y=202
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:OpenRequestM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=444
+		y=188
+		width=165
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=470
+				y=188
+				width=139
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="PS1 Open Request to PSS"
+		}
+		rectangle {
+			object {
+				x=444
+				y=188
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:PS1:OpenRequestM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+}
+composite {
+	object {
+		x=444
+		y=217
+		width=170
+		height=10
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=471
+				y=217
+				width=143
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="FE Shutter Permit to PSS"
+		}
+		rectangle {
+			object {
+				x=444
+				y=217
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:FES_PermitM"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=170
+		y=218
+		width=138
+		height=11
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=193
+				y=219
+				width=115
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Canted PS Interlock"
+		}
+		rectangle {
+			object {
+				x=170
+				y=218
+				width=15
+				height=10
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(Z)-FEEPS:Cant_DPSI_StatusM"
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:CantedM"
+	}
+}
