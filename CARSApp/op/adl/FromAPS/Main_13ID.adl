@@ -1,12 +1,12 @@
 
 file {
-	name="/home/phoebus2/JBS/pss/13ID/pss/op/adl/13ID_MARCH2012/Main_13ID.adl"
-	version=030105
+	name="/home/phoebus/NGUYEN/iocapps/adlsys/sr/pss/modified2015april/Main_13ID.adl"
+	version=030108
 }
 display {
 	object {
-		x=171
-		y=152
+		x=6
+		y=71
 		width=1425
 		height=615
 	}
@@ -89,9 +89,9 @@ display {
 }
 rectangle {
 	object {
-		x=612
-		y=324
-		width=58
+		x=624
+		y=330
+		width=52
 		height=8
 	}
 	"basic attribute" {
@@ -101,8 +101,8 @@ rectangle {
 }
 composite {
 	object {
-		x=668
-		y=324
+		x=674
+		y=330
 		width=55
 		height=8
 	}
@@ -110,23 +110,7 @@ composite {
 	children {
 		polyline {
 			object {
-				x=668
-				y=324
-				width=54
-				height=2
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			points {
-				(669,325)
-				(721,325)
-			}
-		}
-		polyline {
-			object {
-				x=668
+				x=674
 				y=330
 				width=54
 				height=2
@@ -136,8 +120,24 @@ composite {
 				width=2
 			}
 			points {
-				(669,331)
-				(721,331)
+				(675,331)
+				(727,331)
+			}
+		}
+		polyline {
+			object {
+				x=674
+				y=336
+				width=54
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(675,337)
+				(727,337)
 			}
 		}
 	}
@@ -150,8 +150,8 @@ composite {
 }
 oval {
 	object {
-		x=1046
-		y=46
+		x=1197
+		y=44
 		width=9
 		height=9
 	}
@@ -166,8 +166,8 @@ oval {
 }
 oval {
 	object {
-		x=1045
-		y=45
+		x=1196
+		y=43
 		width=11
 		height=11
 	}
@@ -179,8 +179,8 @@ oval {
 }
 oval {
 	object {
-		x=1046
-		y=61
+		x=1197
+		y=59
 		width=9
 		height=9
 	}
@@ -195,8 +195,8 @@ oval {
 }
 oval {
 	object {
-		x=1045
-		y=60
+		x=1196
+		y=58
 		width=11
 		height=11
 	}
@@ -208,8 +208,8 @@ oval {
 }
 oval {
 	object {
-		x=1064
-		y=46
+		x=1215
+		y=44
 		width=9
 		height=9
 	}
@@ -224,8 +224,8 @@ oval {
 }
 oval {
 	object {
-		x=1063
-		y=45
+		x=1214
+		y=43
 		width=11
 		height=11
 	}
@@ -237,8 +237,8 @@ oval {
 }
 oval {
 	object {
-		x=1046
-		y=75
+		x=1197
+		y=73
 		width=9
 		height=9
 	}
@@ -253,8 +253,8 @@ oval {
 }
 oval {
 	object {
-		x=1045
-		y=74
+		x=1196
+		y=72
 		width=11
 		height=11
 	}
@@ -266,8 +266,8 @@ oval {
 }
 text {
 	object {
-		x=983
-		y=44
+		x=1134
+		y=42
 		width=36
 		height=12
 	}
@@ -280,8 +280,8 @@ text {
 }
 text {
 	object {
-		x=983
-		y=59
+		x=1134
+		y=57
 		width=36
 		height=12
 	}
@@ -294,8 +294,8 @@ text {
 }
 text {
 	object {
-		x=963
-		y=30
+		x=1114
+		y=28
 		width=36
 		height=12
 	}
@@ -308,8 +308,8 @@ text {
 }
 text {
 	object {
-		x=983
-		y=73
+		x=1134
+		y=71
 		width=36
 		height=12
 	}
@@ -322,8 +322,8 @@ text {
 }
 oval {
 	object {
-		x=1027
-		y=45
+		x=1178
+		y=43
 		width=11
 		height=11
 	}
@@ -335,8 +335,8 @@ oval {
 }
 oval {
 	object {
-		x=1028
-		y=46
+		x=1179
+		y=44
 		width=9
 		height=9
 	}
@@ -346,13 +346,13 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="ACIS:RAI_$(xx)$(yy)_KEY"
+		chan="SR-ACIS:$(xx)$(yy):GolPermitM"
 	}
 }
 oval {
 	object {
-		x=1028
-		y=60
+		x=1179
+		y=58
 		width=11
 		height=11
 	}
@@ -364,8 +364,8 @@ oval {
 }
 oval {
 	object {
-		x=1029
-		y=61
+		x=1180
+		y=59
 		width=9
 		height=9
 	}
@@ -375,13 +375,13 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="ACIS:ShutterPermit"
+		chan="SR-ACIS:$(xx)$(yy):FesPermitM"
 	}
 }
 oval {
 	object {
-		x=1029
-		y=75
+		x=1180
+		y=73
 		width=9
 		height=9
 	}
@@ -391,13 +391,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="EPS:$(xx):$(yy):FE:PERM"
+		chan="S13ID-FEEPS:FES_PermitM"
 	}
 }
 oval {
 	object {
-		x=1028
-		y=74
+		x=1179
+		y=72
 		width=11
 		height=11
 	}
@@ -409,8 +409,8 @@ oval {
 }
 text {
 	object {
-		x=1044
-		y=30
+		x=1195
+		y=28
 		width=11
 		height=12
 	}
@@ -423,8 +423,8 @@ text {
 }
 text {
 	object {
-		x=1063
-		y=30
+		x=1214
+		y=28
 		width=11
 		height=12
 	}
@@ -437,8 +437,8 @@ text {
 }
 text {
 	object {
-		x=1027
-		y=30
+		x=1178
+		y=28
 		width=11
 		height=12
 	}
@@ -451,8 +451,8 @@ text {
 }
 oval {
 	object {
-		x=1045
-		y=45
+		x=1196
+		y=43
 		width=11
 		height=11
 	}
@@ -464,8 +464,8 @@ oval {
 }
 oval {
 	object {
-		x=1063
-		y=45
+		x=1214
+		y=43
 		width=11
 		height=11
 	}
@@ -477,8 +477,8 @@ oval {
 }
 text {
 	object {
-		x=1119
-		y=45
+		x=1270
+		y=43
 		width=78
 		height=10
 	}
@@ -489,8 +489,8 @@ text {
 }
 oval {
 	object {
-		x=1230
-		y=46
+		x=1381
+		y=44
 		width=9
 		height=9
 	}
@@ -505,8 +505,8 @@ oval {
 }
 oval {
 	object {
-		x=1229
-		y=45
+		x=1380
+		y=43
 		width=11
 		height=11
 	}
@@ -518,8 +518,8 @@ oval {
 }
 text {
 	object {
-		x=1230
-		y=30
+		x=1381
+		y=28
 		width=11
 		height=12
 	}
@@ -532,8 +532,8 @@ text {
 }
 text {
 	object {
-		x=1244
-		y=30
+		x=1395
+		y=28
 		width=11
 		height=12
 	}
@@ -546,8 +546,8 @@ text {
 }
 text {
 	object {
-		x=1119
-		y=60
+		x=1270
+		y=58
 		width=78
 		height=10
 	}
@@ -558,8 +558,8 @@ text {
 }
 oval {
 	object {
-		x=1245
-		y=61
+		x=1396
+		y=59
 		width=9
 		height=9
 	}
@@ -574,8 +574,8 @@ oval {
 }
 oval {
 	object {
-		x=1244
-		y=60
+		x=1395
+		y=58
 		width=11
 		height=11
 	}
@@ -587,8 +587,8 @@ oval {
 }
 text {
 	object {
-		x=1119
-		y=74
+		x=1270
+		y=72
 		width=78
 		height=10
 	}
@@ -599,8 +599,8 @@ text {
 }
 oval {
 	object {
-		x=1231
-		y=75
+		x=1382
+		y=73
 		width=9
 		height=9
 	}
@@ -615,8 +615,8 @@ oval {
 }
 oval {
 	object {
-		x=1230
-		y=74
+		x=1381
+		y=72
 		width=11
 		height=11
 	}
@@ -629,7 +629,7 @@ oval {
 oval {
 	object {
 		x=648
-		y=313
+		y=316
 		width=9
 		height=9
 	}
@@ -647,7 +647,7 @@ oval {
 oval {
 	object {
 		x=647
-		y=312
+		y=315
 		width=11
 		height=11
 	}
@@ -660,7 +660,7 @@ oval {
 text {
 	object {
 		x=642
-		y=299
+		y=302
 		width=20
 		height=10
 	}
@@ -672,7 +672,7 @@ text {
 rectangle {
 	object {
 		x=639
-		y=296
+		y=299
 		width=25
 		height=14
 	}
@@ -690,7 +690,7 @@ rectangle {
 }
 text {
 	object {
-		x=1107
+		x=1027
 		y=277
 		width=36
 		height=12
@@ -704,7 +704,7 @@ text {
 }
 text {
 	object {
-		x=1107
+		x=1027
 		y=249
 		width=36
 		height=12
@@ -718,7 +718,7 @@ text {
 }
 text {
 	object {
-		x=1107
+		x=1027
 		y=263
 		width=36
 		height=12
@@ -732,7 +732,7 @@ text {
 }
 text {
 	object {
-		x=1107
+		x=1027
 		y=291
 		width=36
 		height=12
@@ -746,7 +746,7 @@ text {
 }
 oval {
 	object {
-		x=1149
+		x=1069
 		y=249
 		width=9
 		height=9
@@ -762,7 +762,7 @@ oval {
 }
 oval {
 	object {
-		x=1148
+		x=1068
 		y=248
 		width=11
 		height=11
@@ -775,7 +775,7 @@ oval {
 }
 text {
 	object {
-		x=1148
+		x=1068
 		y=236
 		width=11
 		height=12
@@ -789,7 +789,7 @@ text {
 }
 text {
 	object {
-		x=1162
+		x=1082
 		y=236
 		width=11
 		height=12
@@ -803,7 +803,7 @@ text {
 }
 oval {
 	object {
-		x=1149
+		x=1069
 		y=263
 		width=9
 		height=9
@@ -819,7 +819,7 @@ oval {
 }
 oval {
 	object {
-		x=1148
+		x=1068
 		y=262
 		width=11
 		height=11
@@ -832,7 +832,7 @@ oval {
 }
 oval {
 	object {
-		x=1163
+		x=1083
 		y=263
 		width=9
 		height=9
@@ -848,7 +848,7 @@ oval {
 }
 oval {
 	object {
-		x=1162
+		x=1082
 		y=262
 		width=11
 		height=11
@@ -861,7 +861,7 @@ oval {
 }
 oval {
 	object {
-		x=1149
+		x=1069
 		y=277
 		width=9
 		height=9
@@ -877,7 +877,7 @@ oval {
 }
 oval {
 	object {
-		x=1148
+		x=1068
 		y=276
 		width=11
 		height=11
@@ -890,7 +890,7 @@ oval {
 }
 oval {
 	object {
-		x=1163
+		x=1083
 		y=277
 		width=9
 		height=9
@@ -906,7 +906,7 @@ oval {
 }
 oval {
 	object {
-		x=1162
+		x=1082
 		y=276
 		width=11
 		height=11
@@ -919,7 +919,7 @@ oval {
 }
 oval {
 	object {
-		x=1149
+		x=1069
 		y=291
 		width=9
 		height=9
@@ -935,7 +935,7 @@ oval {
 }
 oval {
 	object {
-		x=1148
+		x=1068
 		y=290
 		width=11
 		height=11
@@ -948,7 +948,7 @@ oval {
 }
 rectangle {
 	object {
-		x=1144
+		x=1064
 		y=246
 		width=32
 		height=16
@@ -961,7 +961,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=1144
+		x=1064
 		y=260
 		width=32
 		height=16
@@ -974,7 +974,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=1144
+		x=1064
 		y=274
 		width=32
 		height=16
@@ -987,7 +987,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=1144
+		x=1064
 		y=288
 		width=32
 		height=16
@@ -1439,8 +1439,8 @@ polyline {
 }
 polyline {
 	object {
-		x=721
-		y=323
+		x=727
+		y=329
 		width=2
 		height=10
 	}
@@ -1449,8 +1449,8 @@ polyline {
 		width=2
 	}
 	points {
-		(722,324)
-		(722,332)
+		(728,330)
+		(728,338)
 	}
 }
 polyline {
@@ -1533,8 +1533,8 @@ rectangle {
 }
 text {
 	object {
-		x=1268
-		y=596
+		x=1320
+		y=595
 		width=100
 		height=10
 	}
@@ -2240,8 +2240,8 @@ oval {
 }
 polyline {
 	object {
-		x=659
-		y=323
+		x=665
+		y=329
 		width=2
 		height=10
 	}
@@ -2250,8 +2250,8 @@ polyline {
 		width=2
 	}
 	points {
-		(660,324)
-		(660,332)
+		(666,330)
+		(666,338)
 	}
 }
 polyline {
@@ -3036,8 +3036,8 @@ text {
 }
 text {
 	object {
-		x=1189
-		y=294
+		x=1149
+		y=304
 		width=20
 		height=10
 	}
@@ -3048,8 +3048,8 @@ text {
 }
 oval {
 	object {
-		x=1190
-		y=303
+		x=1150
+		y=313
 		width=17
 		height=17
 	}
@@ -3060,8 +3060,8 @@ oval {
 }
 oval {
 	object {
-		x=1194
-		y=307
+		x=1154
+		y=317
 		width=9
 		height=9
 	}
@@ -3072,8 +3072,8 @@ oval {
 }
 oval {
 	object {
-		x=1194
-		y=307
+		x=1154
+		y=317
 		width=9
 		height=9
 	}
@@ -3088,8 +3088,8 @@ oval {
 }
 oval {
 	object {
-		x=1191
-		y=304
+		x=1151
+		y=314
 		width=15
 		height=15
 	}
@@ -3325,15 +3325,15 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(A=1)||(A=B)"
+		calc="(A=1)&&(B=0)"
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PB:$(xx)$(yy):STA_A_FES_CLSD_PL.VAL"
 	}
 }
 rectangle {
 	object {
-		x=924
-		y=12
+		x=1075
+		y=10
 		width=340
 		height=80
 	}
@@ -3360,8 +3360,8 @@ polyline {
 }
 oval {
 	object {
-		x=652
-		y=346
+		x=658
+		y=352
 		width=11
 		height=11
 	}
@@ -3373,8 +3373,8 @@ oval {
 }
 text {
 	object {
-		x=672
-		y=337
+		x=678
+		y=343
 		width=40
 		height=10
 	}
@@ -3385,8 +3385,8 @@ text {
 }
 text {
 	object {
-		x=655
-		y=337
+		x=661
+		y=343
 		width=11
 		height=12
 	}
@@ -3399,8 +3399,8 @@ text {
 }
 rectangle {
 	object {
-		x=667
-		y=347
+		x=673
+		y=353
 		width=45
 		height=14
 	}
@@ -3418,8 +3418,8 @@ rectangle {
 }
 oval {
 	object {
-		x=653
-		y=347
+		x=659
+		y=353
 		width=9
 		height=9
 	}
@@ -3512,8 +3512,8 @@ oval {
 }
 text {
 	object {
-		x=670
-		y=349
+		x=676
+		y=355
 		width=40
 		height=10
 	}
@@ -3526,7 +3526,7 @@ text {
 text {
 	object {
 		x=786
-		y=291
+		y=297
 		width=20
 		height=10
 	}
@@ -3538,7 +3538,7 @@ text {
 oval {
 	object {
 		x=787
-		y=301
+		y=307
 		width=17
 		height=17
 	}
@@ -3550,7 +3550,7 @@ oval {
 oval {
 	object {
 		x=791
-		y=305
+		y=311
 		width=9
 		height=9
 	}
@@ -3562,7 +3562,7 @@ oval {
 oval {
 	object {
 		x=791
-		y=305
+		y=311
 		width=9
 		height=9
 	}
@@ -3578,7 +3578,7 @@ oval {
 oval {
 	object {
 		x=788
-		y=302
+		y=308
 		width=15
 		height=15
 	}
@@ -3834,7 +3834,7 @@ polyline {
 text {
 	object {
 		x=211
-		y=362
+		y=361
 		width=20
 		height=10
 	}
@@ -3846,7 +3846,7 @@ text {
 oval {
 	object {
 		x=212
-		y=372
+		y=371
 		width=17
 		height=17
 	}
@@ -3858,7 +3858,7 @@ oval {
 oval {
 	object {
 		x=216
-		y=376
+		y=375
 		width=9
 		height=9
 	}
@@ -3870,7 +3870,7 @@ oval {
 oval {
 	object {
 		x=216
-		y=376
+		y=375
 		width=9
 		height=9
 	}
@@ -3886,7 +3886,7 @@ oval {
 oval {
 	object {
 		x=213
-		y=373
+		y=372
 		width=15
 		height=15
 	}
@@ -4255,119 +4255,6 @@ oval {
 }
 text {
 	object {
-		x=1192
-		y=262
-		width=40
-		height=10
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="STROBE"
-}
-composite {
-	object {
-		x=1191
-		y=274
-		width=15
-		height=15
-	}
-	"composite name"=""
-	children {
-		polyline {
-			object {
-				x=1191
-				y=274
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			points {
-				(1205,275)
-				(1192,288)
-			}
-		}
-		polyline {
-			object {
-				x=1191
-				y=275
-				width=15
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			points {
-				(1192,276)
-				(1205,287)
-			}
-		}
-		oval {
-			object {
-				x=1193
-				y=276
-				width=11
-				height=11
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=2
-			}
-		}
-	}
-}
-oval {
-	object {
-		x=1194
-		y=277
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=56
-		width=1
-	}
-}
-oval {
-	object {
-		x=1194
-		y=277
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-		width=1
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):STA_A_STROBE.VAL"
-	}
-}
-oval {
-	object {
-		x=1191
-		y=274
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):A_STRblinker.VAL"
-	}
-}
-text {
-	object {
 		x=1100
 		y=363
 		width=40
@@ -4426,8 +4313,8 @@ polyline {
 }
 composite {
 	object {
-		x=722
-		y=324
+		x=728
+		y=330
 		width=55
 		height=8
 	}
@@ -4435,23 +4322,7 @@ composite {
 	children {
 		polyline {
 			object {
-				x=722
-				y=324
-				width=54
-				height=2
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			points {
-				(723,325)
-				(775,325)
-			}
-		}
-		polyline {
-			object {
-				x=722
+				x=728
 				y=330
 				width=54
 				height=2
@@ -4461,8 +4332,24 @@ composite {
 				width=2
 			}
 			points {
-				(723,331)
-				(775,331)
+				(729,331)
+				(781,331)
+			}
+		}
+		polyline {
+			object {
+				x=728
+				y=336
+				width=54
+				height=2
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			points {
+				(729,337)
+				(781,337)
 			}
 		}
 	}
@@ -4475,8 +4362,8 @@ composite {
 }
 polyline {
 	object {
-		x=775
-		y=323
+		x=781
+		y=329
 		width=2
 		height=10
 	}
@@ -4485,14 +4372,14 @@ polyline {
 		width=2
 	}
 	points {
-		(776,324)
-		(776,332)
+		(782,330)
+		(782,338)
 	}
 }
 polyline {
 	object {
-		x=723
-		y=323
+		x=729
+		y=329
 		width=2
 		height=10
 	}
@@ -4501,14 +4388,14 @@ polyline {
 		width=2
 	}
 	points {
-		(724,324)
-		(724,332)
+		(730,330)
+		(730,338)
 	}
 }
 oval {
 	object {
-		x=721
-		y=346
+		x=727
+		y=352
 		width=11
 		height=11
 	}
@@ -4520,8 +4407,8 @@ oval {
 }
 text {
 	object {
-		x=741
-		y=337
+		x=747
+		y=343
 		width=40
 		height=10
 	}
@@ -4532,8 +4419,8 @@ text {
 }
 text {
 	object {
-		x=724
-		y=337
+		x=730
+		y=343
 		width=11
 		height=12
 	}
@@ -4546,8 +4433,8 @@ text {
 }
 rectangle {
 	object {
-		x=736
-		y=347
+		x=742
+		y=353
 		width=45
 		height=14
 	}
@@ -4565,8 +4452,8 @@ rectangle {
 }
 oval {
 	object {
-		x=722
-		y=347
+		x=728
+		y=353
 		width=9
 		height=9
 	}
@@ -4583,9 +4470,9 @@ oval {
 }
 rectangle {
 	object {
-		x=776
-		y=324
-		width=40
+		x=782
+		y=330
+		width=30
 		height=8
 	}
 	"basic attribute" {
@@ -4595,24 +4482,24 @@ rectangle {
 }
 polyline {
 	object {
-		x=808
-		y=294
-		width=50
-		height=39
+		x=804
+		y=295
+		width=54
+		height=44
 	}
 	"basic attribute" {
 		clr=14
 		width=8
 	}
 	points {
-		(812,329)
-		(854,298)
+		(808,335)
+		(854,299)
 	}
 }
 text {
 	object {
-		x=739
-		y=349
+		x=745
+		y=355
 		width=40
 		height=10
 	}
@@ -4635,131 +4522,6 @@ text {
 	textix="Closed"
 	align="horiz. centered"
 }
-text {
-	object {
-		x=598
-		y=229
-		width=40
-		height=10
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="STROBE"
-}
-composite {
-	object {
-		x=580
-		y=226
-		width=15
-		height=15
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=580
-				y=226
-				width=15
-				height=15
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=580
-						y=226
-						width=15
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-						width=2
-					}
-					points {
-						(594,227)
-						(581,240)
-					}
-				}
-				polyline {
-					object {
-						x=580
-						y=227
-						width=15
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-						width=2
-					}
-					points {
-						(581,228)
-						(594,239)
-					}
-				}
-				oval {
-					object {
-						x=582
-						y=228
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-						width=2
-					}
-				}
-			}
-		}
-		oval {
-			object {
-				x=583
-				y=229
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=56
-				width=1
-			}
-		}
-	}
-}
-oval {
-	object {
-		x=583
-		y=229
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-		width=1
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):STA_B_STROBE.VAL"
-	}
-}
-oval {
-	object {
-		x=580
-		y=226
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
-		chan="PA:$(xx)$(yy):B_STRblinker.VAL"
-	}
-}
 rectangle {
 	object {
 		x=398
@@ -4775,7 +4537,7 @@ rectangle {
 text {
 	object {
 		x=406
-		y=263
+		y=244
 		width=20
 		height=10
 	}
@@ -4787,7 +4549,7 @@ text {
 oval {
 	object {
 		x=407
-		y=273
+		y=254
 		width=17
 		height=17
 	}
@@ -4799,7 +4561,7 @@ oval {
 oval {
 	object {
 		x=411
-		y=277
+		y=258
 		width=9
 		height=9
 	}
@@ -4811,7 +4573,7 @@ oval {
 oval {
 	object {
 		x=411
-		y=277
+		y=258
 		width=9
 		height=9
 	}
@@ -4827,7 +4589,7 @@ oval {
 oval {
 	object {
 		x=408
-		y=274
+		y=255
 		width=15
 		height=15
 	}
@@ -5076,7 +4838,7 @@ rectangle {
 text {
 	object {
 		x=445
-		y=239
+		y=220
 		width=20
 		height=10
 	}
@@ -5088,7 +4850,7 @@ text {
 oval {
 	object {
 		x=446
-		y=249
+		y=230
 		width=17
 		height=17
 	}
@@ -5100,7 +4862,7 @@ oval {
 oval {
 	object {
 		x=450
-		y=253
+		y=234
 		width=9
 		height=9
 	}
@@ -5112,7 +4874,7 @@ oval {
 oval {
 	object {
 		x=450
-		y=253
+		y=234
 		width=9
 		height=9
 	}
@@ -5128,7 +4890,7 @@ oval {
 oval {
 	object {
 		x=447
-		y=250
+		y=231
 		width=15
 		height=15
 	}
@@ -5185,24 +4947,24 @@ polyline {
 }
 polyline {
 	object {
-		x=570
-		y=351
+		x=573
+		y=368
 		width=8
-		height=50
+		height=33
 	}
 	"basic attribute" {
 		clr=14
 		width=8
 	}
 	points {
-		(574,355)
-		(574,397)
+		(577,372)
+		(577,397)
 	}
 }
 oval {
 	object {
-		x=417
-		y=378
+		x=412
+		y=366
 		width=9
 		height=9
 	}
@@ -5219,8 +4981,8 @@ oval {
 }
 oval {
 	object {
-		x=416
-		y=377
+		x=411
+		y=365
 		width=11
 		height=11
 	}
@@ -5232,7 +4994,7 @@ oval {
 }
 text {
 	object {
-		x=412
+		x=429
 		y=366
 		width=20
 		height=10
@@ -5244,7 +5006,7 @@ text {
 }
 rectangle {
 	object {
-		x=409
+		x=426
 		y=363
 		width=25
 		height=14
@@ -5263,18 +5025,18 @@ rectangle {
 }
 polyline {
 	object {
-		x=569
-		y=323
-		width=50
-		height=39
+		x=570
+		y=330
+		width=64
+		height=49
 	}
 	"basic attribute" {
 		clr=14
 		width=8
 	}
 	points {
-		(573,358)
-		(615,327)
+		(574,375)
+		(630,334)
 	}
 }
 polyline {
@@ -5420,8 +5182,8 @@ oval {
 }
 text {
 	object {
-		x=542
-		y=239
+		x=589
+		y=336
 		width=20
 		height=10
 	}
@@ -5432,8 +5194,8 @@ text {
 }
 oval {
 	object {
-		x=543
-		y=249
+		x=590
+		y=318
 		width=17
 		height=17
 	}
@@ -5444,8 +5206,8 @@ oval {
 }
 oval {
 	object {
-		x=547
-		y=253
+		x=594
+		y=322
 		width=9
 		height=9
 	}
@@ -5456,8 +5218,8 @@ oval {
 }
 oval {
 	object {
-		x=547
-		y=253
+		x=594
+		y=322
 		width=9
 		height=9
 	}
@@ -5472,8 +5234,8 @@ oval {
 }
 oval {
 	object {
-		x=544
-		y=250
+		x=591
+		y=319
 		width=15
 		height=15
 	}
@@ -5490,8 +5252,8 @@ oval {
 }
 text {
 	object {
-		x=446
-		y=337
+		x=455
+		y=335
 		width=36
 		height=12
 	}
@@ -5504,8 +5266,8 @@ text {
 }
 text {
 	object {
-		x=446
-		y=309
+		x=455
+		y=307
 		width=36
 		height=12
 	}
@@ -5518,8 +5280,8 @@ text {
 }
 text {
 	object {
-		x=446
-		y=323
+		x=455
+		y=321
 		width=36
 		height=12
 	}
@@ -5532,8 +5294,8 @@ text {
 }
 text {
 	object {
-		x=446
-		y=351
+		x=455
+		y=349
 		width=36
 		height=12
 	}
@@ -5546,8 +5308,8 @@ text {
 }
 oval {
 	object {
-		x=488
-		y=309
+		x=497
+		y=307
 		width=9
 		height=9
 	}
@@ -5562,8 +5324,8 @@ oval {
 }
 oval {
 	object {
-		x=487
-		y=308
+		x=496
+		y=306
 		width=11
 		height=11
 	}
@@ -5575,8 +5337,8 @@ oval {
 }
 text {
 	object {
-		x=487
-		y=296
+		x=496
+		y=294
 		width=11
 		height=12
 	}
@@ -5589,8 +5351,8 @@ text {
 }
 text {
 	object {
-		x=501
-		y=296
+		x=510
+		y=294
 		width=11
 		height=12
 	}
@@ -5603,8 +5365,8 @@ text {
 }
 oval {
 	object {
-		x=488
-		y=323
+		x=497
+		y=321
 		width=9
 		height=9
 	}
@@ -5619,8 +5381,8 @@ oval {
 }
 oval {
 	object {
-		x=487
-		y=322
+		x=496
+		y=320
 		width=11
 		height=11
 	}
@@ -5632,8 +5394,8 @@ oval {
 }
 oval {
 	object {
-		x=502
-		y=323
+		x=511
+		y=321
 		width=9
 		height=9
 	}
@@ -5648,8 +5410,8 @@ oval {
 }
 oval {
 	object {
-		x=501
-		y=322
+		x=510
+		y=320
 		width=11
 		height=11
 	}
@@ -5661,8 +5423,8 @@ oval {
 }
 oval {
 	object {
-		x=488
-		y=337
+		x=497
+		y=335
 		width=9
 		height=9
 	}
@@ -5677,8 +5439,8 @@ oval {
 }
 oval {
 	object {
-		x=487
-		y=336
+		x=496
+		y=334
 		width=11
 		height=11
 	}
@@ -5690,8 +5452,8 @@ oval {
 }
 oval {
 	object {
-		x=502
-		y=337
+		x=511
+		y=335
 		width=9
 		height=9
 	}
@@ -5706,8 +5468,8 @@ oval {
 }
 oval {
 	object {
-		x=501
-		y=336
+		x=510
+		y=334
 		width=11
 		height=11
 	}
@@ -5719,8 +5481,8 @@ oval {
 }
 oval {
 	object {
-		x=488
-		y=351
+		x=497
+		y=349
 		width=9
 		height=9
 	}
@@ -5735,8 +5497,8 @@ oval {
 }
 oval {
 	object {
-		x=487
-		y=350
+		x=496
+		y=348
 		width=11
 		height=11
 	}
@@ -5748,8 +5510,8 @@ oval {
 }
 rectangle {
 	object {
-		x=483
-		y=306
+		x=492
+		y=304
 		width=32
 		height=16
 	}
@@ -5761,8 +5523,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=483
-		y=320
+		x=492
+		y=318
 		width=32
 		height=16
 	}
@@ -5774,8 +5536,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=483
-		y=334
+		x=492
+		y=332
 		width=32
 		height=16
 	}
@@ -5787,8 +5549,8 @@ rectangle {
 }
 rectangle {
 	object {
-		x=483
-		y=348
+		x=492
+		y=346
 		width=32
 		height=16
 	}
@@ -6271,131 +6033,6 @@ oval {
 		vis="calc"
 		calc="A=1"
 		chan="PA:$(xx)$(yy):STA_D_SB1_PL.VAL"
-	}
-}
-text {
-	object {
-		x=30
-		y=289
-		width=40
-		height=10
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="STROBE"
-}
-composite {
-	object {
-		x=40
-		y=299
-		width=15
-		height=15
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=40
-				y=299
-				width=15
-				height=15
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=40
-						y=299
-						width=15
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-						width=2
-					}
-					points {
-						(54,300)
-						(41,313)
-					}
-				}
-				polyline {
-					object {
-						x=40
-						y=300
-						width=15
-						height=13
-					}
-					"basic attribute" {
-						clr=14
-						width=2
-					}
-					points {
-						(41,301)
-						(54,312)
-					}
-				}
-				oval {
-					object {
-						x=42
-						y=301
-						width=11
-						height=11
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-						width=2
-					}
-				}
-			}
-		}
-		oval {
-			object {
-				x=43
-				y=302
-				width=9
-				height=9
-			}
-			"basic attribute" {
-				clr=56
-				width=1
-			}
-		}
-	}
-}
-oval {
-	object {
-		x=43
-		y=302
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-		width=1
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):STA_D_STROBE.VAL"
-	}
-}
-oval {
-	object {
-		x=40
-		y=299
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
-		chan="PA:$(xx)$(yy):D_STRblinker.VAL"
 	}
 }
 text {
@@ -6972,7 +6609,7 @@ rectangle {
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PA:$(xx)$(yy):STA_C_SCS_OPEN_PL.VAL"
 		chanC="PA:$(xx)$(yy):STA_D_SDS_OPEN_PL.VAL"
-		chanD="PB:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
+		chanD="PB:$(xx)$(yy):STA_D_SDS_CLSD_PL.VAL"
 	}
 }
 polygon {
@@ -6992,7 +6629,7 @@ polygon {
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PA:$(xx)$(yy):STA_C_SCS_OPEN_PL.VAL"
 		chanC="PA:$(xx)$(yy):STA_D_SDS_OPEN_PL.VAL"
-		chanD="PB:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
+		chanD="PB:$(xx)$(yy):STA_D_SDS_CLSD_PL.VAL"
 	}
 	points {
 		(92,205)
@@ -7012,7 +6649,7 @@ text {
 		clr=14
 		width=1
 	}
-	textix="SDBS"
+	textix="MBSD"
 	align="horiz. centered"
 }
 rectangle {
@@ -7103,15 +6740,15 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(A=1)||(A=B)"
+		calc="(A=1)&&(B=0)"
 		chan="PA:$(xx)$(yy):STA_D_SDS_OPEN_PL.VAL"
 		chanB="PB:$(xx)$(yy):STA_D_SDS_CLSD_PL.VAL"
 	}
 }
 rectangle {
 	object {
-		x=822
-		y=393
+		x=875
+		y=395
 		width=540
 		height=190
 	}
@@ -7123,8 +6760,8 @@ rectangle {
 }
 text {
 	object {
-		x=1032
-		y=396
+		x=1085
+		y=398
 		width=130
 		height=15
 	}
@@ -7135,8 +6772,8 @@ text {
 }
 polyline {
 	object {
-		x=822
-		y=411
+		x=875
+		y=413
 		width=539
 		height=2
 	}
@@ -7146,14 +6783,14 @@ polyline {
 		width=2
 	}
 	points {
-		(823,412)
-		(1360,412)
+		(876,414)
+		(1413,414)
 	}
 }
 polyline {
 	object {
-		x=1151
-		y=410
+		x=1204
+		y=412
 		width=2
 		height=174
 	}
@@ -7163,14 +6800,14 @@ polyline {
 		width=2
 	}
 	points {
-		(1152,411)
-		(1152,583)
+		(1205,413)
+		(1205,585)
 	}
 }
 "text update" {
 	object {
-		x=1168
-		y=449
+		x=1221
+		y=451
 		width=50
 		height=14
 	}
@@ -7184,27 +6821,10 @@ polyline {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1165
-		y=446
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PB:$(xx)$(yy):DIW_LOW_01_PERT.VAL"
-	}
-}
 text {
 	object {
-		x=905
-		y=416
+		x=958
+		y=418
 		width=120
 		height=15
 	}
@@ -7216,8 +6836,8 @@ text {
 }
 text {
 	object {
-		x=1185
-		y=416
+		x=1238
+		y=418
 		width=120
 		height=15
 	}
@@ -7229,8 +6849,8 @@ text {
 }
 "text update" {
 	object {
-		x=1231
-		y=449
+		x=1284
+		y=451
 		width=50
 		height=14
 	}
@@ -7245,8 +6865,8 @@ text {
 }
 text {
 	object {
-		x=967
-		y=431
+		x=1020
+		y=433
 		width=55
 		height=13
 	}
@@ -7258,8 +6878,8 @@ text {
 }
 text {
 	object {
-		x=1028
-		y=431
+		x=1081
+		y=433
 		width=55
 		height=13
 	}
@@ -7271,8 +6891,8 @@ text {
 }
 text {
 	object {
-		x=1167
-		y=431
+		x=1220
+		y=433
 		width=55
 		height=13
 	}
@@ -7284,8 +6904,8 @@ text {
 }
 text {
 	object {
-		x=1228
-		y=431
+		x=1281
+		y=433
 		width=55
 		height=13
 	}
@@ -7297,8 +6917,8 @@ text {
 }
 "text update" {
 	object {
-		x=969
-		y=449
+		x=1022
+		y=451
 		width=50
 		height=14
 	}
@@ -7312,27 +6932,10 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=966
-		y=446
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):DIW_LOW_01_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1032
-		y=449
+		x=1085
+		y=451
 		width=50
 		height=14
 	}
@@ -7347,8 +6950,8 @@ rectangle {
 }
 text {
 	object {
-		x=830
-		y=450
+		x=883
+		y=452
 		width=125
 		height=13
 	}
@@ -7360,8 +6963,8 @@ text {
 }
 "text update" {
 	object {
-		x=1168
-		y=471
+		x=1221
+		y=473
 		width=50
 		height=14
 	}
@@ -7375,27 +6978,10 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1165
-		y=468
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PB:$(xx)$(yy):DIW_LOW_02_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1231
-		y=471
+		x=1284
+		y=473
 		width=50
 		height=14
 	}
@@ -7410,8 +6996,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=969
-		y=471
+		x=1022
+		y=473
 		width=50
 		height=14
 	}
@@ -7425,27 +7011,10 @@ rectangle {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=966
-		y=468
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):DIW_LOW_02_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1032
-		y=471
+		x=1085
+		y=473
 		width=50
 		height=14
 	}
@@ -7460,8 +7029,8 @@ rectangle {
 }
 text {
 	object {
-		x=830
-		y=472
+		x=883
+		y=474
 		width=125
 		height=13
 	}
@@ -7473,8 +7042,8 @@ text {
 }
 "text update" {
 	object {
-		x=1168
-		y=493
+		x=1221
+		y=495
 		width=50
 		height=14
 	}
@@ -7488,27 +7057,10 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1165
-		y=490
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PB:$(xx)$(yy):DIW_LOW_03_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1231
-		y=493
+		x=1284
+		y=495
 		width=50
 		height=14
 	}
@@ -7523,8 +7075,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=969
-		y=493
+		x=1022
+		y=495
 		width=50
 		height=14
 	}
@@ -7538,27 +7090,10 @@ rectangle {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=966
-		y=490
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):DIW_LOW_03_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1032
-		y=493
+		x=1085
+		y=495
 		width=50
 		height=14
 	}
@@ -7573,21 +7108,21 @@ rectangle {
 }
 text {
 	object {
-		x=830
-		y=494
+		x=883
+		y=496
 		width=125
 		height=13
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="PHA2Mask-St.A-F"
+	textix="WBStop-St.A-F"
 	align="horiz. right"
 }
 "text update" {
 	object {
-		x=1168
-		y=515
+		x=1221
+		y=517
 		width=50
 		height=14
 	}
@@ -7601,27 +7136,10 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1165
-		y=512
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PB:$(xx)$(yy):DIW_LOW_04_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1231
-		y=515
+		x=1284
+		y=517
 		width=50
 		height=14
 	}
@@ -7636,8 +7154,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=969
-		y=515
+		x=1022
+		y=517
 		width=50
 		height=14
 	}
@@ -7651,27 +7169,10 @@ rectangle {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=966
-		y=512
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):DIW_LOW_04_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1032
-		y=515
+		x=1085
+		y=517
 		width=50
 		height=14
 	}
@@ -7686,8 +7187,8 @@ rectangle {
 }
 text {
 	object {
-		x=830
-		y=516
+		x=883
+		y=518
 		width=125
 		height=13
 	}
@@ -7699,8 +7200,8 @@ text {
 }
 "text update" {
 	object {
-		x=1168
-		y=536
+		x=1221
+		y=538
 		width=50
 		height=14
 	}
@@ -7714,27 +7215,10 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1165
-		y=533
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PB:$(xx)$(yy):DIW_LOW_05_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1231
-		y=536
+		x=1284
+		y=538
 		width=50
 		height=14
 	}
@@ -7749,8 +7233,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=969
-		y=536
+		x=1022
+		y=538
 		width=50
 		height=14
 	}
@@ -7764,27 +7248,10 @@ rectangle {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=966
-		y=533
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):DIW_LOW_05_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1032
-		y=536
+		x=1085
+		y=538
 		width=50
 		height=14
 	}
@@ -7799,8 +7266,8 @@ rectangle {
 }
 text {
 	object {
-		x=830
-		y=537
+		x=883
+		y=539
 		width=125
 		height=13
 	}
@@ -7823,11 +7290,10 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(A&&B&&(!(C&&D)))"
+		calc="(A&&B&&(!C))"
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PA:$(xx)$(yy):STA_C_SCS_OPEN_PL.VAL"
-		chanC="PA:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
-		chanD="PB:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
+		chanC="PB:$(xx)$(yy):STA_C_SCS_CLSD_PL.VAL"
 	}
 }
 polygon {
@@ -7843,11 +7309,10 @@ polygon {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(A&&B&&(!(C&&D)))"
+		calc="(A&&B&&(!C))"
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PA:$(xx)$(yy):STA_C_SCS_OPEN_PL.VAL"
-		chanC="PA:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
-		chanD="PB:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
+		chanC="PB:$(xx)$(yy):STA_C_SCS_CLSD_PL.VAL"
 	}
 	points {
 		(268,205)
@@ -7858,8 +7323,8 @@ polygon {
 }
 text {
 	object {
-		x=613
-		y=468
+		x=623
+		y=458
 		width=36
 		height=13
 	}
@@ -7871,8 +7336,8 @@ text {
 }
 text {
 	object {
-		x=613
-		y=484
+		x=623
+		y=474
 		width=36
 		height=13
 	}
@@ -7884,8 +7349,8 @@ text {
 }
 text {
 	object {
-		x=613
-		y=502
+		x=623
+		y=492
 		width=36
 		height=13
 	}
@@ -7897,8 +7362,8 @@ text {
 }
 "related display" {
 	object {
-		x=591
-		y=466
+		x=601
+		y=456
 		width=13
 		height=13
 	}
@@ -7910,8 +7375,8 @@ text {
 }
 "related display" {
 	object {
-		x=591
-		y=484
+		x=601
+		y=474
 		width=13
 		height=13
 	}
@@ -7923,8 +7388,8 @@ text {
 }
 "related display" {
 	object {
-		x=591
-		y=502
+		x=601
+		y=492
 		width=13
 		height=13
 	}
@@ -7938,8 +7403,8 @@ text {
 }
 text {
 	object {
-		x=613
-		y=521
+		x=623
+		y=511
 		width=36
 		height=13
 	}
@@ -7951,8 +7416,8 @@ text {
 }
 "related display" {
 	object {
-		x=591
-		y=521
+		x=601
+		y=511
 		width=13
 		height=13
 	}
@@ -7962,8 +7427,8 @@ text {
 		args="xx=13,yy=ID"
 	}
 	display[1] {
-		label="GE RX7i Fanuc "
-		name="GE9070Plc.adl"
+		label="GE RX3i Fanuc "
+		name="GE9079Plc.adl"
 		args="xx=13,yy=ID"
 	}
 	clr=14
@@ -7971,8 +7436,8 @@ text {
 }
 text {
 	object {
-		x=485
-		y=477
+		x=495
+		y=467
 		width=36
 		height=13
 	}
@@ -7985,8 +7450,8 @@ text {
 }
 text {
 	object {
-		x=485
-		y=495
+		x=495
+		y=485
 		width=36
 		height=13
 	}
@@ -7998,8 +7463,8 @@ text {
 }
 text {
 	object {
-		x=485
-		y=513
+		x=495
+		y=503
 		width=36
 		height=13
 	}
@@ -8011,8 +7476,8 @@ text {
 }
 oval {
 	object {
-		x=455
-		y=478
+		x=465
+		y=468
 		width=9
 		height=9
 	}
@@ -8027,8 +7492,8 @@ oval {
 }
 oval {
 	object {
-		x=454
-		y=477
+		x=464
+		y=467
 		width=11
 		height=11
 	}
@@ -8040,8 +7505,8 @@ oval {
 }
 oval {
 	object {
-		x=469
-		y=478
+		x=479
+		y=468
 		width=9
 		height=9
 	}
@@ -8056,8 +7521,8 @@ oval {
 }
 oval {
 	object {
-		x=468
-		y=477
+		x=478
+		y=467
 		width=11
 		height=11
 	}
@@ -8069,8 +7534,8 @@ oval {
 }
 oval {
 	object {
-		x=455
-		y=515
+		x=465
+		y=505
 		width=9
 		height=9
 	}
@@ -8085,8 +7550,8 @@ oval {
 }
 oval {
 	object {
-		x=454
-		y=514
+		x=464
+		y=504
 		width=11
 		height=11
 	}
@@ -8098,8 +7563,8 @@ oval {
 }
 oval {
 	object {
-		x=469
-		y=515
+		x=479
+		y=505
 		width=9
 		height=9
 	}
@@ -8114,8 +7579,8 @@ oval {
 }
 oval {
 	object {
-		x=468
-		y=514
+		x=478
+		y=504
 		width=11
 		height=11
 	}
@@ -8127,8 +7592,8 @@ oval {
 }
 text {
 	object {
-		x=466
-		y=466
+		x=476
+		y=456
 		width=15
 		height=12
 	}
@@ -8141,8 +7606,8 @@ text {
 }
 text {
 	object {
-		x=452
-		y=466
+		x=462
+		y=456
 		width=15
 		height=12
 	}
@@ -8155,8 +7620,8 @@ text {
 }
 rectangle {
 	object {
-		x=448
-		y=462
+		x=458
+		y=452
 		width=125
 		height=75
 	}
@@ -8168,8 +7633,8 @@ rectangle {
 }
 oval {
 	object {
-		x=455
-		y=498
+		x=465
+		y=488
 		width=9
 		height=9
 	}
@@ -8184,8 +7649,8 @@ oval {
 }
 oval {
 	object {
-		x=454
-		y=497
+		x=464
+		y=487
 		width=11
 		height=11
 	}
@@ -8197,8 +7662,8 @@ oval {
 }
 oval {
 	object {
-		x=469
-		y=498
+		x=479
+		y=488
 		width=9
 		height=9
 	}
@@ -8213,8 +7678,8 @@ oval {
 }
 oval {
 	object {
-		x=468
-		y=497
+		x=478
+		y=487
 		width=11
 		height=11
 	}
@@ -8238,8 +7703,8 @@ oval {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(!A)&(!B)"
-		chan="PA:$(xx)$(yy):STA_D_CB1.VAL"
-		chanB="PB:$(xx)$(yy):STA_D_CB1.VAL"
+		chan="PA:$(xx)$(yy):STA_D_CB2.VAL"
+		chanB="PB:$(xx)$(yy):STA_D_CB2.VAL"
 	}
 }
 oval {
@@ -8265,7 +7730,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="CB1"
+	textix="CB2"
 }
 rectangle {
 	object {
@@ -8282,8 +7747,8 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A#B"
-		chan="PA:$(xx)$(yy):STA_D_CB1.VAL"
-		chanB="PB:$(xx)$(yy):STA_D_CB1.VAL"
+		chan="PA:$(xx)$(yy):STA_D_CB2.VAL"
+		chanB="PB:$(xx)$(yy):STA_D_CB2.VAL"
 	}
 }
 oval {
@@ -8300,8 +7765,8 @@ oval {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(!A)&(!B)"
-		chan="PA:$(xx)$(yy):STA_D_CB2.VAL"
-		chanB="PB:$(xx)$(yy):STA_D_CB2.VAL"
+		chan="PA:$(xx)$(yy):STA_D_CB1.VAL"
+		chanB="PB:$(xx)$(yy):STA_D_CB1.VAL"
 	}
 }
 oval {
@@ -8327,7 +7792,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="CB2"
+	textix="CB1"
 }
 rectangle {
 	object {
@@ -8344,8 +7809,8 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A#B"
-		chan="PA:$(xx)$(yy):STA_D_CB2.VAL"
-		chanB="PB:$(xx)$(yy):STA_D_CB2.VAL"
+		chan="PA:$(xx)$(yy):STA_D_CB1.VAL"
+		chanB="PB:$(xx)$(yy):STA_D_CB1.VAL"
 	}
 }
 oval {
@@ -8362,8 +7827,8 @@ oval {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(!A)&(!B)"
-		chan="PA:$(xx)$(yy):STA_C_CB1.VAL"
-		chanB="PB:$(xx)$(yy):STA_C_CB1.VAL"
+		chan="PA:$(xx)$(yy):STA_C_CB2.VAL"
+		chanB="PB:$(xx)$(yy):STA_C_CB2.VAL"
 	}
 }
 oval {
@@ -8389,7 +7854,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="CB1"
+	textix="CB2"
 }
 rectangle {
 	object {
@@ -8406,14 +7871,14 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A#B"
-		chan="PA:$(xx)$(yy):STA_C_CB1.VAL"
-		chanB="PB:$(xx)$(yy):STA_C_CB1.VAL"
+		chan="PA:$(xx)$(yy):STA_C_CB2.VAL"
+		chanB="PB:$(xx)$(yy):STA_C_CB2.VAL"
 	}
 }
 oval {
 	object {
 		x=247
-		y=378
+		y=377
 		width=9
 		height=9
 	}
@@ -8424,14 +7889,14 @@ oval {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(!A)&(!B)"
-		chan="PA:$(xx)$(yy):STA_C_CB2.VAL"
-		chanB="PB:$(xx)$(yy):STA_C_CB2.VAL"
+		chan="PA:$(xx)$(yy):STA_C_CB1.VAL"
+		chanB="PB:$(xx)$(yy):STA_C_CB1.VAL"
 	}
 }
 oval {
 	object {
 		x=246
-		y=377
+		y=376
 		width=11
 		height=11
 	}
@@ -8444,19 +7909,19 @@ oval {
 text {
 	object {
 		x=242
-		y=366
+		y=364
 		width=20
 		height=10
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="CB2"
+	textix="CB1"
 }
 rectangle {
 	object {
 		x=239
-		y=363
+		y=361
 		width=25
 		height=14
 	}
@@ -8468,8 +7933,8 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A#B"
-		chan="PA:$(xx)$(yy):STA_B_CB2.VAL"
-		chanB="PB:$(xx)$(yy):STA_B_CB2.VAL"
+		chan="PA:$(xx)$(yy):STA_B_CB1.VAL"
+		chanB="PB:$(xx)$(yy):STA_B_CB1.VAL"
 	}
 }
 composite {
@@ -8509,7 +7974,7 @@ composite {
 }
 composite {
 	object {
-		x=4
+		x=10
 		y=551
 		width=625
 		height=55
@@ -8518,7 +7983,7 @@ composite {
 	children {
 		text {
 			object {
-				x=8
+				x=14
 				y=554
 				width=60
 				height=13
@@ -8532,7 +7997,7 @@ composite {
 		}
 		text {
 			object {
-				x=72
+				x=78
 				y=554
 				width=60
 				height=13
@@ -8545,7 +8010,7 @@ composite {
 		}
 		text {
 			object {
-				x=72
+				x=78
 				y=572
 				width=60
 				height=13
@@ -8558,7 +8023,7 @@ composite {
 		}
 		text {
 			object {
-				x=204
+				x=210
 				y=555
 				width=60
 				height=13
@@ -8571,7 +8036,7 @@ composite {
 		}
 		text {
 			object {
-				x=204
+				x=210
 				y=589
 				width=60
 				height=13
@@ -8584,7 +8049,7 @@ composite {
 		}
 		text {
 			object {
-				x=204
+				x=210
 				y=573
 				width=60
 				height=13
@@ -8597,7 +8062,7 @@ composite {
 		}
 		composite {
 			object {
-				x=471
+				x=477
 				y=558
 				width=11
 				height=11
@@ -8606,7 +8071,7 @@ composite {
 			children {
 				oval {
 					object {
-						x=472
+						x=478
 						y=559
 						width=9
 						height=9
@@ -8618,7 +8083,7 @@ composite {
 				}
 				oval {
 					object {
-						x=471
+						x=477
 						y=558
 						width=11
 						height=11
@@ -8633,7 +8098,7 @@ composite {
 		}
 		text {
 			object {
-				x=349
+				x=355
 				y=573
 				width=60
 				height=13
@@ -8646,7 +8111,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=578
+				x=584
 				y=572
 				width=25
 				height=14
@@ -8659,7 +8124,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=4
+				x=10
 				y=551
 				width=625
 				height=55
@@ -8672,7 +8137,7 @@ composite {
 		}
 		text {
 			object {
-				x=72
+				x=78
 				y=588
 				width=60
 				height=13
@@ -8685,7 +8150,7 @@ composite {
 		}
 		text {
 			object {
-				x=350
+				x=356
 				y=558
 				width=60
 				height=13
@@ -8698,7 +8163,7 @@ composite {
 		}
 		text {
 			object {
-				x=544
+				x=550
 				y=557
 				width=60
 				height=13
@@ -8712,7 +8177,7 @@ composite {
 		}
 		oval {
 			object {
-				x=609
+				x=615
 				y=558
 				width=9
 				height=9
@@ -8724,7 +8189,7 @@ composite {
 		}
 		oval {
 			object {
-				x=608
+				x=614
 				y=557
 				width=11
 				height=11
@@ -8780,8 +8245,8 @@ composite {
 }
 text {
 	object {
-		x=1086
-		y=431
+		x=1139
+		y=433
 		width=55
 		height=13
 	}
@@ -8793,8 +8258,8 @@ text {
 }
 "text update" {
 	object {
-		x=1090
-		y=449
+		x=1143
+		y=451
 		width=50
 		height=14
 	}
@@ -8809,8 +8274,8 @@ text {
 }
 "text update" {
 	object {
-		x=1090
-		y=471
+		x=1143
+		y=473
 		width=50
 		height=14
 	}
@@ -8825,8 +8290,8 @@ text {
 }
 "text update" {
 	object {
-		x=1090
-		y=493
+		x=1143
+		y=495
 		width=50
 		height=14
 	}
@@ -8841,8 +8306,8 @@ text {
 }
 "text update" {
 	object {
-		x=1090
-		y=515
+		x=1143
+		y=517
 		width=50
 		height=14
 	}
@@ -8857,8 +8322,8 @@ text {
 }
 "text update" {
 	object {
-		x=1090
-		y=536
+		x=1143
+		y=538
 		width=50
 		height=14
 	}
@@ -8873,8 +8338,8 @@ text {
 }
 text {
 	object {
-		x=1290
-		y=431
+		x=1343
+		y=433
 		width=55
 		height=13
 	}
@@ -8886,8 +8351,8 @@ text {
 }
 "text update" {
 	object {
-		x=1294
-		y=449
+		x=1347
+		y=451
 		width=50
 		height=14
 	}
@@ -8902,8 +8367,8 @@ text {
 }
 "text update" {
 	object {
-		x=1294
-		y=471
+		x=1347
+		y=473
 		width=50
 		height=14
 	}
@@ -8918,8 +8383,8 @@ text {
 }
 "text update" {
 	object {
-		x=1294
-		y=493
+		x=1347
+		y=495
 		width=50
 		height=14
 	}
@@ -8934,8 +8399,8 @@ text {
 }
 "text update" {
 	object {
-		x=1294
-		y=515
+		x=1347
+		y=517
 		width=50
 		height=14
 	}
@@ -8950,8 +8415,8 @@ text {
 }
 "text update" {
 	object {
-		x=1294
-		y=536
+		x=1347
+		y=538
 		width=50
 		height=14
 	}
@@ -8966,8 +8431,8 @@ text {
 }
 "text update" {
 	object {
-		x=1168
-		y=557
+		x=1221
+		y=559
 		width=50
 		height=14
 	}
@@ -8981,27 +8446,10 @@ text {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=1165
-		y=554
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PB:$(xx)$(yy):DIW_LOW_06_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1231
-		y=557
+		x=1284
+		y=559
 		width=50
 		height=14
 	}
@@ -9016,8 +8464,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=969
-		y=557
+		x=1022
+		y=559
 		width=50
 		height=14
 	}
@@ -9031,27 +8479,10 @@ rectangle {
 	limits {
 	}
 }
-rectangle {
-	object {
-		x=966
-		y=554
-		width=56
-		height=20
-	}
-	"basic attribute" {
-		clr=21
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:$(xx)$(yy):DIW_LOW_06_PERT.VAL"
-	}
-}
 "text update" {
 	object {
-		x=1032
-		y=557
+		x=1085
+		y=559
 		width=50
 		height=14
 	}
@@ -9066,8 +8497,8 @@ rectangle {
 }
 text {
 	object {
-		x=830
-		y=558
+		x=883
+		y=560
 		width=125
 		height=13
 	}
@@ -9079,8 +8510,8 @@ text {
 }
 "text update" {
 	object {
-		x=1090
-		y=557
+		x=1143
+		y=559
 		width=50
 		height=14
 	}
@@ -9095,8 +8526,8 @@ text {
 }
 "text update" {
 	object {
-		x=1294
-		y=557
+		x=1347
+		y=559
 		width=50
 		height=14
 	}
@@ -9394,9 +8825,9 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(B=1)&&(A=0)"
-		chan="PA:$(xx)$(yy):STA_D_SDS_OPEN_PL.VAL"
-		chanB="PB:$(xx)$(yy):STA_D_SDS_CLSD_PL.VAL"
+		calc="((!A)&&B)"
+		chan="PA:$(xx)$(yy):STA_C_SCS_OPEN_PL.VAL"
+		chanB="PB:$(xx)$(yy):STA_C_SCS_CLSD_PL.VAL"
 	}
 }
 composite {
@@ -9435,14 +8866,14 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(A=1)||(A=B)"
+		calc="(A&&(!B))"
 		chan="PA:$(xx)$(yy):STA_C_SCS_OPEN_PL.VAL"
 		chanB="PB:$(xx)$(yy):STA_C_SCS_CLSD_PL.VAL"
 	}
 }
 text {
 	object {
-		x=1107
+		x=1027
 		y=305
 		width=36
 		height=12
@@ -9456,7 +8887,7 @@ text {
 }
 text {
 	object {
-		x=1107
+		x=1027
 		y=319
 		width=36
 		height=12
@@ -9470,7 +8901,7 @@ text {
 }
 oval {
 	object {
-		x=1149
+		x=1069
 		y=305
 		width=9
 		height=9
@@ -9486,7 +8917,7 @@ oval {
 }
 oval {
 	object {
-		x=1148
+		x=1068
 		y=304
 		width=11
 		height=11
@@ -9499,7 +8930,7 @@ oval {
 }
 oval {
 	object {
-		x=1149
+		x=1069
 		y=319
 		width=9
 		height=9
@@ -9515,7 +8946,7 @@ oval {
 }
 oval {
 	object {
-		x=1148
+		x=1068
 		y=318
 		width=11
 		height=11
@@ -9528,7 +8959,7 @@ oval {
 }
 rectangle {
 	object {
-		x=1144
+		x=1064
 		y=302
 		width=32
 		height=16
@@ -9541,7 +8972,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=1144
+		x=1064
 		y=316
 		width=32
 		height=16
@@ -9910,31 +9341,6 @@ composite {
 		chanB="PB:$(xx)$(yy):STA_E_SES_CLSD_PL.VAL"
 	}
 }
-polygon {
-	object {
-		x=635
-		y=200
-		width=16
-		height=13
-	}
-	"basic attribute" {
-		clr=15
-		width=1
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A&&(!(B&&C)))"
-		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
-		chanB="PA:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
-		chanC="PB:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
-	}
-	points {
-		(635,205)
-		(650,200)
-		(651,213)
-		(635,205)
-	}
-}
 polyline {
 	object {
 		x=660
@@ -10086,7 +9492,7 @@ rectangle {
 		width=1
 	}
 	"dynamic attribute" {
-		vis="if not zero"
+		vis="calc"
 		calc="(A=1)&&(B=0)"
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PB:$(xx)$(yy):STA_A_FES_CLSD_PL.VAL"
@@ -10104,7 +9510,7 @@ polygon {
 		width=1
 	}
 	"dynamic attribute" {
-		vis="if not zero"
+		vis="calc"
 		calc="(A=1)&&(B=0)"
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
 		chanB="PB:$(xx)$(yy):STA_A_FES_CLSD_PL.VAL"
@@ -10116,22 +9522,688 @@ polygon {
 		(1092,205)
 	}
 }
-rectangle {
+polyline {
 	object {
-		x=646
-		y=204
-		width=375
-		height=5
+		x=607
+		y=313
+		width=27
+		height=27
+	}
+	"basic attribute" {
+		clr=14
+		width=8
+	}
+	points {
+		(630,336)
+		(611,317)
+	}
+}
+text {
+	object {
+		x=898
+		y=169
+		width=40
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MONO"
+}
+oval {
+	object {
+		x=884
+		y=169
+		width=9
+		height=9
 	}
 	"basic attribute" {
 		clr=15
 		width=1
 	}
 	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:$(xx)$(yy):STA_A_INBD_MONO_PL.VAL"
+	}
+}
+oval {
+	object {
+		x=883
+		y=168
+		width=11
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=1
+	}
+}
+text {
+	object {
+		x=898
+		y=180
+		width=40
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="WHITE"
+}
+oval {
+	object {
+		x=884
+		y=180
+		width=9
+		height=9
+	}
+	"basic attribute" {
+		clr=15
+		width=1
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:$(xx)$(yy):STA_A_INBD_WHITE_PL.VAL"
+	}
+}
+oval {
+	object {
+		x=883
+		y=179
+		width=11
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=1
+	}
+}
+text {
+	object {
+		x=883
+		y=160
+		width=40
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MODE"
+}
+rectangle {
+	object {
+		x=880
+		y=158
+		width=60
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=630
+		y=199
+		width=391
+		height=13
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=630
+				y=199
+				width=15
+				height=13
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+			points {
+				(630,205)
+				(644,199)
+				(645,212)
+				(630,205)
+			}
+		}
+		rectangle {
+			object {
+				x=636
+				y=203
+				width=385
+				height=5
+			}
+			"basic attribute" {
+				clr=15
+				width=1
+			}
+		}
+	}
+	"dynamic attribute" {
 		vis="calc"
-		calc="(A&&(!(B&&C)))"
+		calc="A&&(!B)"
 		chan="PA:$(xx)$(yy):STA_A_FES_OPEN_PL.VAL"
-		chanB="PA:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
-		chanC="PB:$(xx)$(yy):SCS_PS_CLSD_LS.VAL"
+		chanB="PB:$(xx)$(yy):STA_A_FES_CLSD_PL.VAL"
+	}
+}
+text {
+	object {
+		x=655
+		y=590
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="PA:$(xx)$(yy):dcm.STAT"
+	}
+	textix="Chain A PLC Link Down"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=880
+		y=590
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="PB:$(xx)$(yy):PLCLinkStatus"
+	}
+	textix="Chain B PLC Link Down"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1019
+		y=447
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PA:$(xx)$(yy):DIW_FLOW_1_WARN.VAL"
+		chanB="PA:$(xx)$(yy):DIW_CHANNEL_01_WARN.VAL"
+		chanC="PA:$(xx)$(yy):DIW_LOW_01_PERT.VAL"
+		chanD="PA:$(xx)$(yy):DIW_OVER_01_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=448
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PA:$(xx)$(yy):DIW_LOW_01_PERT.VAL"
+		chanB="PA:$(xx)$(yy):DIW_OVER_01_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1020
+		y=470
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PA:$(xx)$(yy):DIW_FLOW_2_WARN.VAL"
+		chanB="PA:$(xx)$(yy):DIW_CHANNEL_02_WARN.VAL"
+		chanC="PA:$(xx)$(yy):DIW_LOW_02_PERT.VAL"
+		chanD="PA:$(xx)$(yy):DIW_OVER_02_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=470
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PA:$(xx)$(yy):DIW_LOW_02_PERT.VAL"
+		chanB="PA:$(xx)$(yy):DIW_OVER_02_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1020
+		y=556
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PA:$(xx)$(yy):DIW_FLOW_6_WARN.VAL"
+		chanB="PA:$(xx)$(yy):DIW_CHANNEL_06_WARN.VAL"
+		chanC="PA:$(xx)$(yy):DIW_LOW_06_PERT.VAL"
+		chanD="PA:$(xx)$(yy):DIW_OVER_06_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=556
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PA:$(xx)$(yy):DIW_LOW_06_PERT.VAL"
+		chanB="PA:$(xx)$(yy):DIW_OVER_06_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=514
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PA:$(xx)$(yy):DIW_FLOW_4_WARN.VAL"
+		chanB="PA:$(xx)$(yy):DIW_CHANNEL_04_WARN.VAL"
+		chanC="PA:$(xx)$(yy):DIW_LOW_04_PERT.VAL"
+		chanD="PA:$(xx)$(yy):DIW_OVER_04_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=514
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PA:$(xx)$(yy):DIW_LOW_04_PERT.VAL"
+		chanB="PA:$(xx)$(yy):DIW_OVER_04_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=492
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PA:$(xx)$(yy):DIW_FLOW_3_WARN.VAL"
+		chanB="PA:$(xx)$(yy):DIW_CHANNEL_03_WARN.VAL"
+		chanC="PA:$(xx)$(yy):DIW_LOW_03_PERT.VAL"
+		chanD="PA:$(xx)$(yy):DIW_OVER_03_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=492
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PA:$(xx)$(yy):DIW_LOW_03_PERT.VAL"
+		chanB="PA:$(xx)$(yy):DIW_OVER_03_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=535
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PA:$(xx)$(yy):DIW_FLOW_5_WARN.VAL"
+		chanB="PA:$(xx)$(yy):DIW_CHANNEL_05_WARN.VAL"
+		chanC="PA:$(xx)$(yy):DIW_LOW_05_PERT.VAL"
+		chanD="PA:$(xx)$(yy):DIW_OVER_05_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1019
+		y=535
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PA:$(xx)$(yy):DIW_LOW_05_PERT.VAL"
+		chanB="PA:$(xx)$(yy):DIW_OVER_05_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=448
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PB:$(xx)$(yy):DIW_LOW_01_PERT.VAL"
+		chanB="PB:$(xx)$(yy):DIW_OVER_01_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=448
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PB:$(xx)$(yy):DIW_FLOW_1_WARN.VAL"
+		chanB="PB:$(xx)$(yy):DIW_CHANNEL_01_WARN.VAL"
+		chanC="PB:$(xx)$(yy):DIW_LOW_01_PERT.VAL"
+		chanD="PB:$(xx)$(yy):DIW_OVER_01_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=470
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PB:$(xx)$(yy):DIW_FLOW_2_WARN.VAL"
+		chanB="PB:$(xx)$(yy):DIW_CHANNEL_02_WARN.VAL"
+		chanC="PB:$(xx)$(yy):DIW_LOW_02_PERT.VAL"
+		chanD="PB:$(xx)$(yy):DIW_OVER_02_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=470
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PB:$(xx)$(yy):DIW_LOW_02_PERT.VAL"
+		chanB="PB:$(xx)$(yy):DIW_OVER_02_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=492
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PB:$(xx)$(yy):DIW_FLOW_3_WARN.VAL"
+		chanB="PB:$(xx)$(yy):DIW_CHANNEL_03_WARN.VAL"
+		chanC="PB:$(xx)$(yy):DIW_LOW_03_PERT.VAL"
+		chanD="PB:$(xx)$(yy):DIW_OVER_03_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=492
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PB:$(xx)$(yy):DIW_LOW_03_PERT.VAL"
+		chanB="PB:$(xx)$(yy):DIW_OVER_03_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=514
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PB:$(xx)$(yy):DIW_FLOW_4_WARN.VAL"
+		chanB="PB:$(xx)$(yy):DIW_CHANNEL_04_WARN.VAL"
+		chanC="PB:$(xx)$(yy):DIW_LOW_04_PERT.VAL"
+		chanD="PB:$(xx)$(yy):DIW_OVER_04_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=514
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PB:$(xx)$(yy):DIW_LOW_04_PERT.VAL"
+		chanB="PB:$(xx)$(yy):DIW_OVER_04_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=535
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PB:$(xx)$(yy):DIW_FLOW_5_WARN.VAL"
+		chanB="PB:$(xx)$(yy):DIW_CHANNEL_05_WARN.VAL"
+		chanC="PB:$(xx)$(yy):DIW_LOW_05_PERT.VAL"
+		chanD="PB:$(xx)$(yy):DIW_OVER_05_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=535
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PB:$(xx)$(yy):DIW_LOW_05_PERT.VAL"
+		chanB="PB:$(xx)$(yy):DIW_OVER_05_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=556
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=32
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A||B)&!C&!D"
+		chan="PB:$(xx)$(yy):DIW_FLOW_6_WARN.VAL"
+		chanB="PB:$(xx)$(yy):DIW_CHANNEL_06_WARN.VAL"
+		chanC="PB:$(xx)$(yy):DIW_LOW_06_PERT.VAL"
+		chanD="PB:$(xx)$(yy):DIW_OVER_06_PERT.VAL"
+	}
+}
+rectangle {
+	object {
+		x=1218
+		y=556
+		width=56
+		height=20
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A||B"
+		chan="PB:$(xx)$(yy):DIW_LOW_06_PERT.VAL"
+		chanB="PB:$(xx)$(yy):DIW_OVER_06_PERT.VAL"
 	}
 }
