@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=259
-		y=64
+		x=734
+		y=62
 		width=1350
-		height=1061
+		height=1090
 	}
 	clr=14
 	bclr=4
@@ -85,6 +85,17 @@ display {
 		3cb420,
 		289315,
 		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=1083
+		y=100
+		width=70
+		height=90
+	}
+	"basic attribute" {
+		clr=45
 	}
 }
 rectangle {
@@ -6848,17 +6859,6 @@ polyline {
 }
 rectangle {
 	object {
-		x=1083
-		y=100
-		width=70
-		height=90
-	}
-	"basic attribute" {
-		clr=45
-	}
-}
-rectangle {
-	object {
 		x=1116
 		y=226
 		width=5
@@ -6868,9 +6868,9 @@ rectangle {
 		clr=12
 	}
 	"dynamic attribute" {
-		vis="calc"
+		vis="if zero"
 		calc="A!=2"
-		chan="EPS:13:ID:BIV:POSITION"
+		chan="S13ID-FEEPS:BIV:OpenedM"
 	}
 }
 rectangle {
@@ -6884,9 +6884,9 @@ rectangle {
 		clr=12
 	}
 	"dynamic attribute" {
-		vis="calc"
+		vis="if not zero"
 		calc="A=2"
-		chan="EPS:13:ID:BIV:POSITION"
+		chan="S13ID-FEEPS:BIV:OpenedM"
 	}
 }
 rectangle {
@@ -7392,7 +7392,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="FE:13:ID:IP6.VOLT"
+		chan="S13IDFE:IPC1:IP7:PressureM.VOLT"
 		clr=15
 		bclr=12
 	}
@@ -7409,7 +7409,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="FE:13:ID:IP6.CRNT"
+		chan="S13IDFE:IPC1:IP7:PressureM.CRNT"
 		clr=15
 		bclr=12
 	}
@@ -7427,7 +7427,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="FE:13:ID:IP6.VAL"
+		chan="S13IDFE:IPC1:IP7:PressureM.VAL"
 		clr=15
 		bclr=12
 	}
@@ -7664,7 +7664,7 @@ polyline {
 		height=15
 	}
 	monitor {
-		chan="EPS:13:ID:BIV:POSITION"
+		chan="S13ID-FEEPS:BIV:OpenedM"
 		clr=14
 		bclr=0
 	}
@@ -7672,23 +7672,6 @@ polyline {
 	align="horiz. centered"
 	format="string"
 	limits {
-	}
-}
-oval {
-	object {
-		x=1134
-		y=148
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		vis="calc"
-		calc="A!=2"
-		chan="EPS:13:ID:BIV:POSITION"
 	}
 }
 text {
@@ -9316,4 +9299,40 @@ text {
 	}
 	textix="IDE Gas Left"
 	align="horiz. right"
+}
+"related display" {
+	object {
+		x=1090
+		y=52
+		width=120
+		height=20
+	}
+	display[0] {
+		label="IFM 1342 #1"
+		name="ifm1342.adl"
+		args="P=13IDA:IFM1:,R1=X01:,R2=X02:,R3=X03:"
+	}
+	display[1] {
+		label="IFM 1342 #2"
+		name="ifm1342.adl"
+		args="P=13IDA:IFM2:,R1=X01:,R2=X02:,R3=X03:"
+	}
+	clr=14
+	bclr=51
+	label="-IFM flow meters"
+}
+oval {
+	object {
+		x=1134
+		y=148
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="S13ID-FEEPS:BIV:OpenedM"
+	}
 }
