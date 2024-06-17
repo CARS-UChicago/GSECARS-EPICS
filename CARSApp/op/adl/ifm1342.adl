@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2070
-		y=119
-		width=940
-		height=400
+		x=118
+		y=146
+		width=930
+		height=270
 	}
 	clr=14
 	bclr=4
@@ -89,424 +89,1332 @@ display {
 }
 text {
 	object {
-		x=380
+		x=0
 		y=5
-		width=180
+		width=930
 		height=25
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="IFM 1342 Modbus"
-}
-"text update" {
-	object {
-		x=10
-		y=105
-		width=200
-		height=20
-	}
-	monitor {
-		chan="$(P)$(R1)FlowRate.DESC"
-		clr=14
-		bclr=4
-	}
-	align="horiz. right"
-	format="string"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=10
-		y=130
-		width=200
-		height=20
-	}
-	monitor {
-		chan="$(P)$(R2)FlowRate.DESC"
-		clr=14
-		bclr=4
-	}
-	align="horiz. right"
-	format="string"
-	limits {
-	}
+	textix="IFM 1342 Modbus - $(P)"
+	align="horiz. centered"
 }
 composite {
 	object {
-		x=215
-		y=80
-		width=100
-		height=70
+		x=10
+		y=40
+		width=915
+		height=220
 	}
 	"composite name"=""
 	children {
-		text {
+		composite {
+			object {
+				x=10
+				y=90
+				width=908
+				height=20
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=90
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R2)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=90
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R2)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=90
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R2)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=90
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R2)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=90
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R2)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=90
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R2)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=90
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R2)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=90
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R2)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=90
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R2)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=10
+				y=65
+				width=908
+				height=20
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=65
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R1)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=65
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R1)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=65
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R1)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=65
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R1)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=65
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R1)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=65
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R1)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=65
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R1)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=65
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R1)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=65
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R1)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
+			}
+		}
+		composite {
 			object {
 				x=215
-				y=80
-				width=100
+				y=40
+				width=710
 				height=20
 			}
-			"basic attribute" {
-				clr=14
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=215
+						y=40
+						width=100
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix=" Flow rate"
+				}
+				text {
+					object {
+						x=320
+						y=40
+						width=120
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix=" Temperature"
+				}
+				text {
+					object {
+						x=445
+						y=40
+						width=70
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix=" Output"
+				}
+				text {
+					object {
+						x=537
+						y=40
+						width=90
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Set point"
+				}
+				text {
+					object {
+						x=650
+						y=40
+						width=120
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix=" Reset point"
+				}
+				text {
+					object {
+						x=775
+						y=40
+						width=150
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix=" Read setpoints"
+				}
 			}
-			textix=" Flow rate"
 		}
-		"text update" {
+		composite {
 			object {
-				x=225
-				y=105
-				width=80
+				x=10
+				y=115
+				width=908
 				height=20
 			}
-			monitor {
-				chan="$(P)$(R1)FlowRate"
-				clr=53
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=115
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R3)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=115
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R3)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=115
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R3)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=115
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R3)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=115
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R3)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=115
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R3)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=115
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R3)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=115
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R3)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=115
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R3)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
 			}
 		}
-		"text update" {
+		composite {
 			object {
-				x=225
-				y=130
-				width=80
+				x=10
+				y=140
+				width=908
 				height=20
 			}
-			monitor {
-				chan="$(P)$(R2)FlowRate"
-				clr=53
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=140
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R4)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=140
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R4)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=140
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R4)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=140
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R4)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=140
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R4)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=140
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R4)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=140
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R4)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=140
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R4)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=140
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R4)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
 			}
 		}
-	}
-}
-composite {
-	object {
-		x=320
-		y=80
-		width=120
-		height=70
-	}
-	"composite name"=""
-	children {
-		text {
+		composite {
 			object {
-				x=320
-				y=80
-				width=120
+				x=10
+				y=165
+				width=908
 				height=20
 			}
-			"basic attribute" {
-				clr=14
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=165
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R5)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=165
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R5)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=165
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R5)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=165
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R5)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=165
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R5)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=165
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R5)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=165
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R5)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=165
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R5)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=165
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R5)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
 			}
-			textix=" Temperature"
 		}
-		"text update" {
+		composite {
 			object {
-				x=340
-				y=105
-				width=80
+				x=10
+				y=190
+				width=908
 				height=20
 			}
-			monitor {
-				chan="$(P)$(R1)Temperature"
-				clr=53
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=190
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R6)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=190
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R6)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=190
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R6)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=190
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R6)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=190
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R6)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=190
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R6)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=190
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R6)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=190
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R6)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=190
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R6)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
 			}
 		}
-		"text update" {
+		composite {
 			object {
-				x=340
-				y=130
-				width=80
+				x=10
+				y=215
+				width=908
 				height=20
 			}
-			monitor {
-				chan="$(P)$(R2)Temperature"
-				clr=53
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=215
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R7)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=215
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R7)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=215
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R7)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=215
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R7)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=215
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R7)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=215
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R7)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=215
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R7)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=215
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R7)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=215
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R7)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
 			}
 		}
-	}
-}
-composite {
-	object {
-		x=445
-		y=80
-		width=70
-		height=70
-	}
-	"composite name"=""
-	children {
-		text {
+		composite {
 			object {
-				x=445
-				y=80
-				width=70
+				x=10
+				y=240
+				width=908
 				height=20
 			}
-			"basic attribute" {
-				clr=14
-			}
-			textix=" Output"
-		}
-		"text update" {
-			object {
-				x=450
-				y=105
-				width=60
-				height=20
-			}
-			monitor {
-				chan="$(P)$(R1)Out2"
-				clr=53
-				bclr=4
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="string"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=450
-				y=130
-				width=60
-				height=20
-			}
-			monitor {
-				chan="$(P)$(R2)Out2"
-				clr=53
-				bclr=4
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="string"
-			limits {
-			}
-		}
-	}
-}
-text {
-	object {
-		x=537
-		y=80
-		width=90
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Set point"
-}
-"text entry" {
-	object {
-		x=520
-		y=105
-		width=60
-		height=20
-	}
-	control {
-		chan="$(P)$(R1)Flow2Set"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=585
-		y=105
-		width=60
-		height=20
-	}
-	monitor {
-		chan="$(P)$(R1)Flow2Set_RBV"
-		clr=53
-		bclr=4
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=520
-		y=130
-		width=60
-		height=20
-	}
-	control {
-		chan="$(P)$(R2)Flow2Set"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=585
-		y=130
-		width=60
-		height=20
-	}
-	monitor {
-		chan="$(P)$(R2)Flow2Set_RBV"
-		clr=53
-		bclr=4
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-composite {
-	object {
-		x=650
-		y=80
-		width=120
-		height=70
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=650
-				y=80
-				width=120
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix=" Reset point"
-		}
-		"text update" {
-			object {
-				x=680
-				y=107
-				width=60
-				height=20
-			}
-			monitor {
-				chan="$(P)$(R1)Flow2Reset_RBV"
-				clr=53
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=10
+						y=240
+						width=200
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R8)FlowRate.DESC"
+						clr=14
+						bclr=4
+					}
+					align="horiz. right"
+					format="string"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=225
+						y=240
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R8)FlowRate"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=340
+						y=240
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R8)Temperature"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=450
+						y=240
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R8)Out2"
+						clr=53
+						bclr=4
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="string"
+					limits {
+					}
+				}
+				"text entry" {
+					object {
+						x=520
+						y=240
+						width=60
+						height=20
+					}
+					control {
+						chan="$(P)$(R8)Flow2Set"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=585
+						y=240
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R8)Flow2Set_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=680
+						y=240
+						width=60
+						height=20
+					}
+					monitor {
+						chan="$(P)$(R8)Flow2Reset_RBV"
+						clr=53
+						bclr=4
+					}
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=783
+						y=240
+						width=50
+						height=20
+					}
+					control {
+						chan="$(P)$(R8)Flow2Set_RBV.PROC"
+						clr=14
+						bclr=51
+					}
+					label="Read"
+					press_msg="1"
+				}
+				menu {
+					object {
+						x=838
+						y=240
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)$(R8)Flow2Set_RBV.SCAN"
+						clr=14
+						bclr=51
+					}
+				}
 			}
 		}
-		"text update" {
-			object {
-				x=680
-				y=130
-				width=60
-				height=20
-			}
-			monitor {
-				chan="$(P)$(R2)Flow2Reset_RBV"
-				clr=53
-				bclr=4
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
-	}
-}
-text {
-	object {
-		x=775
-		y=80
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix=" Read setpoints"
-}
-composite {
-	object {
-		x=783
-		y=105
-		width=135
-		height=20
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=783
-				y=105
-				width=50
-				height=20
-			}
-			control {
-				chan="$(P)$(R1)Flow2Set_RBV.PROC"
-				clr=14
-				bclr=51
-			}
-			label="Read"
-			press_msg="1"
-		}
-		menu {
-			object {
-				x=838
-				y=105
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)$(R1)Flow2Set_RBV.SCAN"
-				clr=14
-				bclr=51
-			}
-		}
-	}
-}
-"message button" {
-	object {
-		x=783
-		y=130
-		width=50
-		height=20
-	}
-	control {
-		chan="$(P)$(R2)Flow2Set_RBV.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Read"
-	press_msg="1"
-}
-menu {
-	object {
-		x=838
-		y=130
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(R2)Flow2Set_RBV.SCAN"
-		clr=14
-		bclr=51
 	}
 }
