@@ -23,6 +23,7 @@ CARS_SRCS += drvIFM_AL1342.cpp
 CARS_SRCS_Linux   += testIpac.c
 CARS_SRCS_vxWorks += testIpac.c
 
+CARS_LIBS += modbus asyn
 CARS_LIBS += seq pv $(EPICS_IOC_BASE_LIBS)
 # GSE_MonoSupport.cpp needs libxml2.  That is provided in ADSupport.
 -include $(ADCORE)/ADApp/commonLibraryMakefile
