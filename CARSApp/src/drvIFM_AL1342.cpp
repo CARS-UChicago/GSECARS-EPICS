@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <string>
 
 #include <epicsTypes.h>
 #include <epicsTime.h>
@@ -100,7 +101,8 @@ drvIFM_AL1342::drvIFM_AL1342(const char *portName, const char *ipDriver)
      *               int pollMsec, 
      *               const char *plcType); */
      // Use absolute addressing, modbusStartAddress = -1
-    pModbus_ = new drvModbusAsyn("AL1342", ipDriver, 0, MODBUS_READ_HOLDING_REGISTERS, -1, 64, dataTypeUInt16, 0, "AL1342");
+    std::string pname = std::string(portName)+"_modbus";
+    pModbus_ = new drvModbusAsyn(pname.c_str(), ipDriver, 0, MODBUS_READ_HOLDING_REGISTERS, -1, 64, dataTypeUInt16, 0, "AL1342");
 }
 
 asynStatus drvIFM_AL1342::writeInt32(asynUser *pasynUser, epicsInt32 value)
