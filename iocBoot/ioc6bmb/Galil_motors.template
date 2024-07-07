@@ -1,0 +1,49 @@
+file "$(CARS)/db/galil_motor.template"
+{
+pattern  
+{P,          M,    DTYP,         PORT,   CTRL,  ADDR,   DESC,                      EGU,   DIR,  VELO,   VBAS,     ACCL,  BDST,   BVEL,  BACC,    SREV,     UREV,   PREC,  DHLM,  DLLM}
+{6BMB_LVP:,  m1,  "asynMotor",  GALIL1, Galil1:, 0,     "Pedestal X (Horiz)",       mm,   Pos,   .2,     .02,      .25,     0,    .05,   1.5,    1000,       .3,     4,    20,    -20}
+{6BMB_LVP:,  m2,  "asynMotor",  GALIL1, Galil1:, 1,     "Pedestal Z (Beam)",        mm,   Pos,   .5,      .1,      .25,     0,    .05,   1.5,    1000,      -.3,     4,    20,    -20}
+{6BMB_LVP:,  m3,  "asynMotor",  GALIL1, Galil1:, 2,     "Pedestal Phi (Rot)",      deg,   Pos,   .4,     .01,      .25,     0,     .1,   1.5,    1000,       3.,     4,    15,   -1.9}
+{6BMB_LVP:,  m4,  "asynMotor",  GALIL1, Galil1:, 3,     "Pedestal Y (Vert)",        mm,   Pos,   .2,     .02,      .25,     0,    .05,   1.5,    1000,       .2,     4,    12,    -12}
+{6BMB_LVP:,  m5,  "asynMotor",  GALIL1, Galil1:, 4,     "Slit Y Top (1)",           mm,   Pos,   5.,     1.0,      .25,     0,     .1,   1.5,     400,       .4,     4,   15.,   -15.}
+{6BMB_LVP:,  m6,  "asynMotor",  GALIL1, Galil1:, 5,     "Slit Y Bottom (2)",        mm,   Pos,   5.,     1.0,      .25,     0,     .1,   1.5,    2000,       .4,     4,   15.,   -15.}
+{6BMB_LVP:,  m7,  "asynMotor",  GALIL1, Galil1:, 6,     "Slit X Right (3)",         mm,   Pos,   5.,     1.0,      .25,     0,     .1,   1.5,    2000,       .4,     4,   15.,   -15.}
+{6BMB_LVP:,  m8,  "asynMotor",  GALIL1, Galil1:, 7,     "Slit X Left (4)",          mm,   Pos,   5.,     1.0,      .25,     0,     .1,   1.5,    2000,       .4,     4,   15.,   -15.}
+#
+{6BMB_LVP:,  m9,  "asynMotor",  GALIL2, Galil2:, 0,     "Front Con X (Horiz)",      mm,   Pos,   .5,     .01,      .25,     0,     .0,    .0,    1000,       1.,     4,    10,    -10}
+{6BMB_LVP:,  m10, "asynMotor",  GALIL2, Galil2:, 1,     "Front Con Y (Vert)",       mm,   Neg,   .5,     .01,      .25,     0,     .0,    .0,    1000,      0.8,     4,    10,    -10}
+{6BMB_LVP:,  m11, "asynMotor",  GALIL2, Galil2:, 2,     "Rear Con X (Horiz)",       mm,   Pos,   .5,     .01,      .25,     0,     .0,    .0,    1000,      0.4,     4,    10,    -10}
+{6BMB_LVP:,  m12, "asynMotor",  GALIL2, Galil2:, 3,     "Rear Con Y (Vert)",        mm,   Neg,   .5,     .01,      .25,     0,     .0,    .0,    1000,      0.8,     4,    10,    -10}
+{6BMB_LVP:,  m13, "asynMotor",  GALIL2, Galil2:, 4,     "Rear Con Z (Aper)",        mm,   Pos,  .01,     .01,      .25,     0,     .0,    .0,    2000,       2.,     4,   0.3,    -10}
+{6BMB_LVP:,  m14, "asynMotor",  GALIL2, Galil2:, 5,     "Cam X (Horiz, Focus)",     mm,   Neg,    1,     .02,      .25,     0,     .0,    .0,   10000,       2.,     4,    70,    -50}
+{6BMB_LVP:,  m15, "asynMotor",  GALIL2, Galil2:, 6,     "Cam Z (Beam)",             mm,   Pos,    1,     .02,      .25,     0,     .0,    .0,   10000,       2.,     4,    20,    -30}
+{6BMB_LVP:,  m16, "asynMotor",  GALIL2, Galil2:, 7,     "Cam Y (Vert)",             mm,   Pos,    1,     .02,      .25,     0,     .0,    .0,   10000,       2.,     4,    25,    -25}
+#
+{6BMB_LVP:,  m17, "asynMotor",  GALIL3, Galil3:, 0,     "Diff Pump Top",             mm,   Pos,    2,     .00,      .25,     0,     .0,    .0,    1600,    .0605,     4,  137.,      0}
+{6BMB_LVP:,  m18, "asynMotor",  GALIL3, Galil3:, 1,     "Diff Pump Bottom",          mm,   Pos,    2,     .00,      .25,     0,     .0,    .0,    1600,    .0605,     4,  137.,      0}
+{6BMB_LVP:,  m19, "asynMotor",  GALIL3, Galil3:, 2,     "Old Slit X (Horiz)",       mm,   Neg,    1,     .02,      .25,     0,     .0,    .0,    5000,      -.4,     4,    50,    -50}
+{6BMB_LVP:,  m20, "asynMotor",  GALIL3, Galil3:, 3,     "Old Slit Y (Vert)",        mm,   Pos,    1,     .02,      .25,     0,     .0,    .0,    5000,       .4,     4,    30,    -30}
+{6BMB_LVP:,  m21, "asynMotor",  GALIL3, Galil3:, 4,     "Unused",                   mm,   Neg,    1,     .02,      .25,     0,     .0,    .0,    5000,      -.4,     4,    50,    -50}
+{6BMB_LVP:,  m22, "asynMotor",  GALIL3, Galil3:, 5,     "Unused",                   mm,   Pos,    1,     .02,      .25,     0,     .0,    .0,    5000,       .4,     4,    30,    -30}
+{6BMB_LVP:,  m23, "asynMotor",  GALIL3, Galil3:, 6,     "Unused",                   mm,   Neg,    1,     .02,      .25,     0,     .0,    .0,    5000,      -.4,     4,    50,    -50}
+{6BMB_LVP:,  m24, "asynMotor",  GALIL3, Galil3:, 7,     "Unused",                   mm,   Pos,    1,     .02,      .25,     0,     .0,    .0,    5000,       .4,     4,    30,    -30}
+}
+
+file $(MOTOR)/db/pseudoMotor.db
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,                                   EGU,  DIR,VELO,  VBAS, ACCL, BDST, BVEL, BACC,  MRES,  RRES, PREC, DHLM, DLLM}
+{6BMB_LVP:,  pm1, "6BMB_LVP:ADCSlitY:Done NPP NMS", "6BMB_LVP:pm1DVAL.VAL PP MS", "6BMB_LVP:ADCSlitY:Readback.G NPP NMS", "6BMB_LVP:ADCSlitY:Stop PP MS", "ADCSlitY(Pos)",   mm,  Pos,  .1,   .02,   .1,    0,   .1,  .02, .00005,  1.0,   5,     15, -15}
+{6BMB_LVP:,  pm2, "6BMB_LVP:ADCSlitY:Done NPP NMS", "6BMB_LVP:pm2DVAL.VAL PP MS", "6BMB_LVP:ADCSlitY:Readback.H NPP NMS", "6BMB_LVP:ADCSlitY:Stop PP MS", "ADCSlitY(Width)", mm,  Pos,  .1,   .02,   .1,    0,   .1,  .02, .00005,  1.0,   5,     30,  -2}
+{6BMB_LVP:,  pm3, "6BMB_LVP:ADCSlitX:Done NPP NMS", "6BMB_LVP:pm3DVAL.VAL PP MS", "6BMB_LVP:ADCSlitX:Readback.G NPP NMS", "6BMB_LVP:ADCSlitX:Stop PP MS", "ADCSlitX(Pos)",   mm,  Pos,  .1,   .02,   .1,    0,   .1,  .02, .00005,  1.0,   5,     15, -15}
+{6BMB_LVP:,  pm4, "6BMB_LVP:ADCSlitX:Done NPP NMS", "6BMB_LVP:pm4DVAL.VAL PP MS", "6BMB_LVP:ADCSlitX:Readback.H NPP NMS", "6BMB_LVP:ADCSlitX:Stop PP MS", "ADCSlitX(Width)", mm,  Pos,  .1,   .02,   .1,    0,   .1,  .02, .00005,  1.0,   5,     30,  -2}
+}
+
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,         T,          SUM, DIFF,  M1DRV,    M1RBV,    M2DRV,  M2RBV,  M1STOP,   M1DONE,   M2STOP,  M2DONE,  PREC}
+{6BMB_LVP:, ADCSlitY:,  pm1, pm2,  m5.VAL,   m5.RBV,   m6.VAL, m6.RBV, m5.STOP,  m5.DMOV,  m6.STOP, m6.DMOV,  5}
+{6BMB_LVP:, ADCSlitX:,  pm3, pm4,  m7.VAL,   m7.RBV,   m8.VAL, m8.RBV, m7.STOP,  m7.DMOV,  m8.STOP, m8.DMOV,  5}
+}
