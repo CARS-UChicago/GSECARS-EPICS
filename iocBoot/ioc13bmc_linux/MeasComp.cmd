@@ -20,6 +20,7 @@ epicsEnvSet("UNIQUE_ID",      "0209CC9C")
 epicsEnvSet("USB3104_PREFIX", "$(P)USB3104:")
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), 1, 1)
 dbLoadTemplate("$(MEASCOMP)/db/USB3104.substitutions", "P=$(USB3104_PREFIX), PORT=$(PORT)")
+dbLoadTemplate("13bmc_pid.template")
 
 # USBCTR
 epicsEnvSet("PORT",          "USBCTR")
@@ -106,5 +107,10 @@ epicsEnvSet("EDIO24_2_PREFIX",  "$(P)EDIO24_2:")
 
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
 dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_2_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+# Load filter database for attenuation
+dbLoadTemplate("filter.substitutions")
+dbLoadRecords("$(CARS)/db/13BMC_EnergyDummyPV.db")
+# Filter seq program
+doAfterIocInit 'seq(filterDrive, "NAME=filterDrive,P=13BMC:,R=filter:,NUM_FILTERS=8")'
 
 dbLoadTemplate("MeasCompAliases.substitutions")
