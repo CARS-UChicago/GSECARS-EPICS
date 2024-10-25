@@ -25,7 +25,7 @@ epicsEnvSet STREAM_PROTOCOL_PATH $(IP)/db
 < Vindum.cmd
 
 # PACE5000 used for gas confining pressure
-< PACE5000.cmd
+#< PACE5000.cmd
 
 < ../calc_GSECARS.iocsh
 
