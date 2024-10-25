@@ -11,10 +11,10 @@ epicsEnvSet("TIMEOUT_MS", "2000")
 #                       int noProcessEos);
 
 # Change IP address for your device
-#drvAsynIPPortConfigure("$(PORT)", "gsets12:2001", 0, 0, 0)
+drvAsynIPPortConfigure("$(PORT)", "gsets24:4001", 0, 0, 0)
 
 # This is for a COM port on Windows
-drvAsynSerialPortConfigure("$(PORT)", "COM2", 0, 0, 0)
+#drvAsynSerialPortConfigure("$(PORT)", "COM2", 0, 0, 0)
 
 # Enable ASYN_TRACEIO_HEX on octet server
 asynSetTraceIOMask("$(PORT)", 0, HEX)
@@ -78,3 +78,7 @@ dbLoadTemplate("$(SYRINGEPUMP)/db/VindumReadHoldingRegisters.substitutions", "P=
 # Write 38 16-bit holding registers starting at 0. Function code=16. Default data type=UINT16
 drvModbusAsynConfigure("$(PORT)_WriteHoldingRegs", "$(PORT)", 1, 16, 0, 38, UINT16, $(POLL_MS), "Vindum")
 dbLoadTemplate("$(SYRINGEPUMP)/db/VindumWriteHoldingRegisters.substitutions", "P=$(VINDUM_PREFIX), PORT=$(PORT)_WriteHoldingRegs")
+
+dbLoadRecords("$(SYRINGEPUMP)/db/VindumController.template", "P=$(VINDUM_PREFIX), PORT=$(PORT)")
+dbLoadRecords("$(SYRINGEPUMP)/db/VindumPumpN.template", "P=$(VINDUM_PREFIX), PORT=$(PORT), PUMP=A:")
+dbLoadRecords("$(SYRINGEPUMP)/db/VindumPumpN.template", "P=$(VINDUM_PREFIX), PORT=$(PORT), PUMP=B:")
