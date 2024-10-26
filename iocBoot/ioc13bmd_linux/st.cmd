@@ -6,7 +6,6 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13BMD:")
 epicsEnvSet("P", "13BMD:")
-epicsEnvSet("LINUX_PREFIX", "13BMD_Linux:")
 
 # Tell StreamDevice where to find protocol files
 iocshCmd("epicsEnvSet(STREAM_PROTOCOL_PATH, $(IP)/db:$(DELAYGEN)/db:$(CARS)/db)")
@@ -33,13 +32,13 @@ iocshLoad("../calc_GSECARS.iocsh", "P=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(LINUX_PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION","13BMD roof")
 epicsEnvSet("GROUP","GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(LINUX_PREFIX)")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 iocInit
 
