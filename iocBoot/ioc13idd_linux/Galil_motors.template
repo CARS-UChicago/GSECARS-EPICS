@@ -16,6 +16,9 @@
 #  65-72  GALIL8      S         DAC Carbon Mirror (65-66), Microscope (67-69), Laser power control (70-72)
 #  73-80  GALIL9     N.A.       DAC laser expander
 
+# NOTE - 09/04/2024: motors m81-m88 and m89-m96 are reserved for LVP. 
+# NOTE - 09/04/2024: motors m97-m104 are in a Linux IOC for the DAC XPS-16.
+
 
 file "$(CARS)/db/galil_motor.template"
 {
@@ -131,10 +134,6 @@ pattern
 {13IDD:,  m80, "asynMotor",  GALIL9, Galil9:,  7, "M80",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
 }
 
-# NOTE: motors m81-m84 and m93-m94 are in a Linux IOC for the Newport XPS (DAC sample stage and Cleanup slits)
-}
-
-# NOTE: motors m95-m96 are in a Linux IOC for the DAC XPS-16
 
 
 
@@ -183,23 +182,6 @@ pattern
 {13IDD:, DACH,   m12,   m11}
 }
 
-# LVP detector slits
-file "$(OPTICS)/db/2slit.db"
-{
-pattern
-{P,      SLIT,      mXp,   mXn}
-{13IDD:, DetSlitV,  m86,   m85}
-{13IDD:, DetSlitH,  m88,   m87}
-}
-
-# LVP entrance slits (Dec 11, 2012)
-file "$(OPTICS)/db/2slit.db"
-{
-pattern
-{P,      SLIT,      mXp,   mXn}
-{13IDD:, EntSlitV,  m92,   m91}
-{13IDD:, EntSlitH,  m90,   m89}
-}
 # LVP T-cup mode
 file "$(MOTOR)/db/coordTrans2D.db"
 {
