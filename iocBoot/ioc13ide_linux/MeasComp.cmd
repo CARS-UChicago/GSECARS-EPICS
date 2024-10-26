@@ -31,7 +31,7 @@ epicsEnvSet("SCALER_PREFIX", "$(P)"
 epicsEnvSet("SCALER_NAME",   "scaler1")
 epicsEnvSet("RNAME",         "mca")
 epicsEnvSet("MAX_COUNTERS",  "9")
-epicsEnvSet("MAX_POINTS",    "4096")
+epicsEnvSet("MAX_POINTS",    "8192")
 epicsEnvSet("POLL_TIME",     "0.01")
 # For MCA records FIELD=READ, for waveform records FIELD=PROC
 epicsEnvSet("FIELD",         "PROC")
@@ -46,7 +46,7 @@ dbLoadTemplate("$(MEASCOMP)/db/USBCTR.substitutions", "P=$(USBCTR_PREFIX), PORT=
 
 # This loads the scaler record and supporting records
 # We use the IOC prefix, without the USBCTR: for backwards compatibility
-dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(SCALER_PREFIX), S=$(SCALER_NAME), DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=10000000")
+dbLoadRecords("$(SCALER)/db/scaler.db", "P=$(SCALER_PREFIX), S=$(SCALER_NAME), DTYP=Asyn Scaler, OUT=@asyn($(PORT)), FREQ=24000000")
 
 # This database provides the support for the MCS functions
 dbLoadRecords("$(MEASCOMP)/db/measCompMCS.template", "P=$(MCS_PREFIX), PORT=$(PORT), MAX_POINTS=$(MAX_POINTS)")
