@@ -62,7 +62,12 @@ iocInit()
 
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30,"P=$(PREFIX)")
-
+`
 # These PVs are in auto_settings.req but don't have PINI=Yes
 dbpf("$(PREFIX)cam1:GC_OnBoaColProEna.PROC", "1")
 dbpf("$(PREFIX)cam1:GC_VideoMode.PROC", "1")
+dbpf("$(PREFIX)cam1:GC_BlackLevel", "0")
+dbpf("$(PREFIX)cam1:GC_Gain", "0")
+dbpf("$(PREFIX)cam1:GC_SharpnessEnabled", "0")
+dbpf("$(PREFIX)cam1:GC_AcqFrameRateAuto", "0")
+
