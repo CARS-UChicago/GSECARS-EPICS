@@ -1,6 +1,6 @@
 epicsEnvSet("PORT", "SP1")
-epicsEnvSet("POLL_MS", "1000")
-epicsEnvSet("TIMEOUT_MS", "5000")
+epicsEnvSet("POLL_MS", "500")
+epicsEnvSet("TIMEOUT_MS", "1000")
 
 # Use the following commands for TCP/IP
 #drvAsynIPPortConfigure(const char *portName, 
@@ -10,8 +10,12 @@ epicsEnvSet("TIMEOUT_MS", "5000")
 #                       int noProcessEos);
 
 # Change IP address for your device
+# This is for Modbus/TCP on public network
 #drvAsynIPPortConfigure("$(PORT)", "gse-isco1:502", 0, 0, 0)
-drvAsynIPPortConfigure("$(PORT)", "192.168.0.2:502", 0, 0, 0)
+# This is for Modbus/TCP on private network
+#drvAsynIPPortConfigure("$(PORT)", "192.168.0.2:502", 0, 0, 0)
+# This is for Modbus/RTU with Moxa terminal server
+drvAsynIPPortConfigure("$(PORT)", "gsets22:4001", 0, 0, 0)
 
 # Enable ASYN_TRACEIO_HEX on octet server
 asynSetTraceIOMask("$(PORT)", 0, HEX)
@@ -32,7 +36,7 @@ asynSetTraceIOTruncateSize("$(PORT)", 0, 256)
 #                      int timeoutMsec,
 #                      int writeDelayMsec)
 
-modbusInterposeConfig("$(PORT)", 0, $(TIMEOUT_MS), 0)
+modbusInterposeConfig("$(PORT)", 1, $(TIMEOUT_MS), 80)
 
 ### The syringe pump supports the following modbus function codes:
 #    01 - read discrete output coils
