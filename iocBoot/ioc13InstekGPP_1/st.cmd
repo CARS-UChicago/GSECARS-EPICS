@@ -8,7 +8,7 @@ epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/db")
 epicsEnvSet("PREFIX", "13INSTEK_1:")
 epicsEnvSet(PORT, "INSTEK")
 
-drvAsynIPPortConfigure("$(PORT)","164.54.160.223:1026",0,0,0)
+drvAsynIPPortConfigure("$(PORT)","gse-instek1:1026",0,0,0)
 asynOctetSetOutputEos("$(PORT)", 0, "\n")
 asynOctetSetInputEos("$(PORT)", 0, "\n")
 asynSetTraceIOMask $(PORT), 0, ESCAPE
