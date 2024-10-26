@@ -19,8 +19,8 @@ iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil6:, PORT=GALIL6, IPADDR
 # gse-galil32 BM-D roof; 4140 drivers, Patch Panel X
 iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil7:, PORT=GALIL7, IPADDR=10.54.160.148, M1=m65, M2=m66, M3=m67, M4=m68, M5=m69, M6=m70, M7=m71, M8=m72")  
 
-# gse-galil20 In BM-D,  4040 drivers; Brillouin motors
-iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil8:, PORT=GALIL8, IPADDR=10.54.160.129, M1=m73, M2=m74, M3=m75, M4=m76, M5=m77, M6=m78, M7=m79, M8=m80")  
+# gse-galil47 In BM-D,  4040 drivers; Brillouin motors
+iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil8:, PORT=GALIL8, IPADDR=10.54.160.164, M1=m73, M2=m74, M3=m75, M4=m76, M5=m77, M6=m78, M7=m79, M8=m80")  
 
 #Load motor records for real motors
 dbLoadTemplate("Galil_motors.template")
