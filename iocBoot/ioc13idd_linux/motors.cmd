@@ -1,5 +1,5 @@
 #iocshLoad("XPS.cmd",   "P=$(P)")
-#iocshLoad("MCB4B.cmd", "P=$(P)")
+iocshLoad("MCB4B.cmd", "P=$(P)")
 iocshLoad("Galil.cmd", "P=$(P)")
 
 ### Allstop, alldone
