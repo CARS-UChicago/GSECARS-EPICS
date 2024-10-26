@@ -44,10 +44,10 @@ dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, 
 dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=3")
 dbLoadRecords("$(DELAYGEN)/db/BNC_505_Pn.db",           "P=$(P), PORT=serial11, R=BNC1:, N=4")
 #                                                                     serial12  Unused
-dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial13, R=Laser1,")
+dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial13, R=Laser1")
 dbLoadRecords("$(CARS)/db/IPG_YLR_laser.db",            "P=$(P), PORT=serial14, R=Laser2")
 #                                                                     serial15  Unused
-#                                                                     serial16  VME console
+#                                                                     serial16  Unused
 
 dbLoadTemplate("asynRecord.template", P="$(P)")
 
