@@ -1,4 +1,4 @@
-drvAsynIPPortConfigure("Click","164.54.160.52:502",0,0,1)
+drvAsynIPPortConfigure("Click","164.54.160.220:502",0,0,1)
 asynWaitConnect("Click",2)
 asynSetOption("Click",0, "disconnectOnReadTimeout", "Y")
 asynSetQueueLockPortTimeout("Click", 1)
@@ -32,11 +32,11 @@ drvModbusAsynConfigure("C1_DSn2_Out_Word", "Click", 0, 6, 0x0063,  40, "UINT16",
 
 # The Click has word access to the DDn words at Modbus offset 0x4000
 # Access the first 2 words as inputs.  Function code=3
-drvModbusAsynConfigure("C1_DDn1_In_Word",  "Click", 0, 3, 0x4000,   6, "UINT16", 100, "Click")
+drvModbusAsynConfigure("C1_DDn1_In_Word",  "Click", 0, 3, 0x4000,   6, "UINT16", 20, "Click")
 
 # The Click has word access to the DFn words at Modbus offset 0x7000
 # Access the first 100 words as inputs.  Function code=3
-drvModbusAsynConfigure("C1_DFn1_In_Word",  "Click", 0, 3, 0x7000, 100, "UINT16", 100, "Click")
+drvModbusAsynConfigure("C1_DFn1_In_Word",  "Click", 0, 3, 0x7000, 125, "UINT16", 100, "Click")
 
 # Access the next 44 words as inputs.  Function code=3
 drvModbusAsynConfigure("C1_DFn2_In_Word",  "Click", 0, 3, 0x7064,  44, "UINT16", 100, "Click")
