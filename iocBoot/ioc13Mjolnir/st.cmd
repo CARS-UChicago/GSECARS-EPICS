@@ -2,10 +2,10 @@ errlogInit(5000)
 < envPaths
 # Tell EPICS all about the record types, device-support modules, drivers,
 # etc. in this build from CARS
-#dbLoadDatabase("../../dbd/CARSLinux.dbd")
-#CARSLinux_registerRecordDeviceDriver(pdbbase)
-dbLoadDatabase("../../dbd/CARSWin32.dbd")
-CARSWin32_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+#dbLoadDatabase("../../dbd/CARSWin32.dbd")
+#CARSWin32_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet(PREFIX, 13MNIR:)
 epicsEnvSet(E1608_PREFIX,  $(PREFIX)E1608:)
