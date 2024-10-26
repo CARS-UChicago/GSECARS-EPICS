@@ -40,7 +40,7 @@ pattern
 {13BMC:, m13,   "asynMotor", GALIL2,  Galil2:  4, "ADC X",              mm,  Pos,     4,      0,  1.0,    0,     1,   .2,   3200,          1.0,    4,    100,   -100}
 {13BMC:, m14,   "asynMotor", GALIL2,  Galil2:, 5, "ADC Y",              mm,  Pos,     4,      0,  1.0,    0,     1,   .2,   3200,          0.5,    4,     25,    -25}
 {13BMC:, m15,   "asynMotor", GALIL2,  Galil2:  6, "ADC Z",              mm,  Neg,     4,      0,  1.0,    0,     1,   .2,   3200,          1.0,    4,      0,     25}
-{13BMC:, m16,   "asynMotor", GALIL2,  Galil2:  7, "Unused",             mm,  Neg,   1.5,    .01,   .2,    0,     1,   .2,   2064,      1.22115,    4,  10100,   -100}
+{13BMC:, m16,   "asynMotor", GALIL2,  Galil2:  7, "Beamstop Y",         mm,  Pos,   0.25,    .01,   .2,    0,     1,   .2,  10240,          1.0,    4,     25,      0}
                 
 # Diffractometer detector slits also a Galil with 4040 drivers                                    
 {13BMC:, m17,   "asynMotor", GALIL3,  Galil3:  0, "Pinhole Pitch",     rev,  Pos,     .1,     0,   .2,    0,    .1,   .2,   6768,            1,    4,   -30,      30}
@@ -76,7 +76,7 @@ pattern
 
 # B panel in front of hutch
 {13BMC:,  m63,  "asynMotor", GALIL6,  Galil6:   0, "Hp UpStream",       mm,  Neg,    .10,   .01,  1.0,   0.,    .1,   .2,   6768,          .25,    4,    100,    -100}
-{13BMC:,  m64,  "asynMotor", GALIL6,  Galil6:   1, "Hw UpStream",       mm,  Pos,    .15,   .01,  1.0,   0.,    .1,   .2,   6768,         .635,    4,    100,    -100}
+{13BMC:,  m64,  "asynMotor", GALIL6,  Galil6:   1, "Hw UpStream",       mm,  Pos,     .3,   .01,  1.0,   0.,    .1,   .2,   6768,         .635,    4,    100,    -100}
 # Newport TRA25PPD, for DAC alignment camera, 0.2A
 {13BMC:,  m65,  "asynMotor", GALIL6,  Galil6:   2, "DAC Cam Y",         mm,  Neg,  100.0,   3.8,   .2,   10,    77,  0.2,   4096,        192.3,    1,  12600,  -12600}
 # m66 is bad, only goes in one direction (2017/05/18)
@@ -94,9 +94,9 @@ file "$(CARS)/db/galil_motor.template"
 {
 pattern
 {P,       M,    DTYP,          PORT,   CTRL,  ADDR,   DESC,            EGU,  DIR,  PCOF,  ICOF,  DCOF, VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,    SREV,   UREV,   PREC,  DHLM,   DLLM}
-{13BMC:,  m71, "asynMotor",  GALIL7,  Galil7:,  0, "DAC_Cleanup_X",     mm,  Pos, 0.020, 0.001,  0.00,  2.5,    .1 ,  0.5,     0,     1,    .2,   56499,      1,      4,   25.,      0}
+{13BMC:,  m71, "asynMotor",  GALIL7,  Galil7:,  0, "DAC_Cleanup_X",     mm,  Neg, 0.020, 0.001,  0.00,  2.5,    .1 ,  0.5,     0,     1,    .2,   56499,      1,      4,   25.,      0}
 {13BMC:,  m72, "asynMotor",  GALIL7,  Galil7:,  1, "DAC_Cleanup_Y",     mm,  Pos, 0.020, 0.001,  0.00,  2.5,    .1,   0.5,     0,     1,    .2,   56499,      1,      4,   25.,      0}
-{13BMC:,  m73, "asynMotor",  GALIL7,  Galil7:,  2, "DAC_Cleanup_Z",     mm,  Pos,  0.20,  0.01,  0.00,  2.5,    .1,   0.5,     0,     1,    .2,   10000,      1,      4,  100.,      0}
+{13BMC:,  m73, "asynMotor",  GALIL7,  Galil7:,  2, "DAC_Cleanup_Z",     mm,  Neg,  0.20,  0.01,  0.00,  2.5,    .1,   0.5,     0,     1,    .2,   10000,      1,      4,  100.,      0}
 {13BMC:,  m74, "asynMotor",  GALIL7,  Galil7:,  3, "NAV-ZOOM",          mm,  Pos,  0.20,  0.01,  0.00, 0.75,    .1,  0.75,     0,     1,    .2,   16768,      1,      4,  100.,      0}
 }
 
@@ -105,10 +105,10 @@ file "$(CARS)/db/galil_motor.template"
 pattern
 {  P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,             EGU,  DIR,   VELO,  VBAS, ACCL, BDST,  BVEL,  BACC,  SREV,   UREV,  PREC, DHLM,    DLLM}
 # X=UTS100PP, Z=UTS50PP. 16 microsteps/s, 2mm pitch; Y=UTM100PE(?), full step=1 micron
-{13BMC:,  m75, "asynMotor",  GALIL7,  Galil7:,  4, "DAC_View_X",        mm,  Pos,     2.,    .1,  0.5,    0,     1,   .2,   3200,      2,    4,   100.,       0}
-{13BMC:,  m76, "asynMotor",  GALIL7,  Galil7:,  5, "DAC_View_Y",        mm,  Neg,     2.,    .1,  0.5,    0,     1,   .2,  16000,      1,    4,    50.,       0}
+{13BMC:,  m75, "asynMotor",  GALIL7,  Galil7:,  4, "DAC_View_X",        mm,  Neg,     2.,    .1,  0.5,    0,     1,   .2,   3200,      2,    4,   100.,       0}
+{13BMC:,  m76, "asynMotor",  GALIL7,  Galil7:,  5, "DAC_View_Y",        mm,  Pos,     2.,    .1,  0.5,    0,     1,   .2,  16000,      1,    4,    50.,       0}
 {13BMC:,  m77, "asynMotor",  GALIL7,  Galil7:,  6, "DAC_View_Z",        mm,  Pos,     2.,    .1,  0.5,    0,     1,   .2,   3200,      2,    4,    50.,       0}
-{13BMC:,  m78, "asynMotor",  GALIL7,  Galil7:,  7, "Unused",            mm,  Pos,    0.75,   .1,  0.75,   0,     1,   .2,  16768,      1,    4,   100.,       0}
+{13BMC:,  m78, "asynMotor",  GALIL7,  Galil7:,  7, "Beamstop X",        mm,  Pos,    0.2,   .1,  0.75,   0,     1,   .2,  10240,      1,    4,    25.,       0}
 }
 
 file "$(MOTOR)/db/pseudoMotor.db"
