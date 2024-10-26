@@ -191,3 +191,26 @@ dbLoadRecords("$(GALIL)/db/galil_reverse_transforms.template", "P=$(P), PORT=$(P
 # SCAN - Scan period for monitor records
 dbLoadRecords("$(GALIL)/db/galil_coordinate_system.template", "P=$(P), PORT=$(PORT), ADDR=0, R=S, SCAN=.1 second,  M=$(M1)")
 dbLoadRecords("$(GALIL)/db/galil_coordinate_system.template", "P=$(P), PORT=$(PORT), ADDR=1, R=T, SCAN=.1 second,  M=$(M1)")
+
+#Load profiles
+dbLoadRecords("$(MOTOR)/db/profileMoveController.template",       "P=$(P), R=Prof1:, PORT=$(PORT), NAXES=8, NPOINTS=2000, NPULSES=2000, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveController.template", "P=$(P), R=Prof1:, PORT=$(PORT), TIMEOUT=1")
+
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=1, PORT=$(PORT), ADDR=0, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M1), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=2, PORT=$(PORT), ADDR=1, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M2), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=3, PORT=$(PORT), ADDR=2, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M3), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=4, PORT=$(PORT), ADDR=3, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M4), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=5, PORT=$(PORT), ADDR=4, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M5), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=6, PORT=$(PORT), ADDR=5, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M6), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=7, PORT=$(PORT), ADDR=6, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M7), PREC=4, TIMEOUT=1")
+dbLoadRecords("$(MOTOR)/db/profileMoveAxis.template", "P=$(P), R=Prof1:, M=8, PORT=$(PORT), ADDR=7, NPOINTS=2000, NREADBACK=2000, MOTOR=$(M8), PREC=4, TIMEOUT=1")
+
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=1, PORT=$(PORT), ADDR=0, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=2, PORT=$(PORT), ADDR=1, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=3, PORT=$(PORT), ADDR=2, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=4, PORT=$(PORT), ADDR=3, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=5, PORT=$(PORT), ADDR=4, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=6, PORT=$(PORT), ADDR=5, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=7, PORT=$(PORT), ADDR=6, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=8, PORT=$(PORT), ADDR=7, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
+
