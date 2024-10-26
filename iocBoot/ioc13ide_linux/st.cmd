@@ -29,7 +29,7 @@ dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(LINUX_PREFIX)")
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Mark Rivers")
-epicsEnvSet("LOCATION","Gas loading system")
+epicsEnvSet("LOCATION","13-ID-E")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(LINUX_PREFIX)")
 
@@ -45,3 +45,7 @@ create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 # save other things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX), P3104=$(USB3104_PREFIX), P1808=$(USB1808_PREFIX), PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
 
+# set KB-mirror parameters so that pm4 and pm8 are in mrad
+# C1 = -1/0.2325 = 1/distance_between actuators
+dbpf("13IDE:pm4C1",  "-4.301075")
+dbpf("13IDE:pm8C1",  "-4.301075")
