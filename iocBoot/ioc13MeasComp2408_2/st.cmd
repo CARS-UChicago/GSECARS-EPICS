@@ -1,8 +1,8 @@
 < envPaths
 
 ## Register all support components
-dbLoadDatabase("$(CARS)/dbd/CARSWin32.dbd")
-CARSWin32_registerRecordDeviceDriver pdbbase
+dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet("PREFIX", "13USB2408_2:")
 epicsEnvSet(PORT, "2408")
