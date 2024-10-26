@@ -8,3 +8,5 @@ dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=$(P)")
 # for the user.  It can contain an entry for each scannable thing in the
 # crate.
 dbLoadTemplate("scanParms.template")
+doAfterIocInit "motorUtilInit($(P))"
+
