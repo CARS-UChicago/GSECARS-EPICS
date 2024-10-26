@@ -9,6 +9,7 @@ dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13GasLoad:")
+epicsEnvSet("TS", "gsets6")
 
 # Set up 5 serial ports on Moxa terminal server
 
@@ -19,16 +20,16 @@ epicsEnvSet("PREFIX", "13GasLoad:")
 # to 7 data bits and 2 stop bits.
 # Omega meters should be
 #   9600 baud, 7 data, 2 stop, parity=None, Flow control=None
-drvAsynIPPortConfigure("serial1", "164.54.160.163:4001", 0, 0, 0)
-drvAsynIPPortConfigure("serial2", "164.54.160.163:4002", 0, 0, 0)
+drvAsynIPPortConfigure("serial1", "$(TS):4001", 0, 0, 0)
+drvAsynIPPortConfigure("serial2", "$(TS):4002", 0, 0, 0)
 # Serial 3 is the ACS MCB-4B motor controller
 # Settings: 19200, 8, 1, None, None
-#drvAsynIPPortConfigure("serial3", "164.54.160.163:4003", 0, 0, 0)
+#drvAsynIPPortConfigure("serial3", "$(TS):4003", 0, 0, 0)
 # Serial 4 is the SensaVac vaccum gauge controller
 # Settings: 19200, 8, 1, None, None
-drvAsynIPPortConfigure("serial4", "164.54.160.163:4004", 0, 0, 0)
+drvAsynIPPortConfigure("serial4", "$(TS):4004", 0, 0, 0)
 # Serial 5 is an Omega meter.  See above. Switched from port 5 to port 6 because port 5 seems bad
-drvAsynIPPortConfigure("serial5", "164.54.160.163:4006", 0, 0, 0)
+drvAsynIPPortConfigure("serial5", "$(TS):4006", 0, 0, 0)
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r")
