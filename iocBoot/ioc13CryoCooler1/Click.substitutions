@@ -52,7 +52,6 @@ file "$(MODBUS)/db/bo_bit.template" { pattern
 file "$(MODBUS)/db/longinInt32.template" { pattern
 {R,              PORT,         OFFSET,  DATA_TYPE,     SCAN}
 {FlowFreq1,   C1_DDn1_In_Word,  0x00,    INT32_LE,   "I/O Intr"}
-{LevelFreq1,  C1_DDn1_In_Word,  0x02,    INT32_LE,   "I/O Intr"}
 {LevelFreq2,  C1_DDn1_In_Word,  0x04,    INT32_LE,   "I/O Intr"}
 }
 
@@ -61,6 +60,7 @@ file "$(MODBUS)/db/aiFloat64.template" { pattern
 {R,              PORT,          OFFSET,  DATA_TYPE,   PREC,  SCAN}
 {RTD_Temp1,   C1_DFn1_In_Word,  0x12,    FLOAT32_LE,   1,   "I/O Intr"}
 {Pressure1,   C1_DFn1_In_Word,  0x08,    FLOAT32_LE,   1,   "I/O Intr"}
+{LevelFreq1,  C1_DFn1_In_Word,  0x30,    FLOAT32_LE,   1,   "I/O Intr"}
 }
 
 # These are the DSn inputs done with 16-bit integer access
