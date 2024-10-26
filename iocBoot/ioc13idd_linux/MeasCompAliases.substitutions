@@ -2,25 +2,38 @@ file "$(CARS)/db/binary_alias.template"
 {
 pattern
 {      REC,          RTYP,      ALIAS,                   ZNAM,    ONAM,        DESC}
-{13IDD:USBCTR:Bo1,    bo,   13IDD:Photodiode,            In,      Out,   "Photodiode control"}
-{13IDD:USBCTR:Bo2,    bo,   13IDD:US_SpectShutter,       Close,   Open, "Upstream spectrometer shutter"}
-{13IDD:USBCTR:Bo3,    bo,   13IDD:DS_SpectShutter,       Close,   Open, "Downstream spectrometer shutter"}
-{13IDD:USBCTR:Bo4,    bo,   13IDD:TableShutter,          Close,   Open, "Table X-ray shutter"}
-{13IDD:USBCTR:Bi5,    bi,   13IDD:Photodiode_RBV,        Out,     In,   "Photodiode status"}
-{13IDD:USBCTR:Bi6,    bi,   13IDD:US_SpectShutter_RBV,   Close,   Open, "Upstream spectrometer shutter status"}
-{13IDD:USBCTR:Bi7,    bi,   13IDD:DS_SpectShutter_RBV,   Close,   Open, "Upstream spectrometer shutter  status"}
-{13IDD:USBCTR:Bi8,    bi,   13IDD:TableShutter_RBV,      Close,   Open, "Table X-ray shutter status"}  
+{13IDD:USBCTR:Bo1,    bo,   13IDD:BariumCalib,           In,      Out,   "Barium Calibration filter"}
+{13IDD:USBCTR:Bo2,    bo,   13IDD:Attenuate_10,          Close,   Open,  "Beam attenuation filter 10 percent"}
+{13IDD:USBCTR:Bo3,    bo,   13IDD:Attenuate_2,           Close,   Open,  "Beam attenuation filter 2 percent"}
+{13IDD:USBCTR:Bo4,    bo,   13IDD:TableShutter,          Close,   Open,  "Table X-ray shutter"}
+{13IDD:USBCTR:Bi5,    bi,   13IDD:Barium_RBV,            Out,     In,    "Barium calibration filter status"}
+{13IDD:USBCTR:Bi6,    bi,   13IDD:Attenuate_10_RBV,      Close,   Open,  "Beam attenuation filter 10 percent status"}
+{13IDD:USBCTR:Bi7,    bi,   13IDD:Attenuate_2_RBV,       Close,   Open,  "Beam attenuation filter 2 percent status"}
+{13IDD:USBCTR:Bi8,    bi,   13IDD:TableShutter_RBV,      Close,   Open,  "Table X-ray shutter status"}  
 
-{13IDD:USB3104:Bo1,   bo,   13IDD:US_IllumSplitter,      Out,     In,   "Upstream illuminator splitter"}
-{13IDD:USB3104:Bo2,   bo,   13IDD:DS_IllumSplitter,      Out,     In,   "Downstream illuminator splitter"}
-{13IDD:USB3104:Bo3,   bo,   13IDD:ND_Filter,             Out,     In,   "Neutral density filter"}
-{13IDD:USB3104:Bo4,   bo,   13IDD:IR_Mirror,             Out,     In,   "Infrared mirror"}
-{13IDD:USB3104:Bo5,   bo,   13IDD:US_IllumOnOff,         Off,     On,   "Upstream illuminator on/off"}
-{13IDD:USB3104:Bo6,   bo,   13IDD:DS_IllumOnOff,         Off,     On,   "Downstream illuminator on/off"}
+{13IDD:USB3104:Bo1,   bo,   13IDD:US_IllumSplitter,      Out,     In,    "Upstream illuminator splitter"}
+{13IDD:USB3104:Bo2,   bo,   13IDD:DS_IllumSplitter,      Out,     In,    "Downstream illuminator splitter"}
+{13IDD:USB3104:Bo3,   bo,   13IDD:ND_Filter,             Out,     In,    "Neutral density filter"}
+{13IDD:USB3104:Bo4,   bo,   13IDD:IR_Mirror,             Out,     In,    "Infrared mirror"}
+{13IDD:USB3104:Bo5,   bo,   13IDD:US_IllumOnOff,         Off,     On,    "Upstream illuminator on/off"}
+{13IDD:USB3104:Bo6,   bo,   13IDD:DS_IllumOnOff,         Off,     On,    "Downstream illuminator on/off"}
 
-{13IDD:EDIO24_1:Bo5,  bo,   13IDD:LaserShutter,          Close,   Open, "Laser shutter"}
-{13IDD:EDIO24_1:Bo6,  bo,   13IDD:SmallBeamstop,         Out,     In,   "Small beamstop for MCC"}
-{13IDD:EDIO24_1:Bo11, bo,   13IDD:XRDShutter,            Close,   Open, "Downstream illuminator mirror"}
+{13IDD:EDIO24_1:Bo1,   bo,   13IDD:LVP_Beamstop,          Close,   Open,  "LVP Beamstop"}
+{13IDD:EDIO24_1:Bo2,   bo,   13IDD:LVP_Ion_Chamber,       Close,   Open,  "LVP Ion Chamber"}
+#{13IDD:EDIO24_1:Bo3,   bo,   13IDD:Unused3,               Close,   Open,  "Unused 3,single cylinder"}
+#{13IDD:EDIO24_1:Bo4,   bo,   13IDD:Unused4,               Close,   Open,  "Unused 4,single cylinder"}
+{13IDD:EDIO24_1:Bo5,   bo,   13IDD:LaserShutter,          Close,   Open,  "Laser shutter"}
+{13IDD:EDIO24_1:Bo6,   bo,   13IDD:Photodiode,            Out,     In,    "DAC photodiode"}
+{13IDD:EDIO24_1:Bo7,   bo,   13IDD:AlignSlides,           Out,     In,    "Alignment Slides for pulsed"}
+{13IDD:EDIO24_1:Bo8,   bo,   13IDD:US_SpectShutter,       Close,   Open,  "Upstream spectrometer shutter"}
+{13IDD:EDIO24_1:Bo9,   bo,   13IDD:DS_SpectShutter,       Close,   Open,  "Downstream spectrometer shutter"}
+{13IDD:EDIO24_1:Bo10,  bo,   13IDD:SmallBeamStop,         Out,     In,    "Small beamstop for MCC"}
+#{13IDD:EDIO24_1:Bo11, bo,   13IDD:Unused11,               Close,   Open,  "Unused 1,double cylinder"}
+{13IDD:EDIO24_1:Bo12,  bo,   13IDD:Unused12,              Close,   Open,  "Top table CO2 motion, will retire soon"}
+#{13IDD:EDIO24_1:Bo13, bo,   13IDD:Unused13,               Close,   Open,  "Unused 3,double cylinder"}
+#{13IDD:EDIO24_1:Bo14, bo,   13IDD:Unused14,               Close,   Open,  "Unused 4,double cylinder"}
+#{13IDD:EDIO24_1:Bo15, bo,   13IDD:Unused15,               Close,   Open,  "Unused 5,double cylinder"}
+
 
 }
 
