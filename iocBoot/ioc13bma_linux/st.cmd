@@ -5,7 +5,6 @@ dbLoadDatabase("$(CARS)/dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13BMA:")
-epicsEnvSet("LINUX_PREFIX", "13BMA_Linux:")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets16")
 iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-1")
@@ -40,11 +39,11 @@ dbLoadRecords("$(STD)/db/misc.db","P=$(PREFIX)")
 epicsEnvSet("ENGINEER", "Mark Rivers")
 epicsEnvSet("LOCATION", "13-BM-A roof")
 epicsEnvSet("GROUP", "GSECARS")
-dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(LINUX_PREFIX)")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
-save_restoreSet_status_prefix("$(LINUX_PREFIX)")
-dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(LINUX_PREFIX)")
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
 
 
 iocInit
