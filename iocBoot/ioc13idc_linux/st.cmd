@@ -55,3 +55,17 @@ create_monitor_set("auto_settings.req", 30, "P=$(PREFIX), P3104=$(USB3104_PREFIX
 
 motorUtilInit("$(PREFIX)")
 
+### Start the saveData task.
+# saveData_MessagePolicy
+# 0: wait forever for space in message queue, then send message
+# 1: send message only if queue is not full
+# 2: send message only if queue is not full and specified time has passed (SetCptWait()
+#    sets this time.)
+# 3: if specified time has passed, wait for space in queue, then send message
+# else: don't send message
+#debug_saveData = 2
+var saveData_MessagePolicy 2
+saveData_SetCptWait_ms(10)
+saveData_Init("saveDataExtraPVs.req", "P=13IDC:")
+#saveData_PrintScanInfo("13IDC:scan1")
+
