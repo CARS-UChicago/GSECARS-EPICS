@@ -1,12 +1,12 @@
 
 file {
-	name="/home/helios1/GSHEN/C2/iocapps/adlsys/sr/fe/XFD-Display.adl"
-	version=030118
+	name="/home/helios/MLS/iocapps/adlsys/sr/fe/XFD-Display.adl"
+	version=030120
 }
 display {
 	object {
-		x=805
-		y=369
+		x=529
+		y=87
 		width=530
 		height=609
 	}
@@ -149,29 +149,6 @@ text {
 		label="SR Status- (FOR PC)"
 		name="SR_Status_PC.adl"
 	}
-	display[2] {
-		label="SR Ops Parameters"
-		name="TV_SRparameters.adl"
-	}
-	display[3] {
-		label="Top Up Information"
-		name="TopUp.adl"
-	}
-	display[4] {
-		label="BPLD Status"
-		name="srbpm/diagApp/BPLDTop.adl"
-	}
-	display[5] {
-		label="SR BPM "
-		name="srbpm/sbpmApp/SbpmTop.adl"
-	}
-	display[6] {
-		label="X-BPMs for Orbit Correction"
-		name="asdops/screens/X_inuse.adl"
-	}
-	display[9] {
-		name="SR_Current.adl"
-	}
 	clr=14
 	bclr=40
 	label="Info"
@@ -220,20 +197,8 @@ text {
 		name="iocs/vacuum/ZoneF_Vac.adl"
 	}
 	display[3] {
-		label="S36 RF Cavity Vacuum"
-		name="rf/vacApp/S36-VAC-RF-Cavities.adl"
-	}
-	display[4] {
-		label="S37 RF Cavity Vacuum"
-		name="rf/vacApp/S37-VAC-RF-Cavities.adl"
-	}
-	display[5] {
-		label="S38 RF Cavity Vacuum"
-		name="rf/vacApp/S38-VAC-RF-Cavities.adl"
-	}
-	display[6] {
-		label="S36 RF Cavity Vacuum"
-		name="rf/vacApp/S40-VAC-RF-Cavities.adl"
+		label="IDVC Info"
+		name="iocs/idctl/adl_Global/IDVCTemp.adl"
 	}
 	clr=14
 	bclr=52
@@ -284,9 +249,9 @@ text {
 	}
 	display[3] {
 		label="FEEPS & PSS Status"
-		name="FEEPS_PSS_Status.adl"
+		name="sr/fe/FEEPS_PSS_Status.adl"
 	}
-	display[5] {
+	display[4] {
 		label="PSS Door Status"
 		name="sr/pss/adl/Door_Status.adl"
 	}
@@ -624,27 +589,6 @@ text {
 	}
 	textix="S35"
 }
-"related display" {
-	object {
-		x=292
-		y=146
-		width=18
-		height=18
-	}
-	display[0] {
-		label="1 - BM FE PSS"
-		name="sr/pss/adl/Main_01BM.adl"
-		args="xx=01,yy=BM"
-	}
-	display[1] {
-		label="1 - BM FE EPS & Control"
-		name="iocs/frontend/FEEPS_BM_Main.adl"
-		args="Z=S01BM,a=S01BMFE"
-	}
-	clr=14
-	bclr=51
-	label="B"
-}
 rectangle {
 	object {
 		x=360
@@ -711,6 +655,10 @@ text {
 	display[8] {
 		label="ID S19-35 Status Check"
 		name="iocs/idctl/adl_Global/IDStatus_Check/IDStatus_Check_19-35.adl"
+	}
+	display[9] {
+		label="IDVC Information"
+		name="iocs/idctl/adl_Global/IDVCTemp.adl"
 	}
 	clr=14
 	bclr=52
@@ -881,7 +829,11 @@ text {
 	}
 	display[4] {
 		label="FEEPS & PSS Status"
-		name="FEEPS_PSS_Status.adl"
+		name="sr/fe/FEEPS_PSS_Status.adl"
+	}
+	display[5] {
+		label="FEEPS DIW"
+		name="sr/pss/FEEPS_H2O_MAIN.adl"
 	}
 	clr=14
 	bclr=52
@@ -991,7 +943,7 @@ text {
 "related display" {
 	object {
 		x=184
-		y=356
+		y=333
 		width=138
 		height=20
 	}
@@ -1006,7 +958,7 @@ text {
 "related display" {
 	object {
 		x=203
-		y=381
+		y=358
 		width=100
 		height=20
 	}
@@ -1035,11 +987,11 @@ text {
 	}
 	display[2] {
 		label="ID Source Point Parameters"
-		name="srbpm/sbpmApp/IDSrcPoints.adl"
+		name="IDSrcPoints.adl"
 	}
 	display[3] {
 		label="BM Source Point Parameters"
-		name="srbpm/sbpmApp/BMSrcPoints.adl"
+		name="BMSrcPoints.adl"
 	}
 	clr=14
 	bclr=50
@@ -1119,27 +1071,6 @@ text {
 		clr=14
 	}
 	textix="S29"
-}
-"related display" {
-	object {
-		x=123
-		y=687
-		width=65
-		height=34
-	}
-	display[0] {
-		label="29 - Televac1 BNL Bellows Test"
-		name="sr/fe/Televac.adl"
-		args="LOC=S29,xx=BNL,yy=test,c=1"
-	}
-	display[1] {
-		label="29 - Televac2 BNL Bellows Test"
-		name="sr/fe/Televac.adl"
-		args="LOC=S29,xx=BNL,yy=test,c=2"
-	}
-	clr=14
-	bclr=51
-	label="I"
 }
 text {
 	object {
@@ -1268,6 +1199,32 @@ text {
 }
 "related display" {
 	object {
+		x=292
+		y=146
+		width=18
+		height=18
+	}
+	display[0] {
+		label="1 - BM FE PSS"
+		name="sr/pss/adl/Main_01BM.adl"
+		args="xx=01,yy=BM"
+	}
+	display[1] {
+		label="1 - BM FE EPS & Control"
+		name="iocs/frontend/FEEPS_BM_Main.adl"
+		args="Z=S01BM,a=S01BMFE"
+	}
+	display[2] {
+		label="1 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=01"
+	}
+	clr=14
+	bclr=51
+	label="B"
+}
+"related display" {
+	object {
 		x=311
 		y=146
 		width=18
@@ -1282,6 +1239,16 @@ text {
 		label="1 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S01ID,a=S01IDFE"
+	}
+	display[2] {
+		label="1 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingle.adl"
+		args="sec=01,ds=02,us=01"
+	}
+	display[3] {
+		label="1 - ID DS-ID Control"
+		name="../id/IDControl.adl"
+		args="P=S01ID:DSID"
 	}
 	clr=14
 	bclr=51
@@ -1304,6 +1271,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S02BM,a=S02BMFE"
 	}
+	display[2] {
+		label="2 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=02"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1324,6 +1296,21 @@ text {
 		label="2 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S02ID,a=S02IDFE"
+	}
+	display[2] {
+		label="2 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=02,ds=03,us=02"
+	}
+	display[3] {
+		label="2 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S02ID:DSID"
+	}
+	display[4] {
+		label="2 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S02ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -1346,6 +1333,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S03ID,a=S03IDFE"
 	}
+	display[2] {
+		label="3 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=03,ds=04,us=03"
+	}
+	display[3] {
+		label="3 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S03ID:DSID"
+	}
+	display[4] {
+		label="3 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S03ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1366,6 +1368,21 @@ text {
 		label="4 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S04ID,a=S04IDFE"
+	}
+	display[2] {
+		label="4 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=04,ds=05,us=04"
+	}
+	display[3] {
+		label="4 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S04ID:DSID"
+	}
+	display[4] {
+		label="4 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S04ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -1388,6 +1405,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S05BM,a=S05BMFE"
 	}
+	display[2] {
+		label="5 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=05"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1405,9 +1427,19 @@ text {
 		args="xx=05,yy=ID"
 	}
 	display[1] {
-		label="55 - ID FE EPS & Control"
+		label="5 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S05ID,a=S05IDFE"
+	}
+	display[2] {
+		label="5 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingle.adl"
+		args="sec=05,ds=06,us=05"
+	}
+	display[3] {
+		label="5 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S05ID:DSID"
 	}
 	clr=14
 	bclr=51
@@ -1430,6 +1462,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S06BM,a=S06BMFE"
 	}
+	display[2] {
+		label="6 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=06"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1450,6 +1487,21 @@ text {
 		label="6 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S06ID,a=S06IDFE"
+	}
+	display[2] {
+		label="6 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=06,ds=07,us=06"
+	}
+	display[3] {
+		label="6 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S06ID:DSID"
+	}
+	display[4] {
+		label="2 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S06ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -1472,6 +1524,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S07BM,a=S07BMFE"
 	}
+	display[2] {
+		label="7 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=07"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1492,6 +1549,16 @@ text {
 		label="7 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S07ID,a=S07IDFE"
+	}
+	display[2] {
+		label="7 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingle.adl"
+		args="sec=07,ds=08,us=07"
+	}
+	display[3] {
+		label="7 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S07ID:DSID"
 	}
 	clr=14
 	bclr=51
@@ -1514,6 +1581,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S08BM,a=S08BMFE"
 	}
+	display[2] {
+		label="8 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=08"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1534,6 +1606,21 @@ text {
 		label="8 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S08ID,a=S08IDFE"
+	}
+	display[2] {
+		label="8 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=08,ds=09,us=08"
+	}
+	display[3] {
+		label="8 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S08ID:DSID"
+	}
+	display[4] {
+		label="8 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S08ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -1556,6 +1643,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S16BM,a=S16BMFE"
 	}
+	display[2] {
+		label="16 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=16"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1576,6 +1668,11 @@ text {
 		label="9 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S09BM,a=S09BMFE"
+	}
+	display[2] {
+		label="9 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=09"
 	}
 	clr=14
 	bclr=51
@@ -1598,6 +1695,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S09ID,a=S09IDFE"
 	}
+	display[2] {
+		label="9 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=09,ds=10,us=09"
+	}
+	display[3] {
+		label="9 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S09ID:DSID"
+	}
+	display[4] {
+		label="9 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S09ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1618,6 +1730,11 @@ text {
 		label="10 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S10BM,a=S10BMFE"
+	}
+	display[2] {
+		label="10 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=10"
 	}
 	clr=14
 	bclr=51
@@ -1640,6 +1757,16 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S10ID,a=S10IDFE"
 	}
+	display[2] {
+		label="10 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingle.adl"
+		args="sec=10,ds=11,us=10"
+	}
+	display[3] {
+		label="10 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S10ID:DSID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1660,6 +1787,11 @@ text {
 		label="11 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S11BM,a=S11BMFE"
+	}
+	display[2] {
+		label="11 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=11"
 	}
 	clr=14
 	bclr=51
@@ -1682,6 +1814,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S11ID,a=S11IDFE"
 	}
+	display[2] {
+		label="11 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=11,ds=12,us=11"
+	}
+	display[3] {
+		label="11 - ID DS-ID Control"
+		name="../id/IDControl.adl"
+		args="P=S11ID:DSID"
+	}
+	display[4] {
+		label="11 - ID US-ID Control"
+		name="../id/IDControl.adl"
+		args="P=S11ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1702,6 +1849,11 @@ text {
 		label="12 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S12BM,a=S12BMFE"
+	}
+	display[2] {
+		label="12 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=12"
 	}
 	clr=14
 	bclr=51
@@ -1724,6 +1876,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S12ID,a=S12IDFE"
 	}
+	display[2] {
+		label="12 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=12,ds=13,us=12"
+	}
+	display[3] {
+		label="12 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S12ID:DSID"
+	}
+	display[4] {
+		label="12 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S12ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1744,6 +1911,11 @@ text {
 		label="13 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S13BM,a=S13BMFE"
+	}
+	display[2] {
+		label="13 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=13"
 	}
 	clr=14
 	bclr=51
@@ -1766,6 +1938,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S13ID,a=S13IDFE"
 	}
+	display[2] {
+		label="13 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=13,ds=14,us=13"
+	}
+	display[3] {
+		label="13 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S13ID:DSID"
+	}
+	display[4] {
+		label="13 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S13ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1786,6 +1973,11 @@ text {
 		label="14 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S14BM,a=S14BMFE"
+	}
+	display[2] {
+		label="14 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=14"
 	}
 	clr=14
 	bclr=51
@@ -1808,6 +2000,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S14ID,a=S14IDFE"
 	}
+	display[2] {
+		label="14 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=14,ds=15,us=14"
+	}
+	display[3] {
+		label="14 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S14ID:DSID"
+	}
+	display[4] {
+		label="14 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S14ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1828,6 +2035,11 @@ text {
 		label="17 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S17BM,a=S17BMFE"
+	}
+	display[2] {
+		label="17 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=17"
 	}
 	clr=14
 	bclr=51
@@ -1850,6 +2062,16 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S18ID,a=S18IDFE"
 	}
+	display[2] {
+		label="18 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingle.adl"
+		args="sec=18,ds=19,us=18"
+	}
+	display[3] {
+		label="18 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S18ID:DSID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1870,6 +2092,21 @@ text {
 		label="19 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S19ID,a=S19IDFE"
+	}
+	display[2] {
+		label="19 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=19,ds=20,us=19"
+	}
+	display[3] {
+		label="19 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S19ID:DSID"
+	}
+	display[4] {
+		label="19 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S19ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -1892,6 +2129,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S19BM,a=S19BMFE"
 	}
+	display[2] {
+		label="19 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=19"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1912,6 +2154,16 @@ text {
 		label="17 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S17ID,a=S17IDFE"
+	}
+	display[2] {
+		label="17 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingle.adl"
+		args="sec=17,ds=18,us=17"
+	}
+	display[3] {
+		label="17 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S17ID:DSID"
 	}
 	clr=14
 	bclr=51
@@ -1934,6 +2186,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S16ID,a=S16IDFE"
 	}
+	display[2] {
+		label="16 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=16,ds=17,us=16"
+	}
+	display[3] {
+		label="16 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S16ID:DSID"
+	}
+	display[4] {
+		label="16 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S16ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1954,6 +2221,21 @@ text {
 		label="15 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S15ID,a=S15IDFE"
+	}
+	display[2] {
+		label="15 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=15,ds=16,us=15"
+	}
+	display[3] {
+		label="15 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S15ID:DSID"
+	}
+	display[4] {
+		label="15 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S15ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -1976,6 +2258,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S20BM,a=S20BMFE"
 	}
+	display[2] {
+		label="20 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=20"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -1996,6 +2283,21 @@ text {
 		label="20 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S20ID,a=S20IDFE"
+	}
+	display[2] {
+		label="20 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=20,ds=21,us=20"
+	}
+	display[3] {
+		label="20 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S20ID:DSID"
+	}
+	display[4] {
+		label="20 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S20ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2018,6 +2320,11 @@ text {
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S23BM,a=S23BMFE"
 	}
+	display[2] {
+		label="23 - BM BPM"
+		name="iocs/xsrcpt/BMbpm.adl"
+		args="sec=23"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2038,6 +2345,21 @@ text {
 		label="33 - BM FE EPS & Control"
 		name="iocs/frontend/FEEPS_BM_Main.adl"
 		args="Z=S33BM,a=S33BMFE"
+	}
+	display[2] {
+		label="33 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=33,ds=34,us=33"
+	}
+	display[3] {
+		label="33 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S33ID:DSID"
+	}
+	display[4] {
+		label="33 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S33ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2060,6 +2382,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S21ID,a=S21IDFE"
 	}
+	display[2] {
+		label="21 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=21,ds=22,us=21"
+	}
+	display[3] {
+		label="21 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S21ID:DSID"
+	}
+	display[4] {
+		label="21 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S21ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2080,6 +2417,21 @@ text {
 		label="22 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S22ID,a=S22IDFE"
+	}
+	display[2] {
+		label="22 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=22,ds=23,us=22"
+	}
+	display[3] {
+		label="22 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S22ID:DSID"
+	}
+	display[4] {
+		label="22 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S22ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2102,6 +2454,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S23ID,a=S23IDFE"
 	}
+	display[2] {
+		label="23 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=23,ds=24,us=23"
+	}
+	display[3] {
+		label="23 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S23ID:DSID"
+	}
+	display[4] {
+		label="23 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S23ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2122,6 +2489,21 @@ text {
 		label="26 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S26ID,a=S26IDFE"
+	}
+	display[2] {
+		label="26 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=26,ds=27,us=26"
+	}
+	display[3] {
+		label="26 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S26ID:DSID"
+	}
+	display[4] {
+		label="26 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S26ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2144,6 +2526,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S27ID,a=S27IDFE"
 	}
+	display[2] {
+		label="27 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=27,ds=28,us=27"
+	}
+	display[3] {
+		label="27 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S27ID:DSID"
+	}
+	display[4] {
+		label="27 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S27ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2164,6 +2561,21 @@ text {
 		label="28 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S28ID,a=S28IDFE"
+	}
+	display[2] {
+		label="28 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=28,ds=29,us=28"
+	}
+	display[3] {
+		label="28 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S28ID:DSID"
+	}
+	display[4] {
+		label="28 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S28ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2186,6 +2598,16 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S29ID,a=S29IDFE"
 	}
+	display[2] {
+		label="29 - ID BPM"
+		name="iocs/xsrcpt/IDbpmSingleS29.adl"
+		args="sec=29,ds=30,us=29"
+	}
+	display[3] {
+		label="29 - IEX Device Control"
+		name="../id/iexUser.adl"
+		args="P=S29ID:"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2206,6 +2628,21 @@ text {
 		label="30 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S30ID,a=S30IDFE"
+	}
+	display[2] {
+		label="30 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=30,ds=31,us=30"
+	}
+	display[3] {
+		label="30 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S30ID:DSID"
+	}
+	display[4] {
+		label="30 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S30ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2228,6 +2665,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S31ID,a=S31IDFE"
 	}
+	display[2] {
+		label="31 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=31,ds=32,us=31"
+	}
+	display[3] {
+		label="31 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S31ID:DSID"
+	}
+	display[4] {
+		label="31 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S31ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2248,6 +2700,21 @@ text {
 		label="32 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S32ID,a=S32IDFE"
+	}
+	display[2] {
+		label="32 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=32,ds=33,us=32"
+	}
+	display[3] {
+		label="32 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S32ID:DSID"
+	}
+	display[4] {
+		label="32 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S32ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2270,6 +2737,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S33ID,a=S33IDFE"
 	}
+	display[2] {
+		label="33 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=33,ds=34,us=33"
+	}
+	display[3] {
+		label="33 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S33ID:DSID"
+	}
+	display[4] {
+		label="33 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S33ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2290,6 +2772,21 @@ text {
 		label="34 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S34ID,a=S34IDFE"
+	}
+	display[2] {
+		label="34 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=34,ds=35,us=34"
+	}
+	display[3] {
+		label="34 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S34ID:DSID"
+	}
+	display[4] {
+		label="34 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S34ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2312,6 +2809,21 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S35ID,a=S35IDFE"
 	}
+	display[2] {
+		label="35 - ID BPM"
+		name="iocs/xsrcpt/IDbpmInline.adl"
+		args="sec=35,ds=36,us=35"
+	}
+	display[3] {
+		label="35 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S35ID:DSID"
+	}
+	display[4] {
+		label="35 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Revolver.adl"
+		args="P=S35ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
@@ -2332,6 +2844,21 @@ text {
 		label="25 - ID FE EPS & Control"
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S25ID,a=S25IDFE"
+	}
+	display[2] {
+		label="25 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=25,ds=26,us=25"
+	}
+	display[3] {
+		label="25 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S25ID:DSID"
+	}
+	display[4] {
+		label="25 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S25ID:USID"
 	}
 	clr=14
 	bclr=51
@@ -2354,7 +2881,49 @@ text {
 		name="iocs/frontend/FEEPS_HHL_Canted_Main.adl"
 		args="Z=S24ID,a=S24IDFE"
 	}
+	display[2] {
+		label="24 - ID BPM"
+		name="iocs/xsrcpt/IDbpmCanted.adl"
+		args="sec=24,ds=25,us=24"
+	}
+	display[3] {
+		label="24 - ID DS-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S24ID:DSID"
+	}
+	display[4] {
+		label="24 - ID US-ID Control"
+		name="iocs/sioc2id/IDControl_Planar.adl"
+		args="P=S24ID:USID"
+	}
 	clr=14
 	bclr=51
 	label="B"
+}
+"related display" {
+	object {
+		x=187
+		y=381
+		width=138
+		height=20
+	}
+	display[0] {
+		label="BM XBPM"
+		name="iocs/xbpm/xbpmBMTop.adl"
+	}
+	display[1] {
+		label="ID XBPM"
+		name="iocs/xbpm/xbpmIDTop.adl"
+	}
+	display[2] {
+		label="ID Source Point Parameters"
+		name="iocs/xsrcpt/IDSrcPointsOverview.adl"
+	}
+	display[3] {
+		label="BM Source Point Parameters"
+		name="iocs/xsrcpt/BMSrcPointsOverview.adl"
+	}
+	clr=14
+	bclr=50
+	label="BPM - SR & XBPM"
 }

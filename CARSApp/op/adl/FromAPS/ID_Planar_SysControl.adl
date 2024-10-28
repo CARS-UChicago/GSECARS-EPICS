@@ -1,0 +1,3585 @@
+
+file {
+	name="/home/helios/xfdsys/C2/sioc2id/PCMMApp/op/adl/ID_Planar_SysControl.adl"
+	version=030120
+}
+display {
+	object {
+		x=824
+		y=69
+		width=695
+		height=973
+	}
+	clr=14
+	bclr=55
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=115
+		y=10
+		width=450
+		height=30
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="ID System Manager Control"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=10
+		y=100
+		width=670
+		height=215
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=320
+				y=115
+				width=110
+				height=40
+			}
+			control {
+				chan="$(P):StartC.VAL"
+				clr=14
+				bclr=16
+			}
+			label="Start"
+			press_msg="1"
+			release_msg="0"
+		}
+		"message button" {
+			object {
+				x=440
+				y=115
+				width=110
+				height=40
+			}
+			control {
+				chan="$(P):StopC.VAL"
+				clr=14
+				bclr=20
+			}
+			label="STOP"
+			press_msg="1"
+			release_msg="0"
+		}
+		"text entry" {
+			object {
+				x=560
+				y=125
+				width=120
+				height=30
+			}
+			control {
+				chan="$(P):ScanGapC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=560
+				y=100
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Scan Gap"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=10
+				y=100
+				width=310
+				height=56
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=10
+						y=125
+						width=120
+						height=30
+					}
+					control {
+						chan="$(P):GapSetC.VAL"
+						clr=14
+						bclr=4
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=10
+						y=100
+						width=120
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Position"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=135
+						y=135
+						width=25
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="mm"
+				}
+				"text entry" {
+					object {
+						x=170
+						y=125
+						width=120
+						height=30
+					}
+					control {
+						chan="$(P):TaperGapSetC.VAL"
+						clr=14
+						bclr=4
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=170
+						y=100
+						width=120
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Taper Amount"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=295
+						y=136
+						width=25
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="mm"
+				}
+			}
+		}
+		text {
+			object {
+				x=10
+				y=155
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Actual Gap"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=10
+				y=180
+				width=120
+				height=30
+			}
+			monitor {
+				chan="$(P):GapM.VAL"
+				clr=54
+				bclr=56
+			}
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=135
+				y=190
+				width=25
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="mm"
+		}
+		"text update" {
+			object {
+				x=170
+				y=180
+				width=120
+				height=30
+			}
+			monitor {
+				chan="$(P):TaperGapM.VAL"
+				clr=54
+				bclr=56
+			}
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=170
+				y=155
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Actual Taper"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=295
+				y=190
+				width=25
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="mm"
+		}
+		"text update" {
+			object {
+				x=320
+				y=180
+				width=120
+				height=30
+			}
+			monitor {
+				chan="$(P):GapSymmetryM.VAL"
+				clr=54
+				bclr=56
+			}
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=320
+				y=155
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=24
+			}
+			textix="Gap Symmetry"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=445
+				y=190
+				width=25
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="mm"
+		}
+		"text entry" {
+			object {
+				x=470
+				y=180
+				width=55
+				height=30
+			}
+			control {
+				chan="$(P):DeadbandGapC"
+				clr=14
+				bclr=41
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=470
+				y=155
+				width=80
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="DeadBand"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=530
+				y=190
+				width=25
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="um"
+		}
+		composite {
+			object {
+				x=10
+				y=215
+				width=200
+				height=40
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=110
+						y=235
+						width=100
+						height=20
+					}
+					monitor {
+						chan="$(P):DSGapM.VAL"
+						clr=38
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=110
+						y=215
+						width=100
+						height=20
+					}
+					monitor {
+						chan="$(P):USGapM.VAL"
+						clr=38
+						bclr=55
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=10
+						y=215
+						width=100
+						height=20
+					}
+					"basic attribute" {
+						clr=28
+					}
+					textix="USEnd Gap:"
+				}
+				text {
+					object {
+						x=10
+						y=235
+						width=100
+						height=20
+					}
+					"basic attribute" {
+						clr=28
+					}
+					textix="DSEnd Gap:"
+				}
+			}
+		}
+		composite {
+			object {
+				x=220
+				y=215
+				width=460
+				height=41
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=220
+						y=215
+						width=160
+						height=20
+					}
+					"basic attribute" {
+						clr=20
+					}
+					textix="Dev Status Msg:"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=380
+						y=215
+						width=300
+						height=20
+					}
+					monitor {
+						chan="$(P):Message1M.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=380
+						y=235
+						width=300
+						height=20
+					}
+					monitor {
+						chan="$(P):Message2M.VAL"
+						clr=14
+						bclr=55
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=220
+						y=236
+						width=160
+						height=20
+					}
+					"basic attribute" {
+						clr=20
+					}
+					textix="Energy Conv Msg:"
+					align="horiz. right"
+				}
+			}
+		}
+		"message button" {
+			object {
+				x=200
+				y=260
+				width=90
+				height=30
+			}
+			control {
+				chan="$(P):GotoFixedGap2C.VAL"
+				clr=14
+				bclr=16
+			}
+			label="GotoPos2"
+			press_msg="1"
+			release_msg="0"
+		}
+		"text entry" {
+			object {
+				x=295
+				y=260
+				width=90
+				height=30
+			}
+			control {
+				chan="$(P):FixedGap2C.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=10
+				y=260
+				width=90
+				height=30
+			}
+			control {
+				chan="$(P):GotoFixedGap1C.VAL"
+				clr=14
+				bclr=16
+			}
+			label="GotoPos1"
+			press_msg="1"
+			release_msg="0"
+		}
+		"text entry" {
+			object {
+				x=105
+				y=260
+				width=90
+				height=30
+			}
+			control {
+				chan="$(P):FixedGap1C.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		composite {
+			object {
+				x=90
+				y=295
+				width=495
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=90
+						y=295
+						width=140
+						height=20
+					}
+					"basic attribute" {
+						clr=20
+					}
+					"dynamic attribute" {
+						vis="if zero"
+						chan="$(P):BusyDeviceM.VAL"
+					}
+					textix="Device Busy"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=279
+						y=295
+						width=140
+						height=20
+					}
+					"basic attribute" {
+						clr=37
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P):TaperM.VAL"
+					}
+					textix="Device Tapered"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=445
+						y=295
+						width=140
+						height=20
+					}
+					"basic attribute" {
+						clr=20
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(P):BusyM.VAL"
+					}
+					textix="Busy Flag"
+					align="horiz. centered"
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=10
+		y=320
+		width=670
+		height=145
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=155
+				y=338
+				width=525
+				height=127
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		text {
+			object {
+				x=160
+				y=320
+				width=125
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Up Top"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=290
+				y=320
+				width=125
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Up Bottom"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=420
+				y=320
+				width=125
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Down Top"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=550
+				y=320
+				width=125
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Down Bottom"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=10
+				y=320
+				width=145
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			textix="Encoders"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=10
+				y=340
+				width=665
+				height=23
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=10
+						y=340
+						width=150
+						height=20
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Lin End Gap"
+				}
+				"text update" {
+					object {
+						x=160
+						y=340
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USTLinearGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=290
+						y=340
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USBLinearGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=420
+						y=340
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSTLinearGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=550
+						y=340
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSBLinearGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=10
+				y=365
+				width=665
+				height=23
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=10
+						y=365
+						width=150
+						height=20
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Raw Linear Enc"
+				}
+				"text update" {
+					object {
+						x=160
+						y=365
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USTGurleyM.VAL"
+						clr=48
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=290
+						y=365
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USBGurleyM.VAL"
+						clr=48
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=420
+						y=365
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSTGurleyM.VAL"
+						clr=48
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=550
+						y=365
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSBGurleyM.VAL"
+						clr=48
+						bclr=55
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=10
+				y=390
+				width=665
+				height=23
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=10
+						y=390
+						width=150
+						height=20
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Resolv End Gap"
+				}
+				"text update" {
+					object {
+						x=160
+						y=390
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USTResolverGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=290
+						y=390
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USBResolverGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=420
+						y=390
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSTResolverGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=550
+						y=390
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSBResolverGapM.VAL"
+						clr=54
+						bclr=55
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=10
+				y=415
+				width=665
+				height=23
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=10
+						y=415
+						width=150
+						height=20
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Raw Resolver"
+				}
+				"text update" {
+					object {
+						x=160
+						y=415
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USTResolverRawM.VAL"
+						clr=37
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=290
+						y=415
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USBResolverRawM.VAL"
+						clr=37
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=420
+						y=415
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSTResolverRawM.VAL"
+						clr=37
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=550
+						y=415
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSBResolverRawM.VAL"
+						clr=37
+						bclr=55
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=10
+				y=440
+				width=665
+				height=23
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=550
+						y=440
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSBResolverCalcM.VAL"
+						clr=22
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=420
+						y=440
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):DSTResolverCalcM.VAL"
+						clr=22
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=290
+						y=440
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USBResolverCalcM.VAL"
+						clr=22
+						bclr=55
+					}
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=160
+						y=440
+						width=125
+						height=23
+					}
+					monitor {
+						chan="$(P):USTResolverCalcM.VAL"
+						clr=22
+						bclr=55
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=10
+						y=440
+						width=150
+						height=20
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Calc Resolver"
+				}
+			}
+		}
+	}
+}
+"related display" {
+	object {
+		x=567
+		y=262
+		width=120
+		height=30
+	}
+	display[0] {
+		label="ID Setup"
+		name="ID_Planar_Setup.adl"
+		args="P=$(P)"
+	}
+	display[1] {
+		label="Simple Control"
+		name="newIDControl_Planar.adl"
+		args="P=$(P)"
+	}
+	display[2] {
+		label="Debug_New1"
+		name="Debug_New1.adl"
+		args="P=$(P)"
+	}
+	display[3] {
+		label="EncDiscrepancyCheck"
+		name="EncDiscrepancyCheck.adl"
+		args="P=$(P)"
+	}
+	display[4] {
+		label="LimitSwitches"
+		name="ID_SwitchesLarge.adl"
+		args="P=$(P)"
+	}
+	display[5] {
+		label="PCMM Control"
+		name="PLCControl.adl"
+		args="P=$(P)"
+	}
+	display[6] {
+		label="Debug_New2"
+		name="Debug_New2.adl"
+		args="P=$(P)"
+	}
+	display[7] {
+		label="Debug_New3"
+		name="Debug_New3.adl"
+		args="P=$(P)"
+	}
+	clr=14
+	bclr=50
+	label="Setup"
+}
+text {
+	object {
+		x=10
+		y=55
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Location:"
+}
+"text update" {
+	object {
+		x=105
+		y=55
+		width=200
+		height=20
+	}
+	monitor {
+		chan="$(P):LocationM.VAL"
+		clr=54
+		bclr=55
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=135
+		y=75
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P):PLCVersionM.VAL"
+		clr=54
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=75
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Version PLC:"
+}
+"text update" {
+	object {
+		x=385
+		y=55
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P):DeviceM.VAL"
+		clr=54
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=310
+		y=55
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Device:"
+}
+"text update" {
+	object {
+		x=310
+		y=75
+		width=60
+		height=20
+	}
+	monitor {
+		chan="$(P):HPMUVersionM.VAL"
+		clr=54
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=265
+		y=75
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="HPMU"
+}
+"text update" {
+	object {
+		x=585
+		y=55
+		width=90
+		height=20
+	}
+	monitor {
+		chan="$(P):DeviceMagnetM.VAL"
+		clr=54
+		bclr=55
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=510
+		y=55
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Magnet:"
+}
+text {
+	object {
+		x=220
+		y=75
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IOC:"
+}
+composite {
+	object {
+		x=0
+		y=710
+		width=700
+		height=235
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=0
+				y=710
+				width=700
+				height=235
+			}
+			"basic attribute" {
+				clr=31
+			}
+		}
+		text {
+			object {
+				x=278
+				y=715
+				width=200
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			textix="Raw Controls"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=10
+				y=820
+				width=130
+				height=25
+			}
+			"basic attribute" {
+				clr=38
+			}
+			textix="Move Motor:"
+		}
+		text {
+			object {
+				x=10
+				y=860
+				width=130
+				height=25
+			}
+			"basic attribute" {
+				clr=38
+			}
+			textix="All Motors:"
+		}
+		"text entry" {
+			object {
+				x=150
+				y=855
+				width=120
+				height=35
+			}
+			control {
+				chan="$(P):SetAllMotorsC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"choice button" {
+			object {
+				x=10
+				y=895
+				width=130
+				height=40
+			}
+			control {
+				chan="$(P):EncoderSwitchC.VAL"
+				clr=14
+				bclr=34
+			}
+		}
+		"choice button" {
+			object {
+				x=150
+				y=895
+				width=120
+				height=40
+			}
+			control {
+				chan="$(P):EncoderSelectC.VAL"
+				clr=14
+				bclr=50
+			}
+		}
+		text {
+			object {
+				x=360
+				y=860
+				width=185
+				height=25
+			}
+			"basic attribute" {
+				clr=13
+			}
+			textix="Open All Motors:"
+		}
+		"message button" {
+			object {
+				x=550
+				y=855
+				width=125
+				height=35
+			}
+			control {
+				chan="$(P):Open20micronC.PROC"
+				clr=14
+				bclr=33
+			}
+			label="20 microns"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=635
+				y=788
+				width=40
+				height=25
+			}
+			control {
+				chan="$(P):DSBJogC.VAL"
+				clr=14
+				bclr=42
+			}
+			label="Jog"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=555
+				y=793
+				width=75
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Down Bot"
+		}
+		"text entry" {
+			object {
+				x=555
+				y=815
+				width=120
+				height=35
+			}
+			control {
+				chan="$(P):DSBServoMoveC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=500
+				y=788
+				width=40
+				height=25
+			}
+			control {
+				chan="$(P):DSTJogC.VAL"
+				clr=14
+				bclr=42
+			}
+			label="Jog"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=420
+				y=793
+				width=75
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Down Top"
+		}
+		"text entry" {
+			object {
+				x=420
+				y=815
+				width=120
+				height=35
+			}
+			control {
+				chan="$(P):DSTServoMoveC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=365
+				y=788
+				width=40
+				height=25
+			}
+			control {
+				chan="$(P):USBJogC.VAL"
+				clr=14
+				bclr=42
+			}
+			label="Jog"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=285
+				y=793
+				width=75
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Up Bot"
+		}
+		"text entry" {
+			object {
+				x=285
+				y=815
+				width=120
+				height=35
+			}
+			control {
+				chan="$(P):USBServoMoveC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=230
+				y=788
+				width=40
+				height=25
+			}
+			control {
+				chan="$(P):USTJogC.VAL"
+				clr=14
+				bclr=42
+			}
+			label="Jog"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=150
+				y=793
+				width=75
+				height=15
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Up Top"
+		}
+		"text entry" {
+			object {
+				x=150
+				y=815
+				width=120
+				height=35
+			}
+			control {
+				chan="$(P):USTServoMoveC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=440
+				y=898
+				width=220
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):LinearEncoderUsedM.VAL"
+			}
+			textix="Operating on Resolver"
+		}
+		text {
+			object {
+				x=440
+				y=903
+				width=190
+				height=20
+			}
+			"basic attribute" {
+				clr=19
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P):LinearEncoderUsedM.VAL"
+			}
+			textix="Operating on Linear"
+		}
+		text {
+			object {
+				x=285
+				y=898
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=22
+			}
+			textix="Encoder Choice:"
+		}
+		composite {
+			object {
+				x=10
+				y=755
+				width=245
+				height=30
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=135
+						y=755
+						width=120
+						height=30
+					}
+					control {
+						chan="$(P):StopDeviceC.VAL"
+						clr=14
+						bclr=20
+					}
+					label="Dev Stop"
+					press_msg="1"
+					release_msg="0"
+				}
+				"message button" {
+					object {
+						x=10
+						y=755
+						width=120
+						height=30
+					}
+					control {
+						chan="$(P):StartDeviceC.VAL"
+						clr=14
+						bclr=16
+					}
+					label="Dev Start"
+					press_msg="1"
+					release_msg="0"
+				}
+			}
+		}
+		"text entry" {
+			object {
+				x=585
+				y=750
+				width=90
+				height=35
+			}
+			control {
+				chan="$(P):TaperGapSetDeviceC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=460
+				y=755
+				width=120
+				height=25
+			}
+			"basic attribute" {
+				clr=38
+			}
+			textix="Dev Taper:"
+		}
+		"text entry" {
+			object {
+				x=365
+				y=750
+				width=90
+				height=35
+			}
+			control {
+				chan="$(P):GapSetDeviceC.VAL"
+				clr=14
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=260
+				y=755
+				width=100
+				height=25
+			}
+			"basic attribute" {
+				clr=38
+			}
+			textix="Dev Gap:"
+		}
+		"shell command" {
+			object {
+				x=10
+				y=715
+				width=120
+				height=30
+			}
+			command[0] {
+				label="CharID"
+				name="/home/oxygen/ID_CTL/wl/gitlab/sioc2id/script/charScript.sh"
+				args="$(P)"
+			}
+			clr=14
+			bclr=33
+			label="CharID"
+		}
+		text {
+			object {
+				x=285
+				y=920
+				width=150
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A==B"
+				chan="$(P):LinearEncoderUsedM.RVAL"
+				chanB="$(P):EncoderSelectC.RVAL"
+			}
+			textix="Check above!!"
+		}
+		"shell command" {
+			object {
+				x=135
+				y=715
+				width=130
+				height=30
+			}
+			command[0] {
+				label="GenCalibFile"
+				name="/home/oxygen/ID_CTL/newID/main/script/GenCalibFile.sh"
+				args="$(P)"
+			}
+			clr=14
+			bclr=50
+			label="-GenCalibFile"
+		}
+	}
+}
+text {
+	object {
+		x=400
+		y=678
+		width=300
+		height=25
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A==B"
+		chan="$(P):LinearEncoderUsedM.RVAL"
+		chanB="$(P):EncoderSelectC.RVAL"
+	}
+	textix="Check Encoder Setting!!"
+}
+text {
+	object {
+		x=335
+		y=470
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="DSB"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=280
+		y=470
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="DST"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=225
+		y=470
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="USB"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=170
+		y=470
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="UST"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=15
+		y=490
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="Maximum Limit"
+}
+text {
+	object {
+		x=15
+		y=511
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="Minimum Limit"
+}
+text {
+	object {
+		x=15
+		y=532
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Home Limit"
+}
+text {
+	object {
+		x=16
+		y=553
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="Extreme Limit"
+}
+text {
+	object {
+		x=16
+		y=574
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="STO-A"
+}
+text {
+	object {
+		x=210
+		y=658
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="LJ:"
+}
+text {
+	object {
+		x=155
+		y=658
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="UJ:"
+}
+text {
+	object {
+		x=15
+		y=658
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="MPS/FEEPS:"
+}
+text {
+	object {
+		x=16
+		y=595
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="STO B"
+}
+text {
+	object {
+		x=16
+		y=616
+		width=149
+		height=20
+	}
+	"basic attribute" {
+		clr=22
+	}
+	textix="LinEncoderReady"
+}
+oval {
+	object {
+		x=185
+		y=655
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=595
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTDriveSTOBM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=615
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTLinEncoderRdyM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=490
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=511
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=532
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=553
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=574
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=595
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=185
+		y=490
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTMaxLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=511
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTMinLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=532
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=37
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTHomLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=553
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTExtLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=574
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USTDriveSTOAM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=655
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=53
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):MpsFeepsUJM.VAL"
+	}
+}
+oval {
+	object {
+		x=185
+		y=615
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P):USTLinEncoderRdyM.VAL"
+	}
+}
+composite {
+	object {
+		x=295
+		y=490
+		width=20
+		height=145
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=295
+				y=595
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTDriveSTOBM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=615
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTLinEncoderRdyM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=490
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=511
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=532
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=553
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=574
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=595
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=490
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTMaxLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=511
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTMinLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=532
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=37
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTHomLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=553
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTExtLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=574
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSTDriveSTOAM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=295
+				y=615
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P):DSTLinEncoderRdyM.VAL"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=350
+		y=490
+		width=20
+		height=145
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=350
+				y=490
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=511
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=532
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=553
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=574
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=595
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=490
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBMaxLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=511
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBMinLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=532
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=37
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBHomLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=553
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBExtLimitM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=574
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBDriveSTOAM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=595
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBDriveSTOBM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=615
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(P):DSBLinEncoderRdyM.VAL"
+			}
+		}
+		oval {
+			object {
+				x=350
+				y=615
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(P):DSBLinEncoderRdyM.VAL"
+			}
+		}
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=490
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):MaxStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=511
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):MinStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=532
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):HomStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=553
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):ExtStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=574
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):STOAStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=595
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):STOBStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=616
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):LinEncoderRdyMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=490
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):MaxStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=511
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):MinStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=532
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):HomStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=553
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):ExtStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=574
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):STOAStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=595
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):STOBStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=390
+		y=616
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):LinEncoderRdyCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=390
+		y=470
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="CALC"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=390
+		y=658
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(P):MpsFeepsStatusCalcM"
+		clr=20
+		bclr=3
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=455
+		y=658
+		width=220
+		height=20
+	}
+	monitor {
+		chan="$(P):MpsFeepsStatusMsgM"
+		clr=20
+		bclr=3
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=455
+		y=470
+		width=220
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Message"
+	align="horiz. centered"
+}
+oval {
+	object {
+		x=240
+		y=655
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=595
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBDriveSTOBM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=615
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBLinEncoderRdyM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=490
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=511
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=532
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=553
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=574
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=595
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=240
+		y=490
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBMaxLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=511
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBMinLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=532
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=37
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBHomLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=553
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBExtLimitM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=574
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):USBDriveSTOAM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=655
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=53
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P):MpsFeepsLJM.VAL"
+	}
+}
+oval {
+	object {
+		x=240
+		y=615
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P):USBLinEncoderRdyM.VAL"
+	}
+}
+rectangle {
+	object {
+		x=10
+		y=465
+		width=670
+		height=242
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+oval {
+	object {
+		x=256
+		y=637
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+oval {
+	object {
+		x=116
+		y=637
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+composite {
+	object {
+		x=16
+		y=637
+		width=659
+		height=21
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=116
+				y=637
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(P):CtlEnableM.VAL"
+			}
+		}
+		text {
+			object {
+				x=16
+				y=637
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Ctl-EStop"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=166
+				y=638
+				width=80
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="ID-EStop"
+			align="horiz. right"
+		}
+		oval {
+			object {
+				x=256
+				y=637
+				width=20
+				height=20
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="$(P):IDEnableM.VAL"
+			}
+		}
+		"text update" {
+			object {
+				x=390
+				y=637
+				width=50
+				height=20
+			}
+			monitor {
+				chan="$(P):EStopStatusCalcM"
+				clr=20
+				bclr=3
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=455
+				y=637
+				width=220
+				height=20
+			}
+			monitor {
+				chan="$(P):EStopStatusMsgM"
+				clr=20
+				bclr=3
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=70
+		y=675
+		width=196
+		height=31
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=144
+				y=675
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P):UJMpsTriggerGapM"
+				clr=14
+				bclr=3
+			}
+			limits {
+				precSrc="default"
+				precDefault=3
+			}
+		}
+		"text update" {
+			object {
+				x=206
+				y=675
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P):LJMpsTriggerGapM"
+				clr=14
+				bclr=3
+			}
+			limits {
+				precSrc="default"
+				precDefault=3
+			}
+		}
+		text {
+			object {
+				x=70
+				y=675
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Trigger:"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=70
+				y=691
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Release:"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=144
+				y=691
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P):UJMpsReleaseGapM"
+				clr=14
+				bclr=3
+			}
+			limits {
+				precSrc="default"
+				precDefault=3
+			}
+		}
+		"text update" {
+			object {
+				x=206
+				y=691
+				width=60
+				height=15
+			}
+			monitor {
+				chan="$(P):LJMpsReleaseGapM"
+				clr=14
+				bclr=3
+			}
+			limits {
+				precSrc="default"
+				precDefault=3
+			}
+		}
+	}
+}
+text {
+	object {
+		x=140
+		y=78
+		width=400
+		height=35
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		vis="if not zero"
+		chan="$(P):MinSwitchByPassedM"
+	}
+	textix="Min Switch ByPassed!!!!!"
+}
+"message button" {
+	object {
+		x=288
+		y=713
+		width=115
+		height=25
+	}
+	control {
+		chan="$(P):TransferLinearToResolver_.PROC"
+		clr=14
+		bclr=35
+	}
+	label="TransFromLin"
+	press_msg="1"
+}
+composite {
+	object {
+		x=481
+		y=707
+		width=200
+		height=40
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=483
+				y=709
+				width=190
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Take&Save Screenshot"
+			align="horiz. centered"
+		}
+		"shell command" {
+			object {
+				x=618
+				y=726
+				width=60
+				height=20
+			}
+			command[0] {
+				label="HardStop"
+				name="/home/helios/xfdsys/C2/scripts/take_screenshot/take_screenshot.sh"
+				args="$(P) HardStop"
+			}
+			clr=14
+			bclr=4
+			label="-HardStop"
+		}
+		"shell command" {
+			object {
+				x=573
+				y=726
+				width=40
+				height=20
+			}
+			command[0] {
+				label="Ext"
+				name="/home/helios/xfdsys/C2/scripts/take_screenshot/take_screenshot.sh"
+				args="$(P) Ext"
+			}
+			clr=14
+			bclr=4
+			label="-Ext"
+		}
+		"shell command" {
+			object {
+				x=483
+				y=726
+				width=40
+				height=20
+			}
+			command[0] {
+				label="Min"
+				name="/home/helios/xfdsys/C2/scripts/take_screenshot/take_screenshot.sh"
+				args="$(P) Min"
+			}
+			clr=14
+			bclr=4
+			label="-Min"
+		}
+		"shell command" {
+			object {
+				x=528
+				y=726
+				width=40
+				height=20
+			}
+			command[0] {
+				label="Max"
+				name="/home/helios/xfdsys/C2/scripts/take_screenshot/take_screenshot.sh"
+				args="$(P) Max"
+			}
+			clr=14
+			bclr=4
+			label="-Max"
+		}
+		rectangle {
+			object {
+				x=481
+				y=707
+				width=200
+				height=40
+			}
+			"basic attribute" {
+				clr=20
+				fill="outline"
+			}
+		}
+	}
+}

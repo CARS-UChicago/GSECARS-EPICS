@@ -1,12 +1,12 @@
 
 file {
-	name="/home/oxygen/JBUDZ/frontend/main/feApp/op/adl/FEEPS_FTW_Stacks.adl"
-	version=030117
+	name="/home/helios/MLS/C2/iocs/frontend/feApp/op/adl/FEEPS_FTW_Stacks.adl"
+	version=030120
 }
 display {
 	object {
-		x=848
-		y=90
+		x=464
+		y=159
 		width=1450
 		height=400
 	}
@@ -87,116 +87,18 @@ display {
 		1a7309,
 	}
 }
-composite {
+text {
 	object {
 		x=522
 		y=21
 		width=400
-		height=45
+		height=20
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=522
-				y=21
-				width=400
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="FRONT END EQUIPMENT PROTECTION SYSTEM"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=595
-				y=46
-				width=240
-				height=20
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=595
-						y=46
-						width=240
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=1&&B=1"
-						chan="$(Z)-FEEPS:Beamline:CantedM"
-						chanB="$(Z)-FEEPS:BIV_PresentM"
-					}
-					textix="(Canted ID FE with BIV)"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=595
-						y=46
-						width=240
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=1&&B=0"
-						chan="$(Z)-FEEPS:Beamline:CantedM"
-						chanB="$(Z)-FEEPS:BIV_PresentM"
-					}
-					textix="(Canted ID FE with BeW)"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=595
-						y=46
-						width=240
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=0&&B=1"
-						chan="$(Z)-FEEPS:Beamline:CantedM"
-						chanB="$(Z)-FEEPS:BIV_PresentM"
-					}
-					textix="(HHL ID FE with BIV)"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=595
-						y=46
-						width=240
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=0&&B=0"
-						chan="$(Z)-FEEPS:Beamline:CantedM"
-						chanB="$(Z)-FEEPS:BIV_PresentM"
-					}
-					textix="(HHL ID FE with BeW)"
-					align="horiz. centered"
-				}
-			}
-		}
+	"basic attribute" {
+		clr=14
 	}
+	textix="FRONT END EQUIPMENT PROTECTION SYSTEM"
+	align="horiz. centered"
 }
 text {
 	object {
@@ -6639,61 +6541,33 @@ text {
 	}
 	textix=":"
 }
-composite {
+text {
 	object {
 		x=174
 		y=21
-		width=137
+		width=80
 		height=25
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=174
-				y=21
-				width=80
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="SECTOR:"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=287
-				y=21
-				width=24
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(Z)-FEEPS:Beamline:TypeM"
-			}
-			textix="ID"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=257
-				y=21
-				width=25
-				height=25
-			}
-			monitor {
-				chan="$(Z)-FEEPS:Beamline:NumberM"
-				clr=14
-				bclr=3
-			}
-			align="horiz. centered"
-			limits {
-			}
-		}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SECTOR:"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=257
+		y=21
+		width=25
+		height=25
+	}
+	monitor {
+		chan="$(Z)-FEEPS:Beamline:NumberM"
+		clr=14
+		bclr=3
+	}
+	align="horiz. centered"
+	limits {
 	}
 }
 text {
@@ -6925,4 +6799,185 @@ text {
 		clr=14
 	}
 	textix="/"
+}
+text {
+	object {
+		x=321
+		y=21
+		width=24
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	align="horiz. centered"
+}
+text {
+	object {
+		x=288
+		y=21
+		width=24
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	textix="ID"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=288
+		y=21
+		width=24
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	textix="BM"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=598
+		y=45
+		width=240
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A=0&&B=1)&&C=0"
+		chan="$(Z)-FEEPS:Beamline:CantedM"
+		chanB="$(Z)-FEEPS:BIV_PresentM"
+		chanC="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	textix="(BM FE with BIV)"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=600
+		y=46
+		width=240
+		height=20
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=600
+				y=46
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A=1&&B=1)&&C=1"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+				chanC="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="(Canted ID FE with BIV)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=600
+				y=46
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A=1&&B=0)&&C=1"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+				chanC="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="(Canted ID FE with BeW)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=600
+				y=46
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A=0&&B=1)&&C=1"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+				chanC="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="(HHL ID FE with BIV)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=600
+				y=46
+				width=240
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A=0&&B=0)&&C=1"
+				chan="$(Z)-FEEPS:Beamline:CantedM"
+				chanB="$(Z)-FEEPS:BIV_PresentM"
+				chanC="$(Z)-FEEPS:Beamline:TypeM"
+			}
+			textix="(HHL ID FE with BeW)"
+			align="horiz. centered"
+		}
+	}
+}
+text {
+	object {
+		x=598
+		y=45
+		width=240
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A=0&&B=0)&&C=0"
+		chan="$(Z)-FEEPS:Beamline:CantedM"
+		chanB="$(Z)-FEEPS:BIV_PresentM"
+		chanC="$(Z)-FEEPS:Beamline:TypeM"
+	}
+	textix="(BM FE with Window)"
+	align="horiz. centered"
 }

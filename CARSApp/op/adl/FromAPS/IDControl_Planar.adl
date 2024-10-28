@@ -1,12 +1,12 @@
 
 file {
-	name="/home/helios/MLS/iocapps/adlsys/sr/id/IDControl.adl"
-	version=030103
+	name="/home/helios/xfdsys/C2/sioc2id/PCMMApp/op/adl/IDControl_Planar.adl"
+	version=030120
 }
 display {
 	object {
-		x=333
-		y=77
+		x=1659
+		y=203
 		width=310
 		height=640
 	}
@@ -90,7 +90,7 @@ display {
 "message button" {
 	object {
 		x=162
-		y=277
+		y=316
 		width=140
 		height=40
 	}
@@ -128,24 +128,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=60
-		y=43
-		width=203
-		height=13
-	}
-	monitor {
-		chan="$(P):DeviceM"
-		clr=37
-		bclr=55
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
 		x=0
-		y=544
+		y=583
 		width=310
 		height=16
 	}
@@ -161,7 +145,7 @@ rectangle {
 "text update" {
 	object {
 		x=0
-		y=523
+		y=562
 		width=310
 		height=16
 	}
@@ -250,7 +234,7 @@ text {
 }
 "text update" {
 	object {
-		x=62
+		x=63
 		y=27
 		width=190
 		height=15
@@ -263,33 +247,6 @@ text {
 	align="horiz. centered"
 	limits {
 	}
-}
-"shell command" {
-	object {
-		x=243
-		y=611
-		width=25
-		height=18
-	}
-	command[0] {
-		label="ID Online Info"
-		name="cd /home/phoebus/MLS/iocapps/R3.13.10/ioc/id/5/iocBoot/ID_data/idl; xterm -iconic -e idl IDonlineInfo.pro -args `caget $(P):LocationM $(P):Device` &"
-		args="P=$(P)"
-	}
-	clr=49
-	bclr=51
-}
-text {
-	object {
-		x=183
-		y=613
-		width=50
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="ID Info:"
 }
 text {
 	object {
@@ -331,7 +288,7 @@ text {
 "message button" {
 	object {
 		x=8
-		y=277
+		y=316
 		width=140
 		height=40
 	}
@@ -346,7 +303,7 @@ text {
 "text entry" {
 	object {
 		x=199
-		y=444
+		y=483
 		width=100
 		height=25
 	}
@@ -361,7 +318,7 @@ text {
 "text entry" {
 	object {
 		x=209
-		y=415
+		y=454
 		width=80
 		height=25
 	}
@@ -376,7 +333,7 @@ text {
 text {
 	object {
 		x=9
-		y=331
+		y=370
 		width=120
 		height=18
 	}
@@ -388,7 +345,7 @@ text {
 "text update" {
 	object {
 		x=132
-		y=325
+		y=364
 		width=170
 		height=25
 	}
@@ -404,7 +361,7 @@ text {
 text {
 	object {
 		x=11
-		y=418
+		y=457
 		width=180
 		height=18
 	}
@@ -416,7 +373,7 @@ text {
 text {
 	object {
 		x=11
-		y=447
+		y=486
 		width=180
 		height=18
 	}
@@ -428,7 +385,7 @@ text {
 text {
 	object {
 		x=11
-		y=500
+		y=539
 		width=180
 		height=18
 	}
@@ -550,20 +507,20 @@ text {
 text {
 	object {
 		x=11
-		y=389
+		y=428
 		width=180
 		height=18
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="Harmonic Select (1-7):"
+	textix="Harmonic Select:"
 }
 "text entry" {
 	object {
-		x=234
-		y=386
-		width=30
+		x=225
+		y=425
+		width=50
 		height=25
 	}
 	control {
@@ -574,94 +531,10 @@ text {
 	limits {
 	}
 }
-"text update" {
-	object {
-		x=199
-		y=61
-		width=80
-		height=15
-	}
-	monitor {
-		chan="$(P):VersionM"
-		clr=21
-		bclr=55
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=33
-		y=61
-		width=152
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Software Version:"
-	align="horiz. centered"
-}
-"text update" {
-	object {
-		x=0
-		y=565
-		width=310
-		height=16
-	}
-	monitor {
-		chan="$(P):Message3M.VAL"
-		clr=20
-		bclr=55
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=7
-		y=587
-		width=100
-		height=18
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Time Left:"
-}
-"text update" {
-	object {
-		x=110
-		y=588
-		width=80
-		height=16
-	}
-	monitor {
-		chan="$(P):ShClosedTimeM.VAL"
-		clr=14
-		bclr=55
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=191
-		y=591
-		width=80
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="seconds"
-}
 text {
 	object {
 		x=8
-		y=476
+		y=515
 		width=120
 		height=18
 	}
@@ -673,7 +546,7 @@ text {
 "text update" {
 	object {
 		x=105
-		y=473
+		y=512
 		width=100
 		height=25
 	}
@@ -689,19 +562,19 @@ text {
 text {
 	object {
 		x=213
-		y=482
+		y=515
 		width=80
 		height=15
 	}
 	"basic attribute" {
 		clr=39
 	}
-	textix="W /100ma"
+	textix="kW"
 }
 menu {
 	object {
 		x=147
-		y=353
+		y=392
 		width=150
 		height=25
 	}
@@ -709,5 +582,110 @@ menu {
 		chan="$(P):AccessSecurityC"
 		clr=14
 		bclr=32
+	}
+}
+"text update" {
+	object {
+		x=175
+		y=275
+		width=120
+		height=30
+	}
+	monitor {
+		chan="$(P):OptimumTaperM.VAL"
+		clr=60
+		bclr=49
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=13
+		y=283
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Optimum Taper:"
+}
+composite {
+	object {
+		x=83
+		y=43
+		width=150
+		height=13
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=133
+				y=43
+				width=100
+				height=13
+			}
+			monitor {
+				chan="$(P):DeviceM"
+				clr=37
+				bclr=55
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=83
+				y=43
+				width=45
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Device:"
+		}
+	}
+}
+composite {
+	object {
+		x=62
+		y=61
+		width=192
+		height=15
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=62
+				y=61
+				width=152
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Software Version:"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=214
+				y=61
+				width=40
+				height=15
+			}
+			monitor {
+				chan="$(P):PLCVersionM.VAL"
+				clr=21
+				bclr=55
+			}
+			limits {
+			}
+		}
 	}
 }

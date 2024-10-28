@@ -1,12 +1,12 @@
 
 file {
-	name="/home/helios1/GSHEN/C2/./iocapps/adlsys/sr/fe/SR_Status.adl"
-	version=030118
+	name="/home/oxygen/MOHAN/SR_Status.adl"
+	version=030120
 }
 display {
 	object {
-		x=2008
-		y=279
+		x=486
+		y=399
 		width=500
 		height=630
 	}
@@ -120,7 +120,7 @@ text {
 		x=11
 		y=250
 		width=480
-		height=200
+		height=220
 	}
 	plotcom {
 		xlabel="History (Day Hours)"
@@ -148,6 +148,14 @@ text {
 		axisStyle="time"
 		rangeStyle="auto-scale"
 		timeFormat="wd hh:00"
+	}
+	y1_axis {
+		rangeStyle="user-specified"
+		maxRange=200.000000
+	}
+	y2_axis {
+		rangeStyle="user-specified"
+		maxRange=200.000000
 	}
 }
 text {
@@ -177,8 +185,8 @@ text {
 }
 text {
 	object {
-		x=256
-		y=7
+		x=250
+		y=6
 		width=75
 		height=20
 	}
@@ -195,25 +203,26 @@ text {
 		height=25
 	}
 	monitor {
-		chan="S:SRlifeTimeHrsCC"
+		chan="S-DCCT:LifetimeM"
 		clr=14
 		bclr=2
 	}
 	align="horiz. centered"
+	format="compact"
 	limits {
 	}
 }
 text {
 	object {
-		x=434
+		x=424
 		y=11
-		width=50
+		width=60
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Hours"
+	textix="Minutes"
 }
 rectangle {
 	object {
@@ -403,160 +412,6 @@ text {
 	}
 	textix="Fill Number :"
 	align="horiz. right"
-}
-rectangle {
-	object {
-		x=227
-		y=215
-		width=220
-		height=25
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="S:OrbitCorrection:CC"
-	}
-}
-rectangle {
-	object {
-		x=227
-		y=215
-		width=220
-		height=25
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="S:OrbitCorrection:CC"
-	}
-}
-text {
-	object {
-		x=237
-		y=217
-		width=200
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="S:OrbitCorrection:CC"
-	}
-	textix="Correction in Progress"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=236
-		y=217
-		width=200
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="S:OrbitCorrection:CC"
-	}
-	textix="No Corrections"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=40
-		y=218
-		width=160
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Local Orbit:"
-	align="horiz. right"
-}
-text {
-	object {
-		x=40
-		y=189
-		width=160
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Global Feedback:"
-	align="horiz. right"
-}
-rectangle {
-	object {
-		x=227
-		y=186
-		width=50
-		height=25
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="SRFB:GBL:LoopStatusBI"
-	}
-}
-rectangle {
-	object {
-		x=227
-		y=186
-		width=50
-		height=25
-	}
-	"basic attribute" {
-		clr=36
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="SRFB:GBL:LoopStatusBI"
-	}
-}
-text {
-	object {
-		x=236
-		y=188
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="SRFB:GBL:LoopStatusBI"
-	}
-	textix="OFF"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=236
-		y=188
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="SRFB:GBL:LoopStatusBI"
-	}
-	textix="ON"
-	align="horiz. centered"
 }
 "text update" {
 	object {
@@ -760,8 +615,9 @@ rectangle {
 		clr=56
 	}
 	"dynamic attribute" {
-		vis="if not zero"
-		chan="Mt:TopUpAutoEnableC.VAL"
+		vis="calc"
+		calc="A=2"
+		chan="S-INJ:InjectionOperationM"
 	}
 }
 text {
@@ -775,10 +631,11 @@ text {
 		clr=63
 	}
 	"dynamic attribute" {
-		vis="if not zero"
-		chan="Mt:TopUpAutoEnableC.VAL"
+		vis="calc"
+		calc="A=2"
+		chan="S-INJ:InjectionOperationM.VAL"
 	}
-	textix="TopUp in Progress"
+	textix="Swapout in Progress"
 	align="horiz. centered"
 }
 text {
