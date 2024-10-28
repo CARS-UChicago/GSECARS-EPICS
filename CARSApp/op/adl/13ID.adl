@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=80
-		y=101
+		x=292
+		y=111
 		width=700
 		height=550
 	}
@@ -250,10 +250,6 @@ composite {
 		label="Storage Ring Status"
 		name="SR_Status.adl"
 	}
-	display[1] {
-		label="Top up status"
-		name="TopUp.adl"
-	}
 	display[2] {
 		label="Beamline status"
 		name="Beamline_Status.adl"
@@ -269,25 +265,10 @@ composite {
 		name="Main_13ID.adl"
 		args="xx=13, yy=ID"
 	}
-	display[5] {
-		label="MRD ID C/D branch"
-		name="MRD_ID.adl"
-		args="xx=13,ID1=13ds,ID2=13us"
-	}
-	display[6] {
-		label="MRD ID E branch"
-		name="MRD_ID.adl"
-		args="xx=13,ID1=13us,ID2=13ds"
-	}
 	display[8] {
-		label="X-ray BPM (Upstream)"
-		name="IDxbpmCantedUS.adl"
-		args="sector=13,sector0=13,sectorPlusOne=14"
-	}
-	display[9] {
-		label="X-ray BPM (Downstream)"
-		name="IDxbpmCantedDS.adl"
-		args="sector=13,sector0=13,sectorPlusOne=14"
+		label="RF & X-ray BPM"
+		name="IDbpmCanted.adl"
+		args="sec=13,us=13,ds=13"
 	}
 	display[10] {
 		label="Ring Steering Full"
@@ -520,12 +501,12 @@ text {
 	display[0] {
 		label="ID-C/D Energy"
 		name="GSE_MonoEnergy.adl"
-		args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=13ds, TH=m57, MH=m58, MP=m59, MR=m60, MX=m3xx, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
+		args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=S13ID:DSID, TH=m57, MH=m58, MP=m59, MR=m30, MX=m30, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
 	}
 	display[1] {
 		label="ID-C/D Crystal cage"
 		name="3motors.adl"
-		args="P=13IDA:, TITLE=ID-C/D_Crystal_Cage, M1=m58, M2=m59, M3=m60"
+		args="P=13IDA:, TITLE=ID-C/D_Crystal_Cage, M1=m57, M2=m58, M3=m30"
 	}
 	display[2] {
 		label="ID-C/D Rotation Axis"
@@ -1376,7 +1357,7 @@ text {
 	}
 	display[0] {
 		label="devIocStats"
-		name="ioc_stats_vxworks.adl"
+		name="ioc_stats_soft.adl"
 		args="ioc=13IDA:"
 	}
 	display[1] {
