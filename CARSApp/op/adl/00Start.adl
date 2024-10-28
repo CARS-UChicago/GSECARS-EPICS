@@ -5,9 +5,9 @@ file {
 }
 display {
 	object {
-		x=286
-		y=356
-		width=413
+		x=200
+		y=200
+		width=400
 		height=420
 	}
 	clr=55
@@ -140,14 +140,14 @@ text {
 	display[1] {
 		label="BM Monochromator"
 		name="13BM_monochromator.adl"
-		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17,Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12,TABLE=MON:"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m9,Z=m14, EXPTAB=m22, D=1, C=3, PID=mono_pid1, SHUT=FOE, TILT=m12,TABLE=MON:"
 	}
 	display[2] {
 		label="X-ray BPMs All Sectors"
 		name="xbpmBMTop.adl"
 	}
 	display[3] {
-		label="13BM Beam Position Monitors"
+		label="13-BM RF & X-ray BPM"
 		name="BMbpm.adl"
 		args="sec=13"
 	}
@@ -192,7 +192,7 @@ text {
 	display[2] {
 		label="13 BM Monochromator"
 		name="13BM_monochromator.adl"
-		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
+		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m9, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
 	}
 	display[7] {
 		label="13 BMD Brill compact"
@@ -276,19 +276,10 @@ text {
 		label="13 ID"
 		name="13ID.adl"
 	}
-	display[1] {
-		label="All X-ray BPMs"
-		name="xbpmIDTop.adl"
-	}
 	display[2] {
-		label="X-ray Beam Position (Upstream)"
-		name="IDxbpmCantedUS.adl"
-		args="sector=13,sector0=13,sectorPlusOne=14"
-	}
-	display[3] {
-		label="X-ray Beam Position (Downstream)"
-		name="IDxbpmCantedDS.adl"
-		args="sector=13,sector0=13,sectorPlusOne=14"
+		label="RF & X-ray BPM"
+		name="IDbpmCanted.adl"
+		args="sec=13,us=13,ds=14"
 	}
 	display[4] {
 		label="Storage Ring Status"
@@ -318,6 +309,10 @@ text {
 		label="Cryo Cooler 1"
 		name="13CryoCooler.adl"
 		args="P=13Cryo1:"
+	}
+	display[15] {
+		label="All X-ray BPMs"
+		name="xbpmIDTop.adl"
 	}
 	clr=14
 	bclr=4
@@ -355,29 +350,24 @@ text {
 		name="13IDD.adl"
 	}
 	display[1] {
-		label="13 IDD DAC"
-		name="13IDD_dac_user.adl"
-		args="P=13IDD:, D=1, C=Pelco1"
-	}
-	display[2] {
 		label="13 IDD DAC Pilatus"
 		name="13IDD_dac_user_PIL3.adl"
 		args="P=13IDD:, D=1, C=Pelco1"
 	}
-	display[3] {
+	display[2] {
 		label="13 IDD DAC Pilatus 300k"
 		name="13IDD_dac_user_PIL300k.adl"
 		args="P=13IDD:, D=1, C=Pelco1"
 	}
-	display[4] {
-		label="13 IDD CCD MCC"
-		name="13IDD_dac_user_MCC.adl"
-		args="P=13IDD:, D=1, C=Pelco1"
-	}
-	display[5] {
+	display[3] {
 		label="13 IDD DAC Pilatus 3S"
 		name="13IDD_dac_user_PIL3S.adl"
 		args="P=13IDD:, D=1, C=Peloco1"
+	}
+	display[4] {
+		label="13 IDD DAC Eiger 9M"
+		name="13IDD_dac_Eiger9M.adl"
+		args="P=13IDD:, D=1, C=Pelco1"
 	}
 	clr=14
 	bclr=4
@@ -719,6 +709,11 @@ text {
 		name="ADSpinnaker.adl"
 		args="P=13IDEPG1:, R=cam1:, C=PGR_Flea3_GE_28S4"
 	}
+	display[11] {
+		label="13IDD Point Grey 5"
+		name="ADSpinnaker.adl"
+		args="P=13IDD_PG5:, R=cam1:, C=FLIR-BFS-PGE-13Y3M"
+	}
 	display[14] {
 		label="13IDE Point Grey 2"
 		name="ADSpinnaker.adl"
@@ -774,6 +769,11 @@ text {
 		label="Eiger #2"
 		name="eiger2Detector.adl"
 		args="P=13EIG2:, R=cam1:"
+	}
+	display[8] {
+		label="Eiger #2 9M"
+		name="eiger2Detector.adl"
+		args="P=13EIG2_9M:, R=cam1:"
 	}
 	clr=14
 	bclr=4
@@ -863,7 +863,7 @@ text {
 	display[15] {
 		label="IDD Automation1"
 		name="1motors.adl"
-		args="P=Auto1:, TITLE=Automation1, M1=m1"
+		args="P=13IDD:Auto1:, TITLE=Automation1, M1=m1"
 	}
 	clr=14
 	bclr=4
@@ -1023,9 +1023,9 @@ text {
 		args="P=13BMB_PG1:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
 	}
 	display[7] {
-		label="13BMC Point Grey 1"
+		label="13BMC Point Grey 2"
 		name="ADSpinnaker.adl"
-		args="P=13BMCPG1:, R=cam1:, C=PGR_GS3_U3_23S6M"
+		args="P=13BMCPG2:, R=cam1:, C=PGR_GS3_U3_23S6M"
 	}
 	display[8] {
 		label="13BMD Point Grey 1"
