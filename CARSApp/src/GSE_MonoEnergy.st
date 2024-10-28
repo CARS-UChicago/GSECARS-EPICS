@@ -62,15 +62,18 @@ int    th_done;   // assign th_done   to "{MTH}.DMOV";  monitor th_done;
 int    th_stop;   assign th_stop   to "{MTH}.SPMG";
 
 /* undulator PVs  (from {ID}) */
-double id_val;        assign id_val       to "{ID}ScanEnergy.VAL";    monitor id_val;
-double id_rbv;        assign id_rbv       to "{ID}Energy.VAL";        monitor id_rbv;
-double id_gap;        assign id_gap       to "{ID}ScanGap.VAL";       monitor id_gap;
-double id_gap_rbv;    assign id_gap_rbv   to "{ID}Gap.VAL";           monitor id_gap_rbv;
-int    id_harmonic;   assign id_harmonic  to "{ID}HarmonicValue.VAL"; monitor id_harmonic;
-int    id_busy;       assign id_busy      to "{ID}Busy.VAL";          monitor id_busy;
-int    id_stop;       assign id_stop      to "{ID}Stop.VAL";
-double id_start_gap;  assign id_start_gap to "{ID}SSStartGap.VAL";    monitor id_start_gap;
-double id_end_gap;    assign id_end_gap   to "{ID}SSEndGap.VAL";      monitor id_end_gap;
+/*double id_energy;     assign id_energy    to "{ID}EnergySetC.VAL";     monitor id_energy;*/
+double id_energy;     assign id_energy       to "{ID}ScanEnergyC.VAL"; monitor id_energy; 
+double id_rbv;        assign id_rbv       to "{ID}EnergyM.VAL";        monitor id_rbv;
+double id_gap;        assign id_gap       to "{ID}ScanGapC.VAL";       monitor id_gap;
+double id_gap_rbv;    assign id_gap_rbv   to "{ID}GapM.VAL";           monitor id_gap_rbv;
+int    id_harmonic;   assign id_harmonic  to "{ID}HarmonicValueC.VAL"; monitor id_harmonic;
+int    id_busy;       assign id_busy      to "{ID}BusyM.VAL";          monitor id_busy;
+int    id_start;      assign id_start     to "{ID}StartC.VAL";       
+int    id_stop;       assign id_stop      to "{ID}StopC.VAL";
+/* double id_start_gap;  assign id_start_gap to "{ID}SSStartGap.VAL";    monitor id_start_gap;
+  double id_end_gap;    assign id_end_gap   to "{ID}SSEndGap.VAL";      monitor id_end_gap;
+*/
 
 /* Energy PVs (from , {MONO}, and GSE_MonoEnergy.db) */
 double en;        assign en        to "{MONO}:Energy.VAL";    monitor en;
@@ -145,11 +148,11 @@ int move_busy;
 int id_done;
 int wait_count;
 int timeout_ticks;
-int i;
+/*int i;*/
 int status;
-double energy;
+/* double energy; */
 double gap;
-double gap_step;
+/* double gap_step; */
 
 /*   State Set Energy is the only State in this Sequencer */
 
@@ -182,7 +185,7 @@ ss GSE_MonoEnergy {
       if (verbose) { printf("  En(init)> mono angle, energy = %12.6f %12.6f\n", th_rbv,en_rbv); }
 
       /* initialize undulator offset */
-      id_offset = id_val - (en * mil);
+      id_offset = id_energy - (en * mil);
       if (id_offset > 5000.)  id_offset = 50.0;
       pvPut(id_offset);
       if (verbose) { printf("   En(init)> ID energy, offset = %12.6f %12.6f\n", id_rbv, id_offset); }
@@ -197,7 +200,8 @@ ss GSE_MonoEnergy {
       pvPut(en_busy);      /* tell EPICS we're not busy */
       if (verbose) { printf("   En(init)> done initializing\n");}
       efClear(ef_th);
-      efClear(ef_busy); 
+      efClear(ef_busy);
+      printf("  Mono Ready\n");
     } state monitor_changes
   }
 
@@ -237,13 +241,17 @@ ss GSE_MonoEnergy {
         if (verbose) { printf("   En(set)> mono angle -> %12.6f\n", th);}
       } 
       else {           /*  ENERGY MOVE  */
-        if (verbose) { printf("  En(move)> monoE->%12.6f", en);}
+        if (verbose) { printf("  En(move)> monoE->%12.6f\n", en);}
 
         /* start undulator move */
         if (id_track) {
           if (id_control_mode == ID_CONTROL_MODE_ENERGY) {
-            id_val  = (id_offset + en * mil) ;  
-            if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
+            id_energy  = (id_offset + en * mil);  
+            if ((id_energy < 0.)||(id_energy > 5000.)) id_energy = id_rbv;
+	    if (verbose) {
+	      printf("  En(move)> id_energy->%12.6f / %12.6f / %d => %12.6f\n", en, id_offset,  id_harm_num, id_energy);
+	    }
+
             /* Copy the ID harmonic from the mono database to the undulator */
             id_harmonic = id_harm_num;
             pvPut(id_harmonic);
@@ -256,8 +264,12 @@ ss GSE_MonoEnergy {
               pvPut(id_stop);
             }
             /* put id value*/
-            pvPut(id_val); 
-            if (verbose) { printf(", id_energy->%12.6f",id_val);}
+            pvPut(id_energy);
+            if (verbose) { printf(", id_energy/harmonic->%12.6f (%d)\n",id_energy, id_harmonic);}
+	    /* id_start = 1;
+	       pvPut(id_start);
+	    */
+	    
           }
           else {
             /* if the undulator is still busy (from a previous move?? stuck??), 
@@ -291,7 +303,7 @@ ss GSE_MonoEnergy {
           y2_old = y2;
           y2_new = y2_off + width;
           if (fabs(y2_new - y2_old) > y2_mvmin) { 
-	    y2 = y2_new;
+	   y2 = y2_new;
 	    pvPut(y2, ASYNC);  
 	    if (verbose) { 
 	      printf("  En(move)> 2nd XTAL y2->%12.6f\n", y2);
@@ -348,10 +360,10 @@ ss GSE_MonoEnergy {
           /* Copy the ID harmonic from the mono database to the undulator */
           id_harmonic = id_harm_num;
           pvPut(id_harmonic);
-          id_val  = (id_offset + en * mil) ;  
-          if ((id_val < 0.)||(id_val > 5000.)) id_val = id_rbv;
-          pvPut(id_val); // , ASYNC);
-          if (verbose) { printf("  En(mono)> ID energy -> %12.6f\n",id_val);}
+          id_energy  = (id_offset + en * mil) ;  
+          if ((id_energy < 0.)||(id_energy > 5000.)) id_energy = id_rbv;
+          pvPut(id_energy); // , ASYNC);
+          if (verbose) { printf("  En(mono)> ID energy -> %12.6f\n",id_energy);}
         }
         else {
           status = GSE_MonoEnergyToGap(id_harm_num, en, &gap);
@@ -393,7 +405,7 @@ ss GSE_MonoEnergy {
     /* undulator tracking : reset offset if switched to on */
     when( efTestAndClear(ef_id_set_off)) {
       if (id_set_off == 1) {
-        id_offset = id_val - en * mil;
+        id_offset = id_energy - en * mil;
         pvPut(id_offset);
         if (verbose) {printf("  En(id_track)> changed ID off => %12.6f\n",id_offset);}
       }
@@ -428,7 +440,8 @@ ss GSE_MonoEnergy {
 
     /* Request to compute mono positions for trajectory scan */
     when( efTestAndClear(ef_compute_mono_positions) && (compute_mono_positions == 1)) {
-      if (num_mono_positions > MAX_POSITIONS) {
+      /*
+	if (num_mono_positions > MAX_POSITIONS) {
         num_mono_positions = MAX_POSITIONS;
         pvPut(num_mono_positions);
       }
@@ -457,6 +470,7 @@ ss GSE_MonoEnergy {
       pvPut(mono_heights);
       compute_mono_positions = 0;
       pvPut(compute_mono_positions);
+      */
     } state monitor_changes
   }
   
@@ -492,15 +506,16 @@ ss GSE_MonoEnergy {
       th_done = pvPutComplete(th);
       y2_done = pvPutComplete(y2);
       move_busy = (th_done==0) || (y2_done==0) || (id_busy && id_wait);
-      if (fb_is_on && fb_use && (fb_locked == 0)) move_busy = 1;
+      if (fb_is_on && fb_use && (fb_locked == 0)) move_busy = 1; 
       if (wait_count > timeout_ticks) move_busy = 0;
       wait_count++;
       if (verbose && (wait_count%10 == 0)) {
         printf("  En(wait): count=%4.4d/%4.4d", wait_count, timeout_ticks);
         printf(", id_done=%d, th_done=%d, y2_done=%d", id_done, th_done, y2_done);
-        if (fb_is_on) {
-          printf(", feedback is on, locked=%d", fb_locked);
-        }
+	if (fb_is_on) {
+	  printf(", feedback is on, locked=%d", fb_locked);
+	}
+	
         printf("\n");
       }
     } state wait_done
