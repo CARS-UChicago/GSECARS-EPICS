@@ -196,6 +196,16 @@ ifdef MOTOR
   $(PROD_NAME)_LIBS := Newport $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devSmarActMCS2Motor.dbd
   $(PROD_NAME)_LIBS := smarActMotor $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += devAutomation1Motor.dbd
+  $(PROD_NAME)_LIBS := Automation1 $($(PROD_NAME)_LIBS)
+  ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
+        $(PROD_NAME)_LIBS := automation1c $($(PROD_NAME)_LIBS)
+  else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
+        $(PROD_NAME)_LIBS :=  automation1c64 $($(PROD_NAME)_LIBS)
+  else ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
+        $(PROD_NAME)_SYS_LIBS += automation1compiler
+        $(PROD_NAME)_SYS_LIBS += automation1c
+  endif
   ifdef SNCSEQ
     $(DBD_NAME)_DBD += devAerotechSeq.dbd 
     $(DBD_NAME)_DBD += devNewportSeq.dbd
@@ -264,6 +274,11 @@ ifeq ($(OS_CLASS), WIN32)
     else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
       $(PROD_NAME)_LIBS := cbw64 $($(PROD_NAME)_LIBS)
     endif
+  endif
+
+  ifdef LABJACK
+    $(DBD_NAME)_DBD += LabJackSupport.dbd
+    $(PROD_NAME)_LIBS := LabJack LabJackM $($(PROD_NAME)_LIBS)
   endif
 
   ifdef MCA
@@ -392,6 +407,12 @@ ifeq ($(OS_CLASS), Linux)
     ifeq ($(HAVE_ULDAQ_LINUX), YES)
       $(PROD_NAME)_SYS_LIBS += uldaq usb-1.0
     endif
+  endif
+
+  ifdef LABJACK
+    $(DBD_NAME)_DBD += LabJackSupport.dbd
+    $(PROD_NAME)_LIBS := LabJack $($(PROD_NAME)_LIBS)
+    $(PROD_NAME)_SYS_LIBS += LabJackM
   endif
 
   ifdef MCA
