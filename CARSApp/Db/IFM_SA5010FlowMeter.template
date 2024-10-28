@@ -3,7 +3,7 @@
 
 record(bi, "$(P)$(R)Pin2") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), 0, $(HIGH_MASK))INT16")
+    field(INP,  "@asynMask($(P)$(PORT), 0, $(HIGH_MASK))INT16")
     field(ZNAM, "Low")
     field(ZSV,  "NO_ALARM")
     field(ONAM, "High")
@@ -13,7 +13,7 @@ record(bi, "$(P)$(R)Pin2") {
 
 record(bi, "$(P)$(R)Pin4") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), 0, $(LOW_MASK))INT16")
+    field(INP,  "@asynMask($(P)$(PORT), 0, $(LOW_MASK))INT16")
     field(ZNAM, "Low")
     field(ZSV,  "NO_ALARM")
     field(ONAM, "High")
@@ -23,7 +23,7 @@ record(bi, "$(P)$(R)Pin4") {
 
 record(bi, "$(P)$(R)Overload") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), 1, $(HIGH_MASK))INT16")
+    field(INP,  "@asynMask($(P)$(PORT), 1, $(HIGH_MASK))INT16")
     field(ZNAM, "OK")
     field(ZSV,  "NO_ALARM")
     field(ONAM, "Overload")
@@ -33,7 +33,7 @@ record(bi, "$(P)$(R)Overload") {
 
 record(bi, "$(P)$(R)Disconnected") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), 0, $(LOW_MASK))INT16")
+    field(INP,  "@asynMask($(P)$(PORT), 0, $(LOW_MASK))INT16")
     field(ZNAM, "Connected")
     field(ZSV,  "NO_ALARM")
     field(ONAM, "Disconnected")
@@ -43,7 +43,7 @@ record(bi, "$(P)$(R)Disconnected") {
 
 record(bi, "$(P)$(R)DataValid") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), 0, $(HIGH_MASK))INT16")
+    field(INP,  "@asynMask($(P)$(PORT), 0, $(HIGH_MASK))INT16")
     field(ZNAM, "Valid")
     field(ZSV,  "NO_ALARM")
     field(ONAM, "Invalid")
@@ -54,7 +54,7 @@ record(bi, "$(P)$(R)DataValid") {
 # In Relative mode ASLO is 1.0.  In Absolute mode it is .01.
 record(ai, "$(P)$(R)FlowRate") {
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT) $(FLOW_OFFSET))INT16")
+    field(INP,  "@asyn($(P)$(PORT) $(FLOW_OFFSET))INT16")
     field(ASLO, "$(ASLO=1.0)")
     field(PREC, "1")
     field(DESC, "$(DESC)")
@@ -65,7 +65,7 @@ record(ai, "$(P)$(R)FlowRate") {
 # We need to mask the low order 2 bits
 record(longin, "$(P)$(R)TemperatureRaw") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT) $(TEMP_OFFSET), 0xFFFC)INT16")
+    field(INP,  "@asynMask($(P)$(PORT) $(TEMP_OFFSET), 0xFFFC)INT16")
     field(FLNK, "$(P)$(R)Temperature PP")
     field(SCAN, "I/O Intr")
 }
@@ -80,7 +80,7 @@ record(ai, "$(P)$(R)Temperature") {
 
 record(bi, "$(P)$(R)Out1") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), $(TEMP_OFFSET), 0x1)INT16")
+    field(INP,  "@asynMask($(P)$(PORT), $(TEMP_OFFSET), 0x1)INT16")
     field(ZNAM, "Low")
     field(ZSV,  "MAJOR")
     field(ONAM, "OK")
@@ -90,7 +90,7 @@ record(bi, "$(P)$(R)Out1") {
 
 record(bi, "$(P)$(R)Out2") {
     field(DTYP, "asynUInt32Digital")
-    field(INP,  "@asynMask($(PORT), $(TEMP_OFFSET), 0x2)INT16")
+    field(INP,  "@asynMask($(P)$(PORT), $(TEMP_OFFSET), 0x2)INT16")
     field(ZNAM, "Low")
     field(ZSV,  "MAJOR")
     field(ONAM, "OK")
