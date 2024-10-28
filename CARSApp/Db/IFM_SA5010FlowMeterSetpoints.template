@@ -2,7 +2,7 @@
 # $(PREC) should be 0 or 1 for Relative mode and 2 for Absolute mode
 record(ao, "$(P)$(R)Flow2Set") {
     field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(PORT), $(ADDR))FLOW2_SET")
+    field(OUT,  "@asyn($(P)$(PORT), $(ADDR))FLOW2_SET")
     field(ASLO, "$(ASLO=1.0)")
     field(PREC, "$(PREC=0)")
     field(FLNK, "$(P)$(R)Flow2HystCalc")
@@ -16,7 +16,7 @@ record(calcout, $(P)$(R)Flow2HystCalc) {
 
 record(ao, "$(P)$(R)Flow2Reset") {
     field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(PORT), $(ADDR))FLOW2_RESET")
+    field(OUT,  "@asyn($(P)$(PORT), $(ADDR))FLOW2_RESET")
     field(ASLO, "$(ASLO=1.0)")
     field(PREC, "$(PREC=0)")
     field(FLNK, "$(P)$(R)Flow2Set_RBV")
@@ -24,7 +24,7 @@ record(ao, "$(P)$(R)Flow2Reset") {
 
 record(ai, "$(P)$(R)Flow2Set_RBV") {
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT), $(ADDR))FLOW2_SET")
+    field(INP,  "@asyn($(P)$(PORT), $(ADDR))FLOW2_SET")
     field(ASLO, "$(ASLO=1.0)")
     field(PREC, "$(PREC=0)")
     field(PINI, "1")
@@ -33,7 +33,7 @@ record(ai, "$(P)$(R)Flow2Set_RBV") {
 
 record(ai, "$(P)$(R)Flow2Reset_RBV") {
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT), $(ADDR))FLOW2_RESET")
+    field(INP,  "@asyn($(P)$(PORT), $(ADDR))FLOW2_RESET")
     field(ASLO, "$(ASLO=1.0)")
     field(PREC, "$(PREC=0)")
     field(PINI, "1")
