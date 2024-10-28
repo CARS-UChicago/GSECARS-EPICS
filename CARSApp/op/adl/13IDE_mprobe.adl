@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=234
-		y=98
+		x=393
+		y=363
 		width=630
 		height=680
 	}
@@ -130,20 +130,6 @@ oval {
 	"dynamic attribute" {
 		vis="if zero"
 		chan="PA:13ID:STA_E_SRCHD_TO_B.VAL"
-	}
-}
-rectangle {
-	object {
-		x=320
-		y=45
-		width=70
-		height=15
-	}
-	"basic attribute" {
-		clr=0
-	}
-	"dynamic attribute" {
-		chan="ACIS:ShutterPermit"
 	}
 }
 "related display" {
@@ -276,7 +262,7 @@ rectangle {
 	display[0] {
 		label="Sample Stage"
 		name="8motors.adl"
-		args="P=13XRM:, TITLE=SampleStages, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m14, M8=m15"
+		args="P=13XRM:, TITLE=SampleStages, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m9, M7=m10, M8=m11"
 	}
 	display[1] {
 		label="Sample Microscope"
@@ -306,7 +292,7 @@ rectangle {
 	display[6] {
 		label="XRD Detector Stages"
 		name="3motors.adl"
-		args="P=13, TITLE=XRD_Detector_Stages, M1=XRM:m13, M2=XRM:m11, M3=XRM:m12"
+		args="P=13, TITLE=XRD_Detector_Stages, M1=XRM:m12, M2=XRM:m13, M3=XRM:m14"
 	}
 	display[7] {
 		label="XRF Detector Stages"
@@ -321,7 +307,7 @@ rectangle {
 	display[9] {
 		label="HERFD Stages"
 		name="4motors.adl"
-		args="P=13XRM:, TITLE=HERFD_Stages, M1=m9, M2=m10, M3=m7, M4=m8"
+		args="P=13XRM:, TITLE=HERFD_Stages, M1=m6, M2=m7, M3=m8, M4=m15"
 	}
 	display[11] {
 		label="Other BP8000 Motors"
@@ -448,40 +434,6 @@ rectangle {
 	align="horiz. centered"
 	limits {
 	}
-}
-text {
-	object {
-		x=320
-		y=45
-		width=70
-		height=15
-	}
-	"basic attribute" {
-		clr=18
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="ACIS:ShutterPermit"
-	}
-	textix="Yes"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=320
-		y=45
-		width=70
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="ACIS:ShutterPermit"
-	}
-	textix="No"
-	align="horiz. centered"
 }
 text {
 	object {
@@ -682,7 +634,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="ID13us:Energy.VAL"
+		chan="S13ID:USID:EnergyM.VAL"
 		clr=54
 		bclr=1
 	}
@@ -739,8 +691,8 @@ text {
 	}
 	display[0] {
 		label="Undulator"
-		name="UndulatorCtl_us.adl"
-		args="xx=13us"
+		name="newIDControl_Planar.adl"
+		args="P=S13ID:USID"
 	}
 	clr=54
 	bclr=1
@@ -837,9 +789,14 @@ rectangle {
 		args="P=13IDE:MCS1:"
 	}
 	display[2] {
-		label="SXD7  (Xspress3)"
+		label="SXD-7 XRF Detector"
 		name="xspress3_7chan.adl"
 		args="P=13QX7"
+	}
+	display[3] {
+		label="CryoPulse Status"
+		name="CryoPulse5Temps.adl"
+		args="P=13XRM:, Q=CP5"
 	}
 	display[4] {
 		label="Eiger500K"
@@ -860,14 +817,10 @@ rectangle {
 		label="Ion Chamber Setup"
 		name="13IDE_ionchambers.adl"
 	}
-	display[10] {
-		label="-"
-		name="4element_dxp.adl"
-		args="P=dxpMercury:, D=dxp, M=mca"
-	}
 	display[13] {
+		label="Vortex ME-4"
 		name="xspress3_4chan.adl"
-		args="P=13Q"
+		args="P=13QX4"
 	}
 	clr=54
 	bclr=1
@@ -1290,7 +1243,7 @@ text {
 		height=20
 	}
 	control {
-		chan="ID13us:ScanEnergy.VAL"
+		chan="S13ID:USID:ScanEnergyC.VAL"
 		clr=14
 		bclr=0
 	}
@@ -1611,13 +1564,13 @@ text {
 		height=300
 	}
 	plotcom {
-		title="IO (Blue) // BPM Sum (Red)"
+		title="IO (Blue) // BPM Sum (Red) // I1 (Black)"
 		clr=14
 		bclr=1
 	}
 	pen[0] {
-		chan="13IDE:userTran1.I"
-		clr=23
+		chan="13IDE:userTran1.J"
+		clr=54
 		limits {
 			loprSrc="default"
 			hoprSrc="default"
@@ -1625,8 +1578,17 @@ text {
 		}
 	}
 	pen[1] {
-		chan="13IDE:userTran1.F"
-		clr=54
+		chan="13IDE:userTran2.F"
+		clr=23
+		limits {
+			loprSrc="default"
+			hoprSrc="default"
+			hoprDefault=5
+		}
+	}
+	pen[2] {
+		chan="13IDE:userTran2.J"
+		clr=14
 		limits {
 			loprSrc="default"
 			hoprSrc="default"
@@ -1688,8 +1650,8 @@ oval {
 		clr=17
 	}
 	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDE:userTran1.K"
+		vis="if not zero"
+		chan="13IDE:userTran1.D"
 	}
 }
 oval {
@@ -1703,8 +1665,8 @@ oval {
 		clr=20
 	}
 	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDE:userTran1.L"
+		vis="if zero"
+		chan="13IDE:userTran1.D"
 	}
 }
 text {
@@ -1859,11 +1821,28 @@ text {
 		height=15
 	}
 	monitor {
-		chan="ID13us:EncoderSelect.VAL"
+		chan="S13ID:USID:EncoderSelectC.VAL"
 		clr=54
 		bclr=1
 	}
 	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=320
+		y=45
+		width=70
+		height=15
+	}
+	monitor {
+		chan="RF-ACIS:FePermit:Sect1To35IdM.VAL"
+		clr=14
+		bclr=0
+	}
+	align="horiz. centered"
+	format="string"
 	limits {
 	}
 }
