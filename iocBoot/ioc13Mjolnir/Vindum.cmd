@@ -10,8 +10,9 @@ epicsEnvSet("TIMEOUT_MS", "2000")
 #                       int noAutoConnect,
 #                       int noProcessEos);
 
+# The terminal server should be set to 38400, 8, 1, N
 # Change IP address for your device
-drvAsynIPPortConfigure("$(PORT)", "gsets24:4001", 0, 0, 0)
+drvAsynIPPortConfigure("$(PORT)", "gsets22:4002", 0, 0, 0)
 
 # This is for a COM port on Windows
 #drvAsynSerialPortConfigure("$(PORT)", "COM2", 0, 0, 0)
