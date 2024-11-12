@@ -1,0 +1,34 @@
+
+file "$(MOTOR)/db/basic_asyn_motor.db"
+{
+pattern
+{P,      N,       M,        DTYP,         PORT,  ADDR,     DESC,  EGU,   DIR,   VELO,  VBAS, ACCL, BDST, BVEL, BACC, MRES, PREC,   DHLM, DLLM,  INIT}
+{13IDD:Auto1:, 1, "m$(N)", "asynMotor",  Automation1,     0, "Omega",   mm,   Pos,    2.0,   0.1,   .2,    0,    1,   .2, .00000067055,    4,     -360,    360,    ""}}
+
+file "$(MOTOR)/db/profileMoveController.template"
+{
+pattern
+{     P,     R,        PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
+{13IDD:Auto1:,  pm1:, Automation1,     1,    2000,    2000,       1}
+}
+
+file "$(MOTOR)/db/profileMoveAxis.template"
+{
+pattern
+{     P,      R, M,         PORT, ADDR, NPOINTS, NREADBACK,     MOTOR, PREC, TIMEOUT}
+{13IDD:Auto1:,   pm1:, 1,  Automation1,    0,    2000,      2000,  13IDD:Auto1:m1,    4,       1}
+}
+
+file "$(MOTOR)/db/Automation1MotorController.template"
+{
+pattern
+{     P,        PORT,     TIMEOUT}
+{13IDD:Auto1:, Automation1,           1}
+}
+
+file "$(MOTOR)/db/Automation1MotorAxis.template"
+{
+pattern
+{     P,	M,        PORT,	ADDR,    TIMEOUT}
+{13IDD:Auto1:, 	m1:, Automation1,	0,           	1}
+}
