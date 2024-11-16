@@ -107,6 +107,7 @@ epicsEnvSet("EDIO24_2_PREFIX",  "$(P)EDIO24_2:")
 
 MultiFunctionConfig($(PORT), $(UNIQUE_ID), $(MAX_POINTS), 1)
 dbLoadTemplate("$(MEASCOMP)/db/EDIO24.substitutions", "P=$(EDIO24_2_PREFIX), PORT=$(PORT), WDIG_POINTS=$(MAX_POINTS)")
+
 # Load filter database for attenuation
 dbLoadTemplate("filter.substitutions")
 dbLoadRecords("$(CARS)/db/13BMC_EnergyDummyPV.db")
