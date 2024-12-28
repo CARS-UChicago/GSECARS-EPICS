@@ -22,19 +22,18 @@ GalilCreateController($(PORT), $(IPADDR), 20)
 #
 # 1. char *portName Asyn port for controller
 # 2. char  axis A-H,
-# 3. int   limits_as_home (0 off 1 on), 
-# 4. char  *Motor interlock digital port number 1 to 8 eg. "1,2,4".  1st 8 bits are supported
-# 5. int   Interlock switch type 0 normally open, all other values is normally closed interlock switch type
+# 3. char  *Motor interlock digital port number 1 to 8 eg. "1,2,4".  1st 8 bits are supported
+# 4. int   Interlock switch type 0 normally open, all other values is normally closed interlock switch type
 
 # Create the axis
-GalilCreateAxis("$(PORT)","A",1,"",1)
-GalilCreateAxis("$(PORT)","B",1,"",1)
-GalilCreateAxis("$(PORT)","C",1,"",1)
-GalilCreateAxis("$(PORT)","D",1,"",1)
-GalilCreateAxis("$(PORT)","E",1,"",1)
-GalilCreateAxis("$(PORT)","F",1,"",1)
-GalilCreateAxis("$(PORT)","G",1,"",1)
-GalilCreateAxis("$(PORT)","H",1,"",1)
+GalilCreateAxis("$(PORT)","A","",1)
+GalilCreateAxis("$(PORT)","B","",1)
+GalilCreateAxis("$(PORT)","C","",1)
+GalilCreateAxis("$(PORT)","D","",1)
+GalilCreateAxis("$(PORT)","E","",1)
+GalilCreateAxis("$(PORT)","F","",1)
+GalilCreateAxis("$(PORT)","G","",1)
+GalilCreateAxis("$(PORT)","H","",1)
 
 # GalilCreateCSAxes command parameters are:
 #
