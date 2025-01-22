@@ -196,15 +196,11 @@ ifdef MOTOR
   $(PROD_NAME)_LIBS := Newport $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devSmarActMCS2Motor.dbd
   $(PROD_NAME)_LIBS := smarActMotor $($(PROD_NAME)_LIBS)
-  $(DBD_NAME)_DBD   += devAutomation1Motor.dbd
-  $(PROD_NAME)_LIBS := Automation1 $($(PROD_NAME)_LIBS)
-  ifeq (win32-x86, $(findstring win32-x86, $(T_A)))
-        $(PROD_NAME)_LIBS := automation1c $($(PROD_NAME)_LIBS)
-  else ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
-        $(PROD_NAME)_LIBS :=  automation1c64 $($(PROD_NAME)_LIBS)
-  else ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
-        $(PROD_NAME)_SYS_LIBS += automation1compiler
-        $(PROD_NAME)_SYS_LIBS += automation1c
+  ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
+    $(PROD_NAME)_LIBS := Automation1 $($(PROD_NAME)_LIBS)
+    $(DBD_NAME)_DBD   += devAutomation1Motor.dbd
+    $(PROD_NAME)_SYS_LIBS += automation1compiler
+    $(PROD_NAME)_SYS_LIBS += automation1c
   endif
   ifdef SNCSEQ
     $(DBD_NAME)_DBD += devAerotechSeq.dbd 
