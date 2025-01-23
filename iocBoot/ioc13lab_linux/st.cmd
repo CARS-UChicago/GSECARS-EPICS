@@ -31,7 +31,7 @@ epicsEnvSet("LOCATION","Electronics lab")
 epicsEnvSet("GROUP","GSECARS")
 dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX),R=asyn1,PORT=GALILSYNC1,ADDR=0,IMAX=256,OMAX=256)")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=$(PREFIX),R=asyn1,PORT=GALILSYNC1,ADDR=0,IMAX=256,OMAX=256")
 
 iocInit
 
