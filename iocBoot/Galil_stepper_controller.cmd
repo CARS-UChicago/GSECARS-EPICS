@@ -88,7 +88,7 @@ GalilCreateCSAxes("$(PORT)")
 GalilStartController("$(PORT)", "", 1, 0)
 # Start the controller
 # Example using homing routine template assembly
-GalilStartController("$(PORT)", "$(GALIL)/db/galil_Default_Header.dmc;$(GALIL)/db/galil_Home_RevLimit.dmc!$(GALIL)/db/galil_Home_ForwLimit.dmc!$(GALIL)/db/galil_Home_Home.dmc!$(GALIL)/db/galil_Home_ForwLimit.dmc!$(GALIL)/db/galil_Piezo_Home.dmc!$(GALIL)/db/galil_Piezo_Home.dmc!$(GALIL)/db/galil_Piezo_Home.dmc!$(GALIL)/db/galil_Piezo_Home.dmc;$(GALIL)/db/galil_Default_Footer.dmc", 0, 0, 3)
+# GalilStartController("$(PORT)", "$(GALIL)/db/galil_Default_Header.dmc;$(GALIL)/db/galil_Home_RevLimit.dmc!$(GALIL)/db/galil_Home_ForwLimit.dmc!$(GALIL)/db/galil_Home_Home.dmc!$(GALIL)/db/galil_Home_ForwLimit.dmc!$(GALIL)/db/galil_Piezo_Home.dmc!$(GALIL)/db/galil_Piezo_Home.dmc!$(GALIL)/db/galil_Piezo_Home.dmc!$(GALIL)/db/galil_Piezo_Home.dmc;$(GALIL)/db/galil_Default_Footer.dmc", 0, 0, 3)
 
 # GalilCreateProfile command parameters are:
 #
