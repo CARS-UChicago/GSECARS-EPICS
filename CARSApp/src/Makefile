@@ -429,11 +429,6 @@ ifeq ($(OS_CLASS), Linux)
     endif
   endif
   
-  ifdef MOTOR
-    $(DBD_NAME)_DBD   += GalilSupport.dbd
-    $(PROD_NAME)_LIBS := GalilSupport $($(PROD_NAME)_LIBS)
-  endif
-
   ifdef IPAC
     $(DBD_NAME)_DBD += drvIpac.dbd
     $(PROD_NAME)_LIBS := Ipac $($(PROD_NAME)_LIBS)
