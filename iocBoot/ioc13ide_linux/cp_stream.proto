@@ -1,0 +1,13 @@
+# Mirion CryoPulse serial interface
+
+terminator = CR;
+readtimeout  = 100;
+pollperiod   = 250;
+replytimeout = 1000;
+
+coldtip    { out "TEMPC" ; in "%f"; outterminator = LF;}
+power      { out "PWR"   ; in "%f"; outterminator = LF;}
+coldhead   { out "TWE"   ; in "%f"; outterminator = LF;}
+compressor { out "TCO"   ; in "%f"; outterminator = LF;}
+status     { out "COOLER"; in "%s"; outterminator = LF;}
+error      { out "ERROR" ; in "%s"; outterminator = LF;}

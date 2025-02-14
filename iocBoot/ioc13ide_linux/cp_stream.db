@@ -1,0 +1,41 @@
+# Mirion CryoPulse serial interface
+
+record(ai, "$(P)$(R):coldtip"){
+    field(DESC, "coldtip temperature (C)")
+    field(DTYP, "stream")
+    field(INP,  "@cp_stream.proto coldtip $(PORT)")
+    field(EGU,  "C")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+    field(PINI, "YES")
+   }
+
+record(ai, "$(P)$(R):power"){
+    field(DESC, "power (W)")
+    field(DTYP, "stream")
+    field(INP,  "@cp_stream.proto power $(PORT)")
+    field(EGU,  "W")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+    field(PINI, "YES")
+   }
+
+record(ai, "$(P)$(R):coldhead"){
+    field(DESC, "Coldhead temperature(C)")
+    field(DTYP, "stream")
+    field(INP,  "@cp_stream.proto coldhead $(PORT)")
+    field(EGU,  "C")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+    field(PINI, "YES")
+   }
+   
+record(ai, "$(P)$(R):compressor"){
+    field(DESC, "Compressor temperature(C)")
+    field(DTYP, "stream")
+    field(INP,  "@cp_stream.proto compressor $(PORT)")
+    field(EGU,  "C")
+    field(PREC, "2")
+    field(SCAN, "1 second")
+    field(PINI, "YES")
+   }
