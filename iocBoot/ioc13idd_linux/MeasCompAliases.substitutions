@@ -2,38 +2,81 @@ file "$(CARS)/db/binary_alias.template"
 {
 pattern
 {      REC,          RTYP,      ALIAS,                   ZNAM,    ONAM,        DESC}
-{13IDD:USBCTR:Bo1,    bo,   13IDD:BariumCalib,           In,      Out,   "Barium Calibration filter"}
-{13IDD:USBCTR:Bo2,    bo,   13IDD:Attenuate_10,          Close,   Open,  "Beam attenuation filter 10 percent"}
-{13IDD:USBCTR:Bo3,    bo,   13IDD:Attenuate_2,           Close,   Open,  "Beam attenuation filter 2 percent"}
+{13IDD:USBCTR:Bo1,    bo,   13IDD:Attenuate_10,          Close,   Open,  "Beam attenuation filter 10 percent"}
+{13IDD:USBCTR:Bo2,    bo,   13IDD:Attenuate_2,           Close,   Open,  "Beam attenuation filter 2 percent"}
+{13IDD:USBCTR:Bo3,    bo,   13IDD:BariumCalib,           In,      Out,   "Barium Calibration filter"}
 {13IDD:USBCTR:Bo4,    bo,   13IDD:TableShutter,          Close,   Open,  "Table X-ray shutter"}
-{13IDD:USBCTR:Bi5,    bi,   13IDD:Barium_RBV,            Out,     In,    "Barium calibration filter status"}
-{13IDD:USBCTR:Bi6,    bi,   13IDD:Attenuate_10_RBV,      Close,   Open,  "Beam attenuation filter 10 percent status"}
-{13IDD:USBCTR:Bi7,    bi,   13IDD:Attenuate_2_RBV,       Close,   Open,  "Beam attenuation filter 2 percent status"}
+{13IDD:USBCTR:Bi5,    bi,   13IDD:Attenuate_10_RBV,      Close,   Open,  "Beam attenuation filter 10 percent status"}
+{13IDD:USBCTR:Bi6,    bi,   13IDD:Attenuate_2_RBV,       Close,   Open,  "Beam attenuation filter 2 percent status"}
+{13IDD:USBCTR:Bi7,    bi,   13IDD:Barium_RBV,            Out,     In,    "Barium calibration filter status"}
 {13IDD:USBCTR:Bi8,    bi,   13IDD:TableShutter_RBV,      Close,   Open,  "Table X-ray shutter status"}  
 
 {13IDD:USB3104:Bo1,   bo,   13IDD:US_IllumSplitter,      Out,     In,    "Upstream illuminator splitter"}
+{13IDD:USB3104:Bi1,   bi,   13IDD:US_IllumSplitter_RBV,  Out,     In,    "Upstream illuminator splitter status"}
 {13IDD:USB3104:Bo2,   bo,   13IDD:DS_IllumSplitter,      Out,     In,    "Downstream illuminator splitter"}
+{13IDD:USB3104:Bi2,   bi,   13IDD:DS_IllumSplitter_RBV,  Out,     In,    "Downstream illuminator splitter status"}
 {13IDD:USB3104:Bo3,   bo,   13IDD:ND_Filter,             Out,     In,    "Neutral density filter"}
+{13IDD:USB3104:Bi3,   bi,   13IDD:ND_Filter_RBV, 		 Out,     In,    "Neutral density filter status"}
 {13IDD:USB3104:Bo4,   bo,   13IDD:IR_Mirror,             Out,     In,    "Infrared mirror"}
+{13IDD:USB3104:Bi4,   bi,   13IDD:ND_Filter_RBV, 		 Out,     In,    "Neutral density filter status"}
 {13IDD:USB3104:Bo5,   bo,   13IDD:US_IllumOnOff,         Off,     On,    "Upstream illuminator on/off"}
+{13IDD:USB3104:Bi5,   bi,   13IDD:US_IllumOnOff_RBV,     Off,     On,    "Upstream illuminator on/off status"}
 {13IDD:USB3104:Bo6,   bo,   13IDD:DS_IllumOnOff,         Off,     On,    "Downstream illuminator on/off"}
+{13IDD:USB3104:Bi6,   bi,   13IDD:DS_IllumOnOff_RBV,     Off,     On,    "Downstream illuminator on/off" status}
+#{13IDD:USB3104:Bo7,   bo,   13IDD:Unused7_RBV,    		  Off,     On,    "Unused 7, status}
+#{13IDD:USB3104:Bi7,   bi,   13IDD:Unused7_RBV,    		  Off,     On,    "Unused 7, status}
+#{13IDD:USB3104:Bo8,   bo,   13IDD:Unused8_RBV,    		  Off,     On,    "Unused 8, status}
+#{13IDD:USB3104:Bi8,   bi,   13IDD:Unused8_RBV,    		  Off,     On,    "Unused 8, status}
 
-{13IDD:EDIO24_1:Bo1,   bo,   13IDD:LVP_Beamstop,          Close,   Open,  "LVP Beamstop"}
-{13IDD:EDIO24_1:Bo2,   bo,   13IDD:LVP_Ion_Chamber,       Close,   Open,  "LVP Ion Chamber"}
-#{13IDD:EDIO24_1:Bo3,   bo,   13IDD:Unused3,               Close,   Open,  "Unused 3,single cylinder"}
-#{13IDD:EDIO24_1:Bo4,   bo,   13IDD:Unused4,               Close,   Open,  "Unused 4,single cylinder"}
-{13IDD:EDIO24_1:Bo5,   bo,   13IDD:LaserShutter,          Close,   Open,  "Laser shutter"}
-{13IDD:EDIO24_1:Bo6,   bo,   13IDD:Photodiode,            Out,     In,    "DAC photodiode"}
-{13IDD:EDIO24_1:Bo7,   bo,   13IDD:AlignSlides,           Out,     In,    "Alignment Slides for pulsed"}
-{13IDD:EDIO24_1:Bo8,   bo,   13IDD:US_SpectShutter,       Close,   Open,  "Upstream spectrometer shutter"}
-{13IDD:EDIO24_1:Bo9,   bo,   13IDD:DS_SpectShutter,       Close,   Open,  "Downstream spectrometer shutter"}
-{13IDD:EDIO24_1:Bo10,  bo,   13IDD:SmallBeamStop,         Out,     In,    "Small beamstop for MCC"}
-#{13IDD:EDIO24_1:Bo11, bo,   13IDD:Unused11,               Close,   Open,  "Unused 1,double cylinder"}
-{13IDD:EDIO24_1:Bo12,  bo,   13IDD:Unused12,              Close,   Open,  "Top table CO2 motion, will retire soon"}
-#{13IDD:EDIO24_1:Bo13, bo,   13IDD:Unused13,               Close,   Open,  "Unused 3,double cylinder"}
-#{13IDD:EDIO24_1:Bo14, bo,   13IDD:Unused14,               Close,   Open,  "Unused 4,double cylinder"}
-#{13IDD:EDIO24_1:Bo15, bo,   13IDD:Unused15,               Close,   Open,  "Unused 5,double cylinder"}
 
+{13IDD:EDIO24_1:Bo1,   bo,  13IDD:LVP_Beamstop,          Close,   Open,  "LVP Beamstop"}
+{13IDD:EDIO24_1:Bi1,   bi,  13IDD:LVP_Beamstop_RBV,      Close,   Open,  "LVP Beamstop status"}
+{13IDD:EDIO24_1:Bo2,   bo,  13IDD:LVP_Ion_Chamber,       Close,   Open,  "LVP Ion Chamber"}
+{13IDD:EDIO24_1:Bi2,   bi,  13IDD:LVP_Ion_Chamber_RBV,   Close,   Open,  "LVP Ion Chamber status"}
+#{13IDD:EDIO24_1:Bo3,   bo,  13IDD:Unused3,               Close,   Open,  "Unused 3,single cylinder"}
+#{13IDD:EDIO24_1:Bi3,   bi,  13IDD:Unused3_RBV,           Close,   Open,  "Unused 3,single cylinder status"}
+#{13IDD:EDIO24_1:Bo4,   bo,  13IDD:Unused4,               Close,   Open,  "Unused 4,single cylinder"}
+#{13IDD:EDIO24_1:Bi4,   bi,  13IDD:Unused4_RBV,           Close,   Open,  "Unused 4,single cylinder status"}
+{13IDD:EDIO24_1:Bo5,   bo,  13IDD:LaserShutter,          Close,   Open,  "Laser shutter"}
+{13IDD:EDIO24_1:Bi5,   bi,  13IDD:LaserShutter_RBV,      Close,   Open,  "Laser shutter status"}
+{13IDD:EDIO24_1:Bo6,   bo,  13IDD:Photodiode,            Out,     In,    "DAC photodiode"}
+{13IDD:EDIO24_1:Bi6,   bi,  13IDD:Photodiode_RBV,        Out,     In,    "DAC photodiode status"}
+{13IDD:EDIO24_1:Bo7,   bo,  13IDD:AlignSlides,           Out,     In,    "Alignment Slides for pulsed"}
+{13IDD:EDIO24_1:Bi7,   bi,  13IDD:AlignSlides_RBV,       Out,     In,    "Alignment Slides for pulsed status"}
+{13IDD:EDIO24_1:Bo8,   bo,  13IDD:US_SpectShutter,       Close,   Open,  "Upstream spectrometer shutter"}
+{13IDD:EDIO24_1:Bi8,   bi,  13IDD:US_SpectShutter_RBV,   Close,   Open,  "Upstream spectrometer shutter status}
+{13IDD:EDIO24_1:Bo9,   bo,  13IDD:DS_SpectShutter,       Close,   Open,  "Downstream spectrometer shutter"}
+{13IDD:EDIO24_1:Bi9,   bi,  13IDD:DS_SpectShutter_RBV,   Close,   Open,  "Downstream spectrometer shutter status"}
+{13IDD:EDIO24_1:Bo10,  bo,  13IDD:SmallBeamStop,         Out,     In,    "Small beamstop for MCC"}
+{13IDD:EDIO24_1:Bi10,  bi,  13IDD:SmallBeamStop_RBV,     Out,     In,    "Small beamstop for MCC status"}
+#{13IDD:EDIO24_1:Bo11, bo,  13IDD:Unused11,               Close,   Open,  "Unused 1,double cylinder"}
+#{13IDD:EDIO24_1:Bi11, bi,  13IDD:Unused11_RBV,           Close,   Open,  "Unused 1,double cylinder status"}
+{13IDD:EDIO24_1:Bo12,  bo,  13IDD:Unused12,              Close,   Open,  "Top table CO2 motion, will retire soon"}
+{13IDD:EDIO24_1:Bi12,  bi,  13IDD:Unused12_RBV,          Close,   Open,  "Top table CO2 motion, will retire soon status"}
+#{13IDD:EDIO24_1:Bo13, bo,  13IDD:Unused13,               Close,   Open,  "Unused 3,double cylinder"}
+#{13IDD:EDIO24_1:Bi13, bi,  13IDD:Unused13_RBV,           Close,   Open,  "Unused 3,double cylinder status"}
+#{13IDD:EDIO24_1:Bo14, bo,  13IDD:Unused14,               Close,   Open,  "Unused 4,double cylinder"}
+#{13IDD:EDIO24_1:Bi14, bi,  13IDD:Unused14_RBV,           Close,   Open,  "Unused 4,double cylinder status"}
+#{13IDD:EDIO24_1:Bo15, bo,  13IDD:Unused15,               Close,   Open,  "Unused 5,double cylinder"}
+#{13IDD:EDIO24_1:Bi15, bi,  13IDD:Unused15_RBV,           Close,   Open,  "Unused 5,double cylinder status"}
+#{13IDD:EDIO24_1:Bo16, bo,  13IDD:Unused16,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi16, bi,  13IDD:Unused16_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+#{13IDD:EDIO24_1:Bo17, bo,  13IDD:Unused17,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi17, bi,  13IDD:Unused17_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+{13IDD:EDIO24_1:Bo18,  bo,  13IDD:DetectorGate,          Close,   Open,  "Detector Gate to BNC flipper box"}
+{13IDD:EDIO24_1:Bi18,  bi,  13IDD:DetectorGate_RBV,      Close,   Open,  "Detector Gate to BNC flipper box status"}
+#{13IDD:EDIO24_1:Bo19, bo,  13IDD:Unused19,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi19, bi,  13IDD:Unused19_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+#{13IDD:EDIO24_1:Bo20, bo,  13IDD:Unused20,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi20, bi,  13IDD:Unused20_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+#{13IDD:EDIO24_1:Bo21, bo,  13IDD:Unused21,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi21, bi,  13IDD:Unused21_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+#{13IDD:EDIO24_1:Bo22, bo,  13IDD:Unused22,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi22, bi,  13IDD:Unused22_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+#{13IDD:EDIO24_1:Bo23, bo,  13IDD:Unused23,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi23, bi,  13IDD:Unused23_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
+#{13IDD:EDIO24_1:Bo24, bo,  13IDD:Unused24,               Close,   Open,  "Unused, Flipper_maybe"}
+#{13IDD:EDIO24_1:Bi24, bi,  13IDD:Unused24_RBV,           Close,   Open,  "Unused, Flipper_maybe status"}
 
 }
 
@@ -47,4 +90,6 @@ pattern
 {13IDD:USB3104:Ao4,  13IDD:DS_LaserPower,  -100,   0,      0,   100,    100,   100,  3,   "Downstream laser power"}
 {13IDD:USB3104:Ao5,  13IDD:HeaterPower,     -33,   0,      0,    33,     33,    33,  3,   "Resistance heater power"}
 {13IDD:USB3104:Ao6,  13IDD:FiberIllumPower, -10,   0,      0,    10,      5,     5,  3,   "Microscope fiber illuminator"}
+#{13IDD:USB3104:Ao7,  13IDD:Unused7,          -10,   0,      0,    10,      5,     5,  3,   "Unused 7"}
+#{13IDD:USB3104:Ao8,  13IDD:Unused8,          -10,   0,      0,    10,      5,     5,  3,   "Unused 8"}
 }
