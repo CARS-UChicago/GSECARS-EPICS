@@ -94,5 +94,10 @@ doAfterIocInit "dbpf $(EDIO24_PREFIX)Lo1 255"
 doAfterIocInit "dbpf $(EDIO24_PREFIX)Lo2 255"
 doAfterIocInit "dbpf $(EDIO24_PREFIX)Lo3 255"
 
+# Load filter database for attenuation
+dbLoadTemplate("filter.substitutions")
+# Filter seq program
+doAfterIocInit 'seq(filterDrive, "NAME=filterDrive,P=13IDD:,R=filter:,NUM_FILTERS=2")'
+
 dbLoadTemplate("MeasCompAliases.substitutions")
 dbLoadRecords("$(CARS)/db/13IDD_laser_tweak.db", "P=$(P), R=Lasers, DAC1=$(P)US_LaserPower, DAC2=$(P)DS_LaserPower")
