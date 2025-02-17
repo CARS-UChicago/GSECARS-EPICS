@@ -16,8 +16,8 @@ iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil5:, PORT=GALIL5, IPADDR
 # gse-galil10 Phytron in ID-D, rack 2 4140 drivers; Patch panel V
 iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil6:, PORT=GALIL6, IPADDR=10.54.160.118, M1=m41, M2=m42, M3=m43, M4=m44, M5=m45, M6=m46, M7=m47, M8=m48")  
 
-# gse-galil14 ELCO in ID-D, rack 2 4040 drivers
-iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil7:, PORT=GALIL7, IPADDR=10.54.160.122, M1=m49, M2=m50, M3=m51, M4=m52, M5=m53, M6=m54, M7=m55, M8=m56")  
+# gse-galil20 ELCO in ID-D, rack 2 4040 drivers
+iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil7:, PORT=GALIL7, IPADDR=10.54.160.129, M1=m49, M2=m50, M3=m51, M4=m52, M5=m53, M6=m54, M7=m55, M8=m56")  
 
 # gse-galil40 Step-Pak in ID-D rack 1, 4140 drivers; Patch Panel  S
 iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil8:, PORT=GALIL8, IPADDR=10.54.160.156, M1=m65, M2=m66, M3=m67, M4=m68, M5=m69, M6=m70, M7=m71, M8=m72")  
