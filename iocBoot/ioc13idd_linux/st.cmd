@@ -40,6 +40,13 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(LINUX_PREFIX)")
 # Experiment info
 dbLoadRecords("$(CARS)/db/experiment_info.db","P=13IDD:")
 
+# Laser heating database
+dbLoadRecords("$(CARS)/db/laser_heating.db", "P=13IDD:")
+
+# Laser PID control
+# This is for the old YLF laser using a photodiode with slow and fast feedback records, now used for DAC heater
+dbLoadTemplate("laser_pid.template")
+
 iocInit
 
 ### Start up the autosave task and tell it what to do.
@@ -57,3 +64,12 @@ create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),P3104=$(USB3104_PREFIX)
 # The scale factor from LPC power reading to actual laser watts
 # dbpf "13IDD:LPC1_power_scale.B","1.0"
 
+# Set DAC pneumatic shutters and photodiode real state to closed
+dbpf("13IDD:TableShutter", "Open")
+dbpf("13IDD:US_SpectShutter", "Open")
+dbpf("13IDD:DS_SpectShutter", "Open")
+dbpf("13IDD:LaserShutter", "Open")
+
+# Set DAC laser modulation state to Disabled
+dbpf("13IDD:Laser1DisableModulation.PROC", "1")
+dbpf("13IDD:Laser2DisableModulation.PROC", "1")
