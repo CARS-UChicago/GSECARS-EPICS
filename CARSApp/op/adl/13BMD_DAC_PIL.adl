@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13BMD_DAC_PIL.adl"
-	version=030117
+	name="J:\epics\support\CARS\CARSApp\op\adl\13BMD_DAC_PIL.adl"
+	version=030109
 }
 display {
 	object {
-		x=409
-		y=201
+		x=297
+		y=134
 		width=1377
 		height=774
 	}
@@ -99,7 +99,7 @@ rectangle {
 		width=1
 	}
 	"dynamic attribute" {
-		vis="if zero"
+		vis="if not zero"
 		chan="13BMD:XIAFilter4_Status"
 	}
 }
@@ -150,7 +150,7 @@ rectangle {
 		height=17
 	}
 	monitor {
-		chan="13BMD:scaler1.S2"
+		chan="13BMD:scaler1.S5"
 		clr=61
 		bclr=14
 	}
@@ -207,7 +207,7 @@ menu {
 	display[5] {
 		label="Monochromator (full)"
 		name="13BM_monochromator.adl"
-		args="P1=13BMA:,  EN=E, P2=13BMD:, MONO=m17, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, SHUT=FOE, TABLE=MON:"
+		args="P1=13BMA:,  EN=E, P2=13BMD:, MONO=m9, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, SHUT=FOE, TABLE=MON:"
 	}
 	clr=61
 	bclr=13
@@ -582,7 +582,7 @@ image {
 	display[4] {
 		label="Tomography sample stage"
 		name="7motors.adl"
-		args="P=13BMD:, TITLE=Sample position, M1=m89,M2=m91,M3=m90, M4=m36, M5=m92, M6=m37, M7=m69"
+		args="P=13BMD:, TITLE=Sample_Stage, M1=m89,M2=m91,M3=m90, M4=m72, M5=m92, M6=m37, M7=m69"
 	}
 	clr=54
 	bclr=61
@@ -618,25 +618,9 @@ composite {
 		chan="13BMD:alldone.VAL"
 	}
 }
-"related display" {
-	object {
-		x=236
-		y=722
-		width=80
-		height=20
-	}
-	display[0] {
-		label="Camera/monitor descriptions"
-		name="Pelco_CM6700.adl"
-		args="P=13BMD:,R=Pelco1"
-	}
-	clr=54
-	bclr=58
-	label="-cameras"
-}
 "shell command" {
 	object {
-		x=374
+		x=292
 		y=722
 		width=23
 		height=20
@@ -811,7 +795,7 @@ text {
 }
 "related display" {
 	object {
-		x=402
+		x=320
 		y=746
 		width=78
 		height=20
@@ -833,25 +817,9 @@ text {
 		height=20
 	}
 	display[0] {
-		label="BMD_status"
-		name="13BMD_DAC_status.adl"
-		args="P=13BMD:,R=Pelco1"
-	}
-	clr=54
-	bclr=58
-	label="-BMD status"
-}
-"related display" {
-	object {
-		x=318
-		y=746
-		width=80
-		height=20
-	}
-	display[0] {
 		label="Sample Stage"
 		name="7motors.adl"
-		args="P=13BMD:, TITLE=DAC_Sample_Stage, M1=m89, M2=m91, M3=m90,M4=m36,M5=m92, M6=m37, M7=m69"
+		args="P=13BMD:, TITLE=Sample_Stage, M1=m89, M2=m91, M3=m90,M4=m72,M5=m92, M6=m37, M7=m69"
 	}
 	display[2] {
 		label="Horizontal Focusing K/B Mirror"
@@ -865,8 +833,8 @@ text {
 	}
 	display[4] {
 		label="Microscope"
-		name="3motors.adl"
-		args="P=13BMD:, TITLE=Microscope, M1=m23, M2=m77, M3=m71"
+		name="4motors.adl"
+		args="P=13BMD:, TITLE=Microscope, M1=m23, M2=m95, M3=m96, M4=m71"
 	}
 	display[5] {
 		label="Lift Table (Simple)"
@@ -879,9 +847,9 @@ text {
 		args="P=13BMD:, Q=XAS:T1, T=XAS:t1, M0X=m20, M0Y=m19, M1Y=m18, M2X=m17, M2Z=junk"
 	}
 	display[7] {
-		label="Clean_up slits/ IC"
-		name="5motors.adl"
-		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m81, M2=m82, M3=m27, M4=m23, M5=m72"
+		label="Pinhole/Ion Chamber"
+		name="4motors.adl"
+		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m41, M2=m42, M3=m43, M4=m72"
 	}
 	clr=14
 	bclr=31
@@ -1005,7 +973,7 @@ text {
 }
 "related display" {
 	object {
-		x=319
+		x=237
 		y=722
 		width=52
 		height=20
@@ -1013,7 +981,7 @@ text {
 	display[0] {
 		label="Radio camera"
 		name="3motors.adl"
-		args="P=13BMD:, M1=m33, M2=m34, M3=m81"
+		args="P=13BMD:, M1=m33, M2=m34, M3=m41"
 	}
 	clr=14
 	bclr=4
@@ -1353,40 +1321,11 @@ composite {
 		clr=14
 		bclr=21
 	}
-	press_msg="0"
-}
-composite {
-	object {
-		x=1175
-		y=407
-		width=60
-		height=40
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1175
-				y=407
-				width=60
-				height=40
-			}
-			control {
-				chan="13BMD:XIAFilter4"
-				clr=14
-				bclr=15
-			}
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13BMD:XIAFilter4_Status"
-	}
+	press_msg="1"
 }
 "related display" {
 	object {
-		x=402
+		x=320
 		y=722
 		width=78
 		height=20
@@ -1454,7 +1393,7 @@ polyline {
 }
 "related display" {
 	object {
-		x=483
+		x=401
 		y=746
 		width=60
 		height=20
@@ -1489,7 +1428,7 @@ polyline {
 		height=25
 	}
 	control {
-		chan="13BMD:PID3.VAL"
+		chan="13Keithley1:PID1.VAL"
 		clr=14
 		bclr=41
 	}
@@ -1532,7 +1471,7 @@ menu {
 		height=17
 	}
 	control {
-		chan="13BMD:PID3.FBON"
+		chan="13Keithley1:PID1.FBON"
 		clr=55
 		bclr=39
 	}
@@ -1559,7 +1498,7 @@ text {
 	display[2] {
 		label="Laser feedback"
 		name="pid_control.adl"
-		args="P=13BMD:, PID=PID3, TITLE=T_feedback_slow"
+		args="P=13Keithley1:, PID=PID1, TITLE=T_feedback_slow"
 	}
 	clr=54
 	bclr=61
@@ -2441,159 +2380,6 @@ composite {
 }
 composite {
 	object {
-		x=402
-		y=308
-		width=100
-		height=93
-	}
-	"composite name"=""
-	children {
-		oval {
-			object {
-				x=405
-				y=385
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m77.HLS"
-			}
-		}
-		oval {
-			object {
-				x=479
-				y=385
-				width=15
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m77.LLS"
-			}
-		}
-		text {
-			object {
-				x=417
-				y=389
-				width=70
-				height=12
-			}
-			"basic attribute" {
-				clr=30
-				fill="outline"
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:m77.LVIO"
-			}
-			textix="Soft-Limit"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=423
-				y=308
-				width=55
-				height=14
-			}
-			monitor {
-				chan="13BMD:m77.RBV"
-				clr=61
-				bclr=14
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=402
-				y=322
-				width=100
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="Microscope Z"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=412
-				y=362
-				width=20
-				height=21
-			}
-			control {
-				chan="13BMD:m77.TWR"
-				clr=14
-				bclr=52
-			}
-			label="-"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=432
-				y=362
-				width=40
-				height=20
-			}
-			control {
-				chan="13BMD:m77.TWV"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=472
-				y=362
-				width=20
-				height=21
-			}
-			control {
-				chan="13BMD:m77.TWF"
-				clr=14
-				bclr=52
-			}
-			label="+"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=412
-				y=339
-				width=80
-				height=22
-			}
-			control {
-				chan="13BMD:m77.VAL"
-				clr=14
-				bclr=50
-			}
-			clrmod="discrete"
-			limits {
-			}
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-1"
-		chan="13BMD:m23.RBV"
-	}
-}
-composite {
-	object {
 		x=507
 		y=11
 		width=152
@@ -3087,333 +2873,6 @@ text {
 	limits {
 	}
 }
-composite {
-	object {
-		x=254
-		y=502
-		width=197
-		height=114
-	}
-	"composite name"=""
-	children {
-		valuator {
-			object {
-				x=308
-				y=534
-				width=115
-				height=19
-			}
-			control {
-				chan="13BMDPG3:cam1:GC_Gain"
-				clr=14
-				bclr=59
-			}
-			dPrecision=1.000000
-			limits {
-				hoprSrc="default"
-				hoprDefault=48
-			}
-		}
-		"text entry" {
-			object {
-				x=307
-				y=503
-				width=55
-				height=26
-			}
-			control {
-				chan="13BMDPG3:cam1:AcquireTime"
-				clr=14
-				bclr=6
-			}
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=308
-				y=582
-				width=35
-				height=16
-			}
-			control {
-				chan="13BMDPG3:TIFF1:WriteFile"
-				clr=14
-				bclr=52
-			}
-			label="Image"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=363
-				y=502
-				width=29
-				height=14
-			}
-			control {
-				chan="13BMDPG3:cam1:AcquireTime"
-				clr=14
-				bclr=2
-			}
-			label="1"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=393
-				y=502
-				width=32
-				height=14
-			}
-			control {
-				chan="13BMDPG3:cam1:AcquireTime"
-				clr=14
-				bclr=5
-			}
-			label=".1"
-			press_msg=".1"
-		}
-		"message button" {
-			object {
-				x=374
-				y=517
-				width=38
-				height=14
-			}
-			control {
-				chan="13BMDPG3:cam1:AcquireTime"
-				clr=14
-				bclr=8
-			}
-			label=".02"
-			press_msg=".02"
-		}
-		valuator {
-			object {
-				x=308
-				y=556
-				width=115
-				height=22
-			}
-			control {
-				chan="13BMDPG3:Over1:2:CenterX"
-				clr=14
-				bclr=54
-			}
-			dPrecision=1.000000
-			limits {
-				hoprSrc="default"
-				hoprDefault=2448
-			}
-		}
-		valuator {
-			object {
-				x=429
-				y=502
-				width=22
-				height=77
-			}
-			control {
-				chan="13BMDPG3:Over1:2:CenterY"
-				clr=14
-				bclr=54
-			}
-			direction="up"
-			dPrecision=1.000000
-			limits {
-				hoprSrc="default"
-				hoprDefault=2048
-			}
-		}
-		"text update" {
-			object {
-				x=349
-				y=583
-				width=100
-				height=13
-			}
-			monitor {
-				chan="13BMDPG3:TIFF1:FullFileName_RBV"
-				clr=51
-				bclr=14
-			}
-			align="horiz. right"
-			format="string"
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=308
-				y=600
-				width=35
-				height=16
-			}
-			display[2] {
-				label="BMD PG3 camera"
-				name="ADSpinnaker.adl"
-				args="P=13BMDPG3:, R=cam1:, C=PGR_BlackflyS_50S5C"
-			}
-			clr=54
-			bclr=61
-			label="-more"
-		}
-		text {
-			object {
-				x=271
-				y=539
-				width=30
-				height=12
-			}
-			"basic attribute" {
-				clr=46
-			}
-			textix="Gain"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=254
-				y=511
-				width=55
-				height=12
-			}
-			"basic attribute" {
-				clr=3
-			}
-			textix="Exposure"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=269
-				y=563
-				width=30
-				height=12
-			}
-			"basic attribute" {
-				clr=51
-			}
-			textix="Cross"
-			align="horiz. centered"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-1"
-		chan="13BMD:m23.RBV"
-	}
-}
-composite {
-	object {
-		x=252
-		y=453
-		width=239
-		height=46
-	}
-	"composite name"=""
-	children {
-		valuator {
-			object {
-				x=307
-				y=477
-				width=120
-				height=22
-			}
-			control {
-				chan="13BMD:SchottIllumPower"
-				clr=14
-				bclr=57
-			}
-			dPrecision=1.000000
-			limits {
-			}
-		}
-		text {
-			object {
-				x=252
-				y=484
-				width=55
-				height=12
-			}
-			"basic attribute" {
-				clr=55
-			}
-			textix="Transmit"
-			align="horiz. centered"
-		}
-		valuator {
-			object {
-				x=307
-				y=453
-				width=120
-				height=22
-			}
-			control {
-				chan="13BMD:JennerIllumPower"
-				clr=0
-				bclr=34
-			}
-			dPrecision=1.000000
-			limits {
-				loprSrc="default"
-				hoprSrc="default"
-				hoprDefault=50
-			}
-		}
-		text {
-			object {
-				x=254
-				y=460
-				width=55
-				height=12
-			}
-			"basic attribute" {
-				clr=33
-			}
-			textix="Reflect"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=429
-				y=480
-				width=30
-				height=18
-			}
-			control {
-				chan="13BMD:SchottIllumOffOn"
-				clr=39
-				bclr=57
-			}
-			label="On"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=461
-				y=480
-				width=30
-				height=18
-			}
-			control {
-				chan="13BMD:SchottIllumOffOn"
-				clr=0
-				bclr=43
-			}
-			label="OFF"
-			press_msg="0"
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-1ORB#0ORC#0"
-		chan="13BMD:m23.RBV"
-		chanB="13BMD:JennerIllumPower"
-		chanC="13BMD:SchottIllumPower"
-	}
-}
 "related display" {
 	object {
 		x=1043
@@ -3424,7 +2883,7 @@ composite {
 	display[7] {
 		label="Clean_up slits"
 		name="3motors.adl"
-		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m81, M2=m82, M3=m27"
+		args="P=13BMD:,TITLE=BMD_Pinhole Motors, M1=m41, M2=m42, M3=m43"
 	}
 	clr=54
 	bclr=61
@@ -3432,22 +2891,22 @@ composite {
 }
 "message button" {
 	object {
-		x=1014
+		x=1039
 		y=364
 		width=40
 		height=25
 	}
 	control {
-		chan="13BMD:m27.VAL"
+		chan="13BMD:m43.VAL"
 		clr=14
 		bclr=55
 	}
 	label="Out"
-	press_msg="-48"
+	press_msg="-40"
 }
 composite {
 	object {
-		x=924
+		x=907
 		y=364
 		width=40
 		height=25
@@ -3456,13 +2915,13 @@ composite {
 	children {
 		"message button" {
 			object {
-				x=924
+				x=907
 				y=364
 				width=40
 				height=25
 			}
 			control {
-				chan="13BMD:m27.VAL"
+				chan="13BMD:m43.VAL"
 				clr=14
 				bclr=35
 			}
@@ -3491,15 +2950,15 @@ text {
 }
 "message button" {
 	object {
-		x=969
+		x=994
 		y=364
 		width=40
 		height=25
 	}
 	control {
-		chan="13BMD:m27.VAL"
+		chan="13BMD:m43.VAL"
 		clr=14
-		bclr=36
+		bclr=37
 	}
 	label="-20"
 	press_msg="-20"
@@ -4300,7 +3759,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMD:m27.DMOV"
+		chan="13BMD:m43.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
@@ -4313,7 +3772,7 @@ text {
 		height=22
 	}
 	control {
-		chan="13BMD:m27.VAL"
+		chan="13BMD:m43.VAL"
 		clr=14
 		bclr=40
 	}
@@ -4329,7 +3788,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13BMD:m27.TWV"
+		chan="13BMD:m43.TWV"
 		clr=14
 		bclr=40
 	}
@@ -4344,7 +3803,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13BMD:m27.TWR"
+		chan="13BMD:m43.TWR"
 		clr=14
 		bclr=42
 	}
@@ -4359,7 +3818,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13BMD:m27.TWF"
+		chan="13BMD:m43.TWF"
 		clr=14
 		bclr=42
 	}
@@ -4391,7 +3850,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:m27.HLS"
+		chan="13BMD:m43.HLS"
 	}
 }
 oval {
@@ -4406,7 +3865,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:m27.LLS"
+		chan="13BMD:m43.LLS"
 	}
 }
 "text update" {
@@ -4417,7 +3876,7 @@ oval {
 		height=12
 	}
 	monitor {
-		chan="13BMD:m27.RBV"
+		chan="13BMD:m43.RBV"
 		clr=60
 		bclr=14
 	}
@@ -4437,7 +3896,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMD:m27.LVIO"
+		chan="13BMD:m43.LVIO"
 	}
 	textix="Soft-Limit"
 	align="horiz. centered"
@@ -4464,7 +3923,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="13BMD:m82.DMOV"
+				chan="13BMD:m42.DMOV"
 			}
 			textix="Moving"
 			align="horiz. centered"
@@ -4477,7 +3936,7 @@ composite {
 				height=22
 			}
 			control {
-				chan="13BMD:m82.VAL"
+				chan="13BMD:m42.VAL"
 				clr=14
 				bclr=40
 			}
@@ -4493,7 +3952,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="13BMD:m82.TWV"
+				chan="13BMD:m42.TWV"
 				clr=14
 				bclr=40
 			}
@@ -4508,7 +3967,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="13BMD:m82.TWR"
+				chan="13BMD:m42.TWR"
 				clr=14
 				bclr=42
 			}
@@ -4523,7 +3982,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="13BMD:m82.TWF"
+				chan="13BMD:m42.TWF"
 				clr=14
 				bclr=42
 			}
@@ -4542,7 +4001,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:m82.HLS"
+				chan="13BMD:m42.HLS"
 			}
 		}
 		oval {
@@ -4557,7 +4016,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:m82.LLS"
+				chan="13BMD:m42.LLS"
 			}
 		}
 		text {
@@ -4573,7 +4032,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:m82.LVIO"
+				chan="13BMD:m42.LVIO"
 			}
 			textix="Soft-Limit"
 			align="horiz. centered"
@@ -4586,7 +4045,7 @@ composite {
 				height=12
 			}
 			monitor {
-				chan="13BMD:m82.RBV"
+				chan="13BMD:m42.RBV"
 				clr=60
 				bclr=14
 			}
@@ -4615,7 +4074,7 @@ composite {
 			"basic attribute" {
 				clr=30
 			}
-			textix="m82"
+			textix="m42"
 			align="horiz. centered"
 		}
 	}
@@ -4642,7 +4101,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="13BMD:m81.DMOV"
+				chan="13BMD:m41.DMOV"
 			}
 			textix="Moving"
 			align="horiz. centered"
@@ -4655,7 +4114,7 @@ composite {
 				height=22
 			}
 			control {
-				chan="13BMD:m81.VAL"
+				chan="13BMD:m41.VAL"
 				clr=14
 				bclr=40
 			}
@@ -4671,7 +4130,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="13BMD:m81.TWV"
+				chan="13BMD:m41.TWV"
 				clr=14
 				bclr=40
 			}
@@ -4686,7 +4145,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="13BMD:m81.TWR"
+				chan="13BMD:m41.TWR"
 				clr=14
 				bclr=42
 			}
@@ -4701,7 +4160,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="13BMD:m81.TWF"
+				chan="13BMD:m41.TWF"
 				clr=14
 				bclr=42
 			}
@@ -4732,7 +4191,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:m81.HLS"
+				chan="13BMD:m41.HLS"
 			}
 		}
 		oval {
@@ -4747,7 +4206,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:m81.LLS"
+				chan="13BMD:m41.LLS"
 			}
 		}
 		text {
@@ -4763,7 +4222,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="13BMD:m81.LVIO"
+				chan="13BMD:m41.LVIO"
 			}
 			textix="Soft-Limit"
 			align="horiz. centered"
@@ -4776,7 +4235,7 @@ composite {
 				height=12
 			}
 			monitor {
-				chan="13BMD:m81.RBV"
+				chan="13BMD:m41.RBV"
 				clr=60
 				bclr=14
 			}
@@ -4793,251 +4252,8 @@ composite {
 			"basic attribute" {
 				clr=30
 			}
-			textix="m81"
+			textix="m41"
 			align="horiz. centered"
-		}
-	}
-}
-composite {
-	object {
-		x=186
-		y=183
-		width=120
-		height=270
-	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=186
-				y=183
-				width=120
-				height=20
-			}
-			"basic attribute" {
-				clr=30
-			}
-			textix="Photodiode"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=233
-				y=211
-				width=70
-				height=14
-			}
-			monitor {
-				chan="13BMD:scaler1.S3"
-				clr=50
-				bclr=14
-			}
-			align="horiz. right"
-			limits {
-			}
-		}
-		menu {
-			object {
-				x=191
-				y=228
-				width=55
-				height=20
-			}
-			control {
-				chan="13BMD:A2sens_num.VAL"
-				clr=0
-				bclr=27
-			}
-		}
-		menu {
-			object {
-				x=248
-				y=228
-				width=55
-				height=20
-			}
-			control {
-				chan="13BMD:A2sens_unit.VAL"
-				clr=0
-				bclr=27
-			}
-		}
-		"related display" {
-			object {
-				x=225
-				y=277
-				width=45
-				height=13
-			}
-			display[2] {
-				label="SRS Current Preamp 2"
-				name="SR570.adl"
-				args="P=13BMD:, A=A2"
-			}
-			clr=54
-			bclr=61
-			label="-more"
-		}
-		"message button" {
-			object {
-				x=191
-				y=250
-				width=55
-				height=25
-			}
-			control {
-				chan="13BMD:XIAFilter2"
-				clr=14
-				bclr=55
-			}
-			label="Out"
-			press_msg="0"
-		}
-		"message button" {
-			object {
-				x=248
-				y=250
-				width=55
-				height=25
-			}
-			control {
-				chan="13BMD:XIAFilter2"
-				clr=14
-				bclr=35
-			}
-			label="In"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=190
-				y=211
-				width=50
-				height=14
-			}
-			"basic attribute" {
-				clr=57
-			}
-			textix="Counts:"
-		}
-		polyline {
-			object {
-				x=191
-				y=204
-				width=110
-				height=0
-			}
-			"basic attribute" {
-				clr=30
-			}
-			points {
-				(191,204)
-				(301,204)
-			}
-		}
-		composite {
-			object {
-				x=229
-				y=268
-				width=37
-				height=106
-			}
-			"composite name"=""
-			children {
-				oval {
-					object {
-						x=229
-						y=324
-						width=28
-						height=50
-					}
-					"basic attribute" {
-						clr=29
-					}
-				}
-				oval {
-					object {
-						x=235
-						y=324
-						width=31
-						height=50
-					}
-					"basic attribute" {
-						clr=25
-					}
-				}
-				polyline {
-					object {
-						x=247
-						y=268
-						width=0
-						height=55
-					}
-					"basic attribute" {
-						clr=29
-					}
-					points {
-						(247,268)
-						(247,323)
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="13BMD:XIAFilter2_Status"
-			}
-		}
-		composite {
-			object {
-				x=228
-				y=286
-				width=37
-				height=167
-			}
-			"composite name"=""
-			children {
-				polyline {
-					object {
-						x=247
-						y=286
-						width=0
-						height=120
-					}
-					"basic attribute" {
-						clr=29
-					}
-					points {
-						(247,286)
-						(247,406)
-					}
-				}
-				oval {
-					object {
-						x=228
-						y=405
-						width=28
-						height=48
-					}
-					"basic attribute" {
-						clr=29
-					}
-				}
-				oval {
-					object {
-						x=234
-						y=405
-						width=31
-						height=48
-					}
-					"basic attribute" {
-						clr=25
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="13BMD:XIAFilter2_Status"
-			}
 		}
 	}
 }
@@ -5523,70 +4739,6 @@ text {
 }
 composite {
 	object {
-		x=342
-		y=238
-		width=45
-		height=25
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=342
-				y=238
-				width=45
-				height=25
-			}
-			control {
-				chan="13BMD:m23.VAL"
-				clr=14
-				bclr=55
-			}
-			label="Out"
-			press_msg="-85."
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A<-85&&A>-95ORA<95&&A>85)&&(B>10)"
-		chan="13BMD:m92.RBV"
-		chanB="13BMD:m68.RBV"
-	}
-}
-composite {
-	object {
-		x=342
-		y=263
-		width=45
-		height=25
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=342
-				y=263
-				width=45
-				height=25
-			}
-			control {
-				chan="13BMD:m23.VAL"
-				clr=14
-				bclr=35
-			}
-			label="In"
-			press_msg="0."
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A<-85&&A>-95ORA<95&&A>85)&&B>10"
-		chan="13BMD:m92.RBV"
-		chanB="13BMD:m68.RBV"
-	}
-}
-composite {
-	object {
 		x=315
 		y=266
 		width=80
@@ -5659,8 +4811,8 @@ composite {
 	}
 	display[0] {
 		label="Microscope"
-		name="3motors.adl"
-		args="P=13BMD:, TITLE=Microscope, M1=m23, M2=m77, M3=m71"
+		name="4motors.adl"
+		args="P=13BMD:, TITLE=Microscope, M1=m23, M2=m95, M3=m96, M4=m71"
 	}
 	clr=54
 	bclr=61
@@ -5742,156 +4894,6 @@ composite {
 	"dynamic attribute" {
 		vis="if not zero"
 		chan="13BMD:JennerIllumPower"
-	}
-}
-composite {
-	object {
-		x=339
-		y=243
-		width=52
-		height=197
-	}
-	"composite name"=""
-	children {
-		oval {
-			object {
-				x=347
-				y=383
-				width=31
-				height=15
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		rectangle {
-			object {
-				x=347
-				y=392
-				width=31
-				height=40
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		rectangle {
-			object {
-				x=353
-				y=409
-				width=34
-				height=31
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		oval {
-			object {
-				x=380
-				y=409
-				width=11
-				height=31
-			}
-			"basic attribute" {
-				clr=32
-				width=5
-			}
-		}
-		oval {
-			object {
-				x=346
-				y=409
-				width=11
-				height=31
-			}
-			"basic attribute" {
-				clr=34
-				width=5
-			}
-		}
-		rectangle {
-			object {
-				x=360
-				y=243
-				width=5
-				height=145
-			}
-			"basic attribute" {
-				clr=5
-				width=5
-			}
-		}
-		composite {
-			object {
-				x=339
-				y=328
-				width=48
-				height=14
-			}
-			"composite name"=""
-			children {
-				"message button" {
-					object {
-						x=339
-						y=328
-						width=48
-						height=14
-					}
-					control {
-						chan="13BMD:m71.VAL"
-						clr=14
-						bclr=34
-					}
-					label="un zoom"
-					press_msg="-12."
-				}
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A>-6"
-				chan="13BMD:m71.RBV"
-			}
-		}
-		composite {
-			object {
-				x=345
-				y=326
-				width=36
-				height=17
-			}
-			"composite name"=""
-			children {
-				"message button" {
-					object {
-						x=345
-						y=326
-						width=36
-						height=17
-					}
-					control {
-						chan="13BMD:m71.VAL"
-						clr=35
-						bclr=49
-					}
-					label="zoom"
-					press_msg="0."
-				}
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A<-6"
-				chan="13BMD:m71.RBV"
-			}
-		}
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>-1"
-		chan="13BMD:m23.RBV"
 	}
 }
 composite {
@@ -6157,7 +5159,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A>48"
-				chan="13BMD:m27.RBV"
+				chan="13BMD:m43.RBV"
 			}
 		}
 		composite {
@@ -7175,4 +6177,965 @@ composite {
 	format="string"
 	limits {
 	}
+}
+composite {
+	object {
+		x=1175
+		y=407
+		width=60
+		height=40
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1175
+				y=407
+				width=60
+				height=40
+			}
+			control {
+				chan="13BMD:XIAFilter4"
+				clr=14
+				bclr=15
+			}
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13BMD:XIAFilter4_Status"
+	}
+}
+composite {
+	object {
+		x=186
+		y=183
+		width=120
+		height=270
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=186
+				y=183
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=30
+			}
+			textix="Photodiode"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=233
+				y=211
+				width=70
+				height=14
+			}
+			monitor {
+				chan="13BMD:scaler1.S4"
+				clr=50
+				bclr=14
+			}
+			align="horiz. right"
+			limits {
+			}
+		}
+		menu {
+			object {
+				x=191
+				y=228
+				width=55
+				height=20
+			}
+			control {
+				chan="13BMD:A2sens_num.VAL"
+				clr=0
+				bclr=27
+			}
+		}
+		menu {
+			object {
+				x=248
+				y=228
+				width=55
+				height=20
+			}
+			control {
+				chan="13BMD:A2sens_unit.VAL"
+				clr=0
+				bclr=27
+			}
+		}
+		"related display" {
+			object {
+				x=225
+				y=277
+				width=45
+				height=13
+			}
+			display[2] {
+				label="SRS Current Preamp 2"
+				name="SR570.adl"
+				args="P=13BMD:, A=A2"
+			}
+			clr=54
+			bclr=61
+			label="-more"
+		}
+		"message button" {
+			object {
+				x=191
+				y=250
+				width=55
+				height=25
+			}
+			control {
+				chan="13BMD:XIAFilter2"
+				clr=14
+				bclr=55
+			}
+			label="Out"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=248
+				y=250
+				width=55
+				height=25
+			}
+			control {
+				chan="13BMD:XIAFilter2"
+				clr=14
+				bclr=35
+			}
+			label="In"
+			press_msg="0"
+		}
+		text {
+			object {
+				x=190
+				y=211
+				width=50
+				height=14
+			}
+			"basic attribute" {
+				clr=57
+			}
+			textix="Counts:"
+		}
+		polyline {
+			object {
+				x=191
+				y=204
+				width=110
+				height=0
+			}
+			"basic attribute" {
+				clr=30
+			}
+			points {
+				(191,204)
+				(301,204)
+			}
+		}
+		composite {
+			object {
+				x=229
+				y=268
+				width=37
+				height=106
+			}
+			"composite name"=""
+			children {
+				oval {
+					object {
+						x=229
+						y=324
+						width=28
+						height=50
+					}
+					"basic attribute" {
+						clr=29
+					}
+				}
+				oval {
+					object {
+						x=235
+						y=324
+						width=31
+						height=50
+					}
+					"basic attribute" {
+						clr=25
+					}
+				}
+				polyline {
+					object {
+						x=247
+						y=268
+						width=0
+						height=55
+					}
+					"basic attribute" {
+						clr=29
+					}
+					points {
+						(247,268)
+						(247,323)
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13BMD:XIAFilter2_Status"
+			}
+		}
+		composite {
+			object {
+				x=228
+				y=286
+				width=37
+				height=167
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=247
+						y=286
+						width=0
+						height=120
+					}
+					"basic attribute" {
+						clr=29
+					}
+					points {
+						(247,286)
+						(247,406)
+					}
+				}
+				oval {
+					object {
+						x=228
+						y=405
+						width=28
+						height=48
+					}
+					"basic attribute" {
+						clr=29
+					}
+				}
+				oval {
+					object {
+						x=234
+						y=405
+						width=31
+						height=48
+					}
+					"basic attribute" {
+						clr=25
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13BMD:XIAFilter2_Status"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=342
+		y=263
+		width=45
+		height=25
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=342
+				y=263
+				width=45
+				height=25
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=35
+			}
+			label="In"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A<-85&&A>-95ORA<95&&A>85)&&B>10"
+		chan="13BMD:m92.RBV"
+		chanB="13BMD:m68.RBV"
+	}
+}
+composite {
+	object {
+		x=342
+		y=238
+		width=45
+		height=25
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=342
+				y=238
+				width=45
+				height=25
+			}
+			control {
+				chan="13BMD:m23.VAL"
+				clr=14
+				bclr=55
+			}
+			label="Out"
+			press_msg="-85"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A<-85&&A>-95ORA<95&&A>85)&&B>10"
+		chan="13BMD:m92.RBV"
+		chanB="13BMD:m68.RBV"
+	}
+}
+composite {
+	object {
+		x=337
+		y=243
+		width=52
+		height=197
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=343
+				y=326
+				width=36
+				height=17
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=343
+						y=326
+						width=36
+						height=17
+					}
+					control {
+						chan="13BMD:m71.VAL"
+						clr=35
+						bclr=49
+					}
+					label="zoom"
+					press_msg="0."
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A<-6"
+				chan="13BMD:m71.RBV"
+			}
+		}
+		composite {
+			object {
+				x=337
+				y=328
+				width=48
+				height=14
+			}
+			"composite name"=""
+			children {
+				"message button" {
+					object {
+						x=337
+						y=328
+						width=48
+						height=14
+					}
+					control {
+						chan="13BMD:m71.VAL"
+						clr=14
+						bclr=34
+					}
+					label="un zoom"
+					press_msg="-12."
+				}
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>-6"
+				chan="13BMD:m71.RBV"
+			}
+		}
+		rectangle {
+			object {
+				x=358
+				y=243
+				width=5
+				height=145
+			}
+			"basic attribute" {
+				clr=5
+				width=5
+			}
+		}
+		rectangle {
+			object {
+				x=345
+				y=392
+				width=31
+				height=40
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=378
+				y=409
+				width=11
+				height=31
+			}
+			"basic attribute" {
+				clr=32
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=345
+				y=383
+				width=31
+				height=15
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		rectangle {
+			object {
+				x=351
+				y=409
+				width=34
+				height=31
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+		oval {
+			object {
+				x=344
+				y=409
+				width=11
+				height=31
+			}
+			"basic attribute" {
+				clr=34
+				width=5
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1"
+		chan="13BMD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=402
+		y=308
+		width=100
+		height=93
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=405
+				y=385
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13BMD:m95.HLS"
+			}
+		}
+		oval {
+			object {
+				x=479
+				y=385
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13BMD:m95.LLS"
+			}
+		}
+		text {
+			object {
+				x=417
+				y=389
+				width=70
+				height=12
+			}
+			"basic attribute" {
+				clr=30
+				fill="outline"
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13BMD:m95.LVIO"
+			}
+			textix="Soft-Limit"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=423
+				y=308
+				width=55
+				height=14
+			}
+			monitor {
+				chan="13BMD:m95.RBV"
+				clr=61
+				bclr=14
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=402
+				y=322
+				width=100
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="Microscope Z"
+			align="horiz. centered"
+		}
+		"message button" {
+			object {
+				x=412
+				y=362
+				width=20
+				height=21
+			}
+			control {
+				chan="13BMD:m95.TWR"
+				clr=14
+				bclr=52
+			}
+			label="-"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=432
+				y=362
+				width=40
+				height=20
+			}
+			control {
+				chan="13BMD:m95.TWV"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=472
+				y=362
+				width=20
+				height=21
+			}
+			control {
+				chan="13BMD:m95.TWF"
+				clr=14
+				bclr=52
+			}
+			label="+"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=412
+				y=339
+				width=80
+				height=22
+			}
+			control {
+				chan="13BMD:m95.VAL"
+				clr=14
+				bclr=50
+			}
+			clrmod="discrete"
+			limits {
+			}
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1"
+		chan="13BMD:m23.RBV"
+	}
+}
+composite {
+	object {
+		x=254
+		y=502
+		width=197
+		height=114
+	}
+	"composite name"=""
+	children {
+		valuator {
+			object {
+				x=308
+				y=534
+				width=115
+				height=19
+			}
+			control {
+				chan="13BMDPG3:cam1:GC_Gain"
+				clr=14
+				bclr=59
+			}
+			dPrecision=1.000000
+			limits {
+				hoprSrc="default"
+				hoprDefault=48
+			}
+		}
+		"text entry" {
+			object {
+				x=307
+				y=503
+				width=55
+				height=26
+			}
+			control {
+				chan="13BMDPG3:cam1:AcquireTime"
+				clr=14
+				bclr=6
+			}
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=308
+				y=582
+				width=35
+				height=16
+			}
+			control {
+				chan="13BMDPG3:TIFF1:WriteFile"
+				clr=14
+				bclr=52
+			}
+			label="Image"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=363
+				y=502
+				width=29
+				height=14
+			}
+			control {
+				chan="13BMDPG3:cam1:AcquireTime"
+				clr=14
+				bclr=2
+			}
+			label="1"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=393
+				y=502
+				width=32
+				height=14
+			}
+			control {
+				chan="13BMDPG3:cam1:AcquireTime"
+				clr=14
+				bclr=5
+			}
+			label=".1"
+			press_msg=".1"
+		}
+		"message button" {
+			object {
+				x=374
+				y=517
+				width=38
+				height=14
+			}
+			control {
+				chan="13BMDPG3:cam1:AcquireTime"
+				clr=14
+				bclr=8
+			}
+			label=".02"
+			press_msg=".02"
+		}
+		valuator {
+			object {
+				x=308
+				y=556
+				width=115
+				height=22
+			}
+			control {
+				chan="13BMDPG3:Over1:2:CenterX"
+				clr=14
+				bclr=54
+			}
+			dPrecision=1.000000
+			limits {
+				hoprSrc="default"
+				hoprDefault=2448
+			}
+		}
+		valuator {
+			object {
+				x=429
+				y=502
+				width=22
+				height=77
+			}
+			control {
+				chan="13BMDPG3:Over1:2:CenterY"
+				clr=14
+				bclr=54
+			}
+			direction="up"
+			dPrecision=1.000000
+			limits {
+				hoprSrc="default"
+				hoprDefault=2048
+			}
+		}
+		"text update" {
+			object {
+				x=349
+				y=583
+				width=100
+				height=13
+			}
+			monitor {
+				chan="13BMDPG3:TIFF1:FullFileName_RBV"
+				clr=51
+				bclr=14
+			}
+			align="horiz. right"
+			format="string"
+			limits {
+			}
+		}
+		"related display" {
+			object {
+				x=308
+				y=600
+				width=35
+				height=16
+			}
+			display[2] {
+				label="BMD PG3 camera"
+				name="ADSpinnaker.adl"
+				args="P=13BMDPG3:, R=cam1:, C=PGR_BlackflyS_50S5C"
+			}
+			clr=54
+			bclr=61
+			label="-more"
+		}
+		text {
+			object {
+				x=271
+				y=539
+				width=30
+				height=12
+			}
+			"basic attribute" {
+				clr=46
+			}
+			textix="Gain"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=254
+				y=511
+				width=55
+				height=12
+			}
+			"basic attribute" {
+				clr=3
+			}
+			textix="Exposure"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=269
+				y=563
+				width=30
+				height=12
+			}
+			"basic attribute" {
+				clr=51
+			}
+			textix="Cross"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>-1"
+		chan="13BMD:m23.RBV"
+	}
+}
+valuator {
+	object {
+		x=307
+		y=477
+		width=120
+		height=22
+	}
+	control {
+		chan="13BMD:SchottIllumPower"
+		clr=14
+		bclr=57
+	}
+	dPrecision=1.000000
+	limits {
+	}
+}
+text {
+	object {
+		x=252
+		y=484
+		width=55
+		height=12
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="Transmit"
+	align="horiz. centered"
+}
+valuator {
+	object {
+		x=307
+		y=453
+		width=120
+		height=22
+	}
+	control {
+		chan="13BMD:JennerIllumPower"
+		clr=0
+		bclr=34
+	}
+	dPrecision=1.000000
+	limits {
+		hoprDefault=50
+	}
+}
+text {
+	object {
+		x=254
+		y=460
+		width=55
+		height=12
+	}
+	"basic attribute" {
+		clr=33
+	}
+	textix="Reflect"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=429
+		y=480
+		width=30
+		height=18
+	}
+	control {
+		chan="13BMD:SchottIllumOffOn"
+		clr=39
+		bclr=57
+	}
+	label="On"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=461
+		y=480
+		width=30
+		height=18
+	}
+	control {
+		chan="13BMD:SchottIllumOffOn"
+		clr=0
+		bclr=43
+	}
+	label="OFF"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=950
+		y=364
+		width=40
+		height=25
+	}
+	control {
+		chan="13BMD:m43.VAL"
+		clr=14
+		bclr=36
+	}
+	label="-10"
+	press_msg="-10"
 }
