@@ -1,4 +1,4 @@
-iocshLoad ../asynIPPortConfig.cmd "PORT=serial1,  IPADDR=$(TS):4001, IEOS=,        OEOS=\\r"   # Digitel,    9600,'E',1,7,'N'
+iocshLoad ../asynIPPortConfig.cmd "PORT=serial1,  IPADDR=$(TS):4001, IEOS=\\r,     OEOS=\\r"   # MPC         9600,'E',1,8,'N'
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial2,  IPADDR=$(TS):4002, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial3,  IPADDR=$(TS):4003, IEOS=,        OEOS=\\r"   # Digitel     9600,'E',1,7,'N'
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial4,  IPADDR=$(TS):4004, IEOS=\\r,     OEOS=\\r"   # MKS        19200,'E',1,8,'N'
@@ -17,7 +17,8 @@ iocshLoad ../asynIPPortConfig.cmd "PORT=serial14, IPADDR=$(TS):4014, IEOS=\\r,  
 # Serial 17 is in the BM-D terminal server because the long cable to BM-A was accidentally cut.
 iocshLoad ../asynIPPortConfig.cmd "PORT=serial17, IPADDR=gsets18:4014, IEOS=,      OEOS=\\r"   # Digitel      9600,'E',1,7,'N'
 
-dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial1,  PUMP=ip1")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial1,  PUMP=ip1, PA=0, PN=1")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial1,  PUMP=ip3, PA=0, PN=2")
 dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial2,  CC1=cc1, CC2=cc3, PR1=pr1, PR2=pr3")
 dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial3,  PUMP=ip7")
 dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial4,  CC1=cc7, CC2=cc8, PR1=pr7, PR2=pr8")
@@ -27,7 +28,7 @@ dbLoadRecords("$(IP)/db/Digitel.db",          "P=$(P), PORT=serial8,  PUMP=ip2")
 # serial9 is PM304 below
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(P), PORT=serial10, Dmm=DMM1")
 dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial11, PUMP=ip8, PA=0, PN=1")
-dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial11, PUMP=ip9, PA=0,PN=2")
+dbLoadRecords("$(IP)/db/MPC.db",              "P=$(P), PORT=serial11, PUMP=ip9, PA=0, PN=2")
 dbLoadRecords("$(IP)/db/TSP.db",              "P=$(P), PORT=serial11, TSP=tsp1, PA=0")
 dbLoadRecords("$(IP)/db/MKS.db",              "P=$(P), PORT=serial12, CC1=cc4, CC2=ccyyyy, PR1=pr4, PR2=pryyyy")
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(P), PORT=serial13, Dmm=DMM2")
