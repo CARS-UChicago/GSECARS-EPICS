@@ -1,74 +1,51 @@
 file "$(CARS)/db/asynMotor.db"
 {
 pattern
-{P,       N,  M,   DTYP,    PORT, ADDR,   DESC,  EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV, UREV, PREC,  DHLM,     DLLM}
-{13XRM:,  1,  m1, "asynMotor", XPS2, 0, "finex",       mm, Pos,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 5,    12.4,    -12.4}
-{13XRM:,  2,  m2, "asynMotor", XPS2, 1, "finey",       mm, Neg,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 5,    12.4,    -12.4}
-{13XRM:,  3,  m3, "asynMotor", XPS2, 2, "theta",      deg, Pos, 20.,  1,  0.5, 0, 1, .2,   2000,  1, 4,   72000,   -72000}
-{13XRM:, 15, m15, "asynMotor", XPS2, 3, "Focus Z",     mm, Pos,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 4,    12.4,    -12.4}
-{13XRM:,  5,  m5, "asynMotor", XPS2, 4, "Coarse X",    mm, Neg,  5.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    49.9,    -49.9}
-{13XRM:,  6,  m6, "asynMotor", XPS2, 5, "Coarse Y",    mm, Neg,  5.,  1,  1.0, 0, 2, .2,   5000,  1, 4,   292.9,     -9.9}
-{13XRM:, 14, m14, "asynMotor", XPS2, 6, "Coarse Z",    mm, Pos,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 4,    12.4,    -12.4}
+{P,       N,  M,   DTYP,    PORT, ADDR,   DESC,        EGU,  DIR, VELO, VBAS, ACCL, BDST,BVEL,BACC,  SREV, UREV, PREC,  DHLM,     DLLM}
+{13XRM:,  1,  m1, "asynMotor", XPSD, 0, "fine_x",       mm, Pos,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 5,    12.45,   -12.45}
+{13XRM:,  2,  m2, "asynMotor", XPSD, 1, "fine_y",       mm, Neg,  5.,  1,  0.5, 0, 1, .2,  50000,  1, 4,     2.45,    -2.45}
+{13XRM:,  3,  m3, "asynMotor", XPSD, 2, "focus_z",      mm, Pos,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 4,    12.45,   -12.45}
+{13XRM:,  4,  m4, "asynMotor", XPSD, 3, "coarse_x",     mm, Neg,  5.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    49.95,   -49.95}
+{13XRM:,  5,  m5, "asynMotor", XPSC, 7, "coarse_y",     mm, Neg,  5.,  1,  1.0, 0, 2, .2,   5000,  1, 4,   292.95,    -9.95}
+{13XRM:,  6,  m6, "asynMotor", XPSD, 5, "herfd_x",      mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    74.9,    -74.9}
+{13XRM:,  6,  m7, "asynMotor", XPSD, 6, "herfd_y",      mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    99.9,    -99.9}
+{13XRM:,  8,  m8, "asynMotor", XPSD, 7, "herfd_th",    deg, Pos,  5.,  1,  1.0, 0, 1, .5,   1000,  1, 4,   169.9,   -169.9}
 
-{13XRM:,  7,  m7, "asynMotor", XPS1, 0, "HRF_DET_Y",   mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    99.9,    -99.9}
-{13XRM:,  8,  m8, "asynMotor", XPS1, 1, "HRF_DET_X",   mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    74.9,    -74.9}
-{13XRM:,  9,  m9, "asynMotor", XPS1, 2, "HRF_ANA_Z",   mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    99.9,    -99.9}
-{13XRM:, 10, m10, "asynMotor", XPS1, 3, "HRF_ANA_Th", deg, Pos,  5.,  1,  1.0, 0, 1, .5,   1000,  1, 4,   169.9,   -169.9}
-{13XRM:, 11, m11, "asynMotor", XPS1, 4, "XRD_DET_X",   mm, Neg,  5.,  1,  1.0, 0, 1, .5,    400,  1, 4,    74.5,    -74.5}
-{13XRM:, 12, m12, "asynMotor", XPS1, 5, "XRD_DET_Z"    mm, Neg,  5.,  1,  1.0, 0, 1, .5,    400,  1, 4,    74.5,    -74.5}
-{13XRM:, 13, m13, "asynMotor", XPS1, 6, "XRD_DET_Y",   mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    74.9,    -74.9}
-{13XRM:,  4,  m4, "asynMotor", XPS1, 7, "finez",       mm, Pos,  5.,  1,  0.5, 0, 1, .2,  50000,  1, 4,     2.4,     -2.4}
+{13XRM:,  9,  m9, "asynMotor", XPSC, 0, "cfine_x",      mm, Neg,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 5,    12.45,   -12.45}
+{13XRM:, 10, m10, "asynMotor", XPSC, 1, "theta",       deg, Pos, 20.,  1,  0.5, 0, 1, .2,   2000,  1, 4,    72000,   -72000}
+{13XRM:, 11, m11, "asynMotor", XPSC, 2, "cfocus_y",     mm, Pos,  5.,  1,  0.5, 0, 1, .2, 100000,  1, 4,    12.45,   -12.45}
+{13XRM:, 12, m12, "asynMotor", XPSC, 3, "xrddet_x",     mm, Neg,  5.,  1,  1.0, 0, 1, .5,    400,  1, 4,    74.5,    -74.5}
+{13XRM:, 13, m13, "asynMotor", XPSC, 4, "xrddet_y"      mm, Neg,  5.,  1,  1.0, 0, 1, .5,    400,  1, 4,    74.5,    -74.5}
+{13XRM:, 14, m14, "asynMotor", XPSC, 5, "xrddet_z",     mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    74.9,    -74.9}
+{13XRM:, 15, m15, "asynMotor", XPSC, 6, "herfd_z",      mm, Pos,  2.,  1,  1.0, 0, 1, .5,   2000,  1, 4,    99.9,    -99.9}
 }
 
-file "$(MOTOR)/db/pseudoMotor.db"
-{
-pattern
-{P,       M,           DINP,             OUT,    RDBL,  STOO,DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
-{13XRM:,pm1, "13XRM:PM:Done NPP NMS", "13XRM:pm1DVAL.VAL PP MS", "13XRM:PM:Readback.G NPP NMS", "13XRM:PM:Stop PP MS", "outboard",   mm, Neg, 5, 1, 1, 0, 1, 0.5, 0.0003, 1, 4, 400, -400}
-{13XRM:,pm2, "13XRM:PM:Done NPP NMS", "13XRM:pm2DVAL.VAL PP MS", "13XRM:PM:Readback.H NPP NMS", "13XRM:PM:Stop PP MS", "downstream", mm, Pos, 5, 1, 1, 0, 1, 0.5, 0.0003, 1, 4, 400, -400}
-}
+# file "$(MOTOR)/db/pseudoMotor.db"
+# {
+# pattern
+# {P,       M,           DINP,             OUT,    RDBL,  STOO,DESC, EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL,                    BACC, MRES,   RRES, PREC,  DHLM, DLLM}
+# {13XRM:,pm1, "13XRM:PM:Done NPP NMS", "13XRM:pm1DVAL.VAL PP MS", "13XRM:PM:Readback.G NPP NMS", "13XRM:PM:Stop PP MS", "outboard",   mm, Neg, 5, 1, 1, 0, 1, 0.5, 0.0003, 1, 4, 400, -400}
+# {13XRM:,pm2, "13XRM:PM:Done NPP NMS", "13XRM:pm2DVAL.VAL PP MS", "13XRM:PM:Readback.H NPP NMS", "13XRM:PM:Stop PP MS", "downstream", mm, Pos, 5, 1, 1, 0, 1, 0.5, 0.0003, 1, 4, 400, -400}
+# }
 
-file "$(MOTOR)/db/sumDiff2D.db"
-{
- pattern
- {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
- {13XRM:, PM:,  pm1, pm2,      m5.VAL,  m5.RBV,  m4.VAL, m4.RBV, m5.STOP, m5.DMOV, m4.STOP, m4.DMOV, 4}
-}
-
-file "$(MOTOR)/db/profileMoveController.template"
-{
-pattern
-{P,       R,      PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
-{13XRM:,  Prof1:, XPS1,     6,    2000,    2000,       1}
-}
+# file "$(MOTOR)/db/sumDiff2D.db"
+# {
+#  pattern
+#  {P,      T,     SUM, DIFF,    M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+# {13XRM:, PM:,  pm1, pm2,      m5.VAL,  m5.RBV,  m4.VAL, m4.RBV, m5.STOP, m5.DMOV, m4.STOP, m4.DMOV, 4}
+# }
 
 file "$(MOTOR)/db/profileMoveControllerXPS.template"
 {
 pattern
 {P,         R,    PORT, NAXES, NPOINTS, NPULSES, TIMEOUT}
-{13XRM:,  Prof1:, XPS1,     6,    2000,    2000,       1}
+{13XRM:,  Prof1:, XPSD,     2,    8192,    8192,       1}
 }
 
 file "$(MOTOR)/db/profileMoveAxis.template"
 {
 pattern
 {P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK,    MOTOR, PREC, TIMEOUT}
-{13XRM:,  Prof1:, 1,  XPS1,    0,   2000,      2000, 13XRM:m1,   5,       1}
-{13XRM:,  Prof1:, 2,  XPS1,    1,   2000,      2000, 13XRM:m2,   5,       1}
-{13XRM:,  Prof1:, 3,  XPS1,    2,   2000,      2000, 13XRM:m3,   4,       1}
-{13XRM:,  Prof1:, 4,  XPS1,    3,   2000,      2000, 13XRM:m4,   4,       1}
-{13XRM:,  Prof1:, 5,  XPS1,    4,   2000,      2000, 13XRM:m5,   4,       1}
-{13XRM:,  Prof1:, 6,  XPS1,    5,   2000,      2000, 13XRM:m6,   4,       1}
-}
-
-file "$(MOTOR)/db/profileMoveAxisXPS.template"
-{
-pattern
-{P,       R,      M,  PORT, ADDR,NPOINTS, NREADBACK, PREC, TIMEOUT}
-{13XRM:,  Prof1:, 1,  XPS1,    0,   2000,      2000,    5,       1}
-{13XRM:,  Prof1:, 2,  XPS1,    1,   2000,      2000,    5,       1}
-{13XRM:,  Prof1:, 3,  XPS1,    2,   2000,      2000,    4,       1}
-{13XRM:,  Prof1:, 4,  XPS1,    3,   2000,      2000,    4,       1}
-{13XRM:,  Prof1:, 5,  XPS1,    4,   2000,      2000,    4,       1}
-{13XRM:,  Prof1:, 6,  XPS1,    5,   2000,      2000,    4,       1}
+{13XRM:,  Prof1:, 1,  XPSD,    0,   8192,      8192, 13XRM:m1,   5,       1}
+{13XRM:,  Prof1:, 2,  XPSD,    1,   8192,      8192, 13XRM:m2,   5,       1}
 }
