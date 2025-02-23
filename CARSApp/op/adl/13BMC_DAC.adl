@@ -1,12 +1,12 @@
 
 file {
-	name="j:\epics\support\CARS\CARSApp\op\adl\13BMC_DAC.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13BMC_DAC.adl"
 	version=030109
 }
 display {
 	object {
-		x=50
-		y=223
+		x=2069
+		y=417
 		width=1000
 		height=618
 	}
@@ -606,7 +606,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMC:BeamFilter"
+		chan="13BMC:BenchAtten4"
 	}
 }
 oval {
@@ -621,7 +621,7 @@ oval {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMC:BeamFilter"
+		chan="13BMC:BenchAtten4"
 	}
 }
 text {
@@ -644,7 +644,7 @@ text {
 		height=19
 	}
 	control {
-		chan="13BMC:BeamFilter"
+		chan="13BMC:BenchAtten4"
 		clr=60
 		bclr=53
 	}
@@ -805,7 +805,7 @@ oval {
 	display[0] {
 		label="DAC cleanup slit"
 		name="3motors.adl"
-		args="P=13BMC:, M1=m74, M2=m75, M3=m76, TITLE=DAC_Cleanup_Slits"
+		args="P=13BMC:, M1=m71, M2=m72, M3=m73, TITLE=DAC_Cleanup_Slits"
 	}
 	clr=14
 	bclr=4
@@ -821,22 +821,22 @@ oval {
 	display[0] {
 		label="DAC Microscope position"
 		name="4motors.adl"
-		args="P=13BMC:, M1=m71, M2=m72, M3=m73, M4=m77, TITLE=DAC_Microscope"
+		args="P=13BMC:, M1=m75, M2=m76, M3=m77, M4=m74, TITLE=DAC_Microscope"
 	}
 	display[1] {
-		label="Prosilica image"
-		name="ADVimba.adl"
-		args="P=13BMCPS1:, R=cam1:, C=AVT_GC1380H"
+		label="DACCamera image"
+		name="ADSpinnaker.adl"
+		args="P=13BMCPG2:, R=cam1:, C=PGR_BlackflyS_50S5C"
 	}
 	display[2] {
-		label="PointGrey image"
-		name="PointGrey.adl"
-		args="P=13BMCPG1:, R=cam1:"
+		label="BeamViewer image"
+		name="AdSpinnaker.adl"
+		args="P=13BV1:, R=cam1:, C=PGR_GS3_U3_23S6M"
 	}
 	display[3] {
 		label="DAC crosshair"
 		name="NDOverlayN.adl"
-		args="P=13BMCPS1:, R=Over1:1:"
+		args="P=13BMCPG2:, R=Over1:6:"
 	}
 	clr=14
 	bclr=4
@@ -927,12 +927,17 @@ rectangle {
 	display[2] {
 		label="BMC DAC User Motors"
 		name="8motors.adl"
-		args="P=13BMC:, TITLE=BMC_DAC_Usr_Motors, M1=m33, M2=m37, M3=m38, M4=m44, M5=m45, M6=m46, M7=m73, M8=m77"
+		args="P=13BMC:, TITLE=BMC_DAC_Usr_Motors, M1=m33, M2=m37, M3=m38, M4=m44, M5=m45, M6=m46, M7=m74, M8=m77"
 	}
 	display[3] {
 		label="Portable motors"
 		name="3motors.adl"
-		args="P=13ESP:, TITLE=Portable_motors, M1=m1, M2=m2, M3=m3"
+		args="P=13BMC:, TITLE=Portable_motors, M1=m13, M2=m14, M3=m15"
+	}
+	display[4] {
+		label="Beamstop"
+		name="2motors.adl"
+		args="P=13BMC:, TITLE=Beamstop motors, M1=m78, M2=m16"
 	}
 	clr=14
 	bclr=5
@@ -948,12 +953,12 @@ rectangle {
 	display[0] {
 		label="Bench Attenuators"
 		name="CARS_attenuator.adl"
-		args="P=13BMC:, R=Bench"
+		args="P=13BMC:, R=BenchAtten"
 	}
 	display[1] {
 		label="Arm Attenuators"
 		name="CARS_attenuator.adl"
-		args="P=13BMC:, R=Arm"
+		args="P=13BMC:, R=ArmAtten"
 	}
 	display[2] {
 		label="Filters"
@@ -1007,7 +1012,7 @@ text {
 text {
 	object {
 		x=430
-		y=272
+		y=271
 		width=37
 		height=15
 	}
@@ -1016,7 +1021,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="13BMC:BenchShutter"
+		chan="13BMC:BenchAtten1"
 	}
 	textix="OPEN"
 }
@@ -1032,7 +1037,7 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13BMC:BenchShutter"
+		chan="13BMC:BenchAtten1"
 	}
 	textix="CLOSED"
 }
@@ -1044,7 +1049,7 @@ text {
 		height=25
 	}
 	control {
-		chan="13BMC:BenchShutter"
+		chan="13BMC:BenchAtten1"
 		clr=20
 		bclr=53
 	}
@@ -1866,19 +1871,19 @@ text {
 		height=30
 	}
 	display[0] {
-		label="Prosilica Illum"
+		label="DACView Illum"
 		name="measCompSingleAnalogOut.adl"
-		args="P=13BMC:, R=DACIllumPower"
+		args="P=13BMC:USB3104:, R=Ao2"
 	}
 	display[1] {
 		label="Laser Power"
 		name="measCompSingleAnalogOut.adl"
-		args="P=13BMC:, R=IPGLaserPower"
+		args="P=13BMC:USB3104:, R=Ao3"
 	}
 	display[2] {
 		label="Resistive Power"
 		name="measCompSingleAnalogOut.adl"
-		args="P=13BMC:, R=HeaterPower"
+		args="P=13BMC:USB3104:, R=Ao4"
 	}
 	display[3] {
 		label="BMC PACE5000"
@@ -1902,4 +1907,68 @@ text {
 	clr=14
 	bclr=53
 	label="Electronics"
+}
+"text update" {
+	object {
+		x=216
+		y=496
+		width=100
+		height=20
+	}
+	monitor {
+		chan="13BMC:USB1808:Ai1"
+		clr=14
+		bclr=50
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=327
+		y=496
+		width=100
+		height=20
+	}
+	monitor {
+		chan="13BMC:USB1808:Ai2"
+		clr=14
+		bclr=50
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=250
+		y=474
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="IC0"
+	}
+	textix="IC0"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=355
+		y=475
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="IC0"
+	}
+	textix="PIN"
+	align="horiz. centered"
 }
