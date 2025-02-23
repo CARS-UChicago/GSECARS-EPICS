@@ -7,7 +7,7 @@ dbLoadTemplate("Galil_motors.template")
 dbLoadTemplate("remoteControl.substitutions", "P=$(P)")
 
 #Load digital IO databases
-dbLoadTemplate("$(GALIL)/db/galil_dmc_digital_ports.substitutions", "P=$(P)Galil1:, PORT=GALIL1")
+dbLoadTemplate("$(GALIL)/GalilTestApp/Db/galil_dmc_digital_ports.substitutions", "P=$(P)Galil1:, PORT=GALIL1")
 
 #Load analog IO databases
-dbLoadTemplate("$(GALIL)/db/galil_dmc_analog_ports.substitutions", "P=$(P)Galil1:, PORT=GALIL1, PREC=3")
+dbLoadTemplate("$(GALIL)/GalilTestApp/Db/galil_dmc_analog_ports.substitutions", "P=$(P)Galil1:, PORT=GALIL1, PREC=3")
