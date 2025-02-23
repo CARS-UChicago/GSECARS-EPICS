@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=100
-		y=100
+		x=200
+		y=200
 		width=370
-		height=760
+		height=705
 	}
 	clr=14
 	bclr=4
@@ -448,64 +448,34 @@ text {
 		height=25
 	}
 	display[0] {
-		label="SRS Current Preamplifier 1"
+		label="Preamplifier 1"
 		name="SR570.adl"
 		args="P=13IDD:, A=A1"
 	}
 	display[1] {
-		label="SRS Current Preamplifier 2"
+		label="Preamplifier 2"
 		name="SR570.adl"
 		args="P=13IDD:, A=A2"
 	}
 	display[2] {
-		label="Scaler"
-		name="scaler_full.adl"
-		args="P=13IDD:, S=scaler1"
-	}
-	display[3] {
 		label="Keithley 2000 DMM"
 		name="Keithley2kDMM_mf.adl"
 		args="P=13IDD:, Dmm=DMM1"
 	}
-	display[4] {
-		label="DAC chan. #1"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=1"
-	}
-	display[5] {
-		label="DAC chan. #2"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=2"
-	}
-	display[6] {
-		label="Acromag IP-330 ADC"
-		name="Ip330Scan.adl"
-		args="P=13IDD:, R=IP330_"
-	}
-	display[7] {
+	display[3] {
 		label="PID Plot"
 		name="stripChart.adl"
 		args="P=13IDD:"
 	}
-	display[8] {
-		label="Joerger Scaler"
-		name="scaler_full.adl"
-		args="P=13IDD:, S=scaler2"
-	}
-	display[9] {
+	display[4] {
 		label="Koyo Laser PLC"
 		name="13IDD_LaserPLC.adl"
 		args="P=13IDD:LaserPLC:"
 	}
-	display[10] {
-		label="Eiger2 1M CdTe"
-		name="eigerDetector.adl"
-		args="P=dp_eiger_xrd91:, R=cam1:"
-	}
-	display[11] {
-		label="EDIO24_1"
-		name="EDIO24_module.adl"
-		args="P=13IDD:EDIO24_1:,Bd=Bd,Bi=Bi,Bo=Bo,Ct=Counter,Li=Li,Lo=Lo"
+	display[5] {
+		label="Acromag IP-330 ADC"
+		name="Ip330Scan.adl"
+		args="P=13IDD:, R=IP330_"
 	}
 	clr=14
 	bclr=4
@@ -592,38 +562,33 @@ text {
 		name="LAE500.adl"
 		args="P=13IDD:, R=LAE500"
 	}
-	display[4] {
+	display[1] {
 		label="PicoMotors"
 		name="picoMotor_9.adl"
 		args="P=13IDD:, S=pico, D=1_"
 	}
-	display[5] {
-		label="BNC505 #1"
+	display[2] {
+		label="BNC_Gates"
 		name="BNC_505.adl"
 		args="P=13IDD:, R=BNC1:, N=1"
 	}
-	display[6] {
-		label="BNC505 #1"
-		name="BNC_505.adl"
-		args="P=13IDD:, R=BNC1:, N=1"
-	}
-	display[7] {
-		label="USB-CTR08"
+	display[3] {
+		label="USB-CTR08 (XIA & Scalers)"
 		name="USBCTR.adl"
 		args="P=13IDD:USBCTR:,SP=13IDD:,S=scaler1,MP=13IDD:MCS1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
-	display[8] {
-		label="USB-1808X"
+	display[4] {
+		label="USB-1808X (Pulses/Waveforms)"
 		name="USB1808_module.adl"
 		args="P=13IDD:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
-	display[9] {
-		label="USB-3104"
+	display[5] {
+		label="USB-3104 (Lasers & Lights)"
 		name="USB3104_module.adl"
 		args="P=13IDD:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
-	display[10] {
-		label="E-DIO24"
+	display[6] {
+		label="E-DIO24 (Pneumatic)"
 		name="EDIO24_module.adl"
 		args="P=13IDD:EDIO24_1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
@@ -784,61 +749,6 @@ text {
 "related display" {
 	object {
 		x=5
-		y=490
-		width=60
-		height=24
-	}
-	display[0] {
-		label="DAC 1"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=1"
-	}
-	display[1] {
-		label="DAC 2"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=2"
-	}
-	display[2] {
-		label="DAC 3"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=3"
-	}
-	display[3] {
-		label="DAC 4"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=4"
-	}
-	display[4] {
-		label="DAC 5"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=5"
-	}
-	display[5] {
-		label="DAC 6"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=6"
-	}
-	display[6] {
-		label="DAC 7"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=7"
-	}
-	display[7] {
-		label="DAC 8"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=1, C=8"
-	}
-	display[8] {
-		label="All 8 DACS"
-		name="8_DACs.adl"
-		args="P=13IDD:, D=1"
-	}
-	clr=14
-	bclr=4
-}
-"related display" {
-	object {
-		x=5
 		y=463
 		width=60
 		height=24
@@ -872,12 +782,12 @@ text {
 		height=25
 	}
 	display[0] {
-		label="SIS3820 #1"
-		name="SIS38XX.adl"
-		args="P=13IDD:SIS1:"
+		label="MCS #1"
+		name="USBCTR_MCS.adl"
+		args="P=13IDD:MCS1:"
 	}
 	display[1] {
-		label="Scaler #1"
+		label="Scalers #1"
 		name="scaler_full.adl"
 		args="P=13IDD:, S=scaler1"
 	}
@@ -894,12 +804,12 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="SIS MCS and scaler"
+	textix="MCS and Scalers"
 }
 "related display" {
 	object {
 		x=5
-		y=571
+		y=516
 		width=60
 		height=25
 	}
@@ -929,7 +839,7 @@ text {
 "related display" {
 	object {
 		x=5
-		y=625
+		y=570
 		width=60
 		height=25
 	}
@@ -984,7 +894,7 @@ text {
 text {
 	object {
 		x=70
-		y=625
+		y=570
 		width=130
 		height=20
 	}
@@ -996,7 +906,7 @@ text {
 "related display" {
 	object {
 		x=5
-		y=652
+		y=597
 		width=60
 		height=25
 	}
@@ -1061,7 +971,7 @@ text {
 "related display" {
 	object {
 		x=5
-		y=679
+		y=624
 		width=60
 		height=25
 	}
@@ -1111,7 +1021,7 @@ text {
 text {
 	object {
 		x=70
-		y=652
+		y=597
 		width=180
 		height=20
 	}
@@ -1124,7 +1034,7 @@ text {
 text {
 	object {
 		x=70
-		y=679
+		y=624
 		width=190
 		height=20
 	}
@@ -1137,7 +1047,7 @@ text {
 text {
 	object {
 		x=70
-		y=706
+		y=651
 		width=100
 		height=20
 	}
@@ -1149,7 +1059,7 @@ text {
 "related display" {
 	object {
 		x=5
-		y=706
+		y=651
 		width=60
 		height=24
 	}
@@ -1174,7 +1084,7 @@ text {
 text {
 	object {
 		x=70
-		y=571
+		y=516
 		width=40
 		height=20
 	}
@@ -1186,7 +1096,7 @@ text {
 "related display" {
 	object {
 		x=5
-		y=544
+		y=489
 		width=60
 		height=25
 	}
@@ -1211,7 +1121,7 @@ text {
 text {
 	object {
 		x=70
-		y=544
+		y=489
 		width=130
 		height=20
 	}
@@ -1220,91 +1130,10 @@ text {
 	}
 	textix="areaDetectors"
 }
-text {
-	object {
-		x=70
-		y=490
-		width=170
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="D/A converters #1"
-}
 "related display" {
 	object {
 		x=5
-		y=517
-		width=60
-		height=24
-	}
-	display[0] {
-		label="DAC 1"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=1"
-	}
-	display[1] {
-		label="DAC 2"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=2"
-	}
-	display[2] {
-		label="DAC 3"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=3"
-	}
-	display[3] {
-		label="DAC 4"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=4"
-	}
-	display[4] {
-		label="DAC 5"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=5"
-	}
-	display[5] {
-		label="DAC 6"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=6"
-	}
-	display[6] {
-		label="DAC 7"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=7"
-	}
-	display[7] {
-		label="DAC 8"
-		name="singleDAC.adl"
-		args="P=13IDD:, D=2, C=8"
-	}
-	display[8] {
-		label="All 8 DACS"
-		name="8_DACs.adl"
-		args="P=13IDD:, D=2"
-	}
-	clr=14
-	bclr=4
-}
-text {
-	object {
-		x=70
-		y=517
-		width=170
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="D/A converters #2"
-}
-"related display" {
-	object {
-		x=5
-		y=598
+		y=543
 		width=60
 		height=24
 	}
@@ -1344,7 +1173,7 @@ text {
 text {
 	object {
 		x=70
-		y=598
+		y=543
 		width=220
 		height=20
 	}
@@ -1357,7 +1186,7 @@ text {
 "related display" {
 	object {
 		x=5
-		y=732
+		y=677
 		width=60
 		height=25
 	}
@@ -1381,7 +1210,7 @@ text {
 text {
 	object {
 		x=70
-		y=732
+		y=680
 		width=150
 		height=20
 	}
