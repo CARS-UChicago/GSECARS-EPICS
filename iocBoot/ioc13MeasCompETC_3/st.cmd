@@ -23,5 +23,5 @@ dbLoadTemplate("$(MEASCOMP)/db/ETC.substitutions", "P=$(PREFIX), PORT=$(PORT)")
 
 iocInit
 
-create_monitor_set("auto_settings.req",30,"P=$(PREFIX))
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 
