@@ -11,69 +11,16 @@ dbLoadTemplate  "motors.template"
 
 ################################################################################
 # XPS Setup
+< XPSD.cmd
 
-# asyn port, IP address, IP port, number of axes, 
-# active poll period (ms), idle poll period (ms), 
-# enable set position, set position settling time (ms)
-#MN newport-xsp14 = 10.54.160.210, XPS-D
-XPSCreateController("XPS1", "newport-xps14", 5001, 8, 10, 500, 0, 500)
+< XPSC.cmd
 
-# XPS asyn port,  axis, groupName.positionerName, stepSize
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS1", 0, "DETY.Pos",  "2000") # ILS200CC  HRF_DET_Y
-XPSCreateAxis("XPS1", 1, "DETX.Pos",  "2000") # ILS150CC  HRF_DET_X
-XPSCreateAxis("XPS1", 2, "ANAZ.Pos",  "2000") # ILS200CC  HRF_ANA_Z
-XPSCreateAxis("XPS1", 3, "ANATh.Pos", "1000") # RV160CC   HRF_ANA_Th
-XPSCreateAxis("XPS1", 4, "XRDX.Pos",   "400") # UTS150CC  XRD_DET_X
-XPSCreateAxis("XPS1", 5, "XRDZ.Pos",   "400") # UTS150CC  XRD_DET_Z
-XPSCreateAxis("XPS1", 6, "XRDY.Pos",  "2000") # ILS150CC  XRD_DET_Y
-XPSCreateAxis("XPS1", 7, "FINEZ.Pos", "50000") # VP-5ZA   FINEZ
-
-# asynSetTraceIOMask("XPS1", 0, 2)
-#asynSetTraceMask("XPS1", 0, 255)
-
-# asynPort, IP address, IP port, poll period (ms)
-# XPSAuxConfig("XPS_AUX1", "newport-xps14", 5001, 50)
-# asynSetTraceIOMask("XPS_AUX1", 0, 2)
-#asynSetTraceMask("XPS_AUX1", 0, 255)
-
-# XPS asyn port,  max points, FTP username, FTP password
-# Note: this must be done after configuring axes
-XPSCreateProfile("XPS1", 8192, "Administrator", "Administrator")
-
-# Disable setting position
-XPSEnableSetPosition(0)
-
-#MN newport-xsp4 = 10.54.160.180, XPS-C
-XPSCreateController("XPS2", "newport-xps4", 5001, 7, 10, 500, 0, 500)
-
-# XPS asyn port,  axis, groupName.positionerName, stepSize
-# card,  axis, groupName.positionerName, stepsPerUnit
-XPSCreateAxis("XPS2", 0, "FINE.X",      "100000") # VP-25XL
-XPSCreateAxis("XPS2", 1, "FINE.Y",      "100000") # VP-25XL
-XPSCreateAxis("XPS2", 2, "FINE.THETA",    "2000") # URS75CC
-XPSCreateAxis("XPS2", 3, "FOCUS.Pos",   "100000") # VP-25XA
-XPSCreateAxis("XPS2", 4, "COARSEX.Pos",   "2000") # ILS100PP
-XPSCreateAxis("XPS2", 5, "COARSEY.Pos",   "5000") # IMS300CC
-XPSCreateAxis("XPS2", 6, "COARSEZ.Pos", "100000") # VP-25XA
-
-# XPSCreateAxis("XPS2", 3, "FINEZ.Pos",  "50000") # VP-5ZA
-
-
-# XPS asyn port,  max points, FTP username, FTP password
-# Note: this must be done after configuring axes
-XPSCreateProfile("XPS2", 8192, "Administrator", "Administrator")
-
-# A set of scan parameters for each positioner.  This is a convenience
-# for the user.  It can contain an entry for each scannable thing in the
-# crate.
-dbLoadTemplate "scanParms.template"
-
-# Allstop, alldone
+dbLoadTemplate("scanParms.template")
 dbLoadRecords("$(MOTOR)/db/motorUtil.db","P=13XRM:")
 
 # Monochromator slow PID
 dbLoadTemplate("mono_pid.template")
+
 
 ### Scan-support software
 # crate-resident scan.  This executes 1D, 2D, 3D, and 4D scans, and caches
@@ -97,81 +44,12 @@ dbLoadRecords("$(STD)/db/misc.db", "P=13XRM:")
 save_restoreSet_status_prefix("13XRM:")
 dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=13XRM:")
 
-dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPS1,ADDR=0,IMAX=256,OMAX=256")
+dbLoadRecords("$(ASYN)/db/asynRecord.db", "P=13XRM:,R=asyn1,PORT=XPSD,ADDR=0,IMAX=256,OMAX=256")
 
-# scan communication and meta data
-dbLoadRecords("$(CARS)/db/scanner.db","P=13XRM:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13IDA:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13IDB:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13IDC:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13IDD:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13IDE:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13BMA:, Q=edb")
-dbLoadRecords("$(CARS)/db/scanner.db","P=13BMC:, Q=edb")
-# dbLoadRecords("$(CARS)/db/scanner.db","P=13BMD:, Q=edb")
-
-#
-# XRF Spectra Collector 
-dbLoadRecords("$(CARS)/db/XRF_Collect.db","P=13XRM:,Q=XRF")
-
-
-# XRM Analyzer control
-dbLoadRecords("$(CARS)/db/XRMAnalyzer.db","P=13XRM:,ANA=ANA")
-
-## For FTomo at BMC:
-dbLoadRecords("$(CARS)/db/FluorTomo.db","P=13XRM:,Q=FT")
-
-# fast mapping
-dbLoadRecords("$(CARS)/db/XRM_fastmap.db","P=13XRM:,Q=map")
-
-# fast XAFS 
-dbLoadRecords("qxafs.db","P=13XRM:,Q=QXAFS")
-
-# simple Image (to push Point Grey image)
-dbLoadRecords("simple_image.db","P=13XRM:,R=image1")
-
-# status of Eiger copying
-# dbLoadRecords("eigercopy.db","P=13XRM:,Q=EIGER")
-
-# scan server
-dbLoadRecords("larchscan.db","P=13XRM:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13IDE:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13IDD:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13IDC:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13IDB:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13IDA:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13BMD:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13BMC:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13BMB:,Q=SCANDB")
-dbLoadRecords("larchscan.db","P=13BMA:,Q=SCANDB")
-
-# temporary data arrays for escan
-dbLoadRecords("escandata.db","P=13XRM:,Q=ScanData")
-
-
-# Epics PyInstrument
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13XRM:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDE:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDD:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDC:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13IDA:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMA:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMC:,Q=Inst")
-dbLoadRecords("$(CARS)/db/PyInstrument.db","P=13BMD:,Q=Inst")
-
-# ion chamber calculations
-dbLoadRecords("$(CARS)/db/IonChamber.db","P=13XRM:,Q=ION")
-
-dbLoadRecords("pydebug.db", "P=PyTest:")
-
-dbLoadRecords("py_exapp.db", "P=Py:,Q=EXT")
+< MattsStuff.cmd
 
 #dbLoadRecords("$(CARS)/db/zeromotors.db","P=13XRM:,DEV=Stage,M1=13XRM:m1.VAL,M2=13XRM:m2.VAL,M3=13XRM:m4.VAL,M4=13XRM:m6.VAL")
 
-asynSetTraceIOMask("XPS1",0,2)
-#asynSetTraceMask("XPS1",0,0x3)
-asynSetTraceIOTruncateSize("XPS1",0,200)
-asynSetTraceIOTruncateSize("XPS2",0,200)
 
 # devIocStats
 epicsEnvSet("ENGINEER", "Matt Newville")
@@ -200,8 +78,8 @@ dbpf("13XRM:m5.NTM","0")
 dbpf("13XRM:m6.NTM","0")
 dbpf("13XRM:m7.NTM","0")
 dbpf("13XRM:m8.NTM","0")
-dbpf("13XRM:pm1C1","0.70710678")
-dbpf("13XRM:pm1C2","0.70710678")
-dbpf("13XRM:pm2C1","0.70710678")
-dbpf("13XRM:pm2C2","0.70710678")
+# dbpf("13XRM:pm1C1","0.70710678")
+# dbpf("13XRM:pm1C2","0.70710678")
+# dbpf("13XRM:pm2C1","0.70710678")
+# dbpf("13XRM:pm2C2","0.70710678")
 
