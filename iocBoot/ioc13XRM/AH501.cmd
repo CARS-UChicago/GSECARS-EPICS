@@ -5,7 +5,7 @@ epicsEnvSet("TEMPLATE",  "AH501")
 epicsEnvSet("QSIZE",     "20")
 epicsEnvSet("RING_SIZE", "10000")
 epicsEnvSet("TSPOINTS",  "2048")
-epicsEnvSet("IP",        "164.54.160.11:10001")
+epicsEnvSet("IP",        "gse-ah501d-1:10001")
 
 #drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
 #                        noProcessEos)
