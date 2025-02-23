@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=393
-		y=363
+		x=387
+		y=247
 		width=630
-		height=680
+		height=679
 	}
 	clr=46
 	bclr=1
@@ -170,16 +170,34 @@ oval {
 		args="P=13IDE:, A=A3"
 	}
 	display[3] {
-		label="USB-CTR08"
-		name="USBCTR.adl"
-		args="P=13IDE:USBCTR:,SP=13IDE:,S=scaler1,MP=13IDE:MCS1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+		label="I3 Preamp (A4)"
+		name="SR570.adl"
+		args="P=13IDE:, A=A4"
 	}
 	display[4] {
-		label="USB-1808X"
 		name="USB1808_module.adl"
 		args="P=13IDE:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
 	}
 	display[5] {
+		name="USB3104_module.adl"
+		args="P=13IDE:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[7] {
+		label="User Transforms"
+		name="userTransforms10.adl"
+		args="P=13IDE:"
+	}
+	display[9] {
+		label="USB-CTR08"
+		name="USBCTR.adl"
+		args="P=13IDE:USBCTR:,SP=13IDE:,S=scaler1,MP=13IDE:MCS1:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[10] {
+		label="USB-1808X"
+		name="USB1808_module.adl"
+		args="P=13IDE:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[11] {
 		label="USB-3104"
 		name="USB3104_module.adl"
 		args="P=13IDE:USB3104:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
@@ -200,29 +218,14 @@ oval {
 		name="XRM_qxafs.adl"
 	}
 	display[1] {
-		label="Expt Info"
-		name="scanner.adl"
-		args="P=13XRM:, Q=edb"
+		label="Scan Server"
+		name="XRM_scandb.adl"
+		args="P=13XRM:, Q=SCANDB"
 	}
 	display[2] {
 		label="Filters"
 		name="13IDE_filters.adl"
 		args="P=13IDE:"
-	}
-	display[3] {
-		label="Intensity Transform "
-		name="userTransform_full.adl"
-		args="P=13IDE:, T=userTran1"
-	}
-	display[6] {
-		label="Scan Server"
-		name="XRM_scandb.adl"
-		args="P=13XRM:, Q=SCANDB"
-	}
-	display[8] {
-		label="OSCAR Motors"
-		name="3motors.adl"
-		args="P=13IDE:, TITLE=Offline_Microscope, M1=m1, M2=m2, M3=m3"
 	}
 	display[9] {
 		label="RPI Rotator "
@@ -808,14 +811,10 @@ rectangle {
 		name="NDROIStat8.adl"
 		args="P=13EIG1:, R=ROIStat1:, ROI1=1:, ROI2=2:, ROI3=3:, ROI4=4:, ROI5=5:, ROI6=6:, ROI7=7:, ROI8=8:"
 	}
-	display[6] {
-		label="I0 Flux Calculation"
-		name="IonChamber.adl"
-		args="P=13XRM:, Q=ION"
-	}
 	display[7] {
-		label="Ion Chamber Setup"
+		label="Ion Chambers"
 		name="13IDE_ionchambers.adl"
+		args="P=13XRM:, Q1=IC0"
 	}
 	display[13] {
 		label="Vortex ME-4"
@@ -846,7 +845,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="13XRM:ION:FluxOut"
+		chan="13XRM:IC0:FluxOutS"
 		clr=54
 		bclr=2
 	}
@@ -1229,7 +1228,7 @@ text {
 	display[0] {
 		label="MonoEnergy"
 		name="GSE_MonoEnergy.adl"
-		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=13us, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
+		args="P=13IDA:, TITLE=E_Energy, Q=E, MONO=13IDE:En, ID=S13ID:USID, TH=m65, MH=m66, MP=m67, MR=m68, MX=m32, PP=7, PR=8, SHUTTER=eps_mbbi27, TC1=Ch12, TC2=Ch11"
 	}
 	clr=54
 	bclr=1
@@ -1394,34 +1393,6 @@ text {
 	}
 	textix="Preamp OK:"
 }
-"text entry" {
-	object {
-		x=322
-		y=285
-		width=55
-		height=20
-	}
-	control {
-		chan="13XRM:ION:FluxLowLimit"
-		clr=14
-		bclr=0
-	}
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
-		x=220
-		y=285
-		width=100
-		height=18
-	}
-	"basic attribute" {
-		clr=23
-	}
-	textix="Reset: @I0"
-}
 "choice button" {
 	object {
 		x=545
@@ -1510,7 +1481,7 @@ text {
 		height=20
 	}
 	control {
-		chan="13IDE:userTran1.G"
+		chan="13IDE:userTran2.E"
 		clr=14
 		bclr=0
 	}
@@ -1595,34 +1566,6 @@ text {
 			hoprDefault=5
 		}
 	}
-}
-"text entry" {
-	object {
-		x=460
-		y=285
-		width=55
-		height=20
-	}
-	control {
-		chan="13XRM:ION:AutotuneDelay"
-		clr=14
-		bclr=0
-	}
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
-		x=385
-		y=285
-		width=75
-		height=18
-	}
-	"basic attribute" {
-		clr=23
-	}
-	textix="@Time"
 }
 oval {
 	object {
