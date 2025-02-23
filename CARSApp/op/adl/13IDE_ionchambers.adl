@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2069
-		y=1515
+		x=545
+		y=734
 		width=600
-		height=160
+		height=400
 	}
 	clr=14
 	bclr=1
@@ -211,7 +211,7 @@ text {
 		height=20
 	}
 	monitor {
-		chan="13IDE:userTran1.C"
+		chan="13IDE:userTran2.G"
 		clr=54
 		bclr=1
 	}
@@ -466,4 +466,250 @@ text {
 	}
 	label="Reset"
 	press_msg="1"
+}
+text {
+	object {
+		x=10
+		y=190
+		width=50
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Amplifier PV"
+}
+rectangle {
+	object {
+		x=5
+		y=150
+		width=590
+		height=130
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=10
+		y=160
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="I0"
+}
+"text entry" {
+	object {
+		x=115
+		y=185
+		width=150
+		height=25
+	}
+	control {
+		chan="$(P)$(Q1):AmpPV"
+		clr=14
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=220
+		width=70
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Voltage PV"
+}
+"text entry" {
+	object {
+		x=115
+		y=215
+		width=150
+		height=25
+	}
+	control {
+		chan="$(P)$(Q1):VoltPV"
+		clr=14
+		bclr=1
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=280
+		y=165
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current (uA)"
+}
+"text update" {
+	object {
+		x=455
+		y=160
+		width=120
+		height=25
+	}
+	monitor {
+		chan="$(P)$(Q1):Current"
+		clr=24
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=280
+		y=190
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Absorbed Flux (Hz)"
+}
+"text update" {
+	object {
+		x=455
+		y=190
+		width=120
+		height=25
+	}
+	monitor {
+		chan="$(P)$(Q1):FluxAbs"
+		clr=24
+		bclr=1
+	}
+	align="horiz. right"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=280
+		y=220
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Transmitted Flux (Hz)"
+}
+"text update" {
+	object {
+		x=455
+		y=220
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(Q1):FluxOut"
+		clr=24
+		bclr=1
+	}
+	align="horiz. right"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=250
+		width=50
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Length (cm)"
+}
+"text entry" {
+	object {
+		x=115
+		y=245
+		width=150
+		height=25
+	}
+	control {
+		chan="$(P)$(Q1):Length"
+		clr=14
+		bclr=1
+	}
+	limits {
+	}
+}
+menu {
+	object {
+		x=185
+		y=155
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)$(Q1):Gas"
+		clr=12
+		bclr=1
+	}
+}
+text {
+	object {
+		x=280
+		y=250
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Percent Absorbed"
+}
+"text update" {
+	object {
+		x=455
+		y=250
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)$(Q1):AbsPercent"
+		clr=24
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=115
+		y=160
+		width=50
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Gas"
 }
