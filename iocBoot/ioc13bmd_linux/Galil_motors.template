@@ -51,8 +51,8 @@ pattern
 {13BMD:,  m28,  "asynMotor",  GALIL3,  Galil3:,  3, "Unused",                    mm,      Pos,    1.0,    .1,   .5,    0,    1,    .5,    400,       2.0,   4,     30,   -10}
 {13BMD:,  m29,  "asynMotor",  GALIL3,  Galil3:,  4, "Inboard slit",              mm,      Pos,    1.0,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,     85,   -4.}
 {13BMD:,  m30,  "asynMotor",  GALIL3,  Galil3:,  5, "Outboard slit",             mm,      Neg,    1.0,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,     85,   -4.}
-{13BMD:,  m31,  "asynMotor",  GALIL3,  Galil3:,  6, "Top slit",                  mm,      Neg,    1.5,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,    100,   -4.}
-{13BMD:,  m32,  "asynMotor",  GALIL3,  Galil3:,  7, "Bottom slit",               mm,      Neg,    1.5,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,    100,   -4.}
+{13BMD:,  m31,  "asynMotor",  GALIL3,  Galil3:,  6, "Top slit",                  mm,      Neg,    1.0,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,    100,   -4.}
+{13BMD:,  m32,  "asynMotor",  GALIL3,  Galil3:,  7, "Bottom slit",               mm,      Neg,    1.0,    .1,   .2,    0,    1,    .2,    400,      0.50,   3,    100,   -4.}
 
 # Patch panel A
 {13BMD:,  m33,  "asynMotor",  GALIL4,  Galil4:,  0, "Camera X",                  mm,      Pos,    2.0,    .1,   .5,    0,    1,    .2,    200,      -.10,   3,    100,     0}
@@ -194,10 +194,10 @@ pattern
 file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern  
-{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
+{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                              DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
 
-{13BMD:,  pm13,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm13DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.G NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
-{13BMD:,  pm14,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm14DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.H NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+{13BMD:,  pm13,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm13DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.G NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz. sum",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .000001,   1.0,       3,    10000, -10000}
+{13BMD:,  pm14,  "13BMD:LaserHoriz:Done NPP NMS", "13BMD:pm14DVAL.VAL PP MS", "13BMD:LaserHoriz:Readback.H NPP NMS", "13BMD:LaserHoriz:Stop PP MS",  "Laser horiz. diff", mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .000001,   1.0,       3,    10000, -10000}
 }
 file "$(MOTOR)/db/sumDiff2D.db"
 {
@@ -210,10 +210,10 @@ pattern
 file "$(MOTOR)/db/pseudoMotor.db"
 {
 pattern  
-{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                           DESC,            EGU, DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,   RRES,   PREC,    DHLM, DLLM}
+{P,       M,           DINP,                        OUT,                       RDBL,                                 STOO,                              DESC,                EGU,  DIR, VELO, VBAS,   ACCL, BDST, BVEL, BACC, MRES,    RRES,   PREC,    DHLM, DLLM}
 
-{13BMD:,  pm15,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm15DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.G NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
-{13BMD:,  pm16,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm16DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.H NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz.",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .00005,   1.0,       3,    10000, -10000}
+{13BMD:,  pm15,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm15DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.G NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz. sum",  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .000001,   1.0,       3,    10000, -10000}
+{13BMD:,  pm16,  "13BMD:SignalHoriz:Done NPP NMS", "13BMD:pm16DVAL.VAL PP MS", "13BMD:SignalHoriz:Readback.H NPP NMS", "13BMD:SignalHoriz:Stop PP MS",  "Signal horiz. diff"  mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .000001,   1.0,       3,    10000, -10000}
 }
 file "$(MOTOR)/db/sumDiff2D.db"
 {
