@@ -1,0 +1,12 @@
+# filter.substitutions
+
+file "$(OPTICS)/db/filterBladeNoSensor.db" {
+  pattern
+  {P,        R,        N,   DESC,           OUT,                  OUT_STRING,  IN_STRING}
+  {13IDD:,   filter:,  1,   "Filter 1",     "13IDD:Attenuate_10", "Open",      "Close"}
+  {13IDD:,   filter:,  2,   "Filter 2",     "13IDD:Attenuate_2",  "Open",      "Close"}
+}
+
+file "$(OPTICS)/db/filterDrive.db" {
+  {P="13IDD:", R="filter:", DESC="13-ID-D Filters", KEV="13IDD:E_DummyRBV"}
+}
