@@ -14,7 +14,7 @@ epicsEnvSet(STREAM_PROTOCOL_PATH, "$(IP)/db:$(CARS)/db")
 
 # First port is for CryoJet
 # The Moxa must be configure as RS-232, 9600 baud, 8 data bits, 1 stop bit
-drvAsynIPPortConfigure("serial1", "gsets22:4001", 0, 0, 0)
+drvAsynIPPortConfigure("serial1", "gsets25:4001", 0, 0, 0)
 asynSetTraceIOMask serial1 0 ESCAPE
 #asynSetTraceMask serial1 0 ERROR|DRIVER
 asynOctetSetInputEos("serial1", 0, "\r")
@@ -22,7 +22,7 @@ asynOctetSetOutputEos("serial1", 0, "\r")
 
 # Second port is for the ILM 201
 # The Moxa must be configure as RS-232, 9600 baud, 8 data bits, 1 stop bit
-drvAsynIPPortConfigure("serial2", "gsets22:4002", 0, 0, 0)
+drvAsynIPPortConfigure("serial2", "gsets25:4002", 0, 0, 0)
 asynSetTraceIOMask serial2 0 ESCAPE
 #asynSetTraceMask serial2 0 ERROR|DRIVER
 asynOctetSetInputEos("serial2", 0, "\r")
