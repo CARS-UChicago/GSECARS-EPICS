@@ -1,0 +1,208 @@
+# This database contains fields used to allow
+# communication between scan saving clients
+# and server
+
+grecord(mbbo,"$(P)$(Q):ExecState") {
+	field(DESC,"Scanner State")
+        field(ZRVL,"0")
+        field(ZRST,"Done")
+        field(ONVL,"1")
+        field(ONST,"Starting")
+        field(TWVL,"2")
+        field(TWST,"Collecting")
+        field(THVL,"3")
+        field(THST,"Finishing")
+        field(FRVL,"4")
+        field(FRST,"Not Connected")
+        field(FVVL,"5")
+        field(FVST,"Severe Error")
+}
+ 
+grecord(mbbo,"$(P)$(Q):Request") {
+	field(DESC,"Client Request")
+        field(ZRVL,"0")
+        field(ZRST,"Stop")
+        field(ONVL,"1")
+        field(ONST,"Start")
+        field(TWVL,"2")
+        field(TWST,"Pause")
+        field(THVL,"3")
+        field(THST,"Resume")
+}
+
+grecord(bo,"$(P)$(Q):use_fb") {
+       field(DESC, "use feedback")
+       field(VAL,  "1")
+       field(ONAM, "On")
+       field(ZNAM, "Off")
+}
+
+grecord(bo,"$(P)$(Q):toggle") {
+       field(DESC, "another bo record")
+       field(VAL,  "1")
+       field(ONAM, "Yes")
+       field(ZNAM, "No")
+}
+
+
+grecord(waveform,"$(P)$(Q):strArray")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"string Array")
+       field(NELM,"10")
+       field(FTVL,"STRING")
+}
+
+grecord(waveform,"$(P)$(Q):status")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scanner status")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(stringin,"$(P)$(Q):clientID") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "Client ID")
+	field(VAL,  "0")
+}
+
+grecord(stringin,"$(P)$(Q):serverID") {
+        field(DTYP,"Soft Channel") 
+	field(DESC, "Server ID")
+	field(VAL,  "0")
+}
+
+
+grecord(waveform,"$(P)$(Q):action")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"scanner action")
+       field(NELM,"32")
+       field(FTVL,"CHAR")
+}
+
+
+grecord(ao,"$(P)$(Q):cpt") {
+	field(DESC, "Current Count")
+	field(VAL,  "1")
+}
+
+grecord(ao,"$(P)$(Q):npts") {
+	field(DESC, "Repeat Count")
+	field(VAL,  "1")
+}
+
+
+grecord(waveform,"$(P)$(Q):host")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"machine name")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):dir")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"main directory")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):file")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"file name")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+
+grecord(waveform,"$(P)$(Q):arg01")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 01")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):arg02")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 02")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):arg03")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 03")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):arg04")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 04")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+grecord(waveform,"$(P)$(Q):arg05")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 05")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+grecord(waveform,"$(P)$(Q):arg06")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 06")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+grecord(waveform,"$(P)$(Q):arg07")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 07")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+grecord(waveform,"$(P)$(Q):arg08")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"user arg 08")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):info01")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"info string 1")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(waveform,"$(P)$(Q):info02")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"info string 2")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+grecord(waveform,"$(P)$(Q):info03")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"info string 3")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+grecord(waveform,"$(P)$(Q):info04")  {
+       field(DTYP,"Soft Channel")
+       field(DESC,"info string 4")
+       field(NELM,"128")
+       field(FTVL,"CHAR")
+}
+
+grecord(ao, "$(P)$(Q):ao1")  {
+       field(DESC,"ao1")
+       field(VAL,"1")
+}
+
+grecord(ao, "$(P)$(Q):ao2")  {
+       field(DESC,"ao2")
+       field(VAL,"1")
+}
+
+grecord(ao, "$(P)$(Q):ao3")  {
+       field(DESC,"ao3")
+       field(VAL,"1")
+}
+
