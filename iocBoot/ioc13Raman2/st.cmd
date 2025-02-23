@@ -80,7 +80,7 @@ asynSetTraceIOMask("serial5", 0, 2)
 #asynSetTraceMask("serial5", 0, 0x19)
 
 # Serial 6 is IPG-YLR laser over Ethernet
-drvAsynIPPortConfigure("serial6", "164.54.160.112:10001", 0, 0, 0) 
+drvAsynIPPortConfigure("serial6", "gse-ipg-ylr3:10001", 0, 0, 0) 
 asynOctetSetInputEos("serial6",0,"\r")
 asynOctetSetOutputEos("serial6",0,"\r")
 
