@@ -2,7 +2,7 @@
 # active poll period (ms), idle poll period (ms), 
 # enable set position, set position settling time (ms)
 #MN newport-xsp14 = 10.54.160.210, newport-xps14, XPS-D
-XPSCreateController("XPSD", "newport-xps14", 5001, 7, 10, 500, 0, 500)
+XPSCreateController("XPSD", "newport-xps14", 5001, 8, 10, 500, 0, 500)
 
 # XPS asyn port,  axis, groupName.positionerName, stepSize
 # card,  axis, groupName.positionerName, stepsPerUnit
@@ -12,8 +12,8 @@ XPSCreateAxis("XPSD", 2, "Focus.Pos"   "100000") # VP25-XA  focus_z
 XPSCreateAxis("XPSD", 3, "CoarseX.Pos",  "2000") # ILS150CC coarse_x
 XPSCreateAxis("XPSD", 4, "AnaX.Pos",     "2000") # ILS150CC herfd_x (det)
 XPSCreateAxis("XPSD", 5, "AnaY.Pos",     "2000") # ILS150CC herfd_y (det)
-XPSCreateAxis("XPSD", 6, "AnaTH.Pos",    "1000") # RV160CC  herfd_th (analyzer)
-# XPSCreateAxis("XPSD", 4, "CoarseY.Pos",  "5000") # IMS300V  coarse_y
+XPSCreateAxis("XPSD", 6, "AnaZ.Pos",     "2000") # ILS100PP  herfd_z (analyzer)
+XPSCreateAxis("XPSD", 7, "AnaTH.Pos",    "1000") # RV160CC  herfd_th (analyzer)
 
 # asynSetTraceIOMask("XPSD", 0, 2)
 # asynSetTraceMask("XPSD", 0, 255)
