@@ -1,0 +1,25 @@
+# motor template file for Galil test
+#
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,               M,    DTYP,      CTRL,    PORT,  ADDR,  DESC,   EGU, DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC,  SREV, UREV,   ERES, PREC, DHLM, DLLM}
+# m1-m4 3457 stepper drivers, 256 microsteps
+# ILS50PP, 2mm pitch
+{13GALIL_TEST:,  m1, "asynMotor", Galil1:, GALIL1, 0, "Motor 1",   mm, Pos,    5.,  0.1,  0.5,    0,    1,   .5, 51200,   2.,   0.0005,  3,  50,   0}
+{13GALIL_TEST:,  m2, "asynMotor", Galil1:, GALIL1, 1, "Motor 2",   mm, Pos,    5.,  0.1,  0.5,    0,    1,   .5, 51200,   2.,   0.0005,  3,  50,   0}
+{13GALIL_TEST:,  m3, "asynMotor", Galil1:, GALIL1, 2, "Motor 3",   mm, Pos,    5.,  0.1,  0.5,    0,    1,   .5, 51200,   2.,   0.0005,  3,  50,   0}
+{13GALIL_TEST:,  m4, "asynMotor", Galil1:, GALIL1, 3, "Motor 4",   mm, Pos,    5.,  0.1,  0.5,    0,    1,   .5, 51200,   2.,   0.0005,  3,  50,   0}
+}
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,               M,    DTYP,      CTRL,    PORT,  ADDR,  DESC,   EGU, DIR, PCOF, ICOF, DCOF,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,  SREV, UREV,   ERES, PREC, DHLM, DLLM}
+# m5-m6 brushed servo
+# VP25, .1 micron encoder
+{13GALIL_TEST:,  m5, "asynMotor", Galil1:, GALIL1, 4, "Motor 5",   mm, Pos, .02,  .002,   0.,    2.,  0.1,  0.5,    0,    1,   .5,     1, 0.0001,  0.0001, 4,   25, 0}
+{13GALIL_TEST:,  m6, "asynMotor", Galil1:, GALIL1, 5, "Motor 6",   mm, Pos, .02,  .002,   0.,    2.,  0.1,  0.5,    0,    1,   .5,     1, 0.0001,  0.0001, 4,   25, 0}
+{13GALIL_TEST:,  m7, "asynMotor", Galil1:, GALIL1, 6, "Motor 7",   mm, Pos, .02,  .002,   0.,    2.,  0.1,  0.5,    0,    1,   .5,     1, 0.0001,  0.0001, 4,   25, 0}
+{13GALIL_TEST:,  m8, "asynMotor", Galil1:, GALIL1, 7, "Motor 8",   mm, Pos, .02,  .002,   0.,    2.,  0.1,  0.5,    0,    1,   .5,     1, 0.0001,  0.0001, 4,   25, 0}
+}

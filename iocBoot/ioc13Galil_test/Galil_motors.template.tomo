@@ -1,0 +1,24 @@
+# motor template file for Galil test
+#
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,               M,    DTYP,      CTRL,    PORT, ADDR,  DESC,      EGU, DIR, PCOF,   ICOF, DCOF,  VELO,  VBAS, ACCL, BDST, BVEL, BACC, SREV,      UREV,       ERES,   PREC, DHLM, DLLM}
+{13GALIL_TEST:,  m1, "asynMotor", Galil1:, GALIL1, 0, "Axial (LTA)", mm, Neg, .005, .00001,   0.,    1.,    0,  0.5,    0,    1,   .5,   1,   7.37358e-6,  7.37358e-6,   6,   25,  0}
+{13GALIL_TEST:,  m2, "asynMotor", Galil1:, GALIL1, 1, "Unused",      mm, Pos,  .02,   .002,   0.,    2.,    0,  0.5,    0,    1,   .5,   1,       0.0001,      0.0001,   4,   25,  0}
+{13GALIL_TEST:,  m3, "asynMotor", Galil1:, GALIL1, 2, "Unused",      mm, Pos,  .02,   .002,   0.,    2.,    0,  0.5,    0,    1,   .5,   1,       0.0001,      0.0001,   4,   25,  0}
+{13GALIL_TEST:,  m4, "asynMotor", Galil1:, GALIL1, 3, "Unused",      mm, Pos,  .02,   .002,   0.,    2.,    0,  0.5,    0,    1,   .5,   1,       0.0001,      0.0001,   4,   25,  0}
+}
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,               M,    DTYP,      CTRL,    PORT,  ADDR,  DESC,     EGU, DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC, SREV,       UREV,  PREC, DHLM, DLLM}
+
+{13GALIL_TEST:,  m5, "asynMotor", Galil1:, GALIL1, 4, "Base X",      mm, Neg,    3.,   0,  0.5,    0,    1,   .5,  3200,        4.0,    3,   150,  -150}
+{13GALIL_TEST:,  m6, "asynMotor", Galil1:, GALIL1, 5, "Sample X",    mm, Pos,    2.,   0,  0.5,    0,    1,   .5,  3200,        1.0,    3,    25,   -25}
+{13GALIL_TEST:,  m7, "asynMotor", Galil1:, GALIL1, 6, "Sample Z",    mm, Pos,    2.,   0,  0.5,    0,    1,   .5,  3200,        1.0,    3,    25,   -25}
+{13GALIL_TEST:,  m8, "asynMotor", Galil1:, GALIL1, 7, "Axial (TRA)", mm, Neg,    1.,   0,  0.5,    0,    1,   .5,  3200, 0.01953125,    5,    25,     0}
+}
+
