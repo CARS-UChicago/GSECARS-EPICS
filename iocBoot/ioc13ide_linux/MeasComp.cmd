@@ -31,7 +31,7 @@ epicsEnvSet("SCALER_PREFIX", "$(P)"
 epicsEnvSet("SCALER_NAME",   "scaler1")
 epicsEnvSet("RNAME",         "mca")
 epicsEnvSet("MAX_COUNTERS",  "9")
-epicsEnvSet("MAX_POINTS",    "8192")
+epicsEnvSet("MAX_POINTS",    "12000")
 epicsEnvSet("POLL_TIME",     "0.01")
 # For MCA records FIELD=READ, for waveform records FIELD=PROC
 epicsEnvSet("FIELD",         "PROC")
