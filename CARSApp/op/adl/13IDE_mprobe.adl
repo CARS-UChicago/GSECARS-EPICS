@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=387
-		y=247
-		width=630
-		height=679
+		x=328
+		y=372
+		width=625
+		height=670
 	}
 	clr=46
 	bclr=1
@@ -227,6 +227,11 @@ oval {
 		name="13IDE_filters.adl"
 		args="P=13IDE:"
 	}
+	display[4] {
+		label="Epics Instrument"
+		name="PyInstrument.adl"
+		args="P=13IDE:, Q=Inst"
+	}
 	display[9] {
 		label="RPI Rotator "
 		name="RaspPiStepper.adl"
@@ -395,6 +400,7 @@ rectangle {
 		bclr=0
 	}
 	align="horiz. centered"
+	format="string"
 	limits {
 	}
 }
@@ -680,6 +686,11 @@ text {
 		label="Roll Feedback"
 		name="pid_control.adl"
 		args="P=13XRM:, PID=roll_pid, TITLE=ID-E_Mono_Roll_feedback"
+	}
+	display[12] {
+		label="ID Gap Scan Control"
+		name="IDControl_GapScan.adl"
+		args="P=S13ID:USID"
 	}
 	clr=54
 	bclr=1
@@ -1047,7 +1058,7 @@ text {
 }
 "message button" {
 	object {
-		x=460
+		x=440
 		y=308
 		width=20
 		height=20
@@ -1062,7 +1073,7 @@ text {
 }
 "message button" {
 	object {
-		x=535
+		x=515
 		y=308
 		width=20
 		height=20
@@ -1077,7 +1088,7 @@ text {
 }
 "text entry" {
 	object {
-		x=480
+		x=460
 		y=308
 		width=55
 		height=20
@@ -1092,7 +1103,7 @@ text {
 }
 valuator {
 	object {
-		x=380
+		x=360
 		y=308
 		width=80
 		height=20
@@ -1108,7 +1119,7 @@ valuator {
 }
 "message button" {
 	object {
-		x=460
+		x=440
 		y=335
 		width=20
 		height=20
@@ -1123,7 +1134,7 @@ valuator {
 }
 "message button" {
 	object {
-		x=535
+		x=515
 		y=335
 		width=20
 		height=20
@@ -1138,7 +1149,7 @@ valuator {
 }
 "text entry" {
 	object {
-		x=480
+		x=460
 		y=335
 		width=55
 		height=20
@@ -1153,7 +1164,7 @@ valuator {
 }
 valuator {
 	object {
-		x=380
+		x=360
 		y=335
 		width=80
 		height=20
@@ -1181,9 +1192,9 @@ text {
 }
 menu {
 	object {
-		x=560
+		x=540
 		y=308
-		width=50
+		width=70
 		height=18
 	}
 	control {
@@ -1194,9 +1205,9 @@ menu {
 }
 menu {
 	object {
-		x=560
+		x=540
 		y=335
-		width=50
+		width=70
 		height=18
 	}
 	control {
@@ -1352,9 +1363,9 @@ rectangle {
 }
 "text entry" {
 	object {
-		x=320
+		x=300
 		y=335
-		width=55
+		width=60
 		height=20
 	}
 	control {
@@ -1367,9 +1378,9 @@ rectangle {
 }
 "text entry" {
 	object {
-		x=320
+		x=300
 		y=308
-		width=55
+		width=60
 		height=20
 	}
 	control {
@@ -1449,7 +1460,7 @@ text {
 	object {
 		x=120
 		y=285
-		width=60
+		width=70
 		height=15
 	}
 	monitor {
@@ -1458,6 +1469,7 @@ text {
 		bclr=2
 	}
 	align="horiz. right"
+	format="string"
 	limits {
 	}
 }
