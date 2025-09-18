@@ -73,3 +73,7 @@ dbpf("13IDD:LaserShutter", "Open")
 # Set DAC laser modulation state to Disabled
 dbpf("13IDD:Laser1DisableModulation.PROC", "1")
 dbpf("13IDD:Laser2DisableModulation.PROC", "1")
+
+# Set the scale factor for the LVP Press Camera DIFF calculation
+# This causes a move pm17 of 1 unit to move each real motor by 1 unit, rather than 0.5 units
+dbpf("13IDD:pm17C1.VAL", "0.5")
