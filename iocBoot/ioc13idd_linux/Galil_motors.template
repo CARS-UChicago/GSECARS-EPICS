@@ -5,16 +5,17 @@
 # An ACS MCB-48 is using in this IOC
 #
 # Motors   Galil   Patch panel     Common use
-#  1-8    GALIL1      R         DAC sample (1-6), DAC X-ray Detector (7-8), m6 gear box
-#  9-16   GALIL2      P         DAC slits (9-12), Open (13-14), DAC Table (15-16)
-#  17-24  GALIL3      N         DAC Table (17-19), DAC clean-up (20-22), Carbon Mirror (23-24)
-#  25-32  GALIL4      T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
-#  33-40  GALIL5      U         LVP Detector (33-39), DAC beam filter (40)
-#  41-48  GALIL6      V         LVP Press Table
-#  49-56  GALIL7     N.A.       DAC K/B mirrors
-#  57-64    N.A      N.A.       Unused, moved to ACS MCB-4B
-#  65-72  GALIL8      S         DAC Carbon Mirror (65-66), Microscope (67-69), Laser power control (70-72)
-#  73-80  GALIL9     N.A.       DAC laser expander
+#  1-8     GALIL1      R         DAC sample (1-6), DAC X-ray Detector (7-8), m6 gear box
+#  9-16    GALIL2      P         DAC slits (9-12), Open (13-14), DAC Table (15-16)
+#  17-24   GALIL3      N         DAC Table (17-19), DAC clean-up (20-22), Carbon Mirror (23-24)
+#  25-32   GALIL4      T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
+#  33-40   GALIL5      U         LVP Detector (33-39), DAC beam filter (40)
+#  41-48   GALIL6      V         LVP Press Table
+#  49-56   GALIL7     N.A.       DAC K/B mirrors
+#  57-64     N.A      N.A.       Unused, moved to ACS MCB-4B
+#  65-72   GALIL8      S         DAC Carbon Mirror (65-66), Microscope (67-69), Laser power control (70-72)
+#  73-80   GALIL9     N.A.       DAC laser expander
+#  105-112 GALIL10     N.A.      K/B mirrors for DAC
 
 # NOTE - 09/04/2024: motors m81-m88 and m89-m96 are reserved for LVP. 
 # NOTE - 09/04/2024: motors m97-m104 are in a Linux IOC for the DAC XPS-16.
@@ -23,8 +24,7 @@
 file "$(CARS)/db/galil_motor.template"
 {
 pattern
-{P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,                          EGU,   DIR,  VELO,  VBAS,  ACCL,   BDST, BVEL,  BACC,   SREV,      UREV,   PREC,    DHLM,  DLLM}
-
+{P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,                          EGU,   DIR,  VELO,  VBAS,  ACCL,   BDST, BVEL,  BACC,   SREV,       UREV, PREC,     DHLM,  DLLM}
 # DAC sample and detector stages
 {13IDD:,  m1,  "asynMotor",  GALIL1, Galil1:,  0, "X (in-out) stage",              mm,   Neg,   0.2,   0.2,   .1,   0.1,   0.1,    .1,     200,      -.096,    3,      25.,     0}
 {13IDD:,  m2,  "asynMotor",  GALIL1, Galil1:,  1, "Z (along beam) stage",          mm,   Neg,   1.0,   0.2,   .2,     0,     1,    .2,     200,        -.1,    3,      25.,     0}
@@ -42,7 +42,7 @@ pattern
 {13IDD:,  m12, "asynMotor",  GALIL2, Galil2:,  3, "Outboard slit",                 mm,   Pos,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,      29.,     0}
 #
 # DAC multi-purpose motors
-{13IDD:,  m13, "asynMotor",  GALIL2, Galil2:,  4, "TEM01 Total Power",            deg,   Pos,  10.0,   5.0, 10.0,     0,     1,   5.0,      10,         .1,    3,     360.,  -360}
+{13IDD:,  m13, "asynMotor",  GALIL2, Galil2:,  4, "Upstream Waveplate",            deg,   Pos,  10.0,   5.0, 10.0,     0,     1,   5.0,      10,         .1,    3,     360.,  -360}
 {13IDD:,  m14, "asynMotor",  GALIL2, Galil2:,  5, "Microscope-zoom",               mm,   Neg,   1.0,   0.2,   .5,  -0.2,     1,    .2,     200,        -.1,    3,      150,     0}
 # DAC Lift Table
 {13IDD:,  m15, "asynMotor",  GALIL2, Galil2:,  6, "Inboard Y",                     mm,   Pos,    .5,   .05,   .2,   0.1,    .5,    .2,     400,   -0.10583,    3,       50,     0}
@@ -117,25 +117,38 @@ pattern
 {13IDD:,  m65, "asynMotor",  GALIL8, Galil8:,  0, "Upstream focus",                mm,  Neg,   0.15,   .01,   .2,  0.02,     1,     .2,    480,     .03546,    3,       8.,     0}
 {13IDD:,  m66, "asynMotor",  GALIL8, Galil8:,  1, "Downstream focus",              mm,  Neg,   0.15,   .01,   .2,  0.02,     1,     .2,    480,     .03546,    3,       8.,     0}
 #13IDD DAC microscope stages
-{13IDD:,  m67, "asynMotor",  GALIL8, Galil8:,  2, "DAC Microscope X pos",          mm,  Pos,    5.0,   0.2,   .2,  0.02,     1,     .2,    200,        -.1,    3,      100,     0}
+{13IDD:,  m67, "asynMotor",  GALIL8, Galil8:,  2, "DAC Microscope X pos",          mm,  Neg,     5.,    .1,  0.5,     0,     1,     .5,   1600,          2,    4,    150.0,     0}
 {13IDD:,  m68, "asynMotor",  GALIL8, Galil8:,  3, "DAC Microscope Y pos",          mm,  Neg,   0.15,   .01,   .2,   0.0,     1,     .2,    480,     .03546,    3,      24.,     0}
 {13IDD:,  m69, "asynMotor",  GALIL8, Galil8:,  4, "DAC Microscope Z pos",          mm,  Pos,   0.15,   .01,   .2,     0,     1,     .2,    480,     .03546,    3,      24.,     0}
 {13IDD:,  m70, "asynMotor",  GALIL8, Galil8:,  5, "CO2 Total Power",              deg,  Pos,    1.0,   0.2,   .2,     0,     1,     .2,    200,        -.1,    3,      360,  -360}
 {13IDD:,  m71, "asynMotor",  GALIL8, Galil8:,  6, "IR camera mirrors",             mm,  Pos,     1.,    1.,   .5,     0,     1,     .5,    400,          2,    3,       50,   -50}
-{13IDD:,  m72, "asynMotor",  GALIL8, Galil8:,  7, "Unused",                        mm,  Pos,     1.,    1.,   .5,     0,     1,     .5,    400,          2,    3,       50,   -50}
-
-{13IDD:,  m73, "asynMotor",  GALIL9, Galil9:,  0, "M73",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m74, "asynMotor",  GALIL9, Galil9:,  1, "M74",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m75, "asynMotor",  GALIL9, Galil9:,  2, "M75",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m76, "asynMotor",  GALIL9, Galil9:,  3, "M76",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m77, "asynMotor",  GALIL9, Galil9:,  4, "M77",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m78, "asynMotor",  GALIL9, Galil9:,  5, "M78",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m79, "asynMotor",  GALIL9, Galil9:,  6, "M79",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
-{13IDD:,  m80, "asynMotor",  GALIL9, Galil9:,  7, "M80",                           mm,  Neg,    0.3,    .01,  .2,  0.02,     1,     .2,     48,     0.0116,    3,      25.,     0}
+{13IDD:,  m72, "asynMotor",  GALIL8, Galil8:,  7, "Downstream Waveplate",         deg,   Pos,  10.0,   5.0, 10.0,     0,     1,   5.0,      10,         .1,    3,     360.,  -360}
 }
 
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,                          EGU,   DIR,  VELO,  VBAS,  ACCL,   BDST, BVEL,  BACC,   SREV,       UREV,        ERES,  PREC,    DHLM,   DLLM}
+{13IDD:,  m73, "asynMotor",  GALIL9, Galil9:,  0, "Huber X",                       mm,  Pos,    1.0,      0,  .2,     0,     1,     .5,  12800,        0.1,       0.001,     3,      25,    -25}
+# Horizontal drive is 1.5 mm lead screw. For vertical units multiply by tan(12.9465 deg)
+{13IDD:,  m74, "asynMotor",  GALIL9, Galil9:,  1, "Huber Y",                       mm,  Pos,    1.0,      0,  .2,     0,     1,     .2,  12800   0.3448273,  4.59769e-6,     3,      10,      0}
+{13IDD:,  m75, "asynMotor",  GALIL9, Galil9:,  2, "Huber Z",                       mm,  Pos,    1.0,      0,  .2,     0,     1,     .5,  12800,        0.1,       0.001,     3,      25,    -25}
+{13IDD:,  m76, "asynMotor",  GALIL9, Galil9:,  3, "M76",                           mm,  Neg,    0.3,    .01,  .2,     0,     1,     .2,  12800,        1.0,       0.001,     3,      25,      0}
+{13IDD:,  m77, "asynMotor",  GALIL9, Galil9:,  4, "M77",                           mm,  Neg,    0.3,    .01,  .2,     0,     1,     .2,  12800,        1.0,       0.001,     3,      25,      0}
+{13IDD:,  m78, "asynMotor",  GALIL9, Galil9:,  5, "M78",                           mm,  Neg,    0.3,    .01,  .2,     0,     1,     .2,  12800,        1.0,       0.001,     3,      25,      0}
+{13IDD:,  m79, "asynMotor",  GALIL9, Galil9:,  6, "M79",                           mm,  Neg,    0.3,    .01,  .2,     0,     1,     .2,  12800,        1.0,       0.001,     3,      25,      0}
+{13IDD:,  m80, "asynMotor",  GALIL9, Galil9:,  7, "M80",                           mm,  Neg,    0.3,    .01,  .2,     0,     1,     .2,  12800,        1.0,       0.001,     3,      25,      0}
 
+{13IDD:, m105, "asynMotor", GALIL10, Galil10:, 0, "K/B US Vert. Height",           mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m106, "asynMotor", GALIL10, Galil10:, 1, "K/B DS Vert. Height",           mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m107, "asynMotor", GALIL10, Galil10:, 2, "K/B Vert. Roll",                mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m108, "asynMotor", GALIL10, Galil10:, 3, "K/B US Horiz. Height",          mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m109, "asynMotor", GALIL10, Galil10:, 4, "K/B DS Horiz. Height",          mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m110, "asynMotor", GALIL10, Galil10:, 5, "K/B Horiz. Roll",               mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m111, "asynMotor", GALIL10, Galil10:, 6, "Unused",                        mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
+{13IDD:, m112, "asynMotor", GALIL10, Galil10:, 7, "Unused",                        mm,  Pos,    0.2,    .01,  .5,     0,     1,     .2,   3200, 7.015306e-3,    0.00005,     5,       5,      0}
 
+}
 
 # Pseudomotors for LVP T-cup mode and rotation
 file "$(MOTOR)/db/pseudoMotor.db"
