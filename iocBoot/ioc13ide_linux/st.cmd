@@ -46,6 +46,7 @@ create_monitor_set("auto_positions.req", 5, "P=$(PREFIX)")
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX), P3104=$(USB3104_PREFIX), P1808=$(USB1808_PREFIX), PCTR=$(USBCTR_PREFIX), MP=$(MCS_PREFIX), SP=$(SCALER_PREFIX)"
 
 # set KB-mirror parameters so that pm4 and pm8 are in mrad
-# C1 = -1/0.2325 = 1/distance_between actuators
-dbpf("13IDE:pm4C1",  "-4.301075")
-dbpf("13IDE:pm8C1",  "-4.301075")
+# C1 = -1/0.2120 = 1/distance_between actuators for vertical mirror
+# C1 = -1/0.2325 = 1/distance_between actuators for horizontal mirror
+dbpf("13IDE:pm4C1",  "-4.30108")
+dbpf("13IDE:pm8C1",  "-4.71698")
