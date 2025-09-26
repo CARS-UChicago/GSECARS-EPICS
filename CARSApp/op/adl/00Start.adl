@@ -1,12 +1,12 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
-	version=030117
+	name="J:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
+	version=030109
 }
 display {
 	object {
-		x=200
-		y=200
+		x=796
+		y=192
 		width=400
 		height=420
 	}
@@ -193,6 +193,11 @@ text {
 		label="13 BM Monochromator"
 		name="13BM_monochromator.adl"
 		args="P1=13BMA:, TITLE=Energy, EN=E, P2=13BMD:, MONO=m9, Z=m14, EXPTAB=m22,D=1,C=3,PID=mono_pid1, SHUT=FOE, TILT=m12, TABLE=MON:"
+	}
+	display[6] {
+		label="13 BMD DAC Pilatus3X"
+		name="13BMD_DAC_PIL_3X.adl"
+		args="P=13BMD:, C=Pelco1"
 	}
 	display[7] {
 		label="13 BMD Brill compact"
@@ -660,54 +665,54 @@ text {
 		args="P=13IDAPG1:, R=cam1:, C=PGR_GS3_U3_23S6M"
 	}
 	display[1] {
-		label="13IDB Point Grey 1"
-		name="ADSpinnaker.adl"
-		args="P=13IDBPG1:, R=cam1:, C=PGR_BlackflyS_16S2M"
-	}
-	display[2] {
-		label="13IDD Point Grey 1"
-		name="ADSpinnaker.adl"
-		args="P=13IDD_PG1:, R=cam1:, C=PGR_GS3_PGE_23S6C"
-	}
-	display[3] {
-		label="13IDD Point Grey 2"
-		name="ADSpinnaker.adl"
-		args="P=13IDD_PG2:, R=cam1:, C=PGR_GS3_PGE_23S6C"
-	}
-	display[4] {
-		label="13IDD Point Grey 3"
-		name="ADSpinnaker.adl"
-		args="P=13IDD_PG3:, R=cam1:, C=PGR_GS3_PGE_23S6C"
-	}
-	display[5] {
-		label="13IDD Point Grey 4"
-		name="ADSpinnaker.adl"
-		args="P=13IDDPG4:, R=cam1:, C=PGR_GS3_U3_23S6M"
-	}
-	display[6] {
-		label="13IDE Point Grey 1"
-		name="ADSpinnaker.adl"
-		args="P=13IDCPG1:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
-	}
-	display[7] {
-		label="13IDC Point Grey 1"
-		name="ADSpinnaker.adl"
-		args="P=13IDC_PG1:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
-	}
-	display[8] {
 		label="13IDA PG2 (Beam viewer)"
 		name="ADSpinnaker.adl"
 		args="P=13IDA_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
 	}
-	display[9] {
+	display[2] {
+		label="13IDA PG3 (E WhiteBeam)"
+		name="ADSpinnaker.adl"
+		args="P=13IDA_PG3:, R=cam1:, C=PGR_Flea3_GE_28S4"
+	}
+	display[3] {
+		label="13IDB Point Grey 1"
+		name="ADSpinnaker.adl"
+		args="P=13IDBPG1:, R=cam1:, C=PGR_BlackflyS_16S2M"
+	}
+	display[4] {
+		label="13IDC Point Grey 1"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG1:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[5] {
+		label="13IDC Point Grey 2"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[6] {
 		label="13IDC Point Grey 3"
 		name="ADSpinnaker.adl"
 		args="P=13IDC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
 	}
-	display[10] {
-		label="13DA PG3 (E WhiteBeam)"
+	display[7] {
+		label="13IDD Point Grey 1"
 		name="ADSpinnaker.adl"
-		args="P=13IDA_PG3:, R=cam1:, C=PGR_Flea3_GE_28S4"
+		args="P=13IDD_PG1:, R=cam1:, C=FLIR-FG-P5G-51S4C"
+	}
+	display[8] {
+		label="13IDD Point Grey 2"
+		name="ADSpinnaker.adl"
+		args="P=13IDD_PG2:, R=cam1:, C=FLIR-FG-P5G-51S4C"
+	}
+	display[9] {
+		label="13IDD Point Grey 3"
+		name="ADSpinnaker.adl"
+		args="P=13IDD_PG3:, R=cam1:, C=PGR_GS3_PGE_23S6C"
+	}
+	display[10] {
+		label="13IDD Point Grey 4"
+		name="ADSpinnaker.adl"
+		args="P=13IDDPG4:, R=cam1:, C=PGR_GS3_U3_23S6M"
 	}
 	display[11] {
 		label="13IDD Point Grey 5"
@@ -715,14 +720,24 @@ text {
 		args="P=13IDD_PG5:, R=cam1:, C=FLIR-BFS-PGE-13Y3M"
 	}
 	display[12] {
-		label="13IDC Point Grey 4"
+		label="13IDD Point Grey 6"
 		name="ADSpinnaker.adl"
-		args="P=13IDC_PG4:, R=cam1:, C=PGR_GS3_U3_23S6M"
+		args="P=13IDD_PG6:, R=cam1:, C=FLIR-FG-P5G-51S4C"
+	}
+	display[13] {
+		label="13IDE Point Grey 1"
+		name="ADSpinnaker.adl"
+		args="P=13IDCPG1:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
 	}
 	display[14] {
 		label="13IDE Point Grey 2"
 		name="ADSpinnaker.adl"
 		args="P=13IDEPG2:, R=cam1:, C=PGR_BlackflyS_16S2M"
+	}
+	display[15] {
+		label="13IDC Point Grey 4"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG4:, R=cam1:, C=PGR_GS3_U3_23S6M"
 	}
 	clr=14
 	bclr=4
@@ -836,7 +851,7 @@ text {
 		name="CPSyringe.adl"
 		args="P=13Syringe1:,R=S1:"
 	}
-  display[9] {
+	display[9] {
 		label="Syringe pump 2"
 		name="CPSyringe.adl"
 		args="P=13Syringe2:,R=S1:"
@@ -856,7 +871,15 @@ text {
 		name="13Rigol_DS1000.adl"
 		args="P=13DS1054_1:"
 	}
-
+	display[13] {
+		label="13BMD Mikrotron"
+		name="ADEuresys.adl"
+		args="P=13BMD_MIK1:, R=cam1:, C=Mikrotron_CXP_MC206xS11"
+	}
+	display[14] {
+		label="13Galil_Test"
+		name="13Galil_Test.adl"
+	}
 	clr=14
 	bclr=4
 	label="- Other IOCs #1"
