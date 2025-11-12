@@ -195,13 +195,13 @@ asynStatus drvIFM_AL1342::doAcyclicCommand(int index, int address, void* value, 
     req.dataLength = length;
     if (direction == WRITE_COMMAND) {
         memcpy(req.data, value, length);
-        printf("Writing %d to port %d index %d\n", req.data[0]+255*req.data[1], req.portNumber, req.index);
+        //printf("Writing %d to port %d index %d\n", req.data[0]+255*req.data[1], req.portNumber, req.index);
     }
     pModbus_->doModbusIO(0, MODBUS_WRITE_MULTIPLE_REGISTERS, 500, (epicsUInt16*) &req, 5+length/2);
     for (int i=0; i<MAX_RETRIES; i++) {
         pModbus_->doModbusIO(0, MODBUS_READ_HOLDING_REGISTERS, 0, (epicsUInt16*) &resp, sizeof(resp)/2);
         if (resp.command != 0) break;
-        printf("Sleeping for %f second\n", SLEEP_TIME);
+        //printf("Sleeping for %f second\n", SLEEP_TIME);
         epicsThreadSleep(SLEEP_TIME);
     }
     if (resp.result != 0) {
