@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_omega.adl"
+	name="P:\epics\adl\13IDD_omega.adl"
 	version=030109
 }
 display {
@@ -8,7 +8,7 @@ display {
 		x=315
 		y=153
 		width=291
-		height=238
+		height=206
 	}
 	clr=14
 	bclr=44
@@ -102,13 +102,13 @@ text {
 }
 "text update" {
 	object {
-		x=79
-		y=47
+		x=84
+		y=49
 		width=137
 		height=25
 	}
 	monitor {
-		chan="13IDD:m84.RBV"
+		chan="13IDD:Auto1:m1.RBV"
 		clr=0
 		bclr=44
 	}
@@ -116,40 +116,10 @@ text {
 	limits {
 	}
 }
-composite {
-	object {
-		x=76
-		y=152
-		width=144
-		height=35
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=76
-				y=152
-				width=144
-				height=35
-			}
-			control {
-				chan="13IDD:allstop"
-				clr=30
-				bclr=20
-			}
-			label="STOP"
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDD:alldone"
-	}
-}
 text {
 	object {
-		x=135
-		y=1
+		x=15
+		y=18
 		width=66
 		height=17
 	}
@@ -159,20 +129,20 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if zero"
-		chan="13IDD:m84.DMOV"
+		chan="13IDD:Auto1:m1.DMOV"
 	}
 	textix="Moving"
 	align="horiz. centered"
 }
 "text entry" {
 	object {
-		x=84
+		x=85
 		y=76
 		width=127
-		height=41
+		height=32
 	}
 	control {
-		chan="13IDD:m84.VAL"
+		chan="13IDD:Auto1:m1.VAL"
 		clr=30
 		bclr=43
 	}
@@ -181,13 +151,13 @@ text {
 }
 "text entry" {
 	object {
-		x=94
-		y=119
+		x=93
+		y=115
 		width=108
-		height=29
+		height=32
 	}
 	control {
-		chan="13IDD:m84.TWV"
+		chan="13IDD:Auto1:m1.TWV"
 		clr=14
 		bclr=27
 	}
@@ -196,13 +166,13 @@ text {
 }
 "message button" {
 	object {
-		x=55
-		y=118
+		x=54
+		y=114
 		width=32
-		height=33
+		height=32
 	}
 	control {
-		chan="13IDD:m84.TWR"
+		chan="13IDD:Auto1:m1.TWR"
 		clr=14
 		bclr=26
 	}
@@ -211,60 +181,18 @@ text {
 }
 "message button" {
 	object {
-		x=205
-		y=118
-		width=35
-		height=34
+		x=204
+		y=114
+		width=32
+		height=32
 	}
 	control {
-		chan="13IDD:m84.TWF"
+		chan="13IDD:Auto1:m1.TWF"
 		clr=14
-		bclr=27
+		bclr=26
 	}
 	label=">"
 	press_msg="1"
-}
-"message button" {
-	object {
-		x=189
-		y=204
-		width=40
-		height=20
-	}
-	control {
-		chan="13IDD:m22.VAL"
-		clr=14
-		bclr=35
-	}
-	label="Out"
-	press_msg="-20."
-}
-"message button" {
-	object {
-		x=135
-		y=203
-		width=40
-		height=20
-	}
-	control {
-		chan="13IDD:m22.VAL"
-		clr=14
-		bclr=30
-	}
-	label="In-2"
-	press_msg="-2"
-}
-text {
-	object {
-		x=9
-		y=197
-		width=122
-		height=26
-	}
-	"basic attribute" {
-		clr=50
-	}
-	textix="Pinhole"
 }
 "message button" {
 	object {
@@ -274,22 +202,22 @@ text {
 		height=20
 	}
 	control {
-		chan="13IDD:m84.VAL"
+		chan="13IDD:Auto1:m1.VAL"
 		clr=14
 		bclr=52
 	}
-	label="-90"
-	press_msg="-90"
+	label="0"
+	press_msg="0"
 }
 "message button" {
 	object {
-		x=241
-		y=117
+		x=240
+		y=103
 		width=22
-		height=11
+		height=15
 	}
 	control {
-		chan="13IDD:m84.TWV"
+		chan="13IDD:Auto1:m1.TWV"
 		clr=0
 		bclr=53
 	}
@@ -298,13 +226,13 @@ text {
 }
 "message button" {
 	object {
-		x=241
-		y=130
+		x=240
+		y=124
 		width=26
-		height=11
+		height=15
 	}
 	control {
-		chan="13IDD:m84.TWV"
+		chan="13IDD:Auto1:m1.TWV"
 		clr=0
 		bclr=53
 	}
@@ -313,13 +241,13 @@ text {
 }
 "message button" {
 	object {
-		x=241
-		y=143
+		x=240
+		y=144
 		width=30
-		height=11
+		height=15
 	}
 	control {
-		chan="13IDD:m84.TWV"
+		chan="13IDD:Auto1:m1.TWV"
 		clr=0
 		bclr=53
 	}
@@ -335,21 +263,6 @@ composite {
 	}
 	"composite name"=""
 	children {
-		"message button" {
-			object {
-				x=11
-				y=113
-				width=32
-				height=15
-			}
-			control {
-				chan="13IDD:m84.VAL"
-				clr=14
-				bclr=37
-			}
-			label="-70"
-			press_msg="-70"
-		}
 		composite {
 			object {
 				x=20
@@ -392,17 +305,32 @@ composite {
 		"message button" {
 			object {
 				x=11
+				y=113
+				width=32
+				height=15
+			}
+			control {
+				chan="13IDD:Auto1:m1.VAL"
+				clr=14
+				bclr=37
+			}
+			label="-20"
+			press_msg="-20"
+		}
+		"message button" {
+			object {
+				x=11
 				y=63
 				width=32
 				height=15
 			}
 			control {
-				chan="13IDD:m84.VAL"
+				chan="13IDD:Auto1:m1.VAL"
 				clr=14
 				bclr=37
 			}
-			label="-110"
-			press_msg="-110"
+			label="-20"
+			press_msg="-20"
 		}
 		rectangle {
 			object {
@@ -421,9 +349,69 @@ composite {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A<-110&&B<-100&&C>--111&&C<-69"
-		chan="13IDD:m23.RBV"
-		chanB="13IDD:m24.RBV"
-		chanC="13IDD:m84"
+		calc="A<-179&&B<-179&&C<-139"
+		chan="13IDD:m102.RBV"
+		chanB="13IDD:m103.RBV"
+		chanC="13IDD:m67.RBV"
+	}
+}
+composite {
+	object {
+		x=62
+		y=157
+		width=170
+		height=40
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=62
+				y=157
+				width=170
+				height=40
+			}
+			control {
+				chan="13IDD_Linux:allstop"
+				clr=30
+				bclr=20
+			}
+			label="STOP"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD_Linux:alldone"
+	}
+}
+composite {
+	object {
+		x=62
+		y=157
+		width=170
+		height=40
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=62
+				y=157
+				width=170
+				height=40
+			}
+			control {
+				chan="13IDD_DAC_XPS16:allstop"
+				clr=30
+				bclr=20
+			}
+			label="STOP"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD_DAC_XPS16:alldone"
 	}
 }

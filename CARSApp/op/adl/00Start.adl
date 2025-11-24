@@ -1,14 +1,14 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
+	version=030117
 }
 display {
 	object {
 		x=796
 		y=192
 		width=400
-		height=420
+		height=455
 	}
 	clr=55
 	bclr=2
@@ -541,6 +541,11 @@ text {
 		name="dante1.adl"
 		args="P=13IDD_Dante1:, M=mca1, R=dante1:"
 	}
+	display[8] {
+		label="13Ketek1"
+		name="ketek.adl"
+		args="P=13KETEK1:,M=mca1,R=DSP1:"
+	}
 	clr=14
 	bclr=4
 	label="-Spectroscopy dets."
@@ -887,7 +892,7 @@ text {
 "related display" {
 	object {
 		x=200
-		y=380
+		y=415
 		width=190
 		height=30
 	}
@@ -1001,16 +1006,6 @@ text {
 		name="13SMKB_XPS.adl"
 		args="P=13SMKB:"
 	}
-	display[6] {
-		label="Instek GPP #1"
-		name="13InstekGPP.adl"
-		args="P=13INSTEK_1:"
-	}
-	display[7] {
-		label="Versatile Power #1"
-		name="13VPower.adl"
-		args="P=13VPower1:,R=VP1:"
-	}
 	display[8] {
 		label="Cryocon 22C #1"
 		name="13Cryocon.adl"
@@ -1030,26 +1025,6 @@ text {
 		label="Soller Slits"
 		name="3motors.adl"
 		args="P=13MCC:, TITLE=SollerSlits, M1=m1, M2=m2, M3=m3"
-	}
-	display[12] {
-		label="LabJack T7 #1"
-		name="13LabJack.adl"
-		args="P=13LJT7_1:"
-	}
-	display[13] {
-		label="LabJack T7 Pro #1"
-		name="13LabJack.adl"
-		args="P=13LJT7Pro_1:"
-	}
-	display[14] {
-		label="LabJack T8 #1"
-		name="13LabJack.adl"
-		args="P=13LJT8_1:"
-	}
-	display[15] {
-		label="LabJack T8 #2"
-		name="13LabJack.adl"
-		args="P=13LJT8_2:"
 	}
 	clr=14
 	bclr=4
@@ -1153,6 +1128,11 @@ text {
 		name="prosilica.adl"
 		args="P=13IDAPS1:, R=cam1:"
 	}
+	display[5] {
+		label="13BeamViewer2"
+		name="ADVimba.adl"
+		args="P=13BV2:, R=cam1:, C=AVT_GC1380CH"
+	}
 	display[9] {
 		label="13IDC Prosilica 1"
 		name="ADVimba.adl"
@@ -1176,4 +1156,61 @@ text {
 	clr=14
 	bclr=4
 	label="-AVT cameras (BM)"
+}
+"related display" {
+	object {
+		x=5
+		y=415
+		width=190
+		height=30
+	}
+	display[0] {
+		label="LabJack T7 #1"
+		name="13LabJack.adl"
+		args="P=13LJT7_1:"
+	}
+	display[1] {
+		label="LabJack T7 Pro #1"
+		name="13LabJack.adl"
+		args="P=13LJT7Pro_1:"
+	}
+	display[2] {
+		label="LabJack T8 #1"
+		name="13LabJack.adl"
+		args="P=13LJT8_1:"
+	}
+	display[3] {
+		label="LabJack T8 #2"
+		name="13LabJack.adl"
+		args="P=13LJT8_2:"
+	}
+	clr=14
+	bclr=4
+	label="- LabJack IOCs"
+}
+"related display" {
+	object {
+		x=200
+		y=380
+		width=190
+		height=30
+	}
+	display[0] {
+		label="Instek GPP #1"
+		name="13InstekGPP.adl"
+		args="P=13INSTEK_1:"
+	}
+	display[1] {
+		label="Versatile Power #1"
+		name="13VPower.adl"
+		args="P=13VPower1:,R=VP1:"
+	}
+	display[2] {
+		label="Versatile Power #2"
+		name="13VPower.adl"
+		args="P=13VPower2:,R=VP1:"
+	}
+	clr=14
+	bclr=4
+	label="- Power Supplies"
 }

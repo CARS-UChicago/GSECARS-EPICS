@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
-	version=030117
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
+	version=030109
 }
 display {
 	object {
-		x=542
-		y=63
+		x=1121
+		y=546
 		width=316
-		height=627
+		height=480
 	}
 	clr=46
 	bclr=3
@@ -209,24 +209,24 @@ composite {
 		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25,  M2=m26, M3=m27, M4=m28, M5=m29, M6=m30"
 	}
 	display[1] {
-		label="Sample Stage"
+		label="XYZ Sample Stage"
 		name="3motors.adl"
-		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m31,  M2=m32, M3=m40"
+		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m38,  M2=m39, M3=m40"
 	}
 	display[2] {
 		label="Goniometer readbacks"
 		name="diff_motors.adl"
-		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m31, M8=m32, M9=m40"
+		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m65, M8=m66, M9=m67"
 	}
 	display[3] {
 		label="Entrance Slits"
-		name="8motors.adl"
-		args="P=13IDC:, TITLE=Entrance_Slits, M1=m1, M2=m2, M3=m3, M4=m4, M5=m5, M6=m6, M7=m7,M8=m8"
+		name="4motors.adl"
+		args="P=13IDC:, TITLE=Entrance_Slits, M1=m1, M2=m2, M3=m3, M4=m4"
 	}
 	display[4] {
 		label="Detector Slits"
-		name="8motors.adl"
-		args="P=13IDC:, TITLE=Detector_Slits, M1=m17, M2=m18, M3=m19, M4=m20, M5=m21, M6=m22, M7=m23,M8=m24"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=Detector_Slits, M1=m17, M2=m18, M3=m19, M4=m20, M5=m21, M6=m22"
 	}
 	display[5] {
 		label="Trajectory scans"
@@ -311,35 +311,6 @@ composite {
 	clr=14
 	bclr=5
 }
-"shell command" {
-	object {
-		x=10
-		y=55
-		width=75
-		height=24
-	}
-	command[0] {
-		label="Axis 4-channel server"
-		name="start http://13IDC_AXIS.cars.aps.anl.gov"
-	}
-	clr=14
-	bclr=5
-}
-"related display" {
-	object {
-		x=10
-		y=83
-		width=75
-		height=24
-	}
-	display[0] {
-		label="Video switch"
-		name="Pelco_CM6700.adl"
-		args="P=13IDC:, R=Pelco1"
-	}
-	clr=14
-	bclr=5
-}
 text {
 	object {
 		x=90
@@ -388,7 +359,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Web video"
+	textix="Beam & Detector Status"
 }
 text {
 	object {
@@ -401,7 +372,7 @@ text {
 		clr=14
 		width=2
 	}
-	textix="Video switch"
+	textix="Cameras"
 }
 text {
 	object {
@@ -415,407 +386,6 @@ text {
 		width=2
 	}
 	textix="Table Motors"
-}
-"related display" {
-	object {
-		x=10
-		y=475
-		width=75
-		height=26
-	}
-	display[0] {
-		label="Scan 1"
-		name="scan_more.adl"
-		args="P=13IDC:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
-	}
-	display[1] {
-		label="Scan 2"
-		name="scan_more.adl"
-		args="P=13IDC:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
-	}
-	display[2] {
-		label="Scan 3"
-		name="scan_more.adl"
-		args="P=13IDC:, S=scan3, N=3"
-	}
-	display[3] {
-		label="Scanner"
-		name="scanner.adl"
-		args="P=13IDC:, Q=edb"
-	}
-	clr=14
-	bclr=5
-}
-"related display" {
-	object {
-		x=10
-		y=447
-		width=75
-		height=26
-	}
-	display[0] {
-		label="Energy"
-		name="Energy.adl"
-		args="P1=13IDA:, TITLE=Energy, EN=E, P2=13IDC:, ID=ID13ds:, MONO=m17, Z=m14, EXPTAB=pm11"
-	}
-	display[1] {
-		label="Crystal cage"
-		name="6motors.adl"
-		args="P=13IDA:, TITLE=ID_Crystal_Cage, M1=m17, M2=m14, M3=m12, M4=m11, M5=m10, M6=m13"
-	}
-	display[2] {
-		label="Crystal Cage Table"
-		name="table_full.adl"
-		args="P=13IDA:,  Q=MON:T1, T=MON:t1, M0X=junk, M1X=junk, M2X=junk, M0Y=m11, M1Y=m10, M2Y=m12, M2Z=m14"
-	}
-	display[3] {
-		label="LN2 and Vacuum Status"
-		name="13ID_mono_cryovac.adl"
-	}
-	display[4] {
-		label="Piezos"
-		name="piezos3.adl"
-		args="P=13IDA:, D=1, PID=13IDA:mono_pid1"
-	}
-	display[5] {
-		label="Fast Feedback Tweek"
-		name="13id_mono_feedback.adl"
-		args="P=13IDA:,M1=m12,M2=m11,PID1=fast_pitch_pid,PID2=fast_roll_pid"
-	}
-	clr=14
-	bclr=5
-}
-"related display" {
-	object {
-		x=10
-		y=419
-		width=75
-		height=26
-	}
-	display[0] {
-		label="Scaler"
-		name="scaler_full_calc.adl"
-		args="P=13IDC:, S=scaler1"
-	}
-	display[1] {
-		label="Vortex"
-		name="single_dxp_top.adl"
-		args="P=13XRM:,D=dxp1,M=mca1"
-	}
-	display[2] {
-		label="XRF Collect"
-		name="XRF_Collect.adl"
-		args="P=13XRM:, Q=XRF, D=13SDD1:"
-	}
-	display[3] {
-		label="GSE-PILATUS1"
-		name="pilatusDetector.adl"
-		args="P=GSE-PIL1:, R=cam1:"
-	}
-	display[4] {
-		label="Dante 1"
-		name="dante.adl"
-		args="P=13IDC_Dante1:, M=mca1, R=dante1:"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=475
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Scans"
-}
-text {
-	object {
-		x=90
-		y=447
-		width=130
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Monochromator"
-}
-text {
-	object {
-		x=90
-		y=419
-		width=90
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Detectors"
-}
-"related display" {
-	object {
-		x=10
-		y=503
-		width=75
-		height=26
-	}
-	display[0] {
-		label="Serial 1"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial1"
-	}
-	display[1] {
-		label="Serial 2"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial2"
-	}
-	display[2] {
-		label="Serial 3"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial3"
-	}
-	display[3] {
-		label="Serial 4"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial4"
-	}
-	display[4] {
-		label="Serial 5"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial5"
-	}
-	display[5] {
-		label="Serial 6"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial6"
-	}
-	display[6] {
-		label="Serial 7"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial7"
-	}
-	display[7] {
-		label="Serial 8"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial8"
-	}
-	display[8] {
-		label="Serial 9"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial9"
-	}
-	display[9] {
-		label="Serial 10"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial10"
-	}
-	display[10] {
-		label="Serial 11"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial11"
-	}
-	display[11] {
-		label="Serial 12"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial12"
-	}
-	display[12] {
-		label="Serial 13"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial13"
-	}
-	display[13] {
-		label="Serial 14"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial14"
-	}
-	display[14] {
-		label="Serial 15"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial15"
-	}
-	display[15] {
-		label="Serial 16"
-		name="asynOctet.adl"
-		args="P=13IDC:, R=serial16"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=503
-		width=120
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="asyn records"
-}
-"related display" {
-	object {
-		x=10
-		y=587
-		width=75
-		height=26
-	}
-	display[0] {
-		label="devIocStats"
-		name="ioc_stats_soft.adl"
-		args="ioc=13IDC:"
-	}
-	display[1] {
-		label="Save/restore status"
-		name="save_restoreStatus_more.adl"
-		args="P=13IDC:"
-	}
-	display[2] {
-		label="All motor status"
-		name="motorStatus120.adl"
-		args="P=13IDC:"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=587
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="IOC status"
-}
-"related display" {
-	object {
-		x=10
-		y=531
-		width=75
-		height=26
-	}
-	display[0] {
-		label="User transforms"
-		name="userTransforms10.adl"
-		args="P=13IDC:"
-	}
-	display[1] {
-		label="User stringCalcs"
-		name="userStringCalcs10.adl"
-		args="P=13IDC:"
-	}
-	display[2] {
-		label="User arrayCalcs"
-		name="userArrayCalcs10.adl"
-		args="P=13IDC:"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=531
-		width=220
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="User calcs, transforms"
-}
-"related display" {
-	object {
-		x=10
-		y=307
-		width=75
-		height=26
-	}
-	display[0] {
-		label="IXS Elements 1-6"
-		name="ixs_12motors.adl"
-		args="P=13IDC:,TITLE=IXS_Elements_1-6,M1=m41,M2=m42,M3=m43, M4=m44, M5=m45, M6=m46, M7=m47, M8=m48, M9=m49, M10=m50, M11=m51, M12=m52"
-	}
-	display[1] {
-		label="IXS Slit"
-		name="2motors.adl"
-		args="P=13IDC:, TITLE=IXS_Slit, M1=m53, M2=m54"
-	}
-	display[2] {
-		label="Sample Microscope Z"
-		name="1motors.adl"
-		args="P=13IDC:,TITLE=Sample_Microscope_Z,M1=m87"
-	}
-	display[3] {
-		label="YAG Focus"
-		name="1motors.adl"
-		args="P=13IDC:,TITLE=YAG Focus,M1=m88"
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=307
-		width=120
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="IXS Detector"
-}
-"related display" {
-	object {
-		x=10
-		y=335
-		width=75
-		height=26
-	}
-	display[0] {
-		label="IP-Unidig3"
-		name="IpUnidig.adl"
-		args="P=13IDC:, R=Unidig3"
-	}
-	display[1] {
-		label="DAC 4"
-		name="singleDAC.adl"
-		args="P=13IDC:, D=1, C=4"
-	}
-	display[3] {
-		args=" "
-	}
-	clr=14
-	bclr=5
-}
-text {
-	object {
-		x=90
-		y=335
-		width=190
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Liquid Cell Control"
 }
 "related display" {
 	object {
@@ -842,7 +412,7 @@ text {
 	display[3] {
 		label="Detector Lead"
 		name="13IDC_detector_lead.adl"
-		args="P=13IDC:, R=Unidig1"
+		args="P=13IDC:, R=ArmAtten"
 	}
 	clr=14
 	bclr=5
@@ -922,40 +492,25 @@ text {
 		name="1motors.adl"
 		args="P=13IDC:,TITLE=Film_Gap, M1=m11"
 	}
-	display[3] {
-		label="Sample X Long"
-		name="1motors.adl"
-		args="P=13IDD:,TITLE=Sample_X_Long, M1=m94"
-	}
-	display[4] {
-		label="Sample Z Temp"
-		name="1motors.adl"
-		args="P=13XPS:, TITLE=Sample Z Temp, M1=m1"
-	}
-	display[5] {
-		label="CRL X, Y"
-		name="2motors.adl"
-		args="P=13IDC:, TITLE=CRL_X_Y, M1=m63, M2=m16"
-	}
 	display[6] {
 		label="Galil 1 screen"
 		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil1:,M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m14,M7=m15,M8=m16"
+		args="DMC=13IDC:Galil1:,M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m14,M7=m15,M8=m16,AMP1=AD,AMP2=EH"
 	}
 	display[7] {
 		label="Galil 2 screen"
 		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil2:,M1=m57,M2=m58,M3=m59,M4=m60,M5=m61,M6=m62,M7=m63,M8=m64"
+		args="DMC=13IDC:Galil2:,M1=m57,M2=m58,M3=m59,M4=m60,M5=m61,M6=m62,M7=m63,M8=m64,AMP1=AD,AMP2=EH"
 	}
 	display[8] {
 		label="Galil 3 screen"
 		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil3:,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6,M7=m7,M8=m8"
+		args="DMC=13IDC:Galil3:,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6,M7=m7,M8=m8,AMP1=AD,AMP2=EH"
 	}
 	display[9] {
 		label="Galil 4 screen"
 		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil4:,M1=m17,M2=m18,M3=m19,M4=m20,M5=m21,M6=m22,M7=m23,M8=m24"
+		args="DMC=13IDC:Galil4:,M1=m17,M2=m18,M3=m19,M4=m20,M5=m21,M6=m22,M7=m23,M8=m24,AMP1=AD,AMP2=EH"
 	}
 	clr=14
 	bclr=5
@@ -972,4 +527,401 @@ text {
 		width=2
 	}
 	textix="More Motors"
+}
+"related display" {
+	object {
+		x=10
+		y=55
+		width=75
+		height=24
+	}
+	display[0] {
+		label="Beam Status"
+		name="13IDC_Beam.adl"
+	}
+	display[4] {
+		args="  "
+	}
+	display[5] {
+		args=" "
+	}
+	clr=14
+	bclr=5
+	label="      "
+}
+"related display" {
+	object {
+		x=10
+		y=83
+		width=75
+		height=24
+	}
+	display[0] {
+		label="IDC Bench Camera"
+		name="ADVimba.adl"
+		args="P=13IDC_PS1:, R=cam1:, C=AVT_Manta_G507C"
+	}
+	display[1] {
+		label="IDC Sample Normal"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[2] {
+		label="IDC Off-Axis"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[3] {
+		label="Portable Beam Viewer"
+		name="ADSpinnaker.adl"
+		args="P=13BV1:, R=cam1:, C=PGR_GS3_U3_23S6M"
+	}
+	display[4] {
+		label="FOE BV 2"
+		name="ADSpinnaker.adl"
+		args="  P=13IDA_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[5] {
+		args=" "
+	}
+	clr=14
+	bclr=5
+	label="      "
+}
+composite {
+	object {
+		x=10
+		y=307
+		width=300
+		height=138
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=10
+				y=363
+				width=75
+				height=26
+			}
+			display[0] {
+				label="Scan 1"
+				name="scan_more.adl"
+				args="P=13IDC:, S=scan1, N=1, DW=Dwait1, PW=Pwait1"
+			}
+			display[1] {
+				label="Scan 2"
+				name="scan_more.adl"
+				args="P=13IDC:, S=scan2, N=2, DW=Dwait2, PW=Pwait2"
+			}
+			display[2] {
+				label="Scan 3"
+				name="scan_more.adl"
+				args="P=13IDC:, S=scan3, N=3"
+			}
+			display[3] {
+				label="Scanner"
+				name="scanner.adl"
+				args="P=13IDC:, Q=edb"
+			}
+			clr=14
+			bclr=5
+		}
+		"related display" {
+			object {
+				x=10
+				y=335
+				width=75
+				height=26
+			}
+			display[0] {
+				label="ID-C/D Energy"
+				name="GSE_MonoEnergy.adl"
+				args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=S13ID:DSID, TH=m57, MH=m58, MP=m59, MR=m30, MX=m30, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
+			}
+			display[1] {
+				label="CD Crystal cage"
+				name="3motors.adl"
+				args="P=13IDA:, TITLE=CD_Crystal_Cage, M1=m58, M2=m30, M3=m57"
+			}
+			display[2] {
+				label="Full Feedback"
+				name="13ID_CD_mono_feedback.adl"
+				args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,IDD_PITCH_PID=mono_pid1,IDD_ROLL_PID=mono_pid2,IDC_PITCH_PID=mono_pid3,IDC_ROLL_PID=mono_pid4"
+			}
+			display[3] {
+				label="LN2 and Vacuum Status"
+				name="13ID_mono_cryovac.adl"
+			}
+			display[4] {
+				args=" "
+			}
+			clr=14
+			bclr=5
+		}
+		"related display" {
+			object {
+				x=10
+				y=307
+				width=75
+				height=26
+			}
+			display[0] {
+				label="Scaler"
+				name="scaler_full_calc.adl"
+				args="P=13IDC:, S=scaler1"
+			}
+			display[1] {
+				label="Vortex"
+				name="single_dxp_top.adl"
+				args="P=13XRM:,D=dxp1,M=mca1"
+			}
+			display[2] {
+				label="XRF Collect"
+				name="XRF_Collect.adl"
+				args="P=13XRM:, Q=XRF, D=13SDD1:"
+			}
+			display[3] {
+				label="IDC-PIL"
+				name="pilatusDetector.adl"
+				args="P=13IDC-PIL:, R=cam1:"
+			}
+			display[4] {
+				label="Dante 1"
+				name="dante.adl"
+				args="P=13IDC_Dante1:, M=mca1, R=dante1:"
+			}
+			clr=14
+			bclr=5
+		}
+		text {
+			object {
+				x=90
+				y=363
+				width=50
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Scans"
+		}
+		text {
+			object {
+				x=90
+				y=335
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Monochromator"
+		}
+		text {
+			object {
+				x=90
+				y=307
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Detectors"
+		}
+		"related display" {
+			object {
+				x=10
+				y=391
+				width=75
+				height=26
+			}
+			display[0] {
+				label="Serial 1"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial1"
+			}
+			display[1] {
+				label="Serial 2"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial2"
+			}
+			display[2] {
+				label="Serial 3"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial3"
+			}
+			display[3] {
+				label="Serial 4"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial4"
+			}
+			display[4] {
+				label="Serial 5"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial5"
+			}
+			display[5] {
+				label="Serial 6"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial6"
+			}
+			display[6] {
+				label="Serial 7"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial7"
+			}
+			display[7] {
+				label="Serial 8"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial8"
+			}
+			display[8] {
+				label="Serial 9"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial9"
+			}
+			display[9] {
+				label="Serial 10"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial10"
+			}
+			display[10] {
+				label="Serial 11"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial11"
+			}
+			display[11] {
+				label="Serial 12"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial12"
+			}
+			display[12] {
+				label="Serial 13"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial13"
+			}
+			display[13] {
+				label="Serial 14"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial14"
+			}
+			display[14] {
+				label="Serial 15"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial15"
+			}
+			display[15] {
+				label="Serial 16"
+				name="asynOctet.adl"
+				args="P=13IDC:, R=serial16"
+			}
+			clr=14
+			bclr=5
+		}
+		text {
+			object {
+				x=90
+				y=391
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="asyn records"
+		}
+		"related display" {
+			object {
+				x=10
+				y=419
+				width=75
+				height=26
+			}
+			display[0] {
+				label="User transforms"
+				name="userTransforms10.adl"
+				args="P=13IDC:"
+			}
+			display[1] {
+				label="User stringCalcs"
+				name="userStringCalcs10.adl"
+				args="P=13IDC:"
+			}
+			display[2] {
+				label="User arrayCalcs"
+				name="userArrayCalcs10.adl"
+				args="P=13IDC:"
+			}
+			clr=14
+			bclr=5
+		}
+		text {
+			object {
+				x=90
+				y=419
+				width=220
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="User calcs, transforms"
+		}
+	}
+}
+composite {
+	object {
+		x=10
+		y=448
+		width=180
+		height=26
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=10
+				y=448
+				width=75
+				height=26
+			}
+			display[0] {
+				label="devIocStats"
+				name="ioc_stats_soft.adl"
+				args="ioc=13IDC:"
+			}
+			display[1] {
+				label="Save/restore status"
+				name="save_restoreStatus_more.adl"
+				args="P=13IDC:"
+			}
+			display[2] {
+				label="All motor status"
+				name="motorStatus120.adl"
+				args="P=13IDC:"
+			}
+			clr=14
+			bclr=5
+		}
+		text {
+			object {
+				x=90
+				y=448
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="IOC status"
+		}
+	}
 }

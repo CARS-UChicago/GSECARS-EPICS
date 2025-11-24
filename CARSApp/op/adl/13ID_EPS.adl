@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13ID_EPS.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13ID_EPS.adl"
+	version=030117
 }
 display {
 	object {
-		x=125
-		y=63
+		x=408
+		y=53
 		width=1350
 		height=1100
 	}
@@ -1642,7 +1642,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip3_Volts"
+		chan="13IDA:ip3:VoltageM"
 		clr=15
 		bclr=12
 	}
@@ -1659,7 +1659,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip3_Current"
+		chan="13IDA:ip3:CurrentM"
 		clr=15
 		bclr=12
 	}
@@ -1677,7 +1677,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip3_Pressure"
+		chan="13IDA:ip3:PressureM"
 		clr=15
 		bclr=12
 	}
@@ -1689,7 +1689,7 @@ rectangle {
 }
 text {
 	object {
-		x=524
+		x=505
 		y=288
 		width=70
 		height=14
@@ -2160,7 +2160,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip4:VOLT"
+		chan="13IDA:ip4:VoltageM"
 		clr=15
 		bclr=12
 	}
@@ -2177,7 +2177,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip4:CUR"
+		chan="13IDA:ip4:CurrentM"
 		clr=15
 		bclr=12
 	}
@@ -2195,7 +2195,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip4:PRES"
+		chan="13IDA:ip4:PressureM"
 		clr=15
 		bclr=12
 	}
@@ -2277,12 +2277,17 @@ polyline {
 		x=405
 		y=286
 		width=40
-		height=18
+		height=16
 	}
 	display[0] {
-		label="MPC Full"
-		name="MPC.adl"
-		args="P=13IDA:, PUMP=ip4"
+		label="QPC Full"
+		name="QPCsingle_pump_streams.adl"
+		args="P=13IDA:, PMP=ip4,SPLY=2,SPT=2"
+	}
+	display[1] {
+		label="QPC All Pumps"
+		name="QPCpumps_streams.adl"
+		args="P=13IDA:, PMP1=ip3,PMP2=ip4,PMP3=ip5,SPLY1=1,SPLY2=2,SPLY3=3,SPT1=1,SPT2=2,SPT3=3,SPT4=4"
 	}
 	clr=13
 	bclr=52
@@ -2409,7 +2414,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip5_Volts"
+		chan="13IDA:ip5:VoltageM"
 		clr=15
 		bclr=12
 	}
@@ -2426,7 +2431,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip5_Current"
+		chan="13IDA:ip5:CurrentM"
 		clr=15
 		bclr=12
 	}
@@ -2444,7 +2449,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip5_Pressure"
+		chan="13IDA:ip5:PressureM"
 		clr=15
 		bclr=12
 	}
@@ -2453,19 +2458,6 @@ rectangle {
 	format="exponential"
 	limits {
 	}
-}
-text {
-	object {
-		x=54
-		y=288
-		width=70
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Ion Pump 5"
-	align="horiz. centered"
 }
 text {
 	object {
@@ -3414,153 +3406,6 @@ rectangle {
 }
 rectangle {
 	object {
-		x=347
-		y=466
-		width=127
-		height=85
-	}
-	"basic attribute" {
-		clr=46
-	}
-}
-"text update" {
-	object {
-		x=411
-		y=489
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip10:VOLT"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=411
-		y=507
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip10:CUR"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=411
-		y=525
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip10:PRES"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-text {
-	object {
-		x=351
-		y=470
-		width=77
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Ion Pump 10"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=372
-		y=489
-		width=35
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Volts"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=358
-		y=507
-		width=49
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Current"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=351
-		y=525
-		width=56
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Pressure"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=347
-		y=487
-		width=127
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(347,487)
-		(474,487)
-	}
-}
-"related display" {
-	object {
-		x=430
-		y=468
-		width=40
-		height=18
-	}
-	display[0] {
-		label="MPC Full"
-		name="MPC.adl"
-		args="P=13IDA:, PUMP=ip10"
-	}
-	clr=13
-	bclr=52
-	label="More"
-}
-rectangle {
-	object {
 		x=510
 		y=765
 		width=500
@@ -3758,9 +3603,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=575
+		x=500
 		y=947
-		width=256
+		width=331
 		height=15
 	}
 	"basic attribute" {
@@ -3838,185 +3683,6 @@ polyline {
 	limits {
 	}
 }
-text {
-	object {
-		x=876
-		y=936
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="C/D Horiz."
-}
-text {
-	object {
-		x=871
-		y=956
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Mirror Tank"
-}
-rectangle {
-	object {
-		x=861
-		y=926
-		width=130
-		height=57
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
-		x=916
-		y=983
-		width=20
-		height=14
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
-		x=863
-		y=998
-		width=127
-		height=85
-	}
-	"basic attribute" {
-		clr=46
-	}
-}
-"text update" {
-	object {
-		x=927
-		y=1021
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip11_Volts"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=927
-		y=1039
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip11_Current"
-		clr=16
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=927
-		y=1057
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip11_Pressure"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-text {
-	object {
-		x=890
-		y=1002
-		width=77
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Ion Pump 11"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=888
-		y=1021
-		width=35
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Volts"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=874
-		y=1039
-		width=49
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Current"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=867
-		y=1057
-		width=56
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Pressure"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=863
-		y=1019
-		width=127
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(863,1019)
-		(990,1019)
-	}
-}
 rectangle {
 	object {
 		x=831
@@ -4043,46 +3709,6 @@ text {
 }
 rectangle {
 	object {
-		x=289
-		y=1002
-		width=165
-		height=26
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-"text update" {
-	object {
-		x=386
-		y=1008
-		width=60
-		height=15
-	}
-	monitor {
-		chan="G:AHU:FP5088Ai"
-		clr=53
-		bclr=56
-	}
-	align="horiz. centered"
-	limits {
-	}
-}
-text {
-	object {
-		x=290
-		y=1007
-		width=99
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Temperature"
-	align="horiz. centered"
-}
-rectangle {
-	object {
 		x=627
 		y=1002
 		width=170
@@ -4100,7 +3726,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="G:AHU:FP5087Ai"
+		chan="BL13ID-Metasys:TC:CHutchTempM.VAL"
 		clr=53
 		bclr=56
 	}
@@ -4127,194 +3753,6 @@ rectangle {
 		y=915
 		width=15
 		height=32
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-rectangle {
-	object {
-		x=897
-		y=800
-		width=102
-		height=112
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-oval {
-	object {
-		x=975
-		y=842
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi97"
-	}
-}
-"text update" {
-	object {
-		x=909
-		y=842
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:pr9"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=909
-		y=887
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:cc9"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-text {
-	object {
-		x=899
-		y=804
-		width=98
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Vacuum Gauge 9"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=930
-		y=824
-		width=42
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Pirani"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=907
-		y=869
-		width=84
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Cold Cathode"
-	align="horiz. centered"
-}
-oval {
-	object {
-		x=978
-		y=845
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi96"
-	}
-}
-polyline {
-	object {
-		x=903
-		y=864
-		width=90
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(903,864)
-		(993,864)
-	}
-}
-polyline {
-	object {
-		x=903
-		y=822
-		width=90
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(903,822)
-		(993,822)
-	}
-}
-oval {
-	object {
-		x=975
-		y=886
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi95"
-	}
-}
-oval {
-	object {
-		x=978
-		y=889
-		width=9
-		height=9
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		clr="alarm"
-		chan="13IDA:eps_mbbi94"
-	}
-}
-rectangle {
-	object {
-		x=938
-		y=912
-		width=20
-		height=14
 	}
 	"basic attribute" {
 		clr=14
@@ -5061,137 +4499,6 @@ rectangle {
 }
 rectangle {
 	object {
-		x=587
-		y=449
-		width=127
-		height=85
-	}
-	"basic attribute" {
-		clr=46
-	}
-}
-"text update" {
-	object {
-		x=651
-		y=472
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip8_Volts"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=651
-		y=490
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip8_Current"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=651
-		y=508
-		width=60
-		height=15
-	}
-	monitor {
-		chan="13IDA:ip8_Pressure"
-		clr=15
-		bclr=12
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="exponential"
-	limits {
-	}
-}
-text {
-	object {
-		x=619
-		y=453
-		width=70
-		height=14
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Ion Pump 8"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=612
-		y=472
-		width=35
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Volts"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=598
-		y=490
-		width=49
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Current"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=591
-		y=508
-		width=56
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Pressure"
-	align="horiz. centered"
-}
-polyline {
-	object {
-		x=587
-		y=470
-		width=127
-		height=0
-	}
-	"basic attribute" {
-		clr=14
-	}
-	points {
-		(587,470)
-		(714,470)
-	}
-}
-rectangle {
-	object {
 		x=780
 		y=562
 		width=100
@@ -5781,60 +5088,6 @@ oval {
 		clr="alarm"
 		chan="13IDA:eps_mbbi221"
 	}
-}
-rectangle {
-	object {
-		x=380
-		y=805
-		width=120
-		height=26
-	}
-	"basic attribute" {
-		clr=56
-	}
-}
-oval {
-	object {
-		x=476
-		y=811
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
-	}
-}
-oval {
-	object {
-		x=476
-		y=811
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
-	}
-}
-text {
-	object {
-		x=394
-		y=811
-		width=72
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Searched"
-	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -6761,7 +6014,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="S13IDFE:IPC1:IP7:PressureM.VOLT"
+		chan="S13IDFE:IPC1:IP7:VoltageM.VAL"
 		clr=15
 		bclr=12
 	}
@@ -6778,7 +6031,7 @@ rectangle {
 		height=15
 	}
 	monitor {
-		chan="S13IDFE:IPC1:IP7:PressureM.CRNT"
+		chan="S13IDFE:IPC1:IP7:CurrentM.VAL"
 		clr=15
 		bclr=12
 	}
@@ -8647,168 +7900,10 @@ oval {
 		chan="13IDA:eps_mbbi98"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=670
 		y=284
-		width=127
-		height=85
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=670
-				y=284
-				width=127
-				height=85
-			}
-			"basic attribute" {
-				clr=46
-			}
-		}
-		"text update" {
-			object {
-				x=734
-				y=307
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip2:VOLT"
-				clr=15
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=734
-				y=325
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip2:CUR"
-				clr=15
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=734
-				y=343
-				width=60
-				height=15
-			}
-			monitor {
-				chan="13IDA:ip2:PRES"
-				clr=15
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="exponential"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=679
-				y=288
-				width=70
-				height=14
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Ion Pump 2"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=695
-				y=307
-				width=35
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Volts"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=681
-				y=325
-				width=49
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Current"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=674
-				y=343
-				width=56
-				height=13
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. centered"
-		}
-		polyline {
-			object {
-				x=670
-				y=305
-				width=127
-				height=0
-			}
-			"basic attribute" {
-				clr=14
-			}
-			points {
-				(670,305)
-				(797,305)
-			}
-		}
-		"related display" {
-			object {
-				x=753
-				y=286
-				width=40
-				height=18
-			}
-			display[0] {
-				label="MPC Full"
-				name="MPC.adl"
-				args="P=13IDA:, PUMP=ip2"
-			}
-			clr=13
-			bclr=52
-			label="More"
-		}
-	}
-}
-rectangle {
-	object {
-		x=964
-		y=286
 		width=127
 		height=85
 	}
@@ -8818,13 +7913,13 @@ rectangle {
 }
 "text update" {
 	object {
-		x=1028
-		y=309
+		x=734
+		y=307
 		width=60
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip1:VOLT"
+		chan="13IDA:ip2:VOLT"
 		clr=15
 		bclr=12
 	}
@@ -8835,13 +7930,13 @@ rectangle {
 }
 "text update" {
 	object {
-		x=1028
-		y=327
+		x=734
+		y=325
 		width=60
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip1:CUR"
+		chan="13IDA:ip2:CUR"
 		clr=15
 		bclr=12
 	}
@@ -8853,13 +7948,13 @@ rectangle {
 }
 "text update" {
 	object {
-		x=1028
-		y=345
+		x=734
+		y=343
 		width=60
 		height=15
 	}
 	monitor {
-		chan="13IDA:ip1:PRES"
+		chan="13IDA:ip2:PRES"
 		clr=15
 		bclr=12
 	}
@@ -8871,21 +7966,21 @@ rectangle {
 }
 text {
 	object {
-		x=973
-		y=290
+		x=679
+		y=288
 		width=70
 		height=14
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="Ion Pump 1"
+	textix="Ion Pump 2"
 	align="horiz. centered"
 }
 text {
 	object {
-		x=989
-		y=309
+		x=695
+		y=307
 		width=35
 		height=13
 	}
@@ -8897,8 +7992,8 @@ text {
 }
 text {
 	object {
-		x=975
-		y=327
+		x=681
+		y=325
 		width=49
 		height=13
 	}
@@ -8910,8 +8005,8 @@ text {
 }
 text {
 	object {
-		x=968
-		y=345
+		x=674
+		y=343
 		width=56
 		height=13
 	}
@@ -8923,8 +8018,8 @@ text {
 }
 polyline {
 	object {
-		x=964
-		y=307
+		x=670
+		y=305
 		width=127
 		height=0
 	}
@@ -8932,23 +8027,1414 @@ polyline {
 		clr=14
 	}
 	points {
-		(964,307)
-		(1091,307)
+		(670,305)
+		(797,305)
 	}
 }
 "related display" {
 	object {
-		x=1047
-		y=288
+		x=753
+		y=286
 		width=40
 		height=18
 	}
 	display[0] {
 		label="MPC Full"
 		name="MPC.adl"
-		args="P=13IDA:, PUMP=ip1"
+		args="P=13IDA:, PUMP=ip2"
 	}
 	clr=13
 	bclr=52
 	label="More"
+}
+composite {
+	object {
+		x=347
+		y=466
+		width=127
+		height=85
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=347
+				y=466
+				width=127
+				height=85
+			}
+			"basic attribute" {
+				clr=46
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=489
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:ip10:VOLT"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=507
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:ip10:CUR"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=525
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:ip10:PRES"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=351
+				y=470
+				width=77
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Ion Pump 10"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=372
+				y=489
+				width=35
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Volts"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=358
+				y=507
+				width=49
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Current"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=351
+				y=525
+				width=56
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pressure"
+			align="horiz. centered"
+		}
+		polyline {
+			object {
+				x=347
+				y=487
+				width=127
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(347,487)
+				(474,487)
+			}
+		}
+		"related display" {
+			object {
+				x=430
+				y=468
+				width=40
+				height=18
+			}
+			display[0] {
+				label="MPC Full"
+				name="MPC.adl"
+				args="P=13IDA:, PUMP=ip10"
+			}
+			clr=13
+			bclr=52
+			label="More"
+		}
+	}
+}
+rectangle {
+	object {
+		x=586
+		y=449
+		width=127
+		height=85
+	}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=650
+		y=472
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip8:VOLT"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=650
+		y=490
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip8:CUR"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=650
+		y=508
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip8:PRES"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=590
+		y=453
+		width=77
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 8"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=611
+		y=472
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=597
+		y=490
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=590
+		y=508
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=584
+		y=470
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(584,470)
+		(711,470)
+	}
+}
+"related display" {
+	object {
+		x=669
+		y=451
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Full"
+		name="MPC.adl"
+		args="P=13IDA:, PUMP=ip8"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+composite {
+	object {
+		x=964
+		y=286
+		width=127
+		height=85
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=964
+				y=286
+				width=127
+				height=85
+			}
+			"basic attribute" {
+				clr=46
+			}
+		}
+		"text update" {
+			object {
+				x=1028
+				y=309
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:ip1:VOLT"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=1028
+				y=327
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:ip1:CUR"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=1028
+				y=345
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:ip1:PRES"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=973
+				y=290
+				width=70
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Ion Pump 1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=989
+				y=309
+				width=35
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Volts"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=975
+				y=327
+				width=49
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Current"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=968
+				y=345
+				width=56
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pressure"
+			align="horiz. centered"
+		}
+		polyline {
+			object {
+				x=964
+				y=307
+				width=127
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(964,307)
+				(1091,307)
+			}
+		}
+		"related display" {
+			object {
+				x=1047
+				y=288
+				width=40
+				height=18
+			}
+			display[0] {
+				label="MPC Full"
+				name="MPC.adl"
+				args="P=13IDA:, PUMP=ip1"
+			}
+			clr=13
+			bclr=52
+			label="More"
+		}
+	}
+}
+text {
+	object {
+		x=35
+		y=288
+		width=70
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 5"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=110
+		y=286
+		width=40
+		height=16
+	}
+	display[0] {
+		label="QPC Full"
+		name="QPCsingle_pump_streams.adl"
+		args="P=13IDA:, PMP=ip5,SPLY=3,SPT=3"
+	}
+	display[1] {
+		label="QPC All Pumps"
+		name="QPCpumps_streams.adl"
+		args="P=13IDA:, PMP1=ip3,PMP2=ip4,PMP3=ip5,SPLY1=1,SPLY2=2,SPLY3=3,SPT1=1,SPT2=2,SPT3=3,SPT4=4"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+"related display" {
+	object {
+		x=580
+		y=286
+		width=40
+		height=16
+	}
+	display[0] {
+		label="QPC Full"
+		name="QPCsingle_pump_streams.adl"
+		args="P=13IDA:, PMP=ip3,SPLY=1,SPT=1"
+	}
+	display[1] {
+		label="QPC All Pumps"
+		name="QPCpumps_streams.adl"
+		args="P=13IDA:, PMP1=ip3,PMP2=ip4,PMP3=ip5,SPLY1=1,SPLY2=2,SPLY3=3,SPT1=1,SPT2=2,SPT3=3,SPT4=4"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+rectangle {
+	object {
+		x=226
+		y=977
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+"text update" {
+	object {
+		x=251
+		y=1002
+		width=60
+		height=15
+	}
+	monitor {
+		chan="BL13ID-Metasys:TC:DHutchTempM.VAL"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=232
+		y=982
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=859
+		y=800
+		width=140
+		height=282
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=876
+				y=936
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="C/D Horiz."
+		}
+		text {
+			object {
+				x=871
+				y=956
+				width=110
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Mirror Tank"
+		}
+		rectangle {
+			object {
+				x=861
+				y=926
+				width=130
+				height=57
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=916
+				y=983
+				width=20
+				height=14
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		rectangle {
+			object {
+				x=897
+				y=800
+				width=102
+				height=112
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		oval {
+			object {
+				x=975
+				y=842
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi97"
+			}
+		}
+		"text update" {
+			object {
+				x=909
+				y=842
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:pr9"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=909
+				y=887
+				width=60
+				height=15
+			}
+			monitor {
+				chan="13IDA:cc9"
+				clr=15
+				bclr=12
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="exponential"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=899
+				y=804
+				width=98
+				height=14
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Vacuum Gauge 9"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=930
+				y=824
+				width=42
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pirani"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=907
+				y=869
+				width=84
+				height=13
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Cold Cathode"
+			align="horiz. centered"
+		}
+		oval {
+			object {
+				x=978
+				y=845
+				width=9
+				height=9
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi96"
+			}
+		}
+		polyline {
+			object {
+				x=903
+				y=864
+				width=90
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(903,864)
+				(993,864)
+			}
+		}
+		polyline {
+			object {
+				x=903
+				y=822
+				width=90
+				height=0
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(903,822)
+				(993,822)
+			}
+		}
+		oval {
+			object {
+				x=975
+				y=886
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi95"
+			}
+		}
+		oval {
+			object {
+				x=978
+				y=889
+				width=9
+				height=9
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				clr="alarm"
+				chan="13IDA:eps_mbbi94"
+			}
+		}
+		rectangle {
+			object {
+				x=938
+				y=912
+				width=20
+				height=14
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		composite {
+			object {
+				x=859
+				y=997
+				width=127
+				height=85
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=859
+						y=997
+						width=127
+						height=85
+					}
+					"basic attribute" {
+						clr=46
+					}
+				}
+				"text update" {
+					object {
+						x=923
+						y=1020
+						width=60
+						height=15
+					}
+					monitor {
+						chan="13IDA:ip11:VOLT"
+						clr=15
+						bclr=12
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=923
+						y=1038
+						width=60
+						height=15
+					}
+					monitor {
+						chan="13IDA:ip11:CUR"
+						clr=15
+						bclr=12
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="exponential"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=923
+						y=1056
+						width=60
+						height=15
+					}
+					monitor {
+						chan="13IDA:ip11:PRES"
+						clr=15
+						bclr=12
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="exponential"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=868
+						y=1001
+						width=70
+						height=14
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Ion Pump 11"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=884
+						y=1020
+						width=35
+						height=13
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Volts"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=870
+						y=1038
+						width=49
+						height=13
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Current"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=863
+						y=1056
+						width=56
+						height=13
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Pressure"
+					align="horiz. centered"
+				}
+				polyline {
+					object {
+						x=859
+						y=1018
+						width=127
+						height=0
+					}
+					"basic attribute" {
+						clr=14
+					}
+					points {
+						(859,1018)
+						(986,1018)
+					}
+				}
+				"related display" {
+					object {
+						x=942
+						y=999
+						width=40
+						height=18
+					}
+					display[0] {
+						label="MPC Full"
+						name="MPC.adl"
+						args="P=13IDA:, PUMP=ip11"
+					}
+					clr=13
+					bclr=52
+					label="More"
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=420
+		y=938
+		width=30
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="K/B"
+}
+text {
+	object {
+		x=380
+		y=958
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mirror Tank"
+}
+rectangle {
+	object {
+		x=370
+		y=928
+		width=130
+		height=57
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=425
+		y=985
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=384
+		y=802
+		width=110
+		height=112
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+"text update" {
+	object {
+		x=409
+		y=844
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:pr12"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=409
+		y=889
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:cc12"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=390
+		y=806
+		width=98
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Vacuum Gauge 11"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=417
+		y=826
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pirani"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=394
+		y=871
+		width=84
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cold Cathode"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=390
+		y=866
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(390,866)
+		(480,866)
+	}
+}
+polyline {
+	object {
+		x=390
+		y=824
+		width=90
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(390,824)
+		(480,824)
+	}
+}
+rectangle {
+	object {
+		x=425
+		y=914
+		width=20
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=367
+		y=999
+		width=127
+		height=85
+	}
+	"basic attribute" {
+		clr=46
+	}
+}
+"text update" {
+	object {
+		x=431
+		y=1022
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip12:VOLT"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=431
+		y=1040
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip12:CUR"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=431
+		y=1058
+		width=60
+		height=15
+	}
+	monitor {
+		chan="13IDA:ip12:PRES"
+		clr=15
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="exponential"
+	limits {
+	}
+}
+text {
+	object {
+		x=371
+		y=1003
+		width=77
+		height=14
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Ion Pump 12"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=392
+		y=1022
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Volts"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=378
+		y=1040
+		width=49
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=371
+		y=1058
+		width=56
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pressure"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=367
+		y=1020
+		width=127
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	points {
+		(367,1020)
+		(494,1020)
+	}
+}
+"related display" {
+	object {
+		x=450
+		y=1001
+		width=40
+		height=18
+	}
+	display[0] {
+		label="MPC Full"
+		name="MPC.adl"
+		args="P=13IDA:, PUMP=ip12"
+	}
+	clr=13
+	bclr=52
+	label="More"
+}
+composite {
+	object {
+		x=228
+		y=938
+		width=120
+		height=26
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=228
+				y=938
+				width=120
+				height=26
+			}
+			"basic attribute" {
+				clr=56
+			}
+		}
+		oval {
+			object {
+				x=324
+				y=944
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
+			}
+		}
+		oval {
+			object {
+				x=324
+				y=944
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="PA:13ID:STA_D_SRCHD_TO_B.VAL"
+			}
+		}
+		text {
+			object {
+				x=242
+				y=944
+				width=72
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Searched"
+			align="horiz. centered"
+		}
+	}
+}
+rectangle {
+	object {
+		x=29
+		y=464
+		width=110
+		height=45
+	}
+	"basic attribute" {
+		clr=56
+	}
+}
+text {
+	object {
+		x=32
+		y=466
+		width=99
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=45
+		y=487
+		width=60
+		height=15
+	}
+	monitor {
+		chan="BL13ID-Metasys:TC:EHutchTempM.VAL"
+		clr=53
+		bclr=56
+	}
+	align="horiz. centered"
+	limits {
+	}
 }
