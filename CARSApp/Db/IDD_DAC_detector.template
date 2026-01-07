@@ -1,0 +1,73 @@
+# This database implements the coordinate transformation for the GSECARS
+# DAC detector table in 13-ID-D.
+# It uses 3 real motors 
+#  $(P)$(USX) Upstream X drive
+#  $(P)$(DSX) Downstream X drive
+#  $(R)$(Z)   Z drive 
+# it will move two soft motors 
+# $(P)$(R)     Detector to sample distance
+# $(P)$(THETA) Detector angle relative to direct beam position
+# It moves the detector on a circle of radius R and angle theta so that the
+# center of the detector always points toward the sample, i.e. the
+# detector surface is normal to the vector from the detector center to the sample.
+#
+# It uses the following geometric constants:
+# $(P)$(THETA)C1 = distance between upstream and downstream pivot points
+# $(P)$(THETA)C2 = distance from the upstream pivot point to the front surface of the detector
+#
+# It assumes the X and Z motor user coordinate motor positions are defined so that
+# when the detector center is aligned with the direct beam:
+# USX =0
+# DSX = 0 
+# Z = R
+# as follows:
+#
+# This record is processed whenever the soft motor records R or Theta write new values 
+record(transform,"$(P)$(T)Drive") {
+    field(INPA, "$(P)$(R).VAL CP NMS")
+    field(INPB, "$(P)$(THETA).VAL CP NMS")
+    field(INPC, "$(P)$(THETA)C1.VAL NPP NMS")
+    field(INPD, "$(P)$(THETA)C2.VAL NPP NMS")
+    field(CLCE, "A*(1-COS(B))+(C/2+D)*SIN(B)+C/2*TAN(B)")
+    field(OUTE, "$(P)$(USX).VAL PP MS")
+    field(CLCF, "A*(1-COS(B))+(C/2+D)*SIN(B)-C/2*TAN(B)")
+    field(OUTF, "$(P)$(DSX).VAL PP MS")
+    field(CLCG, "A*(1-SIN(B))-(C/2+D)*(1-COS(B))")
+    field(OUTG, "$(P)$(Z).VAL PP MS")
+    field(PREC,"$(PREC)")
+}
+
+# This record calculates the readback positions of the soft motors.  It 
+# processes whenever the readbacks of the real motors change, or whenever
+# one of the the geometry constants changes.
+record(transform,"$(P)$(T)Readback") {
+    field(INPA, "$(P)$(USX).RBV CP MS")
+    field(INPB, "$(P)$(DSX).RBV CP MS")
+    field(INPC, "$(P)$(THETA)C1.VAL CP MS")
+    field(INPD, "$(P)$(THETA)C2.VAL CP MS")
+    field(INPE, "$(P)$(Z).RBV CP MS")
+    field(CLCF, "ATAN((A-B)/C)")
+    field(OUTF, "$(P)$(THETA).RBV PP MS")
+    field(CLCG, "(E+(C/2+D)*(1-COS(F)))/(1-SIN(F))")
+    field(OUTG, "$(P)$(R).RBV PP MS")
+    field(IVLA,"Do Nothing")
+    field(PREC,"$(PREC)")
+}
+
+# This record processes if either of the soft motor STOP fields is set.
+record(dfanout,"$(P)$(T)Stop") {
+        field(VAL,"1")
+        field(OUTA,"$(P)$(USX).STOP PP MS")
+        field(OUTB,"$(P)$(DSX).STOP PP MS")
+        field(OUTC,"$(P)$(Z).STOP PP MS")
+}
+
+# This record computes whether the compound motor is done moving.  
+# It goes to 1 when both real motors are done moving.
+# positions of the real motors.
+record(calc,"$(P)$(T)Done") {
+        field(INPA,"$(P)$(USX).DMOV CP MS")
+        field(INPB,"$(P)$(DSX).DMOV CP MS")
+        field(INPC,"$(P)$(Z).DMOV CP MS")
+        field(CALC,"A & B & C")
+}
