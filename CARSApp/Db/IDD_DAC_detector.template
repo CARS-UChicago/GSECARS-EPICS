@@ -21,19 +21,34 @@
 # DSX = 0 
 # Z = R
 # as follows:
-#
+
+# These records are where the soft motors write their output.
+# They are needed because writing to a transform record field does not
+# cause the record to process.
+# We use forward links to the transform record (rather than making the INPA and
+# INPB fields of the transform record CP) so that the scan record waits 
+# for the motors to move.
+grecord(ao,"$(P)$(R)DVAL") {
+	field(FLNK, "$(P)$(T)Drive")
+}
+grecord(ao,"$(P)$(THETA)DVAL") {
+	field(FLNK, "$(P)$(T)Drive")
+}
+
+
 # This record is processed whenever the soft motor records R or Theta write new values 
 record(transform,"$(P)$(T)Drive") {
-    field(INPA, "$(P)$(R).VAL CP NMS")
-    field(INPB, "$(P)$(THETA).VAL CP NMS")
+    field(INPA, "$(P)$(R).DVAL NPP NMS")
+    field(INPB, "$(P)$(THETA).DVAL NPP NMS")
     field(INPC, "$(P)$(THETA)C1.VAL NPP NMS")
     field(INPD, "$(P)$(THETA)C2.VAL NPP NMS")
-    field(CLCE, "A*(1-COS(B))+(C/2+D)*SIN(B)+C/2*TAN(B)")
-    field(OUTE, "$(P)$(USX).VAL PP MS")
-    field(CLCF, "A*(1-COS(B))+(C/2+D)*SIN(B)-C/2*TAN(B)")
-    field(OUTF, "$(P)$(DSX).VAL PP MS")
-    field(CLCG, "A*(1-SIN(B))-(C/2+D)*(1-COS(B))")
-    field(OUTG, "$(P)$(Z).VAL PP MS")
+    field(CLCE, "B*D2R")
+    field(CLCF, "(A+D)*TAN(E)")
+    field(OUTF, "$(P)$(USX).VAL PP MS")
+    field(CLCG, "F+C*TAN(E)")
+    field(OUTG, "$(P)$(DSX).VAL PP MS")
+    field(CLCH, "A-D*(1-COS(E))")
+    field(OUTH, "$(P)$(Z).VAL PP MS")
     field(PREC,"$(PREC)")
 }
 
@@ -46,10 +61,9 @@ record(transform,"$(P)$(T)Readback") {
     field(INPC, "$(P)$(THETA)C1.VAL CP MS")
     field(INPD, "$(P)$(THETA)C2.VAL CP MS")
     field(INPE, "$(P)$(Z).RBV CP MS")
-    field(CLCF, "ATAN((A-B)/C)")
-    field(OUTF, "$(P)$(THETA).RBV PP MS")
-    field(CLCG, "(E+(C/2+D)*(1-COS(F)))/(1-SIN(F))")
-    field(OUTG, "$(P)$(R).RBV PP MS")
+    field(CLCF, "ATAN((B-A)/C)")
+    field(CLCG, "E+D*(1-COS(F))")
+    field(CLCH, "F*R2D")
     field(IVLA,"Do Nothing")
     field(PREC,"$(PREC)")
 }
