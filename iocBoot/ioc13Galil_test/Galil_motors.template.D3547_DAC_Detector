@@ -1,0 +1,51 @@
+# motor template file for Galil test
+#
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,               M,    DTYP,      CTRL,   PORT,  ADDR,  DESC,                EGU,  DIR, PCOF, ICOF, DCOF,  VELO,  VBAS, ACCL, BDST, BVEL, BACC,  SREV, UREV,     ERES,   PREC, DHLM, DLLM}
+# Hudson brushless servo motor, 8000 encoder steps/rev
+{13GALIL_TEST:,  m1, "asynMotor", Galil1:, GALIL1, 0, "Detector X upstream",   mm,  Neg, .15,   .04,  .05,  20.,   0.1,  0.2,    0,    1,   .5,   8000,       5,  0.000625,   4,  420,   0}
+{13GALIL_TEST:,  m2, "asynMotor", Galil1:, GALIL1, 1, "Detector X downstream", mm,  Neg, .15,   .04,  .05,  20.,   0.1,  0.2,    0,    1,   .5,   8000,       5,  0.000625,   4,  420,   0}
+{13GALIL_TEST:,  m3, "asynMotor", Galil1:, GALIL1, 2, "Detector Z",            mm,  Neg, .15,   .04,  .05,  20.,   0.1,  0.2,    0,    1,   .5,   8000,       5,  0.000625,   4,  305,   0}
+{13GALIL_TEST:,  m4, "asynMotor", Galil1:, GALIL1, 3, "Motor 4",               mm,  Pos, .15,   .04,  .05,   10.,  0.1,  0.2,    0,    1,   .5,   8000,       1,  0.000625,   4,   25,   0}
+{13GALIL_TEST:,  m5, "asynMotor", Galil1:, GALIL1, 4, "Motor 5",               mm,  Pos, .15,   .04,  .05,   10.,  0.1,  0.2,    0,    1,   .5,   8000,       1,  0.000625,   4,   25,   0}
+{13GALIL_TEST:,  m6, "asynMotor", Galil1:, GALIL1, 5, "Motor 6",               mm,  Pos, .15,   .04,  .05,   10.,  0.1,  0.2,    0,    1,   .5,   8000,       1,  0.000625,   4,   25,   0}
+{13GALIL_TEST:,  m7, "asynMotor", Galil1:, GALIL1, 6, "Motor 7",               mm,  Pos, .15,   .04,  .05,   10.,  0.1,  0.2,    0,    1,   .5,   8000,       1,  0.000625,   4,   25,   0}
+{13GALIL_TEST:,  m8, "asynMotor", Galil1:, GALIL1, 7, "Motor 8",               mm,  Pos, .15,   .04,  .05,   10.,  0.1,  0.2,    0,    1,   .5,   8000,       1,  0.000625,   4,   25,   0}
+}
+
+# Pseudomotors for DAC detector translation and rotation
+# pm1 C1 and C2 are define the scaling for translation. 
+#    0.5 moves sum by same as motor positions.
+# pm2 C1 defines the scaling from difference to rotation angle.
+#    Distance between rails is 405 mm. 1 mm difference = 1/405 radians =  degrees
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern 
+{P,               M,           DINP,                                     OUT,                                 RDBL,                                                  STOO,                           DESC,           EGU, DIR, VELO,  VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM,      C1,    C2, C3}
+ 
+# Detector yaw sum/diff
+{13GALIL_TEST:,  pm1, "13GALIL_TEST:DAC_DETX:Done NPP NMS",  "13GALIL_TEST:pm1DVAL.VAL PP MS",   "13GALIL_TEST:DAC_DETX:Readback.G NPP NMS",         "13GALIL_TEST:DAC_DETX:Stop PP MS",         "Translation",     mm,  Pos,  5.,   0.1,  0.2,   0,    1,   .5, 0.000625, 1.0,  4,  420,   0,           0.5,   0.5, 1}
+{13GALIL_TEST:,  pm2, "13GALIL_TEST:DAC_DETX:Done NPP NMS",  "13GALIL_TEST:pm2DVAL.VAL PP MS",   "13GALIL_TEST:DAC_DETX:Readback.H NPP NMS",         "13GALIL_TEST:DAC_DETX:Stop PP MS",         "Rotation",       deg,  Pos,  5.,   0.1,  0.2,   0,    1,   .5, 0.000625, 1.0,  4,   30,   0,   -0.14147107,   1.0, 1}
+{13GALIL_TEST:,  pm3, "13GALIL_TEST:DAC_DETR:Done NPP NMS",  "13GALIL_TEST:pm3DVAL PP MS",       "13GALIL_TEST:DAC_DETR:Readback.J NPP NMS",         "13GALIL_TEST:DAC_DETR:Stop PP MS",         "2-Theta",        deg,  Pos,  5.,   0.1,  0.2,   0,    1,   .5, 0.000625, 1.0,  4,   30,   0,          296., 460.977, 100}
+{13GALIL_TEST:,  pm4, "13GALIL_TEST:DAC_DETR:Done NPP NMS",  "13GALIL_TEST:pm4DVAL PP MS",       "13GALIL_TEST:DAC_DETR:Readback.H NPP NMS",         "13GALIL_TEST:DAC_DETR:Stop PP MS",         "S-D distance",    mm,  Pos,  5.,   0.1,  0.2,   0,    1,   .5, 0.000625, 1.0,  4,   30,   0,           1.0,   1.0, 1}
+{13GALIL_TEST:,  pm5, "13GALIL_TEST:DAC_DETR:Done NPP NMS",  "13GALIL_TEST:pm5DVAL PP MS",       "13GALIL_TEST:DAC_DETR:Readback.I NPP NMS",         "13GALIL_TEST:DAC_DETR:Stop PP MS",         "X offset",        mm,  Pos,  5.,   0.1,  0.2,   0,    1,   .5, 0.000625, 1.0,  4,   30,   0,           1.0,   1.0, 1}
+}
+
+# Detector X translation and yaw sum/diff
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,                  T,           SUM,  DIFF,    M1DRV,      M1RBV,    M2DRV,      M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13GALIL_TEST:, DAC_DETX:,        pm1,  pm2,    m1.VAL,     m1.RBV,   m2.VAL,     m2.RBV,  m1.STOP,  m1.DMOV,   m2.STOP, m2.DMOV,     3}
+}
+
+# Detector theta and radius
+file "$(CARS)/db/IDD_DAC_detector.template"
+{
+pattern
+{P,                  T,          PROF,       T2,   SD,  XO,  USX,  PUSX, DSX, PDSX,  Z,  PZ  NELM, PREC}
+{13GALIL_TEST:, DAC_DETR:, "Galil1:Prof1:"  pm3,  pm4, pm5,   m1,    M1,  m2,   M2,  m3, M3, 2000,    3}
+}
+
