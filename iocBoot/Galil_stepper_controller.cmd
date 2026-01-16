@@ -18,6 +18,13 @@
 # Create Galil controller
 GalilCreateController($(PORT), $(IPADDR), 20)
 
+# GalilAddCode command parameters are:
+# Add custom code to generated code
+# 1. char *portName Asyn port for controller
+# 2. int section = code section to add custom code into 0 = card code, 1 = thread code, 2 = limits code, 3 = digital code
+# 3. char *code_file custom code file
+GalilAddCode("$(PORT)", 0, "init_$(PORT).dmc")
+
 # GalilCreateAxis command parameters are:
 #
 # 1. char *portName Asyn port for controller
@@ -62,14 +69,14 @@ GalilCreateCSAxes("$(PORT)")
 # 1. char *portName Asyn port for controller
 # 2. int section = code section to add custom code into 0 = card code, 1 = thread code, 2 = limits code, 3 = digital code
 # 3. char *code_file custom code file
-#GalilAddCode("Galil", 1, "customcode.dmc")
+#GalilAddCode("$(PORT)", 1, "customcode.dmc")
 
 # GalilReplaceHomeCode command parameters are:
 # Replace generated axis home code with custom code
 # 1. char *portName Asyn port for controller
 # 2. char *Axis A-H
 # 3. char *code_file custom code file
-#GalilReplaceHomeCode("Galil", "C", "customhoming.dmc")
+#GalilReplaceHomeCode("$(PORT)", "C", "customhoming.dmc")
 
 # GalilStartController command parameters are:
 #
@@ -213,3 +220,6 @@ dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M
 dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=7, PORT=$(PORT), ADDR=6, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
 dbLoadRecords("$(GALIL)/db/galil_profileMoveAxis.template", "P=$(P), R=Prof1:, M=8, PORT=$(PORT), ADDR=7, NREADBACK=2000, ZNAM=Relative, ONAM=Absolute, PREC=4, TIMEOUT=1")
 
+# Amplifier status
+dbLoadRecords("$(GALIL)/db/galil_quadAmpStatus.template", "P=$(P), AMP=AD, PORT=$(PORT), ADDR=0")
+dbLoadRecords("$(GALIL)/db/galil_quadAmpStatus.template", "P=$(P), AMP=EH, PORT=$(PORT), ADDR=1")
