@@ -3,24 +3,25 @@
 # It uses 3 real motors 
 #  $(P)$(USX) Upstream X drive
 #  $(P)$(DSX) Downstream X drive
-#  $(R)$(Z)   Z drive 
-# it will move two soft motors 
-# $(P)$(R)     Detector to sample distance
-# $(P)$(THETA) Detector angle relative to direct beam position
+#  $(P)$(Z)   Z drive 
+# it will move three soft motors 
+# $(P)$(SD)  Detector to sample distance
+# $(P)$(XO)  X offset from the direct beam
+# $(P)$(T2)  Detector two-theta angle relative to direct beam position
 # It moves the detector on a circle of radius R and angle theta so that the
 # center of the detector always points toward the sample, i.e. the
 # detector surface is normal to the vector from the detector center to the sample.
 #
 # It uses the following geometric constants:
-# $(P)$(THETA)C1 = distance between upstream and downstream pivot points
-# $(P)$(THETA)C2 = distance from the upstream pivot point to the front surface of the detector
-#
+# $(P)$(T2)C1 = Z1 = Z distance from the sample to the upstream pivot point
+# $(P)$(T2)C2 =  R = Z distance from the upstream pivot point to the downstream V pivot point
+# $(P)$(T2)C3 =  B = X distance from the downstream pivot point to the center of the Z stage
+
 # It assumes the X and Z motor user coordinate motor positions are defined so that
-# when the detector center is aligned with the direct beam:
-# USX =0
-# DSX = 0 
-# Z = R
-# as follows:
+# when the detector center is aligned with the direct beam and is over the upsteam pivot point:
+# USX = X0
+# DSX = X0
+# Z = Z1
 
 # These records are where the soft motors write their output.
 # They are needed because writing to a transform record field does not
@@ -28,27 +29,31 @@
 # We use forward links to the transform record (rather than making the INPA and
 # INPB fields of the transform record CP) so that the scan record waits 
 # for the motors to move.
-grecord(ao,"$(P)$(R)DVAL") {
+record(ao,"$(P)$(SD)DVAL") {
 	field(FLNK, "$(P)$(T)Drive")
 }
-grecord(ao,"$(P)$(THETA)DVAL") {
+record(ao,"$(P)$(T2)DVAL") {
+	field(FLNK, "$(P)$(T)Drive")
+}
+record(ao,"$(P)$(XO)DVAL") {
 	field(FLNK, "$(P)$(T)Drive")
 }
 
-
-# This record is processed whenever the soft motor records R or Theta write new values 
+# This record is processed whenever the soft motor records SD, 2Theta, or XO write new values 
 record(transform,"$(P)$(T)Drive") {
-    field(INPA, "$(P)$(R).DVAL NPP NMS")
-    field(INPB, "$(P)$(THETA).DVAL NPP NMS")
-    field(INPC, "$(P)$(THETA)C1.VAL NPP NMS")
-    field(INPD, "$(P)$(THETA)C2.VAL NPP NMS")
-    field(CLCE, "B*D2R")
-    field(CLCF, "(A+D)*TAN(E)")
-    field(OUTF, "$(P)$(USX).VAL PP MS")
-    field(CLCG, "F+C*TAN(E)")
-    field(OUTG, "$(P)$(DSX).VAL PP MS")
-    field(CLCH, "A-D*(1-COS(E))")
-    field(OUTH, "$(P)$(Z).VAL PP MS")
+    field(INPA, "$(P)$(SD).DVAL")
+    field(INPB, "$(P)$(T2).DVAL")
+    field(INPC, "$(P)$(XO).DVAL")
+    field(INPD, "$(P)$(T2)C1.VAL") # Z1
+    field(INPE, "$(P)$(T2)C2.VAL") # R
+    field(INPF, "$(P)$(T2)C3.VAL") # B
+    field(CLCG, "B*D2R")           # T2 in radians
+    field(CLCH, "C+D*TAN(G)")
+    field(OUTH, "$(P)$(USX).VAL PP MS")
+    field(CLCI, "SIN(G+ASIN(F/E))*E-F+C+D*TAN(G)")
+    field(OUTI, "$(P)$(DSX).VAL PP MS")
+    field(CLCJ, "A-D/COS(G)")
+    field(OUTJ, "$(P)$(Z).VAL PP MS")
     field(PREC,"$(PREC)")
 }
 
@@ -56,32 +61,226 @@ record(transform,"$(P)$(T)Drive") {
 # processes whenever the readbacks of the real motors change, or whenever
 # one of the the geometry constants changes.
 record(transform,"$(P)$(T)Readback") {
-    field(INPA, "$(P)$(USX).RBV CP MS")
-    field(INPB, "$(P)$(DSX).RBV CP MS")
-    field(INPC, "$(P)$(THETA)C1.VAL CP MS")
-    field(INPD, "$(P)$(THETA)C2.VAL CP MS")
-    field(INPE, "$(P)$(Z).RBV CP MS")
-    field(CLCF, "ATAN((B-A)/C)")
-    field(CLCG, "E+D*(1-COS(F))")
-    field(CLCH, "F*R2D")
+    field(INPA, "$(P)$(USX).RBV CP MS")        # X1
+    field(INPB, "$(P)$(DSX).RBV CP MS")        # X2
+    field(INPC, "$(P)$(Z).RBV CP MS")          # ZD
+    field(INPD, "$(P)$(T2)C1.VAL")  # Z1
+    field(INPE, "$(P)$(T2)C2.VAL")  # R
+    field(INPF, "$(P)$(T2)C3.VAL")  # B
+    field(CLCG, "ASIN((F+(B-A))/E)-ASIN(F/E)") # T2
+    field(CLCH, "D/COS(G)+C")                  # SD
+    field(CLCI, "A-D*TAN(G)")                  # XO
+    field(CLCJ, "G*R2D")
     field(IVLA,"Do Nothing")
     field(PREC,"$(PREC)")
 }
 
 # This record processes if either of the soft motor STOP fields is set.
 record(dfanout,"$(P)$(T)Stop") {
-        field(VAL,"1")
-        field(OUTA,"$(P)$(USX).STOP PP MS")
-        field(OUTB,"$(P)$(DSX).STOP PP MS")
-        field(OUTC,"$(P)$(Z).STOP PP MS")
+    field(VAL,"1")
+    field(OUTA,"$(P)$(USX).STOP PP MS")
+    field(OUTB,"$(P)$(DSX).STOP PP MS")
+    field(OUTC,"$(P)$(Z).STOP PP MS")
 }
 
 # This record computes whether the compound motor is done moving.  
 # It goes to 1 when both real motors are done moving.
 # positions of the real motors.
 record(calc,"$(P)$(T)Done") {
-        field(INPA,"$(P)$(USX).DMOV CP MS")
-        field(INPB,"$(P)$(DSX).DMOV CP MS")
-        field(INPC,"$(P)$(Z).DMOV CP MS")
-        field(CALC,"A & B & C")
+    field(INPA,"$(P)$(USX).DMOV CP MS")
+    field(INPB,"$(P)$(DSX).DMOV CP MS")
+    field(INPC,"$(P)$(Z).DMOV CP MS")
+    field(CALC,"A & B & C")
+}
+
+# The records below perform a trajectory scan of 2-theta using acalcout records
+# to compute the positions of the real motors.
+
+record(ao, "$(P)$(T)T2Start") {
+    field(VAL,  "0")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)$(T)T2End") {
+    field(VAL, "30")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)$(T)SDStart") {
+    field(VAL,  "180")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)$(T)SDEnd") {
+    field(VAL, "180")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)$(T)XOStart") {
+    field(VAL,  "0")
+    field(PREC, "3")
+}
+
+record(ao, "$(P)$(T)XOEnd") {
+    field(VAL, "0")
+    field(PREC, "3")
+}
+
+record(longout, "$(P)$(T)NumPoints") {
+    field(PINI, "YES")
+    field(VAL, "200")
+    field(DRVL, "2")
+    field(OUT,  "$(P)$(PROF)NumPoints PP")
+    field(FLNK, "$(P)$(T)TimeCalc")
+}
+
+record(ao, "$(P)$(T)TotalTime") {
+    field(PINI, "YES")
+    field(VAL, "20.")
+    field(PREC, "1")
+    field(FLNK, "$(P)$(T)TimeCalc")
+}
+
+record(calcout, "$(P)$(T)TimeCalc") {
+    field(INPA, "$(P)$(T)TotalTime")
+    field(INPB, "$(P)$(T)NumPoints")
+    field(CALC, "A/B")
+    field(OUT,  "$(P)$(PROF)FixedTime PP")
+}
+
+# Override default for number of points
+record(longout, "$(P)$(PROF)NumPoints") {
+    field(VAL, "200")
+}
+
+record(busy, "$(P)$(T)Execute") {
+    field(ZNAM, "Done")
+    field(ONAM, "Execute")
+    field(FLNK, "$(P)$(T)ExecuteSeq1")
+}
+
+record(sseq, "$(P)$(T)ExecuteSeq1") {
+    field(PINI, "YES")
+    field(DOL1, "1")
+    field(LNK1, "$(P)$(PROF)$(PUSX)UseAxis PP")
+    field(DOL2, "1")
+    field(LNK2, "$(P)$(PROF)$(PUSX)MoveMode PP")
+    field(DOL3, "1")
+    field(LNK3, "$(P)$(PROF)$(PDSX)UseAxis PP")
+    field(DOL4, "1")
+    field(LNK4, "$(P)$(PROF)$(PDSX)MoveMode PP")
+    field(DOL5, "1")
+    field(LNK5, "$(P)$(PROF)$(PZ)UseAxis PP")
+    field(DOL6, "1")
+    field(LNK6, "$(P)$(PROF)$(PZ)MoveMode PP")
+    field(DOL7, "0")
+    field(LNK7, "$(P)$(PROF)TimeMode PP")
+    field(DOL8, "0")
+    field(LNK8, "$(P)$(PROF)PROFILETYPE_CMD PP")
+    field(FLNK, "$(P)$(T)ExecuteSeq2")
+}
+
+record(sseq, "$(P)$(T)ExecuteSeq2") {
+    field(LNK1,  "$(P)$(T)InitProfile CA")
+    field(WAIT1, "Wait")
+    field(DOL2,  "$(P)$(T)T2Start")
+    field(LNK2,  "$(P)$(T2) CA")
+    field(WAIT2, "Wait")
+    field(DOL3,  "$(P)$(T)SDStart")
+    field(LNK3,  "$(P)$(SD) CA")
+    field(WAIT3, "Wait")
+    field(DOL4,  "$(P)$(T)XOStart")
+    field(LNK4,  "$(P)$(XO) CA")
+    field(WAIT4, "Wait")
+    field(FLNK,  "$(P)$(T)ExecuteSeq3")
+}
+
+record(sseq, "$(P)$(T)ExecuteSeq3") {
+    field(LNK1, "$(P)$(T)ComputeT2 PP")
+    field(WAIT1, "Wait")
+    field(LNK2, "$(P)$(T)ComputeSD PP")
+    field(WAIT2, "Wait")
+    field(LNK3, "$(P)$(T)ComputeXO PP")
+    field(WAIT3, "Wait")
+    field(LNK4, "$(P)$(T)ComputeXu PP")
+    field(WAIT4, "Wait")
+    field(LNK5, "$(P)$(T)ComputeXd PP")
+    field(WAIT5, "Wait")
+    field(LNK6, "$(P)$(T)ComputeZ PP")
+    field(WAIT6, "Wait")
+    field(LNK7, "$(P)$(PROF)Build PP")
+    field(WAIT7, "Wait")
+    field(LNK8, "$(P)$(PROF)Execute CA")
+    field(WAIT8, "Wait")
+}
+
+record(dfanout, "$(P)$(T)NuseFanout") {
+    field(DOL,  "$(P)$(PROF)NumPoints CP")
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(P)$(T)ComputeT2.NUSE PP")
+    field(OUTB, "$(P)$(T)ComputeSD.NUSE PP")
+    field(OUTC, "$(P)$(T)ComputeXO.NUSE PP")
+    field(OUTD, "$(P)$(T)ComputeXu.NUSE PP")
+    field(OUTE, "$(P)$(T)ComputeXd.NUSE PP")
+    field(OUTF, "$(P)$(T)ComputeZ.NUSE PP")
+}
+
+record(acalcout, "$(P)$(T)ComputeT2") {
+    field(INPA, "$(P)$(T)T2Start")
+    field(INPB, "$(P)$(T)T2End")
+    field(INPC, "$(P)$(PROF)NumPoints")
+    field(CALC, "(A+IX*(B-A)/(C-1))*D2R")
+    field(NELM, "$(NELM)")
+}
+
+record(acalcout, "$(P)$(T)ComputeSD") {
+    field(INPA, "$(P)$(T)SDStart")
+    field(INPB, "$(P)$(T)SDEnd")
+    field(INPC, "$(P)$(PROF)NumPoints")
+    field(CALC, "A+IX*(B-A)/(C-1)")
+    field(NELM, "$(NELM)")
+}
+
+record(acalcout, "$(P)$(T)ComputeXO") {
+    field(INPA, "$(P)$(T)XOStart")
+    field(INPB, "$(P)$(T)XOEnd")
+    field(INPC, "$(P)$(PROF)NumPoints")
+    field(CALC, "A+IX*(B-A)/(C-1)")
+    field(NELM, "$(NELM)")
+}
+
+record(acalcout, "$(P)$(T)ComputeXu") {
+    field(INAA, "$(P)$(T)ComputeT2.AVAL")
+    field(INBB, "$(P)$(T)ComputeSD.AVAL")
+    field(INCC, "$(P)$(T)ComputeXO.AVAL")
+    field(INPD, "$(P)$(T2)C1.VAL") # Z1
+    field(INPE, "$(P)$(T2)C2.VAL") # R
+    field(INPF, "$(P)$(T2)C3.VAL") # B
+    field(CALC, "CC+D*TAN(AA)")
+    field(OUT,  "$(P)$(PROF)$(PUSX)Positions PP")
+    field(NELM, "$(NELM)")
+}
+
+record(acalcout, "$(P)$(T)ComputeXd") {
+    field(INAA, "$(P)$(T)ComputeT2.AVAL")
+    field(INBB, "$(P)$(T)ComputeSD.AVAL")
+    field(INCC, "$(P)$(T)ComputeXO.AVAL")
+    field(INPD, "$(P)$(T2)C1.VAL") # Z1
+    field(INPE, "$(P)$(T2)C2.VAL") # R
+    field(INPF, "$(P)$(T2)C3.VAL") # B
+    field(CALC, "SIN(AA+ASIN(F/E))*E-F+CC+D*TAN(AA)")
+    field(OUT,  "$(P)$(PROF)$(PDSX)Positions PP")
+    field(NELM, "$(NELM)")
+}
+
+record(acalcout, "$(P)$(T)ComputeZ") {
+    field(INAA, "$(P)$(T)ComputeT2.AVAL")
+    field(INBB, "$(P)$(T)ComputeSD.AVAL")
+    field(INCC, "$(P)$(T)ComputeXO.AVAL")
+    field(INPD, "$(P)$(T2)C1.VAL") # Z1
+    field(INPE, "$(P)$(T2)C2.VAL") # R
+    field(INPF, "$(P)$(T2)C3.VAL") # B
+    field(CALC, "BB-D/COS(AA)")
+    field(OUT,  "$(P)$(PROF)$(PZ)Positions PP")
+    field(NELM, "$(NELM)")
 }
