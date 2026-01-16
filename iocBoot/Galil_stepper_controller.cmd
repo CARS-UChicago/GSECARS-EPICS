@@ -2,6 +2,7 @@
 # Macros:
 # P       Prefix for this controller, e.g. 13BMC:Galil1:
 # PORT    asyn port name, e.g. GALIL1
+# IPADDR  IP address of this controller
 # M1-M8   Motor names, e.g, m1, m2, m3, m4, m5, m6, m7, m8
 
 ## Uncomment to see every command sent to galil
