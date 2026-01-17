@@ -1,0 +1,1040 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDD_PulsedControl_user.adl"
+	version=030117
+}
+display {
+	object {
+		x=1157
+		y=1458
+		width=420
+		height=370
+	}
+	clr=14
+	bclr=53
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=1
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=16
+		y=48
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="DOWN-STREAM"
+}
+rectangle {
+	object {
+		x=65
+		y=104
+		width=3
+		height=225
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=67
+		y=328
+		width=280
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+"related display" {
+	object {
+		x=327
+		y=136
+		width=40
+		height=14
+	}
+	display[0] {
+		label="Fiber Laser"
+		name="IPG_YLR_laser_up.adl"
+		args="P=13IDD:, R=Laser1"
+	}
+	clr=54
+	bclr=16
+	label="-more"
+}
+"related display" {
+	object {
+		x=46
+		y=136
+		width=40
+		height=14
+	}
+	display[0] {
+		label="Fiber Laser"
+		name="IPG_YLR_laser_dn.adl"
+		args="P=13IDD:, R=Laser2"
+	}
+	clr=54
+	bclr=16
+	label="-more"
+}
+"text update" {
+	object {
+		x=325
+		y=76
+		width=35
+		height=14
+	}
+	monitor {
+		chan="13IDD:US_LaserPower.VAL"
+		clr=60
+		bclr=53
+	}
+	align="horiz. right"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=100
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=39
+		y=76
+		width=35
+		height=14
+	}
+	monitor {
+		chan="13IDD:DS_LaserPower.VAL"
+		clr=60
+		bclr=53
+	}
+	align="horiz. right"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=100
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=365
+		y=76
+		width=10
+		height=14
+	}
+	"basic attribute" {
+		clr=60
+	}
+	textix="%"
+}
+text {
+	object {
+		x=80
+		y=76
+		width=10
+		height=14
+	}
+	"basic attribute" {
+		clr=60
+	}
+	textix="%"
+}
+meter {
+	object {
+		x=164
+		y=94
+		width=91
+		height=80
+	}
+	monitor {
+		chan="13IDD:pm12.RBV"
+		clr=50
+		bclr=42
+	}
+	label="channel"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=45
+		precSrc="default"
+		precDefault=1
+	}
+}
+composite {
+	object {
+		x=156
+		y=323
+		width=110
+		height=14
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=156
+				y=323
+				width=110
+				height=14
+			}
+			control {
+				chan="13IDD:LaserShutter"
+				clr=14
+				bclr=15
+			}
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:LaserShutter.VAL"
+	}
+}
+composite {
+	object {
+		x=156
+		y=323
+		width=110
+		height=14
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=156
+				y=323
+				width=110
+				height=14
+			}
+			control {
+				chan="13IDD:LaserShutter"
+				clr=14
+				bclr=23
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:LaserShutter.VAL"
+	}
+}
+composite {
+	object {
+		x=33
+		y=94
+		width=65
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=33
+				y=94
+				width=65
+				height=30
+			}
+			control {
+				chan="13IDD:LaserPLC:L2EmissionRequest"
+				clr=14
+				bclr=22
+			}
+			label="ON"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:LaserPLC:L2EmissionRequest"
+	}
+}
+composite {
+	object {
+		x=33
+		y=94
+		width=65
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=33
+				y=94
+				width=65
+				height=30
+			}
+			control {
+				chan="13IDD:LaserPLC:L2EmissionRequest"
+				clr=22
+				bclr=14
+			}
+			label="OFF"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:LaserPLC:L2EmissionRequest"
+	}
+}
+composite {
+	object {
+		x=314
+		y=94
+		width=65
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=314
+				y=94
+				width=65
+				height=30
+			}
+			control {
+				chan="13IDD:LaserPLC:L1EmissionRequest"
+				clr=22
+				bclr=14
+			}
+			label="OFF"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:LaserPLC:L1EmissionRequest"
+	}
+}
+composite {
+	object {
+		x=314
+		y=94
+		width=65
+		height=30
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=314
+				y=94
+				width=65
+				height=30
+			}
+			control {
+				chan="13IDD:LaserPLC:L1EmissionRequest"
+				clr=14
+				bclr=22
+			}
+			label="ON"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:LaserPLC:L1EmissionRequest"
+	}
+}
+text {
+	object {
+		x=302
+		y=48
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="UP-STREAM"
+}
+"message button" {
+	object {
+		x=114
+		y=110
+		width=40
+		height=20
+	}
+	control {
+		chan="13IDD:pm12.VAL"
+		clr=50
+		bclr=36
+	}
+	label="Zero"
+	press_msg="0."
+}
+"message button" {
+	object {
+		x=266
+		y=110
+		width=40
+		height=20
+	}
+	control {
+		chan="13IDD:pm12.VAL"
+		clr=20
+		bclr=30
+	}
+	label="Max"
+	press_msg="45"
+}
+"message button" {
+	object {
+		x=160
+		y=251
+		width=100
+		height=22
+	}
+	control {
+		chan="13IDD:pm12.TWR"
+		clr=50
+		bclr=41
+	}
+	label="Both Down"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=161
+		y=202
+		width=100
+		height=22
+	}
+	control {
+		chan="13IDD:pm12.TWF"
+		clr=22
+		bclr=41
+	}
+	label="Both UP"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=174
+		y=224
+		width=70
+		height=25
+	}
+	control {
+		chan="13IDD:pm12.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=114
+		y=226
+		width=60
+		height=21
+	}
+	control {
+		chan="13IDD:pm13.TWR"
+		clr=14
+		bclr=36
+	}
+	label="Split DS"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=246
+		y=226
+		width=60
+		height=21
+	}
+	control {
+		chan="13IDD:pm13.TWF"
+		clr=14
+		bclr=36
+	}
+	label="split US"
+	press_msg="1"
+}
+"text entry" {
+	object {
+		x=323
+		y=203
+		width=44
+		height=20
+	}
+	control {
+		chan="13IDD:m71.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=324
+		y=223
+		width=44
+		height=18
+	}
+	control {
+		chan="13IDD:m71.TWR"
+		clr=50
+		bclr=42
+	}
+	label="-"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=324
+		y=188
+		width=44
+		height=18
+	}
+	control {
+		chan="13IDD:m71.TWF"
+		clr=20
+		bclr=42
+	}
+	label="+"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=325
+		y=173
+		width=45
+		height=15
+	}
+	monitor {
+		chan="13IDD:m71.RBV"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=41
+		y=203
+		width=44
+		height=20
+	}
+	control {
+		chan="13IDD:m72.TWV"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=42
+		y=223
+		width=44
+		height=18
+	}
+	control {
+		chan="13IDD:m72.TWR"
+		clr=51
+		bclr=42
+	}
+	label="-"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=42
+		y=188
+		width=44
+		height=18
+	}
+	control {
+		chan="13IDD:m72.TWF"
+		clr=20
+		bclr=42
+	}
+	label="+"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=42
+		y=173
+		width=45
+		height=15
+	}
+	monitor {
+		chan="13IDD:m72.RBV"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=171
+		y=288
+		width=80
+		height=20
+	}
+	control {
+		chan="13IDD:pm13.VAL"
+		clr=1
+		bclr=54
+	}
+	label="Equalize"
+	press_msg="0"
+}
+composite {
+	object {
+		x=336
+		y=322
+		width=21
+		height=15
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=336
+				y=322
+				width=21
+				height=15
+			}
+			control {
+				chan="13IDD:US_AlignSlide"
+				clr=14
+				bclr=15
+			}
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:US_AlignSlide"
+	}
+}
+composite {
+	object {
+		x=336
+		y=322
+		width=21
+		height=15
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=336
+				y=322
+				width=21
+				height=15
+			}
+			control {
+				chan="13IDD:US_AlignSlide"
+				clr=14
+				bclr=23
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:US_AlignSlide"
+	}
+}
+composite {
+	object {
+		x=57
+		y=320
+		width=21
+		height=15
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=57
+				y=320
+				width=21
+				height=15
+			}
+			control {
+				chan="13IDD:DS_AlignSlide"
+				clr=14
+				bclr=23
+			}
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:DS_AlignSlide"
+	}
+}
+composite {
+	object {
+		x=57
+		y=320
+		width=21
+		height=15
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=57
+				y=320
+				width=21
+				height=15
+			}
+			control {
+				chan="13IDD:DS_AlignSlide"
+				clr=14
+				bclr=15
+			}
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:DS_AlignSlide"
+	}
+}
+text {
+	object {
+		x=115
+		y=9
+		width=100
+		height=18
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A!=0&&B!=0"
+		chan="13IDD:Laser1Modulation"
+		chanB="13IDD:Laser2Modulation"
+	}
+	textix="Pulsed Mode"
+}
+text {
+	object {
+		x=4
+		y=5
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Now using:"
+}
+text {
+	object {
+		x=115
+		y=9
+		width=100
+		height=18
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A!=0&&B=0ORA=0&&B!=0"
+		chan="13IDD:Laser1Modulation"
+		chanB="13IDD:Laser2Modulation"
+	}
+	textix="Mixed Mode"
+}
+text {
+	object {
+		x=114
+		y=9
+		width=130
+		height=18
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&&B=0"
+		chan="13IDD:Laser1Modulation"
+		chanB="13IDD:Laser2Modulation"
+	}
+	textix="Continuous Mode"
+}
+text {
+	object {
+		x=155
+		y=65
+		width=110
+		height=22
+	}
+	"basic attribute" {
+		clr=50
+	}
+	textix="Attenuation"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=344
+		y=104
+		width=3
+		height=225
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=140
+		y=243
+		width=3
+		height=55
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=276
+		y=243
+		width=3
+		height=55
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=142
+		y=295
+		width=136
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+"related display" {
+	object {
+		x=355
+		y=6
+		width=60
+		height=15
+	}
+	display[0] {
+		label="BNC_Gates"
+		name="BNC_505.adl"
+		args="P=13IDD:, R=BNC1:, N=1"
+	}
+	clr=54
+	bclr=51
+	label="-BNC Control"
+}
+"message button" {
+	object {
+		x=160
+		y=181
+		width=30
+		height=15
+	}
+	control {
+		chan="13IDD:pm12.VAL"
+		clr=14
+		bclr=52
+	}
+	label="1/4"
+	press_msg="11.25"
+}
+"message button" {
+	object {
+		x=195
+		y=181
+		width=30
+		height=15
+	}
+	control {
+		chan="13IDD:pm12.VAL"
+		clr=14
+		bclr=52
+	}
+	label="1/2"
+	press_msg="22.5"
+}
+"message button" {
+	object {
+		x=230
+		y=181
+		width=30
+		height=15
+	}
+	control {
+		chan="13IDD:pm12.VAL"
+		clr=14
+		bclr=52
+	}
+	label="3/4"
+	press_msg="33.75"
+}
+text {
+	object {
+		x=140
+		y=180
+		width=10
+		height=19
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="%"
+}
+"text update" {
+	object {
+		x=265
+		y=180
+		width=35
+		height=19
+	}
+	monitor {
+		chan="13IDD:userArrayCalc13.VAL"
+		clr=30
+		bclr=53
+	}
+	align="horiz. right"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=100
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=306
+		y=180
+		width=10
+		height=19
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="%"
+}
+"text update" {
+	object {
+		x=100
+		y=180
+		width=35
+		height=19
+	}
+	monitor {
+		chan="13IDD:userArrayCalc14.VAL"
+		clr=30
+		bclr=53
+	}
+	align="horiz. right"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=100
+		precSrc="default"
+		precDefault=1
+	}
+}
