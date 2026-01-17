@@ -1,6 +1,6 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDD_dac_Eiger9M.adl"
+	name="\\corvette\people_rw\epics\support\CARS\CARSApp\op\adl\13IDD_dac_Eiger9M.adl"
 	version=030109
 }
 display {
@@ -4865,99 +4865,24 @@ text {
 	}
 	textix="Last File:"
 }
-composite {
-	object {
-		x=1507
-		y=909
-		width=59
-		height=24
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1507
-				y=909
-				width=59
-				height=24
-			}
-			control {
-				chan="13IDD:USBCTR:Bo1"
-				clr=14
-				bclr=15
-			}
-			label="10%"
-			press_msg="0"
-		}
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="13IDD:USBCTR:Bo1"
-	}
-}
-composite {
+"message button" {
 	object {
 		x=1507
 		y=935
 		width=59
 		height=24
 	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1507
-				y=935
-				width=59
-				height=24
-			}
-			control {
-				chan="13IDD:USBCTR:Bo2"
-				clr=14
-				bclr=15
-			}
-			label="2%"
-			press_msg="0"
-		}
-	}
-	"dynamic attribute" {
-		vis="if not zero"
+	control {
 		chan="13IDD:USBCTR:Bo2"
+		clr=14
+		bclr=15
 	}
+	label="2%"
+	press_msg="0"
 }
 composite {
 	object {
-		x=1507
-		y=909
-		width=59
-		height=24
-	}
-	"composite name"=""
-	children {
-		"message button" {
-			object {
-				x=1507
-				y=909
-				width=59
-				height=24
-			}
-			control {
-				chan="13IDD:USBCTR:Bo1"
-				clr=0
-				bclr=21
-			}
-			label="10 %"
-			press_msg="1"
-		}
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="13IDD:USBCTR:Bo1"
-	}
-}
-composite {
-	object {
-		x=1507
+		x=1506
 		y=935
 		width=59
 		height=24
@@ -4966,7 +4891,7 @@ composite {
 	children {
 		"message button" {
 			object {
-				x=1507
+				x=1506
 				y=935
 				width=59
 				height=24
@@ -9568,5 +9493,65 @@ composite {
 	"dynamic attribute" {
 		vis="if zero"
 		chan="13IDDLF1:cam1:TriggerMode_RBV"
+	}
+}
+composite {
+	object {
+		x=1507
+		y=909
+		width=59
+		height=24
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1507
+				y=909
+				width=59
+				height=24
+			}
+			control {
+				chan="13IDD:USBCTR:Bo5"
+				clr=14
+				bclr=15
+			}
+			label="10%"
+			press_msg="0"
+		}
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDD:USBCTR:Bo5"
+	}
+}
+composite {
+	object {
+		x=1506
+		y=909
+		width=59
+		height=24
+	}
+	"composite name"=""
+	children {
+		"message button" {
+			object {
+				x=1506
+				y=909
+				width=59
+				height=24
+			}
+			control {
+				chan="13IDD:USBCTR:Bo5"
+				clr=0
+				bclr=21
+			}
+			label="10 %"
+			press_msg="1"
+		}
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDD:USBCTR:Bo5"
 	}
 }
