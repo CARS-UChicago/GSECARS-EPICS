@@ -1,0 +1,1111 @@
+
+file {
+	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC_Beam.adl"
+	version=030109
+}
+display {
+	object {
+		x=21
+		y=603
+		width=500
+		height=332
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=225
+		y=5
+		width=50
+		height=21
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13IDC Beam & Detector Status"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=429
+		y=120
+		width=55
+		height=16
+	}
+	"basic attribute" {
+		clr=0
+	}
+}
+"related display" {
+	object {
+		x=13
+		y=40
+		width=150
+		height=25
+	}
+	display[0] {
+		label="Pilatus 100K 13IDC"
+		name="pilatusDetector.adl"
+		args="P=13IDC-PIL:, R=cam1:"
+	}
+	display[1] {
+		args=" "
+	}
+	clr=14
+	bclr=4
+	label="-Pilatus           "
+}
+"message button" {
+	object {
+		x=357
+		y=73
+		width=50
+		height=26
+	}
+	control {
+		chan="13IDC:ArmAtten4"
+		clr=14
+		bclr=55
+	}
+	label="Out"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=435
+		y=73
+		width=50
+		height=26
+	}
+	control {
+		chan="13IDC:ArmAtten4"
+		clr=14
+		bclr=55
+	}
+	label="In"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=357
+		y=156
+		width=50
+		height=26
+	}
+	control {
+		chan="13IDC:USB1808:Bo1"
+		clr=14
+		bclr=55
+	}
+	label="Open"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=435
+		y=156
+		width=50
+		height=26
+	}
+	control {
+		chan="13IDC:USB1808:Bo1"
+		clr=14
+		bclr=55
+	}
+	label="Close"
+	press_msg="1"
+}
+rectangle {
+	object {
+		x=5
+		y=106
+		width=345
+		height=57
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=30
+		width=488
+		height=74
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=242
+		y=62
+		width=60
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Lead"
+}
+text {
+	object {
+		x=242
+		y=35
+		width=72
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Detector"
+}
+"message button" {
+	object {
+		x=357
+		y=236
+		width=50
+		height=26
+	}
+	control {
+		chan="13IDA:OpenCDShutter.PROC"
+		clr=14
+		bclr=55
+	}
+	label="Open"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=435
+		y=236
+		width=50
+		height=26
+	}
+	control {
+		chan="13IDA:CloseCDShutter.PROC"
+		clr=14
+		bclr=55
+	}
+	label="Close"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=429
+		y=215
+		width=55
+		height=16
+	}
+	monitor {
+		chan="13IDA:eps_mbbi26"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=357
+		y=215
+		width=60
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Shutter"
+}
+rectangle {
+	object {
+		x=353
+		y=188
+		width=140
+		height=81
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=357
+		y=193
+		width=60
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IDC Station"
+}
+"text update" {
+	object {
+		x=429
+		y=305
+		width=55
+		height=16
+	}
+	monitor {
+		chan="13IDA:eps_mbbi25"
+		clr=14
+		bclr=0
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=357
+		y=305
+		width=60
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status"
+}
+rectangle {
+	object {
+		x=353
+		y=273
+		width=140
+		height=55
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=357
+		y=283
+		width=60
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FOE Shutter"
+}
+composite {
+	object {
+		x=357
+		y=113
+		width=72
+		height=38
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=357
+				y=135
+				width=60
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Shutter"
+		}
+		text {
+			object {
+				x=357
+				y=113
+				width=72
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Bench"
+		}
+	}
+}
+rectangle {
+	object {
+		x=23
+		y=68
+		width=140
+		height=30
+	}
+	"basic attribute" {
+		clr=15
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<=500000"
+		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+	}
+}
+text {
+	object {
+		x=28
+		y=75
+		width=45
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Max = "
+}
+rectangle {
+	object {
+		x=23
+		y=68
+		width=140
+		height=30
+	}
+	"basic attribute" {
+		clr=20
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>=1000000"
+		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+	}
+}
+"text update" {
+	object {
+		x=71
+		y=75
+		width=75
+		height=16
+	}
+	monitor {
+		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=429
+		y=120
+		width=55
+		height=16
+	}
+	"basic attribute" {
+		clr=54
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="13IDC:USB1808:Bi1.VAL"
+	}
+	textix="Open"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=429
+		y=120
+		width=55
+		height=16
+	}
+	"basic attribute" {
+		clr=54
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="13IDC:USB1808:Bi1.VAL"
+	}
+	textix="Closed"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=350
+		y=35
+		width=140
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=350
+				y=35
+				width=140
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+				width=2
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDC:ArmAtten4_Status.VAL"
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=35
+				width=140
+				height=30
+			}
+			"basic attribute" {
+				clr=15
+				width=2
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13IDC:ArmAtten4_Status.VAL"
+			}
+		}
+		text {
+			object {
+				x=358
+				y=37
+				width=130
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDC:ArmAtten4_Status.VAL"
+			}
+			textix="Out-Danger!"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=358
+				y=37
+				width=130
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13IDC:ArmAtten4_Status.VAL"
+			}
+			textix="In-Safe!"
+			align="horiz. centered"
+		}
+	}
+}
+rectangle {
+	object {
+		x=353
+		y=106
+		width=140
+		height=79
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+"related display" {
+	object {
+		x=12
+		y=109
+		width=150
+		height=25
+	}
+	display[0] {
+		label="USB-1808X"
+		name="USB1808_module.adl"
+		args="P=13IDC:USB1808:,Ai=Ai,Ao=Ao,Bi=Bi,Bo=Bo,Bd=Bd,Ct=Counter,Enc=Encoder,Li=Li,Lo=Lo,Pg=PulseGen,Tg=Trig,Wd=WaveDig,Wg=WaveGen"
+	}
+	display[1] {
+		label="i0 Preamp #B1"
+		name="SR570.adl"
+		args=" P=13IDC:, A=B1"
+	}
+	display[2] {
+		label="i1 Preamp #B4"
+		name="SR570.adl"
+		args="P=13IDC:, A=B4"
+	}
+	clr=14
+	bclr=4
+	label="Ion Chambers        "
+}
+text {
+	object {
+		x=180
+		y=139
+		width=45
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="i1 = "
+}
+"text update" {
+	object {
+		x=221
+		y=139
+		width=70
+		height=16
+	}
+	monitor {
+		chan="13IDC:USB1808:Ai4"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=180
+		y=114
+		width=48
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="i0 = "
+}
+"text update" {
+	object {
+		x=221
+		y=114
+		width=70
+		height=16
+	}
+	monitor {
+		chan="13IDC:USB1808:Ai1"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=12
+		y=170
+		width=150
+		height=25
+	}
+	display[0] {
+		label="Filter"
+		name="filter_4_4_less.adl"
+		args="P=13IDC:, R=filter:"
+	}
+	display[1] {
+		args=" "
+	}
+	clr=14
+	bclr=4
+	label="-Filters           "
+}
+text {
+	object {
+		x=172
+		y=175
+		width=45
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Transmission = "
+}
+"text update" {
+	object {
+		x=293
+		y=175
+		width=50
+		height=16
+	}
+	monitor {
+		chan="13IDC:filter:Transmission"
+		clr=54
+		bclr=4
+	}
+	format="exponential"
+	limits {
+		precSrc="default"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=165
+		width=345
+		height=35
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+"related display" {
+	object {
+		x=8
+		y=275
+		width=90
+		height=25
+	}
+	display[0] {
+		label="13IDC Full"
+		name="13IDC.adl"
+	}
+	clr=14
+	bclr=4
+	label="-13IDC Full"
+}
+"text update" {
+	object {
+		x=285
+		y=310
+		width=45
+		height=16
+	}
+	monitor {
+		chan="S:SRcurrentAI.VAL"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=219
+		y=310
+		width=45
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Iring = "
+}
+text {
+	object {
+		x=332
+		y=310
+		width=17
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mA"
+}
+"related display" {
+	object {
+		x=104
+		y=275
+		width=110
+		height=25
+	}
+	display[0] {
+		label="IDC Bench Camera"
+		name="ADVimba.adl"
+		args="P=13IDC_PS1:, R=cam1:, C=AVT_Manta_G507C"
+	}
+	display[1] {
+		label="IDC Sample Normal"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[2] {
+		label="IDC Off-Axis"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[3] {
+		label="Portable Beam Viewer"
+		name="ADSpinnaker.adl"
+		args="P=13BV1:, R=cam1:, C=PGR_GS3_U3_23S6M"
+	}
+	display[4] {
+		label="FOE BV 2"
+		name="ADSpinnaker.adl"
+		args="P=13IDA_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	clr=14
+	bclr=4
+	label="-13IDC Cameras"
+}
+composite {
+	object {
+		x=5
+		y=202
+		width=345
+		height=65
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=11
+				y=206
+				width=150
+				height=25
+			}
+			display[0] {
+				label="ID-C/D Energy"
+				name="GSE_MonoEnergy.adl"
+				args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=S13ID:DSID, TH=m57, MH=m58, MP=m59, MR=m30, MX=m30, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
+			}
+			display[1] {
+				args=" "
+			}
+			clr=14
+			bclr=4
+			label="-Monochromator     "
+		}
+		text {
+			object {
+				x=169
+				y=209
+				width=45
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Energy (eV) = "
+		}
+		"text update" {
+			object {
+				x=283
+				y=209
+				width=60
+				height=16
+			}
+			monitor {
+				chan="13IDA:CDEn:E_RBV"
+				clr=54
+				bclr=4
+			}
+			limits {
+				precSrc="default"
+			}
+		}
+		"related display" {
+			object {
+				x=11
+				y=238
+				width=150
+				height=25
+			}
+			display[0] {
+				label="Full Feedback"
+				name="13ID_CD_mono_feedback.adl"
+				args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,IDD_PITCH_PID=mono_pid1,IDD_ROLL_PID=mono_pid2,IDC_PITCH_PID=mono_pid3,IDC_ROLL_PID=mono_pid4"
+			}
+			display[1] {
+				args=" "
+			}
+			clr=14
+			bclr=4
+			label="-Feedback          "
+		}
+		composite {
+			object {
+				x=215
+				y=243
+				width=15
+				height=16
+			}
+			"composite name"=""
+			children {
+				oval {
+					object {
+						x=215
+						y=243
+						width=15
+						height=16
+					}
+					"basic attribute" {
+						clr=15
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="13IDA:mono_pid3Locked"
+					}
+				}
+				oval {
+					object {
+						x=215
+						y=243
+						width=15
+						height=16
+					}
+					"basic attribute" {
+						clr=20
+					}
+					"dynamic attribute" {
+						vis="if zero"
+						chan="13IDA:mono_pid3Locked"
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=170
+				y=243
+				width=45
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pitch"
+		}
+		text {
+			object {
+				x=253
+				y=243
+				width=45
+				height=16
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Roll"
+		}
+		rectangle {
+			object {
+				x=5
+				y=202
+				width=345
+				height=65
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=2
+			}
+		}
+		oval {
+			object {
+				x=293
+				y=243
+				width=15
+				height=16
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="13IDA:mono_pid4Locked"
+			}
+		}
+		oval {
+			object {
+				x=293
+				y=243
+				width=15
+				height=16
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="13IDA:mono_pid4Locked"
+			}
+		}
+	}
+}
+"related display" {
+	object {
+		x=219
+		y=275
+		width=120
+		height=25
+	}
+	display[0] {
+		label="Goniometer"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25,  M2=m26, M3=m27, M4=m28, M5=m29, M6=m30"
+	}
+	display[1] {
+		label="Goniometer readbacks"
+		name="diff_motors.adl"
+		args="P=13IDC:, TITLE=Newport_Goniometer, M1=m25, M2=m26, M3=m27, M4=m28, M5=m29, M6=m30, M7=m65, M8=m66, M9=m67"
+	}
+	display[2] {
+		label="Entrance Slits"
+		name="4motors.adl"
+		args="P=13IDC:, TITLE=Entrance_Slits, M1=m1, M2=m2, M3=m3, M4=m4"
+	}
+	display[3] {
+		label="Detector Slits (simple)"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=Detector_Slits, M1=m17, M2=m18, M3=m19, M4=m20, M5=m21, M6=m22"
+	}
+	display[4] {
+		label="IDC GPD Det Slits (compound)"
+		name="4slitGraphic.adl"
+		args="P=13IDC:,V=Slit1V,H=Slit1H,mXp=m18,mXn=m17,mYp=m19,mYn=m20,SLIT=IDC_GPD_Det_Slits"
+	}
+	display[5] {
+		label="Bora hexapod main"
+		name="SymetrieHexapodMain.adl"
+		args="P=13IDC:,R=BORA1:"
+	}
+	display[6] {
+		label="Bora hexapod motors"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=BORA_Hexapod, M1=m65,M2=m66,M3=m67,M4=m68,M5=m69,M6=m70"
+	}
+	display[7] {
+		label="Trajectory scans"
+		name="profileMove.adl"
+		args="P=13IDC:, R=Prof1:,TITLE=13-ID-C_Trajectory_Scans,M1=m25,M2=m26,M3=m27,M4=m28,M5=m29,M6=m30"
+	}
+	display[8] {
+		label="XYZ Sample Stage"
+		name="3motors.adl"
+		args="P=13IDC:, TITLE=Newport_Sample_Stage, M1=m38,  M2=m39, M3=m40"
+	}
+	clr=14
+	bclr=4
+	label="13IDC Motors"
+}
+rectangle {
+	object {
+		x=23
+		y=68
+		width=140
+		height=30
+	}
+	"basic attribute" {
+		clr=33
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>500000&&A<1000000"
+		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+	}
+}
+"related display" {
+	object {
+		x=13
+		y=136
+		width=150
+		height=25
+	}
+	display[0] {
+		label="Scaler"
+		name="scaler_full.adl"
+		args="P=13IDC:, S=scaler1"
+	}
+	display[1] {
+		args=" "
+	}
+	clr=14
+	bclr=4
+	label="-Scaler            "
+}
