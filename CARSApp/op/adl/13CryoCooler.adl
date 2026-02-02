@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=460
-		y=99
-		width=780
-		height=700
+		x=1061
+		y=221
+		width=775
+		height=325
 	}
 	clr=14
 	bclr=4
@@ -89,32 +89,537 @@ display {
 }
 text {
 	object {
-		x=192
+		x=0
 		y=5
-		width=390
+		width=775
 		height=25
 	}
 	"basic attribute" {
 		clr=54
 	}
-	textix="GSE Cryo Cooler PLC"
+	textix="GSE Cryo Cooler PLC  ($(P))"
 	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=40
+		y=265
+		width=100
+		height=20
+	}
+	display[0] {
+		label="Status"
+		name="13CryoCooler_status.adl"
+		args="P=$(P)"
+	}
+	clr=14
+	bclr=51
+	label="More"
+}
+text {
+	object {
+		x=555
+		y=170
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Pump"
+}
+rectangle {
+	object {
+		x=375
+		y=165
+		width=395
+		height=155
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
 }
 composite {
 	object {
-		x=395
+		x=380
+		y=195
+		width=385
+		height=120
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=410
+				y=220
+				width=355
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=410
+						y=220
+						width=60
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Hz Set"
+					align="horiz. right"
+				}
+				"text entry" {
+					object {
+						x=600
+						y=220
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)VFD1DisplaySetFreq"
+						clr=14
+						bclr=51
+					}
+					limits {
+					}
+				}
+				"message button" {
+					object {
+						x=685
+						y=220
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)VFD1FreqCmd"
+						clr=14
+						bclr=51
+					}
+					label="Set"
+					press_msg="1"
+				}
+				"text update" {
+					object {
+						x=475
+						y=220
+						width=120
+						height=20
+					}
+					monitor {
+						chan="$(P)VFD1SetFreq"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=440
+				y=195
+				width=325
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=440
+						y=195
+						width=30
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Run"
+					align="horiz. right"
+				}
+				"message button" {
+					object {
+						x=685
+						y=195
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)VFD1StopCmd"
+						clr=14
+						bclr=20
+					}
+					label="Stop"
+					press_msg="1"
+				}
+				"message button" {
+					object {
+						x=600
+						y=195
+						width=80
+						height=20
+					}
+					control {
+						chan="$(P)VFD1RunCmd"
+						clr=14
+						bclr=61
+					}
+					label="Run"
+					press_msg="1"
+				}
+				"text update" {
+					object {
+						x=475
+						y=195
+						width=120
+						height=20
+					}
+					monitor {
+						chan="$(P)VFD1RunStatus"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=245
+				width=215
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=380
+						y=245
+						width=90
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Hz Actual"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=475
+						y=245
+						width=120
+						height=20
+					}
+					monitor {
+						chan="$(P)VFD1FreqOut"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=430
+				y=270
+				width=165
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=430
+						y=270
+						width=40
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Amps"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=475
+						y=270
+						width=120
+						height=20
+					}
+					monitor {
+						chan="$(P)VFD1Current"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=420
+				y=295
+				width=175
+				height=20
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=420
+						y=295
+						width=50
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Volts"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=475
+						y=295
+						width=120
+						height=20
+					}
+					monitor {
+						chan="$(P)VFD1ACOutVolts"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=375
 		y=30
-		width=380
-		height=55
+		width=320
+		height=130
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=470
+		y=35
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Fill Settings"
+}
+text {
+	object {
+		x=380
+		y=110
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Autofill"
+	align="horiz. right"
+}
+text {
+	object {
+		x=410
+		y=135
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Valve"
+	align="horiz. right"
+}
+text {
+	object {
+		x=390
+		y=60
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Trigger"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=465
+		y=60
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)BathLevelTrig"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=550
+		y=60
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)BathLevelTrigSet"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=390
+		y=85
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Maximum"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=465
+		y=85
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)BathLevelMax"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=550
+		y=85
+		width=80
+		height=20
+	}
+	control {
+		chan="$(P)BathLevelMaxSet"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=550
+		y=110
+		width=140
+		height=20
+	}
+	control {
+		chan="$(P)AutoFillEnableSet"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"text update" {
+	object {
+		x=465
+		y=110
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)AutoFillEnable"
+		clr=53
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=550
+		y=134
+		width=140
+		height=20
+	}
+	control {
+		chan="$(P)LN2FillValveSet"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+"text update" {
+	object {
+		x=465
+		y=135
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)LN2FillValve"
+		clr=53
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+composite {
+	object {
+		x=190
+		y=115
+		width=180
+		height=105
 	}
 	"composite name"=""
 	children {
 		rectangle {
 			object {
-				x=395
-				y=30
-				width=380
-				height=55
+				x=190
+				y=115
+				width=180
+				height=105
 			}
 			"basic attribute" {
 				clr=14
@@ -123,34 +628,47 @@ composite {
 		}
 		text {
 			object {
-				x=535
-				y=34
-				width=100
+				x=220
+				y=120
+				width=120
 				height=20
 			}
 			"basic attribute" {
 				clr=54
 			}
-			textix="Flow Meter"
+			textix="Buffer Level"
 		}
 		composite {
 			object {
-				x=411
-				y=59
-				width=115
-				height=20
+				x=228
+				y=145
+				width=105
+				height=70
 			}
 			"composite name"=""
 			children {
+				text {
+					object {
+						x=228
+						y=145
+						width=20
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Hz"
+					align="horiz. right"
+				}
 				"text update" {
 					object {
-						x=446
-						y=59
+						x=253
+						y=145
 						width=80
 						height=20
 					}
 					monitor {
-						chan="$(P)FlowFreq1"
+						chan="$(P)BufferFreq"
 						clr=53
 						bclr=2
 					}
@@ -159,52 +677,187 @@ composite {
 				}
 				text {
 					object {
-						x=411
-						y=59
-						width=30
+						x=228
+						y=170
+						width=20
 						height=20
 					}
 					"basic attribute" {
 						clr=14
 					}
-					textix="Hz:"
+					textix="mm"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=253
+						y=170
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)BufferLevel"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=238
+						y=195
+						width=10
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="%"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=253
+						y=195
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)BufferLevelPct"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
 				}
 			}
 		}
+	}
+}
+composite {
+	object {
+		x=5
+		y=140
+		width=180
+		height=105
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=5
+				y=140
+				width=180
+				height=105
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+		}
+		text {
+			object {
+				x=45
+				y=145
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Bath Level"
+		}
 		composite {
 			object {
-				x=568
-				y=59
-				width=195
-				height=20
+				x=43
+				y=170
+				width=105
+				height=70
 			}
 			"composite name"=""
 			children {
 				text {
 					object {
-						x=568
-						y=59
-						width=110
+						x=43
+						y=170
+						width=20
 						height=20
 					}
 					"basic attribute" {
 						clr=14
 					}
-					textix="Liters/min:"
+					textix="Hz"
+					align="horiz. right"
 				}
 				"text update" {
 					object {
-						x=683
-						y=59
+						x=68
+						y=170
 						width=80
 						height=20
 					}
 					monitor {
-						chan="$(P)FlowRate1"
+						chan="$(P)BathFreq"
 						clr=53
 						bclr=2
 					}
-					clrmod="alarm"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=43
+						y=195
+						width=20
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="mm"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=68
+						y=195
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)BathLevel"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=53
+						y=220
+						width=10
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="%"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=68
+						y=220
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)BathLevelPct"
+						clr=53
+						bclr=2
+					}
 					limits {
 					}
 				}
@@ -217,7 +870,7 @@ composite {
 		x=5
 		y=30
 		width=180
-		height=55
+		height=105
 	}
 	"composite name"=""
 	children {
@@ -226,7 +879,7 @@ composite {
 				x=5
 				y=30
 				width=180
-				height=55
+				height=105
 			}
 			"basic attribute" {
 				clr=14
@@ -236,7 +889,7 @@ composite {
 		text {
 			object {
 				x=40
-				y=34
+				y=35
 				width=110
 				height=20
 			}
@@ -248,33 +901,90 @@ composite {
 		composite {
 			object {
 				x=23
-				y=59
+				y=60
 				width=145
-				height=20
+				height=70
 			}
 			"composite name"=""
 			children {
 				text {
 					object {
+						x=33
+						y=60
+						width=50
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Inlet"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=88
+						y=60
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)RTD2InletTemp"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+				text {
+					object {
 						x=23
-						y=59
+						y=85
 						width=60
 						height=20
 					}
 					"basic attribute" {
 						clr=14
 					}
-					textix="RTD 1:"
+					textix="Outlet"
+					align="horiz. right"
 				}
 				"text update" {
 					object {
 						x=88
-						y=59
+						y=85
 						width=80
 						height=20
 					}
 					monitor {
-						chan="$(P)RTD_Temp1"
+						chan="$(P)RTD3OutletTemp"
+						clr=53
+						bclr=2
+					}
+					limits {
+					}
+				}
+				text {
+					object {
+						x=43
+						y=110
+						width=40
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="Flow"
+					align="horiz. right"
+				}
+				"text update" {
+					object {
+						x=88
+						y=110
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)RTD1FlowTemp"
 						clr=53
 						bclr=2
 					}
@@ -285,57 +995,111 @@ composite {
 		}
 	}
 }
+rectangle {
+	object {
+		x=190
+		y=225
+		width=180
+		height=80
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=235
+		y=230
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="Flow Rate"
+}
+text {
+	object {
+		x=213
+		y=280
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="l/min"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=268
+		y=280
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)FlowRate"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=243
+		y=255
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Hz"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=268
+		y=255
+		width=80
+		height=20
+	}
+	monitor {
+		chan="$(P)FlowFreq"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
 composite {
 	object {
 		x=190
 		y=30
-		width=200
-		height=55
+		width=180
+		height=80
 	}
 	"composite name"=""
 	children {
-		composite {
+		rectangle {
 			object {
-				x=203
-				y=59
-				width=174
-				height=20
+				x=190
+				y=30
+				width=180
+				height=80
 			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=203
-						y=59
-						width=90
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Pressure:"
-				}
-				"text update" {
-					object {
-						x=297
-						y=59
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)Pressure1"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
+			"basic attribute" {
+				clr=14
+				fill="outline"
 			}
 		}
 		text {
 			object {
-				x=250
-				y=34
+				x=240
+				y=35
 				width=80
 				height=20
 			}
@@ -344,1414 +1108,61 @@ composite {
 			}
 			textix="Pressure"
 		}
-		rectangle {
-			object {
-				x=190
-				y=30
-				width=200
-				height=55
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=5
-		y=160
-		width=380
-		height=530
-	}
-	"composite name"=""
-	children {
 		text {
 			object {
-				x=175
-				y=164
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=54
-			}
-			textix="Pump"
-		}
-		rectangle {
-			object {
-				x=5
-				y=160
-				width=380
-				height=530
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=130
-				y=189
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Run:"
-		}
-		text {
-			object {
-				x=120
-				y=214
+				x=218
+				y=60
 				width=50
 				height=20
 			}
 			"basic attribute" {
 				clr=14
 			}
-			textix="Stop:"
-		}
-		text {
-			object {
-				x=70
-				y=239
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Frequency:"
-		}
-		text {
-			object {
-				x=10
-				y=589
-				width=160
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Send Error Code:"
-		}
-		text {
-			object {
-				x=10
-				y=614
-				width=160
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Recv Error Code:"
-		}
-		text {
-			object {
-				x=40
-				y=639
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Run Cmd Code:"
-		}
-		text {
-			object {
-				x=30
-				y=664
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Stop Cmd Code:"
-		}
-		"message button" {
-			object {
-				x=300
-				y=214
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)VFD1StopCmd"
-				clr=14
-				bclr=20
-			}
-			label="Stop"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=300
-				y=189
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)VFD1RunCmd"
-				clr=14
-				bclr=61
-			}
-			label="Run"
-			press_msg="1"
-		}
-		"text entry" {
-			object {
-				x=300
-				y=239
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)VFD1DisplaySetFreq"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=189
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1RunStatus"
-				clr=14
-				bclr=2
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=214
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1StopStatus"
-				clr=14
-				bclr=2
-			}
-			clrmod="alarm"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=239
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1DisplaySetFreq_RBV"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=589
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1SendErrorCode"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=614
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1RecvErrCode"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=639
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1RunCmdCode"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=664
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1StopCmdCode"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=30
-				y=264
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Frequency Set:"
-		}
-		text {
-			object {
-				x=30
-				y=289
-				width=140
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Frequency Out:"
-		}
-		"message button" {
-			object {
-				x=300
-				y=264
-				width=80
-				height=20
-			}
-			control {
-				chan="$(P)VFD1FreqCmd"
-				clr=14
-				bclr=51
-			}
-			label="Set"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=175
-				y=264
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1SetFreq"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=175
-				y=289
-				width=120
-				height=20
-			}
-			monitor {
-				chan="$(P)VFD1FreqOut"
-				clr=53
-				bclr=2
-			}
-			limits {
-			}
-		}
-		composite {
-			object {
-				x=100
-				y=539
-				width=195
-				height=45
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=110
-						y=539
-						width=60
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Error:"
-				}
-				text {
-					object {
-						x=100
-						y=564
-						width=70
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Status:"
-				}
-				"text update" {
-					object {
-						x=175
-						y=539
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1Error"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=564
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1Status"
-						clr=53
-						bclr=2
-					}
-					format="hexadecimal"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=20
-				y=314
-				width=275
-				height=220
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=90
-						y=314
-						width=80
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Current:"
-				}
-				text {
-					object {
-						x=80
-						y=339
-						width=90
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="BusVolts:"
-				}
-				text {
-					object {
-						x=40
-						y=364
-						width=130
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="AC Out Volts:"
-				}
-				text {
-					object {
-						x=60
-						y=389
-						width=110
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Multispeed:"
-				}
-				text {
-					object {
-						x=20
-						y=414
-						width=150
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Active Warning:"
-				}
-				text {
-					object {
-						x=50
-						y=439
-						width=120
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="D16 Counter:"
-				}
-				text {
-					object {
-						x=40
-						y=464
-						width=130
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Power Factor:"
-				}
-				text {
-					object {
-						x=40
-						y=489
-						width=130
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Percent Load:"
-				}
-				text {
-					object {
-						x=130
-						y=514
-						width=40
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="RPM:"
-				}
-				"text update" {
-					object {
-						x=175
-						y=314
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1Current"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=339
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1DCBusVolts"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=364
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1ACOutVolts"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=389
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1MultiSpeed"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=414
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1ActiveWarning"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=439
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1D16Counter"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=464
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1PowerFactor"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=489
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1PercentLoad"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=175
-						y=514
-						width=120
-						height=20
-					}
-					monitor {
-						chan="$(P)VFD1RPM"
-						clr=53
-						bclr=2
-					}
-					limits {
-					}
-				}
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=390
-		y=160
-		width=380
-		height=505
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=390
-				y=160
-				width=380
-				height=480
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=413
-						y=189
-						width=190
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 1 Module Error:"
-				}
-				text {
-					object {
-						x=413
-						y=214
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 1 Missing 24V:"
-				}
-				rectangle {
-					object {
-						x=390
-						y=160
-						width=380
-						height=480
-					}
-					"basic attribute" {
-						clr=14
-						fill="outline"
-					}
-				}
-				text {
-					object {
-						x=515
-						y=164
-						width=130
-						height=20
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Module Status"
-				}
-				text {
-					object {
-						x=413
-						y=239
-						width=190
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 2 Module Error:"
-				}
-				text {
-					object {
-						x=413
-						y=264
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 2 Missing 24V:"
-				}
-				text {
-					object {
-						x=413
-						y=289
-						width=190
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Module Error:"
-				}
-				text {
-					object {
-						x=413
-						y=314
-						width=190
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Config Error:"
-				}
-				"text update" {
-					object {
-						x=638
-						y=214
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO1Missing24V"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=189
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO1ModuleError"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=264
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO2Missing24V"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=239
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO2ModuleError"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=289
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3ModuleError"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=314
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3ModuleConfig"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=413
-						y=339
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch1 Burnout:"
-				}
-				text {
-					object {
-						x=413
-						y=364
-						width=220
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch1 Under Range:"
-				}
-				text {
-					object {
-						x=413
-						y=389
-						width=210
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch1 Over Range:"
-				}
-				"text update" {
-					object {
-						x=638
-						y=339
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch1Burnout"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=364
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch1UnderRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=638
-						y=389
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch1OverRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=415
-						y=414
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch2 Burnout:"
-				}
-				text {
-					object {
-						x=415
-						y=439
-						width=220
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch2 Under Range:"
-				}
-				text {
-					object {
-						x=415
-						y=464
-						width=210
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch2 Over Range:"
-				}
-				"text update" {
-					object {
-						x=640
-						y=414
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch2Burnout"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=640
-						y=439
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch2UnderRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=640
-						y=464
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch2OverRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=415
-						y=489
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch3 Burnout:"
-				}
-				text {
-					object {
-						x=415
-						y=514
-						width=220
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch3 Under Range:"
-				}
-				text {
-					object {
-						x=415
-						y=539
-						width=210
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch3 Over Range:"
-				}
-				"text update" {
-					object {
-						x=640
-						y=489
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch3Burnout"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=640
-						y=514
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch3UnderRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=640
-						y=539
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch3OverRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=415
-						y=564
-						width=180
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch4 Burnout:"
-				}
-				text {
-					object {
-						x=415
-						y=589
-						width=220
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch4 Under Range:"
-				}
-				text {
-					object {
-						x=415
-						y=614
-						width=210
-						height=20
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="I/O 3 Ch4 Over Range:"
-				}
-				"text update" {
-					object {
-						x=640
-						y=564
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch4Burnout"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=640
-						y=589
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch4UnderRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=640
-						y=614
-						width=80
-						height=20
-					}
-					monitor {
-						chan="$(P)IO3Ch4OverRange"
-						clr=14
-						bclr=2
-					}
-					clrmod="alarm"
-					limits {
-					}
-				}
-			}
-		}
-		"related display" {
-			object {
-				x=587
-				y=645
-				width=120
-				height=20
-			}
-			display[0] {
-				label="TCP port"
-				name="asynRecord.adl"
-				args="P=$(P),R=ClickAsyn"
-			}
-			clr=14
-			bclr=51
-			label="asyn records"
-		}
-		text {
-			object {
-				x=462
-				y=645
-				width=120
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="asynRecords:"
+			textix="Inlet"
 			align="horiz. right"
 		}
-	}
-}
-rectangle {
-	object {
-		x=5
-		y=90
-		width=380
-		height=55
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-text {
-	object {
-		x=145
-		y=94
-		width=70
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Level 1"
-}
-"text update" {
-	object {
-		x=56
-		y=119
-		width=80
-		height=20
-	}
-	monitor {
-		chan="$(P)LevelFreq1"
-		clr=53
-		bclr=2
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=21
-		y=119
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Hz:"
-}
-text {
-	object {
-		x=219
-		y=119
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="mm:"
-}
-"text update" {
-	object {
-		x=254
-		y=119
-		width=80
-		height=20
-	}
-	monitor {
-		chan="$(P)Level_mm1"
-		clr=53
-		bclr=2
-	}
-	clrmod="alarm"
-	limits {
-	}
-}
-rectangle {
-	object {
-		x=394
-		y=90
-		width=380
-		height=55
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-text {
-	object {
-		x=534
-		y=94
-		width=70
-		height=20
-	}
-	"basic attribute" {
-		clr=54
-	}
-	textix="Level 2"
-}
-"text update" {
-	object {
-		x=445
-		y=119
-		width=80
-		height=20
-	}
-	monitor {
-		chan="$(P)LevelFreq2"
-		clr=53
-		bclr=2
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=410
-		y=119
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Hz:"
-}
-text {
-	object {
-		x=608
-		y=119
-		width=30
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="mm:"
-}
-"text update" {
-	object {
-		x=643
-		y=119
-		width=80
-		height=20
-	}
-	monitor {
-		chan="$(P)Level_mm2"
-		clr=53
-		bclr=2
-	}
-	clrmod="alarm"
-	limits {
+		"text update" {
+			object {
+				x=272
+				y=60
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)InletPressure"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=208
+				y=85
+				width=60
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Outlet"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=272
+				y=85
+				width=80
+				height=20
+			}
+			monitor {
+				chan="$(P)OutletPressure"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
 	}
 }
