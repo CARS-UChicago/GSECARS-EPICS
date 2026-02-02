@@ -1,0 +1,1314 @@
+
+file {
+	name="/home/epics/support/CARS/CARSApp/op/adl/13CryoCooler_status.adl"
+	version=030117
+}
+display {
+	object {
+		x=224
+		y=178
+		width=775
+		height=550
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=0
+		y=5
+		width=775
+		height=25
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="GSE Cryo Cooler PLC ($(P))"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=5
+		y=35
+		width=380
+		height=505
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=100
+		y=414
+		width=195
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=110
+				y=414
+				width=60
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Error:"
+		}
+		text {
+			object {
+				x=100
+				y=439
+				width=70
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Status:"
+		}
+		"text update" {
+			object {
+				x=175
+				y=414
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1Error"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=439
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1Status"
+				clr=53
+				bclr=2
+			}
+			format="hexadecimal"
+			limits {
+			}
+		}
+	}
+}
+text {
+	object {
+		x=60
+		y=264
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Multispeed:"
+}
+text {
+	object {
+		x=20
+		y=289
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Active Warning:"
+}
+text {
+	object {
+		x=50
+		y=314
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="D16 Counter:"
+}
+text {
+	object {
+		x=40
+		y=339
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power Factor:"
+}
+text {
+	object {
+		x=40
+		y=364
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Percent Load:"
+}
+text {
+	object {
+		x=130
+		y=389
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RPM:"
+}
+"text update" {
+	object {
+		x=175
+		y=264
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)VFD1MultiSpeed"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=175
+		y=289
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)VFD1ActiveWarning"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=175
+		y=314
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)VFD1D16Counter"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=175
+		y=339
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)VFD1PowerFactor"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=175
+		y=364
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)VFD1PercentLoad"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=175
+		y=389
+		width=120
+		height=20
+	}
+	monitor {
+		chan="$(P)VFD1RPM"
+		clr=53
+		bclr=2
+	}
+	limits {
+	}
+}
+composite {
+	object {
+		x=390
+		y=35
+		width=380
+		height=505
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=390
+				y=35
+				width=380
+				height=480
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=413
+						y=64
+						width=190
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 1 Module Error:"
+				}
+				text {
+					object {
+						x=413
+						y=89
+						width=180
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 1 Missing 24V:"
+				}
+				rectangle {
+					object {
+						x=390
+						y=35
+						width=380
+						height=480
+					}
+					"basic attribute" {
+						clr=14
+						fill="outline"
+					}
+				}
+				text {
+					object {
+						x=515
+						y=39
+						width=130
+						height=20
+					}
+					"basic attribute" {
+						clr=54
+					}
+					textix="Module Status"
+				}
+				text {
+					object {
+						x=413
+						y=114
+						width=190
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 2 Module Error:"
+				}
+				text {
+					object {
+						x=413
+						y=139
+						width=180
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 2 Missing 24V:"
+				}
+				text {
+					object {
+						x=413
+						y=164
+						width=190
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Module Error:"
+				}
+				text {
+					object {
+						x=413
+						y=189
+						width=190
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Config Error:"
+				}
+				"text update" {
+					object {
+						x=638
+						y=89
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO1Missing24V"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=64
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO1ModuleError"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=139
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO2Missing24V"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=114
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO2ModuleError"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=164
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3ModuleError"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=189
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3ModuleConfig"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=413
+						y=214
+						width=180
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch1 Burnout:"
+				}
+				text {
+					object {
+						x=413
+						y=239
+						width=220
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch1 Under Range:"
+				}
+				text {
+					object {
+						x=413
+						y=264
+						width=210
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch1 Over Range:"
+				}
+				"text update" {
+					object {
+						x=638
+						y=214
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch1Burnout"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=239
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch1UnderRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=638
+						y=264
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch1OverRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=415
+						y=289
+						width=180
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch2 Burnout:"
+				}
+				text {
+					object {
+						x=415
+						y=314
+						width=220
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch2 Under Range:"
+				}
+				text {
+					object {
+						x=415
+						y=339
+						width=210
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch2 Over Range:"
+				}
+				"text update" {
+					object {
+						x=640
+						y=289
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch2Burnout"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=640
+						y=314
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch2UnderRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=640
+						y=339
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch2OverRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=415
+						y=364
+						width=180
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch3 Burnout:"
+				}
+				text {
+					object {
+						x=415
+						y=389
+						width=220
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch3 Under Range:"
+				}
+				text {
+					object {
+						x=415
+						y=414
+						width=210
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch3 Over Range:"
+				}
+				"text update" {
+					object {
+						x=640
+						y=364
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch3Burnout"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=640
+						y=389
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch3UnderRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=640
+						y=414
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch3OverRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				text {
+					object {
+						x=415
+						y=439
+						width=180
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch4 Burnout:"
+				}
+				text {
+					object {
+						x=415
+						y=464
+						width=220
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch4 Under Range:"
+				}
+				text {
+					object {
+						x=415
+						y=489
+						width=210
+						height=20
+					}
+					"basic attribute" {
+						clr=14
+					}
+					textix="I/O 3 Ch4 Over Range:"
+				}
+				"text update" {
+					object {
+						x=640
+						y=439
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch4Burnout"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=640
+						y=464
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch4UnderRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=640
+						y=489
+						width=80
+						height=20
+					}
+					monitor {
+						chan="$(P)IO3Ch4OverRange"
+						clr=14
+						bclr=2
+					}
+					clrmod="alarm"
+					limits {
+					}
+				}
+			}
+		}
+		"related display" {
+			object {
+				x=587
+				y=520
+				width=120
+				height=20
+			}
+			display[0] {
+				label="TCP port"
+				name="asynRecord.adl"
+				args="P=$(P),R=ClickAsyn"
+			}
+			clr=14
+			bclr=51
+			label="asyn records"
+		}
+		text {
+			object {
+				x=462
+				y=520
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="asynRecords:"
+			align="horiz. right"
+		}
+	}
+}
+composite {
+	object {
+		x=10
+		y=464
+		width=285
+		height=70
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=10
+				y=464
+				width=160
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Recv Error Code:"
+		}
+		text {
+			object {
+				x=40
+				y=489
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Run Cmd Code:"
+		}
+		text {
+			object {
+				x=30
+				y=514
+				width=140
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Stop Cmd Code:"
+		}
+		"text update" {
+			object {
+				x=175
+				y=464
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1RecvErrCode"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=489
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1RunCmdCode"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=514
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1StopCmdCode"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=30
+		y=39
+		width=350
+		height=220
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=175
+				y=39
+				width=40
+				height=20
+			}
+			"basic attribute" {
+				clr=54
+			}
+			textix="Pump"
+		}
+		text {
+			object {
+				x=130
+				y=64
+				width=40
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Run:"
+		}
+		text {
+			object {
+				x=120
+				y=89
+				width=50
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Stop:"
+		}
+		text {
+			object {
+				x=70
+				y=114
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Frequency:"
+		}
+		"message button" {
+			object {
+				x=300
+				y=89
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)VFD1StopCmd"
+				clr=14
+				bclr=20
+			}
+			label="Stop"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=300
+				y=64
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)VFD1RunCmd"
+				clr=14
+				bclr=61
+			}
+			label="Run"
+			press_msg="1"
+		}
+		"text entry" {
+			object {
+				x=300
+				y=114
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)VFD1DisplaySetFreq"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=64
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1RunStatus"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=89
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1StopStatus"
+				clr=14
+				bclr=2
+			}
+			clrmod="alarm"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=114
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1DisplaySetFreq_RBV"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=30
+				y=139
+				width=140
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Frequency Set:"
+		}
+		text {
+			object {
+				x=30
+				y=164
+				width=140
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Frequency Out:"
+		}
+		"message button" {
+			object {
+				x=300
+				y=139
+				width=80
+				height=20
+			}
+			control {
+				chan="$(P)VFD1FreqCmd"
+				clr=14
+				bclr=51
+			}
+			label="Set"
+			press_msg="1"
+		}
+		"text update" {
+			object {
+				x=175
+				y=139
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1SetFreq"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=164
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1FreqOut"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=90
+				y=189
+				width=80
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Current:"
+		}
+		text {
+			object {
+				x=80
+				y=214
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="BusVolts:"
+		}
+		text {
+			object {
+				x=40
+				y=239
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="AC Out Volts:"
+		}
+		"text update" {
+			object {
+				x=175
+				y=189
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1Current"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=214
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1DCBusVolts"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=175
+				y=239
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)VFD1ACOutVolts"
+				clr=53
+				bclr=2
+			}
+			limits {
+			}
+		}
+	}
+}
