@@ -24,4 +24,4 @@ drvModbusAsynConfigure("$(P)X05-X08_In",  "$(PORT)", 0, 3, 297, 11, 0, 100, "DL1
 
 drvIFM_AL1342Configure("$(P)X01-X08_Config", $(PORT))
 asynSetTraceIOMask("$(P)X01-X08_Config", -1, ESCAPE)
-asynSetTraceMask("$(P)X01-X08_Config", -1, DRIVER|ERROR)
+#asynSetTraceMask("$(P)X01-X08_Config", -1, DRIVER|ERROR)
