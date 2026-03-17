@@ -7,7 +7,7 @@ CARSLinux_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("PREFIX", "13IDA:")
 epicsEnvSet("LINUX_PREFIX", "13IDA_Linux:")
-epicsEnvSet("STREAM_PROTOCOL_PATH", "$(CARS)/db:$(IP)/db")
+epicsEnvSet("STREAM_PROTOCOL_PATH", "$(CARS)/db:$(IP)/db:$(VAC)/db")
 
 iocshLoad("serial.cmd",     "P=$(PREFIX), TS=gsets17")
 iocshLoad("eps_modbus.cmd", "P=$(PREFIX), PORT=MVI146_1, IPADDR=gse-mvi46-mnet-2")
@@ -15,7 +15,7 @@ iocshLoad("MeasComp.cmd",   "P=$(PREFIX)")
 iocshLoad("motors.cmd",     "P=$(PREFIX)")
 iocshLoad("ifm.cmd",        "P=$(PREFIX)")
 
-# For areaDetector and quadEM
+# For areaDetector, quadEM
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(QUADEM)/db")
 
 # Quad BPM foils
@@ -50,6 +50,8 @@ dbLoadRecords("$(DEVIOCSTATS)/db/iocAdmin.db","IOC=$(LINUX_PREFIX)")
 < ../save_restore_IOCSH.cmd
 save_restoreSet_status_prefix("$(LINUX_PREFIX)")
 dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(LINUX_PREFIX)")
+
+callbackSetQueueSize(10000)
 
 iocInit
 
