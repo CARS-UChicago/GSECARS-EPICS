@@ -20,7 +20,7 @@ dbLoadTemplate("Galil_motors.template.D3547_DAC_Detector")
 #dbLoadTemplate("Galil_motors.template.tomo")
 
 # gse-galil45 D4140 amps, m1-m8 stepper with Elco
-#iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil1:, PORT=GALIL1, IPADDR=10.54.160.161, M1=m1,  M2=m2,  M3=m3,  M4=m4,  M5=m5,  M6=m6,  M7=m7,  M8=m8")
+#iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil1:, PORT=GALIL1, IPADDR=10.54.160.137, M1=m1,  M2=m2,  M3=m3,  M4=m4,  M5=m5,  M6=m6,  M7=m7,  M8=m8")
 #dbLoadTemplate("Galil_motors.template.D4140_D4140")
 
 # 6bmb-galil4 D3537 amps, m1-m8 stepper with DB-9.  BISS encoder support.
