@@ -5,9 +5,6 @@ errlogInit(5000)
 dbLoadDatabase("../../dbd/CARSLinux.dbd")
 CARSLinux_registerRecordDeviceDriver(pdbbase)
 
-#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
-#                        noProcessEos)
-
 # This is for local serial port
 drvAsynSerialPortConfigure("serial1", "/dev/ttyUSB0", 0, 0, 0)
 asynSetOption("serial1", 0, "baud", "57600")
