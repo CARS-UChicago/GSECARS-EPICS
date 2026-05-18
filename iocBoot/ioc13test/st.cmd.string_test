@@ -1,0 +1,8 @@
+< envPaths
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+dbLoadRecords("string_test.db", "")
+< ../save_restore_IOCSH.cmd
+iocInit
+create_monitor_set("auto_settings.req", 30)
+

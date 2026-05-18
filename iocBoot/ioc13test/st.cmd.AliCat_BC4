@@ -1,0 +1,38 @@
+errlogInit(5000)
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
+#                        noProcessEos)
+
+# This is for Moxa NPort
+#drvAsynIPPortConfigure("serial1", "10.54.160.253:4002", 0, 0, 0)
+
+# This is for Digi SP One
+drvAsynIPPortConfigure("serial1", "gsets13:2101", 0, 0, 0)
+
+# This is for local serial port
+#drvAsynSerialPortConfigure("serial1", "/dev/tty0", 0, 0, 0)
+#asynSetOption("serial1", 0, "baud", "19200")
+#asynSetOption("serial1", 0, "baud", "38400")
+
+asynOctetConnect("serial1", "serial1")
+asynOctetSetInputEos("serial1",0,"\r")
+asynOctetSetOutputEos("serial1",0,"\r")
+
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/db")
+
+# Load asynRecord records on all ports
+dbLoadTemplate("asynRecord.substitutions")
+
+# Alicat PCD controller
+dbLoadRecords("$(IP)/db/Alicat_BC.db","P=13TEST:,R=Alicat1:,ID=A,PORT=serial1")
+dbLoadRecords("$(IP)/db/Alicat_BC.db","P=13TEST:,R=Alicat2:,ID=B,PORT=serial1")
+dbLoadRecords("$(IP)/db/Alicat_BC.db","P=13TEST:,R=Alicat3:,ID=C,PORT=serial1")
+dbLoadRecords("$(IP)/db/Alicat_BC.db","P=13TEST:,R=Alicat4:,ID=D,PORT=serial1")
+
+iocInit
+

@@ -1,0 +1,24 @@
+errlogInit(5000)
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSWin32.dbd")
+CARSWin32_registerRecordDeviceDriver(pdbbase)
+
+#drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,
+#                        noProcessEos)
+drvAsynSerialPortConfigure("serial1", "COM1", 0, 0, 0)
+asynSetOption("serial1", 0, "baud", "38400")
+asynOctetSetInputEos("serial1",0,"\r")
+asynOctetSetOutputEos("serial1",0,"\r")
+
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/db")
+
+# Load asynRecord records on all ports
+dbLoadTemplate("asynRecord.substitutions")
+
+# Alicat PCD controller
+dbLoadRecords("$(IP)/db/Alicat_PCD.db","P=13TEST:,R=Alicat1:,ID=A,PORT=serial1")
+
+iocInit
+

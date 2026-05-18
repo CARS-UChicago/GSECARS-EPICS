@@ -1,0 +1,25 @@
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+epicsEnvSet(PREFIX, "Test:")
+epicsEnvSet(IP_PORT, "gse-gamma-qpc-1:23")
+epicsEnvSet(PORT, "QPC")
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(VAC)/db")
+
+drvAsynIPPortConfigure("$(PORT)","$(IP_PORT)",0,0,0)
+asynOctetSetOutputEos("$(PORT)", 0, "\n")
+asynOctetSetInputEos("$(PORT)", 0, "\n")
+asynSetTraceIOMask($(PORT),0,ESCAPE)
+#asynSetTraceMask($(PORT),0,ERROR|DRIVER)
+
+dbLoadRecords("$(VAC)/db/QPCstreams.db", "PROTO="QPC-eth", P=$(PREFIX),PMP=Pump1:,SPLY=1,SPT=1,PORT=$(PORT)")
+dbLoadRecords("$(VAC)/db/QPCstreams.db", "PROTO="QPC-eth", P=$(PREFIX),PMP=Pump2:,SPLY=2,SPT=2,PORT=$(PORT)")
+dbLoadRecords("$(VAC)/db/QPCstreams.db", "PROTO="QPC-eth", P=$(PREFIX),PMP=Pump3:,SPLY=3,SPT=3,PORT=$(PORT)")
+dbLoadRecords("$(VAC)/db/QPCstreams.db", "PROTO="QPC-eth", P=$(PREFIX),PMP=Pump4:,SPLY=4,SPT=4,PORT=$(PORT)")
+
+#< ../save_restore_IOCSH.cmd
+
+iocInit
