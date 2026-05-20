@@ -31,10 +31,10 @@ dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(PREFIX)MC1:,PORT=E1608
 dbLoadTemplate("$(MEASCOMP)/db/E1608.substitutions", "P=$(PREFIX)MC2:,PORT=E1608_2,WDIG_POINTS=$(WDIG_POINTS)")
 dbLoadTemplate("pid_slow.substitutions")
 
-# Serial ports on on Moxa 4 port terminal server at 164.54.160.88
-drvAsynIPPortConfigure("serial1", "164.54.160.88:4001")
-drvAsynIPPortConfigure("serial2", "164.54.160.88:4002")
-drvAsynIPPortConfigure("serial3", "164.54.160.88:4003")
+# Serial ports on on Moxa 4 port terminal server at gsets10
+drvAsynIPPortConfigure("serial1", "gsets10:4001")
+drvAsynIPPortConfigure("serial2", "gsets10:4002")
+drvAsynIPPortConfigure("serial3", "gsets10:4003")
 asynOctetSetInputEos("serial1",0,"\r")
 asynOctetSetOutputEos("serial1",0,"\r")
 asynOctetSetInputEos("serial2",0,"\r\n")
