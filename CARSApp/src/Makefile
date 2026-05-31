@@ -20,6 +20,7 @@ CARS_SRCS += newport_table.st
 CARS_SRCS += newport_table_support.c
 CARS_SRCS += splint.c
 CARS_SRCS += drvIFM_AL1342.cpp
+#CARS_SRCS += sleepTest1.cpp
 CARS_SRCS_Linux   += testIpac.c
 CARS_SRCS_vxWorks += testIpac.c
 
@@ -162,6 +163,7 @@ endif
 
 ifdef QUADEM
   $(DBD_NAME)_DBD += drvAHxxx.dbd drvTetrAMM.dbd
+  $(PROD_NAME)_LIBS := caenQuadEM $($(PROD_NAME)_LIBS)
   $(PROD_NAME)_LIBS := quadEM $($(PROD_NAME)_LIBS)
 endif
 
@@ -196,6 +198,14 @@ ifdef MOTOR
   $(PROD_NAME)_LIBS := Newport $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devSmarActMCS2Motor.dbd
   $(PROD_NAME)_LIBS := smarActMotor $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += pmacAsynIPPort.dbd
+  $(PROD_NAME)_LIBS := pmacAsynIPPort $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += drvAsynPowerPMACPort.dbd
+  $(PROD_NAME)_LIBS := powerPmacAsynPort $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += pmacAsynMotorPort.dbd
+  $(PROD_NAME)_LIBS := pmacAsynMotorPort $($(PROD_NAME)_LIBS)
+  $(DBD_NAME)_DBD   += SYMETRIE_EPICS.dbd
+  $(PROD_NAME)_LIBS := symetrie $($(PROD_NAME)_LIBS)
   ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
     $(PROD_NAME)_LIBS := Automation1 $($(PROD_NAME)_LIBS)
     $(DBD_NAME)_DBD   += devAutomation1Motor.dbd
