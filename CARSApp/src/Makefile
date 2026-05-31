@@ -198,17 +198,18 @@ ifdef MOTOR
   $(PROD_NAME)_LIBS := Newport $($(PROD_NAME)_LIBS)
   $(DBD_NAME)_DBD   += devSmarActMCS2Motor.dbd
   $(PROD_NAME)_LIBS := smarActMotor $($(PROD_NAME)_LIBS)
-  $(DBD_NAME)_DBD   += pmacAsynIPPort.dbd
-  $(PROD_NAME)_LIBS := pmacAsynIPPort $($(PROD_NAME)_LIBS)
-  $(DBD_NAME)_DBD   += drvAsynPowerPMACPort.dbd
-  $(PROD_NAME)_LIBS := powerPmacAsynPort $($(PROD_NAME)_LIBS)
-  $(DBD_NAME)_DBD   += pmacAsynMotorPort.dbd
-  $(PROD_NAME)_LIBS := pmacAsynMotorPort $($(PROD_NAME)_LIBS)
-  $(DBD_NAME)_DBD   += SYMETRIE_EPICS.dbd
-  $(PROD_NAME)_LIBS := symetrie $($(PROD_NAME)_LIBS)
   ifeq (linux-x86_64, $(findstring linux-x86_64, $(T_A)))
+    $(DBD_NAME)_DBD   += pmacAsynIPPort.dbd
+    $(PROD_NAME)_LIBS := pmacAsynIPPort $($(PROD_NAME)_LIBS)
+    $(DBD_NAME)_DBD   += drvAsynPowerPMACPort.dbd
+    $(PROD_NAME)_LIBS := powerPmacAsynPort $($(PROD_NAME)_LIBS)
+    $(DBD_NAME)_DBD   += pmacAsynMotorPort.dbd
+    $(PROD_NAME)_LIBS := pmacAsynMotorPort $($(PROD_NAME)_LIBS)
+    $(DBD_NAME)_DBD   += SYMETRIE_EPICS.dbd
+    $(PROD_NAME)_LIBS := symetrie $($(PROD_NAME)_LIBS)
     $(PROD_NAME)_LIBS := Automation1 $($(PROD_NAME)_LIBS)
     $(DBD_NAME)_DBD   += devAutomation1Motor.dbd
+    $(PROD_NAME)_SYS_LIBS += ssh2
     $(PROD_NAME)_SYS_LIBS += automation1compiler
     $(PROD_NAME)_SYS_LIBS += automation1c
   endif
