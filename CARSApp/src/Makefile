@@ -163,8 +163,8 @@ endif
 
 ifdef QUADEM
   $(DBD_NAME)_DBD += drvAHxxx.dbd drvTetrAMM.dbd
-  $(PROD_NAME)_LIBS := caenQuadEM $($(PROD_NAME)_LIBS)
   $(PROD_NAME)_LIBS := quadEM $($(PROD_NAME)_LIBS)
+  $(PROD_NAME)_LIBS := caenQuadEM $($(PROD_NAME)_LIBS)
 endif
 
 ifdef IP
@@ -253,11 +253,6 @@ endif
 ifdef VAC
   $(DBD_NAME)_DBD += vacSupport.dbd
   $(PROD_NAME)_LIBS := vac $($(PROD_NAME)_LIBS)
-endif
-
-ifdef PMAC
-  $(DBD_NAME)_DBD += pmacAsynMotorPort.dbd pmacAsynIPPort.dbd
-  $(PROD_NAME)_LIBS := pmacAsynMotorPort pmacAsynIPPort $($(PROD_NAME)_LIBS)
 endif
 
 #ifdef FLY
