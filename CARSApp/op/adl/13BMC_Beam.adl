@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\Op\adl\13BMC_Beam.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\13BMC_Beam.adl"
 	version=030109
 }
 display {
 	object {
-		x=113
-		y=765
+		x=28
+		y=806
 		width=500
 		height=332
 	}
@@ -119,9 +119,9 @@ rectangle {
 		height=25
 	}
 	display[0] {
-		label="Pilatus 100K 13IDC"
+		label="Pilatus 100K 13BMC"
 		name="pilatusDetector.adl"
-		args="P=13IDC-PIL:, R=cam1:"
+		args="P=13BMC-PIL:, R=cam1:"
 	}
 	display[1] {
 		args=" "
@@ -428,7 +428,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A<=500000"
-		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+		chan="13BMC-PIL:Stats5:MaxValue_RBV"
 	}
 }
 text {
@@ -458,7 +458,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A>=1000000"
-		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+		chan="13BMC-PIL:Stats5:MaxValue_RBV"
 	}
 }
 "text update" {
@@ -469,7 +469,7 @@ rectangle {
 		height=16
 	}
 	monitor {
-		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+		chan="13BMC-PIL:Stats5:MaxValue_RBV"
 		clr=54
 		bclr=4
 	}
@@ -809,7 +809,7 @@ text {
 	display[1] {
 		label="BMC Sample Normal"
 		name="ADSpinnaker.adl"
-		args="P=13BMC_PGX_Placeholder:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+		args="P=13BMC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
 	}
 	display[2] {
 		label="Portable Beam Viewer"
@@ -1012,7 +1012,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A>500000&&A<1000000"
-		chan="13IDC-PIL:Stats5:MaxValue_RBV"
+		chan="13BMC-PIL:Stats5:MaxValue_RBV"
 	}
 }
 oval {
