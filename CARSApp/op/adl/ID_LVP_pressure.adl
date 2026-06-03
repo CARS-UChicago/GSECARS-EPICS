@@ -1,14 +1,14 @@
 
 file {
-	name="/home/epics/support/CARS/CARSApp/op/adl/ID_LVP_pressure.adl"
+	name="J:\epics\support\CARS\CARSApp\op\adl\ID_LVP_pressure.adl"
 	version=030109
 }
 display {
 	object {
-		x=642
-		y=255
+		x=760
+		y=484
 		width=479
-		height=580
+		height=530
 	}
 	clr=14
 	bclr=4
@@ -89,9 +89,9 @@ display {
 }
 text {
 	object {
-		x=75
+		x=104
 		y=11
-		width=324
+		width=270
 		height=25
 	}
 	"basic attribute" {
@@ -125,14 +125,14 @@ text {
 		args="P=$(P), PID=$(R)PID, TITLE=LVP_Pressure"
 	}
 	display[1] {
-		label="Generic serial"
-		name="Serial_IO.adl"
-		args="REC=$(P)$(R)Serial"
+		label="Radial pump"
+		name="motorx_all.adl"
+		args="P=13IDD:,M=m56"
 	}
 	display[2] {
-		label="Scan"
-		name="scan_more.adl"
-		args="P=$(P), S=$(R)RampScan, N="
+		label="Syringe pump"
+		name="motorx_all.adl"
+		args="P=13IDD:,M=m54"
 	}
 	clr=14
 	bclr=51
@@ -146,7 +146,7 @@ menu {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)Value.SCAN"
+		chan="$(P)$(R)CurrentPressure.SCAN"
 		clr=14
 		bclr=51
 	}
@@ -165,7 +165,7 @@ text {
 }
 rectangle {
 	object {
-		x=2
+		x=3
 		y=48
 		width=471
 		height=200
@@ -183,7 +183,7 @@ rectangle {
 		height=20
 	}
 	monitor {
-		chan="$(P)$(R)Value"
+		chan="$(P)$(R)CurrentPressure"
 		clr=54
 		bclr=4
 	}
@@ -367,458 +367,376 @@ text {
 	}
 	textix="Plot"
 }
-composite {
+text {
 	object {
-		x=2
-		y=435
+		x=192
+		y=389
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ramp Load"
+}
+text {
+	object {
+		x=116
+		y=418
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Time"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=99
+		y=452
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(R)RampTime"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=103
+		y=434
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="(hours)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=184
+		y=418
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Start"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=188
+		y=434
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ramp"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=174
+		y=453
+		width=65
+		height=19
+	}
+	control {
+		chan="$(P)$(R)StartRamp.PROC"
+		clr=14
+		bclr=61
+	}
+	label="Start"
+	press_msg="1"
+}
+text {
+	object {
+		x=35
+		y=501
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=64
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(P)$(R)EnableRamp"
+	}
+	textix="Done"
+}
+text {
+	object {
+		x=22
+		y=501
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(P)$(R)EnableRamp"
+	}
+	textix="Ramping"
+}
+text {
+	object {
+		x=26
+		y=481
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Status"
+}
+rectangle {
+	object {
+		x=3
+		y=384
 		width=471
 		height=140
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=192
-				y=440
-				width=90
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Ramp Load"
-		}
-		composite {
-			object {
-				x=99
-				y=469
-				width=70
-				height=54
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=116
-						y=469
-						width=36
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Time"
-					align="horiz. centered"
-				}
-				"text entry" {
-					object {
-						x=99
-						y=503
-						width=70
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RampTime.A"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-				text {
-					object {
-						x=103
-						y=485
-						width=63
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="(hours)"
-					align="horiz. centered"
-				}
-			}
-		}
-		composite {
-			object {
-				x=174
-				y=469
-				width=65
-				height=54
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=184
-						y=469
-						width=45
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Start"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=188
-						y=485
-						width=36
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Ramp"
-					align="horiz. centered"
-				}
-				"message button" {
-					object {
-						x=174
-						y=504
-						width=65
-						height=19
-					}
-					control {
-						chan="$(P)$(R)StartRamp.PROC"
-						clr=14
-						bclr=61
-					}
-					label="Start"
-					press_msg="1"
-				}
-			}
-		}
-		text {
-			object {
-				x=35
-				y=552
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=64
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(P)$(R)RampScan.EXSC"
-			}
-			textix="Done"
-		}
-		text {
-			object {
-				x=22
-				y=552
-				width=63
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(P)$(R)RampScan.EXSC"
-			}
-			textix="Ramping"
-		}
-		text {
-			object {
-				x=26
-				y=532
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Status"
-		}
-		rectangle {
-			object {
-				x=2
-				y=435
-				width=471
-				height=140
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		composite {
-			object {
-				x=4
-				y=469
-				width=90
-				height=54
-			}
-			"composite name"=""
-			children {
-				text {
-					object {
-						x=4
-						y=469
-						width=90
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="Final Load"
-					align="horiz. centered"
-				}
-				text {
-					object {
-						x=22
-						y=485
-						width=54
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="(tons)"
-					align="horiz. centered"
-				}
-				"text entry" {
-					object {
-						x=14
-						y=503
-						width=70
-						height=20
-					}
-					control {
-						chan="$(P)$(R)RampScan.P1EP"
-						clr=14
-						bclr=51
-					}
-					limits {
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=113
-				y=532
-				width=45
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Point"
-		}
-		text {
-			object {
-				x=258
-				y=469
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Stop"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=258
-				y=485
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Ramp"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=244
-				y=504
-				width=65
-				height=19
-			}
-			control {
-				chan="$(P)$(R)RampScan.EXSC"
-				clr=14
-				bclr=20
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=408
-				y=469
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Resume"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=408
-				y=485
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Ramp"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=394
-				y=504
-				width=65
-				height=19
-			}
-			control {
-				chan="$(P)$(R)RampScan.PAUS"
-				clr=14
-				bclr=30
-			}
-			label="Resume"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=332
-				y=469
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pause"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=332
-				y=485
-				width=36
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Ramp"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=318
-				y=504
-				width=65
-				height=19
-			}
-			control {
-				chan="$(P)$(R)RampScan.PAUS"
-				clr=14
-				bclr=30
-			}
-			label="Pause"
-			press_msg="1"
-		}
-		text {
-			object {
-				x=277
-				y=532
-				width=54
-				height=15
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Message"
-		}
-		"text update" {
-			object {
-				x=194
-				y=551
-				width=270
-				height=15
-			}
-			monitor {
-				chan="$(P)$(R)RampScan.SMSG"
-				clr=54
-				bclr=2
-			}
-			limits {
-			}
-		}
-		composite {
-			object {
-				x=91
-				y=552
-				width=89
-				height=15
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=140
-						y=552
-						width=40
-						height=15
-					}
-					monitor {
-						chan="$(P)$(R)RampScan.NPTS"
-						clr=14
-						bclr=3
-					}
-					align="horiz. centered"
-					limits {
-					}
-				}
-				"text update" {
-					object {
-						x=91
-						y=552
-						width=40
-						height=15
-					}
-					monitor {
-						chan="$(P)$(R)RampScan.CPT"
-						clr=14
-						bclr=3
-					}
-					align="horiz. centered"
-					limits {
-					}
-				}
-				text {
-					object {
-						x=132
-						y=552
-						width=7
-						height=15
-					}
-					"basic attribute" {
-						clr=14
-					}
-					textix="/"
-					align="horiz. centered"
-				}
-			}
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
+}
+text {
+	object {
+		x=4
+		y=418
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Final Load"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=22
+		y=434
+		width=54
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="(tons)"
+	align="horiz. centered"
+}
+"text entry" {
+	object {
+		x=14
+		y=452
+		width=70
+		height=20
+	}
+	control {
+		chan="$(P)$(R)RampTarget"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=113
+		y=481
+		width=45
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Point"
+}
+text {
+	object {
+		x=258
+		y=418
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Stop"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=258
+		y=434
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ramp"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=244
+		y=453
+		width=65
+		height=19
+	}
+	control {
+		chan="$(P)$(R)EnableRamp"
+		clr=14
+		bclr=20
+	}
+	label="Stop"
+	press_msg="0"
+}
+text {
+	object {
+		x=408
+		y=418
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Resume"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=408
+		y=434
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ramp"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=394
+		y=453
+		width=65
+		height=19
+	}
+	control {
+		chan="$(P)$(R)EnableRamp"
+		clr=14
+		bclr=30
+	}
+	label="Resume"
+	press_msg="1"
+}
+text {
+	object {
+		x=332
+		y=418
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pause"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=332
+		y=434
+		width=36
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Ramp"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=318
+		y=453
+		width=65
+		height=19
+	}
+	control {
+		chan="$(P)$(R)EnableRamp"
+		clr=14
+		bclr=30
+	}
+	label="Pause"
+	press_msg="0"
+}
+"text update" {
+	object {
+		x=140
+		y=501
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(P)$(R)StartRamp.D"
+		clr=14
+		bclr=3
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=91
+		y=501
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(P)$(R)RampCounter"
+		clr=14
+		bclr=3
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=132
+		y=501
+		width=7
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="/"
+	align="horiz. centered"
 }
 "text entry" {
 	object {
@@ -828,7 +746,7 @@ composite {
 		height=20
 	}
 	control {
-		chan="$(P)$(R)Switch.B"
+		chan="$(P)$(R)SwitchoverPressure"
 		clr=14
 		bclr=51
 	}
@@ -859,187 +777,6 @@ text {
 	}
 	textix="Radial to Syringe"
 }
-"text entry" {
-	object {
-		x=26
-		y=283
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC).VAL"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-valuator {
-	object {
-		x=160
-		y=283
-		width=152
-		height=20
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC).VAL"
-		clr=14
-		bclr=51
-	}
-	dPrecision=1.000000
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=136
-		y=284
-		width=20
-		height=19
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC)TweakDown.PROC"
-		clr=14
-		bclr=51
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=316
-		y=284
-		width=20
-		height=19
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC)TweakUp.PROC"
-		clr=14
-		bclr=51
-	}
-	label=">"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=355
-		y=283
-		width=50
-		height=20
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC)TweakVal"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=408
-		y=286
-		width=45
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Tweak"
-}
-"message button" {
-	object {
-		x=36
-		y=260
-		width=80
-		height=19
-	}
-	control {
-		chan="$(P)$(R)StopRadial.PROC"
-		clr=14
-		bclr=20
-	}
-	label="Stop motor"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=115
-		y=311
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC).DRVL"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=270
-		y=311
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(RADIAL_DAC).DRVH"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=359
-		y=314
-		width=99
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Upper limit"
-}
-text {
-	object {
-		x=11
-		y=314
-		width=99
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Lower limit"
-}
-text {
-	object {
-		x=162
-		y=257
-		width=150
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Radial Speed(%)"
-}
-rectangle {
-	object {
-		x=2
-		y=254
-		width=471
-		height=85
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
 text {
 	object {
 		x=75
@@ -1066,187 +803,6 @@ text {
 	}
 	limits {
 	}
-}
-rectangle {
-	object {
-		x=2
-		y=345
-		width=475
-		height=85
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
-text {
-	object {
-		x=157
-		y=348
-		width=160
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Syringe Speed(%)"
-}
-"text entry" {
-	object {
-		x=26
-		y=374
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC).VAL"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-valuator {
-	object {
-		x=160
-		y=374
-		width=152
-		height=20
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC).VAL"
-		clr=14
-		bclr=51
-	}
-	dPrecision=1.000000
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=136
-		y=375
-		width=20
-		height=19
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC)TweakDown.PROC"
-		clr=14
-		bclr=51
-	}
-	label="<"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=316
-		y=375
-		width=20
-		height=19
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC)TweakUp.PROC"
-		clr=14
-		bclr=51
-	}
-	label=">"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=355
-		y=374
-		width=50
-		height=20
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC)TweakVal"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=408
-		y=377
-		width=45
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Tweak"
-}
-"message button" {
-	object {
-		x=36
-		y=351
-		width=80
-		height=19
-	}
-	control {
-		chan="$(P)$(R)StopSyringe.PROC"
-		clr=14
-		bclr=20
-	}
-	label="Stop motor"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=115
-		y=402
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC).DRVL"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"text entry" {
-	object {
-		x=270
-		y=402
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(SYRINGE_DAC).DRVH"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=359
-		y=405
-		width=99
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Upper limit"
-}
-text {
-	object {
-		x=11
-		y=405
-		width=99
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Lower limit"
 }
 "message button" {
 	object {
@@ -1307,8 +863,274 @@ text {
 	}
 	"dynamic attribute" {
 		vis="if not zero"
-		chan="$(P)$(R)Value.STAT"
+		chan="$(P)$(R)CurrentPressure.STAT"
 	}
 	textix="Limit"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=179
+		y=257
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Radial Speed"
+}
+rectangle {
+	object {
+		x=3
+		y=254
+		width=471
+		height=60
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"message button" {
+	object {
+		x=11
+		y=285
+		width=80
+		height=19
+	}
+	control {
+		chan="$(P)$(R)StopRadial.PROC"
+		clr=14
+		bclr=20
+	}
+	label="Stop motor"
+	press_msg="1"
+}
+text {
+	object {
+		x=101
+		y=289
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+}
+"text entry" {
+	object {
+		x=169
+		y=286
+		width=100
+		height=20
+	}
+	control {
+		chan="$(RADIAL_MOTOR).JVEL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=279
+		y=288
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Maximum"
+}
+"text entry" {
+	object {
+		x=347
+		y=285
+		width=80
+		height=20
+	}
+	control {
+		chan="$(RADIAL_MOTOR).VMAX"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=174
+		y=322
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Syringe Speed"
+}
+"message button" {
+	object {
+		x=11
+		y=347
+		width=80
+		height=19
+	}
+	control {
+		chan="$(P)$(R)StopSyringe.PROC"
+		clr=14
+		bclr=20
+	}
+	label="Stop motor"
+	press_msg="1"
+}
+text {
+	object {
+		x=101
+		y=351
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current"
+}
+"text entry" {
+	object {
+		x=169
+		y=348
+		width=100
+		height=20
+	}
+	control {
+		chan="$(SYRINGE_MOTOR).JVEL"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=279
+		y=350
+		width=63
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Maximum"
+}
+"text entry" {
+	object {
+		x=347
+		y=347
+		width=80
+		height=20
+	}
+	control {
+		chan="$(SYRINGE_MOTOR).VMAX"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=3
+		y=319
+		width=471
+		height=60
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=340
+		y=259
+		width=98
+		height=26
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="((A=0)&&(B=0))"
+		chan="13IDD:m56.DMOV"
+		chanB="13IDD:m56.STAT"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=338
+		y=258
+		width=98
+		height=26
+	}
+	"basic attribute" {
+		clr=50
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="((A=0)&&(B=0))"
+		chan="13IDD:m56.DMOV"
+		chanB="13IDD:m56.STAT"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=340
+		y=324
+		width=98
+		height=26
+	}
+	"basic attribute" {
+		clr=54
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="((A=0)&&(B=0))"
+		chan="13IDD:m54.DMOV"
+		chanB="13IDD:m54.STAT"
+	}
+	textix="Moving"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=338
+		y=323
+		width=98
+		height=26
+	}
+	"basic attribute" {
+		clr=50
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="((A=0)&&(B=0))"
+		chan="13IDD:m54.DMOV"
+		chanB="13IDD:m54.STAT"
+	}
+	textix="Moving"
 	align="horiz. centered"
 }
