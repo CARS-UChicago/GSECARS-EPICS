@@ -1,7 +1,7 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\00Start.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/00Start.adl"
+	version=030117
 }
 display {
 	object {
@@ -901,12 +901,16 @@ text {
 		height=30
 	}
 	display[0] {
-		label="All IOC status"
-		name="All_IOC_status.adl"
+		label="Beamline IOCs"
+		name="Beamline_IOC_status.adl"
+	}
+	display[1] {
+		label="Other IOCs"
+		name="Other_IOC_status.adl"
 	}
 	clr=14
 	bclr=4
-	label="- All IOC Status"
+	label="- IOC Status"
 }
 "related display" {
 	object {
@@ -1050,6 +1054,11 @@ text {
 		label="13BMB Point Grey 1"
 		name="ADSpinnaker.adl"
 		args="P=13BMB_PG1:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[2] {
+		label="13BMC Point Grey 3"
+		name="ADSpinnaker.adl"
+		args="P=13BMC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
 	}
 	display[7] {
 		label="13BMC Point Grey 2"
