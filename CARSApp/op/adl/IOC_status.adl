@@ -7,7 +7,7 @@ display {
 	object {
 		x=1070
 		y=187
-		width=640
+		width=600
 		height=21
 	}
 	clr=14
@@ -91,7 +91,7 @@ rectangle {
 	object {
 		x=0
 		y=0
-		width=640
+		width=600
 		height=21
 	}
 	"basic attribute" {
@@ -136,8 +136,8 @@ text {
 	}
 	monitor {
 		chan="$(PREFIX)::CA_CONN_CNT"
-		clr=14
-		bclr=9
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. right"
@@ -152,9 +152,9 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(PREFIX)::IOC_CPU_LOAD"
-		clr=14
-		bclr=9
+		chan="$(PREFIX)::IOC_SINGLE_CPU_LOAD"
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. right"
@@ -165,13 +165,13 @@ text {
 	object {
 		x=470
 		y=4
-		width=100
+		width=60
 		height=15
 	}
 	monitor {
-		chan="13IDA::MEM_FREE"
-		clr=14
-		bclr=9
+		chan="$(PREFIX)::MEM_FREE_GiB"
+		clr=15
+		bclr=14
 	}
 	clrmod="alarm"
 	align="horiz. right"
@@ -180,7 +180,7 @@ text {
 }
 "related display" {
 	object {
-		x=575
+		x=535
 		y=4
 		width=60
 		height=16
@@ -206,7 +206,8 @@ text {
 		clr=54
 		bclr=4
 	}
-	align="horiz. right"
+	align="horiz. centered"
+	format="string"
 	limits {
 	}
 }
