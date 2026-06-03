@@ -8,7 +8,7 @@ display {
 		x=96
 		y=275
 		width=1735
-		height=485
+		height=500
 	}
 	clr=14
 	bclr=4
@@ -275,231 +275,63 @@ rectangle {
 		x=5
 		y=35
 		width=340
-		height=315
+		height=365
 	}
 	"basic attribute" {
 		clr=14
 		fill="outline"
 	}
 }
-composite {
+rectangle {
 	object {
-		x=51
-		y=355
-		width=245
+		x=5
+		y=405
+		width=340
 		height=85
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=51
-				y=355
-				width=245
-				height=85
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=151
-				y=360
-				width=60
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Units"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=191
-				y=390
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(P)$(ISCO)PressUnits"
-				clr=53
-				bclr=4
-			}
-			format="string"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=191
-				y=415
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(P)$(ISCO)FlowUnits"
-				clr=53
-				bclr=4
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=96
-				y=390
-				width=90
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Pressure"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=56
-				y=415
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Flow rate"
-			align="horiz. right"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
 }
-composite {
+text {
+	object {
+		x=144
+		y=410
+		width=83
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Units"
+	align="horiz. centered"
+}
+menu {
+	object {
+		x=142
+		y=220
+		width=150
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)Mode"
+		clr=14
+		bclr=4
+	}
+}
+text {
 	object {
 		x=97
 		y=220
-		width=195
-		height=95
+		width=40
+		height=20
 	}
-	"composite name"=""
-	children {
-		"text update" {
-			object {
-				x=144
-				y=245
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(P)$(ISCO)$(CP)Run_RBV"
-				clr=53
-				bclr=2
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="string"
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=144
-				y=295
-				width=100
-				height=20
-			}
-			display[0] {
-				label="Pump full"
-				name="ISCO_SinglePump.adl"
-				args="P=$(P)$(ISCO),PUMP=$(CP)"
-			}
-			display[1] {
-				label="Controller"
-				name="ISCO_Controller.adl"
-				args="P=$(P)$(ISCO)"
-			}
-			display[2] {
-				label="Pump more"
-				name="ISCO_SinglePumpMore.adl"
-				args="P=$(P)$(ISCO),PUMP=$(CP)"
-			}
-			clr=14
-			bclr=51
-			label="More"
-		}
-		"message button" {
-			object {
-				x=100
-				y=270
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(CP)Run"
-				clr=14
-				bclr=20
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		"message button" {
-			object {
-				x=165
-				y=270
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(CP)Run"
-				clr=14
-				bclr=15
-			}
-			label="Pump"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=228
-				y=270
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(CP)Refill"
-				clr=14
-				bclr=30
-			}
-			label="Refill"
-			press_msg="1"
-		}
-		menu {
-			object {
-				x=142
-				y=220
-				width=150
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(CP)Mode"
-				clr=14
-				bclr=4
-			}
-		}
-		text {
-			object {
-				x=97
-				y=220
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-			align="horiz. right"
-		}
+	"basic attribute" {
+		clr=14
 	}
+	textix="Mode"
+	align="horiz. right"
 }
 text {
 	object {
@@ -663,148 +495,38 @@ rectangle {
 		x=350
 		y=35
 		width=340
-		height=315
+		height=365
 	}
 	"basic attribute" {
 		clr=14
 		fill="outline"
 	}
 }
-composite {
+menu {
 	object {
-		x=442
+		x=490
 		y=220
-		width=195
-		height=95
+		width=150
+		height=20
 	}
-	"composite name"=""
-	children {
-		"text update" {
-			object {
-				x=489
-				y=245
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(P)$(ISCO)$(AP)Run_RBV"
-				clr=53
-				bclr=2
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="string"
-			limits {
-			}
-		}
-		"message button" {
-			object {
-				x=445
-				y=270
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(AP)Run"
-				clr=14
-				bclr=20
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		"message button" {
-			object {
-				x=510
-				y=270
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(AP)Run"
-				clr=14
-				bclr=15
-			}
-			label="Pump"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=573
-				y=270
-				width=60
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(AP)Refill"
-				clr=14
-				bclr=30
-			}
-			label="Refill"
-			press_msg="1"
-		}
-		menu {
-			object {
-				x=487
-				y=220
-				width=150
-				height=20
-			}
-			control {
-				chan="$(P)$(ISCO)$(AP)Mode"
-				clr=14
-				bclr=4
-			}
-		}
-		text {
-			object {
-				x=442
-				y=220
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Mode"
-			align="horiz. right"
-		}
-		"related display" {
-			object {
-				x=489
-				y=295
-				width=100
-				height=20
-			}
-			display[0] {
-				label="Pump full"
-				name="ISCO_SinglePump.adl"
-				args="P=$(P)$(ISCO),PUMP=$(AP)"
-			}
-			display[1] {
-				label="Controller"
-				name="ISCO_Controller.adl"
-				args="P=$(P)$(ISCO)"
-			}
-			display[2] {
-				label="Pump more"
-				name="ISCO_SinglePumpMore.adl"
-				args="P=$(P)$(ISCO),PUMP=$(AP)"
-			}
-			display[3] {
-				label="Axial load motor"
-				name="1motors.adl"
-				args="P=13BMD:,TITLE=AxialLoad,M1=m124"
-			}
-			display[4] {
-				label="Axial load LTA"
-				name="1motors.adl"
-				args="P=13BMD:,TITLE=AxialLoad,M1=m125"
-			}
-			clr=14
-			bclr=51
-			label="More"
-		}
+	control {
+		chan="$(P)$(ISCO)$(AP)Mode"
+		clr=14
+		bclr=4
 	}
+}
+text {
+	object {
+		x=445
+		y=220
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode"
+	align="horiz. right"
 }
 composite {
 	object {
@@ -2808,113 +2530,46 @@ composite {
 		}
 	}
 }
-composite {
+rectangle {
 	object {
-		x=398
-		y=355
-		width=245
-		height=110
+		x=350
+		y=405
+		width=340
+		height=85
 	}
-	"composite name"=""
-	children {
-		text {
-			object {
-				x=403
-				y=390
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="LVDT (micron)"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=403
-				y=415
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Load cell (N)"
-			align="horiz. right"
-		}
-		rectangle {
-			object {
-				x=398
-				y=355
-				width=245
-				height=110
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-			}
-		}
-		text {
-			object {
-				x=486
-				y=360
-				width=84
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Loading"
-			align="horiz. centered"
-		}
-		"text update" {
-			object {
-				x=538
-				y=390
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(P)$(E1608)$(LVDT)"
-				clr=53
-				bclr=4
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=538
-				y=415
-				width=100
-				height=20
-			}
-			monitor {
-				chan="$(P)$(E1608)$(LC)"
-				clr=53
-				bclr=4
-			}
-			limits {
-			}
-		}
-		"related display" {
-			object {
-				x=485
-				y=440
-				width=100
-				height=20
-			}
-			display[0] {
-				label="E1608"
-				name="E1608_module.adl"
-				args="P=$(P)$(E1608),Bi=Bi,Li=Li,Bo=Bo,Lo=Lo,Bd=Bd,Ai=Ai,Ao=Ao,Ct=Counter,Wd=WaveDig,Tg=Trig"
-			}
-			clr=14
-			bclr=51
-			label="More"
-		}
+	"basic attribute" {
+		clr=14
+		fill="outline"
 	}
+}
+text {
+	object {
+		x=486
+		y=410
+		width=84
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Loading"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=615
+		y=440
+		width=60
+		height=20
+	}
+	display[0] {
+		label="E1608"
+		name="E1608_module.adl"
+		args="P=$(P)$(E1608),Bi=Bi,Li=Li,Bo=Bo,Lo=Lo,Bd=Bd,Ai=Ai,Ao=Ao,Ct=Counter,Wd=WaveDig,Tg=Trig"
+	}
+	clr=14
+	bclr=51
+	label="More"
 }
 "related display" {
 	object {
@@ -3355,96 +3010,6 @@ menu {
 	limits {
 	}
 }
-text {
-	object {
-		x=730
-		y=320
-		width=100
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Fill valve"
-	align="horiz. right"
-}
-text {
-	object {
-		x=700
-		y=295
-		width=130
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Deliver valve"
-	align="horiz. right"
-}
-"text update" {
-	object {
-		x=940
-		y=295
-		width=65
-		height=20
-	}
-	monitor {
-		chan="$(P)$(VINDUM)$(UP)DeliverValve_RBV"
-		clr=53
-		bclr=2
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="string"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=940
-		y=320
-		width=65
-		height=20
-	}
-	monitor {
-		chan="$(P)$(VINDUM)$(UP)FillValve_RBV"
-		clr=53
-		bclr=2
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	format="string"
-	limits {
-	}
-}
-"choice button" {
-	object {
-		x=835
-		y=295
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(VINDUM)$(UP)DeliverValve"
-		clr=14
-		bclr=51
-	}
-	stacking="column"
-}
-"choice button" {
-	object {
-		x=835
-		y=320
-		width=100
-		height=20
-	}
-	control {
-		chan="$(P)$(VINDUM)$(UP)FillValve"
-		clr=14
-		bclr=51
-	}
-	stacking="column"
-}
 "text update" {
 	object {
 		x=835
@@ -3565,34 +3130,6 @@ composite {
 }
 text {
 	object {
-		x=375
-		y=320
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Description"
-	align="horiz. right"
-}
-"text entry" {
-	object {
-		x=490
-		y=320
-		width=190
-		height=20
-	}
-	control {
-		chan="$(P)$(ISCO)$(AP)Description"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-text {
-	object {
 		x=720
 		y=420
 		width=110
@@ -3647,31 +3184,685 @@ text {
 	limits {
 	}
 }
-text {
+composite {
+	object {
+		x=375
+		y=295
+		width=305
+		height=95
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=489
+				y=295
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(P)$(ISCO)$(AP)Run_RBV"
+				clr=53
+				bclr=2
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		"message button" {
+			object {
+				x=445
+				y=320
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(AP)Run"
+				clr=14
+				bclr=20
+			}
+			label="Stop"
+			press_msg="0"
+		}
+		"message button" {
+			object {
+				x=510
+				y=320
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(AP)Run"
+				clr=14
+				bclr=15
+			}
+			label="Pump"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=573
+				y=320
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(AP)Refill"
+				clr=14
+				bclr=30
+			}
+			label="Refill"
+			press_msg="1"
+		}
+		"related display" {
+			object {
+				x=489
+				y=345
+				width=100
+				height=20
+			}
+			display[0] {
+				label="Pump full"
+				name="ISCO_SinglePump.adl"
+				args="P=$(P)$(ISCO),PUMP=$(AP)"
+			}
+			display[1] {
+				label="Controller"
+				name="ISCO_Controller.adl"
+				args="P=$(P)$(ISCO)"
+			}
+			display[2] {
+				label="Pump more"
+				name="ISCO_SinglePumpMore.adl"
+				args="P=$(P)$(ISCO),PUMP=$(AP)"
+			}
+			display[3] {
+				label="Axial load motor"
+				name="1motors.adl"
+				args="P=13BMD:,TITLE=AxialLoad,M1=m124"
+			}
+			display[4] {
+				label="Axial load LTA"
+				name="1motors.adl"
+				args="P=13BMD:,TITLE=AxialLoad,M1=m125"
+			}
+			clr=14
+			bclr=51
+			label="More"
+		}
+		text {
+			object {
+				x=375
+				y=370
+				width=110
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Description"
+			align="horiz. right"
+		}
+		"text entry" {
+			object {
+				x=490
+				y=370
+				width=190
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(AP)Description"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=700
+		y=295
+		width=305
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=730
+				y=320
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Fill valve"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=700
+				y=295
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Deliver valve"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=940
+				y=295
+				width=65
+				height=20
+			}
+			monitor {
+				chan="$(P)$(VINDUM)$(UP)DeliverValve_RBV"
+				clr=53
+				bclr=2
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=940
+				y=320
+				width=65
+				height=20
+			}
+			monitor {
+				chan="$(P)$(VINDUM)$(UP)FillValve_RBV"
+				clr=53
+				bclr=2
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		"choice button" {
+			object {
+				x=835
+				y=295
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(VINDUM)$(UP)DeliverValve"
+				clr=14
+				bclr=51
+			}
+			stacking="column"
+		}
+		"choice button" {
+			object {
+				x=835
+				y=320
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(VINDUM)$(UP)FillValve"
+				clr=14
+				bclr=51
+			}
+			stacking="column"
+		}
+	}
+}
+composite {
 	object {
 		x=30
-		y=320
-		width=110
+		y=295
+		width=305
+		height=95
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=144
+				y=295
+				width=100
+				height=20
+			}
+			monitor {
+				chan="$(P)$(ISCO)$(CP)Run_RBV"
+				clr=53
+				bclr=2
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		"related display" {
+			object {
+				x=144
+				y=345
+				width=100
+				height=20
+			}
+			display[0] {
+				label="Pump full"
+				name="ISCO_SinglePump.adl"
+				args="P=$(P)$(ISCO),PUMP=$(CP)"
+			}
+			display[1] {
+				label="Controller"
+				name="ISCO_Controller.adl"
+				args="P=$(P)$(ISCO)"
+			}
+			display[2] {
+				label="Pump more"
+				name="ISCO_SinglePumpMore.adl"
+				args="P=$(P)$(ISCO),PUMP=$(CP)"
+			}
+			clr=14
+			bclr=51
+			label="More"
+		}
+		"message button" {
+			object {
+				x=100
+				y=320
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(CP)Run"
+				clr=14
+				bclr=20
+			}
+			label="Stop"
+			press_msg="0"
+		}
+		"message button" {
+			object {
+				x=165
+				y=320
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(CP)Run"
+				clr=14
+				bclr=15
+			}
+			label="Pump"
+			press_msg="1"
+		}
+		"message button" {
+			object {
+				x=228
+				y=320
+				width=60
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(CP)Refill"
+				clr=14
+				bclr=30
+			}
+			label="Refill"
+			press_msg="1"
+		}
+		text {
+			object {
+				x=30
+				y=370
+				width=110
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Description"
+			align="horiz. right"
+		}
+		"text entry" {
+			object {
+				x=145
+				y=370
+				width=190
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(CP)Description"
+				clr=14
+				bclr=51
+			}
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=355
+		y=244
+		width=305
+		height=45
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=385
+				y=269
+				width=100
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Fill valve"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=355
+				y=244
+				width=130
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Deliver valve"
+			align="horiz. right"
+		}
+		"text update" {
+			object {
+				x=595
+				y=244
+				width=65
+				height=20
+			}
+			monitor {
+				chan="$(P)$(ISCO)$(AP)DeliverValve_RBV"
+				clr=53
+				bclr=2
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=595
+				y=269
+				width=65
+				height=20
+			}
+			monitor {
+				chan="$(P)$(ISCO)$(AP)FillValve_RBV"
+				clr=53
+				bclr=2
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+		"choice button" {
+			object {
+				x=490
+				y=244
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(AP)DeliverValve"
+				clr=14
+				bclr=51
+			}
+			stacking="column"
+		}
+		"choice button" {
+			object {
+				x=490
+				y=269
+				width=100
+				height=20
+			}
+			control {
+				chan="$(P)$(ISCO)$(AP)FillValve"
+				clr=14
+				bclr=51
+			}
+			stacking="column"
+		}
+	}
+}
+text {
+	object {
+		x=40
+		y=270
+		width=100
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Description"
+	textix="Fill valve"
 	align="horiz. right"
 }
-"text entry" {
+text {
+	object {
+		x=10
+		y=245
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Deliver valve"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=250
+		y=245
+		width=65
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)DeliverValve_RBV"
+		clr=53
+		bclr=2
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=250
+		y=270
+		width=65
+		height=20
+	}
+	monitor {
+		chan="$(P)$(ISCO)$(CP)FillValve_RBV"
+		clr=53
+		bclr=2
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"choice button" {
 	object {
 		x=145
-		y=320
-		width=190
+		y=245
+		width=100
 		height=20
 	}
 	control {
-		chan="$(P)$(ISCO)$(CP)Description"
+		chan="$(P)$(ISCO)$(CP)DeliverValve"
 		clr=14
 		bclr=51
 	}
+	stacking="column"
+}
+"choice button" {
+	object {
+		x=145
+		y=270
+		width=100
+		height=20
+	}
+	control {
+		chan="$(P)$(ISCO)$(CP)FillValve"
+		clr=14
+		bclr=51
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=360
+		y=440
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LVDT (micron)"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=495
+		y=440
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(E1608)$(LVDT)"
+		clr=53
+		bclr=4
+	}
 	limits {
+	}
+}
+"text update" {
+	object {
+		x=495
+		y=465
+		width=100
+		height=20
+	}
+	monitor {
+		chan="$(P)$(E1608)$(LC)"
+		clr=53
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=360
+		y=465
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Load cell (N)"
+	align="horiz. right"
+}
+composite {
+	object {
+		x=67
+		y=440
+		width=217
+		height=45
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=164
+				y=440
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)$(ISCO)PressUnits"
+				clr=53
+				bclr=4
+			}
+			format="string"
+			limits {
+			}
+		}
+		"text update" {
+			object {
+				x=164
+				y=465
+				width=120
+				height=20
+			}
+			monitor {
+				chan="$(P)$(ISCO)FlowUnits"
+				clr=53
+				bclr=4
+			}
+			limits {
+			}
+		}
+		text {
+			object {
+				x=77
+				y=440
+				width=80
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Pressure"
+			align="horiz. right"
+		}
+		text {
+			object {
+				x=67
+				y=465
+				width=90
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="Flow rate"
+			align="horiz. right"
+		}
 	}
 }
