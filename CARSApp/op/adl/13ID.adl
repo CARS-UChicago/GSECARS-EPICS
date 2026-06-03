@@ -1,12 +1,12 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13ID.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13ID.adl"
+	version=030117
 }
 display {
 	object {
-		x=292
-		y=111
+		x=398
+		y=352
 		width=700
 		height=550
 	}
@@ -271,23 +271,29 @@ composite {
 		args="sec=13,us=13,ds=13"
 	}
 	display[10] {
-		label="Ring Steering Full"
-		name="BLSteering.adl"
-		args="BL=ID, S=13, SEC=13"
+		label="Beam Steering "
+		name="UserSteering.adl"
+		args="sector=S13ID"
 	}
 	display[11] {
-		label="Ring Steering US"
-		name="BLSteering.adl"
-		args="BL=ID, S=13us, SEC=13"
+		label="ID Steering Combined"
+		name="UserSteeringID.adl"
+		args="sector=S13ID"
 	}
 	display[12] {
-		label="Ring Steering DS"
-		name="BLSteering.adl"
-		args="BL=ID, S=13ds, SEC=13"
+		label="ID Steering US"
+		name="UserSteeringUSID.adl"
+		args="sector=S13ID"
 	}
 	display[13] {
-		label="IDSteeringGlobal"
-		name="IDSteeringGlobal.adl"
+		label="ID Steering DS"
+		name="UserSteeringDSID.adl"
+		args="sector=S13ID"
+	}
+	display[14] {
+		label="BM Steering"
+		name="UserSteeringBM.adl"
+		args="sector=S13BM"
 	}
 	clr=14
 	bclr=51
@@ -548,9 +554,9 @@ text {
 		args="P=S13ID:DSID"
 	}
 	display[1] {
-		label="Sync Undulator Control"
-		name="IDSyncScan.adl"
-		args="ID=13ds"
+		label="ID GapScan Control"
+		name="IDControl_GapScan.adl"
+		args="P=S13ID:DSID"
 	}
 	clr=14
 	bclr=51
@@ -1057,9 +1063,9 @@ text {
 		args="P=S13ID:USID"
 	}
 	display[1] {
-		label="Sync Undulator Control"
-		name="UndulatorSyncCtl.adl"
-		args="xx=13us"
+		label="ID GapScan Control"
+		name="IDControl_GapScan.adl"
+		args="P=S13ID:USID"
 	}
 	clr=14
 	bclr=51
