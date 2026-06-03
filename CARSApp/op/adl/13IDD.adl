@@ -293,6 +293,16 @@ text {
 		name="4motors.adl"
 		args="P=13IDD:, TITLE=new_XPSD-8, M1=m84, M2=m82, M3=m83, M4=m81"
 	}
+	display[9] {
+		label="DAC detector"
+		name="8motors.adl"
+		args="P=13IDD:, TITLE=DAC_Detector, M1=m115,M2=m116,M3=m117,M4=pm20,M5=pm21,M6=pm22,M7=pm23,M8=pm24"
+	}
+	display[10] {
+		label="DAC detector profile"
+		name="IDD_DAC_Detector_Profile.adl"
+		args="P=13IDD:, PROF=Galil11:Prof1:, T=DAC_DETR:"
+	}
 	clr=14
 	bclr=4
 }
@@ -520,7 +530,7 @@ text {
 	display[6] {
 		label="Pressure control"
 		name="ID_LVP_pressure.adl"
-		args="P=13IDD:LVP:,R=Press_, RADIAL_DAC=MC1:Ao1, SYRINGE_DAC=MC1:Ao2"
+		args="P=13IDD:LVP:,R=Press_,RADIAL_MOTOR=13IDD:m56,SYRINGE_MOTOR=13IDD:m54"
 	}
 	display[7] {
 		label="Temperature Ramp"
@@ -1280,6 +1290,11 @@ text {
 		label="Galil 11 controller"
 		name="galil_dmc_ctrl.adl"
 		args="DMC=13IDD:Galil11:,M1=m113,M2=m114,M3=m115,M4=m116,M5=m117,M6=m118,M7=m119,M8=m120,AMP1=AD,AMP2=EH"
+	}
+	display[11] {
+		label="Galil 12 controller"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDD:Galil12:,M1=m85,M2=m86,M3=m87,M4=m88,M5=m89,M6=m90,M7=m91,M8=m92,AMP1=AD,AMP2=EH"
 	}
 	clr=14
 	bclr=4
