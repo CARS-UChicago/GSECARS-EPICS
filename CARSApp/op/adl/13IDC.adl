@@ -1,14 +1,14 @@
 
 file {
-	name="J:\epics\support\CARS\CARSApp\op\adl\13IDC.adl"
-	version=030109
+	name="/home/epics/support/CARS/CARSApp/op/adl/13IDC.adl"
+	version=030117
 }
 display {
 	object {
-		x=1121
-		y=546
+		x=726
+		y=247
 		width=316
-		height=480
+		height=485
 	}
 	clr=46
 	bclr=3
@@ -124,9 +124,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=139
+		y=130
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
 		label="Newport Table Motors"
@@ -154,54 +154,9 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=251
+		y=105
 		width=75
-		height=26
-	}
-	display[0] {
-		label="SRS Preamp #1"
-		name="SR570.adl"
-		args="P=13IDC:, A=A1"
-	}
-	display[1] {
-		label="SRS Preamp #2"
-		name="SR570.adl"
-		args="P=13IDC:, A=A2"
-	}
-	display[2] {
-		label="SRS Preamp #3"
-		name="SR570.adl"
-		args="P=13IDC:, A=A3"
-	}
-	display[3] {
-		label="SRS Preamp #4"
-		name="SR570.adl"
-		args="P=13IDC:, A=A4"
-	}
-	display[4] {
-		label="SRS Preamp #5"
-		name="SR570.adl"
-		args="P=13IDC:, A=A5"
-	}
-	display[6] {
-		label="Keithley Multimeter (IDC)"
-		name="Keithley2kDMM_mf.adl"
-		args="P=13IDC:, Dmm=DMM1"
-	}
-	display[7] {
-		label="Keithley Multimeter (IDA)"
-		name="Keithley2kDMM_mf.adl"
-		args="P=13IDA:,  Dmm=DMM1"
-	}
-	clr=14
-	bclr=5
-}
-"related display" {
-	object {
-		x=10
-		y=111
-		width=75
-		height=24
+		height=20
 	}
 	display[0] {
 		label="Goniometer"
@@ -254,9 +209,166 @@ composite {
 "related display" {
 	object {
 		x=10
-		y=223
+		y=55
 		width=75
-		height=26
+		height=20
+	}
+	display[0] {
+		label="Beam Status"
+		name="13IDC_Beam.adl"
+	}
+	display[4] {
+		args="  "
+	}
+	display[5] {
+		args=" "
+	}
+	clr=14
+	bclr=5
+	label="      "
+}
+"related display" {
+	object {
+		x=10
+		y=80
+		width=75
+		height=20
+	}
+	display[0] {
+		label="IDC Bench Camera"
+		name="ADVimba.adl"
+		args="P=13IDC_PS1:, R=cam1:, C=AVT_Manta_G507C"
+	}
+	display[1] {
+		label="IDC Sample Normal"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[2] {
+		label="IDC Off-Axis"
+		name="ADSpinnaker.adl"
+		args="P=13IDC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[3] {
+		label="Portable Beam Viewer"
+		name="ADSpinnaker.adl"
+		args="P=13BV1:, R=cam1:, C=PGR_GS3_U3_23S6M"
+	}
+	display[4] {
+		label="FOE BV 2"
+		name="ADSpinnaker.adl"
+		args="  P=13IDA_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+	}
+	display[5] {
+		args=" "
+	}
+	clr=14
+	bclr=5
+	label="      "
+}
+text {
+	object {
+		x=90
+		y=105
+		width=210
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Diffractometer Motors"
+}
+text {
+	object {
+		x=90
+		y=55
+		width=220
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Beam & Detector Status"
+}
+text {
+	object {
+		x=90
+		y=80
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Cameras"
+}
+text {
+	object {
+		x=90
+		y=130
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Table Motors"
+}
+"related display" {
+	object {
+		x=10
+		y=255
+		width=75
+		height=20
+	}
+	display[0] {
+		label="SRS Preamp #1"
+		name="SR570.adl"
+		args="P=13IDC:, A=A1"
+	}
+	display[1] {
+		label="SRS Preamp #2"
+		name="SR570.adl"
+		args="P=13IDC:, A=A2"
+	}
+	display[2] {
+		label="SRS Preamp #3"
+		name="SR570.adl"
+		args="P=13IDC:, A=A3"
+	}
+	display[3] {
+		label="SRS Preamp #4"
+		name="SR570.adl"
+		args="P=13IDC:, A=A4"
+	}
+	display[4] {
+		label="SRS Preamp #5"
+		name="SR570.adl"
+		args="P=13IDC:, A=A5"
+	}
+	display[6] {
+		label="Keithley Multimeter (IDC)"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13IDC:, Dmm=DMM1"
+	}
+	display[7] {
+		label="Keithley Multimeter (IDA)"
+		name="Keithley2kDMM_mf.adl"
+		args="P=13IDA:,  Dmm=DMM1"
+	}
+	clr=14
+	bclr=5
+}
+"related display" {
+	object {
+		x=10
+		y=230
+		width=75
+		height=20
 	}
 	display[0] {
 		label="SRS Preamp #B1"
@@ -311,88 +423,12 @@ composite {
 	clr=14
 	bclr=5
 }
-text {
-	object {
-		x=90
-		y=251
-		width=140
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Electronics #2"
-}
-text {
-	object {
-		x=90
-		y=111
-		width=210
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Diffractometer Motors"
-}
-text {
-	object {
-		x=90
-		y=223
-		width=140
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Electronics #1"
-}
-text {
-	object {
-		x=90
-		y=55
-		width=90
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Beam & Detector Status"
-}
-text {
-	object {
-		x=90
-		y=83
-		width=120
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Cameras"
-}
-text {
-	object {
-		x=90
-		y=139
-		width=120
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	textix="Table Motors"
-}
 "related display" {
 	object {
 		x=10
-		y=279
+		y=280
 		width=74
-		height=26
+		height=20
 	}
 	display[0] {
 		label="Bench Attenuators"
@@ -417,24 +453,12 @@ text {
 	clr=14
 	bclr=5
 }
-text {
-	object {
-		x=89
-		y=279
-		width=110
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Attenuators"
-}
 "related display" {
 	object {
 		x=10
-		y=195
+		y=205
 		width=75
-		height=26
+		height=20
 	}
 	display[0] {
 		label="PE Cleanup Slits"
@@ -457,10 +481,113 @@ text {
 	clr=14
 	bclr=5
 }
+"related display" {
+	object {
+		x=10
+		y=330
+		width=75
+		height=20
+	}
+	display[0] {
+		label="ID-C/D Energy"
+		name="GSE_MonoEnergy.adl"
+		args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=S13ID:DSID, TH=m57, MH=m58, MP=m59, MR=m30, MX=m30, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
+	}
+	display[1] {
+		label="CD Crystal cage"
+		name="3motors.adl"
+		args="P=13IDA:, TITLE=CD_Crystal_Cage, M1=m58, M2=m30, M3=m57"
+	}
+	display[2] {
+		label="Full Feedback"
+		name="13ID_CD_mono_feedback.adl"
+		args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,IDD_PITCH_PID=mono_pid1,IDD_ROLL_PID=mono_pid2,IDC_PITCH_PID=mono_pid3,IDC_ROLL_PID=mono_pid4"
+	}
+	display[3] {
+		label="LN2 and Vacuum Status"
+		name="13ID_mono_cryovac.adl"
+	}
+	display[4] {
+		args=" "
+	}
+	clr=14
+	bclr=5
+}
+"related display" {
+	object {
+		x=10
+		y=305
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Scaler"
+		name="scaler_full_calc.adl"
+		args="P=13IDC:, S=scaler1"
+	}
+	display[1] {
+		label="Vortex"
+		name="single_dxp_top.adl"
+		args="P=13XRM:,D=dxp1,M=mca1"
+	}
+	display[2] {
+		label="XRF Collect"
+		name="XRF_Collect.adl"
+		args="P=13XRM:, Q=XRF, D=13KETEK1:"
+	}
+	display[3] {
+		label="IDC-PIL"
+		name="pilatusDetector.adl"
+		args="P=13IDC-PIL:, R=cam1:"
+	}
+	display[4] {
+		label="Dante 1"
+		name="dante.adl"
+		args="P=13IDC_Dante1:, M=mca1, R=dante1:"
+	}
+	clr=14
+	bclr=5
+}
 text {
 	object {
 		x=90
-		y=195
+		y=255
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Electronics #2"
+}
+text {
+	object {
+		x=90
+		y=230
+		width=140
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Electronics #1"
+}
+text {
+	object {
+		x=90
+		y=280
+		width=110
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Attenuators"
+}
+text {
+	object {
+		x=90
+		y=205
 		width=140
 		height=20
 	}
@@ -470,12 +597,38 @@ text {
 	}
 	textix="PE Cell Motors"
 }
+text {
+	object {
+		x=90
+		y=330
+		width=130
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Monochromator"
+}
+text {
+	object {
+		x=90
+		y=305
+		width=90
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Detectors"
+}
 "related display" {
 	object {
 		x=10
-		y=167
+		y=155
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
 		label="More Motors"
@@ -492,33 +645,13 @@ text {
 		name="1motors.adl"
 		args="P=13IDC:,TITLE=Film_Gap, M1=m11"
 	}
-	display[6] {
-		label="Galil 1 screen"
-		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil1:,M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m14,M7=m15,M8=m16,AMP1=AD,AMP2=EH"
-	}
-	display[7] {
-		label="Galil 2 screen"
-		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil2:,M1=m57,M2=m58,M3=m59,M4=m60,M5=m61,M6=m62,M7=m63,M8=m64,AMP1=AD,AMP2=EH"
-	}
-	display[8] {
-		label="Galil 3 screen"
-		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil3:,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6,M7=m7,M8=m8,AMP1=AD,AMP2=EH"
-	}
-	display[9] {
-		label="Galil 4 screen"
-		name="galil_dmc_ctrl.adl"
-		args="DMC=13IDC:Galil4:,M1=m17,M2=m18,M3=m19,M4=m20,M5=m21,M6=m22,M7=m23,M8=m24,AMP1=AD,AMP2=EH"
-	}
 	clr=14
 	bclr=5
 }
 text {
 	object {
 		x=90
-		y=167
+		y=155
 		width=110
 		height=20
 	}
@@ -531,78 +664,71 @@ text {
 "related display" {
 	object {
 		x=10
-		y=55
+		y=180
 		width=75
-		height=24
+		height=20
 	}
 	display[0] {
-		label="Beam Status"
-		name="13IDC_Beam.adl"
-	}
-	display[4] {
-		args="  "
-	}
-	display[5] {
-		args=" "
-	}
-	clr=14
-	bclr=5
-	label="      "
-}
-"related display" {
-	object {
-		x=10
-		y=83
-		width=75
-		height=24
-	}
-	display[0] {
-		label="IDC Bench Camera"
-		name="ADVimba.adl"
-		args="P=13IDC_PS1:, R=cam1:, C=AVT_Manta_G507C"
+		label="Galil 1 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil1:,M1=m9,M2=m10,M3=m11,M4=m12,M5=m13,M6=m14,M7=m15,M8=m16,AMP1=AD,AMP2=EH"
 	}
 	display[1] {
-		label="IDC Sample Normal"
-		name="ADSpinnaker.adl"
-		args="P=13IDC_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+		label="Galil 2 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil2:,M1=m57,M2=m58,M3=m59,M4=m60,M5=m61,M6=m62,M7=m63,M8=m64,AMP1=AD,AMP2=EH"
 	}
 	display[2] {
-		label="IDC Off-Axis"
-		name="ADSpinnaker.adl"
-		args="P=13IDC_PG3:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+		label="Galil 3 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil3:,M1=m1,M2=m2,M3=m3,M4=m4,M5=m5,M6=m6,M7=m7,M8=m8,AMP1=AD,AMP2=EH"
 	}
 	display[3] {
-		label="Portable Beam Viewer"
-		name="ADSpinnaker.adl"
-		args="P=13BV1:, R=cam1:, C=PGR_GS3_U3_23S6M"
+		label="Galil 4 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil4:,M1=m17,M2=m18,M3=m19,M4=m20,M5=m21,M6=m22,M7=m23,M8=m24,AMP1=AD,AMP2=EH"
 	}
 	display[4] {
-		label="FOE BV 2"
-		name="ADSpinnaker.adl"
-		args="  P=13IDA_PG2:, R=cam1:, C=FLIR-BFS-PGE-23S6C"
+		label="Galil 5 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil5:,M1=m41,M2=m42,M3=m43,M4=m44,M5=m45,M6=m46,M7=m47,M8=m48,AMP1=AD,AMP2=EH"
 	}
 	display[5] {
-		args=" "
+		label="Galil 6 screen"
+		name="galil_dmc_ctrl.adl"
+		args="DMC=13IDC:Galil6:,M1=m49,M2=m50,M3=m51,M4=m52,M5=m53,M6=m54,M7=m55,M8=m56,AMP1=AD,AMP2=EH"
 	}
 	clr=14
 	bclr=5
-	label="      "
+}
+text {
+	object {
+		x=90
+		y=180
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Galil controllers"
 }
 composite {
 	object {
 		x=10
-		y=307
+		y=380
 		width=300
-		height=138
+		height=95
 	}
 	"composite name"=""
 	children {
 		"related display" {
 			object {
 				x=10
-				y=363
+				y=380
 				width=75
-				height=26
+				height=20
 			}
 			display[0] {
 				label="Scan 1"
@@ -630,115 +756,9 @@ composite {
 		"related display" {
 			object {
 				x=10
-				y=335
+				y=405
 				width=75
-				height=26
-			}
-			display[0] {
-				label="ID-C/D Energy"
-				name="GSE_MonoEnergy.adl"
-				args="P=13IDA:, TITLE=CD_Energy, Q=CD, MONO=13IDA:CDEn, ID=S13ID:DSID, TH=m57, MH=m58, MP=m59, MR=m30, MX=m30, PP=2, PR=3, SHUTTER=eps_mbbi26, TC1=Ch2, TC2=Ch3"
-			}
-			display[1] {
-				label="CD Crystal cage"
-				name="3motors.adl"
-				args="P=13IDA:, TITLE=CD_Crystal_Cage, M1=m58, M2=m30, M3=m57"
-			}
-			display[2] {
-				label="Full Feedback"
-				name="13ID_CD_mono_feedback.adl"
-				args="P=13IDA:,THETA_MOTOR=m57,HEIGHT_MOTOR=m58,PITCH_MOTOR=m59,ROLL_MOTOR=m60,PITCH_DAC=DAC1_2,ROLL_DAC=DAC1_3,IDD_PITCH_PID=mono_pid1,IDD_ROLL_PID=mono_pid2,IDC_PITCH_PID=mono_pid3,IDC_ROLL_PID=mono_pid4"
-			}
-			display[3] {
-				label="LN2 and Vacuum Status"
-				name="13ID_mono_cryovac.adl"
-			}
-			display[4] {
-				args=" "
-			}
-			clr=14
-			bclr=5
-		}
-		"related display" {
-			object {
-				x=10
-				y=307
-				width=75
-				height=26
-			}
-			display[0] {
-				label="Scaler"
-				name="scaler_full_calc.adl"
-				args="P=13IDC:, S=scaler1"
-			}
-			display[1] {
-				label="Vortex"
-				name="single_dxp_top.adl"
-				args="P=13XRM:,D=dxp1,M=mca1"
-			}
-			display[2] {
-				label="XRF Collect"
-				name="XRF_Collect.adl"
-				args="P=13XRM:, Q=XRF, D=13SDD1:"
-			}
-			display[3] {
-				label="IDC-PIL"
-				name="pilatusDetector.adl"
-				args="P=13IDC-PIL:, R=cam1:"
-			}
-			display[4] {
-				label="Dante 1"
-				name="dante.adl"
-				args="P=13IDC_Dante1:, M=mca1, R=dante1:"
-			}
-			clr=14
-			bclr=5
-		}
-		text {
-			object {
-				x=90
-				y=363
-				width=50
 				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="Scans"
-		}
-		text {
-			object {
-				x=90
-				y=335
-				width=130
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="Monochromator"
-		}
-		text {
-			object {
-				x=90
-				y=307
-				width=90
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="Detectors"
-		}
-		"related display" {
-			object {
-				x=10
-				y=391
-				width=75
-				height=26
 			}
 			display[0] {
 				label="Serial 1"
@@ -823,25 +843,12 @@ composite {
 			clr=14
 			bclr=5
 		}
-		text {
-			object {
-				x=90
-				y=391
-				width=120
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="asyn records"
-		}
 		"related display" {
 			object {
 				x=10
-				y=419
+				y=430
 				width=75
-				height=26
+				height=20
 			}
 			display[0] {
 				label="User transforms"
@@ -861,36 +868,12 @@ composite {
 			clr=14
 			bclr=5
 		}
-		text {
-			object {
-				x=90
-				y=419
-				width=220
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-				width=2
-			}
-			textix="User calcs, transforms"
-		}
-	}
-}
-composite {
-	object {
-		x=10
-		y=448
-		width=180
-		height=26
-	}
-	"composite name"=""
-	children {
 		"related display" {
 			object {
 				x=10
-				y=448
+				y=455
 				width=75
-				height=26
+				height=20
 			}
 			display[0] {
 				label="devIocStats"
@@ -913,7 +896,46 @@ composite {
 		text {
 			object {
 				x=90
-				y=448
+				y=380
+				width=50
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="Scans"
+		}
+		text {
+			object {
+				x=90
+				y=405
+				width=120
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="asyn records"
+		}
+		text {
+			object {
+				x=90
+				y=430
+				width=220
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+				width=2
+			}
+			textix="User calcs, transforms"
+		}
+		text {
+			object {
+				x=90
+				y=455
 				width=100
 				height=20
 			}
@@ -924,4 +946,50 @@ composite {
 			textix="IOC status"
 		}
 	}
+}
+"related display" {
+	object {
+		x=10
+		y=355
+		width=75
+		height=20
+	}
+	display[0] {
+		label="Vert. raw motors"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=Vertical_Mirror_Motors, M1=m41,M2=m42,M3=m43,M4=m44,M5=m49,M6=m50"
+	}
+	display[1] {
+		label="Horiz. raw motors"
+		name="6motors.adl"
+		args="P=13IDC:, TITLE=Vertical_Mirror_Motors, M1=m45,M2=m46,M3=m47,M4=m48,M5=m51,M6=m52"
+	}
+	display[2] {
+		label="Vertical mirror"
+		name="8motors.adl"
+		args="P=13IDC:, TITLE=Vertical_Mirror, M1=m41,M2=m42,M3=pm1,M4=pm2,M5=pm5,M6=pm6,M7=pm9,M8=pm10"
+	}
+	display[3] {
+		label="Horizontal mirror"
+		name="8motors.adl"
+		args="P=13IDC:, TITLE=Horizontal_Mirror, M1=m45,M2=m46,M3=pm3,M4=pm4,M5=pm7,M6=pm8,M7=pm11,M8=pm12"
+	}
+	display[4] {
+		args=" "
+	}
+	clr=14
+	bclr=5
+}
+text {
+	object {
+		x=90
+		y=355
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	textix="Mirrors"
 }
