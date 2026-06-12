@@ -1,0 +1,164 @@
+# Galil motor template file for LVP motors in 13-ID-D
+#
+
+# Motors   Galil   Patch panel     Common use
+#  25-32   GALIL4      T         LVP Front slits (25-26), phosphor X (27), CCD Stage (28-30), open (31), Laser stage (32)
+#  33-40   GALIL5      U         LVP Detector (33-39), DAC beam filter (40)
+#  41-48   GALIL6      V         LVP Press Table
+#  49-56   GALIL7     N.A.       LVP pumps and vertical press drive (future)
+#  85-92   GALIL12    N.A.       LVP entrance slits and detector slits
+
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,                          EGU,   DIR,  VELO,  VBAS,  ACCL,   BDST, BVEL,  BACC,   SREV,       UREV, PREC,     DHLM,  DLLM}
+# LVP front slits
+{13IDD:,  m25, "asynMotor",  GALIL4, Galil4:,  0, "Vert. slit pos. (Y)",           mm,   Pos,   0.5,    .1,  .05,   0.1,    .1,    .2,     400,        1.0,    3,       25,   -25}
+{13IDD:,  m26, "asynMotor",  GALIL4, Galil4:,  1, "Hori. slit Pos. (X)",           mm,   Pos,   1.0,    .2,  .05,   0.1,    .1,    .2,     200,        1.0,    3,       25,   -25}
+# LVP CCD camera stage
+{13IDD:,  m27, "asynMotor",  GALIL4, Galil4:,  2, "Phosphor X",                    mm,   Pos,   5.0,    .1,   .5,     0,     1,    .5,    1600,          2,    4,      150,     0}
+{13IDD:,  m28, "asynMotor",  GALIL4, Galil4:,  3, "Stage X",                       mm,   Pos,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,       95,     5}
+{13IDD:,  m29, "asynMotor",  GALIL4, Galil4:,  4, "Stage Y",                       mm,   Neg,   1.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,       70,     0}
+{13IDD:,  m30, "asynMotor",  GALIL4, Galil4:,  5, "Stage Z",                       mm,   Neg,   1.0,    .1,   .5,     0,     1,    .2,     200,       -1.0,    3,       70,     0}
+{13IDD:,  m31, "asynMotor",  GALIL4, Galil4:,  6, "Unused"                         mm,   Pos,   1.0,   0.2,   .1,  -.02,     1,    .1,     200,        -.1,    3,      150,     0}
+{13IDD:,  m32, "asynMotor",  GALIL4, Galil4:,  7, "Laser stage X",                 mm,   Neg,   2.0,    .1,   .5,     0,     1,    .2,     200,      -0.10,    3,       70,     0}
+
+# Detector X: 100:1 gear reducer, 5 threads/inch leadscrew, UREV = 25.4/(100*5) = .0508
+{13IDD:,  m33, "asynMotor",  GALIL5, Galil5:,  0, "Detector X",                    mm,   Pos,   0.5,   .01,   .5,    .2,    1.,    .5,     400,      .0508,    3,      100,     0}
+# Detectot Y: 1:2 and 36:1 gear reducers, 5 thread/inch pitch leadscrew, UREV - 25.4/(.5*36*5) = 0.2822222
+{13IDD:,  m34, "asynMotor",  GALIL5, Galil5:,  1, "Detector Y",                    mm,   Neg,   0.2,   .05,   .2,     0,    .2,    .1,     400,  .28222222,    3,      100,     0}
+# Detector Z: 100:1 gear reducer, 5 thread/inch leadscrew, UREV = 25.4/(100*5) = .0508
+{13IDD:,  m35, "asynMotor",  GALIL5, Galil5:,  2, "Detector Z",                    mm,   Pos,   0.5,   .01,   .5,    .2,    1.,    .5,     400,     -.0508,    3,      100,     0}
+# Detector AY: 500:1 gear reducer, 80 mm lever arm, full rotation of shaft = 2*PI*80mm motion at end of arm, UREV = 502.655/(500) = 1.00531
+{13IDD:,  m36, "asynMotor",  GALIL5, Galil5:,  3, "Detector base AY",              mm,   Pos,    .5,   .01,   .5,    .2,    .5,    .5,     400,    1.00531,    3,      100,     0}
+# Detector AX : 100:1 gear reducer, 20:1 jack, 5 threads/inch leadscrew, UREV = 25.4/(100*20*5) = .00254
+{13IDD:,  m37, "asynMotor",  GALIL5, Galil5:,  4, "Detector base AX",              mm,   Pos,    .1,   .01,   .5,     0,    .1,    .5,     400,     .00254,    3,      100,     0}
+#note: m37 turned OFF and position set at 0.0, 9/30/2014
+# Detector theta: 1800:1 total gear reducer, UREV=360/1800. = .2
+{13IDD:,  m38, "asynMotor",  GALIL5, Galil5:,  5, "Gimbal AY/AX",             degrees,   Pos,    2.,   .01,   .5, -0.05,    2.,    .5,     400,        .20,    3,      360,  -360}
+# Detector tilt: 2000:1 total gear reducer, UREV=360/2000. = .18
+{13IDD:,  m39, "asynMotor",  GALIL5, Galil5:,  6, "Gimbal AZ",                degrees,   Pos,    2.,   .01,   .5, -0.01,    2.,    .5,     400,        .18,    3,       92,    -2}
+# used for DAC rotary stage, 8.6.2005, vitali
+{13IDD:,  m40, "asynMotor",  GALIL5, Galil5:,  7, "beam filter for DAC",          deg,   Pos,   1.0,   0.2,   .2,     0,     1,    .2,     200,        -.1,    3,      360,  -360} 
+
+{13IDD:,  m41, "asynMotor",  GALIL6, Galil6:,  0, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+{13IDD:,  m42, "asynMotor",  GALIL6, Galil6:,  1, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+{13IDD:,  m43, "asynMotor",  GALIL6, Galil6:,  2, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+{13IDD:,  m44, "asynMotor",  GALIL6, Galil6:,  3, "Unused",                        mm,   Pos,    1.,   .01,   .5,     0,    1.,    .5,     400,       1.27,    3,      100,     0}
+# LVP Y (vertical).  4000 steps/rev microstepper, SREV=4000 (switch in position 7 = 20 microsteps/s)
+#                    10:1 gear reducer, 1 turn of jack = 1/16" (0.5" pitch, 8:1 gear ratio) UREV(mm) = 25.4/160 = .15875
+{13IDD:,  m45, "asynMotor",  GALIL6, Galil6:,  4, "LVP Y",                         mm,   Neg,  0.12,  .005,   .2,   -.2,    .1,    .1,    4000,   -0.15875,    3,      100,     0}
+# LVP X (inboard-outboard). 4000 steps/rev microstepper, SREV=4000
+#                           10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
+{13IDD:,  m46, "asynMotor",  GALIL6, Galil6:,  5, "LVP X",                         mm,   Neg,    .2,   .05,  2.0,    .2,    .1,    .1,    4000,       1.27,    3,      100,     0}
+# LVP Z outboard (upstream-downstream). 4000 steps/rev microstepper, SREV=4000
+#                                       10:1 gear reducer, 0.5" pitch UREV(mm) = 25.4/20 = 1.27
+{13IDD:,  m47, "asynMotor",  GALIL6, Galil6:,  6, "LVP Z outboard",                mm,   Neg,    .2,  .005,   .2,    .2,    .1,    .1,    4000,       1.27,    3,      100,     0}
+{13IDD:,  m48, "asynMotor",  GALIL6, Galil6:,  7, "LVP Z inboard",                 mm,   Neg,    .2,  .005,   .2,    .2,    .1,    .1,    4000,       1.27,    3,      100,     0}
+}
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,        PORT,    CTRL,  ADDR,  DESC,                          EGU, DIR, PCOF, ICOF, DCOF,  VELO,   VBAS, ACCL,  BDST, BVEL, BACC,  SREV,    UREV,    ERES, PREC, DHLM, DLLM}
+
+{13IDD:,  m49, "asynMotor",  GALIL7, Galil7:,  0, "Press vert 1",                  mm,  Pos, .10,   .01,  .20,  0.3,     0,  .2,     0,    1,   .5,   8000,    0.1,     0.001,    3,      25,    -25}
+{13IDD:,  m50, "asynMotor",  GALIL7, Galil7:,  1, "Unused",                        mm,  Pos, .10,   .01,  .20, 10.0,     0,  .2,     0,    1,   .2,   8000,    1.0,  0.000125,    3, 1000000, -1000000}
+{13IDD:,  m51, "asynMotor",  GALIL7, Galil7:,  2, "Press vert 2",                  mm,  Pos, .10,   .01,  .20,  0.3,     0,  .2,     0,    1,   .5,   8000,    0.1,     0.001,    3,      25,    -25}
+{13IDD:,  m52, "asynMotor",  GALIL7, Galil7:,  3, "Unused",                        mm,  Pos, .10,   .01,  .20, 10.0,     0,  .2,     0,    1,   .2,   8000,    1.0,  0.000125,    3, 1000000, -1000000}
+{13IDD:,  m53, "asynMotor",  GALIL7, Galil7:,  4, "Press vert 3",                  mm,  Pos, .10,   .01,  .20,  0.3,     0,  .2,     0,    1,   .2,   8000,    0.1,     0.001,    3,      25,      0}
+{13IDD:,  m54, "asynMotor",  GALIL7, Galil7:,  5, "Syringe pump",                  mm,  Neg, .10,   .01,  .20, 10.0,     0,  .2,     0,    1,   .2,   8000,    1.0,  0.000125,    3, 1000000, -1000000}
+{13IDD:,  m55, "asynMotor",  GALIL7, Galil7:,  6, "Press vert 4",                  mm,  Pos, .10,   .01,  .20,  0.3,     0,  .2,     0,    1,   .2,   8000,    0.1,     0.001,    3,      25,      0}
+{13IDD:,  m56, "asynMotor",  GALIL7, Galil7:,  7, "Radial pump",                   mm,  Pos, .10,   .01,  .20, 10.0,     0,  .2,     0,    1,   .2,   8000,    1.0,   .000125,    3, 1000000, -1000000}
+}
+
+file "$(CARS)/db/galil_motor.template"
+{
+pattern
+{P,       M,    DTYP,        PORT,    CTRL, ADDR,  DESC,                          EGU,   DIR,  VELO,  VBAS,  ACCL,   BDST, BVEL,  BACC,   SREV,       UREV,        ERES,  PREC,    DHLM,   DLLM}
+
+{13IDD:,  m85,  "asynMotor", GALIL12, Galil12:, 0, "Bottom",                       mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m86,  "asynMotor", GALIL12, Galil12:, 1, "Top",                          mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m87,  "asynMotor", GALIL12, Galil12:, 2, "Inboard",                      mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m88,  "asynMotor", GALIL12, Galil12:, 3, "Outboard",                     mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m89,  "asynMotor", GALIL12, Galil12:, 4, "Inboard",                      mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m90,  "asynMotor", GALIL12, Galil12:, 5, "Outboard",                     mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m91,  "asynMotor", GALIL12, Galil12:, 6, "Bottom",                       mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+{13IDD:,  m92,  "asynMotor", GALIL12, Galil12:, 7, "Top",                          mm,  Pos,      2,     .1,  .2,     0,     1,     .2,    400,        0.4,      0.0005,     3,       8,      0}
+}
+
+# Pseudomotors
+file "$(MOTOR)/db/pseudoMotor.db"
+{
+pattern
+{P,       M,           DINP,                        OUT,                     RDBL,                              STOO,               DESC,                  EGU, DIR, VELO, VBAS, ACCL, BDST, BVEL, BACC, MRES,   RRES, PREC, DHLM, DLLM}
+
+# LVP T-cup motion
+{13IDD:,  pm1, "13IDD:Tcup:Done NPP NMS",   "13IDD:pm1DVAL.VAL PP MS", "13IDD:Tcup:Readback.G NPP NMS",   "13IDD:Tcup:Stop PP MS",   "T-Cup X'",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13IDD:,  pm2, "13IDD:Tcup:Done NPP NMS",   "13IDD:pm2DVAL.VAL PP MS", "13IDD:Tcup:Readback.H NPP NMS",   "13IDD:Tcup:Stop PP MS",   "T-Cup Y'",           mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+# LVP Rotation
+{13IDD:,  pm3, "13IDD:LVPROT:Done NPP NMS", "13IDD:pm3DVAL.VAL PP MS", "13IDD:LVPROT:Readback.G NPP NMS", "13IDD:LVPROT:Stop PP MS", "LVP Z (compound)",   mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13IDD:,  pm4, "13IDD:LVPROT:Done NPP NMS", "13IDD:pm4DVAL.VAL PP MS", "13IDD:LVPROT:Readback.H NPP NMS", "13IDD:LVPROT:Stop PP MS", "Rotation",           deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+
+# LVP detector mount
+{13IDD:,  pm9, "13IDD:pm9Done  NPP NMS",   "13IDD:pm9Move      PP MS", "13IDD:pm9Readback     NPP NMS",   "13IDD:pm9Stop   PP MS",   "Radius",             mm,  Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,   1000, -100}
+{13IDD:, pm10, "13IDD:pm9Done  NPP NMS",   "13IDD:pm10Move     PP MS", "13IDD:pm10Readback    NPP NMS",   "13IDD:pm9Stop   PP MS",   "Compound Two-theta", deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+{13IDD:, pm11, "13IDD:pm9Done  NPP NMS",   "13IDD:pm11Move     PP MS", "13IDD:pm11Readback    NPP NMS",   "13IDD:pm9Stop   PP MS",   "Compound Chi",       deg, Pos,   1,    .1,   .1,    0,    1,   .1, .0001,   1.0,  3,    100, -100}
+
+# LVP press and camera combo (horiz and vert)
+{13IDD:, pm14, "13IDD:LVPCAMH:Done  NPP NMS",   "13IDD:pm14DVAL.VAL  PP MS", "13IDD:LVPCAMH:Readback.G   NPP NMS",   "13IDD:LVPCAMH:Stop   PP MS",   "LVPCAM_H_Sum",      mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm15, "13IDD:LVPCAMH:Done  NPP NMS",   "13IDD:pm15DVAL.VAL  PP MS", "13IDD:LVPCAMH:Readback.H   NPP NMS",   "13IDD:LVPCAMH:Stop   PP MS",   "LVPCAM_H_Diff",     mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm16, "13IDD:LVPCAMV:Done  NPP NMS",   "13IDD:pm16DVAL.VAL  PP MS", "13IDD:LVPCAMV:Readback.G   NPP NMS",   "13IDD:LVPCAMV:Stop   PP MS",   "LVPCAM_V_Sum",      mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+{13IDD:, pm17, "13IDD:LVPCAMV:Done  NPP NMS",   "13IDD:pm17DVAL.VAL  PP MS", "13IDD:LVPCAMV:Readback.H   NPP NMS",   "13IDD:LVPCAMV:Stop   PP MS",   "LVPCAM_V_Diff",     mm, Pos,   1,    .1,   .1,    0,    1,   .1, .001,   1.0,  3,   1000, -1000}
+}
+
+# LVP detector slits
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13IDD:, DetSlitV,  m86,   m85}
+{13IDD:, DetSlitH,  m88,   m87}
+}
+
+# LVP entrance slits (Dec 11, 2012)
+file "$(OPTICS)/db/2slit.db"
+{
+pattern
+{P,      SLIT,      mXp,   mXn}
+{13IDD:, EntSlitV,  m92,   m91}
+{13IDD:, EntSlitH,  m90,   m89}
+}
+
+# LVP T-cup mode
+file "$(MOTOR)/db/coordTrans2D.db"
+{
+pattern
+{P,      T,     MXP, MYP,    XDRV,    XRBV,      XSTOP,       XDONE,       YDRV,   YRBV,        YSTOP,       YDONE,    PREC}
+{13IDD:, Tcup:, pm1, pm2,   m46.VAL,  m46.RBV,  m46.STOP,   m46.DMOV,    m45.VAL, m45.RBV     m45.STOP,    m45.DMOV,   3}
+}
+
+# LVP rotation 
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,        SUM, DIFF,    M1DRV,    M1RBV,    M1STOP,   M1DONE,   M2DRV,  M2RBV,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LVPROT:,  pm3, pm4,    m47.VAL,  m47.RBV,  m47.STOP, m47.DMOV, m48.VAL, m48.RBV, m48.STOP, m48.DMOV, 3}
+}
+
+# LVP press and camera combo
+file "$(MOTOR)/db/sumDiff2D.db"
+{
+pattern
+{P,      T,      SUM,  DIFF,   M1DRV,    M1RBV,   M2DRV,   M2RBV,   M1STOP,   M1DONE,   M2STOP,   M2DONE,  PREC}
+{13IDD:, LVPCAMH:,  pm14, pm15,   m46.VAL,  m46.RBV,  m30.VAL, m30.RBV, m46.STOP, m46.DMOV, m30.STOP, m30.DMOV, 3}
+{13IDD:, LVPCAMV:,  pm16, pm17,   m45.VAL,  m45.RBV,  m29.VAL, m29.RBV, m45.STOP, m45.DMOV,  m29.STOP, m29.DMOV, 3}
+}
+
+file "$(CARS)/db/IDD_LVP_Detector.db"
+{
+pattern
+{P,      X,    Y,   Z,  TX,    TZ,  PMR,  PMT,  PMC}
+{13IDD:, m33, m34, m35, m38,  m39,  pm9,  pm10, pm11}
+}
