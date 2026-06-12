@@ -5,8 +5,6 @@ epicsEnvSet("STREAM_PROTOCOL_PATH","$(CARS)/db")
 ## Register all support components
 dbLoadDatabase "../../dbd/CARSLinux.dbd"
 CARSLinux_registerRecordDeviceDriver pdbbase
-#dbLoadDatabase "../../dbd/CARSWin32.dbd"
-#CARSWin32_registerRecordDeviceDriver pdbbase
 
 epicsEnvSet(WDIG_POINTS, "4096")
 # This is the unit labeled NET DEV 1 on the box.
@@ -15,6 +13,7 @@ epicsEnvSet(UNIQUE_ID1, "10.54.160.193")
 epicsEnvSet(UNIQUE_ID2, "10.54.160.10")
 
 epicsEnvSet("PREFIX", "13IDD:LVP:")
+epicsEnvSet("MOTOR_PREFIX", "13IDD:")
 
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
@@ -46,6 +45,9 @@ dbLoadTemplate("asynRecord.template")
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM3,PORT=serial2")
 dbLoadRecords("$(IP)/db/Keithley2kDMM_mf.db", "P=$(PREFIX),Dmm=DMM4,PORT=serial3")
 
+# Galil motors
+iocshLoad("Galil.cmd", "P=$(MOTOR_PREFIX)")
+ 
 # LVP pressure control.  This talks to the Omega meter.
 dbLoadTemplate("LVP_pressure_control.template")
 
@@ -55,38 +57,16 @@ dbLoadTemplate("LVP_furnace_control.template")
 # LVP Theta (temperature ramping) controller
 dbLoadRecords("$(CARS)/db/RampScan.db","P=$(PREFIX),R=Theta1_,DRV=LVP:PID1.VAL,RBV=LVP_furnace_calcs.E")
 
-var aimDebug 1
-# Multichannel analyzer stuff
-# AIMConfig(portName, ethernet_address, portNumber(1 or 2), maxChans,
-#           maxSignals, maxSequences, ethernetDevice)
-#AIMConfig("NI3ED/1", 0x59E, 1, 4000, 1, 1,"p5p1")
-#AIMConfig("NI3ED/2", 0x59E, 2, 4000, 1, 1,"p5p1")
-#dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_adc1,DTYP=asynMCA,INP=@asyn(NI3ED/1 0),NCHAN=4000")
-#dbLoadRecords("$(MCA)/db/mca.db", "P=13IDD:,M=aim_mcs1,DTYP=asynMCA,INP=@asyn(NI3ED/2 0),NCHAN=4000")
-
-#icbConfig(portName, module, ethernetAddress, icbAddress, moduleType)
-#   portName to give to this asyn port
-#   ethernetAddress - Ethernet address of module, low order 16 bits
-#   ethernetAddress - Ethernet address of module, low order 16 bits
-#   icbAddress - rotary switch setting inside ICB module
-#   moduleType
-#      0 = ADC
-#      1 = Amplifier
-#      2 = HVPS
-#      3 = TCA
-#      4 = DSP
-#icbConfig("icbAdc1", 0x59E, 5, 0)
-#dbLoadRecords("$(MCA)/db/icb_adc.db", "P=13IDD:,ADC=adc1,PORT=icbAdc1")
-#icbConfig("icbAmp1", 0x59E, 3, 1)
-#dbLoadRecords("$(MCA)/db/icb_amp.db", "P=13IDD:,AMP=amp1,PORT=icbAmp1")
-#icbConfig("icbHvps1", 0x59E, 2, 2)
-#dbLoadRecords("$(MCA)/db/icb_hvps.db", "P=13IDD:,HVPS=hvps1,PORT=icbHvps1,LIMIT=1000")
-
-
 < ../calc_GSECARS.iocsh
 
 ### Scan-support software
 dbLoadRecords("$(SSCAN)/db/scan.db", "P=$(PREFIX),MAXPTS1=2000,MAXPTS2=200,MAXPTS3=20,MAXPTS4=10,MAXPTSH=10")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","13IDD")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 < ../save_restore_IOCSH.cmd
 
@@ -96,7 +76,14 @@ iocInit
 seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM3, stack=10000"
 seq &Keithley2kDMM, "P=$(PREFIX), Dmm=DMM4, stack=10000"
 
-create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
+# save positions every five seconds
+create_monitor_set("auto_positions.req",5,"P=$(MOTOR_PREFIX)")
+# save other things every thirty seconds
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX),MP=$(MOTOR_PREFIX)")
+
+# Set the scale factor for the LVP Press Camera DIFF calculation
+# This causes a move pm17 of 1 unit to move each real motor by 1 unit, rather than 0.5 units
+dbpf("13IDD:pm17C1.VAL", "0.5")
 
 # Need to force the time arrays to process because the records are scan=I/O Intr
 # but asynPortDriver does not do array callbacks before iocInit.
