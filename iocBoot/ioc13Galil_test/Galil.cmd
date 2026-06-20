@@ -29,8 +29,8 @@
 #iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil1:, PORT=GALIL1, IPADDR=164.54.160.9, M1=m1,  M2=m2,  M3=m3,  M4=m4,  M5=m5,  M6=m6,  M7=m7,  M8=m8")
 #dbLoadTemplate("Galil_motors.template.D3547.stepper")
 
-# gse-galil14 D4040 amps, m1-m8 stepper with Elco
-iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil1:, PORT=GALIL1, IPADDR=10.54.160.179, M1=m1,  M2=m2,  M3=m3,  M4=m4,  M5=m5,  M6=m6,  M7=m7,  M8=m8")
+# gse-galil20 D4040 amps, m1-m8 stepper with Elco
+iocshLoad("../Galil_stepper_controller.cmd", "P=$(P)Galil1:, PORT=GALIL1, IPADDR=10.54.160.129, M1=m1,  M2=m2,  M3=m3,  M4=m4,  M5=m5,  M6=m6,  M7=m7,  M8=m8")
 dbLoadTemplate("Galil_motors.template.D4040_D4040")
 
 asynSetTraceIOMask("GALILSYNC1",0,ESCAPE)
