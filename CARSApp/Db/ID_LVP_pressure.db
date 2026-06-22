@@ -1,181 +1,253 @@
 # Database for pressure controls of the 1000 ton press in 13-ID-D
-# This version uses a EPID record to control the pressure, rather than
+# This version written May 20, 2026 uses 3-phase motors with the Galil controller,
+# rather than analog motors with tachometer control.
+# It uses a EPID record to control the pressure, rather than
 # the Omega controller and Rockland's PLC.
 # It still uses the Omega, but only to read the pressure.
 
 # The current pressure value
-record(ai,"$(P)$(R)Value") {
-        field(SCAN,"1 second")
-        field(DTYP,"stream")
-        field(INP, "@ID_LVP_pressure.proto Read $(PORT)")
-        field(PREC,"1")
-        field(FLNK,"$(P)$(R)PID.PROC PP MS")
+record(ai,"$(P)$(R)CurrentPressure") {
+    field(SCAN,"1 second")
+    field(DTYP,"stream")
+    field(INP, "@ID_LVP_pressure.proto Read $(PORT)")
+    field(PREC,"1")
+    field(FLNK,"$(P)$(R)PID")
 }
 
 # EPID record for feedback to control the pressure
 record(epid,"$(P)$(R)PID") {
-        field(INP,"$(P)$(R)Value")
-        field(OUTL,"$(P)$(R)Switch.A PP NMS")
-        field(KP,"$(KP)")
-        field(KI,"$(KI)")
-        field(KD,"$(KD)")
-        field(LOPR,"0")
-        field(HOPR,"300")
-        field(DRVL,"-100")
-        field(DRVH,"100")
-        field(PREC,"3")
-        field(FLNK,"$(P)$(R)Blowout.PROC PP MS")
+    field(INP,"$(P)$(R)CurrentPressure NPP NMS")
+    field(OUTL,"$(P)$(R)SetPressure PP NMS")
+    field(KP,"$(KP)")
+    field(KI,"$(KI)")
+    field(KD,"$(KD)")
+    field(LOPR,"0")
+    field(HOPR,"300")
+    field(DRVL,"-100")
+    field(DRVH,"100")
+    field(PREC,"3")
+    field(FLNK,"$(P)$(R)Blowout.PROC PP MS")
 }
 
 # If the pressure drops by more than a certain amount then turn off both motors
 record(calcout,"$(P)$(R)Blowout") {
-        field(INPA, "$(P)$(R)Blowout.B NPP NMS")
-        field(INPB, "$(P)$(R)Value NPP NMS")
-        field(INPC, "10.")
-        field(CALC, "(A-B)>C")
-        field(OOPT, "5")
-        field(OUT, "$(P)$(R)BlowoutLatch.VAL PP MS")
+    field(INPA, "$(P)$(R)Blowout.B NPP NMS")
+    field(INPB, "$(P)$(R)CurrentPressure NPP NMS")
+    field(INPC, "10.")
+    field(CALC, "(A-B)>C")
+    field(OOPT, "5")
+    field(OUT, "$(P)$(R)BlowoutLatch.VAL PP MS")
 }
 
 record(bo,"$(P)$(R)BlowoutLatch") {
-        field(ZNAM, "OK")
-        field(ZSV, "NO_ALARM")
-        field(ONAM, "Blowout!")
-        field(OSV, "MAJOR")
-        field(FLNK, "$(P)$(R)StopBoth.PROC PP MS")
+    field(ZNAM, "OK")
+    field(ZSV, "NO_ALARM")
+    field(ONAM, "Blowout!")
+    field(OSV, "MAJOR")
+    field(FLNK, "$(P)$(R)StopBoth.PROC PP MS")
+}
+
+record(ai,"$(P)$(R)SwitchoverPressure") {
+}
+
+record(ai,"$(P)$(R)SetPressure") {
+    field(FLNK, "$(P)$(R)SetPressureSeq PP")
+}
+
+record(sseq,"$(P)$(R)SetPressureSeq") {
+    field(DOL1, "1")
+    field(LNK1,"$(P)$(R)Switch.PROC PP MS")
+    field(DOL2, "1")
+    field(LNK2,"$(P)$(R)DisableRadial.PROC PP MS")
+    field(DOL3, "1")
+    field(LNK3,"$(P)$(R)EnableRadial.PROC PP MS")
+    field(DOL4, "1")
+    field(LNK4,"$(P)$(R)SetRadialVelocity.PROC PP MS")
+    field(DOL5, "1")
+    field(LNK5,"$(P)$(R)DisableSyringe.PROC PP MS")
+    field(DOL6, "1")
+    field(LNK6,"$(P)$(R)EnableSyringe.PROC PP MS")
+    field(DOL7, "1")
+    field(LNK7,"$(P)$(R)SetSyringeVelocity.PROC PP MS")
 }
 
 # Transform record to control switching between radial piston pump and
 # syringe pump
 record(transform,"$(P)$(R)Switch") {
-        field(INPA,"0")
-        field(CMTA,"PID output")
-        field(INPB,"100")
-        field(CMTB,"Radial/syringe switchover")
-        field(INPC,"$(P)$(R)Value NPP NMS")
-        field(CMTC,"Current load")
-        field(CLCD,"(A>0)&(C<B)?A:0")
-        field(OUTD,"$(P)$(RADIAL_DAC) PP MS")
-        field(CMTD,"dP>0 and L<switchover, write radial")
-        field(CLCE,"(A<0)|(C>=B)?A:0")
-        field(OUTE,"$(P)$(SYRINGE_DAC) PP MS")
-        field(CMTE,"dP<0 or L>switchover, write syringe")
+    field(INPA,"$(P)$(R)SetPressure NPP")
+    field(CMTA,"PID output")
+    field(INPB,"$(P)$(R)SwitchoverPressure NPP NMS")
+    field(CMTB,"Radial/syringe switchover")
+    field(INPC,"$(P)$(R)CurrentPressure NPP NMS")
+    field(CMTC,"Current load")
+    field(CLCD,"(A>0)&(C<B)?A:0")
+    field(CMTD,"dP>0 and L<switchover")
+    field(CLCE,"(A<0)|(C>=B)?A:0")
+    field(CMTE,"dP<0 or L>switchover")
+}
+
+record(calcout,"$(P)$(R)DisableRadial") {
+    field(INPA,"$(P)$(R)Switch.D")
+    field(CALC,"A")
+    field(OOPT,"Transition To Zero")
+    field(OUT,"$(RADIAL_MOTOR).JOGF CA")
+}
+
+record(calcout,"$(P)$(R)EnableRadial") {
+    field(INPA,"$(P)$(R)Switch.D")
+    field(INPB,"$(RADIAL_MOTOR).JOGF")
+    field(CALC,"(A!=0)&(B=0)")
+    field(OOPT,"When Non-zero")
+    field(OUT,"$(RADIAL_MOTOR).JOGF CA")
+}
+
+record(calcout,"$(P)$(R)SetRadialVelocity") {
+    field(INPA,"$(P)$(R)Switch.D")
+    field(CALC,"A=0?0.01:A")
+    field(OUT,"$(RADIAL_MOTOR).JVEL CA")
+}
+
+record(calcout,"$(P)$(R)DisableSyringe") {
+    field(INPA,"$(P)$(R)Switch.E")
+    field(CALC,"A")
+    field(OOPT,"Transition To Zero")
+    field(OUT,"$(SYRINGE_MOTOR).JOGF CA")
+}
+
+record(calcout,"$(P)$(R)EnableSyringe") {
+    field(INPA,"$(P)$(R)Switch.E")
+    field(INPB,"$(SYRINGE_MOTOR).JOGF")
+    field(CALC,"(A!=0)&(B=0)")
+    field(OOPT,"When Non-zero")
+    field(OUT,"$(SYRINGE_MOTOR).JOGF CA")
+}
+
+record(calcout,"$(P)$(R)SetSyringeVelocity") {
+    field(INPA,"$(P)$(R)Switch.E")
+    field(CALC,"A=0?0.01:A")
+    field(OUT,"$(SYRINGE_MOTOR).JVEL CA")
 }
 
 # These records are for tweaking the pressure setpoint
 record(ao,"$(P)$(R)PID_tweak") {
-        field(VAL, "1")
-        field(PREC,"1")
+    field(VAL, "1")
+    field(PREC,"1")
 }
 
 record(calcout,"$(P)$(R)PID_tweak_down") {
-        field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
-        field(INPB,"$(P)$(R)PID.VAL NPP NMS")
-        field(CALC,"B-A")
-        field(OUT, "$(P)$(R)PID.VAL PP NMS")
+    field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
+    field(INPB,"$(P)$(R)PID.VAL NPP NMS")
+    field(CALC,"B-A")
+    field(OUT, "$(P)$(R)PID.VAL PP NMS")
 }
 
 record(calcout,"$(P)$(R)PID_tweak_up") {
-        field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
-        field(INPB,"$(P)$(R)PID.VAL NPP NMS")
-        field(CALC,"B+A")
-        field(OUT, "$(P)$(R)PID.VAL PP NMS")
+    field(INPA,"$(P)$(R)PID_tweak.VAL NPP NMS")
+    field(INPB,"$(P)$(R)PID.VAL NPP NMS")
+    field(CALC,"B+A")
+    field(OUT, "$(P)$(R)PID.VAL PP NMS")
 }
 
-
-# Records to ramp the load using an EPICS SSCAN record.
-# This record starts the ramp after computing the delay time and copying the
-# start and end points of the scan to the scan record
-record(dfanout,"$(P)$(R)StartRamp") {
-      field(VAL,"1")
-      field(OUTA,"$(P)$(R)RampTime.PROC PP MS")
-      field(OUTB,"$(P)$(R)RampSP.PROC PP MS")
-      field(OUTC,"$(P)$(R)RampEP.PROC PP MS")
-      field(OUTD,"$(P)$(R)RampScan.EXSC PP MS")
+record(ao, "$(P)$(R)RampTarget") {
+    field(PREC, "2")
 }
 
 # The ramp time in hours is in field A of this record. It computes
 # the delay time per point of the scan.
-record(calcout,"$(P)$(R)RampTime") {
-      field(PINI,"YES")
-      field(INPA,"1")
-      field(INPB,"$(P)$(R)RampScan.NPTS NPP NMS")
-      field(CALC,"A*3600./B")
-      field(OUT,"$(P)$(R)RampScan.PDLY NPP NMS")
-      field(PREC,"2")
+record(ao,"$(P)$(R)RampTime") {
+    field(PREC,"2")
 }
 
-# This record copies the current value of the load into the
-# starting point of the scan
-record(calcout,"$(P)$(R)RampSP") {
-      field(INPA,"$(P)$(R)Value NPP NMS")
-      field(CALC,"A")
-      field(OUT,"$(P)$(R)RampScan.P1SP NPP NMS")
+record(transform,"$(P)$(R)StartRamp") {
+    field(INPA, "$(P)$(R)CurrentPressure NPP")
+    field(CMTA, "Current pressure")
+    field(INPB, "$(P)$(R)RampTarget NPP NMS")
+    field(CMTB, "Target load")
+    field(INPC, "$(P)$(R)RampTime NPP NMS")
+    field(CMTC, "Ramp time (hours)")
+    field(CLCD, "C*3600.")
+    field(CMTD, "Ramp time (seconds)")
+    field(CLCE, "(B-A)/D")
+    field(CMTE, "Ramp step")
+    field(CLCF, "1")
+    field(OUTF, "$(P)$(R)RampCounter.VAL NPP")
+    field(CLCG, "1")
+    field(OUTG, "$(P)$(R)EnableRamp PP")
+    field(CLCH, "A")
+    field(OUTH, "$(P)$(R)RampStep.OVAL PP")
 }
 
-# This record copies the desired final value of the load into the
-# ending point of the scan
-record(calcout,"$(P)$(R)RampFinal") {
-      field(CALC,"A")
-      field(OUT,"$(P)$(R)RampScan.P1EP NPP NMS")
-      field(PREC,"1")
+record(bo, "$(P)$(R)EnableRamp") {
+    field(ZNAM, "Disable")
+    field(ONAM, "Enable")
 }
 
-# The scan record that ramps the load
-record(sscan,"$(P)$(R)RampScan") {
-        field(DESC,"Load ramp")
-        field(PINI,"YES")
-        field(PRIO,"HIGH")
-        field(MPTS,"1000")
-        field(NPTS,"1000")
-        field(FPTS,"FREEZE")
-        field(D01PV,"$(P)$(R)Value")
-        field(P1PV,"$(P)$(R)PID.VAL PP MS")
+record(calc,"$(P)$(R)RampCounter") {
+    field(SCAN, "1 second")
+    field(SDIS, "$(P)$(R)EnableRamp NPP")
+    field(DISV, "0")
+    field(CALC, "VAL+1")
+    field(FLNK, "$(P)$(R)RampStep")
 }
 
-# This record pauses and resumes the ramp.  We should be able to directly write into
-# the .PAUS field of the scan record, but there seems to be a bug and it only resumes
-# 50% of the time if we do that.
-# ending point of the scan
-record(bo,"$(P)$(R)RampPause") {
-      field(OUT,"$(P)$(R)RampScan.PAUS PP MS")
+record(calcout,"$(P)$(R)RampStep") {
+    field(INPA, "$(P)$(R)StartRamp.D")
+    field(INPB, "$(P)$(R)StartRamp.E")
+    field(INPC, "$(P)$(R)RampCounter")
+    field(OCAL, "VAL+B")
+    field(CALC, "C<=A")
+    field(OOPT, "When Non-zero")   
+    field(DOPT, "Use OCAL")
+    field(OUT, "$(P)$(R)PID.VAL PP")
+    field(FLNK, "$(P)$(R)RampDoneCheck")
+}
+
+record(calcout,"$(P)$(R)RampDoneCheck") {
+    field(INPA, "$(P)$(R)StartRamp.D")
+    field(INPC, "$(P)$(R)RampCounter")
+    field(CALC, "C<A")
+    field(OOPT, "Transition To Zero")   
+    field(OUT,  "$(P)$(R)EnableRamp PP")
 }
 
 # Turn off both motors
-# Note we use a transform, rather than seq record so that it processes
-# synchronously, turning off feedback immediately.
-record(transform,"$(P)$(R)StopBoth") {
-        field(INPA, "1")
-        field(OUTA,"$(P)$(R)StopRadial.PROC PP MS")
-        field(INPB, "1")
-        field(OUTB,"$(P)$(R)StopSyringe.PROC PP MS")
+record(sseq,"$(P)$(R)StopBoth") {
+    field(DOL1, "0")
+    field(LNK1,"$(P)$(R)PID.FBON PP MS")
+    field(DOL2, "0")
+    field(LNK2,"$(RADIAL_MOTOR).JOGF PP MS")
+    field(DOL3, "0")
+    field(LNK3,"$(RADIAL_MOTOR).JOGR PP MS")
+    field(DOL4, "1")
+    field(LNK4,"$(RADIAL_MOTOR).STOP PP MS")
+    field(DOL5, "0")
+    field(LNK5,"$(SYRINGE_MOTOR).JOGF PP MS")
+    field(DOL6, "0")
+    field(LNK6,"$(SYRINGE_MOTOR).JOGR PP MS")
+    field(DOL7, "1")
+    field(LNK7,"$(SYRINGE_MOTOR).STOP PP MS")
 }
 
 # Turn off radial motor
-# This record turns off feedback
-record(ao,"$(P)$(R)StopRadial") {
-        field(VAL,"0")
-        field(OUT, "$(P)$(R)PID.FBON PP NMS")
-        field(FLNK,"$(P)$(R)StopRadial1")
-}
-
-# This record stops the motor by writing 0 to the DAC
-# writing to it from the PID record too.  The CA output will be buffered.
-record(ao,"$(P)$(R)StopRadial1") {
-        field(VAL,"0.0")
-        field(OUT, "$(P)$(RADIAL_DAC) CA NMS")
+record(sseq,"$(P)$(R)StopRadial") {
+    field(DOL1, "0")
+    field(LNK1,"$(P)$(R)PID.FBON PP MS")
+    field(DOL2, "0")
+    field(LNK2,"$(RADIAL_MOTOR).JOGF PP MS")
+    field(DOL3, "0")
+    field(LNK3,"$(RADIAL_MOTOR).JOGR PP MS")
+    field(DOL4, "1")
+    field(LNK4,"$(RADIAL_MOTOR).STOP PP MS")
 }
 
 # Turn off syringe motor
-# This record turns off feedback
-record(ao,"$(P)$(R)StopSyringe") {
-        field(VAL,"0")
-        field(OUT, "$(P)$(R)PID.FBON PP NMS")
-        field(FLNK,"$(P)$(R)StopSyringe1")
-}
-
-# This record stops the motor by writing 0 to the DAC
-record(ao,"$(P)$(R)StopSyringe1") {
-        field(VAL,"0.0")
-        field(OUT, "$(P)$(SYRINGE_DAC) CA NMS")
+record(sseq,"$(P)$(R)StopSyringe") {
+    field(DOL1, "0")
+    field(LNK1,"$(P)$(R)PID.FBON PP MS")
+    field(DOL2, "0")
+    field(LNK2,"$(SYRINGE_MOTOR).JOGF PP MS")
+    field(DOL3, "0")
+    field(LNK3,"$(SYRINGE_MOTOR).JOGR PP MS")
+    field(DOL4, "1")
+    field(LNK4,"$(SYRINGE_MOTOR).STOP PP MS")
 }
