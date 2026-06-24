@@ -18,10 +18,19 @@ MultiFunctionConfig("$(PORT)", "$(UNIQUE_ID)", 1, 1)
 #asynSetTraceMask $(PORT) -1 255
 
 dbLoadTemplate("$(MEASCOMP)/db/ETC.substitutions", "P=$(PREFIX), PORT=$(PORT)")
+dbLoadRecords($(STD(/db/pid_control.db", "P=$(PREFIX),PID=PID1")
 
 < ../save_restore_IOCSH.cmd
+save_restoreSet_status_prefix("$(PREFIX)")
+dbLoadRecords("$(AUTOSAVE)/db/save_restoreStatus.db", "P=$(PREFIX)")
+
+# devIocStats
+epicsEnvSet("ENGINEER", "Mark Rivers")
+epicsEnvSet("LOCATION","Sector 13 portable")
+epicsEnvSet("GROUP","GSECARS")
+dbLoadRecords("$(DEVIOCSTATS)/db/iocAdminSoft.db","IOC=$(PREFIX)")
 
 iocInit
 
-create_monitor_set("auto_settings.req",30,"P=$(PREFIX))
+create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 
