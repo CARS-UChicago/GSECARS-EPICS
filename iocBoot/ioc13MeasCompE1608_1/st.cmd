@@ -7,8 +7,8 @@ CARSLinux_registerRecordDeviceDriver pdbbase
 epicsEnvSet("PREFIX", "13E1608_1:")
 epicsEnvSet(PORT, "E1608_1")
 epicsEnvSet(WDIG_POINTS, "4096")
-epicsEnvSet(UNIQUE_ID, "10.54.160.216")
-
+#epicsEnvSet(UNIQUE_ID, "10.54.160.216")
+epicsEnvSet(UNIQUE_ID, "10.54.160.63")
 ## Configure port driver
 # MultiFunctionConfig((portName,        # The name to give to this asyn port driver
 #                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
@@ -36,3 +36,13 @@ create_monitor_set("auto_settings.req",30,"P=$(PREFIX)")
 # but asynPortDriver does not do array callbacks before iocInit.
 
 dbpf $(PREFIX)WaveDigDwell.PROC 1
+
+# Set the calibration of the load cell
+# This is for the 10N cell, serial number 730960
+# 10 N = 4.810 mV
+# The Omega amplifier is set to a gain of 500. 
+# So 10 N = 2.405 V
+# 10 V = 41.58 N
+dbpf $(PREFIX)Ai6.EGUF 41.58
+dbpf $(PREFIX)Ai6.EGUL -41.58
+
