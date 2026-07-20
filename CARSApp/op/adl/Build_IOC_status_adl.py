@@ -14,7 +14,7 @@ from typing import List
 
 PREFIX = "Beamline"
 BASENAME = "_IOC_status"
-IOC_STATUS_FILE = "IOC_status.adl"
+IOC_STATUS_FILE = "SingleIOC_status.adl"
 
 # Max screen size in pixels
 MAX_SCREEN_WIDTH = 1920
@@ -279,8 +279,8 @@ def adl_header(title: str, width: int, height: int) -> str:
 }}
 display {{
         object {{
-                x=180
-                y=130
+                x=50
+                y=50
                 width={width}
                 height={height}
         }}
