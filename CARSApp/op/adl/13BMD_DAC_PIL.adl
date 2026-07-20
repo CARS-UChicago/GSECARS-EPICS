@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=297
-		y=134
+		x=2230
+		y=1240
 		width=1377
 		height=774
 	}
@@ -264,17 +264,17 @@ menu {
 	display[0] {
 		label="Vertical Mirror"
 		name="8motors.adl"
-		args="P=13BMA:, TITLE=BM_Vertical_Mirror, M1=m18, M2=m19, M3=pm1, M4=pm2, M5=pm3, M6=pm4, M7=pm5, M8=pm6"
+		args="P=13BMA:, TITLE=BM_Vertical_Mirror, M1=m17, M2=m18, M3=pm1, M4=pm2, M5=pm3, M6=pm4, M7=pm5, M8=pm6"
 	}
 	display[1] {
 		label="Vertical Pitch (simple)"
 		name="2motors.adl"
-		args="P=13BMA:, TITLE=BM_Vertical_Mirror_Pitch_Simple, M1=m20, M2=m21"
+		args="P=13BMA:, TITLE=BM_Vertical_Mirror_Pitch_Simple, M1=m19, M2=m20"
 	}
 	display[2] {
 		label="Vertical Base (simple)"
 		name="2motors.adl"
-		args="P=13BMA:, TITLE=BM_Vertical_Mirror_Base, M1=m22, M2=m23"
+		args="P=13BMA:, TITLE=BM_Vertical_Mirror_Base, M1=m21, M2=m22"
 	}
 	display[3] {
 		label="Vertical Base Setup"
@@ -1450,13 +1450,13 @@ text {
 }
 "text entry" {
 	object {
-		x=918
-		y=710
+		x=847
+		y=716
 		width=62
 		height=25
 	}
 	control {
-		chan="13BMD:ExtHeatPower"
+		chan="13VPower1:VP1:Volt"
 		clr=14
 		bclr=35
 	}
@@ -1506,13 +1506,13 @@ text {
 }
 "message button" {
 	object {
-		x=894
-		y=740
+		x=833
+		y=742
 		width=20
 		height=20
 	}
 	control {
-		chan="13BMD:ExtHeatPowerTweakDown.PROC"
+		chan="13VPower1:VP1:VoltTweakDown.PROC"
 		clr=0
 		bclr=37
 	}
@@ -1521,13 +1521,13 @@ text {
 }
 "message button" {
 	object {
-		x=964
-		y=740
+		x=903
+		y=742
 		width=20
 		height=20
 	}
 	control {
-		chan="13BMD:ExtHeatPowerTweakUp.PROC"
+		chan="13VPower1:VP1:VoltTweakUp.PROC"
 		clr=0
 		bclr=37
 	}
@@ -1536,13 +1536,13 @@ text {
 }
 "text entry" {
 	object {
-		x=915
-		y=739
+		x=854
+		y=741
 		width=48
 		height=20
 	}
 	control {
-		chan="13BMD:ExtHeatPowerTweakVal"
+		chan="13VPower1:VP1:VoltTweakVal"
 		clr=14
 		bclr=36
 	}
@@ -1551,8 +1551,8 @@ text {
 }
 text {
 	object {
-		x=851
-		y=715
+		x=782
+		y=721
 		width=63
 		height=18
 	}
@@ -7138,4 +7138,61 @@ text {
 	}
 	label="-10"
 	press_msg="-10"
+}
+"related display" {
+	object {
+		x=820
+		y=693
+		width=92
+		height=20
+	}
+	display[0] {
+		label="VPower 1"
+		name="AE_ILS.adl"
+		args="P=13VPower1:,R=VP1:"
+	}
+	clr=14
+	bclr=30
+	label="-Power Supply"
+}
+rectangle {
+	object {
+		x=588
+		y=717
+		width=136
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+"text update" {
+	object {
+		x=872
+		y=719
+		width=100
+		height=18
+	}
+	monitor {
+		chan="13VPower1:VP1:VoltMeas"
+		clr=50
+		bclr=14
+	}
+	clrmod="discrete"
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=968
+		y=719
+		width=16
+		height=18
+	}
+	"basic attribute" {
+		clr=50
+	}
+	textix="V"
+	align="horiz. right"
 }
