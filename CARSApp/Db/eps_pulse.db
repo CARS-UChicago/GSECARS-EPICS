@@ -3,14 +3,10 @@
 # the PV leaves it in the 1 state, so further writes of 1 are ignorred.  
 # This database pulses it to 1 for 0.5 seconds
 
-grecord(seq,"$(P)$(R)")
+record(bo,"$(P)eps_bo$(N)")
 {
-	field(DESC,"$(DESC)")
-        field(DLY1,"0")
-        field(DOL1,"1")
-        field(LNK1,"$(P)eps_bo$(N).VAL PP MS")
-        field(DLY2,"0.5")
-        field(DOL2,"0")
-        field(LNK2,"$(P)eps_bo$(N).VAL PP MS")
+    field(DESC, "$(DESC)")
+    field(HIGH, "0.5")
+    alias("$(P)$(R)")
 }
 
