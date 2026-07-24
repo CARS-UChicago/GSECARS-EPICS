@@ -1,0 +1,22 @@
+< envPaths
+# Tell EPICS all about the record types, device-support modules, drivers,
+# etc. in this build from CARS
+dbLoadDatabase("../../dbd/CARSLinux.dbd")
+CARSLinux_registerRecordDeviceDriver(pdbbase)
+
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(IP)/db")
+
+drvAsynIPPortConfigure("INSTEK","164.54.160.223:1026",0,0,0)
+asynOctetSetOutputEos("INSTEK", 0, "\n")
+asynOctetSetInputEos("INSTEK", 0, "\n")
+asynSetTraceIOMask INSTEK,0,ESCAPE
+#asynSetTraceMask INSTEK,0,ERROR|DRIVER
+
+dbLoadRecords("$(IP)/db/InstekGPP.db", "P=Test:,R=Instek1:,PORT=INSTEK")
+
+< ../save_restore_IOCSH.cmd
+
+iocInit
+
+create_monitor_set("auto_settings.req", 30, "P=Test:,R=Instek1:")
+
